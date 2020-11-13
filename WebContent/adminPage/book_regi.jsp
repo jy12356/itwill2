@@ -9,9 +9,32 @@
     </div>
     <div class="contents-wrap">
         <div class="customer">
-            <h3 class="coTitle">책등록</h3> 
+            <h3 class="subTit">책등록</h3> 
             <div class="customer-contents">
                 <div class="customer-inner">
+                	<div class="bookregiSearch">
+          				<input type="text" name="searchString"  placeholder="검색어를 입력하세요" class="search_input" style="ime-mode:active;">
+						<input type="button" onclick="bookSearchSubmit()">
+                	</div>
+                	<script type="text/javascript">
+                			function bookSearchSubmit(){
+                				var keyword = $('.search_input').val(); 
+                				$.ajax({ 
+                					type: 'GET', 
+                					url: '/api/v1/book/'+keyword, 
+                					dataType: 'json', 
+                					contentType:'application/json; charset=utf-8', 
+                					})
+                					.done(function(res) { 
+                						alert(JSON.stringify(res)); 
+                					})
+                					.fail(function (error) { 
+                						alert(JSON.stringify(error)); 
+               						});
+
+                				
+                			}
+                	</script>
                     <table summary="책등록" class="customer-notice">
                         <caption>책등록</caption>
                         <colgroup>
@@ -23,17 +46,13 @@
                         <tbody>
                             <tr>
                                 <td class="th">책제목</td>
-                                <td colspan="3">
+                                <td colspan="3" class="td">
                                 	<input type="text" name="title">
                                 </td>
                             </tr>
-                            <style>
-								.categ2 select{display: none;}
-								.categ2 select.on{display: block;}
-							</style>
                             <tr>
                             	<td class="th">대분류</td>
-                            	<td class="categ1">
+                            	<td class="categ1 td">
                             		<select>
                             			<option value="cateDef">선택해주세요.</option>
                             			<option value="novel">소설</option>
@@ -44,7 +63,7 @@
                             		</select>
                             	</td>
                             	<td class="th">소분류</td>
-                            	<td class="categ2">
+                            	<td class="categ2 td">
                             		<select id="cateDef" class="on"> 
                             			<option>선택해주세요.</option>
                             		</select>
@@ -88,15 +107,15 @@
                             </tr>
                             <tr>
                             	<td class="th">저자</td>
-                            	<td><input type="text" name="author"></td>
+                            	<td class="td"><input type="text" name="author"></td>
                             	<td class="th">출판사</td>
-                            	<td><input type="text" name="publisher"></td>
+                            	<td class="td"><input type="text" name="publisher"></td>
                             </tr>
                             <tr>
                             	<td class="th">ISBN번호</td>
-                            	<td><input type="text" name="isbn"></td>
+                            	<td class="td"><input type="text" name="isbn"></td>
                             	<td class="th">출판날짜</td>
-                            	<td><input type="text" id="pubDatePicker" name="pubdate"></td>
+                            	<td class="td"><input type="text" id="pubDatePicker" name="pubdate"></td>
                             </tr>
                             <tr>
                                 <td class="th">요약내용</td>
@@ -124,9 +143,6 @@
 	                        	$("#"+val).addClass("on");	                        	
 	                        });
 	                    });
-	                    
-	                    
-                    
                     </script>
                     <div class="default-btn-wrap">
                    	    <a href="board.jsp" class="btn">작성</a>
