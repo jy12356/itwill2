@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="icon_footer_my" transform="translate(-31 -190)">
+    <path id="패스_928" data-name="패스 928" class="cls-1" d="M51.555,209.139a4.517,4.517,0,0,0,4.646-4.646v-2.323a4.646,4.646,0,1,0-9.293,0v2.323A4.517,4.517,0,0,0,51.555,209.139Z" transform="translate(-2.555 -1.12)"/>
+    <path id="패스_929" data-name="패스 929" class="cls-1" d="M59.83,223.588v-3.872c0-3.47-6.143-5.421-9.256-5.421s-9.256,1.95-9.256,5.421v3.872" transform="translate(-1.574 -3.993)"/>
+    <circle id="타원_135" data-name="타원 135" class="cls-1" cx="17" cy="17" r="17" transform="translate(32 191)"/>
+  </g>
+</svg>

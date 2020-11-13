@@ -1,0 +1,81 @@
+/*공통css소스*/
+.clearfix{width: 100%;}
+.clearfix::after{content: ''; clear: both;display: block;}
+.no{padding:100px 0;text-align:center;font-size:14px;font-weight:600;color:#333;line-height:1.6;}
+.mypage .no{border-bottom:1px solid #f4f4f4;}
+.customer .no{border-bottom:1px solid #f4f4f4;}
+.nobo{border-bottom:none !important;}
+.blue {background: #21b9f1 !important;color: #fff !important;}
+
+/* 탑버튼 추가 */
+.topBtn{position:fixed;right: 301px;bottom:15px;width:40px;height:40px;background:url(../images/topBtn.png) no-repeat left center #fff;text-indent:-9999px;z-index:10000;}
+.topBtn a{display:block;width:40px;height:40px;}
+
+/* 체크박스 커스텀 */
+.checkbox{position:relative;display:inline-block;height:20px;}
+.checkbox label{min-height:20px;cursor:pointer;display:inline-block;max-width:100%;}
+.checkbox label input[type='checkbox']{display:none;padding:0;}
+.checkbox span{position:relative;display:inline-block;border:1px solid #a9a9a9;width:20px;height:20px;cursor:pointer;box-sizing:border-box;background:#fff;}
+.checkbox span i{left:-1px;top:-2px;display:inline-block;transform:scale(3) rotateZ(-20deg);opacity:0;transition:all .3s ease-in;position:absolute;display:inline-block;}
+.checkbox span i:before{display:inline-block;content:"";box-sizing: border-box;width:20px;height:20px;background:url(../images/checkbox.png) no-repeat center center;}
+.checkbox label input[type="checkbox"]:checked + span > i{transform:scale(1) rotateZ(0deg);opacity:1;}
+.checkbox label input[type="checkbox"]:checked + span{border-color:#17897a;}
+.checkbox label input[type=checkbox]:disabled + span{background:#e6e6e6;border-color:#bdbdbd;cursor:default;}
+/* 이펙트 버튼 */
+.effect-btn{position:relative;transition:all 0.3s ease;overflow:hidden;z-index:0;}
+.effect-btn:before{content:"";width:100%;height:100%;position:absolute;background: #047767;top:-100%;left:0;transition:all 0.3s ease;opacity:.4;z-index:-1;}
+.effect-btn:after{content:"";width:100%;height:100%;position:absolute;background: #047767;top:-100%;left:0;transition:all 0.3s ease;transition-delay:.3s;z-index:-1;}
+.effect-btn:hover:before{top:0;}
+.effect-btn:hover:after{top:0;}
+/* 스페셜버튼 */
+.s-btn{position:relative;transition:.5s;overflow:hidden;}
+.s-btn span{position:absolute;width:100%;height:100%;background:rgba(242,100,50,.6);transition:.5s;z-index:-1;}
+.s-btn span:nth-child(1){top:-100%;left:-100%;}
+.s-btn span:nth-child(2){bottom:-100%;left:-100%;}
+.s-btn span:nth-child(3){top:-100%;right:-100%;}
+.s-btn span:nth-child(4){bottom:-100%;right:-100%;}
+.s-btn:hover{color:#fff !important;z-index:1;border:1px solid #ea4d14;}
+.s-btn:hover span:nth-child(1){top:0;left:0;}
+.s-btn:hover span:nth-child(2){bottom:0;left:0;}
+.s-btn:hover span:nth-child(3){top:0;right:0;}
+.s-btn:hover span:nth-child(4){bottom:0;right:0;}
+/* 일반 버튼 커스텀 */
+.btn_inner{margin: 15px 0 10px;text-align: right;}
+.btn_inner .btn{padding: 7px 10px;}
+.btn{text-align:center;color:#333;padding:0 8px;border:1px solid #c1c1c1;box-shadow:0 2px #f2f2f2;font-size:13px;line-height:23px;border-radius:4px;font-weight:600;}
+.default-btn-wrap{text-align:center;}
+.default-btn-wrap input[type="submit"],
+.default-btn-wrap a{display:inline-block;line-height:30px;height:32px;box-sizing:border-box;width:81px;margin:0 2px;color:#333;font-weight:bold;font-size:13px;background: #fff;}
+
+/* select 커스텀 */
+.arrayBox{text-align:center;padding:0 10px;border:1px solid #cdced1;position:relative;}
+.arrayBox .s-result{display:inline-block;color:#333;font-size:14px;font-weight:600;padding:8px 0;padding-right:30px;background:url(../images/array-bg.png) no-repeat right center;}
+.arrayBox .s-result.one{background:none;}
+.arrayBox .s-result a:focus{box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);}
+.arrayBox ul{display:none;position:absolute;left:0;top:110%;width:160px;background:#fff;border-radius:6px;z-index:14000;overflow:hidden;text-align:left;border:1px solid #17897a;
+box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);}
+.arrayBox ul li a{padding-left:40px;display:block;line-height:40px;border-top:1px solid #f3f3f4;font-size:16px;box-sizing:border-box;font-weight:600;}
+.arrayBox ul li a.on{background: url(../images/radio_on.png) no-repeat 14px center;}
+.arrayBox ul li:hover{background:#f4f4f4;}
+.arrayBox ul li a.on{color:#17897a;}
+
+/* 라디오버튼 커스텀 */
+.k-array{}
+.k-array:after{content:"";display:block;clear:both;}
+.k-array input[type='radio']{position:absolute;left:-9999px;width:17px;height:17px;}
+.k-array label{display:block;margin-left:20px;line-height:50px;height:50px;float:left;text-align:center;font-weight:600;font-size:14px;cursor:pointer;}
+.k-array label .radio_on{padding-left:20px;display:inline-block;height:50px;background:url(../images/radio_on.png) no-repeat left center;}
+.k-array label .radio_off{padding-left:20px;display:inline-block;height:50px;}
+.k-array label .radio_on em{color: #049682;}
+.k-array label .radio_off em{color:#333;}
+.rm_br:after{display:block;position:absolute;top: 0px;right: 0px;bottom: 0px;left: 0px;z-index: 10;border:1px solid rgba(0, 0, 0,0.2);content:"";border-radius:8px;}
+
+/* 페이징 */
+.paging{height:60px;box-sizing:border-box;padding:16px 0;text-align:center;}
+.paging a{padding:0 12px;color:#333;font-size:15px;font-weight:600;display:inline-block;line-height:24px;background:url(../images/alarm-paging-dot.gif) no-repeat left center;vertical-align:middle;}
+.paging a.fir{background:none;}
+.paging a.on{color:#17897a;}
+.paging .arr{box-sizing:border-box;background:none;padding:0 2px;}
+.paging .arr img{vertical-align:top;}
+.paging .prev{margin-right:10px;}
+.paging .next{margin-left:10px;}

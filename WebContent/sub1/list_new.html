@@ -1,0 +1,2350 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KP248RV');</script>
+<!-- End Google Tag Manager -->
+
+<meta charset="UTF-8">
+<meta name="title" content="e북포털 북큐브">
+<meta name="description" content="새로운 독서의 시작, 전자책 서점,웹소설,웹툰을 지금 바로 만나보세요.">
+<meta name="title" content="">
+<meta property="og:type" content="book">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="e북포털 북큐브">
+<meta property="og:image" content="">
+<meta property="og:url" content="">
+<meta property="fb:app_id" content="159693857557581">
+<meta property="og:locale" content="ko_KR">
+
+<title>e북포털 북큐브</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/icon/bookcube_ci.ico">
+<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+<link type="text/css" rel="stylesheet" href="../css/reset.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css?v=20200917" />
+<link type="text/css" rel="stylesheet" href="../css/slick.css" />
+<link type="text/css" rel="stylesheet"  href="../js/lib/swipe/swiper.css" />
+<script type="text/javascript" src="../js/bookcube.js?200519"></script>
+<script type="text/javascript" src="../js/lib/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/lib/slick.min.js"></script>
+<script type="text/javascript" src="../js/slimScroll.js"></script>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/placeholders.min.js"></script>
+<script type="text/javascript" src="../js/lib/swipe/swiper-4.3.min.js"></script>
+<!-- naver-->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+	<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript"> if(!wcs_add) var wcs_add = {}; wcs_add["wa"] = "75bf1248432b84"; wcs_do(); </script>
+<!-- naver-->
+<!-- kakao 로그인-->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+</head>
+<body>
+	<div class="wrap" data-page="new" data-mainclass-num="00" data-subclass-num="" data-sort="" data-list-type="" data-web-class="일반">
+	
+<header class="header">
+	
+	<div class="header-top">
+		<div class="header-top-inner">
+			<div class="h-top">
+				<form name="searchFrm" id="searchFrm" autocomplete="off">
+				<!--input type="hidden" name="searchOption" id="searchOption" value="" /-->
+				<input type="text" style="display: none;" />
+				<input type="hidden" name="searchpage" value="normal" />
+				<input type="hidden" name="page" value="">
+					<fieldset>
+						<legend>검색</legend>
+						<h1 class="logo"><a href="https://www.bookcube.com/main.asp">북큐브서점</a></h1>
+						<div class="search">						
+							<input type='text' name='searchString' class="search_input" style="ime-mode:active;" />
+							<input type='button' onclick="frmSearchSubmit()" />
+						</div>
+						<ul class="my-lnb">
+							<li class="btnLogin"><a href="javascript:;">로그인</a></li>
+							<li><a href="https://www.bookcube.com/member/register.asp">회원가입</a></li>
+						</ul>
+					</fieldset>
+				</form>
+				<div class="my_layer_box">
+					<div class="my-wrap">
+						<span class="my-dot"></span>
+						<div class="my-inner">
+							<div class="my-top">
+								<h3>마이페이지</h3>
+								<a href="javascript:;" class="btn btnLogOut">로그아웃</a>
+							</div>
+							<ul>
+								<li>
+									<p>북캐시</p>
+									<p>0원</p>
+								</li>
+								<li>
+									<p>적립금</p>
+									<p>0원</p>
+								</li>
+								<li>
+									<p>쿠폰/상품권</p>
+									<p>0장</p>
+								</li>
+								<li>
+									<p>무료이용권</p>
+									<p>0장</p>
+								</li>
+							</ul>
+							<div class="my-bottom">
+								<a href="https://www.bookcube.com/mypage.asp?list=_main" class="effect-btn">마이페이지 바로가기</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="alarm_layer_box" style="display:none;">
+					<iframe src="" width="430" height="510" frameborder="0"  name="alarm_view" id="alarm_view" scrolling="no"></iframe>
+				</div>
+				<div class="fastSearch">
+					<div class="fastRight">
+						<ul class="fastUl">
+							
+						</ul>
+					</div>
+					<div class="auto-complete">
+						<p style="display: none;">자동완성 기능이 꺼져 있습니다.</p>
+						<p><a href="javascript:;" class="">자동완성 끄기</a></p>
+					</div>
+				</div>
+				<script>
+					$(function(){
+						// 총알검색창 display 조정
+						$('.search_input').keyup(function(event){
+							var key = window.event ? event.keyCode : event.which;    
+							if (key  != 13 && key  != 38 && key  != 37 && key  != 39 && key  != 40 ) {// not enter							
+								sniperSearch(); 
+							}
+						});
+
+						// 검색창 닫기	
+						$("body").click(function(){
+							$(".fastSearch").fadeOut(100);
+						});
+						$(".fastSearch").on("click",function(event){
+							event.stopPropagation();
+						});
+
+						//키보드 기능 추가
+						
+						function keyup(e){
+							var i = 0;
+							var frsFlag = true;
+							var ie11Flag = false;
+							
+							$(".search input").on("keyup",function(e){
+								var a  = $(".fastUl li a");
+								var aLen = $(".fastUl li a").length -1;
+								var address = $(".fastUl li a.on").attr("href");
+								var valText = $(a).find(".fsTitle").text();
+								var agent = navigator.userAgent.toLowerCase();
+								if(navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1){
+									ie11Flag = true;
+								}
+								if(e.keyCode == 40){
+									if(i>aLen){
+										i = 0;	
+									}
+									if(ie11Flag){
+										if( e.keyCode == 40 && frsFlag){
+											var ev = jQuery.Event( "keyup", { keyCode: 39 } );
+											jQuery(this).trigger(ev);
+											frsFlag = false;
+											return;
+										}
+									}
+									i++;
+									$(a).removeClass("on");
+									$(a).eq(i-1).addClass("on");
+				
+								//	$(this).val($(a).eq(i-1).find(".fsTitle").text());
+									
+								}else if(e.keyCode == 38){
+									i--;
+									if(i<1){
+										i=aLen+1;
+									}
+									if(ie11Flag){
+										if( e.keyCode == 38 && frsFlag){
+											var ev = jQuery.Event( "keyup", { keyCode: 40 } );
+											jQuery(this).trigger(ev);
+											frsFlag = false;
+											return;
+										}
+									}
+									$(a).removeClass("on");
+									$(a).eq(i-1).addClass("on");
+								//	$(this).val($(a).eq(i-1).find(".fsTitle").text());
+										
+								}else if(e.keyCode == 13){
+									if($(a).hasClass("on")){
+										location.href=address;
+									}else{
+										frmSearchSubmit();
+									}		
+								}else if(e.keyCode == 39){
+									return
+								}else{
+									$(a).removeClass("on");
+									i=0;
+								}		
+							});	
+						}
+						
+						setTimeout(keyup,0);
+
+						$(".auto-complete a").on("click",function(){
+							if($(this).hasClass("off")){
+								$(this).removeClass("off");
+								$(this).text("자동완성 끄기");
+								$(".fastRight").show();
+								$(".auto-complete p:first").hide();
+								$.cookie('sniperYN', 'Y', { path : '/', expires : 100});
+							}else{
+								$(this).addClass("off");
+								$(this).text("자동완성 켜기");
+								$(".fastRight").hide();
+								$(".auto-complete p").show();
+								$.cookie('sniperYN', 'N', { path : '/', expires : 100});
+							}								
+						});
+					});
+
+					/* enter 제거 */
+					function getEnterRemove(val){
+						var value = val;
+						try{
+							value = value.replace(/\r/g, " ");//엔터제거
+							value = value.replace(/\n/g, " ");//행바꿈제거
+						}catch(e){
+							alert(e);
+						}	
+						return value; 
+					}
+
+					function frmSearchSubmit(){		
+							
+						var objFrm = $("#searchFrm") ;
+						if ($(".search_input").val() == ''){
+							alert('검색어를 검색해주세요.');
+							$(".search_input").focus();			
+							return ;
+						}else{
+							objFrm.attr("method","get");
+							objFrm.attr("action","/search.asp");
+							objFrm.submit();
+						}		
+					}
+
+					function sniperSearch() {
+						//$(".fastRight .fastUl li").remove(); 
+						//$(".fastSearch").css("display","none");
+
+						var searchVal = getEnterRemove($(".search_input").val());
+						var table = $(".fastRight .fastUl").get(0);
+						var detail_url = "";
+						var img_url = "";
+						var img_cls = "";
+/*
+						$(".fastRight ul").remove(); 
+						$(".fastRight p").remove(); 
+						$(".fastRight").append("<p>청소년 유해어가 포함된 단어로는<br />검색 하실 수 없습니다.<br />로그인 및 성인인증 후 재검색 해주세요.</p>");
+						$(".fastSearch").css("display","block");
+*/
+						$.ajax({
+							url : '/data/_ebook_search.asp',
+							data : {search : searchVal},
+							type : 'post',
+							dataType : 'json',
+							headers : {'cache-control' : "no-cache"},
+							cache : false,
+							success : function(data){
+								$(".fastRight .fastUl li").remove(); 
+								if (data.result.length > 0){	
+									if (data.result[0].filter_yn == "Y"){
+										newTr = "<li class='harmful'>청소년 유해어가 포함된 단어로는<br />검색 하실 수 없습니다.<br />로그인 및 성인인증 후 재검색 해주세요.</li>";
+										$(table).append(newTr);
+										$(".fastSearch").css("display","block");
+									}else{
+										var newTr = "" ;
+											for(var i in data.result){
+												detail_url = "<a href='"+ httpUrl +"/detail.asp?series_num="+ data.result[i].series_num +"&page="+ data.result[i].order_type +"'>";
+												if (data.result[i].cover_display_yn == "0" && $.cookie("adult_yn") != "Y"){
+													img_url = "	<img src='/images/contents/adult_19_94.jpg' alt='19금 표지 이미지' />";
+													//img_cls = "<span class='s19'>성인물</span>";
+												}else{
+													img_url = "	<img src='https://bookimg.bookcube.com/91/"+ data.result[i].book_num.substring(0, 4)+"/"+ data.result[i].book_num +".jpg' alt='"+ data.result[i].title +"' />";
+													img_cls = "";
+												}
+
+												newTr =
+												"<li>" + detail_url +
+												"		<div class='fsThum'>" +
+												"			<span class='im_br'>" + img_url + 
+												"			</span>" + img_cls +
+												"		</div>" +
+												"		<div class='fsInfo'>" +
+												"			<p class='fsTitle'>"+ data.result[i].title +"</p>" +
+												"			<p class='fsAuthor'>"+ data.result[i].author +" 저<em>|</em>"+ data.result[i].publisher +"</p>" +
+												"		</div>" +
+												"	</a>" +							
+												"</li>";									
+												$(table).append(newTr);
+												$(".fastSearch").css("display","block");
+											}	
+									}
+								}
+							},
+							error: function() {}
+						});
+					}
+				</script>
+			</div> 
+			<div class="h-top-bottom">
+				<h2 class="hide">메인메뉴</h2>
+				<ul class="gnb">
+					<li><a href="https://www.bookcube.com/main.asp" class="on">서점</a></li>
+					<li><a href="https://www.bookcube.com/novel/main.asp">웹소설</a></li>
+					<li><a href="https://www.bookcube.com/toon/main.asp">웹툰</a></li>
+				</ul>
+				<ul class="lnb">
+					<li><a href="https://www.bookcube.com/order/bookcash.asp">캐시충전</a>
+					<li><a href="https://www.bookcube.com/customer.asp">고객센터</a>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="header-bottom">
+		<div class="header-bottom-inner">
+			<div class="h-bottom-left">
+				<p class="all-category"><a href="#"><img src="/images/main/all-category.png" alt='전체카테고리' /></a></p>
+				<ul class="snb-left">
+					<li><a href="https://www.bookcube.com/main.asp?page=nm" class="on">일반도서</a></li>
+					<li><a href="https://www.bookcube.com/main.asp?page=rm" class="">로맨스</a></li>
+					<li><a href="https://www.bookcube.com/main.asp?page=bl" class="">BL</a></li>
+					<li><a href="https://www.bookcube.com/main.asp?page=mf" class="">무협/판타지</a></li>
+					<li><a href="https://www.bookcube.com/main.asp?page=cm" class="">만화</a></li>
+				</ul>
+			</div>
+			<div class="h-bottom-right">
+				<ul class="snb-right">
+					<li><a href="https://www.bookcube.com/best.asp?page=nm">베스트</a></li>
+					<li><a href="https://www.bookcube.com/new.asp?page=nm">신간</a></li>
+					<li><a href="https://www.bookcube.com/free.asp?page=nm">무료</a></li>
+					<li><a href="https://www.bookcube.com/event.asp?page=nm">이벤트</a></li>
+				</ul>
+			</div>
+			<div class="m-category">
+				<div class="category-inner">
+					<div>
+						<p>장르도서</p>
+						<ul class="">
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=28">로맨스</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=30">BL</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=29">무협/판타지</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=19">만화</a></li>	
+						</ul>
+					</div>
+					<div>
+						<p>일반도서</p>
+						<ul class="">
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=27">오디오북</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=00">문학</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=07">자기계발</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=06">경제/경영</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=09">외국어/언어</a></li>
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=04">역사/문화</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=03">인문</a></li>	
+							<!--li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=02">인물</a></li-->	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=05">사회</a></li>								
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=08">컴퓨터/인터넷</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=15">자연과 과학</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=16">건강/스포츠/취미</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=13">종교</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=18">여행</a></li>
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=17">가정/생활/요리</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=10">유아</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=11">어린이</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=12">청소년</a></li>	
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=14">예술/대중문화</a></li>
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=21">교재</a></li>
+							<!--li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=31">개인출판물</a></li-->
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=32">해외원서</a></li>
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=20">잡지</a></li>
+							<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=99">성인</a></li>							
+						</ul>
+					</div>
+					<div>
+						<p>테마관</p>
+						<ul class="">
+							<li><a href="https://www.bookcube.com/monopoly.asp?page=nm">독점선출간관</a></li>	
+							<li><a href="https://www.bookcube.com/rent.asp?page=rm">장르대여관</a></li>	
+							<li><a href="https://www.bookcube.com/rent.asp?page=cm">만화대여관</a></li>	
+							<li><a href="https://www.bookcube.com/free_center.asp?page=rm">장르정액관</a></li>	
+							<li><a href="https://www.bookcube.com/free_center.asp?page=cm">만화정액관</a></li>		
+						</ul>
+					</div>
+					<a href="javascript:;" class="category-close">close</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<script>
+$(function(){			
+	$(".all-category a").on("click",function(){
+		$(".m-category").fadeIn();	
+	});
+	$(".category-close").on("click",function(){
+		$(".m-category").fadeOut();		
+	});
+	
+	//알리미
+	$("#alarm_view").attr("src", "/main/_alarm.asp");
+	var timer = 0;
+	$(".alarm").on("mouseenter",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			$("#alarm_view").attr("src", "/main/_alarm.asp");
+			if($(".my-wrap").css("display")== "block"){
+				$(".my-wrap").fadeOut();
+			}
+			$(".alarm_layer_box").fadeIn();
+		}
+	});
+	$(".alarm_layer_box").on("mouseleave",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			$(this).fadeOut();
+		}
+	});
+
+	//마이페이지 레이어팝업
+	var timer = 0;
+	$(".mypop.on").on("mouseenter",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			if($(".alarm_layer_box").css("display")== "block"){
+				$(".alarm_layer_box").fadeOut();
+			}
+			$(".my-wrap").fadeIn();
+		}
+	});
+	$(".my-wrap").on("mouseleave",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			$(this).fadeOut();
+		}
+	});
+
+	$(".btnLogOut").on("click",function(){
+		$.post("/data/_logout.asp",{} , function(data){					
+			if(data.success){
+				window.location.href = httpUrl+"/main.asp";
+			}else{
+				alert(data.message);
+			}
+		}, "json");
+	});
+});
+</script>
+<form name="sns_input_data">
+<input type="hidden" class="sns_input_site_id" value="">
+<input type="hidden" class="sns_input_id" value="">
+<input type="hidden" class="sns_input_email" value="">
+<input type="hidden" class="sns_input_title" value="">
+</form>
+<div id="login" class="login-pop">
+<form onsubmit="return login_submit();">
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<div class="join-wrap">
+			<div class="join-info">
+				<div class="js-join">
+					<input type="text" name="" placeholder="아이디" maxlength="20" class="strId" />
+					<p class="check"></p>
+				</div>
+				<div class="js-join">
+					<input type="password" name="" placeholder="비밀번호" class="strPass" />
+					<p class="check"></p>
+				</div>
+			</div>
+			<div class="m-login">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" class="loginsave">
+						<span><i></i></span>
+					</label>
+					<p>로그인유지</p>
+				</div>
+				<p><a href="javascript:;" class="find-id">아이디 찾기</a><em>|</em><a href="javascript:;" class="find-pwd">비밀번호 찾기</a></p>
+			</div>
+			<div class="simple-login-btn">
+				<p class="now-start"><span>지금 시작하세요!</span><a href="https://www.bookcube.com/member/register.asp">북큐브 간편가입 〉</a></p>
+				<input type="submit" value="로그인" />
+			</div>
+			<div class="login-or"><p class="or">또는</p></div>
+			<div class="simple-login-btn or">
+				<div class="login-btn kakaotalk"><a href="javascript:loginWithKakao()"><p><span class="kakaotalk">카카오톡</span>카카오로 로그인</p></a></div>
+				<div class="login-btn naver"><a href="" onClick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false"><p><span class="naver">네이버</span>네이버로 로그인</p></a></div>
+				<div class="login-btn facebook"><a href="javascript:;"><p><span class="facebook">페이스북</span>페이스북으로 로그인</p></a></div>
+				<div class="login-btn payco"><a href="javascript:;"><p><span class="payco">페이코</span>페이코로 로그인</p></a></div>
+			</div>
+		</div>	
+	</div>
+</form>
+</div>
+
+
+<div id="login-success" class="login-pop">
+<form>
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<div class="join-connect">
+			<!-- naver,twitter,kakao,facebook,payco  -->
+			<p class="sns-logo">네이버</p>
+			<p class="sns-confirm"><span class="sns-name">네이버</span> 인증이 완료되었습니다.</p>
+			<div class="id-connect-wrap">
+				<p>이미 북큐브 회원인 경우<span>북큐브 ID로 로그인하시면, SNS계정이 자동으로 연결됩니다.</span></p>
+				<div class="bookcube-connect">
+					<p><a href="javascript:;">북큐브 ID 연결하기</a></p>
+					<div class="bookcube-input">
+						<div class="js-join">
+							<input type="text" name="strid" class="strLoginId" placeholder="아이디">
+						</div>
+						<div class="js-join">
+							<input type="password" name="strpwd" class="strLoginPass" placeholder="비밀번호">
+						</div>
+						<div class="connect-join">
+							<p><a href="#" class="find-id">아이디찾기</a><em>|</em><a href="#" class="find-pwd">비밀번호 찾기</a></p>
+						</div>
+						<a href="#" class="bookcube-login">로그인</a>
+					</div>
+				</div>
+				<script>
+					$(function(){
+						$(".bookcube-connect > p").on("click",function(){
+							if($(this).hasClass("on")){
+								$(this).removeClass("on");
+								$(".bookcube-input").hide();
+							}else{
+								$(this).addClass("on");
+								$(".bookcube-input").show();
+							}
+						});
+					});
+					
+				</script>
+				<div class="sns-connect">
+					<p>SNS 계정으로 신규 가입하기<span>SNS계정으로 로그인 시 해당 SNS 계정으로 북큐브에 자동 가입되며 간편하게 로그인이 가능합니다.</span></p>
+					<a href="javascript:;" class="sns_login_btn">SNS 계정으로 가입하기</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+</div>
+
+<div id="find-pwd" class="login-pop">
+<form onsubmit="return pw_search();">
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="login-prev">prev</a>
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<p class="title">비밀번호 찾기</p>
+		<div class="join-wrap">
+			<div class="join-info">
+				<div class="js-join">
+					<input type="text" name="" placeholder="아이디" class="strId">
+					<p class="check"></p>
+				</div>
+				<div class="js-join">
+					<input type="text" name="" placeholder="이메일" class="strMail">
+					<p class="check"></p>
+				</div>
+			</div>
+			<div class="login-btn">
+				<input type="submit" value="확인">
+			</div>
+			<p class="info">북큐브 고객센터 : 1588-1925</p>
+		</div>
+	</div>
+</form>
+</div>
+
+<div id="find-id" class="login-pop">
+<form onsubmit="return id_search();">
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="login-prev">prev</a>
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<p class="title">아이디 찾기</p>
+		<div class="join-wrap">
+			<div class="join-info">
+				<div class="js-join">
+					<input type="text" name="" placeholder="이메일" class="strMail">
+					<p class="check"></p>
+				</div>
+			</div>
+			<div class="login-btn">
+				<input type="submit" value="확인">
+			</div>
+			<p class="info">북큐브 고객센터 : 1588-1925</p>
+		</div>
+	</div>
+</form>
+</div>
+
+<div id="id-result" class="login-pop">
+<form>
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="login-prev">prev</a>
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<p class="title">아이디 조회 결과</p>
+		<div class="find-result">
+			<p></p>
+		</div>
+		<div class="login-btn">
+			<input type="submit" class="member-login" value="로그인">
+			<a href="javascript:;" class="find-pwd">비밀번호 찾기</a>
+		</div>		
+	</div>
+</form>
+</div>
+
+
+
+<div id="pwd-result" class="login-pop">
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="login-prev">prev</a>
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<p class="title">비밀번호 조회 결과</p>
+		<div class="find-result">
+			<p><span></span>으로<br>비밀번호를 발송했습니다.</p>
+		</div>
+		<div class="login-btn">
+			<a href="#" class="go-main">메인으로</a>
+		</div>		
+	</div>
+</div>
+
+<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+<div id="naver_id_login" style="display:none"></div>
+<!-- //네이버아이디로로그인 버튼 노출 영역 -->
+
+<!-- 네이버아디디로로그인 초기화 Script -->
+<script type="text/javascript">
+	var naver_id_login = new naver_id_login("tdoziaWOhdIeC0LICk28", httpsUrl +"/member/naver/naver.asp");
+
+	naver_id_login.setPopup(); //Popup형태의 인증 진행
+	naver_id_login.init_naver_id_login();
+
+	var naver_url = $("#naver_id_login_anchor").attr("href");
+
+	$("#login .naver a").attr("href", naver_url);
+</script>
+<!-- // 네이버아이디로로그인 초기화 Script -->
+
+<!-- 페이코 로그인 Script -->
+<script type="text/javascript">
+	var payco_client_id = "3RDL_pOgssXrawcbA2AG" ;
+	var return_url = httpUrl +"/member/payco/payco_https.asp";
+	var login_url = "https://id.payco.com/oauth2.0/authorize?response_type=code&client_id="+ payco_client_id +"&redirect_uri="+ escape(return_url) +"&serviceProviderCode=FRIENDS&userLocale=ko_KR"
+	var sOption = "width=630, height=547, top=300, left=300,scrollbars=yes"
+
+	 $(".login-btn.payco").on("click", function(e){
+		var win = window.open(login_url, "payco", sOption);
+	 });
+</script>
+<!--//페이코 로그인 Script -->
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1676308606031166',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+   $(".login-btn.facebook").on("click", function(e){
+	   e.preventDefault();
+		//FB.getLoginStatus(function(res){
+			
+		//});
+		FB.login(function(res){
+			if(res.status == "connected"){
+				FB.api("/me?fields=email,name", function(res){
+					//console.log(res.email);
+					//console.log(res.name);
+					//console.log(res.id);
+
+					$.post("/data/_outside_join_yn.asp", {site_num : "51",ID : res.id}, function(data){						
+						if (data.join_able_yn){
+							sns_data_input("51", res.id, res.email, "페이스북");
+						}else{
+							sns_login('51',res.id,res.email);							
+						}					
+					}, "json");	
+
+					//alert(res); 
+				});
+			}
+		},{scope:"email"});
+   });
+</script>
+
+<script>
+	//<![CDATA[
+	// 사용할 앱의 JavaScript 키를 설정해 주세요.
+	Kakao.init('27b43a5f358f3c1f77e6002d11090c07');
+	function loginWithKakao() {
+	  // 로그인 창을 띄웁니다.
+	  Kakao.Auth.login({
+		success: function(authObj) {
+		  Kakao.API.request({
+			  url: '/v2/user/me',
+			  success: function(res) {
+				//alert(JSON.stringify(res.id));
+				$.post("/data/_outside_join_yn.asp", {site_num : "21",ID : res.id}, function(data){						
+					if (data.join_able_yn){
+						sns_data_input("21", res.id, "", "카카오");
+					}else{
+						sns_login('21',res.id,'');						
+					}					
+				}, "json");	
+			  },
+			  fail: function(error) {
+				//alert(JSON.stringify(error));
+			  }
+			});
+		},
+		fail: function(err) {
+		  //alert(JSON.stringify(err));
+		}
+	  });
+	};
+  //]]>
+
+function sns_data_input(site_num, res_id, res_email, site_name){
+	$(".sns_input_site_id").val(site_num);
+	$(".sns_input_id").val(res_id);
+	var logo_name = "kakao";
+	if (site_name == "네이버"){ logo_name = "naver";}
+	if (site_name == "페이스북"){ logo_name = "facebook";}
+	if (site_name == "페이코"){ logo_name = "payco";}
+	$(".sns-logo").addClass(logo_name);
+	$(".sns_input_email").val(res_email);
+	$(".sns_input_title").val(site_name);	
+	$(".sns-name").html(site_name);
+	$("#login").hide();
+	$("#login-success").show();
+}
+
+function sns_login(site_num, res_id, res_email){
+	$.post("/data/_outside_login_process.asp", {site_num : site_num,ID : res_id, EMAIL : res_email}, function(data){						
+	if(data.success){
+		location.reload();
+	}else{
+		alert(data.message);
+	}
+	}, "json");
+}
+
+function login_submit(){
+	var user_id = $("#login .strId").val();
+	var user_pwd = $("#login .strPass").val();
+	var user_login_save = $(".loginsave").val();
+	var sns_input_site_id = $(".sns_input_site_id").val();
+	var sns_input_id = $(".sns_input_id").val();
+	var sns_sns_input_email = $(".sns_input_email").val();
+	var loginsave = $(".loginsave").val();
+
+	$.post("/data/_login.asp", {uid : user_id, upwd : user_pwd, loginsave : user_login_save, sns_site_id : sns_input_site_id, sns_id : sns_input_id, sns_email : sns_sns_input_email}, function(data){					
+		if(data.success){
+			window.location.reload();
+		}else{
+			alert(data.message);			
+			$("#login .strPass").val('');								
+		}
+	}, "json");
+	return false ;
+}
+
+function id_search(){
+	var user_mail = $("#find-id .strMail").val();
+	var user_type = "id_search";
+
+	$.post("/data/_id_pwd_search.asp", {id_email : user_mail, search_type : user_type}, function(data){					
+		if(data.success){
+			txt = "<p>"+ data.name +"님의 아이디는<br /><span>"+ data.id +"</span>입니다.</p>";
+			$("#id-result .find-result").html(txt);
+			$("#find-id").hide();
+			$("#id-result").show();
+		}else{
+			alert(data.message);
+			$("#find-id .strMail").val("");				
+		}
+	}, "json");
+	return false ; 
+}
+
+
+function pw_search(){
+	var user_id = $("#find-pwd .strId").val();
+	var user_mail = $("#find-pwd .strMail").val();
+	var user_type = "pw_search";
+
+	$.post("/data/_id_pwd_search.asp", {pw_id : user_id , pw_email : user_mail, search_type : user_type}, function(data){					
+		if(data.success){
+			txt = data.email_id +'@'+ data.email_domain;
+			$("#pwd-result .find-result span").html(txt);
+			$(".login-pop").hide();
+			if($(".sns_input_site_id").val() == ""){
+				$(".go-main").html('메인으로');
+			}else{
+				$(".go-main").html('로그인');
+			}
+			$("#pwd-result").show();
+		}else{
+			alert(data.message);
+			$("#find-pwd .strId").val('');
+			$("#find-pwd .strMail").val('');
+			$("#find-pwd .strId").focus();
+		}
+	}, "json");
+	return false;
+}	
+
+	$(function(){
+		//로그인 팝업
+		$(".pop-top .close").on("click",function(){
+			$(this).parents().find(".login-pop").hide();	
+		});
+		$(".login-bg").on("click",function(){
+			$(".login-pop").fadeOut(100);
+		});				
+		
+		$(".js-join input").on("focus",function(){
+			$(".js-join p.check").hide();
+		});
+
+		$(".pop-top .login-prev").on("click",function(){
+			$(".login-pop").hide();
+			$("#login").show();
+			
+		});
+		
+		$(".btnLogin").on("click",function(){
+			$(".sns_input_site_id").val("");
+			$(".sns_input_id").val("");
+			$(".sns_input_email").val("");
+			$(".sns_input_title").val("");
+			$("#login").show();
+			$("#login .strId").focus();
+		});
+		// 닫기
+		$(".pop-top .close").on("click",function(){
+			$(this).parents().find(".login-pop").hide();	
+		});
+		$(".login-bg").on("click",function(){
+			$(".login-pop").fadeOut(100);
+		});				
+		$(".join-info input[type='text']:first").focus().css("border","1px solid #dc4510");
+		
+		$(".js-join input").on("focus",function(){
+			$(".js-join p.check").hide();
+			$(this).css("border","1px solid #dc4510");
+		});
+		$(".js-join input").on("blur",function(){
+			$(this).css("border","1px solid #ccc");
+		});
+
+		$(".pop-top .prev").on("click",function(){
+			$(".login-pop").hide();
+			$("#login").show();
+			
+		});
+		$(".find-id").on("click",function(){
+			$(".login-pop").hide();
+			$("#find-id").show();
+			//$("#find-id .strMail").focus();
+		});
+		$(".find-pwd").on("click",function(){
+			$(".login-pop").hide();
+			$("#find-pwd").show();
+			//$("#find-pwd .strId").focus();			
+		});
+		$(".member-login").on("click",function(){
+			$(".login-pop").hide();
+			if($(".sns_input_site_id").val() == ""){
+				$("#login").show();
+			}else{
+				$("#login-success").show();
+			}			
+			
+			//$("#login .strId").focus();
+		});
+
+		$(".go-main").on("click",function(){			
+			if($(".sns_input_site_id").val() == ""){
+				window.location.href = httpUrl ;
+			}else{
+				$(".login-pop").hide();
+				$("#login-success").show();
+			}			
+		});		
+
+		//sns 회원가입처리
+		$(".sns_login_btn").on("click",function(){
+			sns_login($(".sns_input_site_id").val(), $(".sns_input_id").val(), $(".sns_input_email").val());
+		});		
+
+		$(".bookcube-login").on("click",function(){
+			var snsTitle = $(".sns_input_title").val();
+
+			if(confirm("북큐브 ID와 " + snsTitle+ "계정을 연결하시겠습니까?" )){
+
+				var user_id = $("#login-success .strLoginId").val();
+				var user_pwd = $("#login-success .strLoginPass").val();
+				var user_login_save = $("#login-success #strLoginSave").val();
+				var sns_input_site_id = $(".sns_input_site_id").val();
+				var sns_input_id = $(".sns_input_id").val();
+				var sns_input_email = $(".sns_input_email").val();
+
+				$.post("/data/_login.asp", {uid : user_id, upwd : user_pwd, loginsave : user_login_save, sns_site_id : sns_input_site_id, sns_id : sns_input_id, sns_email : sns_input_email}, function(data){		
+					if(data.success){
+						window.location.reload();
+					}else{
+						alert(data.message);
+						//$("#login .strId").val('');
+						$("#login-success .strPass").val('');					
+						//$("#login .strId").focus();
+					}
+				}, "json");
+			}
+		});
+	});	
+</script>
+	
+	<section class="sub">
+		<div class="category-nav">
+			<div class="category-nav-inner">
+				<p>HOME > 문학</p>
+			</div>
+		</div>
+		<div class="contents-wrap">
+			<div class="detail-inner">
+				<div class="search-result">
+					<h3 class="coTitle">문학</h3>
+					<div class="field">
+						<ul class="field-list">
+							<li><a href="/categorylist.asp?mainclass_num=00" class="on">전체</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=00" class="">동/서양 고전문학</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=01" class="">신화와 설화</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=02" class="">한국 고전문학</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=03" class="">문학비평/평론</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=04" class="">문학사/이론</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=05" class="">창작/문장작법</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=06" class="">국내소설</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=07" class="">해외소설</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=08" class="">시/희곡</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=09" class="">에세이/산문</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=10" class="">SF/판타지</a></li>
+									<li><a href="/categorylist.asp?mainclass_num=00&subclass_num=11" class="">추리/미스터리/스릴러</a></li>
+						</ul>
+						
+						<div class="main_event"></div>						
+					</div>
+					<div class="tab">
+						<ul class="tab-list">
+							<li><a href="../sub1/list.html" class="">전체</a></li>
+							<li><a href="../sub1/list_best.html" class="">베스트</a></li>
+							<li><a href="../sub1/list_new.html" class="on">신간</a></li>
+							<li><a href="../sub1/list_free.html" class="">무료</a></li>
+						</ul>
+						<div class="list-sort">
+							<div class="view-array">
+								<div class="arrayBox">
+									<a href="javascript:;" class="s-result" title="해당 리스트 정렬">전체</a>
+									<ul>
+										<li><a href="#" data-list-type="" class="on">전체</a><span></span></li>
+										<!--li><a href="#" data-list-type="10년소장" class="">10년소장</a><span></span></li-->
+										<li><a href="#" data-list-type="대여" class="">대여</a><span></span></li>
+										<li><a href="#" data-list-type="정액" class="">정액</a><span></span></li>
+									</ul>
+									<script>
+										$(function(){
+											$(".s-result").on("click focus",function(){
+												$(this).next().show();
+											});
+											$(document).on("click",".arrayBox ul li a",function(){
+												var text = $(this).text();
+												$(this).parent().parent().find("li a").removeClass("on");
+												$(this).parent().parent().hide();
+												$(this).addClass("on");
+												$(this).parent().parent().prev().text(text);
+
+												goUrl('/categorylist.asp?page='+ $(".wrap").data("page") +'&mainclass_num='+ $(".wrap").data("mainclass-num") +'&subclass_num='+ $(".wrap").data("subclass-num") +'&sort='+ $(".wrap").data("sort") +'&list_type='+ $(this).data("list-type")) ;
+												return false;
+											});
+										});
+									</script>
+								</div>
+								<div class="view-select">
+									<ul>
+										<li class="list"><a href="javascript:;" class="">리스트보기</a></li>
+										<li class="thum"><a href="javascript:;" class="on">썸네일보기</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="list-page">
+							<div class="thum"> <!-- *****list thum 클래스 차이로 리스트보기와 썸네일 보기로 변경됩니다.*****-->
+								<ul class="book-list">	
+										<li>
+											<div class="figure">
+												<a href="detail.html">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100486.jpg" alt="도서 이미지 - 식스센스" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="detail.html">식스센스</a></p>
+												<p class="hot-author">노희준, 우다영, 이갑수, 정명섭, 정재희, 차소희<em>|</em><a href="/search.asp?searchString=%EC%86%90%EC%95%88%EC%9D%98%EC%B1%85&searchOption=publisher">손안의책</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>이 책 〈식스센스〉는 단어가 가리키듯 여섯 번째 감각이 존재하는 여섯 작가의 독특한 여섯 가지 이야기를 모은 단편집이다. 순문학과 장르문학, SF, 추리, 웹소설 등 각 방면에서 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>9,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="detail.html">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100515.jpg" alt="도서 이미지 - 샹젤리제 거리의 작은 향수가게" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="detail.html">샹젤리제 거리의 작은 향수가게</a></p>
+												<p class="hot-author">레베카 레이즌<em>|</em><a href="/search.asp?searchString=%ED%99%A9%EA%B8%88%EC%8B%9C%EA%B0%84&searchOption=publisher">황금시간</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>“‘사랑에 빠졌어’를 프랑스어로 뭐라고 하죠?”
+불안을 환희로, 환희를 사랑으로 바꾸는 향수의 마법!
+‘로맨틱 파리 컬렉션’ 마지막 이야기
+
+『센 강변의 작은 책방』과 『...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>9,100원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="detail.html">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100516.jpg" alt="도서 이미지 - 마더 앤 마더" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029976&page=">마더 앤 마더</a></p>
+												<p class="hot-author">엘리자베스 노어백<em>|</em><a href="/search.asp?searchString=%ED%99%A9%EA%B8%88%EC%8B%9C%EA%B0%84&searchOption=publisher">황금시간</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>20년 전 죽은 딸이 눈앞에 나타났다
+두 엄마와 딸, 여성 셋이 펼치는 최고의 심리 스릴러
+“매혹적인 데뷔” 찬사 속, 전 세계 33개국 출간!
+
+『마더 앤 마더』는 아동 실종이란 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>11,200원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029977&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100517.jpg" alt="도서 이미지 - 걸스 라이크 어스" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029977&page=">걸스 라이크 어스</a></p>
+												<p class="hot-author">크리스티나 앨저<em>|</em><a href="/search.asp?searchString=%ED%99%A9%EA%B8%88%EC%8B%9C%EA%B0%84&searchOption=publisher">황금시간</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>“우리처럼 평범하고, 가치 있는 목숨을 가진 여성의 이야기”
+
+여성 범죄의 진범을 끝까지 쫓는 FBI 여성 요원의 활약
+기득권과 사회적 약자에 고착된 추악한 뫼비우스의 띠
+〈뉴...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>10,400원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029990&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100473.jpg" alt="도서 이미지 - 내 몸을 죽이는 기적의 첨가물" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029990&page=">내 몸을 죽이는 기적의 첨가물</a></p>
+												<p class="hot-author">바니 하리 저,김경영 역<em>|</em><a href="/search.asp?searchString=%EB%8F%99%EB%85%98%EB%9D%BC%EC%9D%B4%ED%94%84&searchOption=publisher">동녘라이프</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>비만, 노화, 당뇨... 당신의 몸은 이미 식품첨가물에 찌들었다!
+“이 책을 읽는 것만으로도 몇 배는 더 건강해질 것이다”
+한국식건강연구소 배지영 소장, 차움푸드테라피클리닉...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>13,860원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029999&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100477.jpg" alt="도서 이미지 - 아직도 쭈그리고 앉은 사람이 있다" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029999&page=">아직도 쭈그리고 앉은 사람이 있다</a></p>
+												<p class="hot-author">최영철<em>|</em><a href="/search.asp?searchString=%EB%8F%84%EC%84%9C%EC%B6%9C%ED%8C%90+%EC%A3%BC%EB%93%9C&searchOption=publisher">도서출판 주드</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>1986년 한국일보 신춘문예로 등단한 시인의 첫번째 시집을 전자책으로 재출간</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>7,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920030001&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100479.jpg" alt="도서 이미지 - 가족사진" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920030001&page=">가족사진</a></p>
+												<p class="hot-author">최영철<em>|</em><a href="/search.asp?searchString=%EB%8F%84%EC%84%9C%EC%B6%9C%ED%8C%90+%EC%A3%BC%EB%93%9C&searchOption=publisher">도서출판 주드</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>최영철 시인의 두번째 시집 〈가족 사진〉이 절판됨에 따라 전자책으로 재출간합니다.</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>7,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920030002&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100480.jpg" alt="도서 이미지 - 홀로 가는 맹인 악사" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920030002&page=">홀로 가는 맹인 악사</a></p>
+												<p class="hot-author">최영철<em>|</em><a href="/search.asp?searchString=%EB%8F%84%EC%84%9C%EC%B6%9C%ED%8C%90+%EC%A3%BC%EB%93%9C&searchOption=publisher">도서출판 주드</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>1986년 한국일보 신춘문예로 등단한 최영철 시인의 세번째 시집을 전자책으로 재출간함.</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>7,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920030003&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100481.jpg" alt="도서 이미지 - 야성은 빛나다" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920030003&page=">야성은 빛나다</a></p>
+												<p class="hot-author">최영철<em>|</em><a href="/search.asp?searchString=%EB%8F%84%EC%84%9C%EC%B6%9C%ED%8C%90+%EC%A3%BC%EB%93%9C&searchOption=publisher">도서출판 주드</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>한국일보 신춘문예로 등단한 최영철 시인의 네번째 시집을 전자책으로 재출간.</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>7,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920030004&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100482.jpg" alt="도서 이미지 - 우리는 무지개를 타고" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920030004&page=">우리는 무지개를 타고</a></p>
+												<p class="hot-author">보배<em>|</em><a href="/search.asp?searchString=%EC%95%84%ED%86%A0%ED%8F%AC%EC%8A%A4&searchOption=publisher">아토포스</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>문학으로 성소수자 인권 신장을 도모하는 비영리단체 한국퀴어문학종합플랫폼 ‘무지개책갈피’ 창립자 보배가 퀴어로 살고 퀴어로 읽는 일을 이야기한다. 삶으로 문학을 읽어내고...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>11,700원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920030083&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100617.jpg" alt="도서 이미지 - 로미오와 줄리엣" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920030083&page=">로미오와 줄리엣</a></p>
+												<p class="hot-author">윌리엄 셰익스피어<em>|</em><a href="/search.asp?searchString=%EC%97%B4%EB%A6%B0%EC%B1%85%EB%93%A4&searchOption=publisher">열린책들</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>증오 속에서 태어나 죽음을 넘어서는 불멸의 사랑
+셰익스피어가 창조한 가장 유명한 사랑의 비극
+
+영문학사 최고의 작가 윌리엄 셰익스피어의 희곡 『로미오와 줄리엣』이 셰익스피어...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>6,500원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920030084&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100618.jpg" alt="도서 이미지 - 첫 사랑" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920030084&page=">첫 사랑</a></p>
+												<p class="hot-author">이반 투르게네프<em>|</em><a href="/search.asp?searchString=%ED%95%B4%EC%84%B1%EC%A0%84%EC%9E%90%EB%B6%81&searchOption=publisher">해성전자북</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>그는 순진하고 영리한 소녀가 고상한 감정과 사랑에 눈뜨면서 참된, 그러면서도 순간적인 사랑에 승화되어 가는 비련의 과정을 즐겨 묘사했다. 투르게네프가 묘사한 남녀 주인공의 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920030085&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100619.jpg" alt="도서 이미지 - 사랑이 있는 곳에 신이 있다" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920030085&page=">사랑이 있는 곳에 신이 있다</a></p>
+												<p class="hot-author">톨스토이<em>|</em><a href="/search.asp?searchString=%ED%95%B4%EC%84%B1%EC%A0%84%EC%9E%90%EB%B6%81&searchOption=publisher">해성전자북</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>세계 많은 사람들에게 고매한 사상을 전파하면서도 자기 아내를 설득하지 못하고 잦은 불화를 일으키자 현실 생활과 신념의 불일치로 톨스토이는 괴로워하였습니다. 그는 그것이 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920030089&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100668.jpg" alt="도서 이미지 - 다섯가지 소원" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920030089&page=">다섯가지 소원</a></p>
+												<p class="hot-author">조 사이플<em>|</em><a href="/search.asp?searchString=%EC%8D%A8%EB%84%A4%EC%8A%A4%ED%8A%B8&searchOption=publisher">써네스트</a><em>|</em>2020.11.04</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>시한부 삶을 살고 있는 10살 소년과 삶을 마감하고 싶은 100살 노인이 만나서 소년의 ‘다섯 가지 소원’을 이루어가는 과정을 흥미롭게 그려가는 이야기이다. 소설 마지막의 반전이...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>10,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029868&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100247.jpg" alt="도서 이미지 - 유랑의 달" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029868&page=">유랑의 달</a></p>
+												<p class="hot-author">나기라 유우<em>|</em><a href="/search.asp?searchString=%EC%9D%80%ED%96%89%EB%82%98%EB%AC%B4&searchOption=publisher">은행나무</a><em>|</em>2020.11.03</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>2020 서점대상 1위
+
+아마존일본 종합 1위 
+츠타야서점 종합 1위
+제41회 요시카와에이지 문학신인상 최종 후보작
+
+“오래도록 읽힐 대단한 작품이 나왔다.”
+출간 직후 일본 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>10,500원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029870&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100241.jpg" alt="도서 이미지 - 엄마의 마지막 말들" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029870&page=">엄마의 마지막 말들</a></p>
+												<p class="hot-author">박희병<em>|</em><a href="/search.asp?searchString=%EC%B0%BD%EB%B9%84&searchOption=publisher">창비</a><em>|</em>2020.11.03</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>“나는 어머니의 보호자이자 관찰자이자 기록자였다”
+1년의 간병, 어머니의 사랑과 존엄성에 대한 인문학적 기록
+
+엄마의 삶이 점차 마지막을 향해 갈 때, 아들은 엄마의 말을 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>11,200원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029918&page=">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100427.jpg" alt="도서 이미지 - 돈말글" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029918&page=">돈말글</a></p>
+												<p class="hot-author">정은길<em>|</em><a href="/search.asp?searchString=%ED%95%9C%EA%B5%AD%EA%B2%BD%EC%A0%9C%EC%8B%A0%EB%AC%B8%28%ED%95%9C%EA%B2%BDBP%29&searchOption=publisher">한국경제신문(한경BP)</a><em>|</em>2020.11.03</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>화제의 네이버 오디오클립 〈정은길 아나운서의 돈말글〉 출간!
+‘우리 삶에 필요한 3가지, 우리는 돈과 말과 글과 어떤 관계를 맺으며 살아가고 있을까?’
+혼자서도 돈 걱정 없이 당...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>11,040원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<span class="label"><em>1권
+													<span>무료</span></em></span>
+												<a href="/detail.asp?series_num=920029919&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100428.jpg" alt="도서 이미지 - 돈말글 (체험판)" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029919&page=buy">돈말글 (체험판)</a></p>
+												<p class="hot-author">정은길<em>|</em><a href="/search.asp?searchString=%ED%95%9C%EA%B5%AD%EA%B2%BD%EC%A0%9C%EC%8B%A0%EB%AC%B8%28%ED%95%9C%EA%B2%BDBP%29&searchOption=publisher">한국경제신문(한경BP)</a><em>|</em>2020.11.03</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>화제의 네이버 오디오클립 〈정은길 아나운서의 돈말글〉 출간!
+‘우리 삶에 필요한 3가지, 우리는 돈과 말과 글과 어떤 관계를 맺으며 살아가고 있을까?’
+혼자서도 돈 걱정 없이 당...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>0원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029924&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100433.jpg" alt="도서 이미지 - 의미 수업" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029924&page=buy">의미 수업</a></p>
+												<p class="hot-author">데이비드 케슬러<em>|</em><a href="/search.asp?searchString=%ED%95%9C%EA%B5%AD%EA%B2%BD%EC%A0%9C%EC%8B%A0%EB%AC%B8%28%ED%95%9C%EA%B2%BDBP%29&searchOption=publisher">한국경제신문(한경BP)</a><em>|</em>2020.11.03</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>베스트셀러 《인생 수업》, 《상실 수업》에 이은 마지막 3부작
+슬픔의 5단계를 넘어 6단계를 밝혀낸 최초의 책 
+
+“살다보면 누구나 어떤 방식으로든 넘어지고 무너진다.
+중요한 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>13,440원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<span class="label"><em>1권
+													<span>무료</span></em></span>
+												<a href="/detail.asp?series_num=920029925&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100434.jpg" alt="도서 이미지 - 의미 수업 (체험판)" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029925&page=buy">의미 수업 (체험판)</a></p>
+												<p class="hot-author">데이비드 케슬러<em>|</em><a href="/search.asp?searchString=%ED%95%9C%EA%B5%AD%EA%B2%BD%EC%A0%9C%EC%8B%A0%EB%AC%B8%28%ED%95%9C%EA%B2%BDBP%29&searchOption=publisher">한국경제신문(한경BP)</a><em>|</em>2020.11.03</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>베스트셀러 《인생 수업》, 《상실 수업》에 이은 마지막 3부작
+슬픔의 5단계를 넘어 6단계를 밝혀낸 최초의 책 
+
+“살다보면 누구나 어떤 방식으로든 넘어지고 무너진다.
+중요한 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>0원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029933&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100455.jpg" alt="도서 이미지 - 샤인(shine)" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029933&page=buy">샤인(shine)</a></p>
+												<p class="hot-author">JESSICA JUNG<em>|</em><a href="/search.asp?searchString=RHK&searchOption=publisher">RHK</a><em>|</em>2020.11.03</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>★★ 제시카 소설 데뷔작 ★★
+케이 팝 스타의
+놀라운 이야기가 지금 시작된다!
+솔로 가수이자 패션 디자이너 및 사업가, 세계적인 인플루언서 등으로 활동 영역을 넓히며 끊임
+없이 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>10,500원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029934&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100456.jpg" alt="도서 이미지 - 마음아, 넌 누구니" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029934&page=buy">마음아, 넌 누구니</a></p>
+												<p class="hot-author">박상미<em>|</em><a href="/search.asp?searchString=%ED%95%9C%EA%B5%AD%EA%B2%BD%EC%A0%9C%EC%8B%A0%EB%AC%B8%28%ED%95%9C%EA%B2%BDBP%29&searchOption=publisher">한국경제신문(한경BP)</a><em>|</em>2020.11.03</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>“우리는 남에게 좋은 사람이기 위해 나에게 얼마나 나쁜 사람인가”
+마음근육 튼튼한 내가 되는 법
+
+울먹울먹, 살랑살랑, 끄덕끄덕, 감정이 오르락내리락. 희망이 생기고 기분이 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>12,640원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<span class="label"><em>1권
+													<span>무료</span></em></span>
+												<a href="/detail.asp?series_num=920029935&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100457.jpg" alt="도서 이미지 - 마음아, 넌 누구니 (체험판)" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029935&page=buy">마음아, 넌 누구니 (체험판)</a></p>
+												<p class="hot-author">박상미<em>|</em><a href="/search.asp?searchString=%ED%95%9C%EA%B5%AD%EA%B2%BD%EC%A0%9C%EC%8B%A0%EB%AC%B8%28%ED%95%9C%EA%B2%BDBP%29&searchOption=publisher">한국경제신문(한경BP)</a><em>|</em>2020.11.03</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>“우리는 남에게 좋은 사람이기 위해 나에게 얼마나 나쁜 사람인가”
+마음근육 튼튼한 내가 되는 법
+
+울먹울먹, 살랑살랑, 끄덕끄덕, 감정이 오르락내리락. 희망이 생기고 기분이 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>0원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029515&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005176.jpg" alt="도서 이미지 - 813의 수수께끼 (상) - 아르센 뤼팽 걸작선 04" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029515&page=buy">813의 수수께끼 (상) - 아르센 뤼팽 걸작선 04</a></p>
+												<p class="hot-author">모리스 르블랑<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>1905년 추리소설 역사상 아르센 뤼팽의 등장은 충격 그 자체였다. 이제껏 추리소설에서는 탐정이 범인을 추적했지만 뤼팽 시리즈는 이런 공식을 과감히 깨뜨렸다. 뤼팽은 아예 범인...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>6,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029516&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005177.jpg" alt="도서 이미지 - 813의 수수께끼 (하) - 아르센 뤼팽 걸작선 04" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029516&page=buy">813의 수수께끼 (하) - 아르센 뤼팽 걸작선 04</a></p>
+												<p class="hot-author">모리스 르블랑<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>1905년 추리소설 역사상 아르센 뤼팽의 등장은 충격 그 자체였다. 이제껏 추리소설에서는 탐정이 범인을 추적했지만 뤼팽 시리즈는 이런 공식을 과감히 깨뜨렸다. 뤼팽은 아예 범인...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>6,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029529&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005191.jpg" alt="도서 이미지 - 계축일기" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029529&page=buy">계축일기</a></p>
+												<p class="hot-author">작자 미상<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>인목대비 폐비 사건에 대한 궁중 비사를 기록한
+우리나라 궁중 문학의 대표작!
+ 
+《계축일기》는 인목대비 폐비 사건에 대한 궁중의 비사(?史)를 기록한 작품이다. 지존의 위치에 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,200원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029530&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005192.jpg" alt="도서 이미지 - 고맙습니다, 아버지" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029530&page=buy">고맙습니다, 아버지</a></p>
+												<p class="hot-author">신현락<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>외로움 속에서도 아버지의 자리를 버리지 않고
+끝까지 열심히 산 ‘아버지다운 아버지’의 이야기!
+
+이 책은 단단한 시어로 ‘깊이 있는 허무’를 담은 시를 써 온 신현락 시인의...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>7,800원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029531&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005193.jpg" alt="도서 이미지 - 괴도신사 뤼팽 - 아르센 뤼팽 걸작선 01" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029531&page=buy">괴도신사 뤼팽 - 아르센 뤼팽 걸작선 01</a></p>
+												<p class="hot-author">모리스 르블랑<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>1905년 추리소설 역사상 아르센 뤼팽의 등장은 충격 그 자체였다. 이제껏 추리소설에서는 탐정이 범인을 추적했지만 뤼팽 시리즈는 이런 공식을 과감히 깨뜨렸다. 뤼팽은 아예 범인...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>6,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029532&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005194.jpg" alt="도서 이미지 - 구운몽" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029532&page=buy">구운몽</a></p>
+												<p class="hot-author">김만중<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>인생무상, 일장춘몽을 보여 주는
+몽자류 소설의 효시!
+ 
+《구운몽》은 인생의 덧없음을 성진의 하룻밤 꿈을 통해 보여 주는 몽자류 소설이다. 성진이 세상의 온갖 부귀영화를 누리...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,200원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029533&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005196.jpg" alt="도서 이미지 - 귀의 성" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029533&page=buy">귀의 성</a></p>
+												<p class="hot-author">이인직<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>본처와 첩 사이의 비극적 갈등 속에
+신분제와 일부종사에 대한 문제점을 지적하다!
+ 
+《귀의 성》은 남편의 첩살림을 보지 못하는 본처가 결국 첩을 살해하는 가정 비극을 다룬 작품...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,800원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029535&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005198.jpg" alt="도서 이미지 - 그날 밤 게르에선 무슨 일이 일어난 걸까" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029535&page=buy">그날 밤 게르에선 무슨 일이 일어난 걸까</a></p>
+												<p class="hot-author">초원광분<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>몽골의 방대한 초원과 끝없는 사막을 말을 타고 바람처럼 가르는 상상을 하며 낙타처럼 웅얼웅얼 모인 사람들이 있다. 함께 초원에 쏟아지던 유성을 보고, 때로는 헛것을 보면서 마...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>6,600원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029537&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005200.jpg" alt="도서 이미지 - 그럼에도 우리는 행복하다" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029537&page=buy">그럼에도 우리는 행복하다</a></p>
+												<p class="hot-author">김종원<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>이어령 전 문화부장관의 추천도서!
+ 
+“우리는 행복하기 위해 태어났어요.”
+행복은 누군가가 쥐어 주는 것이 아니라
+당신이 쥐어 잡는 것이다.
+ 
+“당신의 행복한 삶을 살아가고 있나...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>8,300원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029539&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005202.jpg" alt="도서 이미지 - 금수회의록" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029539&page=buy">금수회의록</a></p>
+												<p class="hot-author">신채호<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>애국 계몽 운동에 앞장선
+안국선, 신채호의 대표 신소설 모음집!
+ 
+안국선, 신채호는 개화기 애국 계몽 운동에 앞장섰던 작가이다. 〈금수회의록〉은 여러 동물이 등장하여 이야기를...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,500원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029540&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005203.jpg" alt="도서 이미지 - 금오신화" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029540&page=buy">금오신화</a></p>
+												<p class="hot-author">김시습<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>현실의 무게를 초현실적으로 풀어낸
+우리나라 최초의 한문 소설!
+ 
+《금오신화》는 〈이생규장전〉, 〈만복사저포기〉, 〈취유부벽정기〉, 〈남염부주지〉, 〈용궁부연록〉 5편의 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,200원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029541&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005207.jpg" alt="도서 이미지 - 기암성 - 아르센 뤼팽 걸작선 03" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029541&page=buy">기암성 - 아르센 뤼팽 걸작선 03</a></p>
+												<p class="hot-author">모리스 르블랑<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>1905년 추리소설 역사상 아르센 뤼팽의 등장은 충격 그 자체였다. 이제껏 추리소설에서는 탐정이 범인을 추적했지만 뤼팽 시리즈는 이런 공식을 과감히 깨뜨렸다. 뤼팽은 아예 범인...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>6,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029547&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005214.jpg" alt="도서 이미지 - 꿈" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029547&page=buy">꿈</a></p>
+												<p class="hot-author">이광수<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>불교 사상을 바탕으로
+인간 욕망의 무상을 표현하다!
+
+이 작품은 이광수가 《삼국유사》에 실려 있는 〈조신 설화〉를 바탕으로 창작한 것으로, 주인공이 바라던 바가 꿈속에서 실...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,200원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029551&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005218.jpg" alt="도서 이미지 - 나는 영화가 좋다" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029551&page=buy">나는 영화가 좋다</a></p>
+												<p class="hot-author">이창세<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>영화만 생각하고, 영화만 아는, 영화에 중독된 사람들의 이야기
+영화인들의 영화 같은 삶’을 들여다본다.
+
+영화기자 출신으로 영화 프로듀서이자 영화배우인 저자가 오랜 시간을 ...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>10,500원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029552&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005219.jpg" alt="도서 이미지 - 나는 이제 좀 행복해져야겠다" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029552&page=buy">나는 이제 좀 행복해져야겠다</a></p>
+												<p class="hot-author">정헌재<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>글 · 그림 · 사진_ 정헌재(페리테일)
+ 
+단순하고 짧은 컷 속에 깊이를 담아내는 카툰 에세이 작가로, 2002년부터 지금까지 뻔쩜넷에서 소통하고, 그림을 그리고, 글을 쓰고, 사진을...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>7,800원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029555&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005224.jpg" alt="도서 이미지 - 날개 외" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029555&page=buy">날개 외</a></p>
+												<p class="hot-author">이상<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>분열된 자아의 내면 고백을 드러낸
+한국 최초의 심리주의 소설을 보여 주다!
+
+이상은 알쏭달쏭한 숫자와 기호, 일상 어법을 넘어선 해석하기 어려운 초현실주의적 시로 ‘문학사의...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,200원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029572&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005249.jpg" alt="도서 이미지 - 당신이 나를 웃게 합니다" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029572&page=buy">당신이 나를 웃게 합니다</a></p>
+												<p class="hot-author">송은주<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>『당신이 나를 웃게 합니다』에는 평범한 사람들의 따뜻한 행동 하나가 이 세상을 얼마나 바꿀 수 있는지를 보여주는 감동적인 사연이 가득하다. 뉴욕 9.11 테러 소식을 멀리서 전해...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>7,500원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029573&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005250.jpg" alt="도서 이미지 - 두 가지 미소의 여인 - 아르센 뤼팽 걸작선 10" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029573&page=buy">두 가지 미소의 여인 - 아르센 뤼팽 걸작선 10</a></p>
+												<p class="hot-author">모리스 르블랑<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>1905년 추리소설 역사상 아르센 뤼팽의 등장은 충격 그 자체였다. 이제껏 추리소설에서는 탐정이 범인을 추적했지만 뤼팽 시리즈는 이런 공식을 과감히 깨뜨렸다. 뤼팽은 아예 범인...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>6,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029578&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005255.jpg" alt="도서 이미지 - 레디메이드 인생 외" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029578&page=buy">레디메이드 인생 외</a></p>
+												<p class="hot-author">채만식<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>강렬한 풍자와 비판을 통해
+민족, 사회, 역사를 묘사하다!
+
+채만식은 문학을 ‘역사를 밀고 나가는 힘’으로 보고, 민족과 역사 그리고 사회의 변화 과정을 작품 속에 담아내고자 했...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,500원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029579&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005256.jpg" alt="도서 이미지 - 뤼팽 대 홈즈 - 아르센 뤼팽 걸작선 02" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029579&page=buy">뤼팽 대 홈즈 - 아르센 뤼팽 걸작선 02</a></p>
+												<p class="hot-author">모리스 르블랑<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>1905년 추리소설 역사상 아르센 뤼팽의 등장은 충격 그 자체였다. 이제껏 추리소설에서는 탐정이 범인을 추적했지만 뤼팽 시리즈는 이런 공식을 과감히 깨뜨렸다. 뤼팽은 아예 범인...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>6,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029580&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005257.jpg" alt="도서 이미지 - 뤼팽의 고백 - 아르센 뤼팽 걸작선 06" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029580&page=buy">뤼팽의 고백 - 아르센 뤼팽 걸작선 06</a></p>
+												<p class="hot-author">모리스 르블랑<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>1905년 추리소설 역사상 아르센 뤼팽의 등장은 충격 그 자체였다. 이제껏 추리소설에서는 탐정이 범인을 추적했지만 뤼팽 시리즈는 이런 공식을 과감히 깨뜨렸다. 뤼팽은 아예 범인...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>6,000원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029584&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005261.jpg" alt="도서 이미지 - 메밀꽃 필 무렵 외" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029584&page=buy">메밀꽃 필 무렵 외</a></p>
+												<p class="hot-author">이효석<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>원초적 자연 풍경과 인간 본연의 순수함을
+감각적인 언어와 서정적 분위기 속에 담다!
+
+이효석의 초기 작품은 사회주의 이념을 바탕으로 한 것이 대부분이었다면 후기 작품은 원초...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,500원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029588&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005265.jpg" alt="도서 이미지 - 무영탑 1" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029588&page=buy">무영탑 1</a></p>
+												<p class="hot-author">현진건<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>민간 설화를 바탕으로
+주체적인 민족의식을 드러내다!
+ 
+민간에 구비 전승되던 아사달 아사녀 설화를 소재로 한, 비극적인 사랑 이야기를 다룬 역사 소설이다. 군국주의가 심화된 19...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>5,100원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029589&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005266.jpg" alt="도서 이미지 - 무영탑 2" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029589&page=buy">무영탑 2</a></p>
+												<p class="hot-author">현진건<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>민간 설화를 바탕으로
+주체적인 민족의식을 드러내다!
+ 
+민간에 구비 전승되던 아사달 아사녀 설화를 소재로 한, 비극적인 사랑 이야기를 다룬 역사 소설이다. 군국주의가 심화된 19...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>5,100원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029590&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005267.jpg" alt="도서 이미지 - 물레방아 외" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029590&page=buy">물레방아 외</a></p>
+												<p class="hot-author">나도향<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>퇴폐적 낭만주의에서 사실적 리얼리즘으로
+변모하며 현실 문제를 드러내다!
+
+나도향은 초기에는 병적이고 퇴폐적인 경향이 강한 작품을 주로 발표했으나 후기에 이르러서는 사회의...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,500원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029596&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005274.jpg" alt="도서 이미지 - 발가락이 닮았다 외" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029596&page=buy">발가락이 닮았다 외</a></p>
+												<p class="hot-author">김동인<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>단편소설의 형식적 아름다움을 구현하며
+한국 근대 문학의 새로운 가능성을 열다!
+
+김동인은 단편소설의 형식적 아름다움을 완성하고, 자연주의 문학을 받아들이는 등 한국 근대 문학...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,500원</span></p>
+												</div>
+											</div>
+										</li>	
+										<li>
+											<div class="figure">
+												<a href="/detail.asp?series_num=920029597&page=buy">
+													<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201005275.jpg" alt="도서 이미지 - 밤길 외" /></span>
+													<span class="light"></span>
+												</a>
+											</div>
+											<div class="hot-info">
+												<p class="hot-title"><a href="/detail.asp?series_num=920029597&page=buy">밤길 외</a></p>
+												<p class="hot-author">이태준<em>|</em><a href="/search.asp?searchString=%EB%84%A5%EC%84%9C%EC%8A%A4&searchOption=publisher">넥서스</a><em>|</em>2020.11.02</p>
+												<div class="hot-score">
+													<p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 1권</p> <!--end 클래스 유무 -->
+												</div>
+												<div class="hot-desc">
+													<p>전통적 풍류와 아름다운 문장을 통해
+한국의 대표적 서정을 드러내다!
+
+이태준은 우리 민족의 전통적 풍류와 서정을 작품 속에 녹여 낸 작가이다. 사상적이거나 현실적인 내용보다는...</p>
+												</div>
+												<div class="hot-cash"><p>구매 <span>4,200원</span></p>
+												</div>
+											</div>
+										</li>							
+								</ul>
+<div class="paging"><a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=1" class="on fir" data-page-num="1">1</a><a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=2" class="" data-page-num="2">2</a><a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=3" class="" data-page-num="3">3</a><a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=4" class="" data-page-num="4">4</a><a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=5" class="" data-page-num="5">5</a><a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=6" class="" data-page-num="6">6</a><a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=7" class="" data-page-num="7">7</a><a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=8" class="" data-page-num="8">8</a><a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=9" class="" data-page-num="9">9</a><a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=10" class="" data-page-num="10">10</a><a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=11" class="arr next" data-page-num="11"><img src="/images/p-next.png"><span class="hide">다음페이지</span></a>
+		<a href="/categorylist.asp?mainclass_num=00&subclass_num=&page=new&pageNum=40" class="arr" data-page-num="40"><img src="/images/p-last.png"><span class="hide">마지막페이지</span></a>
+</div>
+							</div>
+							<script>
+								// 리시트 보기 방식 변경
+								$(function(){
+									$(".view-select ul li a").on("click",function(){
+										var cls = $(this).parent().attr("class");
+										$(".view-select ul li a").removeClass("on");
+										$(this).addClass("on");
+										$(".list-page > div").attr("class",cls);
+
+										$.cookie("viewType", cls);
+									});
+								});
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</section>
+	
+<footer>
+	<div class="footer-top">
+		<div class="notice-wrap">
+			<div class="notice-inner">
+				<p><a href="/customer.asp?page=notice">공지사항</a></p>
+				<div class="swiper-container notice">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<a href="/customer.asp?page=notice&num=112688&page2=view&pageNum=1">장르/만화 정액권 판매 종료 예정 안내<span>2020-10-27</span></a>
+						</div>
+						<div class="swiper-slide">
+							<a href="/customer.asp?page=notice&num=112679&page2=view&pageNum=1">메리 미 (Marry Me)〉 적립금 지급 안내<span>2020-10-27</span></a>
+						</div>						
+					</div>
+				</div>
+				<div class="notice-control">
+					<div class="notice-prev"></div>
+					<div class="notice-next"></div>
+				</div>
+			</div>
+		</div>
+		<div class="cs-wrap">
+			<div class="cs">
+				<h4>고객센터</h4>
+				<div>
+					<p><span>대표번호</span>1588-1925</p>
+					<p><span>운영시간</span>월~금 09:00 - 18:00 (점심시간 12:00 - 13:00) / 주말 및 공휴일 휴무</p>
+				</div>
+			</div>
+			<div class="service">
+				<h4>서비스</h4>
+				<div>
+					<p><a href="/b2b.asp">전자도서관</a></p>
+					<p><a href="/customer.asp?page=viewer">앱 다운로드</a></p>
+				</div>
+			</div>
+			<div class="short-cut">
+				<h4>바로가기</h4>
+				<div>
+					<p><a href="/coupon.asp">쿠폰등록</a></p>
+					<p><a href="https://www.898.tv/bookcube">원격 연결</a></p>
+					<p><a href="/order/bookcash.asp">북캐시 충전</a></p>
+					<p><a href="/mypage.asp?list=_main">마이페이지</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-inner">
+		<ul class="f-lnb">
+			<li><a href="http://www.bookcubenetworks.co.kr">회사소개</a></li>
+			<li><a href="/customer.asp?page=notice&num=24007&page2=view&pageNum=15">이용약관</a></li>
+			<li><a href="/customer.asp?page=notice&num=24264&page2=view&pageNum=15">개인정보보호정책</a></li>
+			<li><a href="/customer.asp?page=notice&num=104583&page2=view&pageNum=1">청소년보호정책</a></li>
+			<li><a href="javascript:;" onclick="window.open('http://www.ftc.go.kr/bizCommPop.do?wrkr_no=1138624199', 'bizCommPop', 'scrollbars=yes, width=750,height=700;')">사업자정보확인</a></li>
+			<li><a href="/partner.asp">제휴문의</a></li>
+			<li><a href="http://scm.bookcubenetworks.com">작가/출판사 전용메뉴</a></li>
+		</ul>
+		<div class="f-banner">
+			<ul>
+				<li><a href="https://play.google.com/store/apps/details?id=com.bookcube.bookplayer">구글플레이</a></li>
+				<li><a href="https://itunes.apple.com/kr/app/bugkyubeu-naeseojae/id576288015?mt=8">앱스토어</a></li>
+				<li><a href="javascript:;" onclick="pop.open('#so')">도서.공연비 소득공제 사업자</a></li>
+				<li><a href="mailto:webmaster@bookcube.com"><span></span>이메일문의</a></li>
+				<li><a href="https://twitter.com/bookcube">트위터</a></li>
+				<li><a href="https://blog.naver.com/bookcube_">네이버 블로그</a></li>
+				<li><a href="https://www.facebook.com/bookcube">페이스북</a></li>
+				<li><a href="https://www.instagram.com/bookcube_/">인스타그램</a></li>  
+				<li><a href="https://www.youtube.com/channel/UCXxNJ178OlQBDHkfWTMdNgA">유튜브</a></li>
+			</ul>
+			<div class="so-pop blind" id="so">
+				<div class="login-bg"></div>
+				<div class="so">
+					<img src="/images/main/so-img.png" alt="도서.공연비 소득공제 사업자 관련 이미지">
+					<p>소득공제 대상 사업자 인증번호<br><span>312018060044</span></p>
+					<button onclick="pop.close('#so')">닫기</button>
+				</div>
+			</div>
+		</div>
+		<address>
+			<ul>
+				<li>상호 : 주식회사 북큐브네트웍스</li>
+				<li>대표이사 : 유철종</li>
+				<li>주소 : 우)80380 서울 구로구 디지털로 33길 27, 삼성IT밸리 514호</li>
+				<li>사업자 등록번호 : 113-86-24199</li>
+				<li>통신판매업 신고번호 : 제 2008-서울구로-0747호</li>
+				<li>개인정보 관리 책임자 : 남지원</li>
+				<li>도서비 소득공제 대상 사업자 인증번호 : 312018060044</li>
+				<li>E-mail : <a href="mailto:webmaster@bookcube.com">webmaster@bookcube.com</a></li>
+				<li>전화 1588-1925</li>
+			</ul>
+		</address>
+		<div class="copy-text">
+			<p>Copyright © BOOKCUBENETWORKS Co.,Ltd. All Rights Reserved.</p>
+			<img src="/novel/images/novel/site.png" alt='클린사이트' usemap="#cleanSite" />
+			<map name="cleanSite">
+				<area shape="RECT" coords="1,1,47,43" href="https://www.copyrightok.kr/" target="_blank" />
+			</map>
+		</div>
+	</div>
+</footer>
+<div class="topBtn">
+	<a href="javascript:;">TOP</a>
+</div>
+<script>
+$(function(){
+//탑버튼
+	var top_left = $(".footer-inner").offset().left + $(".footer-inner").width();
+	$(".topBtn").css({
+		"left" : top_left + 20
+	});
+	$(".topBtn").on("click",function(){
+		$("html,body").animate({
+			scrollTop : 0
+		},100); 
+	});	
+	var noticeSwiper = new Swiper('.notice',{
+		direction: 'vertical',
+		autoplay: {
+			delay: 3000,
+			disableOnInteraction: false
+		},
+		navigation: {
+			nextEl: '.notice-next',
+			prevEl: '.notice-prev'
+		}
+	});
+});
+//팝업
+var $pop = null;
+var pop = {
+	open : function(item){
+		$pop = $(item);
+		$pop.removeClass("blind");
+	},
+	close :function(item){
+		$pop = $(item);
+		$pop.addClass("blind");
+	}
+}
+</script>		
+	</div>	
+</body>
+</html>
+<script>
+	$(function(){
+		var web_class = $(".wrap").data("web-class");
+
+		$('.radio').click(function(){
+			$(this).parent().find('span').removeClass('radio_on').addClass('radio_off');
+			$(this).find('span').removeClass('radio_off').addClass('radio_on');
+			$('#'+$(this).attr('for')).attr('checked','checked');
+		
+			goUrl('/categorylist.asp?page='+ $(".wrap").data("page") +'&mainclass_num='+ $(".wrap").data("mainclass-num") +'&subclass_num='+ $(".wrap").data("subclass-num") +'&sort='+ $(this).data("sort") +'&list_type='+ $(".wrap").data("list-type")) ;
+		});
+
+		//메인 이벤트
+		$.post("/main/_main_event.asp", {main_yn : "N", under_yn : "1", web_class : web_class}, function(data){					
+			$(".main_event").html(data);						
+			$(".main_event .mds-banner").css({
+				"height":"153px","overflow":"hidden"
+			});
+			$(".main_event .mds-banner").slick({slidesToShow: 3,slidesToScroll: 1,infinite: true});
+			$(".main_event .mds-banner").css({
+				"height":"auto","overflow":"visible"
+			});
+		}, "html");	
+	});	
+</script>
