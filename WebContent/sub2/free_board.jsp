@@ -4,6 +4,9 @@
 	pageEncoding="UTF-8"%>
 	<%
 	String id = (String) session.getAttribute("id");
+	if(id==null) {
+		id="홍길동";
+	}
 	
 	
 // 	BoardDAO bdao = new BoardDAO();
@@ -26,8 +29,11 @@
 	int startRow = (currentPage - 1) * pageSize + 1;
 
 // 	List boardList = bdao.getBoardList(startRow, pageSize);
-	%>
+
+%>
+
 <jsp:include page="../include/header.jsp" />
+
 <section class="sub">
 	<div class="category-nav">
 		<div class="category-nav-inner">
@@ -55,7 +61,7 @@
 						<thead>
 							<tr>
 								<th scope="col" abbr="제목">제목</th>
-								<th scope="col" abbr="등록일">작성자</th>
+								<th scope="col" abbr="작성자"><input type="text" value="<%=id %>" name="id" readonly></th>
 								<th scope="col" abbr="등록일">등록일</th>
 							</tr>
 						</thead>

@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<% 
+// 글쓰기 폼
+// String id = (String) session.getAttribute("id"); // 아이디가져오기
+// if(id==null) { // 로긴안한상태면 로그인화면으로
+// 	response.sendRedirect("../member.login.jsp");
+// }
+%>
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
     <div class="category-nav">
@@ -30,22 +36,21 @@
 	                                	<input type="text" name="title">
 	                                </td>
 	                            </tr>
-	                            <tr>
+	                            
 	                            <tr>
 	                            	<td>작성자</td>
-	                            	<td>
+	                            	<td colspan="3">
 	                            		<input type="text" name="id">
 	                            	</td>
-	                            	<td class="th">비밀번호</td>
-	                            	<td>
-	                            		<input type="text" name="pass">
-	                            	</td>
+<!-- 	                            	<td class="th">비밀번호</td> -->
+<!-- 	                            	<td> -->
+<!-- 	                            		<input type="text" name="pass"> -->
+<!-- 	                            	</td> -->
 	                            </tr>
 	                            <tr>
 	                                <td>내용</td>
 	                                <td colspan="3">
-	                                    <textarea name="desc">
-	                                    </textarea>
+	                                    <textarea name="desc"></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
