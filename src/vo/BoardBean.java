@@ -12,7 +12,7 @@ public class BoardBean {
 	private int board_re_ref;
 	private int board_re_lev;
 	private int board_re_seq;
-	private int board_re_readcount;
+	private int board_readcount;
 	private Date board_date;
 	
 	
@@ -70,11 +70,11 @@ public class BoardBean {
 	public void setBoard_re_seq(int board_re_seq) {
 		this.board_re_seq = board_re_seq;
 	}
-	public int getBoard_re_readcount() {
-		return board_re_readcount;
+	public int getBoard_readcount() {
+		return board_readcount;
 	}
-	public void setBoard_re_readcount(int board_re_readcount) {
-		this.board_re_readcount = board_re_readcount;
+	public void setBoard_readcount(int board_readcount) {
+		this.board_readcount = board_readcount;
 	}
 	public Date getBoard_date() {
 		return board_date;
@@ -82,7 +82,4 @@ public class BoardBean {
 	public void setBoard_date(Date board_date) {
 		this.board_date = board_date;
 	}
-	
-	
-	
 }
