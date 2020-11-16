@@ -506,9 +506,42 @@ $(function(){
 										<a href="javascript:;" class="v-btn" data-fname="bookcash">내역보기 &gt;</a>
 
 										<a href="https://www.bookcube.com/order/bookcash.asp">충전하기 &gt;</a>
+										
 									</div>
 									<div class="my-frame bookcash">
-									<iframe src="../mypage/_bookcash_history.asp?bookcash=0" width="100%" frameborder="0" name="bookcash_history" id="bookcash_history" scrolling="no"></iframe>
+									<body style="">
+	<div class="mpop bookcash">
+		<div class="mpop-inner">
+			<h4>북캐시 상세내역</h4>
+			<p>나의 북캐시 : <span>0원</span></p>
+			<ul>
+				<li>- 북캐시 결제 후 7일 이내에 유료 서비스나 콘텐츠를 구매하지 않은 경우 환불 가능</li>
+				<li>- 북캐시 환불 시에는 북캐시 결제 시 추가적으로 제공된 적립금 차감 및 환불 수수료 공제</li>
+			</ul>
+			<!--<p class="no">충전 내역이 없습니다.</p>-->
+			<table>
+				<caption>북캐시 상세내역</caption>
+				<colgroup>
+					<col width="20%">
+					<col width="40%">
+					<col width="20%">
+					<col width="20%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>날짜</th>
+						<th>구분</th>
+						<th>금액</th>
+						<th>잔액</th>
+					</tr><tr><td colspan="4">북캐시 내역이 없습니다.</td></tr>
+				</tbody>
+			</table>
+			
+			<a href="javascript:;" class="mpop-close">close</a>
+		</div>
+	</div>
+
+</body>
 									</div>
 								</li>
 								<li>
@@ -518,7 +551,40 @@ $(function(){
 										<a href="javascript:;" class="v-btn" data-fname="saved">내역보기 &gt;</a>
 									</div>
 									<div class="my-frame saved">
-									<iframe src="../mypage/_savemoney_history.asp?savemoney=0&expire_savemoney=0" width="100%" frameborder="0" name="savemoney_history" id="savemoney_history" scrolling="no"></iframe>
+									<body style="">
+	<div class="mpop saved">
+		<div class="mpop-inner">
+			<h4>적립금 상세내역</h4>
+			<p>나의 적립금 : <span>0원</span></p>
+			<p>7일 이내 소멸 예정 적립금 : <span>0원</span></p>
+			<ul>
+				<li>- 승인일로부터 7일 이내에 주문취소 하였으나 소멸기간이 만료된 경우 적립금이 소멸</li>
+				<li>- 사용한 적립금 구매 후 7일 이내 주문 취소한 경우, 소멸 기간이 남은 적립금에 한하여 복원</li>
+			</ul>
+			<!--<p class="no">적립 내역이 없습니다.</p>-->
+			<table class="cash-detail">
+				<caption>적립금 상세내역</caption>
+				<colgroup>
+					<col width="20%">
+					<col width="40%">
+					<col width="20%">
+					<col width="20%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>날짜</th>
+						<th>구분</th>
+						<th>금액</th>
+						<th>소멸일시</th>
+					</tr>
+					<tr><td colspan="4">적립금 내역이 없습니다.</td></tr>
+					
+				</tbody>
+			</table>
+			
+			<a href="javascript:;" class="mpop-close">close</a>
+		</div>
+	</div>
 									</div>
 								</li>
 								<li>
@@ -529,7 +595,38 @@ $(function(){
 										<a href="https://www.bookcube.com/coupon.asp">등록하기 &gt;</a>
 									</div>
 									<div class="my-frame coupon">
-									<iframe src="../mypage/_coupon_history.asp" width="100%" frameborder="0" name="coupon_history" id="coupon_history" scrolling="no"></iframe>
+									<body style="">
+	<div class="mpop coupon">
+		<div class="mpop-inner">
+			<h4>쿠폰/상품권 상세내역</h4>
+			<p>나의 쿠폰/상품권 : <span>0장</span></p>
+			<ul>
+				<li>- 결제 시 하나의 쿠폰만 사용 가능합니다. (쿠폰 중복 사용 불가)</li>
+				<li>- 쿠폰 할인액(율), 쿠폰 적용금액을 확인해 주시기 바랍니다.</li>
+				<li>- 도서 정가제 시행에 따라 구매에 적용되는 쿠폰은 정가 대비 10% 이상 할인이 불가합니다.</li>
+				<li>- 사용기간이 만료된 쿠폰은 목록에서 자동 삭제 됩니다.</li>
+			</ul>
+			<!--<p class="no">사용 가능한 쿠폰/상품권이 없습니다.</p>-->
+			<table>
+				<caption>쿠폰/상품권 상세내역</caption>
+				<colgroup>
+					<col width="20%">
+					<col width="20%">
+					<col width="40%">
+					<col width="20%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>쿠폰명</th>
+						<th>할인액(율)</th>
+						<th>내용</th>
+						<th>사용기간</th>
+					</tr><tr><td colspan="4">쿠폰/상품권 내역이 없습니다.</td></tr>
+				</tbody>
+			</table>
+			<a href="javascript:;" class="mpop-close">close</a>
+		</div>
+	</div>
 									</div>
 								</li>
 								<li>
@@ -539,7 +636,34 @@ $(function(){
 										<a href="javascript:;" class="v-btn" data-fname="free">내역보기 &gt;</a>
 									</div>
 									<div class="my-frame free">
-										<iframe src="../mypage/_freeticket_history.asp" width="100%" frameborder="0" name="freeticket_history" id="freeticket_history" scrolling="no"></iframe>
+									<body style="">
+	<div class="mpop free">
+		<div class="mpop-inner">
+			<h4>무료이용권 상세내역</h4>
+			<p>나의 무료이용권 : <span>0장</span></p>
+			<!--<p class="no">사용 가능한 무료이용권이 없습니다.</p>-->
+			<table>
+				<caption>적립금 상세내역</caption>
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="10%">
+					<col width="20%">
+					<col width="20%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>날짜</th>
+						<th>제목</th>
+						<th>수량</th>
+						<th>이용제한</th>
+						<th>유효기간</th>
+					</tr><tr><td colspan="5">무료이용권 내역이 없습니다.</td></tr>					
+				</tbody>
+			</table>
+			<a href="javascript:;" class="mpop-close">close</a>
+		</div>
+	</div>
 									</div>
 								</li>
 							</ul>
