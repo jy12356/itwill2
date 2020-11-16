@@ -40,7 +40,7 @@
 	                            <tr>
 	                            	<td>작성자</td>
 	                            	<td colspan="3">
-	                            		<input type="text" name="id">
+	                            		<input type="text" name="id" >
 	                            	</td>
 <!-- 	                            	<td class="th">비밀번호</td> -->
 <!-- 	                            	<td> -->

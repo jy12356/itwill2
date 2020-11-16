@@ -7,7 +7,6 @@ public class ActionForward {
 	 * 이동할 View 페이지의 URL(주소)과 
 	 * 포워딩 방식(Redirect or Dispatcher) 을 다루기 위한 클래스
 	 */
-
 	
 	private String path; // 포워딩 할 View 페이지 URL을 저장
 	private boolean Redirect; // 포워딩 방식 저장
@@ -28,5 +27,7 @@ public class ActionForward {
 		Redirect = redirect;
 	}
 	
+	
+
 	
 }
