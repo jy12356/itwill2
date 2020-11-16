@@ -14,14 +14,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import vo.Book;
+import vo.BookBean;
 
 public class NaverBookApiTest {
 	
 	public static StringBuilder sb;
 	private String clientID="P3nq6LUKrLz6LOPOVOMf"; //네이버 개발자 센터에서 발급받은 clientID입력
 	private String clientSecret = "f_078uxS96";        //네이버 개발자 센터에서 발급받은 clientSecret입력
-	public List<Book> searchBookApi(String title) throws Exception{
+	public List<BookBean> searchBookApi(String title) throws Exception{
 		 //java코드로 특정 url에 요청보내고 응답받기
         //기본 자바 API를 활용한 방법
         

@@ -1,6 +1,6 @@
 package vo;
 
-public class Book {
+public class BookBean {
 	    private String title;
 	    private String link;
 	    private String image;
