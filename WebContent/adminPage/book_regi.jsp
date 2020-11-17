@@ -16,25 +16,6 @@
           				<input type="text" name="searchString"  placeholder="검색어를 입력하세요" class="search_input" style="ime-mode:active;">
 						<input type="button" onclick="bookSearchSubmit()">
                 	</div>
-                	<script type="text/javascript">
-                			function bookSearchSubmit(){
-                				var keyword = $('.search_input').val(); 
-                				$.ajax({ 
-                					type: 'GET', 
-                					url: '/api/v1/book/'+keyword, 
-                					dataType: 'json', 
-                					contentType:'application/json; charset=utf-8', 
-                					})
-                					.done(function(res) { 
-                						alert(JSON.stringify(res)); 
-                					})
-                					.fail(function (error) { 
-                						alert(JSON.stringify(error)); 
-               						});
-
-                				
-                			}
-                	</script>
                     <table summary="책등록" class="customer-notice">
                         <caption>책등록</caption>
                         <colgroup>
