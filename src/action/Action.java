@@ -8,6 +8,6 @@ import vo.ActionForward;
 public interface Action {
 
 	
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response)throws Exception;
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)throws Exception;
 
 }
