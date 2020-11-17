@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.BookWriteProAction;
 import vo.ActionForward;
-@WebServlet("*.bo") 
+@WebServlet("*.bok") 
 public class BookController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,12 +21,12 @@ public class BookController extends HttpServlet {
 		System.out.println("요청서블릿 주소: " + command);
 		Action action = null;
 		ActionForward forward = null;
-		if(command.equals("/BookWriteForm.bo")) {
+		if(command.equals("/BookWriteForm.bok")) {
 			System.out.println("BookWriteForm.bo 포워딩");
 			forward = new ActionForward();
 			forward.setPath("/adminPage/book_regi.jsp");
-		}else if(command.equals("/BookDetail.bo")) {
-			System.out.println("BookDetail.bo 포워딩");
+		}else if(command.equals("/BookDetail.bok")) {
+			System.out.println("BookDetail.bok 포워딩");
 			action = new BookWriteProAction();
 			try {				
 				forward =  action.execute(request, response);
@@ -35,11 +35,11 @@ public class BookController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		}else if(command.equals("/BookModify.bo")) {
+		}else if(command.equals("/BookModify.bok")) {
 			System.out.println("BookModify.bo 포워딩");
-		}else if(command.equals("/BookDelete.bo")) {
+		}else if(command.equals("/BookDelete.bok")) {
 			System.out.println("BookDelete.bo 포워딩");
-		}else if(command.equals("/BookList.bo")) {
+		}else if(command.equals("/BookList.bok")) {
 			System.out.println("BookList.bo 포워딩");
 		}
 		
