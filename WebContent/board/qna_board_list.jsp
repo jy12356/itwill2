@@ -98,7 +98,7 @@
 						<%=articleList.get(i).getBoard_subject() %>
 						</a>
 					</td>
-					<td align="center"><%=articleList.get(i).getBoard_name() %></td>
+					<td align="center"><%=articleList.get(i).getBoard_id() %></td>
 					<td align="center"><%=articleList.get(i).getBoard_date() %></td>
 					<td align="center"><%=articleList.get(i).getBoard_readcount() %></td>
 				</tr>
