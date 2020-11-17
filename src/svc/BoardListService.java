@@ -66,18 +66,3 @@ public class BoardListService {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

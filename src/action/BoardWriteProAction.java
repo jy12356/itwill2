@@ -81,9 +81,7 @@ public class BoardWriteProAction implements Action {
 		// => 실제 프로젝트에서 다운로드가 필요할 경우
 		// 원본 파일명과 실제 업로드 파일명을 모두 DB에 저장하면 됨
 //		String board_file = multi.getOriginalFileName("board_file");
-		
-		
-		
+
 		
 //		System.out.println("글쓴이 : " + board_name);
 //		System.out.println("패스워드 : " + board_pass);
@@ -96,10 +94,7 @@ public class BoardWriteProAction implements Action {
 		boardBean.setBoard_subject(multi.getParameter("title"));
 		boardBean.setBoard_content(multi.getParameter("desc"));
 		boardBean.setBoard_file(multi.getOriginalFileName("file")); // 주의!
-		
-		
-		
-		
+			
 		
 		// -----------------------------------------------------------------------------------------------------------
 		// 서비스 클래스를 통해 실제 글 등록 작업 수행을 위한 요청
@@ -109,18 +104,7 @@ public class BoardWriteProAction implements Action {
 		BoardWriteProService boardWriteProService = new BoardWriteProService();
 		boolean isWriteSuccess = boardWriteProService.registArticle(boardBean);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// 글쓰기 작업 수행 후 리턴 받은 결과값으 ㄹ사용하여
+				// 글쓰기 작업 수행 후 리턴 받은 결과값으 ㄹ사용하여
 		// 글쓰기 성공 / 실패여부를 판단
 		// 만약 실패했을경우 자바스크립트를 사용하여 이전페이지로 이동
 		// 성공 했을경우 ActionForward 객체를 생성하여
@@ -172,60 +156,7 @@ public class BoardWriteProAction implements Action {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

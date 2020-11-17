@@ -1,5 +1,5 @@
 package vo;
-
+//페이징처리 
 public class PageInfo {
 
 	private int page;
@@ -51,10 +51,4 @@ public class PageInfo {
 	public void setListCount(int listCount) {
 		this.listCount = listCount;
 	}
-	
-	
-	
-	
-	
-	
 }
