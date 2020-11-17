@@ -22,44 +22,22 @@
 -->
 
 	<Resource 
-		name="jdbc/MySQL"
-		auth="Container" 
+		name="jdbc/MySQL" 
+		auth="Container"
 		type="javax.sql.DataSource"
-		username="root"
-		password="1234"
+		username="team2_db"
+		password="abcd1234"
 		driverClassName="com.mysql.jdbc.Driver"
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-		url="jdbc:mysql://localhost:3306/team_db"
+		url="jdbc:mysql://192.168.1.22:3306/team_db?useSSL=false"
 		maxActive="500"
 		maxIdle="20"
-		/>
-		
+	/>
+	
 		
 
 
 </Context>
-
-
-
-<!-- <Resource -->
-<!-- 			name="jdbc/MySQL" -->
-<!-- 			auth="Container" -->
-<!-- 			type="javax.sql.DataSource" -->
-<!-- 			username="team2_db" -->
-<!-- 			password="abcd1234" -->
-<!-- 			driverClassName="com.mysql.jdbc.Driver" -->
-<!-- 			factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory" -->
-<!-- 			url="jdbc:mysql://192.168.1.22:3306/team_db?useSSL=false" -->
-<!-- 			maxActive="500" -->
-<!-- 			maxIdle="20"/> -->
-
-
-
-
-
-
-
-
 
 
 
