@@ -88,5 +88,10 @@ public class RequestDAO {
 				
 				return articleList;
 	}
+	public RequestBean selectArticle(int num) {
+		
+		return null;
+		
+	}
 
 }
