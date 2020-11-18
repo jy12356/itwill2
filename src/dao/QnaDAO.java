@@ -100,7 +100,7 @@ public class QnaDAO {
 		int startRow = (page - 1) * limit;
 		
 		String sql = "SELECT * FROM board "
-				+ "ORDER BY date DESC,board_re_seq ASC "
+				+ "ORDER BY date DESC,board_num ASC "
 				+ "LIMIT ?,?";
 		
 		return articleList;
