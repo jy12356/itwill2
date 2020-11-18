@@ -10,34 +10,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.BookReWriteProAction;
+import action.review.ReviewWriteProAction;
 import vo.ActionForward;
 
 
 @WebServlet("*.re")
-public class BookReviewFrontController extends HttpServlet {
+public class ReviewFrontController extends HttpServlet {
 	
 	protected void doprocess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("ReviewFrontController");
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getServletPath();
 		System.out.println("요청서블릿 주소: " + command);
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/BookReWriteForm.re")) {
-			System.out.println("BookReWriteForm.re 포워딩");
+		if(command.equals("/BookDetail.re")) {
+			System.out.println("BookDetail.re 포워딩");
 			forward = new ActionForward();
 			forward.setPath("/sub1/detail.jsp");
-		} else if(command.equals("/BookReWritePro.re")) {
-			System.out.println("BookReWritePro.re 포워딩");
-			action = new BookReWriteProAction();
+			
+		} else if(command.equals("/ReviewWritePro.re")) {
+			System.out.println("ReviewWritePro.re 포워딩");
+			action = new ReviewWriteProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
 		if(forward != null) {
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
