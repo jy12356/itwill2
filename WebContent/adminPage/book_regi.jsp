@@ -12,29 +12,12 @@
             <h3 class="subTit">책등록</h3> 
             <div class="customer-contents">
                 <div class="customer-inner">
-                	<div class="bookregiSearch">
-          				<input type="text" name="searchString"  placeholder="검색어를 입력하세요" class="search_input" style="ime-mode:active;">
-						<input type="button" onclick="bookSearchSubmit()">
+                	<div class="bookregiSearch-inner">
+	                	<div class="bookregiSearch">
+	          				<input type="text" name="searchString"  placeholder="검색어를 입력하세요" class="search_input" style="ime-mode:active;">
+							<input type="button" onclick="bookSearchSubmit()">
+	                	</div>
                 	</div>
-                	<script type="text/javascript">
-                			function bookSearchSubmit(){
-                				var keyword = $('.search_input').val(); 
-                				$.ajax({ 
-                					type: 'GET', 
-                					url: '/api/v1/book/'+keyword, 
-                					dataType: 'json', 
-                					contentType:'application/json; charset=utf-8', 
-                					})
-                					.done(function(res) { 
-                						alert(JSON.stringify(res)); 
-                					})
-                					.fail(function (error) { 
-                						alert(JSON.stringify(error)); 
-               						});
-
-                				
-                			}
-                	</script>
                     <table summary="책등록" class="customer-notice">
                         <caption>책등록</caption>
                         <colgroup>
@@ -47,7 +30,7 @@
                             <tr>
                                 <td class="th">책제목</td>
                                 <td colspan="3" class="td">
-                                	<input type="text" name="title">
+                                	<input type="text" name="subject">
                                 </td>
                             </tr>
                             <tr>
@@ -65,43 +48,43 @@
                             	<td class="th">소분류</td>
                             	<td class="categ2 td">
                             		<select id="cateDef" class="on"> 
-                            			<option>선택해주세요.</option>
+                            			<option value="def">선택해주세요.</option>
                             		</select>
                             		<select id="novel"> 
-                            			<option>소설</option>
-                            			<option>에세이</option>
-                            			<option>여행</option>
-                            			<option>시</option>
+                            			<option value="nov">소설</option>
+                            			<option value="es">에세이</option>
+                            			<option value="tr">여행</option>
+                            			<option value="po">시</option>
                             		</select>
                             		<select id="he"> 
-                            			<option>자기개발</option>
-                            			<option>경영</option>
-                            			<option>경제</option>
-                            			<option>마케팅</option>
-                            			<option>역사</option>
-                            			<option>철학</option>
-                            			<option>종교</option>
-                            			<option>정치</option>
-                            			<option>예술</option>
-                            			<option>인문</option>
+                            			<option value="self">자기개발</option>
+                            			<option value="oper">경영</option>
+                            			<option value="eco">경제</option>
+                            			<option value="mak">마케팅</option>
+                            			<option value="his">역사</option>
+                            			<option value="phil">철학</option>
+                            			<option value="reli">종교</option>
+                            			<option value="poli">정치</option>
+                            			<option value="art">예술</option>
+                            			<option value="hu">인문</option>
                             		</select>
                             		<select id="si"> 
-                            			<option>수학</option>
-                            			<option>과학</option>
-                            			<option>IT비즈니스</option>
-                            			<option>자격증</option>
-                            			<option>프로그래밍</option>
+                            			<option value="ma">수학</option>
+                            			<option value="sci">과학</option>
+                            			<option value="it">IT비즈니스</option>
+                            			<option value="certi">자격증</option>
+                            			<option value="prog">프로그래밍</option>
                             		</select>
                             		<select id="hby"> 
-                            			<option>건강</option>
-                            			<option>요리</option>
-                            			<option>스포츠</option>
-                            			<option>결혼/임신/출산</option>
-                            			<option>기타</option>
+                            			<option value="hel">건강</option>
+                            			<option value="cook">요리</option>
+                            			<option value="sport">스포츠</option>
+                            			<option value="mer">결혼/임신/출산</option>
+                            			<option value="ect">기타</option>
                             		</select>
                             		<select id="cwn"> 
-                            			<option>만화</option>
-                            			<option>웹소설</option>
+                            			<option value="ct">만화</option>
+                            			<option value="weno">웹소설</option>
                             		</select>
                             	</td>
                             </tr>

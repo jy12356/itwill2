@@ -71,8 +71,5 @@ public class BookBean {
 	    public void setDescription(String description) {
 	        this.description = description;
 	    }
-	   
-	    
-	    
 
 }
