@@ -1,6 +1,6 @@
 package vo;
 
-public class Book {
+public class BookBean {
 	    private String title;
 	    private String link;
 	    private String image;
@@ -71,8 +71,5 @@ public class Book {
 	    public void setDescription(String description) {
 	        this.description = description;
 	    }
-	   
-	    
-	    
 
 }

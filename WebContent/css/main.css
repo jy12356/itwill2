@@ -3044,3 +3044,12 @@ margin-left:3px;border:1px solid #fb0707;display:inline-block;box-sizing:border-
 .realtime-hot-box .realtime-hot-list li.head .rank .blet {display:none}
 .realtime-hot-box .realtime-hot-list li>div>div>a>div {position:absolute;top:16px;left:0;width:103px;height:103px;border:1px solid #a6a6a6;box-sizing:border-box;overflow-y:hidden}
 .realtime-hot-box .realtime-hot-list li>div>div>a>div>img {width:100%}
+
+
+/*책등록*/
+.bookregiSearch-inner{padding-bottom: 20px;}
+.bookregiSearch {border: 5px solid #35b09f;width: 383px;height: 49px;padding-left: 11px;box-sizing: border-box;border-radius: 5px;}
+.bookregiSearch .search_input {float: left;height: 39px;border: none;width: 324px;line-height: 38px;box-sizing: border-box;font-size: 13px;color: #333;font-weight: 600;}
+.bookregiSearch input[type='button'] {float: right;height: 38px;background: url(../images/search-btn.png) no-repeat center center;width: 32px;border: none;cursor: pointer;}
+.categ2 select{display:none}
+.categ2 select.on{display:block}
