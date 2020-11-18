@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.BookWriteProAction;
+import action.bookRegi.BookListAction;
+import action.bookRegi.BookWriteProAction;
 import vo.ActionForward;
 @WebServlet("*.bok") 
 public class BookController extends HttpServlet {
@@ -25,8 +26,8 @@ public class BookController extends HttpServlet {
 			System.out.println("BookWriteForm.bo 포워딩");
 			forward = new ActionForward();
 			forward.setPath("/adminPage/book_regi.jsp");
-		}else if(command.equals("/BookDetail.bok")) {
-			System.out.println("BookDetail.bok 포워딩");
+		}else if(command.equals("/BookWritePro.bok")) {
+			System.out.println("BookWritePro.bok 포워딩");
 			action = new BookWriteProAction();
 			try {				
 				forward =  action.execute(request, response);
@@ -35,12 +36,24 @@ public class BookController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/BookDetail.bok")) {
+			System.out.println("BookDetail.bok 포워딩");
+			
 		}else if(command.equals("/BookModify.bok")) {
 			System.out.println("BookModify.bo 포워딩");
 		}else if(command.equals("/BookDelete.bok")) {
 			System.out.println("BookDelete.bo 포워딩");
 		}else if(command.equals("/BookList.bok")) {
 			System.out.println("BookList.bo 포워딩");
+			forward = new ActionForward();
+			action = new BookListAction();
+			try {				
+				forward =  action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			forward.setPath("/sub1/bookList.jsp");
 		}
 		
 		//1.ActionForward객체 존재 여부 확인(객체가 존재할때 포워딩 수행)
