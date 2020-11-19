@@ -22,7 +22,7 @@ public class QnaWriteProAction implements Action {
 		ActionForward forward = null;
 		
 		ServletContext context = request.getServletContext();
-		String saveFolder = "/boardUpload";
+		String saveFolder = "/qnaboardupload";
 		String realFolder = context.getRealPath(saveFolder);
 		System.out.println("실제 업로드 폴더 : " + realFolder);
 		int fileSize = 1024 * 1024 * 10;

@@ -25,7 +25,7 @@ public class QnaWriteProService {
 		}else {
 			rollback(con);
 		}
-		
+		close(con);
 		return isWriteSuccess;
 		
 	}

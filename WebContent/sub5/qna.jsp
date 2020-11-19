@@ -28,7 +28,7 @@
 					<div class="customer-use-wrap">
 						<ul class="customer-s-menu one">
 							<li>
-							<a href="qna.jsp" class="on">1:1 문의하기</a>
+							<a href="QnaWriteForm.qna" class="on">1:1 문의하기</a>
 							</li>
 							<li>
 							<a href="qna2.jsp" class="">문의 내역 확인</a>
@@ -41,10 +41,12 @@
 						</div>
 						<form name="frmBbsWrite" method="post" action="QnaWritePro.qna" enctype="multipart/form-data">
 							<input type="hidden" name="page" value="vs1"/>
-							<input type="hidden" name="num" value=""/>
 							<input type="hidden" name="mode" value="input"/>
+							<input type="hidden" name="qna_genre"  value="input"/>
 							<input type="hidden" name="mainclass_num" class="mainclass_num" value="1"/>
 							<input type="hidden" name="subclass_num" class="subclass_num" value=""/>
+							<input type="hidden" name="id"  value=""/>
+							<input type="hidden" name="pass"  value=""/>
 							<fieldset>
 								<legend>1:1 문의하기</legend>
 								<table class="onebyone" summary="1:1 문의">
