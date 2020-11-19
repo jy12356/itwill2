@@ -4,13 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import svc.freeboard.freeBoardDetailService;
+import svc.freeboard.FreeBoardDetailService;
 import vo.ActionForward;
-import vo.freeboard.freeBoardBean;
+import vo.FreeBoardBean;
 
 // 게시물 목록에서 클릭된 게시물에 대한 상세 내용을 가져오기 위한 클래스
 // => 1개 게시물의 상세 내용을 가져와서 qna_board_view.jsp 페이지로 전달
-public class freeBoardDetailAction implements Action {
+public class FreeBoardDetailAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardDetailAction!");
@@ -24,8 +24,8 @@ public class freeBoardDetailAction implements Action {
 		// BoardDetailService 클래스의 인스턴스 생성 후
 		// getArticle() 메서드를 호출하여 게시물 번호에 해당하는 글내용 가져오기
 		// => 파라미터 : 글번호(board_num), 리턴타입 : 게시물 1개 정보(BoardBean)
-		freeBoardDetailService boardDetailService = new freeBoardDetailService();
-		freeBoardBean article = boardDetailService.getArticle(board_num);
+		FreeBoardDetailService boardDetailService = new FreeBoardDetailService();
+		FreeBoardBean article = boardDetailService.getArticle(board_num);
 		
 		// 글내용이 저장된 BoardBean 객체를 request 객체에 저장
 		request.setAttribute("article", article);

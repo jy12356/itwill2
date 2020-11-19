@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.BookDAO;
-import dao.freeBoardDAO;
+import dao.FreeBoardDAO;
 import vo.BookBean;
 import static db.JdbcUtil.*;
 

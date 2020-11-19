@@ -6,11 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import vo.ActionForward;
 
-public class freeBoardReplyFormAction implements Action {
+public class FreeBoardModifyFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BoardReplyForm");
+		System.out.println("BoardModifyFormAction");
+		
 		
 		return null;
 	}

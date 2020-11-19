@@ -13,9 +13,9 @@ import javax.xml.ws.Dispatch;
 import sun.rmi.server.Dispatcher;
 import svc.MemberListService;
 import vo.ActionForward;
+import vo.FreeBoardBean;
 import vo.MemberBean;
 import vo.PageInfo;
-import vo.freeboard.freeBoardBean;
 
 public class MemberListAction implements Action {
 

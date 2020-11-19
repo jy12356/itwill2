@@ -6,14 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import vo.freeboard.freeBoardBean;
+import vo.FreeBoardBean;
+
 import static db.JdbcUtil.*;
 
 //import db.JdbcUtil;
 import static db.JdbcUtil.*;
 
 
-public class freeBoardDAO {
+public class FreeBoardDAO {
 	/*
 	 * ========================================================================
 	 * 싱글톤 디자인 패턴을 활용한 BoardDAO 인스턴스 작업
@@ -27,11 +28,11 @@ public class freeBoardDAO {
 	 *    => 파라미터 : 없음, 리턴타입 : BoardDAO
 	 *    => 외부에서 인스턴스 생성 없이도 호출 가능하도록 static 메서드로 정의    
 	 */
-	private freeBoardDAO() {}
+	private FreeBoardDAO() {}
 	
-	private static freeBoardDAO instance = new freeBoardDAO();
+	private static FreeBoardDAO instance = new FreeBoardDAO();
 
-	public static freeBoardDAO getInstance() {
+	public static FreeBoardDAO getInstance() {
 		return instance;
 	}
 	// ========================================================================
@@ -45,7 +46,7 @@ public class freeBoardDAO {
 	}
 
 	// 글 등록 작업
-	public int insertArticle(freeBoardBean boardBean) {
+	public int insertArticle(FreeBoardBean boardBean) {
 		// Service 클래스로부터 BoardBean 객체를 전달받아
 		// DB의 board 테이블에 INSERT 작업 수행하고 결과(int타입)를 리턴
 		System.out.println("BoardDAO - insertArticle()");
@@ -139,9 +140,9 @@ public class freeBoardDAO {
 	}
 
 	// 게시물 목록 조회
-	public ArrayList<freeBoardBean> selectArticleList(int page, int limit) {
+	public ArrayList<FreeBoardBean> selectArticleList(int page, int limit) {
 		// 지정된 갯수만큼의 게시물 조회 후 ArrayList 객체에 저장한 뒤 리턴
-		ArrayList<freeBoardBean> articleList = null;
+		ArrayList<FreeBoardBean> articleList = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -163,7 +164,7 @@ public class freeBoardDAO {
 			rs = pstmt.executeQuery();
 			
 			// ArrayList 객체 생성(while문 위에서 생성 필수!)
-			articleList = new ArrayList<freeBoardBean>();
+			articleList = new ArrayList<FreeBoardBean>();
 			
 			// 읽어올 게시물이 존재할 경우 다음 작업 반복
 			// => BoardBean 객체를 생성하여 레코드 데이터 모두 저장 후
@@ -171,7 +172,7 @@ public class freeBoardDAO {
 			// => 단, 패스워드(board_pass) 는 제외
 			while(rs.next()) {
 				// 1개 게시물 정보를 저장할 BoardBean 객체 생성 및 데이터 저장
-				freeBoardBean article = new freeBoardBean();
+				FreeBoardBean article = new FreeBoardBean();
 				article.setBoard_num(rs.getInt("board_num"));
 				article.setBoard_subject(rs.getString("board_subject"));
 				article.setBoard_id(rs.getString("board_id"));
@@ -202,11 +203,11 @@ public class freeBoardDAO {
 	}
 
 	// 게시물 상세 내용 조회
-	public freeBoardBean selectArticle(int board_num) {
+	public FreeBoardBean selectArticle(int board_num) {
 		System.out.println("DAO - selectArticleList");
 		// 글번호(board_num)에 해당하는 레코드를 SELECT
 		// 조회 결과가 있을 경우 BoardBean 객체에 저장한 뒤 리턴
-		freeBoardBean article = null;
+		FreeBoardBean article = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -220,7 +221,7 @@ public class freeBoardDAO {
 			
 			// 게시물이 존재할 경우 BoardBean 객체를 생성하여 게시물 내용 저장
 			if(rs.next()) {
-				article = new freeBoardBean();
+				article = new FreeBoardBean();
 				article.setBoard_num(rs.getInt("board_num"));
 				article.setBoard_subject(rs.getString("board_subject"));
 				article.setBoard_id(rs.getString("board_id"));

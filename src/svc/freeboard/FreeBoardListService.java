@@ -5,10 +5,10 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import dao.freeBoardDAO;
-import vo.freeboard.freeBoardBean;
+import dao.FreeBoardDAO;
+import vo.FreeBoardBean;
 
-public class freeBoardListService {
+public class FreeBoardListService {
 
 	// 전체 게시물 수를 조회하여 리턴하는 작업을 요청하는 getListCount() 정의
 	public int getListCount() throws Exception {
@@ -19,7 +19,7 @@ public class freeBoardListService {
 		Connection con = getConnection();
 		
 		// 2(공통). BoardDAO 객체 가져오기
-		freeBoardDAO boardDAO = freeBoardDAO.getInstance();
+		FreeBoardDAO boardDAO = FreeBoardDAO.getInstance();
 		
 		// 3(공통). BoardDAO 객체에 Connection 객체 전달
 		boardDAO.setConnection(con);
@@ -36,16 +36,16 @@ public class freeBoardListService {
 	}
 
 	// 게시물 목록 가져오기 작업 요청 수행
-	public ArrayList<freeBoardBean> getArticleList(int page, int limit) throws Exception {
+	public ArrayList<FreeBoardBean> getArticleList(int page, int limit) throws Exception {
 		System.out.println("BoardListService - getArticleList()");
 		
-		ArrayList<freeBoardBean> articleList = null;
+		ArrayList<FreeBoardBean> articleList = null;
 		
 		// 1(공통). Connection 객체 가져오기
 		Connection con = getConnection();
 		
 		// 2(공통). BoardDAO 객체 가져오기
-		freeBoardDAO boardDAO = freeBoardDAO.getInstance();
+		FreeBoardDAO boardDAO = FreeBoardDAO.getInstance();
 		
 		// 3(공통). BoardDAO 객체에 Connection 객체 전달
 		boardDAO.setConnection(con);

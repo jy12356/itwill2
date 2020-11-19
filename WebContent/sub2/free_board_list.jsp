@@ -1,19 +1,24 @@
 <%@page import="vo.PageInfo"%>
-<%@page import="vo.freeboard.freeBoardBean"%>
+<%@page import="vo.FreeBoardBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String id = (String) session.getAttribute("id");
-if (id == null) {
-	id = "홍길동";
-}
+	// 	String id = (String) session.getAttribute("id");
+// if (id == null) {
+// 	id = "홍길동";
+// }
+
+//String id = (String) session.getAttribute("id"); //
+//if(id==null) { // 로긴안한상태면 로그인화면으로
+//	response.sendRedirect("../member.login.jsp");
+//}
 
 // 전달받은 request 객체로부터 데이터 가져오기
 // "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 // "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 // 전부 Object타입이라 형변환 필요
-ArrayList<freeBoardBean> articleList = (ArrayList<freeBoardBean>) request.getAttribute("articleList");
+ArrayList<FreeBoardBean> articleList = (ArrayList<FreeBoardBean>) request.getAttribute("articleList");
 PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 int nowPage = pageInfo.getPage();
 int maxPage = pageInfo.getMaxPage();
@@ -65,6 +70,7 @@ int listCount = pageInfo.getListCount();
 						</thead>
 						<tbody>
 							<%
+							// 게시물목록불러오기
 								for (int i = 0; i < articleList.size(); i++) {
 							%>
 							<tr>
@@ -74,8 +80,7 @@ int listCount = pageInfo.getListCount();
 										if (articleList.get(i).getBoard_re_lev() != 0) {
 									%> <%
  	for (int j = 0; j <= articleList.get(i).getBoard_re_lev() * 2; j++) {
- %>
-									&nbsp; <%
+ %> &nbsp; <%
  	}
  %> ▶ <%
  	}

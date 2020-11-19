@@ -11,7 +11,7 @@
 <section class="sub">
     <div class="category-nav">
         <div class="category-nav-inner">
-            <p><a href="../main/index.jsp">HOME</a> > 게시판</p>
+            <p><a href="main/index.jsp">HOME</a> > 게시판</p>
         </div>
     </div>
     <div class="contents-wrap">
@@ -19,7 +19,7 @@
             <h3 class="coTitle">글 작성</h3> 
             <div class="customer-contents">
                 <div class="customer-inner">
-                	<form action="FreeBoardWritePro.bo" method="post"
+                	<form action="FreeBoardWritePro.free" method="post"
                 	enctype="multipart/form-data" name="free_board_writeForm">
 	                    <table summary="게시판" class="customer-notice">
 	                        <caption>게시판</caption>
@@ -63,7 +63,7 @@
 	                    </table>
 	                    <div class="default-btn-wrap">
 	                    	<input type="submit" class="btn" value="글쓰기">
-	                        <a href="free_board.jsp" class="btn">목록</a>
+	                        <a href="FreeBoardList.free" class="btn">목록</a>
 	                    </div>
                     </form>
                 </div>

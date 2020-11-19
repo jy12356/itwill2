@@ -1,4 +1,4 @@
-package controller.freeboard;
+package controller;
 
 import java.io.IOException;
 
@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.freeboard.freeBoardDetailAction;
-import action.freeboard.freeBoardListAction;
-import action.freeboard.freeBoardModifyFormAction;
-import action.freeboard.freeBoardReplyFormAction;
-import action.freeboard.freeBoardWriteProAction;
+import action.freeboard.FreeBoardDetailAction;
+import action.freeboard.FreeBoardListAction;
+import action.freeboard.FreeBoardModifyFormAction;
+import action.freeboard.FreeBoardReplyFormAction;
+import action.freeboard.FreeBoardWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.free") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
-public class freeBoardFrontController extends HttpServlet {
+public class FreeBoardFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 서블릿 요청 시 GET 방식 또는 POST 방식의 요청이 들어오면 
@@ -37,7 +37,7 @@ public class freeBoardFrontController extends HttpServlet {
 		ActionForward forward = null;
 		
 		// if문을 사용하여 각 서블릿 주소 판별 및 각 요청 처리를 위한 작업 요청
-		if(command.equals("/BoardWriteForm.bo")) {
+		if(command.equals("/FreeBoardWriteForm.free")) {
 			/*
 			 * 글쓰기 페이지에 대한 요청은 비즈니스 로직 없이
 			 * View 페이지(JSP)로 바로 포워딩 수행
@@ -53,10 +53,10 @@ public class freeBoardFrontController extends HttpServlet {
 			forward.setPath("/sub2/free_board_write.jsp");
 			// 3. 포워딩 방식 설정(Dispatcher 방식)
 //			forward.setRedirect(false); // 기본값이 false 이므로 설정 생략 가능
-		} else if(command.equals("/FreeBoardWritePro.bo")) { // BoardWritePro.bo 서블릿 요청에 대한 처리
+		} else if(command.equals("/FreeBoardWritePro.free")) { // BoardWritePro.bo 서블릿 요청에 대한 처리
 			// 1. BoardWriteProAction 클래스 객체 생성
 			// => Action 클래스는 Action 인터페이스를 구현하므로 다형성 활용 가능
-			action = new freeBoardWriteProAction();
+			action = new FreeBoardWriteProAction();
 			
 			try {
 				// 2. Action 클래스의 execute() 메서드 호출
@@ -66,16 +66,16 @@ public class freeBoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/BoardList.bo")) {
-			action = new freeBoardListAction();
+		} else if(command.equals("/FreeBoardList.free")) {
+			action = new FreeBoardListAction();
 			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/BoardDetail.bo")) {
-			action = new freeBoardDetailAction();
+		} else if(command.equals("/FreeBoardDetail.free")) {
+			action = new FreeBoardDetailAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -83,23 +83,23 @@ public class freeBoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		} else if(command.equals("/BoardReplyForm.bo")) {
-			action = new freeBoardReplyFormAction();
+		} else if(command.equals("/FreeBoardReplyForm.free")) {
+			action = new FreeBoardReplyFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-		} else if(command.equals("/BoardModifyForm.bo")) {
-			action = new freeBoardModifyFormAction();
+		} else if(command.equals("/FreeBoardModifyForm.free")) {
+			action = new FreeBoardModifyFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-		} else if(command.equals("/BoardDeleteForm.bo")) {
+		} else if(command.equals("/FreeBoardDeleteForm.free")) {
 			forward = new ActionForward();
 			forward.setPath("/board/qna_board_delete.jsp");
 			

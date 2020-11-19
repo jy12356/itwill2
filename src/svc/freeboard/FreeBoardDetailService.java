@@ -4,20 +4,20 @@ import static db.JdbcUtil.*;
 
 import java.sql.Connection;
 
-import dao.freeBoardDAO;
-import vo.freeboard.freeBoardBean;
+import dao.FreeBoardDAO;
+import vo.FreeBoardBean;
 
-public class freeBoardDetailService {
+public class FreeBoardDetailService {
 
 	// 게시물 1개에 대한 상세 내용을 요청하는 getArticle() 메서드 정의
-	public freeBoardBean getArticle(int board_num) throws Exception {
+	public FreeBoardBean getArticle(int board_num) throws Exception {
 //		System.out.println("BoardDetailService - getArticle()");
 		
 		// 1(공통). Connection 객체 가져오기
 		Connection con = getConnection();
 		
 		// 2(공통). BoardDAO 객체 가져오기
-		freeBoardDAO boardDAO = freeBoardDAO.getInstance();
+		FreeBoardDAO boardDAO = FreeBoardDAO.getInstance();
 		
 		// 3(공통). BoardDAO 객체에 Connection 객체 전달
 		boardDAO.setConnection(con);
@@ -25,7 +25,7 @@ public class freeBoardDetailService {
 		// 4. BoardDAO 객체의 selectArticle() 메서드를 호출하여
 		//    게시물 1개 상세내용 조회 결과를 BoardBean 객체로 리턴받기
 		//    => 파라미터 : 글번호(board_num), 리턴타입 : BoardBean
-		freeBoardBean article = boardDAO.selectArticle(board_num);
+		FreeBoardBean article = boardDAO.selectArticle(board_num);
 		
 		// 임시 확인용 BoardBean 객체 내용 출력
 		System.out.println("글 제목 : " + article.getBoard_subject());
