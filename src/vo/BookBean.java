@@ -1,27 +1,32 @@
 package vo;
 
-public class Book {
+public class BookBean {
+		private int num;
 	    private String title;
-	    private String link;
 	    private String image;
 	    private String author;
-	    private String price;
-	    private String discount;
 	    private String publisher;
 	    private String pubdate;
 	    private String isbn;
 	    private String description;
+	    private String catg1;
+		private String catg2;
+	    private String state;
+	    private int count;  
+	    private String author_info;
+	    private String index;
+	    
+	    public int getNum() {
+			return num;
+		}
+		public void setNum(int num) {
+			this.num = num;
+		}
 	    public String getTitle() {
 	        return title;
 	    }
 	    public void setTitle(String title) {
 	        this.title = title;
-	    }
-	    public String getLink() {
-	        return link;
-	    }
-	    public void setLink(String link) {
-	        this.link = link;
 	    }
 	    public String getImage() {
 	        return image;
@@ -34,18 +39,6 @@ public class Book {
 	    }
 	    public void setAuthor(String author) {
 	        this.author = author;
-	    }
-	    public String getPrice() {
-	        return price;
-	    }
-	    public void setPrice(String price) {
-	        this.price = price;
-	    }
-	    public String getDiscount() {
-	        return discount;
-	    }
-	    public void setDiscount(String discount) {
-	        this.discount = discount;
 	    }
 	    public String getPublisher() {
 	        return publisher;
@@ -71,8 +64,42 @@ public class Book {
 	    public void setDescription(String description) {
 	        this.description = description;
 	    }
-	   
-	    
-	    
 
+	    public String getCatg1() {
+			return catg1;
+		}
+		public void setCatg1(String catg1) {
+			this.catg1 = catg1;
+		}
+		public String getCatg2() {
+			return catg2;
+		}
+		public void setCatg2(String catg2) {
+			this.catg2 = catg2;
+		}
+		public String getState() {
+			return state;
+		}
+		public void setState(String state) {
+			this.state = state;
+		}
+		public int getCount() {
+			return count;
+		}
+		public void setCount(int count) {
+			this.count = count;
+		}
+		public String getAuthor_info() {
+			return author_info;
+		}
+		public void setAuthor_info(String author_info) {
+			this.author_info = author_info;
+		}
+		public String getIndex() {
+			return index;
+		}
+		public void setIndex(String index) {
+			this.index = index;
+		}
+		
 }
