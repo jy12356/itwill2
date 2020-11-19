@@ -42,16 +42,17 @@ public class QnaDAO {
 			if(rs.next()) {
 				num = rs.getInt(1) + 1; // 새 글 번호 만들기
 			}
-			sql = "Insert into qna values(?,?,?,?,?,?,?,now())";
+			sql = "Insert into qna values(?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, qnaBean.getId());
 			pstmt.setString(3, qnaBean.getPass());
 			pstmt.setString(4, qnaBean.getTitle());
 			pstmt.setString(5, qnaBean.getContent());
-//			pstmt.setString(6, qnaBean.getComment());
-			pstmt.setString(7, qnaBean.getQna_genre());
-			pstmt.setInt(8, num);
+			pstmt.setInt(6, num); // 참조글 번호(새글이므로 자신이 참조)
+			pstmt.setInt(7, qnaBean.getRe_lev());
+			pstmt.setInt(8, qnaBean.getRe_seq());
+			pstmt.setString(9, qnaBean.getQna_genre());
 			
 			insertCount = pstmt.executeUpdate();
 			
@@ -99,9 +100,16 @@ public class QnaDAO {
 		
 		int startRow = (page - 1) * limit;
 		
-		String sql = "SELECT * FROM board "
-				+ "ORDER BY date DESC,board_num ASC "
-				+ "LIMIT ?,?";
+		try {
+			String sql = "SELECT * FROM qna "
+					+ "ORDER BY re_ref DESC re_seq ASC "
+					+ "LIMIT ?,?";
+			pstmt = con.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return articleList;
 	}

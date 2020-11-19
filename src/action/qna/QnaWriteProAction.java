@@ -18,7 +18,7 @@ public class QnaWriteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("ActionForward!!");
+		System.out.println("QnaWriteProAction!!");
 		ActionForward forward = null;
 		
 		ServletContext context = request.getServletContext();
@@ -40,7 +40,6 @@ public class QnaWriteProAction implements Action {
 		qnaBean.setPass(multi.getParameter("pass"));
 		qnaBean.setTitle(multi.getParameter("title"));
 		qnaBean.setContent(multi.getParameter("content"));
-//		qnaBean.setComment(multi.getParameter("comment"));
 		
 		QnaWriteProService qnaWriteProService = new QnaWriteProService();
 		boolean isWriteSuccess = qnaWriteProService.registArticle(qnaBean);

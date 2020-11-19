@@ -1,6 +1,5 @@
 package svc.qna;
 
-import static db.JdbcUtil.getConnection;
 
 import java.sql.Connection;
 
