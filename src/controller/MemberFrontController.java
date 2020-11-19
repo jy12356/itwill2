@@ -12,84 +12,46 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MemberDeleteFormAction;
 import action.MemberListAction;
-import action.MemberModifyFormAction;
+
 import action.MemberWriteProAction;
 import vo.ActionForward;
 
-@WebServlet("*.bo") // ¼­ºí¸´ ÁÖ¼Ò Áß XXX.bo ÁÖ¼Ò¿¡ ´ëÇÑ ¿äÃ»À» Àü´Ş¹Ş¾Æ Ã³¸®
+@WebServlet("*.me")
 public class MemberFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ¼­ºí¸´ ¿äÃ» ½Ã GET ¹æ½Ä ¶Ç´Â POST ¹æ½ÄÀÇ ¿äÃ»ÀÌ µé¾î¿À¸é 
-		// °øÅëÀ¸·Î Ã³¸®ÇÏ±â À§ÇØ doGet(), doPost() ¸Ş¼­µå¿¡¼­ È£ÃâÇÏ´Â ¸Ş¼­µå
-		// => ÆÄ¶ó¹ÌÅÍ·Î request °´Ã¼¿Í response °´Ã¼¸¦ Àü´Ş¹ŞÀ½
 		
-		// POST ¹æ½Ä ¿äÃ»¿¡ ´ëÇÑ ÇÑ±Û Ã³¸®
 		request.setCharacterEncoding("UTF-8");
 		
-		// ¼­ºí¸´ ÁÖ¼Ò °¡Á®¿À±â
 		String command = request.getServletPath();
-		System.out.println("¿äÃ» ¼­ºí¸´ ÁÖ¼Ò : " + command);
+		System.out.println("ìš”ì²­ ì„œë¸”ë¦¿ ì£¼ì†Œ : " + command);
 		
-		// °¢ ¿äÃ» Ã³¸®¿¡ ÇÊ¿äÇÑ °´Ã¼¸¦ ´Ù·ç´Â º¯¼ö ¼±¾ğ
 		Action action = null;
 		ActionForward forward = null;
 		
-		// if¹®À» »ç¿ëÇÏ¿© °¢ ¼­ºí¸´ ÁÖ¼Ò ÆÇº° ¹× °¢ ¿äÃ» Ã³¸®¸¦ À§ÇÑ ÀÛ¾÷ ¿äÃ»
-		if(command.equals("/MemberWriteForm.bo")) {
-			/*
-			 * ±Û¾²±â ÆäÀÌÁö¿¡ ´ëÇÑ ¿äÃ»Àº ºñÁî´Ï½º ·ÎÁ÷ ¾øÀÌ
-			 * View ÆäÀÌÁö(JSP)·Î ¹Ù·Î Æ÷¿öµù ¼öÇà
-			 * - ±âÁ¸ ¼­ºí¸´ ÁÖ¼Ò°¡ À¯ÁöµÇ¾î¾ß ÇÏ¹Ç·Î Dispatcher ¹æ½Ä Æ÷¿öµù
-			 *   => ActionForward °´Ã¼¿¡ redirect º¯¼ö°ªÀ» false ·Î ¼³Á¤
-			 *      (boolean Å¸ÀÔ ±âº» °ªÀÌ false ÀÌ¹Ç·Î º°µµ ¼³Á¤ ÇÊ¿ä ¾øÀ½)\
-			 *   => µû¶ó¼­, Æ÷¿öµù ÁÖ¼Ò¸¸ ÁöÁ¤
-			 * - Æ÷¿öµù ÁÖ¼Ò : board Æú´õ ³»ÀÇ qna_board_write.jsp
-			 */
-			// 1. ActionForward °´Ã¼ »ı¼º(º¯¼ö´Â ÀÌ¹Ì ¼±¾ğµÇ¾î ÀÖÀ½)
+		if(command.equals("/MemberWriteForm.me")) {
 			forward = new ActionForward();
-			// 2. Æ÷¿öµù °æ·Î ¼³Á¤
 			forward.setPath("/sub1/join.jsp");
-			// 3. Æ÷¿öµù ¹æ½Ä ¼³Á¤(Dispatcher ¹æ½Ä)
-//			forward.setRedirect(false); // ±âº»°ªÀÌ false ÀÌ¹Ç·Î ¼³Á¤ »ı·« °¡´É
-		} else if(command.equals("/MemberWritePro.bo")) { // BoardWritePro.bo ¼­ºí¸´ ¿äÃ»¿¡ ´ëÇÑ Ã³¸®
-			// 1. BoardWriteProAction Å¬·¡½º °´Ã¼ »ı¼º
-			// => Action Å¬·¡½º´Â Action ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ¹Ç·Î ´ÙÇü¼º È°¿ë °¡´É
+		} else if(command.equals("/MemberWritePro.me")) {  
 			action = new MemberWriteProAction();
 			
 			try {
-				// 2. Action Å¬·¡½ºÀÇ execute() ¸Ş¼­µå È£Ãâ
-				// => ¸®ÅÏµÇ´Â ActionForward °´Ã¼ Àü´Ş¹Ş±â(Á÷Á¢ »ı¼ºÇÏÁö ¾ÊÀ½!)
-				// => throws ¿¡ ÀÇÇØ ¿¹¿Ü°¡ Àü´ŞµÇ¹Ç·Î try ~ catch ÇÊ¿ä
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MemberList.bo")) {
+		} else if(command.equals("/MemberList.me")) {
 			
-			System.out.println("MemberList.bo ·Î Æ÷¿öµù!");
+			System.out.println("MemberList.me ë¡œ í¬ì›Œë”©!");
 			
 			action = new MemberListAction();
 			try {
-				forward = action.excute(request, response);
+				forward = action.execute(request, response);
+				forward.setPath("/sub1/update.jsp");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MemberModifyForm.bo")) {
-			
-			System.out.println("MemberModifyForm");
-			
-			action = new MemberModifyFormAction();
-			try {
-				forward = action.excute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		} else if(command.equals("/MemberDeleteForm.bo")) {
-			
+		}  else if(command.equals("/MemberDeleteForm.me")) {
 			System.out.println("MemberDeleteForm");
 			
 			action = new MemberDeleteFormAction();
@@ -97,33 +59,18 @@ public class MemberFrontController extends HttpServlet {
 				forward = new ActionForward();
 				forward.setPath("/sub1/delete.jsp");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
 		}
 		
-		// ----------------------------------------------------------------
-		// ±âº»ÀûÀÎ ÀÛ¾÷ ÈÄ °øÅëÀûÀ¸·Î ¼öÇàÇÒ Æ÷¿öµù ÀÛ¾÷
-		// 1. ActionForward °´Ã¼ Á¸Àç ¿©ºÎ ÆÇº°(°´Ã¼°¡ Á¸ÀçÇÒ ¶§ Æ÷¿öµù ¼öÇà)
 		if(forward != null) {
-			// 2. ActionForward °´Ã¼ ³»ÀÇ Æ÷¿öµù ¹æ½Ä¿¡ µû¶ó °¢°¢ÀÇ Æ÷¿öµù ¼öÇà
-			// => Redirect ¹æ½Ä : isRedirect() == true, 
-			//    Dispatcher ¹æ½Ä : isRedirect() == false
 			if(forward.isRedirect()) {
-				// 3. Redirect ¹æ½ÄÀÏ °æ¿ì 
-				// response °´Ã¼ÀÇ sendRedirect() ¸Ş¼­µå¸¦ È£ÃâÇÏ¿© Æ÷¿öµù
-				// => ÆÄ¶ó¹ÌÅÍ : Æ÷¿öµù ÇÒ URL
 				response.sendRedirect(forward.getPath());
 			} else { 
-				// 4. Dispatcher ¹æ½ÄÀÏ °æ¿ì
-				// 4-1. request °´Ã¼ÀÇ getRequestDispatcher() ¸Ş¼­µå¸¦ È£ÃâÇÏ¿©
-				//      RequestDispatcher °´Ã¼¸¦ ¸®ÅÏ¹Ş±â
-				//      => ÆÄ¶ó¹ÌÅÍ : Æ÷¿öµù ÇÒ URL
 				RequestDispatcher dispatcher = 
 						request.getRequestDispatcher(forward.getPath());
-				// 4-2. RequestDispatcher °´Ã¼ÀÇ forward() ¸Ş¼­µå¸¦ È£ÃâÇÏ¿©
-				//      Æ÷¿öµù ¼öÇà(ÆÄ¶ó¹ÌÅÍ : request, response °´Ã¼)
+
 				dispatcher.forward(request, response);
 			}
 			// ----------------------------------------------------------------
@@ -133,14 +80,12 @@ public class MemberFrontController extends HttpServlet {
 	}   
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ¼­ºí¸´ ¿äÃ» ½Ã GET ¹æ½Ä ¿äÃ»ÀÌ µé¾î¿À¸é ÀÚµ¿À¸·Î È£ÃâµÇ´Â ¸Ş¼­µå
-		// => ÆÄ¶ó¹ÌÅÍ·Î request °´Ã¼¿Í response °´Ã¼¸¦ Àü´Ş¹ŞÀ½
+
 		doProcess(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ¼­ºí¸´ ¿äÃ» ½Ã POST ¹æ½Ä ¿äÃ»ÀÌ µé¾î¿À¸é ÀÚµ¿À¸·Î È£ÃâµÇ´Â ¸Ş¼­µå
-		// => ÆÄ¶ó¹ÌÅÍ·Î request °´Ã¼¿Í response °´Ã¼¸¦ Àü´Ş¹ŞÀ½
+
 		doProcess(request, response);
 	}
 
