@@ -55,19 +55,18 @@ public class MemberDAO {
 			pstmt.setString(4, memberBean.getPassword());
 			pstmt.setString(5, memberBean.getEmail());
 			pstmt.setString(6, memberBean.getPhone());
-			pstmt.setString(7, memberBean.getCatg()); // ÂüÁ¶±Û ¹øÈ£(»õ ±ÛÀÌ¹Ç·Î ÀÚ½ÅÀÌ ÂüÁ¶±ÛÀÌ µÊ)
+			pstmt.setString(7, memberBean.getCatg()); // ì°¸ì¡°ê¸€ ë²ˆí˜¸(ìƒˆ ê¸€ì´ë¯€ë¡œ ìì‹ ì´ ì°¸ì¡°ê¸€ì´ ë¨)
 			pstmt.setInt(8, memberBean.getAge());
 			pstmt.setString(9, memberBean.getAddress());
 			
-			// INSERT ±¸¹® ½ÇÇà °á°ú°ªÀ» intÇü º¯¼ö insertCount ¿¡ ÀúÀå
+
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			System.out.println("insertArticle() ¿À·ù! - " + e.getMessage());
+			System.out.println("insertArticle() ì˜¤ë¥˜! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
-			// ÀÚ¿ø ¹İÈ¯
-			// ÁÖÀÇ! DAO Å¬·¡½º ³»¿¡¼­ Connection °´Ã¼ ¹İÈ¯ ±İÁö!
+
 			close(rs);
 			close(pstmt);
 		}
@@ -75,7 +74,7 @@ public class MemberDAO {
 		return insertCount;
 	}
 
-	// ÀüÃ¼ °Ô½Ã¹° ¼ö Á¶È¸
+
 	public int selectListCount() {
 		int listCount = 0;
 		
@@ -83,24 +82,21 @@ public class MemberDAO {
 		ResultSet rs = null;
 		
 		try {
-			// SELECT ±¸¹®À» »ç¿ëÇÏ¿© ÀüÃ¼ °Ô½Ã¹° ¼ö Á¶È¸
-			// => count() ÇÔ¼ö »ç¿ë, Á¶È¸ ´ë»ó ÄÃ·³ 1°³ ÁöÁ¤ÇÏ°Å³ª * »ç¿ë
+
 			String sql = "SELECT COUNT(board_num) FROM member";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			// Á¶È¸ °á°ú°¡ ÀÖÀ» °æ¿ì(= °Ô½Ã¹°ÀÌ ÇÏ³ª¶óµµ Á¸ÀçÇÏ´Â °æ¿ì)
-			// => °Ô½Ã¹° ¼ö¸¦ listCount ¿¡ ÀúÀå
+
 			if(rs.next()) {
 				listCount = rs.getInt(1);
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("selectListCount() ¿À·ù! - " + e.getMessage());
+			System.out.println("selectListCount() ì˜¤ë¥˜! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
-			// ÀÚ¿ø ¹İÈ¯
-			// ÁÖÀÇ! DAO Å¬·¡½º ³»¿¡¼­ Connection °´Ã¼ ¹İÈ¯ ±İÁö!
+
 			close(rs);
 			close(pstmt);
 		}
@@ -108,37 +104,25 @@ public class MemberDAO {
 		return listCount;
 	}
 
-	// °Ô½Ã¹° ¸ñ·Ï Á¶È¸
+
 	public ArrayList<MemberBean> selectArticleList(int page, int limit) {
-		// ÁöÁ¤µÈ °¹¼ö¸¸Å­ÀÇ °Ô½Ã¹° Á¶È¸ ÈÄ ArrayList °´Ã¼¿¡ ÀúÀåÇÑ µÚ ¸®ÅÏ
-		ArrayList<MemberBean> articleList = null;
-		
+		ArrayList<MemberBean> articleList = null;		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		// Á¶È¸¸¦ ½ÃÀÛÇÒ ·¹ÄÚµå(Çà) ¹øÈ£ °è»ê
+
 		int startRow = (page - 1) * limit;
 		
 		try {
-			// °Ô½Ã¹° Á¶È¸
-			// ÂüÁ¶±Û¹øÈ£(board_re_ref) ¹øÈ£¸¦ ±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·Ä,
-			// ¼ø¼­¹øÈ£(board_re_seq) ¹øÈ£¸¦ ±âÁØÀ¸·Î ¿À¸§Â÷¼ø Á¤·Ä
-			// Á¶È¸ ½ÃÀÛ °Ô½Ã¹° ¹øÈ£(startRow)ºÎÅÍ limit °¹¼ö¸¸Å­ Á¶È¸
 			String sql = "SELECT * FROM member LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
 			
-			// ArrayList °´Ã¼ »ı¼º(while¹® À§¿¡¼­ »ı¼º ÇÊ¼ö!)
 			articleList = new ArrayList<MemberBean>();
 			
-			// ÀĞ¾î¿Ã °Ô½Ã¹°ÀÌ Á¸ÀçÇÒ °æ¿ì ´ÙÀ½ ÀÛ¾÷ ¹İº¹
-			// => BoardBean °´Ã¼¸¦ »ı¼ºÇÏ¿© ·¹ÄÚµå µ¥ÀÌÅÍ ¸ğµÎ ÀúÀå ÈÄ
-			//    BoardBean °´Ã¼¸¦ ´Ù½Ã ArrayList °´Ã¼¿¡ Ãß°¡
-			// => ´Ü, ÆĞ½º¿öµå(board_pass) ´Â Á¦¿Ü
 			while(rs.next()) {
-				// 1°³ °Ô½Ã¹° Á¤º¸¸¦ ÀúÀåÇÒ BoardBean °´Ã¼ »ı¼º ¹× µ¥ÀÌÅÍ ÀúÀå
 				MemberBean article = new MemberBean();
 				article.setNum(rs.getInt("num"));
 				article.setName(rs.getString("name"));
@@ -150,16 +134,11 @@ public class MemberDAO {
 				article.setAge(rs.getInt("age"));
 				article.setAddress(rs.getString("address"));
 				article.setDate(rs.getDate("date"));
-				
-				// ·¹ÄÚµå ÀúÀå È®ÀÎ¿ë ÄÚµå
-//				System.out.println("Á¦¸ñ : " + article.getBoard_subject());
-				
-				// 1°³ °Ô½Ã¹°À» ÀüÃ¼ °Ô½Ã¹° ÀúÀå °´Ã¼(ArrayList)¿¡ Ãß°¡
 				articleList.add(article);
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("selectArticleList() ¿À·ù! - " + e.getMessage());
+			System.out.println("selectArticleList() ì˜¤ë¥˜! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(rs);
@@ -168,24 +147,20 @@ public class MemberDAO {
 		
 		return articleList;
 	}
-
-	// °Ô½Ã¹° »ó¼¼ ³»¿ë Á¶È¸
-	public MemberBean selectArticle(int board_num) {
-		// ±Û¹øÈ£(board_num)¿¡ ÇØ´çÇÏ´Â ·¹ÄÚµå¸¦ SELECT
-		// Á¶È¸ °á°ú°¡ ÀÖÀ» °æ¿ì BoardBean °´Ã¼¿¡ ÀúÀåÇÑ µÚ ¸®ÅÏ
+	public MemberBean selectArticle(int id) {
 		MemberBean article = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			String sql = "select * from board where board_num=?";
+			String sql = "select * from board where id=?";
 		
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, board_num);
+			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			
-			// °Ô½Ã¹°ÀÌ Á¸ÀçÇÒ °æ¿ì BoardBean °´Ã¼¸¦ »ı¼ºÇÏ¿© °Ô½Ã¹° ³»¿ë ÀúÀå
+			// ê²Œì‹œë¬¼ì´ ì¡´ì¬í•  ê²½ìš° BoardBean ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ ê²Œì‹œë¬¼ ë‚´ìš© ì €ì¥
 			
 			if(rs.next()) {
 				article = new MemberBean();
@@ -201,31 +176,93 @@ public class MemberDAO {
 				article.setDate(rs.getDate("date"));
 			}
 		} catch (SQLException e) {
-			System.out.println("selectArticle() ¿À·ù! - " + e.getMessage());
+			System.out.println("selectArticle() ì˜¤ë¥˜! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(rs);
 			close(pstmt);
 		}
 		
-		
-		// ÀÓ½Ã È®ÀÎ¿ë »ó¼¼ ³»¿ë Ãâ·Â
-		System.out.println("¾ÆÀÌµğ : "+article.getId());
+		System.out.println("ì•„ì´ë”” : "+article.getId());
 		
 		
 		return article;
 	}
 
-	
-}
+		public boolean isArticleMemberWriter(String id, String password) {
+			boolean isArticleWriter = false;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT password FROM member WHERE id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					if(password.equals(rs.getString("password"))) {
+						isArticleWriter = true;
+					}
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("isArticleMemberWriter() ì˜¤ë¥˜! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return isArticleWriter;
+		}
 
-
-
-
-
-
-
-
-
-
-
+		public int updateArticle(MemberBean article) {
+			int updateCount = 0;
+			
+			PreparedStatement pstmt = null;
+			try {
+				String sql = "UPDATE board SET name=?, email=?, phone=?, catg=?, age=?, address=? WHERE id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, article.getName());
+				pstmt.setString(2, article.getEmail());
+				pstmt.setString(3, article.getPhone());
+				pstmt.setString(4, article.getCatg());
+				pstmt.setInt(5, article.getAge());
+				pstmt.setString(6, article.getAddress());
+				pstmt.setString(7, article.getId());
+				updateCount = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("updateArticle() ì˜¤ë¥˜! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return updateCount;
+		}
+		
+		public int deleteArticle(MemberBean article) {
+			int updateCount = 0;
+			
+			PreparedStatement pstmt = null;
+			try {
+				String sql = "delete from member WHERE id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, article.getId());
+				updateCount = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("deleteArticle() ì˜¤ë¥˜! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+		return updateCount;
+	}
+		
+		
+	}

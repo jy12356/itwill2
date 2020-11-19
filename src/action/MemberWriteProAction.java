@@ -2,6 +2,7 @@ package action;
 
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,10 +13,13 @@ import vo.MemberBean;
 public class MemberWriteProAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberWriteProAction!");
 
 		ActionForward forward = null;
+		
+		ServletContext context = request.getServletContext();
+	
 		MemberBean memberBean = new MemberBean();
 		memberBean.setId(request.getParameter("id"));
 		memberBean.setNum(Integer.parseInt(request.getParameter("num")));
@@ -35,7 +39,9 @@ public class MemberWriteProAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>"); 
-			out.println("alert('±€ µÓ∑œ Ω«∆–!')");
+
+			out.println("alert('√à¬∏¬ø√∏¬µ√Æ¬∑√è¬Ω√á√Ü√ê!')");
+
 			out.println("history.back()");
 			out.println("</script>"); 
 		} else {
