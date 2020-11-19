@@ -9,6 +9,7 @@ import action.Action;
 import svc.book.BookListService;
 import vo.ActionForward;
 import vo.BookBean;
+import vo.PageInfo;
 
 public class BookListAction implements Action {
 
@@ -28,8 +29,17 @@ public class BookListAction implements Action {
 		
 		
 		
-		ArrayList<BookBean> articleList = new ArrayList<BookBean>();
-		
+		ArrayList<BookBean> bookList = new ArrayList<BookBean>();
+		bookList = bookListService.getBookList(page,limit);
+
+		int maxPage = (int)((double)listCount/ limit+0.95);
+		int startPage = ((int)((double)page/10+0.9)-1)*10+1;
+		int endPage=startPage+10-1;
+		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
+		request.setAttribute("bookList", bookList);
+		request.setAttribute("pageInfo", pageInfo);
+		forward = new ActionForward();
+		forward.setPath("/sub1/bookList.jsp");
 		return forward;
 		
 	}

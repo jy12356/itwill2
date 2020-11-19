@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import vo.BookBean;
 
@@ -26,7 +27,7 @@ public class BookDAO {
 	public int insertBook(BookBean bookBean) {
 		// Service 클래스로부터 BoardBean 객체를 전달받아
 		// DB의 board 테이블에 INSERT 작업 수행하고 결과(int타입)를 리턴
-		System.out.println("BoardDAO - insertArticle()");
+		System.out.println("BookDAO - insertBook()");
 
 		int insertCount = 0; // INSERT 작업 수행 결과를 저장할 변수
 		
@@ -81,5 +82,71 @@ public class BookDAO {
 		}
 		return insertCount;		
 	}
+	public ArrayList<BookBean> selectBookList(int page, int limit) {
+		System.out.println("BookDAO - selectList()");
+		ArrayList<BookBean> bookList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
+		//조회를 시작할 레코드 행 번호 계산
+		int startRow=(page-1)*limit;
+		
+		String sql = "select * from book order by pubdate desc limit ?,?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
+			System.out.println(pstmt);
+			rs = pstmt.executeQuery();
+			bookList = new ArrayList<BookBean>();
+			while(rs.next()) {
+				BookBean bookBean = new BookBean();
+				bookBean.setNum(rs.getInt("num"));
+				bookBean.setTitle(rs.getString("title"));
+				bookBean.setCatg1(rs.getString("catg1"));
+				bookBean.setCatg2(rs.getString("catg2"));
+				bookBean.setAuthor(rs.getString("author"));
+				bookBean.setPublisher(rs.getString("publisher"));
+				bookBean.setPubdate(rs.getString("pubdate"));
+				bookBean.setIsbn(rs.getString("isbn"));
+				bookBean.setState(rs.getString("state"));
+				bookBean.setCount(rs.getInt("count"));
+				bookBean.setAuthor_info(rs.getString("author_info"));
+				bookBean.setIndex(rs.getString("index_info"));
+				bookBean.setImage(rs.getString("image"));
+				bookBean.setDescription(rs.getString("description"));
+				bookList.add(bookBean);
+			}
+			
+		}catch (Exception e) {
+			System.out.println("selectBookList오류!" + e.getMessage());;
+			e.printStackTrace();
+		}finally {
+			close(rs);	
+			close(pstmt);
+		}
+		return bookList;
+	}
+	public int selectListCount() {
+		System.out.println("BookDAO - selectListCount()");
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) from book";
+		try {
+			pstmt=con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		}catch (Exception e) {
+			System.out.println("selectListCount 오류!:"+e.getMessage());
+			e.printStackTrace();
+		}
+		
+				
+		
+		return listCount;
+	}
 }
