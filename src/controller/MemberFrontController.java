@@ -16,58 +16,58 @@ import action.MemberModifyFormAction;
 import action.MemberWriteProAction;
 import vo.ActionForward;
 
-@WebServlet("*.bo") // ¼­ºí¸´ ÁÖ¼Ò Áß XXX.bo ÁÖ¼Ò¿¡ ´ëÇÑ ¿äÃ»À» Àü´Þ¹Þ¾Æ Ã³¸®
+@WebServlet("*.bo") // ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ XXX.bo ï¿½Ö¼Ò¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½Þ¹Þ¾ï¿½ Ã³ï¿½ï¿½
 public class MemberFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ¼­ºí¸´ ¿äÃ» ½Ã GET ¹æ½Ä ¶Ç´Â POST ¹æ½ÄÀÇ ¿äÃ»ÀÌ µé¾î¿À¸é 
-		// °øÅëÀ¸·Î Ã³¸®ÇÏ±â À§ÇØ doGet(), doPost() ¸Þ¼­µå¿¡¼­ È£ÃâÇÏ´Â ¸Þ¼­µå
-		// => ÆÄ¶ó¹ÌÅÍ·Î request °´Ã¼¿Í response °´Ã¼¸¦ Àü´Þ¹ÞÀ½
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ GET ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ POST ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ doGet(), doPost() ï¿½Þ¼ï¿½ï¿½å¿¡ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+		// => ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ request ï¿½ï¿½Ã¼ï¿½ï¿½ response ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½
 		
-		// POST ¹æ½Ä ¿äÃ»¿¡ ´ëÇÑ ÇÑ±Û Ã³¸®
+		// POST ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½ Ã³ï¿½ï¿½
 		request.setCharacterEncoding("UTF-8");
 		
-		// ¼­ºí¸´ ÁÖ¼Ò °¡Á®¿À±â
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String command = request.getServletPath();
-		System.out.println("¿äÃ» ¼­ºí¸´ ÁÖ¼Ò : " + command);
+		System.out.println("ï¿½ï¿½Ã» ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ : " + command);
 		
-		// °¢ ¿äÃ» Ã³¸®¿¡ ÇÊ¿äÇÑ °´Ã¼¸¦ ´Ù·ç´Â º¯¼ö ¼±¾ð
+		// ï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ù·ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		Action action = null;
 		ActionForward forward = null;
 		
-		// if¹®À» »ç¿ëÇÏ¿© °¢ ¼­ºí¸´ ÁÖ¼Ò ÆÇº° ¹× °¢ ¿äÃ» Ã³¸®¸¦ À§ÇÑ ÀÛ¾÷ ¿äÃ»
+		// ifï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½Çºï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã» Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ ï¿½ï¿½Ã»
 		if(command.equals("/MemberWriteForm.bo")) {
 			/*
-			 * ±Û¾²±â ÆäÀÌÁö¿¡ ´ëÇÑ ¿äÃ»Àº ºñÁî´Ï½º ·ÎÁ÷ ¾øÀÌ
-			 * View ÆäÀÌÁö(JSP)·Î ¹Ù·Î Æ÷¿öµù ¼öÇà
-			 * - ±âÁ¸ ¼­ºí¸´ ÁÖ¼Ò°¡ À¯ÁöµÇ¾î¾ß ÇÏ¹Ç·Î Dispatcher ¹æ½Ä Æ÷¿öµù
-			 *   => ActionForward °´Ã¼¿¡ redirect º¯¼ö°ªÀ» false ·Î ¼³Á¤
-			 *      (boolean Å¸ÀÔ ±âº» °ªÀÌ false ÀÌ¹Ç·Î º°µµ ¼³Á¤ ÇÊ¿ä ¾øÀ½)\
-			 *   => µû¶ó¼­, Æ÷¿öµù ÁÖ¼Ò¸¸ ÁöÁ¤
-			 * - Æ÷¿öµù ÁÖ¼Ò : board Æú´õ ³»ÀÇ qna_board_write.jsp
+			 * ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			 * View ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(JSP)ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			 * - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ ï¿½Ï¹Ç·ï¿½ Dispatcher ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			 *   => ActionForward ï¿½ï¿½Ã¼ï¿½ï¿½ redirect ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ false ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			 *      (boolean Å¸ï¿½ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½ false ï¿½Ì¹Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½)\
+			 *   => ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+			 * - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ : board ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ qna_board_write.jsp
 			 */
-			// 1. ActionForward °´Ã¼ »ý¼º(º¯¼ö´Â ÀÌ¹Ì ¼±¾ðµÇ¾î ÀÖÀ½)
+			// 1. ActionForward ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½)
 			forward = new ActionForward();
-			// 2. Æ÷¿öµù °æ·Î ¼³Á¤
+			// 2. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			forward.setPath("/sub1/join.jsp");
-			// 3. Æ÷¿öµù ¹æ½Ä ¼³Á¤(Dispatcher ¹æ½Ä)
-//			forward.setRedirect(false); // ±âº»°ªÀÌ false ÀÌ¹Ç·Î ¼³Á¤ »ý·« °¡´É
-		} else if(command.equals("/MemberWritePro.bo")) { // BoardWritePro.bo ¼­ºí¸´ ¿äÃ»¿¡ ´ëÇÑ Ã³¸®
-			// 1. BoardWriteProAction Å¬·¡½º °´Ã¼ »ý¼º
-			// => Action Å¬·¡½º´Â Action ÀÎÅÍÆäÀÌ½º¸¦ ±¸ÇöÇÏ¹Ç·Î ´ÙÇü¼º È°¿ë °¡´É
+			// 3. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(Dispatcher ï¿½ï¿½ï¿½)
+//			forward.setRedirect(false); // ï¿½âº»ï¿½ï¿½ï¿½ï¿½ false ï¿½Ì¹Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		} else if(command.equals("/MemberWritePro.bo")) { // BoardWritePro.bo ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
+			// 1. BoardWriteProAction Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+			// => Action Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Action ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¹Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			action = new MemberWriteProAction();
 			
 			try {
-				// 2. Action Å¬·¡½ºÀÇ execute() ¸Þ¼­µå È£Ãâ
-				// => ¸®ÅÏµÇ´Â ActionForward °´Ã¼ Àü´Þ¹Þ±â(Á÷Á¢ »ý¼ºÇÏÁö ¾ÊÀ½!)
-				// => throws ¿¡ ÀÇÇØ ¿¹¿Ü°¡ Àü´ÞµÇ¹Ç·Î try ~ catch ÇÊ¿ä
+				// 2. Action Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ execute() ï¿½Þ¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½
+				// => ï¿½ï¿½ï¿½ÏµÇ´ï¿½ ActionForward ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½Þ¹Þ±ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!)
+				// => throws ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ü°ï¿½ ï¿½ï¿½ï¿½ÞµÇ¹Ç·ï¿½ try ~ catch ï¿½Ê¿ï¿½
 				forward = action.excute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/MemberList.bo")) {
 			
-			System.out.println("MemberList.bo ·Î Æ÷¿öµù!");
+			System.out.println("MemberList.bo ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!");
 			
 			action = new MemberListAction();
 			try {
@@ -104,26 +104,26 @@ public class MemberFrontController extends HttpServlet {
 		}
 		
 		// ----------------------------------------------------------------
-		// ±âº»ÀûÀÎ ÀÛ¾÷ ÈÄ °øÅëÀûÀ¸·Î ¼öÇàÇÒ Æ÷¿öµù ÀÛ¾÷
-		// 1. ActionForward °´Ã¼ Á¸Àç ¿©ºÎ ÆÇº°(°´Ã¼°¡ Á¸ÀçÇÒ ¶§ Æ÷¿öµù ¼öÇà)
+		// ï¿½âº»ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½
+		// 1. ActionForward ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½(ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 		if(forward != null) {
-			// 2. ActionForward °´Ã¼ ³»ÀÇ Æ÷¿öµù ¹æ½Ä¿¡ µû¶ó °¢°¢ÀÇ Æ÷¿öµù ¼öÇà
-			// => Redirect ¹æ½Ä : isRedirect() == true, 
-			//    Dispatcher ¹æ½Ä : isRedirect() == false
+			// 2. ActionForward ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			// => Redirect ï¿½ï¿½ï¿½ : isRedirect() == true, 
+			//    Dispatcher ï¿½ï¿½ï¿½ : isRedirect() == false
 			if(forward.isRedirect()) {
-				// 3. Redirect ¹æ½ÄÀÏ °æ¿ì 
-				// response °´Ã¼ÀÇ sendRedirect() ¸Þ¼­µå¸¦ È£ÃâÇÏ¿© Æ÷¿öµù
-				// => ÆÄ¶ó¹ÌÅÍ : Æ÷¿öµù ÇÒ URL
+				// 3. Redirect ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
+				// response ï¿½ï¿½Ã¼ï¿½ï¿½ sendRedirect() ï¿½Þ¼ï¿½ï¿½å¸¦ È£ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				// => ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ URL
 				response.sendRedirect(forward.getPath());
 			} else { 
-				// 4. Dispatcher ¹æ½ÄÀÏ °æ¿ì
-				// 4-1. request °´Ã¼ÀÇ getRequestDispatcher() ¸Þ¼­µå¸¦ È£ÃâÇÏ¿©
-				//      RequestDispatcher °´Ã¼¸¦ ¸®ÅÏ¹Þ±â
-				//      => ÆÄ¶ó¹ÌÅÍ : Æ÷¿öµù ÇÒ URL
+				// 4. Dispatcher ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+				// 4-1. request ï¿½ï¿½Ã¼ï¿½ï¿½ getRequestDispatcher() ï¿½Þ¼ï¿½ï¿½å¸¦ È£ï¿½ï¿½ï¿½Ï¿ï¿½
+				//      RequestDispatcher ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¹Þ±ï¿½
+				//      => ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ URL
 				RequestDispatcher dispatcher = 
 						request.getRequestDispatcher(forward.getPath());
-				// 4-2. RequestDispatcher °´Ã¼ÀÇ forward() ¸Þ¼­µå¸¦ È£ÃâÇÏ¿©
-				//      Æ÷¿öµù ¼öÇà(ÆÄ¶ó¹ÌÅÍ : request, response °´Ã¼)
+				// 4-2. RequestDispatcher ï¿½ï¿½Ã¼ï¿½ï¿½ forward() ï¿½Þ¼ï¿½ï¿½å¸¦ È£ï¿½ï¿½ï¿½Ï¿ï¿½
+				//      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ : request, response ï¿½ï¿½Ã¼)
 				dispatcher.forward(request, response);
 			}
 			// ----------------------------------------------------------------
@@ -133,14 +133,14 @@ public class MemberFrontController extends HttpServlet {
 	}   
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ¼­ºí¸´ ¿äÃ» ½Ã GET ¹æ½Ä ¿äÃ»ÀÌ µé¾î¿À¸é ÀÚµ¿À¸·Î È£ÃâµÇ´Â ¸Þ¼­µå
-		// => ÆÄ¶ó¹ÌÅÍ·Î request °´Ã¼¿Í response °´Ã¼¸¦ Àü´Þ¹ÞÀ½
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ GET ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+		// => ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ request ï¿½ï¿½Ã¼ï¿½ï¿½ response ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½
 		doProcess(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ¼­ºí¸´ ¿äÃ» ½Ã POST ¹æ½Ä ¿äÃ»ÀÌ µé¾î¿À¸é ÀÚµ¿À¸·Î È£ÃâµÇ´Â ¸Þ¼­µå
-		// => ÆÄ¶ó¹ÌÅÍ·Î request °´Ã¼¿Í response °´Ã¼¸¦ Àü´Þ¹ÞÀ½
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã» ï¿½ï¿½ POST ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
+		// => ï¿½Ä¶ï¿½ï¿½ï¿½Í·ï¿½ request ï¿½ï¿½Ã¼ï¿½ï¿½ response ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½Þ¹ï¿½ï¿½ï¿½
 		doProcess(request, response);
 	}
 
