@@ -1,4 +1,4 @@
-package action;
+package action.member;
 
 import java.io.PrintWriter;
 
@@ -6,6 +6,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.Action;
 import svc.MemberDeleteProService;
 import svc.MemberWriteProService;
 import vo.ActionForward;

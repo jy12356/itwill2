@@ -59,15 +59,12 @@ public class MemberDAO {
 			pstmt.setInt(8, memberBean.getAge());
 			pstmt.setString(9, memberBean.getAddress());
 			
-			// INSERT 구문 실행 결과값을 int형 변수 insertCount 에 저장
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			System.out.println("insertArticle() 오류! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
-			// 자원 반환
-			// 주의! DAO 클래스 내에서 Connection 객체 반환 금지!
 			close(rs);
 			close(pstmt);
 		}
@@ -75,7 +72,6 @@ public class MemberDAO {
 		return insertCount;
 	}
 
-	// 전체 게시물 수 조회
 	public int selectListCount() {
 		int listCount = 0;
 		
@@ -83,14 +79,10 @@ public class MemberDAO {
 		ResultSet rs = null;
 		
 		try {
-			// SELECT 구문을 사용하여 전체 게시물 수 조회
-			// => count() 함수 사용, 조회 대상 컬럼 1개 지정하거나 * 사용
 			String sql = "SELECT COUNT(board_num) FROM member";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			// 조회 결과가 있을 경우(= 게시물이 하나라도 존재하는 경우)
-			// => 게시물 수를 listCount 에 저장
 			if(rs.next()) {
 				listCount = rs.getInt(1);
 			}
@@ -99,8 +91,6 @@ public class MemberDAO {
 			System.out.println("selectListCount() 오류! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
-			// 자원 반환
-			// 주의! DAO 클래스 내에서 Connection 객체 반환 금지!
 			close(rs);
 			close(pstmt);
 		}
@@ -108,37 +98,24 @@ public class MemberDAO {
 		return listCount;
 	}
 
-	// 게시물 목록 조회
 	public ArrayList<MemberBean> selectArticleList(int page, int limit) {
-		// 지정된 갯수만큼의 게시물 조회 후 ArrayList 객체에 저장한 뒤 리턴
 		ArrayList<MemberBean> articleList = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		// 조회를 시작할 레코드(행) 번호 계산
 		int startRow = (page - 1) * limit;
 		
 		try {
-			// 게시물 조회
-			// 참조글번호(board_re_ref) 번호를 기준으로 내림차순 정렬,
-			// 순서번호(board_re_seq) 번호를 기준으로 오름차순 정렬
-			// 조회 시작 게시물 번호(startRow)부터 limit 갯수만큼 조회
 			String sql = "SELECT * FROM member LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
 			
-			// ArrayList 객체 생성(while문 위에서 생성 필수!)
 			articleList = new ArrayList<MemberBean>();
 			
-			// 읽어올 게시물이 존재할 경우 다음 작업 반복
-			// => BoardBean 객체를 생성하여 레코드 데이터 모두 저장 후
-			//    BoardBean 객체를 다시 ArrayList 객체에 추가
-			// => 단, 패스워드(board_pass) 는 제외
 			while(rs.next()) {
-				// 1개 게시물 정보를 저장할 BoardBean 객체 생성 및 데이터 저장
 				MemberBean article = new MemberBean();
 				article.setNum(rs.getInt("num"));
 				article.setName(rs.getString("name"));
@@ -151,10 +128,6 @@ public class MemberDAO {
 				article.setAddress(rs.getString("address"));
 				article.setDate(rs.getDate("date"));
 				
-				// 레코드 저장 확인용 코드
-//				System.out.println("제목 : " + article.getBoard_subject());
-				
-				// 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
 				articleList.add(article);
 			}
 			
@@ -169,20 +142,17 @@ public class MemberDAO {
 		return articleList;
 	}
 
-	// 게시물 상세 내용 조회
-	public MemberBean selectArticle(int board_num) {
-		// 글번호(board_num)에 해당하는 레코드를 SELECT
-		// 조회 결과가 있을 경우 BoardBean 객체에 저장한 뒤 리턴
+	public MemberBean selectArticle(int id) {
 		MemberBean article = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			String sql = "select * from board where board_num=?";
+			String sql = "select * from board where id=?";
 		
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, board_num);
+			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			
 			// 게시물이 존재할 경우 BoardBean 객체를 생성하여 게시물 내용 저장
@@ -208,16 +178,99 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		
-		
-		// 임시 확인용 상세 내용 출력
 		System.out.println("아이디 : "+article.getId());
 		
 		
 		return article;
 	}
 
-	
-}
+		public boolean isArticleMemberWriter(String id, String password) {
+			boolean isArticleWriter = false;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT password FROM member WHERE id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					if(password.equals(rs.getString("password"))) {
+						isArticleWriter = true;
+					}
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("isArticleMemberWriter() 오류! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return isArticleWriter;
+		}
+
+		public int updateArticle(MemberBean article) {
+			int updateCount = 0;
+			
+			PreparedStatement pstmt = null;
+			try {
+				String sql = "UPDATE board SET name=?, email=?, phone=?, catg=?, age=?, address=? WHERE id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, article.getName());
+				pstmt.setString(2, article.getEmail());
+				pstmt.setString(3, article.getPhone());
+				pstmt.setString(4, article.getCatg());
+				pstmt.setInt(5, article.getAge());
+				pstmt.setString(6, article.getAddress());
+				pstmt.setString(7, article.getId());
+				updateCount = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("updateArticle() 오류! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return updateCount;
+		}
+		
+		public int deleteArticle(MemberBean article) {
+			int updateCount = 0;
+			
+			PreparedStatement pstmt = null;
+			try {
+				String sql = "delete from member WHERE id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, article.getId());
+				updateCount = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("deleteArticle() 오류! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+		return updateCount;
+	}
+		
+		
+		
+		
+	}
+
+
+
+
+
+
+
+
 
 
 
