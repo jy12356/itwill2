@@ -76,7 +76,6 @@ public class JdbcUtil {
 			e.printStackTrace();
 		}
 	}
-	
 	public static void rollback(Connection con) {
 		try {
 			con.rollback();
@@ -84,18 +83,4 @@ public class JdbcUtil {
 			e.printStackTrace();
 		}
 	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

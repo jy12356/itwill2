@@ -55,22 +55,25 @@ public class MemberDAO {
 			pstmt.setString(4, memberBean.getPassword());
 			pstmt.setString(5, memberBean.getEmail());
 			pstmt.setString(6, memberBean.getPhone());
-			pstmt.setString(7, memberBean.getCatg()); // ÂüÁ¶±Û ¹øÈ£(»õ ±ÛÀÌ¹Ç·Î ÀÚ½ÅÀÌ ÂüÁ¶±ÛÀÌ µÊ)
+			pstmt.setString(7, memberBean.getCatg()); // ì°¸ì¡°ê¸€ ë²ˆí˜¸(ìƒˆ ê¸€ì´ë¯€ë¡œ ìì‹ ì´ ì°¸ì¡°ê¸€ì´ ë¨)
 			pstmt.setInt(8, memberBean.getAge());
 			pstmt.setString(9, memberBean.getAddress());
 			
+
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			System.out.println("insertArticle() ¿À·ù! - " + e.getMessage());
+			System.out.println("insertArticle() ì˜¤ë¥˜! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
+
 			close(rs);
 			close(pstmt);
 		}
 		
 		return insertCount;
 	}
+
 
 	public int selectListCount() {
 		int listCount = 0;
@@ -79,18 +82,21 @@ public class MemberDAO {
 		ResultSet rs = null;
 		
 		try {
+
 			String sql = "SELECT COUNT(board_num) FROM member";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
+
 			if(rs.next()) {
 				listCount = rs.getInt(1);
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("selectListCount() ¿À·ù! - " + e.getMessage());
+			System.out.println("selectListCount() ì˜¤ë¥˜! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
+
 			close(rs);
 			close(pstmt);
 		}
@@ -98,12 +104,13 @@ public class MemberDAO {
 		return listCount;
 	}
 
+
 	public ArrayList<MemberBean> selectArticleList(int page, int limit) {
-		ArrayList<MemberBean> articleList = null;
-		
+		ArrayList<MemberBean> articleList = null;		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+
 		int startRow = (page - 1) * limit;
 		
 		try {
@@ -127,12 +134,11 @@ public class MemberDAO {
 				article.setAge(rs.getInt("age"));
 				article.setAddress(rs.getString("address"));
 				article.setDate(rs.getDate("date"));
-				
 				articleList.add(article);
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("selectArticleList() ¿À·ù! - " + e.getMessage());
+			System.out.println("selectArticleList() ì˜¤ë¥˜! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(rs);
@@ -141,7 +147,6 @@ public class MemberDAO {
 		
 		return articleList;
 	}
-
 	public MemberBean selectArticle(int id) {
 		MemberBean article = null;
 		
@@ -155,7 +160,7 @@ public class MemberDAO {
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			
-			// °Ô½Ã¹°ÀÌ Á¸ÀçÇÒ °æ¿ì BoardBean °´Ã¼¸¦ »ı¼ºÇÏ¿© °Ô½Ã¹° ³»¿ë ÀúÀå
+			// ê²Œì‹œë¬¼ì´ ì¡´ì¬í•  ê²½ìš° BoardBean ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ ê²Œì‹œë¬¼ ë‚´ìš© ì €ì¥
 			
 			if(rs.next()) {
 				article = new MemberBean();
@@ -171,14 +176,14 @@ public class MemberDAO {
 				article.setDate(rs.getDate("date"));
 			}
 		} catch (SQLException e) {
-			System.out.println("selectArticle() ¿À·ù! - " + e.getMessage());
+			System.out.println("selectArticle() ì˜¤ë¥˜! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(rs);
 			close(pstmt);
 		}
 		
-		System.out.println("¾ÆÀÌµğ : "+article.getId());
+		System.out.println("ì•„ì´ë”” : "+article.getId());
 		
 		
 		return article;
@@ -203,7 +208,7 @@ public class MemberDAO {
 				}
 				
 			} catch (SQLException e) {
-				System.out.println("isArticleMemberWriter() ¿À·ù! - " + e.getMessage());
+				System.out.println("isArticleMemberWriter() ì˜¤ë¥˜! - " + e.getMessage());
 				e.printStackTrace();
 			} finally {
 				close(rs);
@@ -230,7 +235,7 @@ public class MemberDAO {
 				updateCount = pstmt.executeUpdate();
 				
 			} catch (SQLException e) {
-				System.out.println("updateArticle() ¿À·ù! - " + e.getMessage());
+				System.out.println("updateArticle() ì˜¤ë¥˜! - " + e.getMessage());
 				e.printStackTrace();
 			} finally {
 				close(pstmt);
@@ -250,7 +255,7 @@ public class MemberDAO {
 				updateCount = pstmt.executeUpdate();
 				
 			} catch (SQLException e) {
-				System.out.println("deleteArticle() ¿À·ù! - " + e.getMessage());
+				System.out.println("deleteArticle() ì˜¤ë¥˜! - " + e.getMessage());
 				e.printStackTrace();
 			} finally {
 				close(pstmt);
@@ -260,25 +265,4 @@ public class MemberDAO {
 	}
 		
 		
-		
-		
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

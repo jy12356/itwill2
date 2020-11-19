@@ -19,7 +19,7 @@ public class MemberWriteProAction implements Action {
 		ActionForward forward = null;
 		
 		ServletContext context = request.getServletContext();
-		
+	
 		MemberBean memberBean = new MemberBean();
 		memberBean.setId(request.getParameter("id"));
 		memberBean.setNum(Integer.parseInt(request.getParameter("num")));
@@ -39,7 +39,9 @@ public class MemberWriteProAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>"); 
-			out.println("alert('ȸ����Ͻ���!')");
+
+			out.println("alert('È¸¿øµî·Ï½ÇÆÐ!')");
+
 			out.println("history.back()");
 			out.println("</script>"); 
 		} else {

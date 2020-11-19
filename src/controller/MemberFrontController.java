@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MemberDeleteFormAction;
 import action.MemberListAction;
+
 import action.MemberWriteProAction;
 import vo.ActionForward;
 
@@ -23,7 +24,7 @@ public class MemberFrontController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String command = request.getServletPath();
-		System.out.println("ø‰√ª º≠∫Ì∏¥ ¡÷º“ : " + command);
+		System.out.println("ÏöîÏ≤≠ ÏÑúÎ∏îÎ¶ø Ï£ºÏÜå : " + command);
 		
 		Action action = null;
 		ActionForward forward = null;
@@ -41,7 +42,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/MemberList.me")) {
 			
-			System.out.println("MemberList.me ∑Œ ∆˜øˆµ˘!");
+			System.out.println("MemberList.me Î°ú Ìè¨ÏõåÎî©!");
 			
 			action = new MemberListAction();
 			try {
@@ -51,7 +52,6 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}  else if(command.equals("/MemberDeleteForm.me")) {
-			
 			System.out.println("MemberDeleteForm");
 			
 			action = new MemberDeleteFormAction();
@@ -70,6 +70,7 @@ public class MemberFrontController extends HttpServlet {
 			} else { 
 				RequestDispatcher dispatcher = 
 						request.getRequestDispatcher(forward.getPath());
+
 				dispatcher.forward(request, response);
 			}
 			// ----------------------------------------------------------------
@@ -79,10 +80,12 @@ public class MemberFrontController extends HttpServlet {
 	}   
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		doProcess(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		doProcess(request, response);
 	}
 

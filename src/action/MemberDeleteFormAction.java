@@ -14,6 +14,7 @@ import vo.MemberBean;
 public class MemberDeleteFormAction implements Action {
 
 	@Override
+
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberDeleteFormAction!");
 
@@ -40,7 +41,7 @@ public class MemberDeleteFormAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>"); 
-			out.println("alert('±Û µî·Ï ½ÇÆĞ!')");
+			out.println("alert('íšŒì›ê°€ì…ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.!')");
 			out.println("history.back()");
 			out.println("</script>"); 
 		} else {
