@@ -39,11 +39,6 @@ public class BookController extends HttpServlet {
 			
 		}else if(command.equals("/BookDetail.bok")) {
 			System.out.println("BookDetail.bok 포워딩");
-			
-		}else if(command.equals("/BookModify.bok")) {
-			System.out.println("BookModify.bok 포워딩");
-		}else if(command.equals("/BookDelete.bok")) {
-			System.out.println("BookDelete.bok 포워딩");
 			action = new BookDetailAction();
 			try {				
 				forward =  action.execute(request, response);
@@ -51,6 +46,12 @@ public class BookController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+		}else if(command.equals("/BookModify.bok")) {
+			System.out.println("BookModify.bok 포워딩");
+		}else if(command.equals("/BookDelete.bok")) {
+			System.out.println("BookDelete.bok 포워딩");
+			
 		}else if(command.equals("/BookList.bok")) {
 			System.out.println("BookList.bok 포워딩");
 			action = new BookListAction();

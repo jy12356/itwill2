@@ -82,6 +82,7 @@ public class BookDAO {
 		}
 		return insertCount;		
 	}
+	//책 리스트
 	public ArrayList<BookBean> selectBookList(int page, int limit) {
 		System.out.println("BookDAO - selectList()");
 		ArrayList<BookBean> bookList = null;
@@ -127,6 +128,7 @@ public class BookDAO {
 		}
 		return bookList;
 	}
+	//전체책 갯수
 	public int selectListCount() {
 		System.out.println("BookDAO - selectListCount()");
 		int listCount = 0;
@@ -148,5 +150,39 @@ public class BookDAO {
 				
 		
 		return listCount;
+	}
+	//책상세정보
+	public BookBean getBookInfo(String book_isbn) {
+		PreparedStatement pstmt =  null;
+		ResultSet rs = null;
+		String sql="select * from book where isbn=?";
+		BookBean bookBean = null;
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setNString(1, book_isbn);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bookBean = new BookBean();
+				bookBean.setTitle(rs.getString("title"));
+				bookBean.setAuthor(rs.getString("author"));
+				bookBean.setAuthor_info(rs.getString("author_info"));
+				bookBean.setCatg1(rs.getString("catg1"));
+				bookBean.setCatg2(rs.getString("catg2"));
+				bookBean.setCount(rs.getInt("count"));
+				bookBean.setDescription(rs.getString("description"));
+				bookBean.setImage(rs.getString("image"));
+				bookBean.setIndex(rs.getString("index_info"));
+				bookBean.setIsbn(rs.getString("isbn"));
+				bookBean.setNum(rs.getInt("num"));
+				bookBean.setPubdate(rs.getString("pubdate"));
+				bookBean.setPublisher(rs.getString("publisher"));
+				bookBean.setState(rs.getString("state"));
+				
+			}
+		}catch (Exception e) {
+			System.out.println("getBookInfo : " + e.getMessage());
+			e.printStackTrace();
+		}
+		return bookBean;
 	}
 }
