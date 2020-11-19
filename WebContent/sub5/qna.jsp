@@ -28,10 +28,10 @@
 					<div class="customer-use-wrap">
 						<ul class="customer-s-menu one">
 							<li>
-							<a href="qna.html" class="on">1:1 문의하기</a>
+							<a href="qna.jsp" class="on">1:1 문의하기</a>
 							</li>
 							<li>
-							<a href="qna2.html" class="">문의 내역 확인</a>
+							<a href="qna2.jsp" class="">문의 내역 확인</a>
 							</li>
 						</ul>
 						<div class="one-ps">
@@ -39,7 +39,7 @@
 								* 항목은 필수 입력 항목입니다.
 							</p>
 						</div>
-						<form name="frmBbsWrite" method="post" action="qna2.html " enctype="multipart/form-data">
+						<form name="frmBbsWrite" method="post" action="QnaWritePro.qna" enctype="multipart/form-data">
 							<input type="hidden" name="page" value="vs1"/>
 							<input type="hidden" name="num" value=""/>
 							<input type="hidden" name="mode" value="input"/>
@@ -88,7 +88,7 @@
 										<span>*</span>문의제목
 									</th>
 									<td>
-										<input type="text" name="title" value="" class="q-title required">
+										<input type="text" name="title" value="" class="q-title required" id="title">
 									</td>
 								</tr>
 								<tr>
@@ -96,7 +96,7 @@
 										<span>*</span>문의내용
 									</th>
 									<td>
-										<textarea cols="5" rows="8" name="content"></textarea>
+										<textarea cols="5" rows="8" name="content" id="content"></textarea>
 									</td>
 								</tr>
 								<!-- 								<tr> -->
