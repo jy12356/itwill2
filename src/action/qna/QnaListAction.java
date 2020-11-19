@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import svc.qna.QnaListService;
 import vo.ActionForward;
+import vo.PageInfo;
 import vo.QnaBean;
 
 public class QnaListAction implements Action {
@@ -30,6 +31,21 @@ public class QnaListAction implements Action {
 		
 		ArrayList<QnaBean> articleList = new ArrayList<QnaBean>();
 		articleList = qnaListService.getArticleList(page, limit);
+		
+		int maxPage = (int)((double)listCount / limit + 0.95);
+		int startPage = ((int)((double)page / 10 + 0.9) - 1) * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
+		
+		request.setAttribute("articleList", articleList);
+		request.setAttribute("pageInfo", pageInfo);
+		
+		forward = new ActionForward();
+		forward.setPath("/sub5/qna2.jsp");
 		
 		return forward;
 	}
