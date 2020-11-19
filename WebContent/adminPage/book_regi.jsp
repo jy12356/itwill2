@@ -144,8 +144,8 @@
 	                    </script>
 	                    <div class="default-btn-wrap">
 	                   	    <input type="submit" class="btn" value="작성">
+	                        <a href="BookList.bok" class="btn">목록</a>
 	                        <a href="board.jsp" class="btn">다시쓰기</a>
-	                        <a href="board.jsp" class="btn">목록</a>
 	                    </div>
                     </form>
                 </div>

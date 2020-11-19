@@ -10,8 +10,8 @@ public class BookDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("BookDetailAction");
+		ActionForward forward = null;
 	}
 
 }

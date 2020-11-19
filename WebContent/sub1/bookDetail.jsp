@@ -1,11 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="vo.BookBean"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     
 <jsp:include page="../include/header.jsp"/>
-<%
-	BookBean book = (BookBean)request.getAttribute("book");
-    String nowPage = request.getParameter("page");
-%>
 <section class="sub">
 		<div class="category-nav">
 			<div class="category-nav-inner">
