@@ -3,8 +3,8 @@ package svc.book;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import dao.BoardDAO;
 import dao.BookDAO;
+import dao.freeBoardDAO;
 import vo.BookBean;
 import static db.JdbcUtil.*;
 
