@@ -1,16 +1,16 @@
-package action;
+package action.freeboard;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.Action;
 import vo.ActionForward;
 
-public class BoardModifyFormAction implements Action {
+public class freeBoardReplyFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BoardModifyFormAction");
-		
+		System.out.println("BoardReplyForm");
 		
 		return null;
 	}

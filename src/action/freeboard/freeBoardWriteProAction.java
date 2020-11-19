@@ -1,4 +1,4 @@
-package action;
+package action.freeboard;
 
 import java.io.PrintWriter;
 
@@ -9,11 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import svc.BoardWriteProService;
+import action.Action;
+import svc.freeboard.freeBoardWriteProService;
 import vo.ActionForward;
-import vo.BoardBean;
+import vo.freeboard.freeBoardBean;
 
-public class BoardWriteProAction implements Action {
+public class freeBoardWriteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -89,7 +90,7 @@ public class BoardWriteProAction implements Action {
 //		System.out.println("글내용 : " + board_content);
 //		System.out.println("파일명 : " + board_file);
 		//-----------------------------------------------------------------------------------------------------------
-		BoardBean boardBean = new BoardBean();
+		freeBoardBean boardBean = new freeBoardBean();
 		boardBean.setBoard_id(multi.getParameter("id"));
 		boardBean.setBoard_subject(multi.getParameter("title"));
 		boardBean.setBoard_content(multi.getParameter("desc"));
@@ -101,7 +102,7 @@ public class BoardWriteProAction implements Action {
 		// BoardWriteProService 클래스의 인스턴스 생성후
 		// regisArticle() 메서드를 호출하여 글 등록 작업 수행 요청
 		// => 파라미터 : BoardBean, 리턴타입 : boolean(isWriteSuccess)
-		BoardWriteProService boardWriteProService = new BoardWriteProService();
+		freeBoardWriteProService boardWriteProService = new freeBoardWriteProService();
 		boolean isWriteSuccess = boardWriteProService.registArticle(boardBean);
 		
 				// 글쓰기 작업 수행 후 리턴 받은 결과값으 ㄹ사용하여

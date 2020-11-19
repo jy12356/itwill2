@@ -1,16 +1,17 @@
-package action;
+package action.freeboard;
 
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import svc.BoardListService;
+import action.Action;
+import svc.freeboard.freeBoardListService;
 import vo.ActionForward;
-import vo.BoardBean;
 import vo.PageInfo;
+import vo.freeboard.freeBoardBean;
 
-public class BoardListAction implements Action {
+public class freeBoardListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -34,13 +35,13 @@ public class BoardListAction implements Action {
 		
 		// BoardListService 클래스 인스턴스 생성 후 
 		// getListCount() 메서드를 호출하여 전체 게시물 수(listCount) 가져오기
-		BoardListService boardListService = new BoardListService();
+		freeBoardListService boardListService = new freeBoardListService();
 		int listCount = boardListService.getListCount();
 //		System.out.println("전체 게시물 수 : " + listCount);
 		
 		// 전체 게시물 목록을 저장할 ArrayList 객체(articleList) 생성
 		// => 제네릭 타입으로 BoardBean 타입 지정
-		ArrayList<BoardBean> articleList = new ArrayList<BoardBean>();
+		ArrayList<freeBoardBean> articleList = new ArrayList<freeBoardBean>();
 		// BoardListService 클래스의 getArticleList() 메서드를 호출하여
 		// 전체 게시물 목록 리턴받아 ArrayList 객체에 저장
 		// => 파라미터 : 현재 페이지번호(page), 페이지 당 게시물 수(limit)

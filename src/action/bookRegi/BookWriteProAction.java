@@ -10,11 +10,11 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import action.Action;
-import svc.BoardWriteProService;
 import svc.book.BookWriteService;
+import svc.freeboard.freeBoardWriteProService;
 import vo.ActionForward;
-import vo.BoardBean;
 import vo.BookBean;
+import vo.freeboard.freeBoardBean;
 
 public class BookWriteProAction implements Action {
 
