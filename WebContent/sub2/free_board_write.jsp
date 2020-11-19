@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <% 
 // 글쓰기 폼
-// String id = (String) session.getAttribute("id"); // 아이디가져오기
+String id = (String) session.getAttribute("id"); // 아이디가져오기
+	if(id==null) {
+		id = "홍길동";
+	}
 // if(id==null) { // 로긴안한상태면 로그인화면으로
 // 	response.sendRedirect("../member.login.jsp");
 // }
@@ -33,14 +36,14 @@
 	                            <tr>
 	                                <td>제목</td>
 	                                <td colspan="3">
-	                                	<input type="text" name="title">
+	                                	<input type="text" name="title" required="required">
 	                                </td>
 	                            </tr>
 	                            
 	                            <tr>
 	                            	<td>작성자</td>
 	                            	<td colspan="3">
-	                            		<input type="text" name="id" >
+	                            		<input type="text" name="id" value="<%=id%>" readonly="readonly">
 	                            	</td>
 <!-- 	                            	<td class="th">비밀번호</td> -->
 <!-- 	                            	<td> -->

@@ -72,7 +72,7 @@ public class FreeBoardDAO {
 			} 
 			// 전달받은 BoardBean 객체 내의 데이터를 사용하여 INSERT 작업 수행
 			// => 컬럼 중 board_date 항목(작성일)은 now() 함수 사용
-			sql = "INSERT INTO freeboard VALUES (?,?,?,?,?,?,?,?,?,now())";
+			sql = "INSERT INTO freeboard VALUES (?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			
 			
@@ -82,10 +82,7 @@ public class FreeBoardDAO {
 			pstmt.setString(3, boardBean.getBoard_id());
 			pstmt.setString(4, boardBean.getBoard_content());
 			pstmt.setString(5, boardBean.getBoard_file());
-			pstmt.setInt(6, num); // 참조글 번호(새 글이므로 자신이 참조글이 됨)
-			pstmt.setInt(7, boardBean.getBoard_re_lev());
-			pstmt.setInt(8, boardBean.getBoard_re_seq());
-			pstmt.setInt(9, boardBean.getBoard_readcount());
+			pstmt.setInt(6, boardBean.getBoard_readcount());
 
 			// INSERT 구문 실행 결과값을 int형 변수 insertCount 에 저장
 			insertCount = pstmt.executeUpdate();
@@ -156,7 +153,7 @@ public class FreeBoardDAO {
 			// 순서번호(board_re_seq) 번호를 기준으로 오름차순 정렬
 			// 조회 시작 게시물 번호(startRow)부터 limit 갯수만큼 조회
 			String sql = "SELECT * FROM freeboard "
-					+ "ORDER BY board_re_ref DESC,board_re_seq ASC "
+					+ "ORDER BY board_num desc "
 					+ "LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
@@ -178,9 +175,6 @@ public class FreeBoardDAO {
 				article.setBoard_id(rs.getString("board_id"));
 				article.setBoard_content(rs.getString("board_content"));
 				article.setBoard_file(rs.getString("board_file"));
-				article.setBoard_re_ref(rs.getInt("board_re_ref"));
-				article.setBoard_re_lev(rs.getInt("board_re_lev"));
-				article.setBoard_re_seq(rs.getInt("board_re_seq"));
 				article.setBoard_readcount(rs.getInt("board_readcount"));
 				article.setBoard_date(rs.getDate("board_date"));
 				
@@ -228,9 +222,6 @@ public class FreeBoardDAO {
 				article.setBoard_content(rs.getString("board_content"));
 				article.setBoard_file(rs.getString("board_file"));
 				article.setBoard_readcount(rs.getInt("board_readcount"));
-				article.setBoard_re_ref(rs.getInt("board_re_ref"));
-				article.setBoard_re_lev(rs.getInt("board_re_lev"));
-				article.setBoard_re_seq(rs.getInt("board_re_seq"));
 				article.setBoard_date(rs.getDate("board_date"));
 				
 //				 임시 확인용 상세 내용 출력
@@ -258,7 +249,7 @@ public class FreeBoardDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "UPDATE board SET board_readcount=board_readcount+1 "
+			String sql = "UPDATE freeboard SET board_readcount=board_readcount+1 "
 					+ "WHERE board_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, board_num);

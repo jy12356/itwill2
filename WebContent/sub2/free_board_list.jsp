@@ -70,8 +70,8 @@ int listCount = pageInfo.getListCount();
 						</thead>
 						<tbody>
 							<%
-							// 게시물목록불러오기
-								for (int i = 0; i < articleList.size(); i++) {
+								// 게시물목록불러오기
+							for (int i = 0; i < articleList.size(); i++) {
 							%>
 							<tr>
 								<td align="center"><%=articleList.get(i).getBoard_num()%></td>
@@ -84,8 +84,9 @@ int listCount = pageInfo.getListCount();
  	}
  %> ▶ <%
  	}
- %> &nbsp;&nbsp; <a
-									href="BoardDetail.bo?board_num=<%=articleList.get(i).getBoard_num()%>&page=<%=nowPage%>">
+ %> &nbsp;&nbsp; 
+ 
+ 								<a href="FreeBoardDetail.free?board_num=<%=articleList.get(i).getBoard_num()%>&page=<%=nowPage%>">
 										<%=articleList.get(i).getBoard_subject()%>
 								</a>
 								</td>
@@ -99,7 +100,7 @@ int listCount = pageInfo.getListCount();
 						</tbody>
 					</table>
 					<div class="btn_inner">
-						<a href="BoardWriteForm.bo" class="btn">글쓰기</a>
+						<a href="FreeBoardWriteForm.free" class="btn">글쓰기</a>
 					</div>
 
 					<div class="paging">
@@ -115,12 +116,11 @@ int listCount = pageInfo.getListCount();
 							} else {
 						%>
 						<input type="button" value="이전"
-							onclick="location.href='BoardList.bo?page=<%=nowPage - 1%>'">&nbsp;
+							onclick="location.href='FreeBoardList.free?page=<%=nowPage - 1%>'">&nbsp;
 						<%
 							}
 						%>
 
-						<!-- 게시글 목록 -->
 						<%
 							for (int i = startPage; i <= endPage; i++) {
 							if (i == nowPage) {
@@ -129,7 +129,7 @@ int listCount = pageInfo.getListCount();
 						<%
 							} else {
 						%>
-						<a href="BoardList.bo?page=<%=i%>">[<%=i%>]
+						<a href="FreeBoardList.free?page=<%=i%>">[<%=i%>]
 						</a>&nbsp;
 						<%
 							}
@@ -146,7 +146,7 @@ int listCount = pageInfo.getListCount();
 							} else {
 						%>
 						<input type="button" value="다음"
-							onclick="location.href='BoardList.bo?page=<%=nowPage + 1%>'">
+							onclick="location.href='FreeBoardList.free?page=<%=nowPage + 1%>'">
 						<%
 							}
 						%>
@@ -157,8 +157,6 @@ int listCount = pageInfo.getListCount();
 						<%
 							}
 						%>
-						<!-- 						<a href="board.jsp?pageNum=27" class="arr" data-page-num="27"><img -->
-						<!-- 							src="../images/p-last.png"><span class="hide">마지막페이지</span></a> -->
 					</div>
 				</div>
 			</div>

@@ -34,7 +34,7 @@ public class FreeBoardDetailAction implements Action {
 		// => request 객체를 유지하고, 서블릿 주소가 유지되어야 하므로
 		//    Dispatcher 방식으로 포워딩
 		forward = new ActionForward();
-		forward.setPath("/board/qna_board_view.jsp");
+		forward.setPath("/sub2/free_board_view.jsp");
 //		forward.setRedirect(false); // 생략 가능
 		
 		return forward;

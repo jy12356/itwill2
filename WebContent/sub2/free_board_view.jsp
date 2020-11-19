@@ -1,11 +1,16 @@
+<%@page import="vo.FreeBoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%
+	String id = (String)session.getAttribute("id");
+	FreeBoardBean article = (FreeBoardBean)request.getAttribute("article");
+	String nowPage = request.getParameter("page");
+%>    
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
     <div class="category-nav">
         <div class="category-nav-inner">
-            <p>HOME > 게시판</p>
+            <p><a href="main/index.jsp">HOME</a> > 게시판</p>
         </div>
     </div>
     <div class="contents-wrap">
@@ -22,26 +27,45 @@
                         <tbody>
                             <tr>
                                 <td>제목</td>
-                                <td>장르/만화 정액권 판매 종료 예정 안내</td>
+                                <td><%= article.getBoard_subject() %></td>
                             </tr>
                             <tr>
                                 <td>등록일</td>
-                                <td>2020/10/27</td>
+                                <td><%= article.getBoard_date() %></td>
+                            </tr>
+                             <tr>
+                                <td>첨부파일</td>
+                                <td><%
+				if(article.getBoard_file() != null) {
+					%> <a href="sub2/file_down.jsp?downFile=<%=article.getBoard_file()%>"><%=article.getBoard_file() %></a> <%
+				}
+			%></td>
                             </tr>
                             <tr>
                                 <td>내용</td>
                                 <td>
                                     <p>
-                                        안녕하세요.<br>e북 포털 북큐브입니다.<br><br>장르/만화 정액권 판매 종료 사전 안내드립니다.<br><br><b>장르/만화 정액권<br> - 상품 판매 종료 일자 : 2020년 11월 30일 (월)<br> - 서비스 종료 일자 : 2020년 12월 31일 (목)</b><br> * 11월 30일 이전까지 정액권 상품 결제한 회원에 한하여 이용 기간 (최대 30일)까지 사용 가능<br><br>장르/만화 정액권 이용자 감소 및 대상 작품 제한에 따라 부득이하게 판매를 종료하게 된 점 양해 부탁드립니다.<br>향후 고객님들께 더 나은 서비스로 보답 드리겠습니다.<br><br><br>e북 포털 북큐브 드림.
+                                        <%= article.getBoard_content() %>
                                     </p>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="default-btn-wrap">
-                        <a href="board.jsp" class="btn">목록</a>
-                        <a href="/customer.asp?page=notice&page2=view&num=112679&pageNum=1" class="btn">다음</a>
-                    </div>
+                    <span class="default-btn-wrap">
+                        <a href="FreeBoardList.free" class="btn">목록</a></span>
+                        <%
+//                         if(id != null) {
+//                         	if(id.equals(article.getBoard_id())) {
+                        		%>
+                        		<span class="default-btn-wrap">
+                        <a href="FreeBoardModifyForm.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>" class="btn">수정</a></span>
+                        		<span class="default-btn-wrap">
+                        <a href="FreeBoardDeleteForm.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>" class="btn">삭제</a></span>
+                        		<% 
+//                         	}
+//                         }
+                        %>
+                    
                 </div>
             </div>
 
