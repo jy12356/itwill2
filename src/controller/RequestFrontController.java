@@ -19,7 +19,7 @@ public class RequestFrontController extends HttpServlet{
 		request.setCharacterEncoding("UTF-8");
 		
 		String command = request.getServletPath();
-		System.out.println("요청 서블릿 주소 : " + command);
+		System.out.println("�슂泥� �꽌釉붾┸ 二쇱냼 : " + command);
 		
 		Action action = null;
 		ActionForward forward = null;
@@ -28,6 +28,17 @@ public class RequestFrontController extends HttpServlet{
 			
 			forward = new ActionForward();
 			forward.setPath("/sub4/request_board_write.jsp");
+			
+		} else if(command.equals("/RequestWritePro.rq")) {
+
+			action = new RequestWriteProAction();
+			
+			try {
+			forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		} else if(command.equals("/RequestList.rq")) {
 			action = new RequestListAction();
 			
@@ -36,8 +47,27 @@ public class RequestFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 		} else if(command.equals("/RequestDetail.rq")) {
 			action = new RequestDetailAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+				
+		} else if(command.equals("/RequestModifyForm.rq")) {
+			action = new RequestModifyFormAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/RequestModifyPro.rq")) {
+			action = new ReuqestModifyProAction();
 			
 			try {
 				forward = action.execute(request, response);
