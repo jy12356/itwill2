@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
@@ -63,7 +62,7 @@
                     </table>
                     <div class="one-btn">
 						<input type="submit" name="" class="" value="신청">
-						<a href="submit_board.jsp" class="btn">목록</a>
+						<a href="request_board.jsp" class="btn">목록</a>
 					</div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-package controller;
+package controller.freeboard;
 
 import java.io.IOException;
 
@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.BoardDetailAction;
-import action.BoardListAction;
-import action.BoardModifyFormAction;
-import action.BoardReplyFormAction;
-import action.BoardWriteProAction;
+import action.freeboard.freeBoardDetailAction;
+import action.freeboard.freeBoardListAction;
+import action.freeboard.freeBoardModifyFormAction;
+import action.freeboard.freeBoardReplyFormAction;
+import action.freeboard.freeBoardWriteProAction;
 import vo.ActionForward;
 
-@WebServlet("*.bo") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
-public class BoardFrontController extends HttpServlet {
+@WebServlet("*.free") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
+public class freeBoardFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 서블릿 요청 시 GET 방식 또는 POST 방식의 요청이 들어오면 
@@ -56,7 +56,7 @@ public class BoardFrontController extends HttpServlet {
 		} else if(command.equals("/FreeBoardWritePro.bo")) { // BoardWritePro.bo 서블릿 요청에 대한 처리
 			// 1. BoardWriteProAction 클래스 객체 생성
 			// => Action 클래스는 Action 인터페이스를 구현하므로 다형성 활용 가능
-			action = new BoardWriteProAction();
+			action = new freeBoardWriteProAction();
 			
 			try {
 				// 2. Action 클래스의 execute() 메서드 호출
@@ -67,7 +67,7 @@ public class BoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/BoardList.bo")) {
-			action = new BoardListAction();
+			action = new freeBoardListAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -75,7 +75,7 @@ public class BoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/BoardDetail.bo")) {
-			action = new BoardDetailAction();
+			action = new freeBoardDetailAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -84,7 +84,7 @@ public class BoardFrontController extends HttpServlet {
 			}
 			
 		} else if(command.equals("/BoardReplyForm.bo")) {
-			action = new BoardReplyFormAction();
+			action = new freeBoardReplyFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -92,7 +92,7 @@ public class BoardFrontController extends HttpServlet {
 			}
 			
 		} else if(command.equals("/BoardModifyForm.bo")) {
-			action = new BoardModifyFormAction();
+			action = new freeBoardModifyFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

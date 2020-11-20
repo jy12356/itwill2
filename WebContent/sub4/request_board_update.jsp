@@ -64,7 +64,7 @@
                     </table>
                     <div class="default-btn-wrap">
 						<input type="submit" name="" class="" value="신청">
-                        <a href="submit_board.jsp" class="btn">목록</a>
+                        <a href="request_board.jsp" class="btn">목록</a>
                     </div>
                 </div>
             </div>
