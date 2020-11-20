@@ -45,10 +45,6 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 	                            	<td colspan="3">
 	                            		<input type="text" name="id" value="<%=id%>" readonly="readonly">
 	                            	</td>
-<!-- 	                            	<td class="th">비밀번호</td> -->
-<!-- 	                            	<td> -->
-<!-- 	                            		<input type="text" name="pass"> -->
-<!-- 	                            	</td> -->
 	                            </tr>
 	                            <tr>
 	                                <td>내용</td>

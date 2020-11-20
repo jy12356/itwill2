@@ -36,14 +36,14 @@ public class FreeBoardWriteProService {
 		Connection con = getConnection(); // 메서드명만으로 접근 가능
 		
 		// 2(공통). DB 작업에 필요한 DAO 객체 가져오기
-		FreeBoardDAO boardDAO = FreeBoardDAO.getInstance();
+		FreeBoardDAO freeBoardDAO = FreeBoardDAO.getInstance();
 		
 		// 3(공통). 가져온 Connection 객체를 DAO 객체에 전달하기
-		boardDAO.setConnection(con);
+		freeBoardDAO.setConnection(con);
 		
 		// 4. BoardDAO 객체의 insertArticle() 메서드를 호출하여 글 등록 처리
 		// => 파라미터 : BoardBean, 리턴타입 : int(insertCount)
-		int insertCount = boardDAO.insertArticle(boardBean);
+		int insertCount = freeBoardDAO.insertArticle(boardBean);
 		
 		// 5. 리턴받은 글 등록 결과를 판별
 		// => 0보다 클 경우 성공 commit, 0 일 경우 실패 rollback 작업 수행

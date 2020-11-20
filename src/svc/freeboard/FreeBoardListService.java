@@ -19,14 +19,14 @@ public class FreeBoardListService {
 		Connection con = getConnection();
 		
 		// 2(공통). BoardDAO 객체 가져오기
-		FreeBoardDAO boardDAO = FreeBoardDAO.getInstance();
+		FreeBoardDAO freeBoardDAO = FreeBoardDAO.getInstance();
 		
 		// 3(공통). BoardDAO 객체에 Connection 객체 전달
-		boardDAO.setConnection(con);
+		freeBoardDAO.setConnection(con);
 		
 		// 4. BoardDAO 객체의 selectListCount() 메서드 호출하여
 		//    전체 게시물 수 가져오기
-		listCount = boardDAO.selectListCount();
+		listCount = freeBoardDAO.selectListCount();
 		
 		// 5(공통). Connection 객체 반환하기
 		close(con);
@@ -45,15 +45,15 @@ public class FreeBoardListService {
 		Connection con = getConnection();
 		
 		// 2(공통). BoardDAO 객체 가져오기
-		FreeBoardDAO boardDAO = FreeBoardDAO.getInstance();
+		FreeBoardDAO freeBoardDAO = FreeBoardDAO.getInstance();
 		
 		// 3(공통). BoardDAO 객체에 Connection 객체 전달
-		boardDAO.setConnection(con);
+		freeBoardDAO.setConnection(con);
 		
 		// 4. BoardDAO 객체의 selectArticleList() 메서드를 호출하여
 		//    게시물 목록 조회 결과를 ArrayList 객체로 리턴받기
 		//    => 파라미터 : page, limit
-		articleList = boardDAO.selectArticleList(page, limit);
+		articleList = freeBoardDAO.selectArticleList(page, limit);
 		
 		// 5(공통). Connection 객체 반환하기
 		close(con);
