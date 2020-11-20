@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import vo.ReviewBean;
 
@@ -68,6 +70,70 @@ public class ReviewDAO {
 			close(rs);
 		}
 		return insertCount;
+	}
+
+	public int selectListCount() {
+		System.out.println("ReviewDAO - selectListCount()");
+		
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT count(num) from review";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("selectListCount() 오류! - " + e.getMessage());
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return listCount;
+	}
+
+	public List selectArticleList() {
+		System.out.println("ReviewDAO - selectArticleList()");
+
+		List reviewList = new ArrayList();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+				
+		try {
+			String sql = "SELECT * FROM review WHERE num";
+			
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+
+				ReviewBean article = new ReviewBean();
+				article.setNum(rs.getInt("num"));
+				article.setId(rs.getString("id"));
+				article.setContent(rs.getString("content"));
+				article.setStarcount(rs.getInt("starcount"));
+				article.setLikecount(rs.getInt("likecount"));
+				article.setIsbn(rs.getString("isbn"));
+				article.setSpoiler(rs.getInt("spoiler"));
+				reviewList.add(article);
+				
+				// 확인용
+				System.out.println("글 내용 : " + article.getContent());
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("selectArticleList() 오류! - " + e.getMessage());
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return reviewList;
 	}
 
 }
