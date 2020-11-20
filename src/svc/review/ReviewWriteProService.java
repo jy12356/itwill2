@@ -33,7 +33,6 @@ public class ReviewWriteProService {
 		}
 		// 6. (공통) 사용이 완료된 Connection 객체 반환하기
 		close(con);
-		
 		// 7. 글 등록 성공 여부 리턴 => BoardWriteProAction 클래스로 전달
 		return isWriteSuccess;
 	}

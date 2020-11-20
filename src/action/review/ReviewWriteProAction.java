@@ -15,18 +15,18 @@ public class ReviewWriteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BookReWriteProAction!");
+		System.out.println("ReviewWriteProAction!");
 		
 		ActionForward forward = null;
 		
-		// 현재 컨텍스트(객체) 정보 가져오기 위해  request 객체의 getServletContext() 메서드를 호출
-		ServletContext context = request.getServletContext();
+//		// 현재 컨텍스트(객체) 정보 가져오기 위해  request 객체의 getServletContext() 메서드를 호출
+//		ServletContext context = request.getServletContext();
 		
 		ReviewBean reviewBean = new ReviewBean();
 		
 		reviewBean.setId("임시");
 		reviewBean.setContent(request.getParameter("content"));
-		reviewBean.setSpoiler(Integer.parseInt(request.getParameter("spoiler")));
+//		reviewBean.setSpoiler(Integer.parseInt(request.getParameter("spoiler")));
 		
 		System.out.println("리뷰내용 :" + reviewBean.getContent());
 		
