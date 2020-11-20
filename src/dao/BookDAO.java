@@ -185,4 +185,81 @@ public class BookDAO {
 		}
 		return bookBean;
 	}
+	public ArrayList<BookBean> bookKindList(ArrayList<BookBean> bookBean) {
+		
+		return null;
+	}
+	public int selectListKindCount(String title,String isbn) {
+		System.out.println("BookDAO - selectListKindCount()");
+		int listCount = 0; // select 작업 수행 결과를 저장할 변수
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql="select count(num) from book where title=? and isbn=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, isbn);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount=rs.getInt(1);
+			}
+		
+		} catch (SQLException e) {
+			System.out.println("selectListKindCount()오류: " +e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}		
+		return listCount;	
+	}
+	public ArrayList<BookBean> bookKindList(String title, String isbn,int page,int limit) {
+		System.out.println("bookDAO - bookKindList");
+		ArrayList<BookBean> bookList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		//조회를 시작할 레코드 행 번호 계산
+		int startRow=(page-1)*limit;
+		
+		String sql = "select * from book where title=? and isbn=? order by pubdate desc limit ?,? ";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, isbn);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, limit);
+			System.out.println(pstmt);
+			rs = pstmt.executeQuery();
+			bookList = new ArrayList<BookBean>();
+			while(rs.next()) {
+				BookBean bookBean = new BookBean();
+				bookBean.setNum(rs.getInt("num"));
+				bookBean.setTitle(rs.getString("title"));
+				bookBean.setCatg1(rs.getString("catg1"));
+				bookBean.setCatg2(rs.getString("catg2"));
+				bookBean.setAuthor(rs.getString("author"));
+				bookBean.setPublisher(rs.getString("publisher"));
+				bookBean.setPubdate(rs.getString("pubdate"));
+				bookBean.setIsbn(rs.getString("isbn"));
+				bookBean.setState(rs.getString("state"));
+				bookBean.setCount(rs.getInt("count"));
+				bookBean.setAuthor_info(rs.getString("author_info"));
+				bookBean.setIndex(rs.getString("index_info"));
+				bookBean.setImage(rs.getString("image"));
+				bookBean.setDescription(rs.getString("description"));
+				bookList.add(bookBean);
+			}
+			
+		}catch (Exception e) {
+			System.out.println("selectBookList오류!" + e.getMessage());;
+			e.printStackTrace();
+		}finally {
+			close(rs);	
+			close(pstmt);
+		}
+		return bookList;
+	}
 }
