@@ -32,6 +32,8 @@ public class QnaDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		
+		
 		int num = 1;
 		String sql = "Select Max(board_num) from qna";
 		try {
@@ -92,6 +94,7 @@ public class QnaDAO {
 	
 	// 게시물 목록 조회
 	public ArrayList<QnaBean> selectArticleList(int page, int limit) {
+
 		ArrayList<QnaBean> articleList = null;
 		
 		PreparedStatement pstmt = null;
@@ -133,6 +136,29 @@ public class QnaDAO {
 			close(pstmt);
 		}
 		return articleList;
+	}
+
+	
+	// 게시물 상세 내용 조회
+	public QnaBean selectArticle(int board_num) {
+		
+		QnaBean article = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select * from qna where board_num";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			rs = pstmt.executeQuery();
+		} catch (SQLException e) {
+			System.out.println("selectArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
+		
+		return article;
 	}
 	
 	
