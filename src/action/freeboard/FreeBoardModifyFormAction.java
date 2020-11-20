@@ -4,10 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import svc.BoardDetailService;
 import svc.freeboard.FreeBoardDetailService;
 import vo.ActionForward;
-import vo.BoardBean;
 import vo.FreeBoardBean;
 
 public class FreeBoardModifyFormAction implements Action {

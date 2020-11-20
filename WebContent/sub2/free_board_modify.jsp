@@ -15,7 +15,7 @@ String nowPage = request.getParameter("page");
 			<div class="category-nav">
 				<div class="category-nav-inner">
 					<p>
-						<a href="main/index.jsp">HOME</a> > 게시판
+						<a href="">HOME</a> > <a href="FreeBoardList.free">게시판</a>
 					</p>
 				</div>
 			</div>
@@ -35,7 +35,7 @@ String nowPage = request.getParameter("page");
 								<tbody>
 									<tr>
 										<td>제목</td>
-										<td><%=article.getBoard_subject()%></td>
+										<td><input type="text" value="<%=article.getBoard_subject()%>"> </td>
 									</tr>
 									<tr>
 										<td>등록일</td>
@@ -65,20 +65,11 @@ String nowPage = request.getParameter("page");
 
 							</table>
 							<span class="default-btn-wrap"> <a
-								href="FreeBoardList.free" class="btn">목록</a></span>
-							<%
-								//                         if(id != null) {
-							//                         	if(id.equals(article.getBoard_id())) {
-							%>
-							<span class="default-btn-wrap"> <a
-								href="FreeBoardModifyForm.free" class="btn">수정</a></span> <span
-								class="default-btn-wrap"> <a
-								href="FreeBoardDeleteForm.free" class="btn">삭제</a></span>
-							<%
-								//                         	}
-							//                         }
-							%>
-
+								href="FreeBoardModifyPro.free" class="btn">수정</a></span>
+								<span class="default-btn-wrap"> <a href="javascript:window.history.back();" class="btn">취소</a></span>
+							
+							
+							
 						</div>
 					</div>
 

@@ -9,10 +9,10 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	// 파일이름 파라미터  가져오기
-    String fileName = request.getParameter("downFile");
+    String fileName = request.getParameter("file");
  	System.out.println(fileName);
  	// 업로드 폴더의 물리적인 경로 확인
-     String savePath = "boardUpload";
+     String savePath = "FreeboardUpload";
      ServletContext context = getServletContext();
      String sDownloadPath = context.getRealPath(savePath);
      // 업로드 물리적 경로\\ 파일이름

@@ -53,7 +53,7 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 	                            <tr>
 	                                <td>내용</td>
 	                                <td colspan="3">
-	                                    <textarea name="desc"></textarea>
+	                                    <textarea name="desc" required="required"></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>

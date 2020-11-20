@@ -29,6 +29,10 @@
                                 <td>제목</td>
                                 <td><%= article.getBoard_subject() %></td>
                             </tr>
+                              <tr>
+                                <td>작성자</td>
+                                <td><%= article.getBoard_id() %></td>
+                            </tr>
                             <tr>
                                 <td>등록일</td>
                                 <td><%= article.getBoard_date() %></td>
@@ -37,7 +41,7 @@
                                 <td>첨부파일</td>
                                 <td><%
 				if(article.getBoard_file() != null) {
-					%> <a href="sub2/file_down.jsp?downFile=<%=article.getBoard_file()%>"><%=article.getBoard_file() %></a> <%
+					%> <a href="sub2/file_down.jsp?file=<%=article.getBoard_file()%>"><%=article.getBoard_file()%></a><%
 				}
 			%></td>
                             </tr>
