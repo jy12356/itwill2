@@ -13,6 +13,7 @@ import action.Action;
 import action.freeboard.FreeBoardDetailAction;
 import action.freeboard.FreeBoardListAction;
 import action.freeboard.FreeBoardModifyFormAction;
+import action.freeboard.FreeBoardModifyProAction;
 import action.freeboard.FreeBoardReplyFormAction;
 import action.freeboard.FreeBoardWriteProAction;
 import vo.ActionForward;
@@ -83,13 +84,7 @@ public class FreeBoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		} else if(command.equals("/FreeBoardReplyForm.free")) {
-			action = new FreeBoardReplyFormAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		
 			
 		} else if(command.equals("/FreeBoardModifyForm.free")) {
 			action = new FreeBoardModifyFormAction();
@@ -98,6 +93,23 @@ public class FreeBoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/FreeBoardModifyPro.free")) {
+			action = new FreeBoardModifyProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/FreeBoardReplyForm.free")) {
+			action = new FreeBoardReplyFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			
 		} else if(command.equals("/FreeBoardDeleteForm.free")) {
 			forward = new ActionForward();
