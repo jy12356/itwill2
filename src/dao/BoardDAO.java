@@ -188,7 +188,7 @@ public class BoardDAO {
 			while(rs.next()) {
 				BoardBean article = new BoardBean();
 				article.setBoard_num(rs.getInt("board_num"));
-				article.setBoard_name(rs.getString("board_name"));
+				article.setBoard_id(rs.getString("board_id"));
 				article.setBoard_subject(rs.getString("board_subject"));
 				article.setBoard_content(rs.getString("board_content"));
 				article.setBoard_file(rs.getString("board_file"));

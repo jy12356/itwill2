@@ -38,7 +38,7 @@
 <!--                                 <img src="boardimg/one-step.jpg"> -->
                                 <td><a href="submit_board_update.jsp">안드로이드는 전기양을 꿈꾸는가?</a></td>
                                 <td>김바보</td>
-                                </td><td>2020/11/12</td>
+                                <td><td>2020/11/12</td>
                             </tr>
 						</tbody>
                     </table>
