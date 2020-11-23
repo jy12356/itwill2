@@ -8,7 +8,7 @@ import dao.RequestDAO;
 import vo.RequestBean;
 
 public class RequestModifyProService {
-	public boolean isArticleWriter(num) throws Exception {
+	public boolean isArticleWriter(int num,  String pass) throws Exception {
 		boolean isArticleWriter = false;
 		
 		Connection con = getConnection();
@@ -17,7 +17,7 @@ public class RequestModifyProService {
 		
 		requestDAO.setConnection(con);
 		
-		isArticleWriter = requestDAO.isArticleRequestWriter(num);
+		isArticleWriter = requestDAO.isArticleRequestWriter(num, pass);
 		
 		close(con);
 		
