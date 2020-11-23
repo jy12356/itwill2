@@ -64,7 +64,7 @@
                         		<span class="default-btn-wrap">
                         <a href="FreeBoardModifyForm.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>" class="btn">수정</a></span>
                         		<span class="default-btn-wrap">
-                        <a href="FreeBoardDeleteForm.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>" class="btn">삭제</a></span>
+                        <a href="FreeBoardDeletePro.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>" class="btn">삭제</a></span>
                         		<% 
 //                         	}
 //                         }

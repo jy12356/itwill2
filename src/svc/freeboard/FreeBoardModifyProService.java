@@ -9,7 +9,7 @@ import vo.FreeBoardBean;
 public class FreeBoardModifyProService {
 
 	public boolean isArticleWriter(int board_num, String id) {
-		System.out.println("isArticleWriter - svc");
+		System.out.println("isArticleWriter for modify - svc");
 		// 글 수정 작업 전 작성자 확인을 위한 패스워드 비교
 				boolean isArticleWriter = false;
 				
@@ -35,7 +35,7 @@ public class FreeBoardModifyProService {
 
 	public static boolean modifyArticle(FreeBoardBean article) {
 		System.out.println("modifyArticle - svc");
-boolean isModifySuccess = true;
+		boolean isModifySuccess = true;
 		
 		// 1(공통). Connection 객체 가져오기
 		Connection con = getConnection();
@@ -62,7 +62,7 @@ boolean isModifySuccess = true;
 		
 		// 6(공통). Connection 객체 반환하기
 		close(con);
-		
+		System.out.println("modifyArticle - svc - end");
 		// 7. 결과 리턴
 		return isModifySuccess;
 	}

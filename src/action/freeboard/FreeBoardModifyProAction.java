@@ -20,8 +20,7 @@ public class FreeBoardModifyProAction implements Action {
 		ActionForward forward = null;
 		
 		// 게시물 수정에 필요한 글번호(board_num) 가져오기
-		System.out.println(request.getParameter("board_num"));
-		System.out.println(Integer.parseInt(request.getParameter("board_num")));
+//		System.out.println(Integer.parseInt(request.getParameter("board_num")));
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		// BoardModifyProService 클래스 인스턴스 생성 후
 		// isArticleWriter() 메서드를 호출하여 적합한 사용자인지 판별
@@ -58,13 +57,12 @@ public class FreeBoardModifyProAction implements Action {
 			article.setBoard_content(request.getParameter("desc"));
 			article.setBoard_file(request.getParameter("file"));
 			
-			System.out.println("파일 boardmodiftyProaction 파일뒤");
 			// BoardModifyProService 클래스의 modifyArticle() 메서드를 호출하여
 			// 글 수정 작업 요청
 			// => 파라미터 : BoardBean, 리턴타입 : boolean(isModifySuccess)
 			boolean isModifySuccess = 
 					freeBoardModifyProService.modifyArticle(article);
-			
+			System.out.println("ProAction isModifySuccess 뒤");
 			// 수정 결과에 따른 처리
 			// => 수정 실패(isModifySuccess 가 false)일 경우 
 			//    자바스크립트를 사용하여 "글 수정 실패!" 출력 후 
@@ -81,7 +79,7 @@ public class FreeBoardModifyProAction implements Action {
 				out.println("</script>");
 			} else {
 				forward = new ActionForward();
-				forward.setPath("FreeBoardDetail.freeo?board_num=" + board_num + 
+				forward.setPath("FreeBoardDetail.free?board_num=" + board_num + 
 										"&page=" + request.getParameter("page"));
 				forward.setRedirect(true);
 			}

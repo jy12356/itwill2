@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.bookRegi.BookDeleteProAction;
 import action.bookRegi.BookDetailAction;
+import action.bookRegi.BookKindListAction;
 import action.bookRegi.BookListAction;
 import action.bookRegi.BookWriteProAction;
 import vo.ActionForward;
@@ -39,11 +41,6 @@ public class BookController extends HttpServlet {
 			
 		}else if(command.equals("/BookDetail.bok")) {
 			System.out.println("BookDetail.bok 포워딩");
-			
-		}else if(command.equals("/BookModify.bok")) {
-			System.out.println("BookModify.bok 포워딩");
-		}else if(command.equals("/BookDelete.bok")) {
-			System.out.println("BookDelete.bok 포워딩");
 			action = new BookDetailAction();
 			try {				
 				forward =  action.execute(request, response);
@@ -51,6 +48,29 @@ public class BookController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+		}else if(command.equals("/BookModify.bok")) {
+			System.out.println("BookModify.bok 포워딩");
+		}else if(command.equals("/BookKindList.bok")) {
+			System.out.println("BookKindList.bo 포워딩");
+			forward = new ActionForward();
+			action = new BookKindListAction();
+			try {
+				forward =  action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			forward.setPath("/adminPage/boolKindList.jsp");
+		}else if(command.equals("/BookDeletePro.bok")) {
+			System.out.println("BookDelete.bok 포워딩");
+			action = new BookDeleteProAction();
+			try {
+				forward =  action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
 		}else if(command.equals("/BookList.bok")) {
 			System.out.println("BookList.bok 포워딩");
 			action = new BookListAction();

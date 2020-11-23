@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.review.ReviewListAction;
 import action.review.ReviewWriteProAction;
 import vo.ActionForward;
 
@@ -19,17 +20,27 @@ public class ReviewFrontController extends HttpServlet {
 	
 	protected void doprocess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("ReviewFrontController");
+		
 		request.setCharacterEncoding("UTF-8");
+		
 		String command = request.getServletPath();
 		System.out.println("요청서블릿 주소: " + command);
+		
 		Action action = null;
 		ActionForward forward = null;
 		
 		if(command.equals("/BookDetail.re")) {
 			System.out.println("BookDetail.re 포워딩");
-			forward = new ActionForward();
-			forward.setPath("/sub1/detail.jsp");
 			
+			action = new ReviewListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+//			forward = new ActionForward();
+//			forward.setPath("/sub1/detail.jsp");
+//			
 		} else if(command.equals("/ReviewWritePro.re")) {
 			System.out.println("ReviewWritePro.re 포워딩");
 			action = new ReviewWriteProAction();

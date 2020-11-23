@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.freeboard.FreeBoardDeleteProAction;
 import action.freeboard.FreeBoardDetailAction;
 import action.freeboard.FreeBoardListAction;
 import action.freeboard.FreeBoardModifyFormAction;
@@ -101,6 +102,15 @@ public class FreeBoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/FreeBoardDeletePro.free")) {
+			action = new FreeBoardDeleteProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			
 		} else if(command.equals("/FreeBoardReplyForm.free")) {
 			action = new FreeBoardReplyFormAction();
@@ -109,12 +119,6 @@ public class FreeBoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			
-		} else if(command.equals("/FreeBoardDeleteForm.free")) {
-			forward = new ActionForward();
-			forward.setPath("/board/qna_board_delete.jsp");
-			
 			
 			
 		}

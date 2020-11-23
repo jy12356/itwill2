@@ -12,7 +12,7 @@ public class FreeBoardModifyFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("FreeBoardModifyFormAction");
+		System.out.println("FreeBoardModifyFormAction - start");
 		
 		ActionForward forward = null;
 		
@@ -35,8 +35,7 @@ public class FreeBoardModifyFormAction implements Action {
 		
 		forward = new ActionForward();
 		forward.setPath("/sub2/free_board_modify.jsp");
-		System.out.println("여기다여기");
-		
+		System.out.println("FreeBoardModifyFormAction - end");
 		
 		
 		

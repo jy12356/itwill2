@@ -40,7 +40,7 @@
 									 <tr>
 	                            	<td>작성자</td>
 	                            	<td colspan="3">
-	                            		<input type="text" name="id" value="<%=id%>" readonly="readonly">
+	                            		<input type="text" name="id" value="<%=article.getBoard_id()%>" readonly="readonly">
 	                            	</td>
 	                            </tr>
 									<tr>

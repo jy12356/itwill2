@@ -7,6 +7,12 @@
 .nobo{border-bottom:none !important;}
 .blue {background: #21b9f1 !important;color: #fff !important;}
 
+/* 텍스트정렬 */
+.tac {text-align:center !important;}
+.tal, .txt_left{text-align:left !important;}
+.tar {text-align:right !important;}
+
+
 /* 탑버튼 추가 */
 .topBtn{position:fixed;right: 301px;bottom:15px;width:40px;height:40px;background:url(../images/topBtn.png) no-repeat left center #fff;text-indent:-9999px;z-index:10000;}
 .topBtn a{display:block;width:40px;height:40px;}

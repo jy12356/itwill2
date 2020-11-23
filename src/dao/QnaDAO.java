@@ -32,8 +32,9 @@ public class QnaDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		int num = 0;
 		
+		
+		int num = 1;
 		String sql = "Select Max(board_num) from qna";
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -42,17 +43,17 @@ public class QnaDAO {
 			if(rs.next()) {
 				num = rs.getInt(1) + 1; // 새 글 번호 만들기
 			}
-			sql = "Insert into qna values(?,?,?,?,?,?,?,?,?,now())";
+			sql = "Insert into qna values(?,?,?,?,?,?,now(),?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, qnaBean.getId());
 			pstmt.setString(3, qnaBean.getPass());
 			pstmt.setString(4, qnaBean.getTitle());
 			pstmt.setString(5, qnaBean.getContent());
-			pstmt.setInt(6, num); // 참조글 번호(새글이므로 자신이 참조)
-			pstmt.setInt(7, qnaBean.getRe_lev());
-			pstmt.setInt(8, qnaBean.getRe_seq());
-			pstmt.setString(9, qnaBean.getQna_genre());
+			pstmt.setString(6, qnaBean.getQna_genre());
+			pstmt.setInt(7, num); // 참조글 번호(새글이므로 자신이 참조)
+			pstmt.setInt(8, qnaBean.getRe_lev());
+			pstmt.setInt(9, qnaBean.getRe_seq());
 			
 			insertCount = pstmt.executeUpdate();
 			
@@ -93,6 +94,7 @@ public class QnaDAO {
 	
 	// 게시물 목록 조회
 	public ArrayList<QnaBean> selectArticleList(int page, int limit) {
+
 		ArrayList<QnaBean> articleList = null;
 		
 		PreparedStatement pstmt = null;
@@ -102,16 +104,61 @@ public class QnaDAO {
 		
 		try {
 			String sql = "SELECT * FROM qna "
-					+ "ORDER BY re_ref DESC re_seq ASC "
+					+ "ORDER BY re_ref DESC,re_seq ASC "
 					+ "LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
+			rs = pstmt.executeQuery();
+			
+			// ArrayList 객체 생성(while문 위에서 생성 필수!)
+			articleList = new ArrayList<QnaBean>();
+			while(rs.next()) {
+				QnaBean article = new QnaBean();
+				article.setBoard_num(rs.getInt("board_num"));
+				article.setId(rs.getString("id"));
+				article.setPass(rs.getString("pass"));
+				article.setTitle(rs.getString("title"));
+				article.setContent(rs.getString("content"));
+				article.setQna_genre(rs.getString("qna_genre"));
+				article.setRe_ref(rs.getInt("re_ref"));
+				article.setRe_lev(rs.getInt("re_lev"));
+				article.setRe_seq(rs.getInt("re_seq"));
+				article.setDate(rs.getDate("date"));
+				
+				articleList.add(article);
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("selectArticleList() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return articleList;
+	}
+
+	
+	// 게시물 상세 내용 조회
+	public QnaBean selectArticle(int board_num) {
+		
+		QnaBean article = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select * from qna where board_num";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			rs = pstmt.executeQuery();
+		} catch (SQLException e) {
+			System.out.println("selectArticle() 오류! - " + e.getMessage());
 			e.printStackTrace();
 		}
 		
 		
-		return articleList;
+		
+		return article;
 	}
 	
 	

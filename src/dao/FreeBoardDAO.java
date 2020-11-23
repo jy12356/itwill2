@@ -258,22 +258,36 @@ public class FreeBoardDAO {
 	public boolean isArticleFreeBoardWriter(int board_num, String id) {
 		System.out.println("DAO - isArticleFreeBoardWriter");
 		boolean isArticleWriter = false;
-
+		System.out.println("1");
 		PreparedStatement pstmt = null;
+		System.out.println("2");
+
 		ResultSet rs = null;
+		System.out.println("3");
 
 		try {
+			System.out.println("4");
+
 			// board_num 에 해당하는 레코드의 board_pass 를 가져와서
 			// 파라미터로 전달받은 board_pass 와 비교하여 일치 여부 판별
 			// => 만약, 패스워드 일치하는 경우 isArticleWriter 를 true 로 변경
-			String sql = "SELECT id FROM board WHERE board_num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, board_num);
-			rs = pstmt.executeQuery();
+			String sql = "SELECT board_id FROM freeboard WHERE board_num=?";
+			System.out.println("5");
 
+			pstmt = con.prepareStatement(sql);
+			System.out.println("6");
+
+			pstmt.setInt(1, board_num);
+			System.out.println("7");
+
+			rs = pstmt.executeQuery();
+			System.out.println("8");
 			if (rs.next()) {
-				if (id.equals(rs.getString("id"))) {
+				System.out.println(rs.getString("board_id"));
+				if (id.equals(rs.getString("board_id"))) {
+					System.out.println("9");
 					isArticleWriter = true;
+					System.out.println("DAO - isArticleFreeBoardWriter = true ");
 				}
 			}
 
@@ -284,7 +298,7 @@ public class FreeBoardDAO {
 			close(rs);
 			close(pstmt);
 		}
-
+		System.out.println("isArticleWriter return앞");
 		return isArticleWriter;
 	}
 
@@ -310,8 +324,31 @@ public class FreeBoardDAO {
 		} finally {
 			close(pstmt);
 		}
-
+		System.out.println("updateCount = " + updateCount);
 		return updateCount;
+	}
+
+	public int removeArticle(FreeBoardBean article) {
+		
+		int deleteCount = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "DELETE FROM freeboard where board_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, article.getBoard_num());
+			deleteCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("removeArticle() 오류!  - " +  e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+				
+				
+		return deleteCount;
 	}
 
 }
