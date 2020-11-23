@@ -42,10 +42,6 @@
 									<td><input id="isbn" name="isbn" type="text" value="" maxlength="13"/></td>
 								</tr>
 								<tr>
-									<th>가격</th>
-									<td><input id="price" name="price" type="text" value="" maxlength="10"/></td>
-								</tr>
-								<tr>
 									<th>첨부 내용 </th>
 									<td><textarea rows="" cols="" name="content"></textarea>
                                 </td>
