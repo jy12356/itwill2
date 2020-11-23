@@ -20,7 +20,7 @@ public class RequestModifyProAction implements Action {
 		int num = Integer.parseInt(request.getParameter("num"));
 
 		RequestModifyProService requestModifyProService = new RequestModifyProService();
-		boolean isRightUser = requestModifyProService.isArticleWriter(num);
+		boolean isRightUser = requestModifyProService.isArticleWriter(num, request.getParameter("pass"));
 
 		if(!isRightUser) {
 			response.setContentType("text/html;charset=UTF-8");
@@ -33,9 +33,10 @@ public class RequestModifyProAction implements Action {
 			RequestBean article = new RequestBean();
 			article.setNum(num);
 			article.setSubject(request.getParameter("subject"));
-			article.setSubject(request.getParameter("booktitle"));
-			article.setSubject(request.getParameter("publisher"));
-			article.setSubject(request.getParameter("author"));
+			article.setAuthor(request.getParameter("author"));
+			article.setPublisher(request.getParameter("publisher"));
+			article.setPubdate(request.getParameter("pubdate"));
+			article.setIsbn(request.getParameter("isbn"));
 			article.setContent(request.getParameter("content"));
 			
 			boolean isModifySuccess = requestModifyProService.modifyArticle(article);

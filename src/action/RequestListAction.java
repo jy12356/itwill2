@@ -14,10 +14,7 @@ public class RequestListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// RequestListService 클래스를 통해 게시물 목록 조회 후
-		// 조회 결과를 request 객체에 저장하고, qna_board_list.jsp 페이지로 포워딩
-		// => 이 때, request 객체를 유지하고, 서블릿 주소의 변경 없이
-		//    포워딩 해야하므로 포워딩 방식을 Dispatcher 방식으로 지정
+
 		System.out.println("BoardListAction");
 		
 		ActionForward forward = null;

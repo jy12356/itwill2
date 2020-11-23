@@ -12,6 +12,8 @@
             <h3 class="coTitle">희망도서 신청</h3> 
             <div class="customer-contents">
                 <div class="customer-inner">
+                	<form action="RequestWritePro.rq" method="post"
+                		enctype="multipart/form-data" name="request_board_write">
                     <table summary="게시판" class="onebyone">
                         <caption>희망도서 신청</caption>
                         <colgroup>
@@ -21,7 +23,7 @@
                         <tbody>
                             	<tr>
 									<th>도서명 <em><font color="red">(*)</font></em></th>
-									<td><input id="booktitle" name="booktitle" type="text" value=""/></td>
+									<td><input type="text" name="subject" id="booktitle" required="required"></td>
 								</tr>
 								<tr>
 									<th>저자 <em><font color="red">(*)</font></em></th>
@@ -33,37 +35,31 @@
 								</tr>
 								<tr>
 									<th>출판년도 <em><font color="red">(*)</font></em></th>
-									<td><input id="date" name="date" type="text" value="" maxlength="4"/></td>
+									<td><input type="text" name="pubdate" type="text"></td>
 								</tr>
 								<tr>
 									<th>ISBN</th>
-									<td><input id="isbn" name="isbn" type="text" value="" maxlength="13"/></td>
-								</tr>
-								<tr>
-									<th>가격</th>
-									<td><input id="price" name="price" type="text" value="" maxlength="10"/></td>
+									<td><input id="isbn" name="isbn" type="text" maxlength="13"/></td>
 								</tr>
 								<tr>
 									<th>첨부 내용 </th>
-									<td><textarea rows="" cols="" name="content"></textarea>
+									<td><textarea name="content" required="required"></textarea>
                                 </td>
 								</tr>
 								<tr>
 									<th>파일첨부</th>
 									<td>
-										<div class="one-file">
-											<p><input type="text" name="" value="" readonly="readonly" id="fileName" class="file_name"></p>
-											<p class="file-btn">찾아보기<input type="file" name="file_name" value="찾아보기"></p>
-										</div>
+										<input type="file" name="file">
 										<p class="one-s-ps">*2MB 이하의 이미지 파일 및 5MB  이하의 *hwp, *doc, *docx 확장자만 첨부 가능합니다.</p>
 									</td>
 								</tr>
                         </tbody>
                     </table>
-                    <div class="one-btn">
-						<input type="submit" name="" class="" value="신청">
-						<a href="request_board.jsp" class="btn">목록</a>
+                    <div class="default-btn-wrap">
+						<input type="submit" class="btn" value="신청">
+						<a href="requestList.rq" class="btn">목록</a>
 					</div>
+					</form>
                 </div>
             </div>
 
