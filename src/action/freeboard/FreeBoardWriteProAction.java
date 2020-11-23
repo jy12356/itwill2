@@ -10,15 +10,15 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import action.Action;
-import svc.freeboard.freeBoardWriteProService;
+import svc.freeboard.FreeBoardWriteProService;
 import vo.ActionForward;
-import vo.freeboard.freeBoardBean;
+import vo.FreeBoardBean;
 
-public class freeBoardWriteProAction implements Action {
+public class FreeBoardWriteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BoardWriteProAction!");
+		System.out.println("FreeBoardWriteProAction!");
 		
 		ActionForward forward = null; //왜가져왔니? path랑 redirect정할거?
 		
@@ -29,7 +29,7 @@ public class freeBoardWriteProAction implements Action {
 		
 		// 프로젝트 상에서 설정한 가상 업로드 폴더 경로 지정
 		// 현재 루트 위치가 webcontent 폴더이므로 하위 폴더를 "/하위폴더명" 지정
-		String saveFolder = "/boardUpload";
+		String saveFolder = "/FreeboardUpload";
 		
 		// 가상 폴더에 대응하는 실제 폴더 위치를 가져오기 위해
 		// ServletContext 객체의 getRealPath() 메서드를 호출
@@ -90,7 +90,7 @@ public class freeBoardWriteProAction implements Action {
 //		System.out.println("글내용 : " + board_content);
 //		System.out.println("파일명 : " + board_file);
 		//-----------------------------------------------------------------------------------------------------------
-		freeBoardBean boardBean = new freeBoardBean();
+		FreeBoardBean boardBean = new FreeBoardBean();
 		boardBean.setBoard_id(multi.getParameter("id"));
 		boardBean.setBoard_subject(multi.getParameter("title"));
 		boardBean.setBoard_content(multi.getParameter("desc"));
@@ -102,7 +102,7 @@ public class freeBoardWriteProAction implements Action {
 		// BoardWriteProService 클래스의 인스턴스 생성후
 		// regisArticle() 메서드를 호출하여 글 등록 작업 수행 요청
 		// => 파라미터 : BoardBean, 리턴타입 : boolean(isWriteSuccess)
-		freeBoardWriteProService boardWriteProService = new freeBoardWriteProService();
+		FreeBoardWriteProService boardWriteProService = new FreeBoardWriteProService();
 		boolean isWriteSuccess = boardWriteProService.registArticle(boardBean);
 		
 				// 글쓰기 작업 수행 후 리턴 받은 결과값으 ㄹ사용하여
@@ -141,7 +141,7 @@ public class freeBoardWriteProAction implements Action {
 			// 2. 포워딩 경로(URL) 지정
 			// Redirect방식에서 / 붙여서 쓰면 project명 날라간다. http://localhost:8080/BoardList.bo
 //		forward.setPath("/BoardList.bo");  // 주의! 경로명앞에 슬래시(/) 기호 붙이지 말 것!
-			forward.setPath("BoardList.bo");
+			forward.setPath("FreeBoardList.free");
 			
 			// 3. 포워딩 방식(Redirect 방식) 지정
 			forward.setRedirect(true);

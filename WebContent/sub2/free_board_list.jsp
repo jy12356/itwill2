@@ -1,19 +1,24 @@
 <%@page import="vo.PageInfo"%>
-<%@page import="vo.freeboard.freeBoardBean"%>
+<%@page import="vo.FreeBoardBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String id = (String) session.getAttribute("id");
-if (id == null) {
-	id = "홍길동";
-}
+	// 	String id = (String) session.getAttribute("id");
+// if (id == null) {
+// 	id = "홍길동";
+// }
+
+//String id = (String) session.getAttribute("id"); //
+//if(id==null) { // 로긴안한상태면 로그인화면으로
+//	response.sendRedirect("../member.login.jsp");
+//}
 
 // 전달받은 request 객체로부터 데이터 가져오기
 // "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 // "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 // 전부 Object타입이라 형변환 필요
-ArrayList<freeBoardBean> articleList = (ArrayList<freeBoardBean>) request.getAttribute("articleList");
+ArrayList<FreeBoardBean> articleList = (ArrayList<FreeBoardBean>) request.getAttribute("articleList");
 PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 int nowPage = pageInfo.getPage();
 int maxPage = pageInfo.getMaxPage();
@@ -65,7 +70,8 @@ int listCount = pageInfo.getListCount();
 						</thead>
 						<tbody>
 							<%
-								for (int i = 0; i < articleList.size(); i++) {
+								// 게시물목록불러오기
+							for (int i = 0; i < articleList.size(); i++) {
 							%>
 							<tr>
 								<td align="center"><%=articleList.get(i).getBoard_num()%></td>
@@ -74,13 +80,13 @@ int listCount = pageInfo.getListCount();
 										if (articleList.get(i).getBoard_re_lev() != 0) {
 									%> <%
  	for (int j = 0; j <= articleList.get(i).getBoard_re_lev() * 2; j++) {
- %>
-									&nbsp; <%
+ %> &nbsp; <%
  	}
  %> ▶ <%
  	}
- %> &nbsp;&nbsp; <a
-									href="BoardDetail.bo?board_num=<%=articleList.get(i).getBoard_num()%>&page=<%=nowPage%>">
+ %> &nbsp;&nbsp; 
+ 
+ 								<a href="FreeBoardDetail.free?board_num=<%=articleList.get(i).getBoard_num()%>&page=<%=nowPage%>">
 										<%=articleList.get(i).getBoard_subject()%>
 								</a>
 								</td>
@@ -94,7 +100,7 @@ int listCount = pageInfo.getListCount();
 						</tbody>
 					</table>
 					<div class="btn_inner">
-						<a href="BoardWriteForm.bo" class="btn">글쓰기</a>
+						<a href="FreeBoardWriteForm.free" class="btn">글쓰기</a>
 					</div>
 
 					<div class="paging">
@@ -110,12 +116,11 @@ int listCount = pageInfo.getListCount();
 							} else {
 						%>
 						<input type="button" value="이전"
-							onclick="location.href='BoardList.bo?page=<%=nowPage - 1%>'">&nbsp;
+							onclick="location.href='FreeBoardList.free?page=<%=nowPage - 1%>'">&nbsp;
 						<%
 							}
 						%>
 
-						<!-- 게시글 목록 -->
 						<%
 							for (int i = startPage; i <= endPage; i++) {
 							if (i == nowPage) {
@@ -124,7 +129,7 @@ int listCount = pageInfo.getListCount();
 						<%
 							} else {
 						%>
-						<a href="BoardList.bo?page=<%=i%>">[<%=i%>]
+						<a href="FreeBoardList.free?page=<%=i%>">[<%=i%>]
 						</a>&nbsp;
 						<%
 							}
@@ -141,7 +146,7 @@ int listCount = pageInfo.getListCount();
 							} else {
 						%>
 						<input type="button" value="다음"
-							onclick="location.href='BoardList.bo?page=<%=nowPage + 1%>'">
+							onclick="location.href='FreeBoardList.free?page=<%=nowPage + 1%>'">
 						<%
 							}
 						%>
@@ -152,8 +157,6 @@ int listCount = pageInfo.getListCount();
 						<%
 							}
 						%>
-						<!-- 						<a href="board.jsp?pageNum=27" class="arr" data-page-num="27"><img -->
-						<!-- 							src="../images/p-last.png"><span class="hide">마지막페이지</span></a> -->
 					</div>
 				</div>
 			</div>

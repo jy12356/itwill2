@@ -2,8 +2,8 @@ package svc.freeboard;
 
 import java.sql.Connection;
 
-import dao.freeBoardDAO;
-import vo.freeboard.freeBoardBean;
+import dao.FreeBoardDAO;
+import vo.FreeBoardBean;
 
 //import db.JdbcUtil;
 // jdbctutil클래스에잇는거 다가져오기
@@ -19,12 +19,12 @@ import static db.JdbcUtil.*;
 // Model(DAO 클래스)을 통해 실제 작업 처리를 요청하고
 // 처리 결과를 리턴받아 해당 결과에 대한 판별을 통해
 // 결과값으로 처리할 데이터를 리턴
-public class freeBoardWriteProService {
+public class FreeBoardWriteProService {
 	
 	// 글 쓰기(등록) 요청을 처리하기 위한 registArticle() 메서드 정의
 	// => 파라미터 : 게시물 정보(BoardBean)
 	// => 리턴타입 : boolean(isWriteSuccess)
-	public boolean registArticle(freeBoardBean boardBean) throws Exception {
+	public boolean registArticle(FreeBoardBean boardBean) throws Exception {
 		System.out.println("BoardWriteProService - registArticle()");
 		
 		boolean isWriteSuccess = false; // 글 등록 성공 여부를 저장
@@ -36,14 +36,14 @@ public class freeBoardWriteProService {
 		Connection con = getConnection(); // 메서드명만으로 접근 가능
 		
 		// 2(공통). DB 작업에 필요한 DAO 객체 가져오기
-		freeBoardDAO boardDAO = freeBoardDAO.getInstance();
+		FreeBoardDAO freeBoardDAO = FreeBoardDAO.getInstance();
 		
 		// 3(공통). 가져온 Connection 객체를 DAO 객체에 전달하기
-		boardDAO.setConnection(con);
+		freeBoardDAO.setConnection(con);
 		
 		// 4. BoardDAO 객체의 insertArticle() 메서드를 호출하여 글 등록 처리
 		// => 파라미터 : BoardBean, 리턴타입 : int(insertCount)
-		int insertCount = boardDAO.insertArticle(boardBean);
+		int insertCount = freeBoardDAO.insertArticle(boardBean);
 		
 		// 5. 리턴받은 글 등록 결과를 판별
 		// => 0보다 클 경우 성공 commit, 0 일 경우 실패 rollback 작업 수행
