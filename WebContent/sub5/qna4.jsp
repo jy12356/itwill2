@@ -1,5 +1,12 @@
+<%@page import="vo.QnaBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="../include/header.jsp"/>
+<%
+	// request 객체에 저장된 BoardBean 객체(article) 가져오기
+	QnaBean article = (QnaBean)request.getAttribute("article");
+	// request 객체에 저장된 페이지번호(page) 파라미터 가져오기
+	String nowPage = request.getParameter("page");
+%>
 <section class="sub">
 <div class="category-nav">
 	<div class="category-nav-inner">
@@ -36,10 +43,10 @@
 								* 항목은 필수 입력 항목입니다.
 							</p>
 						</div>
-						<form name="frmBbsWrite" method="post" action="QnaWritePro.qna" enctype="multipart/form-data">
-							<input type="hidden" name="page" value="vs1"/>
+						<form name="frmBbsWrite" method="post" action="QnaModifyPro.qna">
+							<input type="hidden" name="page" value="<%=nowPage %>"/>
 							<input type="hidden" name="mode" value="input"/>
-							<input type="hidden" name="num" value=""/>
+							<input type="hidden" name="board_num" value="<%=article.getBoard_num() %>" />
 							<input type="hidden" name="mainclass_num" class="mainclass_num" value="1"/>
 							<input type="hidden" name="subclass_num" class="subclass_num" value=""/>
 							<input type="hidden" name="id" value="B"/>
@@ -91,7 +98,7 @@
 										<span>*</span>문의제목
 									</th>
 									<td>
-										<input type="text" name="title" value="" class="q-title required" id="title">
+										<input type="text" name="title" required="required" value=<%=article.getTitle() %> />
 									</td>
 								</tr>
 								<tr>
@@ -99,7 +106,7 @@
 										<span>*</span>문의내용
 									</th>
 									<td>
-										<textarea cols="5" rows="8" name="content" id="content"></textarea>
+										<textarea cols="5" rows="8" name="content" id="content"><%=article.getContent() %></textarea>
 									</td>
 								</tr>
 								<!-- 								<tr> -->
@@ -147,7 +154,8 @@
 								</tbody>
 								</table>
 								<div class="one-btn">
-									<input type="submit" name="" class="" value="등록하기">
+									<input type="submit" name="" class="" value="수정">&nbsp;&nbsp;
+									<input type="button" value="뒤로" onclick="history.back()">
 								</div>
 							</fieldset>
 						</form>
