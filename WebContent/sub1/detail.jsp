@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="vo.BookBean"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="vo.ReviewBean"%>
+<%@page import="vo.PageInfo"%>
+<%@page import="vo.BoardBean"%>
+<%@page import="java.util.ArrayList"%>
     
 <jsp:include page="../include/header.jsp"/>
 <%
@@ -159,7 +163,7 @@
 						<div class="author-intro-text">〈저자 소개〉<br>델마 햄 에반스 (Thelma Hamm Evans)는 1950년대와 60년대 활동한 미국의 SF 작가이다. T. D. Hamm 등의 필명을 사용했다.<br><br>〈번역자 소개〉<br>2014년, 활동을 시작한 TR 클럽의 구성원은 인문학과 공학 등을 전공한 전문 직업인들로, 모두 5년 이상의 유학 또는 현지 생활 경험을 가지고 있다.<br>각자의 삶의 영역을 가지고 있으나, 자신이 관심을 가진 도서와 컨텐츠가 국내에서도 널리 읽히기를 바라는 마음에서 번역을 진행하고 있다.<br>대기업 직장인, IT 벤처기업가, 출판 및 서점 편집자, 대학 교원, 음악 전문가 등 다양한 직업군을 바탕으로, 본인들의 외국어 능력과 직업적 특기를 기반으로, 모던한 컨텐츠 번역을 추구하고 있다.<br></div>						
 					</div>
 					
-					<form action="ReviewWritePro.re" method="post">
+					<form action="ReviewWritePro.re" method="get" id="myReview">
 					<div class="d-tab review" data-sort="최신순" data-order="false" data-review-count="0" data-review-point="" data-page-num="1" data-etc-count="0">
 						
 						<h3>서평(<span>0</span>)</h3>
@@ -193,7 +197,7 @@
 								<div>
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" name="spoiler" class="spoiler">
+											<input type="checkbox" class="spoiler" >
 											<span><i></i></span>
 										</label>
 										<p>스포일러가 포함되어 있습니다.</p>
@@ -240,6 +244,16 @@
 							<div id="comment">
 								<div class="comment_list">
 									<p class="no">회원님께서 첫 서평의 주인공이 되어주세요.</p>
+									
+									<%
+									ReviewBean article = (ReviewBean)request.getAttribute("atricle");
+									%>
+									<table>
+										<tr>
+											<td><%=article.getNum() %></td><td><%=article.getId()%></td><td><%=article.getContent() %></td>
+										</tr>
+									</table>
+									
 								</div>
 								<div class="d-more reviewMore">
 									<a href="javascript:;">20개 더보기</a>
@@ -953,9 +967,6 @@
 // 				$(".d-tab.review").data("sort", $(this).data("sort"));
 // 				$(".reviewSort").find("span").removeClass('radio_on').addClass('radio_off')
 // 				$(".reviewSort[data-sort='"+ $(this).data("sort") +"']").find('span').removeClass('radio_off').addClass('radio_on');
-
-
-
 
 
 // 				//$(this).parent().find('span').removeClass('radio_on').addClass('radio_off');

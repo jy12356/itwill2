@@ -42,10 +42,10 @@
 						<form name="frmBbsWrite" method="post" action="QnaWritePro.qna" enctype="multipart/form-data">
 							<input type="hidden" name="page" value="vs1"/>
 							<input type="hidden" name="mode" value="input"/>
-							<input type="hidden" name="qna_genre"  value="input"/>
+							<input type="hidden" name="num" value=""/>
 							<input type="hidden" name="mainclass_num" class="mainclass_num" value="1"/>
 							<input type="hidden" name="subclass_num" class="subclass_num" value=""/>
-							<input type="hidden" name="id"  value=""/>
+							<input type="hidden" name="id" value="B"/>
 							<input type="hidden" name="pass"  value=""/>
 							<fieldset>
 								<legend>1:1 문의하기</legend>
@@ -65,11 +65,15 @@
 												<p class="one-select">
 													오류문의
 												</p>
-												<ul class="one-list sel1">
-													<li data-num="1">오류문의</li>
-													<li data-num="2">작품관련 문의</li>
-													<li data-num="3">취소/환불/현금영수증 발급</li>
-													<li data-num="4">이용관련 문의</li>
+												<ul class="one-list sel1" >
+												<li data-num="1"><input type="hidden" name="qna_genre" id="qna_genre" value="오류문의">오류문의</li>
+												<li data-num="2"><input type="hidden" name="qna_genre" id="qna_genre" value="작품관련 문의">작품관련 문의</li>
+												<li data-num="3"><input type="hidden" name="qna_genre" id="qna_genre" value="취소/환불/현금영수증 발급">취소/환불/현금영수증 발급</li>
+												<li data-num="4"><input type="hidden" name="qna_genre" id="qna_genre" value="이용관련 문의">이용관련 문의</li>
+<!-- 													<li data-num="1" value="">오류문의</li> -->
+<!-- 													<li data-num="2" value="">작품관련 문의</li> -->
+<!-- 													<li data-num="3" value="">취소/환불/현금영수증 발급</li> -->
+<!-- 													<li data-num="4" value="">이용관련 문의</li> -->
 												</ul>
 											</div>
 											<div class="one-sel">
