@@ -59,16 +59,20 @@ int listCount = pageInfo.getListCount();
 									&nbsp;
 							<%} %>
 							▶
-					<%} %>
+						<%
+							}
+						%>
 						&nbsp;&nbsp;
-						<a href="RequestDetail.request?num=<%=articleList.get(i).getNum() %>&page=<%=nowPage %>">
+						<a href="RequestDetail.rq?num=<%=articleList.get(i).getNum() %>&page=<%=nowPage %>">
 						<%=articleList.get(i).getSubject() %>
 						</a>
 							</td>
 							<td align="center"><%=articleList.get(i).getId() %></td>
 							<td align="center"><%=articleList.get(i).getDate() %></td>
 						</tr>
-						<%}%>
+						<%
+							}
+						%>
 						</tbody>
 						</table>
 						<div class="btn_inner">

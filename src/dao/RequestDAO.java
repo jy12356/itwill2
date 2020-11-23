@@ -123,6 +123,9 @@ public class RequestDAO {
 					while(rs.next()) {
 						RequestBean article = new RequestBean();
 						article.setNum(rs.getInt("num"));
+						article.setSubject(rs.getString("subject"));
+						article.setId(rs.getString("id"));
+						article.setDate(rs.getDate("date"));
 
 						articleList.add(article);
 					}
@@ -146,6 +149,8 @@ public class RequestDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		System.out.println(num);
+		
 		try {
 			String sql = "SELECT * FROM bookreq WHERE num=?";
 			
@@ -160,8 +165,8 @@ public class RequestDAO {
 				article.setId(rs.getString("id"));
 				article.setSubject(rs.getString("subject"));
 				article.setAuthor(rs.getString("author"));
-				article.setSubject(rs.getString("publisher"));
-				article.setSubject(rs.getString("pubdate"));
+				article.setPublisher(rs.getString("publisher"));
+				article.setPubdate(rs.getString("pubdate"));
 				article.setIsbn(rs.getString("isbn"));
 				article.setContent(rs.getString("content"));
 				article.setFile(rs.getString("file"));
@@ -185,36 +190,6 @@ public class RequestDAO {
 		return article;
 		
 	}
-	
-	// 본인 확인
-	public boolean isArticleRequestWriter(int num, String pass) {
-		boolean isArticleWriter = false;
-		
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			String sql = "SELECT pass FROM bookreq WHERE num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				if(pass.equals(rs.getString("pass"))) {
-					isArticleWriter = true;
-				}
-			}
-			
-		} catch (SQLException e) {
-			System.out.println("isArticleRequestWriter() 오류! - " + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		return isArticleWriter;
-	}
 
 	// 글 수정
 	public int updateArticle(RequestBean article) {
@@ -222,7 +197,7 @@ public class RequestDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "UPDATE bookreq SET subject=?,author=?,publisher=?,pubdate=?,isbn=?,content=? WHERE num=?";
+			String sql = "UPDATE bookreq SET subject=?,author=?,publisher=?,pubdate=?,isbn=?,content=?,file=? WHERE num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, article.getSubject());
 			pstmt.setString(2, article.getAuthor());
@@ -230,6 +205,8 @@ public class RequestDAO {
 			pstmt.setString(4, article.getPubdate());
 			pstmt.setString(5, article.getIsbn());
 			pstmt.setString(6, article.getContent());
+			pstmt.setNString(7, article.getFile());
+			pstmt.setInt(8, article.getNum());
 			updateCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -241,5 +218,26 @@ public class RequestDAO {
 		
 		return updateCount;
 	}
+	
+	// 글 삭제
+		public int deleteArticle(RequestBean article) {
+			int deleteCount = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql = "DELETE FROM bookreq WHERE num=?";
+				pstmt = con.prepareStatement(sql);
+				deleteCount = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("deleteArticle() 오류! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return deleteCount;
+		}
 
 }

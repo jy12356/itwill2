@@ -7,27 +7,30 @@ import java.sql.Connection;
 import dao.RequestDAO;
 import vo.RequestBean;
 
-public class RequestModifyProService {
-	public boolean modifyArticle(RequestBean article) {
-		boolean isModifySuccess = true;
+public class RequestDeleteProService {
 		
+	public boolean removeArticle(RequestBean article) {
+
+		boolean isDeleteSuccess = false;
+
 		Connection con = getConnection();
-		
+
 		RequestDAO requestDAO = RequestDAO.getInstance();
-		
+
 		requestDAO.setConnection(con);
-		
-		int updateCount = requestDAO.updateArticle(article);
-		
-		if(updateCount > 0) {
+
+		int deleteCount = requestDAO.deleteArticle(article);
+
+		if(deleteCount > 0) {
 			commit(con);
-			isModifySuccess = true;
+			isDeleteSuccess = true;
 		} else {
 			rollback(con);
 		}
-		
+
 		close(con);
-		
-		return isModifySuccess;
+
+		return isDeleteSuccess;
 	}
+
 }

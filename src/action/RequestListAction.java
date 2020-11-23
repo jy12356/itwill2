@@ -31,7 +31,7 @@ public class RequestListAction implements Action {
 		
 		ArrayList<RequestBean> articleList = new ArrayList<RequestBean>();
 		
-		articleList = requestListService.getArticleList(page, limit);	
+		articleList = requestListService.getArticleList(page, limit);
 
 		int maxPage = (int)((double) listCount / limit + 0.95);
 

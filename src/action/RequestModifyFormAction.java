@@ -24,7 +24,7 @@ public class RequestModifyFormAction implements Action {
 		request.setAttribute("article", article);
 
 		forward = new ActionForward();
-		forward.setPath("/sub4/request_board_update.jsp");
+		forward.setPath("/sub4/request_board_modify.jsp");
 		
 		return forward;
 	}

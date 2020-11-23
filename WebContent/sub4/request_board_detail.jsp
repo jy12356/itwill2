@@ -52,31 +52,23 @@
                              <tr>
                                 <td>첨부파일</td>
                                 <td><%
-				if(article.getFile() != null) {
-					%> <a href="sub2/file_down.jsp?file=<%=article.getFile()%>"><%=article.getFile()%></a><%
-				}
-			%></td>
-                            </tr>
-                            <tr>
-                                <td>내용</td>
-                                <td>
-                                    <p>
-                                        <%= article.getContent() %>
-                                    </p>
-                                </td>
+									if(article.getFile() != null) {
+									%> <a href="sub2/file_down.jsp?file=<%=article.getFile()%>"><%=article.getFile()%></a><%
+									} %>
+								</td>
                             </tr>
                         </tbody>
                     </table>
                     <span class="default-btn-wrap">
-                        <a href="FreeBoardList.free" class="btn">목록</a></span>
+                        <a href="RequestList.rq" class="btn">목록</a></span>
                         <%
 //                         if(id != null) {
 //                         	if(id.equals(article.getBoard_id())) {
                         		%>
                         		<span class="default-btn-wrap">
-                        <a href="RequestModifyForm.request?num=<%=article.getNum()%>&page=<%=nowPage%>" class="btn">수정</a></span>
+                        <a href="RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>" class="btn">수정</a></span>
                         		<span class="default-btn-wrap">
-                        <a href="RequestDeletePro.request?num=<%=article.getNum()%>&page=<%=nowPage%>" class="btn">삭제</a></span>
+                        <a href="RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>" class="btn">삭제</a></span>
                         		<% 
 //                         	}
 //                         }

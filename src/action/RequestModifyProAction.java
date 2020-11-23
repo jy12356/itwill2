@@ -14,48 +14,29 @@ public class RequestModifyProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("RequestModifyProAction");
-		
+
 		ActionForward forward = null;
-		
+
 		int num = Integer.parseInt(request.getParameter("num"));
-
+		
+		RequestBean article = new RequestBean();
 		RequestModifyProService requestModifyProService = new RequestModifyProService();
-		boolean isRightUser = requestModifyProService.isArticleWriter(num, request.getParameter("pass"));
 
-		if(!isRightUser) {
+		boolean isModifySuccess = requestModifyProService.modifyArticle(article);
+
+		if (!isModifySuccess) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('수정 권한이 없습니다!')");
+			out.println("alert('글 수정 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
 		} else {
-			RequestBean article = new RequestBean();
-			article.setNum(num);
-			article.setSubject(request.getParameter("subject"));
-			article.setAuthor(request.getParameter("author"));
-			article.setPublisher(request.getParameter("publisher"));
-			article.setPubdate(request.getParameter("pubdate"));
-			article.setIsbn(request.getParameter("isbn"));
-			article.setContent(request.getParameter("content"));
-			
-			boolean isModifySuccess = requestModifyProService.modifyArticle(article);
-
-			if(!isModifySuccess) {
-				response.setContentType("text/html;charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('글 수정 실패!')");
-				out.println("history.back()");
-				out.println("</script>");
-			} else {
-				forward = new ActionForward();
-				forward.setPath("BoardDetail.bo?board_num=" + num + "&page=" + request.getParameter("page"));
-				forward.setRedirect(true);
-			}
-			
+			forward = new ActionForward();
+			forward.setPath("RequestDetail.rq?num=" + num + "&page=" + request.getParameter("page"));
+			forward.setRedirect(true);
 		}
-		
+
 		return forward;
 	}
 
