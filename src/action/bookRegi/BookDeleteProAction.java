@@ -1,5 +1,7 @@
 package action.bookRegi;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,10 +15,36 @@ public class BookDeleteProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = null;
 		int book_num = Integer.parseInt(request.getParameter("book_num"));
+		String title = request.getParameter("title");
+		String isbn = request.getParameter("isbn");
+		System.out.println("1111"+title);
+		System.out.println("222222"+isbn);
+		
 		BookDeleteProService bookDeleteProService = new BookDeleteProService(); 
-		bookDeleteProService.bookdelete(book_num);
-		forward.setPath("");
-		forward.setRedirect(true);
+		boolean isBookExis =  bookDeleteProService.bookExis(book_num);
+		if(!isBookExis) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('삭제에 실패하였습니다.')");
+			out.println("history.back()");
+			out.println("</script>");
+		}else {
+			boolean isDelete = bookDeleteProService.bookdelete(book_num);
+			if(!isDelete) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('삭제에 실패하였습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+			}else {
+				forward = new ActionForward();
+				forward.setPath("BookKindList.bok?title="+ title+"&isbn="+isbn);
+				forward.setRedirect(true);
+			}
+		}
+		
 		return forward;
 	}
 	

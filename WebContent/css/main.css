@@ -689,7 +689,7 @@ display:block;width:19px;height:28px;margin:0;padding:0;text-indent:-999em;float
 .review .review-text-area .review-text > div .text-btn a{margin:0 1px;display:inline-block;line-height:26px;font-size:13px;color:#333;}
 .review .review-text-area .review-text textarea{transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s, background-color ease-in-out .5s;width:100%;height:392px;box-sizing:border-box;border:1px solid #eaeaea;
 border-radius:2px;background:#f4f4f4;padding:24px;font-size:14px;color:#666;line-height:20px;overflow:auto;;}
-.review .review-text-area .review-text textarea:focus{box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);border-color:#17897a;background:#fff;}
+.review .review-text-area .review-text textarea:focus{box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(80 135 99 / 43%);border-color:#17897a;background:#fff;}
 .tab .tab-list{border-bottom:1px solid #cdced1;height:42px;background:#f6f6f6;}
 .tab .tab-list:after{/* content:""; */display:block;clear:both;}
 .tab .tab-list li{float:left;}

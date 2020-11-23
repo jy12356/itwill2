@@ -15,9 +15,10 @@ public class BookDetailAction implements Action {
 		System.out.println("BookDetailAction");
 		ActionForward forward = null;
 		String book_isbn=request.getParameter("isbn");
+		String title=request.getParameter("title");
 		
 		BookDetailService bookDetailService = new BookDetailService();
-		BookBean bookBean = bookDetailService.getBookInfo(book_isbn);
+		BookBean bookBean = bookDetailService.getBookInfo(book_isbn,title);
 		request.setAttribute("bookBean", bookBean);
 		forward = new ActionForward();
 		forward.setPath("/sub1/bookDetail.jsp");
