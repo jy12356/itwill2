@@ -49,7 +49,7 @@ public class RequestListAction implements Action {
 		request.setAttribute("pageInfo", pageInfo);
 
 		forward = new ActionForward();
-		forward.setPath("/sub4/request_board.jsp");
+		forward.setPath("/sub4/request_board_list.jsp");
 		
 		return forward;
 	}
