@@ -259,6 +259,8 @@ public class FreeBoardDAO {
 		System.out.println("DAO - isArticleFreeBoardWriter");
 		boolean isArticleWriter = false;
 		System.out.println("1");
+		System.out.println(board_num);
+		System.out.println(id);
 		PreparedStatement pstmt = null;
 		System.out.println("2");
 
@@ -328,7 +330,7 @@ public class FreeBoardDAO {
 		return updateCount;
 	}
 
-	public int removeArticle(FreeBoardBean article) {
+	public int removeArticle(int board_num) {
 		
 		int deleteCount = 0;
 		
@@ -337,7 +339,7 @@ public class FreeBoardDAO {
 		try {
 			String sql = "DELETE FROM freeboard where board_num=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, article.getBoard_num());
+			pstmt.setInt(1, board_num);
 			deleteCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -350,5 +352,6 @@ public class FreeBoardDAO {
 				
 		return deleteCount;
 	}
+
 
 }

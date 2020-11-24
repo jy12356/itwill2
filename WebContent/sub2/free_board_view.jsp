@@ -14,6 +14,7 @@
         </div>
     </div>
     <div class="contents-wrap">
+    
         <div class="customer">
             <h3 class="coTitle">게시판</h3> 
             <div class="customer-contents">
@@ -64,7 +65,7 @@
                         		<span class="default-btn-wrap">
                         <a href="FreeBoardModifyForm.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>" class="btn">수정</a></span>
                         		<span class="default-btn-wrap">
-                        <a href="FreeBoardDeletePro.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>" class="btn">삭제</a></span>
+                        <a href="FreeBoardDeletePro.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>&id=<%=article.getBoard_id()%>" class="btn">삭제</a></span>
                         		<% 
 //                         	}
 //                         }
