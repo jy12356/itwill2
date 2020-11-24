@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.MemberDeleteFormAction;
+import action.MemberDeleteProAction;
+import action.MemberJoinProService;
 import action.MemberListAction;
-
-import action.MemberWriteProAction;
+import action.MemberLoginProAction;
+import action.MemberModifyProAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -24,25 +26,56 @@ public class MemberFrontController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String command = request.getServletPath();
-		System.out.println("요청 서블릿 주소 : " + command);
+		System.out.println("MemberFrontController : " + command);
 		
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/MemberWriteForm.me")) {
+		if(command.equals("/MemberJoinForm.me")) {
 			forward = new ActionForward();
 			forward.setPath("/sub1/join.jsp");
-		} else if(command.equals("/MemberWritePro.me")) {  
-			action = new MemberWriteProAction();
+		} else if(command.equals("/MemberJoinPro.me")) {  
+			action = new MemberJoinProService();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MemberLoginForm.me")) {
+			System.out.println("MemberLoginForm");
+			try {
+				forward = new ActionForward();
+				forward.setPath("/sub1/login.jsp");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MemberLoginePro.me")) {  
+			action = new MemberLoginProAction();
 			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MemberList.me")) {
+		}else if(command.equals("/MemberModifyForm.me")) {
+			System.out.println("MemberModifyForm");
+			try {
+				forward = new ActionForward();
+				forward.setPath("/sub1/update.jsp");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MemberModifyPro.me")) {  
+			action = new MemberModifyProAction();
 			
-			System.out.println("MemberList.me 로 포워딩!");
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberList.me")) {
+			
+			System.out.println("MemberList.me!");
 			
 			action = new MemberListAction();
 			try {
@@ -62,7 +95,26 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		}
+		} else if(command.equals("/MemberDeletePro.me")) {
+			System.out.println("MemberDeleteForm");
+			
+			action = new MemberDeleteProAction();
+			try {
+				forward = action.execute(request, response);
+				forward = new ActionForward();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/Prac.me")) {
+			System.out.println("Prac");
+			
+			try {
+				forward = new ActionForward();
+				forward.setPath("/sub1/joinPagePrac.jsp");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {
@@ -73,7 +125,7 @@ public class MemberFrontController extends HttpServlet {
 
 				dispatcher.forward(request, response);
 			}
-			// ----------------------------------------------------------------
+			// ----------------------------------------------------------------joinPagePrac.jsp
 		
 		}
 		
