@@ -3,6 +3,9 @@
     pageEncoding="UTF-8"%>
 <%
 	String id = (String)session.getAttribute("id");
+// 	if(id==null) {
+// 		id = "gang";
+// 	}
 	FreeBoardBean article = (FreeBoardBean)request.getAttribute("article");
 	String nowPage = request.getParameter("page");
 %>    
@@ -28,7 +31,7 @@
                             <col width="30%">
                         </colgroup>
                         <tbody>
-                            <tr>
+                            <tr> <!-- 제목 -->
                                 <td colspan="4"><%= article.getBoard_subject() %></td>
                                 
                             </tr>
@@ -56,16 +59,17 @@
                             </tr>
                         </tbody>
                     </table>
-                    <span class="default-btn-wrap">
-                        <a href="FreeBoardList.free" class="btn">목록</a></span>
+                    <div class="btn_inner">
+                        <a href="FreeBoardList.free" class="btn">목록</a>
                         <%
 //                         if(id != null) {
 //                         	if(id.equals(article.getBoard_id())) {
                         		%>
-                        		<span class="default-btn-wrap">
-                        <a href="FreeBoardModifyForm.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>" class="btn">수정</a></span>
-                        		<span class="default-btn-wrap">
-                        <a href="FreeBoardDeletePro.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>&id=<%=article.getBoard_id()%>" class="btn">삭제</a></span>
+                        		
+                        <a href="FreeBoardModifyForm.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>" class="btn">수정</a>
+                        		
+                        <a href="FreeBoardDeletePro.free?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>&id=<%=article.getBoard_id()%>" class="btn">삭제</a>
+                   </div>
                         		<% 
 //                         	}
 //                         }
@@ -78,4 +82,61 @@
     </div>
 
 </section>
+
+<!-- <section> -->
+<!-- 댓글목록 -->
+<!-- 			<div id="comment"> -->
+<!-- 				<ul> -->
+<%-- 				<% --%>
+<!-- // 					for (int i = 0; i < commentList.size(); i++) { -->
+<!-- // 					cb = (CommentBean) commentList.get(i); -->
+<%-- 				%> --%>
+<%-- 				<li class="clear a"><%=cb.getComment_id()%></li> --%>
+<%-- 				<li class="c-size"><%=cb.getComment_content()%></li> --%>
+
+<!-- 				<li class="f-right"> -->
+<%-- 					<% --%>
+<!-- // 						if (id != null) { -->
+<!-- // 							if (id.equals(cb.getComment_id())) { -->
+<%-- 					%> <a href="c_updateForm.jsp?num=<%=bb.getNum()%>&cnum=<%=cb.getCnum()%>&comment_content=<%=cb.getComment_content()%>">수정</a> /  --%>
+<%-- 					<a href="c_delete.jsp?content_num=<%=bb.getNum()%>&cnum=<%=cb.getCnum()%>">삭제</a>  --%>
+<%-- 					<% --%>
+<!-- //  							} else { -->
+<%--  								%><a href="commentcomment.jsp?num=<%=bb.getNum()%>&cnum=<%=cb.getCnum()%>">답글</a> --%>
+ 								
+<%--  								<%  --%>
+<!-- //  							} -->
+							
+<!-- // 						 } -->
+<%--  					%> --%>
+<!-- 				</li> -->
+<%-- 				<% --%>
+<!-- // 					} -->
+<%-- 				%> --%>
+<!-- 					</ul> -->
+<!-- 				</div> -->
+
+<!-- <table> -->
+<!-- 				<tr> -->
+<!-- 					<td colspan="3"> -->
+<!-- 						<form action="commentPro.jsp" method="post"> -->
+<%-- 							<input type="hidden" name="content_num" value="<%=num%>"> --%>
+<%-- 							<input type="hidden" name="id" value="<%=id%>"> <input --%>
+<!-- 								type="hidden" name="board_type" value="1"> -->
+<%-- 							    						<input type="hidden" name="comment_num" value="<%=no %>"> --%>
+<!-- 							<textarea name="comment_content" rows="4" cols="90" -->
+<!-- 								placeholder="댓글 입력" required></textarea> -->
+<%-- 								<% --%>
+								
+<%-- 								%> --%>
+<!-- 							<span style="float: right;"><input type="submit" -->
+<!-- 								value="댓글등록"></span> -->
+<!-- 						</form> -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
+<!-- 			</table> -->
+
+
+<!-- </section> -->
+
 <jsp:include page="../include/footer.jsp"/>

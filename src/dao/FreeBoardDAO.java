@@ -41,7 +41,7 @@ public class FreeBoardDAO {
 	}
 
 	// 글 등록 작업
-	public int insertArticle(FreeBoardBean boardBean) {
+	public int insertArticle(FreeBoardBean freeBoardBean) {
 		// Service 클래스로부터 BoardBean 객체를 전달받아
 		// DB의 board 테이블에 INSERT 작업 수행하고 결과(int타입)를 리턴
 		System.out.println("BoardDAO - insertArticle()");
@@ -72,11 +72,11 @@ public class FreeBoardDAO {
 
 			// BoardBean 객체로부터 데이터를 꺼내서 쿼리문 ? 대체
 			pstmt.setInt(1, num); // 글번호
-			pstmt.setString(2, boardBean.getBoard_subject());
-			pstmt.setString(3, boardBean.getBoard_id());
-			pstmt.setString(4, boardBean.getBoard_content());
-			pstmt.setString(5, boardBean.getBoard_file());
-			pstmt.setInt(6, boardBean.getBoard_readcount());
+			pstmt.setString(2, freeBoardBean.getBoard_subject());
+			pstmt.setString(3, freeBoardBean.getBoard_id());
+			pstmt.setString(4, freeBoardBean.getBoard_content());
+			pstmt.setString(5, freeBoardBean.getBoard_file());
+			pstmt.setInt(6, freeBoardBean.getBoard_readcount());
 
 			// INSERT 구문 실행 결과값을 int형 변수 insertCount 에 저장
 			insertCount = pstmt.executeUpdate();
@@ -312,14 +312,15 @@ public class FreeBoardDAO {
 		PreparedStatement pstmt = null;
 
 		try {
-			String sql = "UPDATE freeboard SET board_id=?,board_subject=?,board_content=? WHERE board_num=?";
+			String sql = "UPDATE freeboard SET board_id=?,board_subject=?,board_content=?, board_file=? WHERE board_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, article.getBoard_id());
 			pstmt.setString(2, article.getBoard_subject());
 			pstmt.setString(3, article.getBoard_content());
-			pstmt.setInt(4, article.getBoard_num());
+			pstmt.setString(4, article.getBoard_file());
+			pstmt.setInt(5, article.getBoard_num());
 			updateCount = pstmt.executeUpdate();
-
+			System.out.println(article.getBoard_file());
 		} catch (SQLException e) {
 			System.out.println("updateArticle() 오류! - " + e.getMessage());
 			e.printStackTrace();
