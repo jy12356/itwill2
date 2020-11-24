@@ -22,33 +22,33 @@
                     <table summary="게시판" class="customer-notice">
                         <caption>게시판</caption>
                         <colgroup>
-                            <col width="15%">
-                            <col width="*">
+                            <col width="20%">
+                            <col width="30%">
+                            <col width="20%">
+                            <col width="30%">
                         </colgroup>
                         <tbody>
                             <tr>
-                                <td>제목</td>
-                                <td><%= article.getBoard_subject() %></td>
+                                <td colspan="4"><%= article.getBoard_subject() %></td>
+                                
                             </tr>
                               <tr>
-                                <td>작성자</td>
-                                <td><%= article.getBoard_id() %></td>
-                            </tr>
-                            <tr>
-                                <td>등록일</td>
-                                <td><%= article.getBoard_date() %></td>
+                                <td class="th">작성자</td>
+                                <td class="td"><%= article.getBoard_id() %></td>
+                                <td class="th">등록일</td>
+                                <td class="td"><%= article.getBoard_date() %></td>
                             </tr>
                              <tr>
-                                <td>첨부파일</td>
-                                <td><%
+                                <td class="th">첨부파일</td>
+                                <td colspan="3" class="td"><%
 				if(article.getBoard_file() != null) {
 					%> <a href="sub2/file_down.jsp?file=<%=article.getBoard_file()%>"><%=article.getBoard_file()%></a><%
 				}
 			%></td>
                             </tr>
                             <tr>
-                                <td>내용</td>
-                                <td>
+                                <td class="th">내용</td>
+                                <td colspan="3" class="td">
                                     <p>
                                         <%= article.getBoard_content() %>
                                     </p>
