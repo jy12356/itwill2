@@ -15,8 +15,9 @@ import action.bookRegi.BookDetailAction;
 import action.bookRegi.BookKindListAction;
 import action.bookRegi.BookListAction;
 import action.bookRegi.BookModifyAction;
+import action.bookRegi.BookModifyProAction;
+import action.bookRegi.BookRegiSerchAction;
 import action.bookRegi.BookWriteProAction;
-import svc.book.BookModifyProAction;
 import vo.ActionForward;
 @WebServlet("*.bok") 
 public class BookController extends HttpServlet {
@@ -84,12 +85,19 @@ public class BookController extends HttpServlet {
 				forward =  action.execute(request, response);
 			}catch (Exception e) {
 				e.printStackTrace();
-			}
-			
-			
+			}			
 		}else if(command.equals("/BookList.bok")) {
 			System.out.println("BookList.bok 포워딩");
 			action = new BookListAction();
+			try {				
+				forward =  action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BookRegiSerch.bok")) {
+			System.out.println("BookRegiSerch.bok 포워딩");
+			action = new BookRegiSerchAction();
 			try {				
 				forward =  action.execute(request, response);
 				

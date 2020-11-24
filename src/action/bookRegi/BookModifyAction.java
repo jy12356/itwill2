@@ -4,7 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import svc.book.BookDetailService;
 import vo.ActionForward;
+import vo.BookBean;
 
 public class BookModifyAction implements Action {
 
@@ -12,13 +14,14 @@ public class BookModifyAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ActionForward forward = null;
-		int book_num = Integer.parseInt(request.getParameter("board_num"));
-		
-		
+		String page = request.getParameter("page");
+		String title = request.getParameter("title");
+		String isbn = request.getParameter("isbn");
+		BookDetailService bookDetailService = new BookDetailService();
+		BookBean bookBean = bookDetailService.getBookInfo(isbn,title);
+		request.setAttribute("bookBean", bookBean);
 		forward = new ActionForward();
-		forward.setPath("BookDetail.bok?book_num?"+book_num);
-		forward.setRedirect(true);
-		
+		forward.setPath("/adminPage/book_modifyForm.jsp?title="+title+"&isbn="+isbn+"&page="+page);
 		return forward;
 	}
 
