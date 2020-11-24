@@ -15,12 +15,11 @@ public class RequestListService {
 
 		Connection con = getConnection();
 
-		RequestDAO boardDAO = RequestDAO.getInstance();
-				
-		// 3(공통). BoardDAO 객체에 Connection 객체 전달
+		RequestDAO requestDAO = RequestDAO.getInstance();
+
 		requestDAO.setConnection(con);
 
-		listCount = boardDAO.selectListCount();
+		listCount = requestDAO.selectListCount();
 
 		close(con);
 

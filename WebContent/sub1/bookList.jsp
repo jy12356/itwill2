@@ -83,13 +83,13 @@
 								%>
                                 <li>
                                     <div class="figure">
-                                        <a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>&page=<%=nowPage%>">
-                                            <span class="rm_br"><img src="/bookUpload/<%=bookList.get(i).getImage()%>" alt="도서 이미지 - 식스센스" /></span>
+                                        <a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>&page=<%=nowPage%>&title=<%=bookList.get(i).getTitle() %>">
+                                            <span class="rm_br"><img src="bookUpload/<%=bookList.get(i).getImage()%>" alt="도서 이미지 - 식스센스" /></span>
                                             <span class="light"></span>
                                         </a>
                                     </div>
                                     <div class="hot-info">
-                                        <p class="hot-title"><a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>&page=<%=nowPage%>"><%=bookList.get(i).getTitle() %></a></p>
+                                        <p class="hot-title"><a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>&page=<%=nowPage%>&title=<%=bookList.get(i).getTitle() %>"><%=bookList.get(i).getTitle() %></a></p>
                                         <p class="hot-author"><%=bookList.get(i).getAuthor()%><em>|</em><%=bookList.get(i).getPublisher()%><em>|</em><%=bookList.get(i).getPubdate()%></p>
                                         <div class="hot-score">
                                             <p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 <%=bookList.get(i).getCount()%>권</p>
@@ -140,6 +140,9 @@
                             	<li>등록된 도서가 없습니다.</li>
                             </ul>
                     	</div>
+	                   	<div class="btn_inner">
+								<a href="BookWriteForm.bok" class="btn">글쓰기</a>
+						</div>
                     </div>
 					<%
 					}

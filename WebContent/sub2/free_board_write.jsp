@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <% 
 // 글쓰기 폼
-// String id = (String) session.getAttribute("id"); // 아이디가져오기
+String id = (String) session.getAttribute("id"); // 아이디가져오기
+	if(id==null) {
+		id = "gang";
+	}
 // if(id==null) { // 로긴안한상태면 로그인화면으로
 // 	response.sendRedirect("../member.login.jsp");
 // }
@@ -11,7 +14,7 @@
 <section class="sub">
     <div class="category-nav">
         <div class="category-nav-inner">
-            <p><a href="../main/index.jsp">HOME</a> > 게시판</p>
+            <p><a href="main/index.jsp">HOME</a> > 게시판</p>
         </div>
     </div>
     <div class="contents-wrap">
@@ -19,7 +22,7 @@
             <h3 class="coTitle">글 작성</h3> 
             <div class="customer-contents">
                 <div class="customer-inner">
-                	<form action="FreeBoardWritePro.bo" method="post"
+                	<form action="FreeBoardWritePro.free" method="post"
                 	enctype="multipart/form-data" name="free_board_writeForm">
 	                    <table summary="게시판" class="customer-notice">
 	                        <caption>게시판</caption>
@@ -33,24 +36,20 @@
 	                            <tr>
 	                                <td>제목</td>
 	                                <td colspan="3">
-	                                	<input type="text" name="title">
+	                                	<input type="text" name="title" required="required">
 	                                </td>
 	                            </tr>
 	                            
 	                            <tr>
 	                            	<td>작성자</td>
 	                            	<td colspan="3">
-	                            		<input type="text" name="id" >
+	                            		<input type="text" name="id" value="<%=id%>" readonly="readonly">
 	                            	</td>
-<!-- 	                            	<td class="th">비밀번호</td> -->
-<!-- 	                            	<td> -->
-<!-- 	                            		<input type="text" name="pass"> -->
-<!-- 	                            	</td> -->
 	                            </tr>
 	                            <tr>
 	                                <td>내용</td>
 	                                <td colspan="3">
-	                                    <textarea name="desc"></textarea>
+	                                    <textarea name="desc" required="required"></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
@@ -63,7 +62,7 @@
 	                    </table>
 	                    <div class="default-btn-wrap">
 	                    	<input type="submit" class="btn" value="글쓰기">
-	                        <a href="free_board.jsp" class="btn">목록</a>
+	                        <a href="FreeBoardList.free" class="btn">목록</a>
 	                    </div>
                     </form>
                 </div>
