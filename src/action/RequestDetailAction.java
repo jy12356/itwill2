@@ -15,15 +15,16 @@ public class RequestDetailAction implements Action {
 		
 		ActionForward forward = null;
 		
-		int num = Integer.parseInt(request.getParameter("board_num"));
+		int num = Integer.parseInt(request.getParameter("num"));
 		
-		RequestDetailService boardDetailService = new RequestDetailService();
-		RequestBean article = boardDetailService.getArticle(num);
+		RequestDetailService requestDetailService = new RequestDetailService();
+		RequestBean article = requestDetailService.getArticle(num);
 		
 		request.setAttribute("article", article);
+
 		
 		forward = new ActionForward();
-		forward.setPath("/sub4/request_board_view.jsp");
+		forward.setPath("/sub4/request_board_detail.jsp");
 		
 		return forward;
 	}
