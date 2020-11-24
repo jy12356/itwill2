@@ -42,7 +42,7 @@
                                 <td class="th">첨부파일</td>
                                 <td colspan="3" class="td"><%
 				if(article.getBoard_file() != null) {
-					%> <a href="sub2/file_down.jsp?file=<%=article.getBoard_file()%>"><%=article.getBoard_file()%></a><%
+					%> <a class="file" href="sub2/file_down.jsp?file=<%=article.getBoard_file()%>"><%=article.getBoard_file()%></a><%
 				}
 			%></td>
                             </tr>
