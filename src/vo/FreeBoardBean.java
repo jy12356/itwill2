@@ -1,8 +1,8 @@
-package vo.freeboard;
+package vo;
 
 import java.sql.Date;
 
-public class freeBoardBean {
+public class FreeBoardBean {
 	private int board_num;
 	private String board_subject;
 	private String board_id;

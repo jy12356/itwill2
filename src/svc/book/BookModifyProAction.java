@@ -1,4 +1,4 @@
-package action.bookRegi;
+package svc.book;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -6,20 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import vo.ActionForward;
 
-public class BookModifyAction implements Action {
+public class BookModifyProAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		ActionForward forward = null;
-		int book_num = Integer.parseInt(request.getParameter("board_num"));
-		
-		
-		forward = new ActionForward();
-		forward.setPath("BookDetail.bok?book_num?"+book_num);
-		forward.setRedirect(true);
+		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		
 		return forward;
 	}
-
+	
 }

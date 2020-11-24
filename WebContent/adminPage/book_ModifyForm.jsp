@@ -29,7 +29,7 @@
     </script>
     <div class="contents-wrap">
         <div class="customer">
-            <h3 class="subTit">책등록</h3> 
+            <h3 class="subTit">책정보수정</h3> 
             <div class="customer-contents">
                 <div class="customer-inner">
                 	<div class="bookregiSearch-inner">
@@ -38,8 +38,8 @@
 							<input type="button" onclick="bookSearchSubmit()">
 	                	</div>
 	                	<div class="serachBookResult">
-	                		<table summary="책검색결과" class="customer-table notice">
-		                        <caption>게시판</caption>
+	                		<table summary="책정보수정" class="customer-table notice">
+		                        <caption>책정보수정</caption>
 		                        <colgroup>
 		                            <col width="10%">
 		                            <col width="30%">
@@ -71,9 +71,9 @@
 		                    </table>	
 	                	</div>
                 	</div>
-                	<form action="BookWritePro.bok" method="post" name="bookRegForm" enctype="multipart/form-data">
-	                    <table summary="책등록" class="customer-notice">
-	                        <caption>책등록</caption>
+                	<form action="BookModifyPro.bok" method="post" name="bookRegForm" enctype="multipart/form-data">
+	                    <table summary="책정보수정" class="customer-notice">
+	                        <caption>책정보수정</caption>
 	                        <colgroup>
 	                            <col width="15%">
 	                            <col width="35%">
@@ -84,7 +84,7 @@
 	                            <tr>
 	                                <td class="th">책제목</td>
 	                                <td colspan="3" class="td">
-	                                	<input type="text" name="title">
+	                                	<input type="text" name="title" value="">
 	                                </td>
 	                            </tr>
 	                            <tr>
@@ -144,22 +144,23 @@
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">저자</td>
-	                            	<td class="td"><input type="text" name="author"></td>
+	                            	<td class="td"><input type="text" name="author" value=""></td>
 	                            	<td class="th">출판사</td>
-	                            	<td class="td"><input type="text" name="publisher"></td>
+	                            	<td class="td"><input type="text" name="publisher" value=""></td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">저자 정보</td>
 	                            	<td class="td" colspan="3">
 	                            	 	<textarea rows="" cols="" name="author_info">
+	                            	 		
 	                                    </textarea>
 	                            	</td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">ISBN번호</td>
-	                            	<td class="td"><input type="text" name="isbn"></td>
+	                            	<td class="td"><input type="text" name="isbn" value=""></td>
 	                            	<td class="th">출판날짜</td>
-	                            	<td class="td"><input type="text" id="pubDatePicker" name="pubdate"></td>
+	                            	<td class="td"><input type="text" id="pubDatePicker" name="pubdate" value=""></td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">목차</td>

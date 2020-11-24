@@ -48,8 +48,8 @@
 .s-btn:hover span:nth-child(4){bottom:0;right:0;}
 /* 일반 버튼 커스텀 */
 .btn_inner{margin: 15px 0 10px;text-align: right;}
-.btn_inner .btn{padding: 7px 10px;}
-.btn{text-align:center;color:#333;padding:0 8px;border:1px solid #c1c1c1;box-shadow:0 2px #f2f2f2;font-size:13px;line-height:23px;border-radius:4px;font-weight:600;}
+.btn_inner input[type="button"].btn,.btn_inner button.btn,.btn_inner .btn{padding: 7px 10px;}
+input[type="button"].btn,button.btn,.btn{text-align:center;color:#333;padding:0 8px;border:1px solid #c1c1c1;box-shadow:0 2px #f2f2f2;font-size:13px;line-height:23px;border-radius:4px;font-weight:600;}
 .default-btn-wrap{text-align:center;}
 .default-btn-wrap input[type="submit"],
 .default-btn-wrap a{display:inline-block;line-height:30px;height:32px;box-sizing:border-box;width:81px;margin:0 2px;color:#333;font-weight:bold;font-size:13px;background: #fff;}

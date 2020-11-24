@@ -32,14 +32,14 @@
 <title>e북포털 북큐브</title>
 <link rel="shortcut icon" type="image/x-icon" href="images/icon/bookcube_ci.ico">
 <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css">
-<link type="text/css" rel="stylesheet" href="css/reset.css" />
 <link type="text/css" rel="stylesheet" href="css/common.css" />
+<link type="text/css" rel="stylesheet" href="css/reset.css" />
 <link type="text/css" rel="stylesheet" href="css/main.css?v=20200917" />
 <link type="text/css" rel="stylesheet" href="css/slick.css" />
 <link type="text/css" rel="stylesheet"  href="js/lib/swipe/swiper.css" />
-<script type="text/javascript" src="js/bookcube.js?200519"></script>
-<script type="text/javascript" src="js/lib/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="js/lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/bookcube.js?200519"></script>
 <script type="text/javascript" src="js/lib/slick.min.js"></script>
 <script type="text/javascript" src="js/slimScroll.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
