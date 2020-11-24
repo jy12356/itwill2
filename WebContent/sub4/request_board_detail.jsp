@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String id = (String)session.getAttribute("id");
+		id="id";
 	RequestBean article = (RequestBean)request.getAttribute("article");
 	String nowPage = request.getParameter("page");
 %>    
@@ -66,9 +67,9 @@
 //                         	if(id.equals(article.getBoard_id())) {
                         		%>
                         		<span class="default-btn-wrap">
-                        <a href="RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>" class="btn">수정</a></span>
+                        <a href="RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=id %>" class="btn">수정</a></span>
                         		<span class="default-btn-wrap">
-                        <a href="RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>" class="btn">삭제</a></span>
+                        <a href="RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=id %>" class="btn">삭제</a></span>
                         		<% 
 //                         	}
 //                         }

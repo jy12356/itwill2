@@ -19,12 +19,12 @@ public class RequestModifyProAction implements Action {
 
 		int num = Integer.parseInt(request.getParameter("num"));
 		
-		RequestBean article = new RequestBean();
+		System.out.println("1");
 		RequestModifyProService requestModifyProService = new RequestModifyProService();
-
-		boolean isModifySuccess = requestModifyProService.modifyArticle(article);
-
-		if (!isModifySuccess) {
+		System.out.println("2");
+		boolean isRightUser = requestModifyProService.isArticleRequestWriter(num, request.getParameter("id"));
+		System.out.println("3");
+		if (!isRightUser) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -32,9 +32,29 @@ public class RequestModifyProAction implements Action {
 			out.println("history.back()");
 			out.println("</script>");
 		} else {
-			forward = new ActionForward();
-			forward.setPath("RequestDetail.rq?num=" + num + "&page=" + request.getParameter("page"));
-			forward.setRedirect(true);
+			RequestBean article = new RequestBean();
+			article.setNum(num);
+			article.setSubject(request.getParameter("subject"));
+			article.setSubject(request.getParameter("booktitle"));
+			article.setSubject(request.getParameter("publisher"));
+			article.setSubject(request.getParameter("author"));
+			article.setContent(request.getParameter("content"));
+			
+			boolean isModifySuccess = requestModifyProService.modifyArticle(article);
+
+			if(!isModifySuccess) {
+				response.setContentType("text/html;charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('글 수정 실패!')");
+				out.println("history.back()");
+				out.println("</script>");
+			} else {
+				forward = new ActionForward();
+				forward.setPath("RequestDetail.rq?num=" + num + "&page=" + request.getParameter("page"));
+				forward.setRedirect(true);
+			}
+			
 		}
 
 		return forward;
