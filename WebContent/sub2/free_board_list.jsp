@@ -52,9 +52,12 @@ int listCount = pageInfo.getListCount();
 
 						<caption>자유게시판</caption>
 						<colgroup>
-							<col width="75%">
-							<col width="10%">
-							<col width="*">
+							<col style="width: 8%;">
+							<col style="width: 50%;">
+							<col style="width: 20%;">
+							<col style="width: 15%;">
+							<col style="width: 7%;">
+
 						</colgroup>
 						<%
 							if (articleList != null && listCount > 0) {
@@ -74,7 +77,7 @@ int listCount = pageInfo.getListCount();
 							for (int i = 0; i < articleList.size(); i++) {
 							%>
 							<tr>
-								<td align="center"><%=articleList.get(i).getBoard_num()%></td>
+								<td class="tac"><%=articleList.get(i).getBoard_num()%></td>
 								<td>
 									<%
 										if (articleList.get(i).getBoard_re_lev() != 0) {
@@ -84,9 +87,8 @@ int listCount = pageInfo.getListCount();
  	}
  %> ▶ <%
  	}
- %> &nbsp;&nbsp; 
- 
- 								<a href="FreeBoardDetail.free?board_num=<%=articleList.get(i).getBoard_num()%>&page=<%=nowPage%>">
+ %>  <a
+									href="FreeBoardDetail.free?board_num=<%=articleList.get(i).getBoard_num()%>&page=<%=nowPage%>">
 										<%=articleList.get(i).getBoard_subject()%>
 								</a>
 								</td>
