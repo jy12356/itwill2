@@ -19,12 +19,12 @@ public class RequestDeleteProAction implements Action {
 
 		int num = Integer.parseInt(request.getParameter("num"));
 
-		RequestBean article = new RequestBean();
-		RequestDeleteProService boardDeleteProService = new RequestDeleteProService();
-	
-		boolean isArticleWriter = boardDeleteProService.removeArticle(article);
+		RequestDeleteProService requestDeleteProService = new RequestDeleteProService();
+		
+		boolean isRightUser = requestDeleteProService.isArticleRequestWriter(num, request.getParameter("id"));
 
-		if(!isArticleWriter) {
+		
+		if(!isRightUser) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -32,7 +32,9 @@ public class RequestDeleteProAction implements Action {
 			out.println("history.back()");
 			out.println("</script>");
 		} else {
-				boolean isDeleteSuccess = boardDeleteProService.removeArticle(board_num);
+			RequestBean article = new RequestBean();
+			article.setNum(num);
+			boolean isDeleteSuccess = requestDeleteProService.removeArticle(article);
 
 			if(!isDeleteSuccess) {
 				response.setContentType("text/html;charset=UTF-8");
@@ -43,8 +45,7 @@ public class RequestDeleteProAction implements Action {
 				out.println("</script>");
 			} else {
 				forward = new ActionForward();
-				forward.setPath(
-						"BoardList.bo?page=" + request.getParameter("page"));
+				forward.setPath("RequestList.rq?page=" + request.getParameter("page"));
 				forward.setRedirect(true);
 			}
 		}

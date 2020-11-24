@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String)session.getAttribute("id");
+		id="id";
 	RequestBean article = (RequestBean)request.getAttribute("article");
 	String nowPage = request.getParameter("page");
 %>
