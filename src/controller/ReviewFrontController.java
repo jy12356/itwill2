@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.review.ReviewDeleteProAction;
 import action.review.ReviewListAction;
 import action.review.ReviewWriteProAction;
 import vo.ActionForward;
@@ -44,6 +45,15 @@ public class ReviewFrontController extends HttpServlet {
 		} else if(command.equals("/ReviewWritePro.re")) {
 			System.out.println("ReviewWritePro.re 포워딩");
 			action = new ReviewWriteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
+		} else if(command.equals("/ReviewDeletePro.re")) {
+			System.out.println("ReviewDeletePro.re 포워딩");
+			action = new ReviewDeleteProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

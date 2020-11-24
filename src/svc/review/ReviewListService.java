@@ -1,33 +1,48 @@
 package svc.review;
 
+import static db.JdbcUtil.*;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.ReviewDAO;
 import vo.ReviewBean;
 
-import static db.JdbcUtil.*;
-
 public class ReviewListService {
 
-	public ReviewBean getArticleList(int num) {
-		
-		System.out.println("ReviewListService - getArticleList()");
+	public int getListCount() {
+		System.out.println("ReviewListService - 1. getListCount");
+	
+		int listCount = 0;
 		
 		Connection con = getConnection();
 		
-		ReviewDAO article = ReviewDAO.getInstance();
+		ReviewDAO reviewDAO = ReviewDAO.getInstance();
 		
-		article.setConnection(con);
+		reviewDAO.setConnection(con);
 		
-//		ReviewBean article = reviewDAO.selectArticleList();
-		
-		// 임시 확인용 BoardBean 객체 내용 출력
-//		System.out.println("글 내용 : " + article.getContent());
+		listCount = reviewDAO.selectListCount();
 		
 		close(con);
 		
-		return article;
+		return listCount;
 	}
 
+	public ArrayList<ReviewBean> getArticleList(int page, int limit) {
+		System.out.println("ReviewListService - 2. getArticleList");
+		
+		ArrayList<ReviewBean> articleList = null;
+		
+		Connection con = getConnection();
+		
+		ReviewDAO reviewDAO = ReviewDAO.getInstance();
+		
+		reviewDAO.setConnection(con);
+		
+		articleList = reviewDAO.selectArticleList(page, limit);
+		
+		close(con);
+
+		return articleList;
+	}
 }
