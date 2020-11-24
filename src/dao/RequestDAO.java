@@ -234,7 +234,7 @@ public class RequestDAO {
 			pstmt.setString(4, article.getPubdate());
 			pstmt.setString(5, article.getIsbn());
 			pstmt.setString(6, article.getContent());
-			pstmt.setNString(7, article.getFile());
+			pstmt.setString(7, article.getFile());
 			pstmt.setInt(8, article.getNum());
 			updateCount = pstmt.executeUpdate();
 
