@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String)session.getAttribute("id");
-		
+		id="id";
 	RequestBean article = (RequestBean)request.getAttribute("article");
 	String nowPage = request.getParameter("page");
 %>
@@ -55,7 +55,7 @@
 									</tr>
 									<tr>
 										<th>첨부 내용 </th>
-										<td><textarea name="content" value="<%=article.getContent()%>"></textarea></td>
+										<td><textarea name="content"><%=article.getContent()%></textarea></td>
 									</tr>
 									<tr>
 										<th>파일첨부</th>

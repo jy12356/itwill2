@@ -15,6 +15,8 @@ import action.RequestDetailAction;
 import action.RequestListAction;
 import action.RequestModifyFormAction;
 import action.RequestModifyProAction;
+import action.RequestReplyFormAction;
+import action.RequestReplyProAction;
 import action.RequestWriteProAction;
 import vo.ActionForward;
 
@@ -65,6 +67,24 @@ public class RequestFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		} else if(command.equals("/RequestReplyForm.rq")) {
+			action = new RequestReplyFormAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/RequestReplyPro.rq")) {
+			action = new RequestReplyProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
+			
 		} else if(command.equals("/RequestModifyForm.rq")) {
 			action = new RequestModifyFormAction();
 			
@@ -82,6 +102,7 @@ public class RequestFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 		} else if(command.equals("/RequestDeleteForm.rq")) {
 			forward = new ActionForward();
 			forward.setPath("/sub4/request_board_delete.jsp");

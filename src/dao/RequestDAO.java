@@ -248,6 +248,61 @@ public class RequestDAO {
 		return updateCount;
 	}
 
+	// 답글 등록
+	public int insertReplyArticle(RequestBean article) {
+		int insertCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			int num = 1;
+
+			String sql = "SELECT MAX(num) FROM bookreq";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				num = rs.getInt(1) + 1;
+			}
+
+			int re_ref = article.getRe_ref(); // 기존글 참조번호
+			int re_lev = article.getRe_lev(); // 기존글 들여쓰기 값
+			int re_seq = article.getRe_seq(); // 기존글 순서번호
+
+			sql = "UPDATE bookreq SET re_seq=re_seq+1 WHERE re_ref=? AND re_seq>?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, re_ref);
+			pstmt.setInt(2, re_seq);
+			pstmt.executeUpdate();
+			
+			re_lev += 1;
+			re_seq += 1;
+
+			sql = "INSERT INTO bookreq VALUES(?,?,?,?,?,?,?,?,?,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, article.getId());
+			pstmt.setString(3, article.getSubject());
+			pstmt.setString(4, article.getContent());
+			pstmt.setString(5, ""); // 파일업로드 생략
+			pstmt.setInt(6, re_ref);
+			pstmt.setInt(7, re_lev);
+			pstmt.setInt(8, re_seq);
+			pstmt.setInt(9, 0);
+			insertCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("insertReplyArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return insertCount;
+	}
+
 	// 글 삭제
 	public int removeArticle(RequestBean article) {
 		int deleteCount = 0;
