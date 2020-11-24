@@ -20,6 +20,10 @@ public class QnaModifyProAction implements Action {
 //		System.out.println(Integer.parseInt(request.getParameter("board_num")));
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		QnaBean article = new QnaBean();
+		article.setQna_genre(request.getParameter("qna_genre"));
+		article.setTitle(request.getParameter("title"));
+		article.setContent(request.getParameter("content"));
+		article.setBoard_num(board_num);
 		QnaModifyProService qnaModifyProService = new QnaModifyProService();
 		boolean isModifySuccess = qnaModifyProService.modifyArticle(article);
 		

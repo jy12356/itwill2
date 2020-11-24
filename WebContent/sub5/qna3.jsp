@@ -38,7 +38,7 @@
 						<div class="customer-use-wrap">
 							<ul class="customer-s-menu one">
 								<li><a href="QnaWriteForm.qna" class="">1:1 문의하기</a></li>
-								<li><a href="qna2.html" class="on">문의 내역 확인</a></li>
+								<li><a href="QnaList.qna" class="on">문의 내역 확인</a></li>
 							</ul>
 							<div class="onebyone-step">
 								<p>
@@ -66,7 +66,8 @@
 								<th>
 									문의유형
 								</th>
-									<td align="center">오류문의 &gt;<%=article.getQna_genre() %></td>
+									<td align="center">오류문의 &gt;<%=article.getQna_genre() %>
+									</td>
 							</tr>
 							<tr>
 								<th>
@@ -85,7 +86,7 @@
 							</table>
 							<div class="one-btn">
 								<input type="button" value="수정" onclick="location.href='QnaModifyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
-								<input type="button" class="vs1Del" value="삭제" onclick="location.href='QnaDeleteForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" class="vs1Del" value="삭제" onclick="location.href='QnaDeletePro.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
 								<input type="button" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
 								<input type="button" value="답변" onclick="location.href='BoardReplyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
 							</div>

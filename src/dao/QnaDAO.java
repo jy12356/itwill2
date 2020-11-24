@@ -54,7 +54,6 @@ public class QnaDAO {
 			pstmt.setInt(7, num); // 참조글 번호(새글이므로 자신이 참조)
 			pstmt.setInt(8, qnaBean.getRe_lev());
 			pstmt.setInt(9, qnaBean.getRe_seq());
-			
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -145,7 +144,6 @@ public class QnaDAO {
 		QnaBean article = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		System.out.println("QnaDAO-selectArticle"+board_num);
 		
 		try {
 			String sql = "select * from qna where board_num=?";
@@ -157,9 +155,9 @@ public class QnaDAO {
 				article = new QnaBean();
 				article.setBoard_num(rs.getInt("board_num"));
 				article.setId(rs.getString("id"));
+				article.setQna_genre(rs.getString("qna_genre"));
 				article.setTitle(rs.getString("title"));
 				article.setContent(rs.getString("content"));
-				article.setQna_genre(rs.getString("qna_genre"));
 				article.setRe_ref(rs.getInt("re_ref"));
 				article.setRe_lev(rs.getInt("re_lev"));
 				article.setRe_seq(rs.getInt("re_seq"));
@@ -181,12 +179,10 @@ public class QnaDAO {
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
 		try {
-		String sql = "update qna "
-				+ "set title=?, qna_genre=? content=? "
-				+ "where board_num= ?";
+		String sql = "update qna set qna_genre=?,title=?,content=? where board_num=?";
 		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, article.getTitle());
-		pstmt.setString(2, article.getQna_genre());
+		pstmt.setString(1, article.getQna_genre());
+		pstmt.setString(2, article.getTitle());
 		pstmt.setString(3, article.getContent());
 		pstmt.setInt(4, article.getBoard_num());
 		updateCount = pstmt.executeUpdate();
@@ -198,6 +194,26 @@ public class QnaDAO {
 		}
 		
 		return updateCount;
+	}
+
+	//글 삭제
+	public int deleteArticle(int board_num) {
+		int deleteCount = 0;
+		PreparedStatement pstmt = null;
+		System.out.println("board_num = " + board_num);
+		try {
+			String sql = "DELETE FROM qna WHERE board_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			deleteCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("deleteArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return deleteCount;
 	}
 	
 	

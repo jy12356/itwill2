@@ -41,7 +41,7 @@ int listCount = pageInfo.getListCount();
 							<a href="QnaWriteForm.qna" class="">1:1 문의하기</a>
 							</li>
 							<li>
-							<a href="qna2.html" class="on">문의 내역 확인</a>
+							<a href="QnaList.qna" class="on">문의 내역 확인</a>
 							</li>
 						</ul>
 						<div class="onebyone-step">

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.qna.QnaModifyFormAction;
 import action.qna.QnaModifyProAction;
+import action.qna.QnaReplyFormAction;
+import action.qna.QnaDeleteProAction;
 import action.qna.QnaDetailAction;
 import action.qna.QnaListAction;
 import action.qna.QnaWriteProAction;
@@ -67,6 +69,22 @@ public class BoardQnaController extends HttpServlet {
 			}
 		}else if(command.equals("/QnaModifyPro.qna")) {
 			action = new QnaModifyProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/QnaDeletePro.qna")) {
+			action = new QnaDeleteProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/QnaReplyForm.qna")) {
+			action = new QnaReplyFormAction();
 			
 			try {
 				forward = action.execute(request, response);

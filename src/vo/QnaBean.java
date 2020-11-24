@@ -18,6 +18,7 @@ public class QnaBean {
 	
 	
 	
+	
 	public int getRe_ref() {
 		return re_ref;
 	}
