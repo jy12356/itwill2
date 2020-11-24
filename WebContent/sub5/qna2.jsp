@@ -88,6 +88,7 @@ int listCount = pageInfo.getListCount();
 						<a href="QnaDetail.qna?board_num=<%=articleList.get(i).getBoard_num() %>&page=<%=nowPage %>">
 						<%=articleList.get(i).getTitle() %>
 						</a>
+						
 							</td>
 							<td align="center"><%=articleList.get(i).getQna_genre() %></td>
 							<td align="center"><%=articleList.get(i).getDate() %></td>
