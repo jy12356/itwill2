@@ -4,7 +4,8 @@
 <% 
 	request.setCharacterEncoding("utf-8"); 
 	BookBean bookBean=(BookBean)request.getAttribute("bookBean"); 
-	String nowPage=request.getParameter("page"); %>
+	String nowPage=request.getParameter("page"); 
+%>
 <section class="sub">
 <div class="category-nav">
 	<div class="category-nav-inner">
@@ -96,7 +97,7 @@
 						<a href="javascript:;" data-order-type="buy" class="d-basket"><span>책바구니</span></a>
 						<a href="javascript:instant_view('920026812','buy','200906066');" class="effect-btn">찜바구니</a>
 						<a href="BookKindList.bok?title=<%=bookBean.getTitle() %>&isbn=<%=bookBean.getIsbn() %>" class="effect-btn">삭제하기</a>
-						<a href="BookKindList.boktitle=<%=bookBean.getTitle() %>&isbn=<%=bookBean.getIsbn() %> " class="effect-btn">수정하기</a>
+						<a href="BookModify.bok?title=<%=bookBean.getTitle()%>&isbn=<%=bookBean.getIsbn() %>&page=<%=nowPage%>" class="effect-btn">수정하기</a>
 					</div>
 				</div>
 			</div>

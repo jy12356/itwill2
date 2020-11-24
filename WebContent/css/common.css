@@ -93,7 +93,7 @@ box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);}
 /*게시판폼*/
 .customer-table{width:100%;}
 .customer-table thead th{line-height:33px;background:#f4f4f4;color:#333;}
-.customer-table tbody td{border-bottom:1px solid #d4d5d6;line-height:44px;cursor:pointer;font-size:14px;font-weight:600;color:#46474b;}
+.customer-table tbody td{border-bottom:1px solid #d4d5d6;line-height:44px;cursor:pointer;font-size:14px;color:#46474b;overflow: hidden;}
 .customer-table tbody td span{float:left;display:inline-block;color:#17897a;font-weight:600;margin-right:7px;}
 .customer-table tbody td p{float:left;width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .customer-table tbody tr:nth-child(2n-1) td:nth-child(1){text-align:center;}
@@ -102,7 +102,7 @@ box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);}
 .customer-table tbody tr:nth-child(2n) td div{width:600px;}
 
 .customer-table.notice tbody tr td{text-align:center;cursor:default;}
-.customer-table.notice tbody tr td a{display:block;color:#46474b;padding-left:25px;width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;}
+.customer-table.notice tbody tr td a{display: inline-block;color:#46474b;overflow: hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;width: 98%;vertical-align: middle;}
 .customer-table.notice tbody tr td:nth-child(1){text-align:left;}
 .customer-table.notice tbody tr td:nth-child(2){color:#999;font-size:12px;font-weight:normal;}
 .customer-table.notice tbody tr:nth-child(2n){display:table-row;}
@@ -114,4 +114,7 @@ box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);}
 .customer-notice tbody td:nth-child(2),
 .customer-notice tbody td.td {border-left: 1px solid #d4d5d6; padding-left: 13px;}
 .customer-notice tbody td:nth-child(2) p{padding:33px 0;line-height:22px;font-weight:normal;font-size:15px;color:#666;}
+.customer-notice tbody td p{
+    min-height: 300px;
+}
 .customer-notice tbody td.th{text-align:center;font-weight:600;background:#f4f4f4;color:#333;}

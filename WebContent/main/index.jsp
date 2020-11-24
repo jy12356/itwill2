@@ -305,11 +305,11 @@
 					<h3 class="coTitle">이벤트</h3>
 					<div class="banner-list">
 						<ul class="mds-banner slider-event">
-							<li class="swiper-slide"><a href="" target="_blank"><img src="../images/e7652_pc_banner.jpg" alt=""></a></li>
-							<li class="swiper-slide"><a href="" target="_blank"><img src="../images/e7652_pc_banner.jpg" alt=""></a></li>
-							<li class="swiper-slide"><a href="" target="_blank"><img src="../images/e7652_pc_banner.jpg" alt=""></a></li>
-							<li class="swiper-slide"><a href="" target="_blank"><img src="../images/e7652_pc_banner.jpg" alt=""></a></li>
-							<li class="swiper-slide"><a href="" target="_blank"><img src="../images/e7652_pc_banner.jpg" alt=""></a></li>
+							<li class="swiper-slide"><a href="" target="_blank"><img src="images/e7652_pc_banner.jpg" alt=""></a></li>
+							<li class="swiper-slide"><a href="" target="_blank"><img src="images/e7652_pc_banner.jpg" alt=""></a></li>
+							<li class="swiper-slide"><a href="" target="_blank"><img src="images/e7652_pc_banner.jpg" alt=""></a></li>
+							<li class="swiper-slide"><a href="" target="_blank"><img src="images/e7652_pc_banner.jpg" alt=""></a></li>
+							<li class="swiper-slide"><a href="" target="_blank"><img src="images/e7652_pc_banner.jpg" alt=""></a></li>
 						</ul>
 						</ul>
 					</div>
