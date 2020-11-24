@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.security.auth.login.LoginException;
+
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import vo.MemberBean;
 
@@ -29,8 +31,8 @@ public class MemberDAO {
 		this.con = con;
 	}
 
-	public int insertArticle(MemberBean memberBean) {
-		System.out.println("MemberDAO - insertArticle()");
+	public int insertMember(MemberBean memberBean) {
+		System.out.println("MemberDAO - insertMember()");
 		int insertCount = 0; 
 		
 		PreparedStatement pstmt = null;
@@ -47,23 +49,22 @@ public class MemberDAO {
 				num = rs.getInt(1) + 1; 
 			} 
 			
-			sql = "INSERT INTO member VALUES (?,?,?,?,?,?,?,?,?,now())";
+			sql = "INSERT INTO member (num,id,password,email,phone,catg,age,address,name,date) VALUES (?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num); 
 			pstmt.setString(2,memberBean.getId());
-			pstmt.setString(3, memberBean.getName());
-			pstmt.setString(4, memberBean.getPassword());
-			pstmt.setString(5, memberBean.getEmail());
-			pstmt.setString(6, memberBean.getPhone());
-			pstmt.setString(7, memberBean.getCatg()); // 참조글 번호(새 글이므로 자신이 참조글이 됨)
-			pstmt.setInt(8, memberBean.getAge());
-			pstmt.setString(9, memberBean.getAddress());
-			
+			pstmt.setString(3, memberBean.getPassword());
+			pstmt.setString(4, memberBean.getEmail());
+			pstmt.setString(5, memberBean.getPhone());
+			pstmt.setString(6, memberBean.getCatg());
+			pstmt.setInt(7, memberBean.getAge());
+			pstmt.setString(8, memberBean.getAddress());
+			pstmt.setString(9, memberBean.getName());
 
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			System.out.println("insertArticle() 오류! - " + e.getMessage());
+			System.out.println("insertMember() ERROR! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 
@@ -74,6 +75,41 @@ public class MemberDAO {
 		return insertCount;
 	}
 
+	public boolean isMember(String id, String password) throws LoginException  {
+		boolean isMember = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT password,id FROM member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			
+			if(rs.next()) {
+				if(password.equals(rs.getString("password"))) {
+					
+					isMember = true;
+				} else {
+					throw new LoginException("패스워드 틀림");
+				}
+			} else {
+				throw new LoginException("아이디 없음");
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("isMember() ERROR! - " + e.getMessage());
+			
+			e.printStackTrace();
+		} finally {
+			
+			close(rs);
+			close(pstmt);
+		}
+		
+		return isMember;
+	}
 
 	public int selectListCount() {
 		int listCount = 0;
@@ -93,7 +129,7 @@ public class MemberDAO {
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("selectListCount() 오류! - " + e.getMessage());
+			System.out.println("selectListCount() ERROR! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 
@@ -125,7 +161,6 @@ public class MemberDAO {
 			while(rs.next()) {
 				MemberBean article = new MemberBean();
 				article.setNum(rs.getInt("num"));
-				article.setName(rs.getString("name"));
 				article.setId(rs.getString("id"));
 				article.setPassword(rs.getString("password"));
 				article.setEmail(rs.getString("email"));
@@ -133,12 +168,13 @@ public class MemberDAO {
 				article.setCatg(rs.getString("catg"));
 				article.setAge(rs.getInt("age"));
 				article.setAddress(rs.getString("address"));
-				article.setDate(rs.getDate("date"));
+				article.setDate(rs.getTimestamp("date"));
+				article.setName(rs.getString("name"));
 				articleList.add(article);
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("selectArticleList() 오류! - " + e.getMessage());
+			System.out.println("selectArticleList() ERROR! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(rs);
@@ -160,63 +196,35 @@ public class MemberDAO {
 			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 			
-			// 게시물이 존재할 경우 BoardBean 객체를 생성하여 게시물 내용 저장
 			
 			if(rs.next()) {
 				article = new MemberBean();
 				article.setNum(rs.getInt("num"));
-				article.setName(rs.getString("name"));
-				article.setPassword(rs.getString("password"));
 				article.setId(rs.getString("id"));
+				article.setPassword(rs.getString("password"));
 				article.setEmail(rs.getString("email"));
 				article.setPhone(rs.getString("phone"));
 				article.setCatg(rs.getString("catg"));
 				article.setAge(rs.getInt("age"));
 				article.setAddress(rs.getString("address"));
-				article.setDate(rs.getDate("date"));
+				article.setDate(rs.getTimestamp("date"));
+				article.setName(rs.getString("name"));
 			}
 		} catch (SQLException e) {
-			System.out.println("selectArticle() 오류! - " + e.getMessage());
+			System.out.println("selectArticle() ERROR! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(rs);
 			close(pstmt);
 		}
 		
-		System.out.println("아이디 : "+article.getId());
+		System.out.println("�븘�씠�뵒 : "+article.getId());
 		
 		
 		return article;
 	}
 
-		public boolean isArticleMemberWriter(String id, String password) {
-			boolean isArticleWriter = false;
-			
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			try {
-				String sql = "SELECT password FROM member WHERE id=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					if(password.equals(rs.getString("password"))) {
-						isArticleWriter = true;
-					}
-				}
-				
-			} catch (SQLException e) {
-				System.out.println("isArticleMemberWriter() 오류! - " + e.getMessage());
-				e.printStackTrace();
-			} finally {
-				close(rs);
-				close(pstmt);
-			}
-			
-			return isArticleWriter;
-		}
+		
 
 		public int updateArticle(MemberBean article) {
 			int updateCount = 0;
@@ -235,7 +243,7 @@ public class MemberDAO {
 				updateCount = pstmt.executeUpdate();
 				
 			} catch (SQLException e) {
-				System.out.println("updateArticle() 오류! - " + e.getMessage());
+				System.out.println("updateArticle() ERROR! - " + e.getMessage());
 				e.printStackTrace();
 			} finally {
 				close(pstmt);
@@ -263,6 +271,27 @@ public class MemberDAO {
 			
 		return updateCount;
 	}
-		
+		public int deleteMember(String id) {
+			System.out.println("MemberDAO : deleteMember()");
+			int deleteCount = 0;
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql = "DELETE FROM member WHERE id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1,id);
+				System.out.println(pstmt);
+				deleteCount = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("deleteMember() 오류! "+ e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+				
+			}
+			
+			
+			return deleteCount;
+		}
 		
 	}
