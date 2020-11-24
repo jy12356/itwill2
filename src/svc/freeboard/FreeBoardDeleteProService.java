@@ -21,7 +21,7 @@ public class FreeBoardDeleteProService {
 		
 		// 3.BoardDAO에 Connection객체 전달
 		freeBoardDAO.setConnection(con);
-		
+		System.out.println(id + ": deleteProSvc");
 		// 4. BoardDAO에 num, id 비교
 		isArticleWriter = freeBoardDAO.isArticleFreeBoardWriter(board_num, id);
 		
@@ -32,9 +32,9 @@ public class FreeBoardDeleteProService {
 		return isArticleWriter;
 	}
 
-	public static boolean removeArticle(FreeBoardBean article) {
+	public boolean removeArticle(int board_num) {
 		System.out.println("removeArticle - svc");
-		boolean isDeleteSuccess = true;
+		boolean isDeleteSuccess = false;
 		// 1. Connection
 		Connection con = getConnection();
 		
@@ -45,7 +45,7 @@ public class FreeBoardDeleteProService {
 		freeBoardDAO.setConnection(con);
 		
 		// 4. 
-		int deleteCount = freeBoardDAO.removeArticle(article);
+		int deleteCount = freeBoardDAO.removeArticle(board_num);
 		
 		if(deleteCount > 0) {
 			commit(con);
@@ -59,6 +59,7 @@ public class FreeBoardDeleteProService {
 		
 		return isDeleteSuccess;
 	}
+
 
 
 }

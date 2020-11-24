@@ -3,7 +3,11 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String)session.getAttribute("id");
+	
+	int board_num =  Integer.parseInt(request.getParameter("board_num"));
 	FreeBoardBean article = (FreeBoardBean)request.getAttribute("article");
+// 	String gang = article.getBoard_id();
+// 	gang = "gang";
 	String nowPage = request.getParameter("page");
 %>
 <jsp:include page="../include/header.jsp" />
@@ -11,6 +15,13 @@
 	<form action="FreeBoardModifyPro.free" method="post" name="modifyForm">
 	<input type="hidden" name="board_num" value="<%=article.getBoard_num()%>" />
 	<input type="hidden" name="page" value="<%=nowPage%>" />
+	<%if(id==null) {
+		id = "gang"; 
+	}
+		%>
+	
+	
+	
 		<section class="sub">
 			<div class="category-nav">
 				<div class="category-nav-inner">
