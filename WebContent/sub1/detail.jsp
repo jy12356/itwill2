@@ -256,7 +256,7 @@ $(function(){
 	<div class="comment_list">
 		<% for(int i = 0; i < articleList.size(); i++) {%>
 		<div class="comment">
-			<i><%=articleList.get(i).getId() %></i>
+			<i id="test"><%=articleList.get(i).getId() %></i>
 			<em> | </em>
 			<span class="data"><%=articleList.get(i).getDate() %></span>
 			<em> | </em>
@@ -265,12 +265,17 @@ $(function(){
 			<i>좋아요 <%=articleList.get(i).getLikecount() %></i>
 			<em> | </em>
 			<i>댓글Count()</i>
-			<i><input type="button" value="수정" onclick="location.href='ReviewModifyPro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>'">
+			<i><input type="button" value="수정" onclick="location.href='ReviewModifyPro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>'"></i>
 			<i><input type="button" value="삭제" onclick="location.href='ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>'"></i>
-			
+
+
+
+<!-- ------------------------------------------------------------------------------ -->
+
+<!-- ------------------------------------------------------------------------------ -->
 			<div class="comment-content">
 			<span><%=articleList.get(i).getContent() %></span>
-		</div>
+			</div>
 		<div class="comment-btn">
 			<div>
 				<a href="javascript:;" class="heart-btn" data-review-num="533867">좋아요</a>
