@@ -284,12 +284,9 @@ public class RequestDAO {
 			re_lev += 1;
 			re_seq += 1;
 			
-			System.out.println("a");
-			System.out.println(num);
-			System.out.println(article.getId());
-			System.out.println(article.getSubject());
-			System.out.println(article.getAuthor());
-			System.out.println(article.getContent());
+			System.out.println("Re_ref" + article.getRe_ref());
+			System.out.println(article.getRe_lev());
+			System.out.println(article.getRe_seq());
 			
 			sql = "INSERT INTO bookreq VALUES(?,?,?,?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
