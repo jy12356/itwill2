@@ -303,4 +303,38 @@ public class BookDAO {
 		
 		return isBookExisCount;
 	}
+	public int modifyBook(BookBean bookBean) {
+		System.out.println("bookDAO - modifyBook");
+		int modyfiySeccess =0;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "update set book "
+					+ "title=?, isbn=?, author=?,author_info=?,catg1=?,catg2=?," 
+					+ "description=?,index=?,pubdate=?,publisher=?,image=? "
+					+ "where title=? and isbn=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bookBean.getTitle());
+			pstmt.setString(2, bookBean.getIsbn());
+			pstmt.setString(3, bookBean.getAuthor());
+			pstmt.setString(4, bookBean.getAuthor_info());
+			pstmt.setString(5, bookBean.getCatg1());
+			pstmt.setString(6, bookBean.getCatg2());
+			pstmt.setString(7, bookBean.getDescription());
+			pstmt.setString(8, bookBean.getIndex());
+			pstmt.setString(9, bookBean.getPubdate());
+			pstmt.setString(10, bookBean.getPublisher());
+			pstmt.setString(11, bookBean.getImage());
+			pstmt.setString(12, bookBean.getTitle());
+			pstmt.setString(13, bookBean.getIsbn());
+			modyfiySeccess = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("bookDAO - modifyBook 오류()!"+ e.getMessage()); 
+			e.printStackTrace(); 
+		}finally {
+			close(pstmt);
+			
+		}
+		return modyfiySeccess;
+	}
 }

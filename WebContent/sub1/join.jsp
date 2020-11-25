@@ -1,148 +1,159 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../include/header.jsp"/>
+<style>
+
+/* #checkIdResult {color: red; font-weight: bold;font-size: 1em;padding: 0.2em;} 
+#checkIdResult2 {color: green; font-weight: bold;font-size: 1em;padding: 0.2em;} 
+#checkPasswdResult {color: red; font-weight: bold;font-size: 1em;padding: 0.2em;} */
+</style>
 <section class="sub">
-		<div class="common-title">
-			<h3>회원가입</h3>
-		</div>
-		<div class="user">
-			<form id="register_step2" onsubmit="return register_submit();">
-			<input type="hidden" name="" id="id_chk" value="0">
-			<input type="hidden" name="" id="email_chk" value="0">
-				<fieldset>
-					<legend>회원가입</legend>
-					<div class="join-wrap">
-						<!-- 경고창 대신 input 다음의 p 태그에 해당 경고문이 들어갑니다 -->
-						<div class="join-info">
-							<div class="js-join">
-								<input type="text" name="strId" placeholder="아이디" maxlength="20" class="strId" />
-								<p class="check" style="display: none;"></p>
-							</div>
-							<div class="js-join">
-								<input type="password" name="strPass" placeholder="비밀번호" class="strPass" >
-								<p class="check" style="display: none;"></p>
-							</div>
-							<div class="js-join">
-								<input type="password" name="rePass" placeholder="비밀번호 확인" class="rePass">
-								<p class="check" style="display: none;"></p>
-							</div>
-						</div>
-						<div class="join-info mt20">
-							<div class="js-join">
-								<input type="text" name="name" placeholder="이름" class="strName">
-								<p class="check" style="display: none;"></p>
-							</div>
-							<div class="js-join">
-								<input type="text" name="email" placeholder="이메일" class="strMail">
-								<p class="check" style="display: none;"></p>
-							</div>
-							<div class="js-join">
-								<input type="text" name="phone" placeholder="전화번호" class="strMail">
-								<p class="check" style="display: none;"></p>
-							</div>
-							
-						<div class="join-info mt20">
-							<div class="js-join">
-								<input type="text" name="ad-01" id="sample4_postcode" placeholder="우편번호" class="strMail">
-								<p class="check" style="display: none;"></p>
-							</div>
-							<div class="js-join">
-								<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-							</div>
-							<div class="js-join">
-								<input type="text" name="ad-0" id="sample4_roadAddress" placeholder="도로명주소" class="strMail">
-									<span id="guide" style="color:#999;display:none"></span>
-								<p class="check" style="display: none;"></p>
-							</div>
-							<div class="js-join">
-								<input type="text" name="ad-0" id="sample4_jibunAddress" placeholder="지번주소" class="strMail">
-								<p class="check" style="display: none;"></p>
-							</div><div class="js-join">
-								<input type="text" name="ad-0" id="sample4_detailAddress" placeholder="상세주소" class="strMail">
-								<p class="check" style="display: none;"></p>
-							</div><div class="js-join">
-								<input type="text" name="ad-0" id="sample4_extraAddress" placeholder="참고항목" class="strMail">
-								<p class="check" style="display: none;"></p>
-							</div>
+<div class="common-title">
+	<h3>회원가입</h3>
+</div>
+<div class="user">
+	<form id="register_step2" action="MemberJoinPro.me" >
+	<input type="hidden" name="" id="id_chk" value="0">
+	<input type="hidden" name="" id="email_chk" value="0">
+		<fieldset>
+			<legend>회원가입</legend>
+			<div class="join-wrap">
+				<!-- 경고창 대신 input 다음의 p 태그에 해당 경고문이 들어갑니다 -->
+				<div class="join-info">
+					<div class="js-join">
+						<input type="text" name="id" id="id" placeholder="아이디" maxlength="20" class="strId" required="required" onkeyup="checkId(this)"/>
+						<p class="check" style="display: none;"><div id="checkIdResult"><!-- 자바스크립트에서 메세지 출력 공간 --></div></p>
+					</div>
+					<label></label><div id="id_check" style="color:red;"></div><br>
+					<div class="js-join">
+						<input type="password" name="password" id="password" placeholder="비밀번호" class="strPass" required="required" onkeyup="checkPasswd(this)">
+						<p class="check" style="display: none;"><div id="checkPasswdResult"><!-- 자바스크립트에서 메세지 출력 공간 --></div></p>
+					</div>
+					<div class="js-join">
+						<input type="password" name="password2" id="password2" placeholder="비밀번호 확인" class="rePass"required="required" onkeyup="checkPasswd2(this)">
+						<p class="check" style="display: none;"><div id="checkPasswdResult2"><!-- 자바스크립트에서 메세지 출력 공간 --></div></p>
+					</div>
+				</div>
+				<div class="join-info mt20">
+					<div class="js-join">
+						<input type="text" name="name" id="name" placeholder="이름" class="strName" required="required">
+						<p class="check" style="display: none;"></p>
+					</div>
+					<div class="js-join">
+						<input type="text" name="email" id="email" placeholder="이메일" class="strMail" required="required">
+						<p class="check" style="display: none;"></p>
+					</div>
+					<div class="js-join">
+						<input type="text" name="phone" id="phone" placeholder="전화번호" class="strMail" required="required">
+						<p class="check" style="display: none;"></p>
+					</div>
+					<div class="js-join">
+						<input type="text" name="age" id="age" placeholder="생년월일" class="strAge" required="required">
+						<p class="check" style="display: none;"></p>
+					</div>
+					
+				<div class="join-info mt20">
+					<div class="js-join">
+						<input type="text" name="sample4_postcode" id="sample4_postcode" placeholder="우편번호" class="strMail" required="required">
+						<p class="check" style="display: none;"></p>
+					</div>
+					<div class="js-join">
+						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+					</div>
+					<div class="js-join">
+						<input type="text" name="sample4_roadAddress" id="sample4_roadAddress" placeholder="도로명주소" class="strMail" required="required">
+							<span id="guide" style="color:#999;display:none"></span>
+						<p class="check" style="display: none;"></p>
+					</div>
+					<div class="js-join">
+						<input type="hidden" name="sample4_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" class="strMail" required="required">
+						<p class="check" style="display: none;"></p>
+					</div><div class="js-join">
+						<input type="text" name="sample4_detailAddress" id="sample4_detailAddress" placeholder="상세주소" class="strMail" required="required">
+						<p class="check" style="display: none;"></p>
+					</div><div class="js-join">
+						<input type="hidden" name="sample4_extraAddress" id="sample4_extraAddress" placeholder="참고항목" class="strMail" required="required">
+						<p class="check" style="display: none;"></p>
+					</div>
+				</div>
+				
+		<div class="register-title2"><p>선택입력항목</p></div>
+				<div class="join-check">
+					<div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="소설">
+								<span><i></i></span>
+							</label>
+							<p>소설</p>
 						</div>
 						
-				<div class="register-title2"><p>선택입력항목</p></div>
-						<div class="join-check">
-							<div>
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="catg" value="소설">
-										<span><i></i></span>
-									</label>
-									<p>소설</p>
-								</div>
-								
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="catg" value="인문">
-										<span><i></i></span>
-									</label>
-									<p>인문</p>
-								</div>
-								
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="catg" value="자기계발">
-										<span><i></i></span>
-									</label>
-									<p>자기계발</p>
-								</div>
-								
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="catg" value="경제">
-										<span><i></i></span>
-									</label>
-									<p>경제</p>
-								</div>
-								
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="catg" value="과학">
-										<span><i></i></span>
-									</label>
-									<p>과학</p>
-								</div>
-								
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="catg" value="IT">
-										<span><i></i></span>
-									</label>
-									<p>IT</p>
-								</div>
-								
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="catg" value="취미">
-										<span><i></i></span>
-									</label>
-									<p>취미</p>
-								</div>
-								
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="catg" value="만화">
-										<span><i></i></span>
-									</label>
-									<p>만화</p>
-								</div>
-								
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="catg" value="웹소설">
-										<span><i></i></span>
-									</label>
-									<p>웹소설</p>
-								</div>
-								
-							</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="인문">
+								<span><i></i></span>
+							</label>
+							<p>인문</p>
 						</div>
+						
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="자기계발">
+								<span><i></i></span>
+							</label>
+							<p>자기계발</p>
+						</div>
+						
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="경제">
+								<span><i></i></span>
+							</label>
+							<p>경제</p>
+						</div>
+						
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="과학">
+								<span><i></i></span>
+							</label>
+							<p>과학</p>
+						</div>
+						
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="IT">
+								<span><i></i></span>
+							</label>
+							<p>IT</p>
+						</div>
+						
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="취미">
+								<span><i></i></span>
+							</label>
+							<p>취미</p>
+						</div>
+						
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="만화">
+								<span><i></i></span>
+							</label>
+							<p>만화</p>
+						</div>
+						
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="웹소설">
+								<span><i></i></span>
+							</label>
+							<p>웹소설</p>
+						</div>
+						
+					</div>
+				</div>
 								
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -251,12 +262,176 @@
 			</form>
 
 	<script>
-		$(function(){
+	</script>
+	<script>				
+		$(document).ready(function(){
+			
+			$('.strId').focus(function(){
+				$(this).attr("placeholder","6~20자 영문, 숫자");
+			})
+			$('.strId').blur(function(){
+				$('.strId').attr("placeholder","아이디");
+			})
+			
+			$('.strPass').focus(function(){
+				$(this).attr("placeholder","6자 이상만 입력 가능합니다.");
+			})
+			$('.strPass').blur(function(){
+				$('.strPass').attr("placeholder","비밀번호");
+			})
+			
+			$('.rePass').focus(function(){
+				$(this).attr("placeholder","6자 ~ 16자만 입력 가능합니다.");
+			})
+			$('.rePass').blur(function(){
+				$('.rePass').attr("placeholder","비밀번호");
+			})
+			
+			$('.strAge').focus(function(){
+				$(this).attr("placeholder","예-901225");
+			})
+			$('.strAge').blur(function(){
+				$('.strAge').attr("placeholder","생년월일");
+			})
+			
+				
+				
+				
+		});	
+	</script>
+	<script type="text/javascript">
+
+
+	var checkIdResult = false, checkPasswdResult = false; 
+
+	function checkId(idForm) { 
+		var id = idForm.value; 
+		
+		var element = document.getElementById('checkIdResult');
+		
+		var regex = /^[A-Za-z][A-Za-z0-9]{5,}$/g;
+		
+		if(regex.exec(id)) { 
+			element.innerHTML = "멋진 아이디네요!";
+			checkIdResult = true; 
+			var myElement = document.getElementById('checkIdResult');
+			myElement.style.color="green";
+			myElement.style.padding="0.3em";
+		
+		} else {
+			element.innerHTML = "이미 사용중이거나 탈퇴한 아이디입니다.";
+			checkIdResult = false;
+			var myElement = document.getElementById('checkIdResult');
+			myElement.style.color="red"
+			myElement.style.padding="0.3em";
 			
 		}
-	</script>
+		
+	}
+	
+	function checkId2(idForm) { 
+		var id = idForm.value; 
+		
+		var element = document.getElementById('checkIdResult');
+		
+		var regex = /^[A-Za-z][A-Za-z0-9]{5,}$/g;
+		
+		if(!regex.exec(id)) {
+			element.innerHTML = "사용 불가";
+			checkIdResult = false; 
+		}
+		
+	}
+	
+	
+	
+	function checkPasswd(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
+		var passwd = passwdForm.value; // ID 입력폼의 입력값을 가져와서 변수에 저장
+		
+		var element = document.getElementById('checkPasswdResult');
+		
+		var lengthRegex = /^[A-Za-z0-9!@#$%]{6,16}$/;
+		var upperCaseRegex = /[A-Z]/;
+		var lowerCaseRegex = /[a-z]/;
+		var digitRegex = /[0-9]/;
+		var specRegex = /[!@#$%]/;
+		
+		if(lengthRegex.exec(passwd)) {
+			var count = 0;
+			if(upperCaseRegex.exec(passwd)) count++;
+			if(lowerCaseRegex.exec(passwd)) count++;
+			if(digitRegex.exec(passwd)) count++;
+			if(specRegex.exec(passwd)) count++;
+			
+// 			element.innerHTML = "사용 가능 " + count;
 
+			// 점수(count) 에 따른 안전도 출력
+			if(count == 4) {
+				element.innerHTML = "사용 가능(안전)";
+				checkPasswdResult = true; // 전역변수 true 로 변경
+				var myElement = document.getElementById('checkPasswdResult');
+				myElement.style.color="green";
+				myElement.style.padding="0.3em";
+			} else if(count == 3) {
+				element.innerHTML = "사용 가능(보통)";
+				checkPasswdResult = true; // 전역변수 true 로 변경
+				var myElement = document.getElementById('checkPasswdResult');
+				myElement.style.color="green";
+				myElement.style.padding="0.3em";
+			} else if(count == 2) {
+				element.innerHTML = "사용 가능(위험)";
+				checkPasswdResult = true; // 전역변수 true 로 변경
+				var myElement = document.getElementById('checkPasswdResult');
+				myElement.style.color="green";
+				myElement.style.padding="0.3em";
+			} else {
+				element.innerHTML = "사용 불가(두 가지 이상 조합)";
+				checkPasswdResult = false; // 전역변수 false 로 변경
+				var myElement = document.getElementById('checkPasswdResult');
+				myElement.style.color="red";
+				myElement.style.padding="0.3em";
+			}
 
+		} else {
+			element.innerHTML = "사용 불가";
+			checkPasswdResult = false; // 전역변수 false 로 변경
+			var myElement = document.getElementById('checkPasswdResult');
+			myElement.style.color="red";
+			myElement.style.padding="0.3em";
+		}
+		
+		
+		
+	}
+	
+	function checkPasswd2(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
+		var password2 = passwdForm.value; // ID 입력폼의 입력값을 가져와서 변수에 저장
+		var password1 = document.getElementById('password').value;
+		var element = document.getElementById('checkPasswdResult2');
+		
+		
+		if(password1!=password2){
+			element.innerHTML = "비밀번호가 일치하지 않습니다.";
+			var myElement = document.getElementById('checkPasswdResult2');
+			myElement.style.color="red";
+			myElement.style.padding="0.3em";
+		} else {
+			element.innerHTML = "";
+		}
+		
+		
+	}
+	// 아이디, 패스워드 정규표현식 체크 후 정상이면 true 리턴(submit), 아니면 false 리턴
+	function check() {
+		if(checkIdResult && checkPasswdResult) {
+			return true;
+		} else {
+			alert('아이디 또는 패스워드 규칙 확인 필수!');
+			return false;
+		}
+	}
+	
+</script>
 		</div>
 	</section>
 	

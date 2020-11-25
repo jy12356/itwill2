@@ -10,15 +10,16 @@
 	    function bookSearchSubmit(){
 			var keyword = $(".search_input").val();
 			alert(keyword);
-			.ajax({
-			    url: "BookRegiSerch.bok", // 클라이언트가 요청을 보낼 서버의 URL 주소
+			$.ajax({
+			    url: "/API/NaverBookApiTest.java", // 클라이언트가 요청을 보낼 서버의 URL 주소
 			    data: { keyword: "홍길동" },                // HTTP 요청과 함께 서버로 보낼 데이터
 			    type: "GET",                             // HTTP 요청 방식(GET, POST)
 			    dataType: "json"                         // 서버에서 보내줄 데이터의 타
-			}).done(function(json) {
-			    $("<h1>").text(json.title).appendTo("body");
-			    $("<div class=\"content\">").html(json.html).appendTo("body");
-			
+			}).done(function(html) {
+				result = html;
+			    for(var i=0; i< result; i++){
+			    	alert(result[i]);
+			    }
 			}).fail(function(xhr, status, errorThrown) {
 			    $("#text").html("오류가 발생했습니다.<br>")
 			    .append("오류명: " + errorThrown + "<br>")
