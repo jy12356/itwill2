@@ -2,8 +2,12 @@ package action.freeboard;
 
 import java.io.PrintWriter;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import action.Action;
 import svc.freeboard.FreeBoardModifyProService;
@@ -19,9 +23,22 @@ public class FreeBoardModifyProAction implements Action {
 		
 		ActionForward forward = null;
 		
+		ServletContext context = request.getServletContext();
+		String saveFolder = "/FreeboardUpload";
+		String realFolder = context.getRealPath(saveFolder);
+		int fileSize = 1024 * 1024 * 10;
+		MultipartRequest multi = new MultipartRequest(
+				request, // HttpServletRequest(request) 객체 
+				realFolder, // 실제 업로드 폴더 
+				fileSize, // 한 번에 업로드 가능한 1개 파일 최대 크기 
+				"UTF-8", // 파일명에 대한 인코딩 방식 
+				new DefaultFileRenamePolicy() // 파일명 중복 시 중복 처리 객체
+				);
 		// 게시물 수정에 필요한 글번호(board_num) 가져오기
 //		System.out.println(Integer.parseInt(request.getParameter("board_num")));
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
+//		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		
+		int board_num = Integer.parseInt(multi.getParameter("board_num"));
 		// BoardModifyProService 클래스 인스턴스 생성 후
 		// isArticleWriter() 메서드를 호출하여 적합한 사용자인지 판별
 		// => 적합한 사용자 : 패스워드가 DB 에 저장된 패스워드와 일치하는 경우
@@ -29,8 +46,10 @@ public class FreeBoardModifyProAction implements Action {
 		//    리턴타입 : boolean(isRightUser)
 		System.out.println("FreeBoardModifyProAction - 1");
 		FreeBoardModifyProService freeBoardModifyProService = new FreeBoardModifyProService();
+//		boolean isRightUser = freeBoardModifyProService.isArticleWriter(
+//								board_num, request.getParameter("id"));
 		boolean isRightUser = freeBoardModifyProService.isArticleWriter(
-								board_num, request.getParameter("id"));
+				board_num, multi.getParameter("id"));
 		
 		// 임시확인용 isRightUser 출력
 //		System.out.println(isRightUser);
@@ -52,11 +71,14 @@ public class FreeBoardModifyProAction implements Action {
 			// => 글번호, 작성자, 제목, 내용
 			FreeBoardBean article = new FreeBoardBean();
 			article.setBoard_num(board_num);
-			article.setBoard_id(request.getParameter("id"));
-			article.setBoard_subject(request.getParameter("title"));
-			article.setBoard_content(request.getParameter("desc"));
-			article.setBoard_file(request.getParameter("file"));
-			
+//			article.setBoard_id(request.getParameter("id"));
+//			article.setBoard_subject(request.getParameter("title"));
+//			article.setBoard_content(request.getParameter("desc"));
+//			article.setBoard_file(request.getParameter("file"));
+			article.setBoard_id(multi.getParameter("id"));
+			article.setBoard_subject(multi.getParameter("title"));
+			article.setBoard_content(multi.getParameter("desc"));
+			article.setBoard_file(multi.getOriginalFileName("file"));
 			// BoardModifyProService 클래스의 modifyArticle() 메서드를 호출하여
 			// 글 수정 작업 요청
 			// => 파라미터 : BoardBean, 리턴타입 : boolean(isModifySuccess)
@@ -79,8 +101,10 @@ public class FreeBoardModifyProAction implements Action {
 				out.println("</script>");
 			} else {
 				forward = new ActionForward();
+//				forward.setPath("FreeBoardDetail.free?board_num=" + board_num + 
+//										"&page=" + request.getParameter("page"));
 				forward.setPath("FreeBoardDetail.free?board_num=" + board_num + 
-										"&page=" + request.getParameter("page"));
+						"&page=" + multi.getParameter("page"));
 				forward.setRedirect(true);
 			}
 			

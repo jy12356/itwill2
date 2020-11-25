@@ -106,8 +106,8 @@ int listCount = pageInfo.getListCount();
 					</div>
 
 					<div class="paging">
-						<a href="free_board.jsp?pageNum=1" class="arr" data-page-num="1"><img
-							src="../images/p-first.png"><span class="hide">처음페이지</span></a>
+<!-- 						<a href="free_board.jsp?pageNum=1" class="arr" data-page-num="1"><img -->
+<!-- 							src="../images/p-first.png"><span class="hide">처음페이지</span></a> -->
 
 						<!-- 이전페이지 -->
 						<%
