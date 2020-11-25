@@ -27,23 +27,23 @@
 								</tr>
 								<tr>
 									<th>저자 <em><font color="red">(*)</font></em></th>
-									<td><input id="author" name="author" type="text" value=""/></td>
+									<td><input type="text" name="author" id="author" required="required"></td>
 								</tr>
 								<tr>
 									<th>출판사 <em><font color="red">(*)</font></em></th>
-									<td><input id="publisher" name="publisher" type="text" value=""/></td>
+									<td><input type="text" name="publisher" id="publisher" required="required"></td>
 								</tr>
 								<tr>
 									<th>출판년도 <em><font color="red">(*)</font></em></th>
-									<td><input type="text" name="pubdate" type="text"></td>
+									<td><input type="text" id="pubdate" name="pubdate" required="required"></td>
 								</tr>
 								<tr>
 									<th>ISBN</th>
-									<td><input id="isbn" name="isbn" type="text" maxlength="13"/></td>
+									<td><input type="text" id="isbn" name="isbn" maxlength="13"></td>
 								</tr>
 								<tr>
 									<th>첨부 내용 </th>
-									<td><textarea name="content" required="required"></textarea>
+									<td><textarea name="content" id="content" name="content"></textarea>
                                 </td>
 								</tr>
 								<tr>
@@ -57,7 +57,7 @@
                     </table>
                     <div class="default-btn-wrap">
 						<input type="submit" class="btn" value="신청">
-						<a href="requestList.rq" class="btn">목록</a>
+						<a href="RequestList.rq" class="btn">목록</a>
 					</div>
 					</form>
                 </div>

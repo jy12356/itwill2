@@ -1,5 +1,17 @@
+<%@page import="vo.PageInfo"%>
+<%@page import="vo.QnaBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="../include/header.jsp"/>
+<%
+	// BoardBean 객체 파라미터 가져오기
+	QnaBean article = (QnaBean)request.getAttribute("article");
+	// 1. BoardDetailAction 에서 request.setAttribute() 메서드로 저장했을 경우
+	// 	String nowPage = (String)request.getAttribute("page");
+
+	// 2. 서블릿 주소로 전달된 page 값을 파라미터 그대로 사용할 경우
+	String nowPage = request.getParameter("page");
+%>
 <section class="sub">
 	<div class="category-nav">
 		<div class="category-nav-inner">
@@ -25,7 +37,7 @@
 					<div class="customer-contents">
 						<div class="customer-use-wrap">
 							<ul class="customer-s-menu one">
-								<li><a href="qna.html" class="">1:1 문의하기</a></li>
+								<li><a href="QnaWriteForm.qna" class="">1:1 문의하기</a></li>
 								<li><a href="qna2.html" class="on">문의 내역 확인</a></li>
 							</ul>
 							<div class="onebyone-step">
@@ -34,39 +46,33 @@
 									단, <span>주말,공휴일 문의 및 확인 절차가 많아지는 경우</span>에는 지연될 수 있는 점 양해 부탁드립니다.
 								</p>
 							</div>
+							
 							<table class="onebyone" summary="1:1 문의">
+						
 							<caption>1:1 문의하기</caption>
 							<colgroup>
 							<col width="100px">
 							<col width="*">
 							</colgroup>
 							<tbody>
+<!-- 							<input type="hidden" id="board_num" name="board_num" value=""/> -->
 							<tr>
 								<th>
 									문의제목
 								</th>
-								<td>
-									오탈자입니다
-								</td>
+								<td align="center"><%=article.getTitle() %></td>
 							</tr>
 							<tr>
 								<th>
 									문의유형
 								</th>
-								<td>
-									오류문의 &gt; 앱오류
-								</td>
+									<td align="center">오류문의 &gt;<%=article.getQna_genre() %></td>
 							</tr>
 							<tr>
 								<th>
 									문의내용
 								</th>
-								<td>
-									정확한 확인을 위하여 입력 양식을 작성해주세요.<br>
-									<br>
-									*문의 작품 유형(일반도서/로맨스/BL/웹툰) : <br>
-									*문의 작품 : 달러구트 꿈 백화점
-								</td>
+								<td align="center"><%=article.getContent() %></td>
 							</tr>
 							<tr>
 								<th>
@@ -78,9 +84,10 @@
 							</tbody>
 							</table>
 							<div class="one-btn">
-								<a href="/customer.asp?page=vs1&num=113510">수정</a>
-								<a href="javascript:;" class="vs1Del" data-num="113510">삭제</a>
-								<a href="/customer.asp?page=vs1&page2=list">목록</a>
+								<input type="button" value="수정" onclick="location.href='QnaModifyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" class="vs1Del" value="삭제" onclick="location.href='QnaDeleteForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
+								<input type="button" value="답변" onclick="location.href='BoardReplyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
 							</div>
 						</div>
 					</div>
