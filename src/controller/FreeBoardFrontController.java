@@ -121,6 +121,13 @@ public class FreeBoardFrontController extends HttpServlet {
 			}
 			
 			
+		} else if(command.equals("/CommentWritePro.free")) {
+			action = new CommentWriteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
