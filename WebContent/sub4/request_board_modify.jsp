@@ -12,6 +12,7 @@
 	<form action="RequestModifyPro.rq" method="post" name="modifyForm">
 	<input type="hidden" name="num" value="<%=article.getNum()%>" />
 	<input type="hidden" name="page" value="<%=nowPage%>" />
+	<input type="hidden" name="id" value="id" />
 		<section class="sub">
 			<div class="category-nav">
         		<div class="category-nav-inner">
@@ -42,7 +43,7 @@
 		                            </tr>
 									<tr>
 										<th>출판사<em><font color="red">(*)</font></em></th>
-										<td><input type="text" name="author" value="<%=article.getPublisher()%>" required="required"></td>
+										<td><input type="text" name="publisher" value="<%=article.getPublisher()%>" required="required"></td>
 									</tr>
 									<tr>
 										<th>출판년도 <em><font color="red">(*)</font></em></th>
@@ -54,10 +55,14 @@
 									</tr>
 									<tr>
 										<th>첨부 내용 </th>
-										<td><textarea name="content" value="<%=article.getContent()%>"></textarea></td>
+										<td><textarea name="content"><%=article.getContent()%></textarea></td>
 									</tr>
 									<tr>
 										<th>파일첨부</th>
+										<td>
+										<input type="file" name="file">
+										<p class="one-s-ps">*2MB 이하의 이미지 파일 및 5MB  이하의 *hwp, *doc, *docx 확장자만 첨부 가능합니다.</p>
+										</td>
 										<td>
 											<%
 												if (article.getFile() != null) {

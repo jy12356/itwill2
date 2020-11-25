@@ -67,9 +67,11 @@
 //                         	if(id.equals(article.getBoard_id())) {
                         		%>
                         		<span class="default-btn-wrap">
-                        <a href="RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=id %>" class="btn">수정</a></span>
+                    		    <a href="RequestReplyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=id %>" class="btn">답글</a></span>
                         		<span class="default-btn-wrap">
-                        <a href="RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=id %>" class="btn">삭제</a></span>
+                    		    <a href="RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=id %>" class="btn">수정</a></span>
+                        		<span class="default-btn-wrap">
+                       			<a href="RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=id %>" class="btn">삭제</a></span>
                         		<% 
 //                         	}
 //                         }
