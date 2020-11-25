@@ -23,7 +23,7 @@ public class NoticeDetailAction implements NoticeAction{
 		request.setAttribute("article", article);
 		
 		forward = new NoticeActionForward();
-		forward.setPath("/sub5/notice_view.jsp");
+		forward.setPath("/sub5/notice_board_View.jsp");
 		forward.setRedirect(false);
 		
 		return forward;

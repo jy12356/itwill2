@@ -6,9 +6,7 @@ import static db.JdbcUtil.getConnection;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import dao.BoardDAO;
 import dao.NoticeDAO.NoticeDAO;
-import vo.BoardBean;
 import vo.NoticeVo.NoticeBean;
 
 public class NoticeListService {

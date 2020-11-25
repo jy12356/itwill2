@@ -9,7 +9,7 @@ import action.NoticeAction.NoticeAction;
 import svc.NoticeSvc.NoticeListService;
 import vo.NoticeVo.NoticeActionForward;
 import vo.NoticeVo.NoticeBean;
-import vo.PageInfo;
+import vo.NoticeVo.PageInfo;
 
 public class NoticeListAction implements action.NoticeAction.NoticeAction {
 
@@ -66,7 +66,7 @@ public class NoticeListAction implements action.NoticeAction.NoticeAction {
 		// request 객체의 setAttribute() 메서드를 호출하여
 		// 게시물 목록 정보(ArrayList)와 페이지 정보(PageInfo) 객체를 저장
 		request.setAttribute("articleList", articleList);
-		request.setAttribute("pageInfo", pageInfo);
+		request.setAttribute("PageInfo", pageInfo);
 		
 		// ActionForward 객체를 생성하여 qna_board_list.jsp 페이지로 포워딩 설정
 		// => request 객체가 유지되어야 하며, 서블릿 주소가 유지되어야 하므로

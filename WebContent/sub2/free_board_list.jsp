@@ -1,5 +1,5 @@
 <%@page import="vo.PageInfo"%>
-<%@page import="vo.BoardBean"%>
+<%@page import="vo.freeboard.freeBoardBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -13,7 +13,7 @@ if (id == null) {
 // "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 // "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 // 전부 Object타입이라 형변환 필요
-ArrayList<BoardBean> articleList = (ArrayList<BoardBean>) request.getAttribute("articleList");
+ArrayList<freeBoardBean> articleList = (ArrayList<freeBoardBean>) request.getAttribute("articleList");
 PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 int nowPage = pageInfo.getPage();
 int maxPage = pageInfo.getMaxPage();

@@ -5,18 +5,18 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import action.Action;
 import svc.NoticeSvc.NoticeModifyProService;
 import vo.ActionForward;
+import vo.NoticeVo.NoticeActionForward;
 import vo.NoticeVo.NoticeBean;
 
-public class NoticeModifyProAction implements Action {
+public class NoticeModifyProAction implements action.NoticeAction.NoticeAction {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public NoticeActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("NoticeModifyProAction");
 		
-		ActionForward forward = null;
+		NoticeActionForward forward = null;
 		
 		int num = Integer.parseInt(request.getParameter("num"));
 		NoticeModifyProService noticeModifyProService = new NoticeModifyProService();
@@ -37,7 +37,7 @@ public class NoticeModifyProAction implements Action {
 			article.setId(request.getParameter("id"));
 			article.setSubject(request.getParameter("subject"));
 			article.setContent(request.getParameter("content"));
-			
+			article.setFile(request.getParameter("file"));
 			Boolean isModifySuccess = noticeModifyProService.modifyArticle(article);
 			
 			if(!isModifySuccess) {
@@ -48,7 +48,7 @@ public class NoticeModifyProAction implements Action {
 				out.println("history.back()");
 				out.println("</script>");
 			}else {
-				forward = new ActionForward();
+				forward = new NoticeActionForward();
 				forward.setPath("NoticeDetail.not?num="+ num + "&page=" + request.getParameter("page"));
 				forward.setRedirect(true);
 			}

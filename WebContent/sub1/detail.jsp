@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="vo.ReviewBean"%>
+<%@page import="vo.PageInfo"%>
+<%@page import="vo.BoardBean"%>
+<%@page import="java.util.ArrayList"%>
     
 <jsp:include page="../include/header.jsp"/>
+<%
+	BookBean book = (BookBean)request.getAttribute("book");
+    String nowPage = request.getParameter("page");
+%>
 <section class="sub">
 		<div class="category-nav">
 			<div class="category-nav-inner">
@@ -154,7 +162,10 @@
 						<h3>저자소개</h3>
 						<div class="author-intro-text">〈저자 소개〉<br>델마 햄 에반스 (Thelma Hamm Evans)는 1950년대와 60년대 활동한 미국의 SF 작가이다. T. D. Hamm 등의 필명을 사용했다.<br><br>〈번역자 소개〉<br>2014년, 활동을 시작한 TR 클럽의 구성원은 인문학과 공학 등을 전공한 전문 직업인들로, 모두 5년 이상의 유학 또는 현지 생활 경험을 가지고 있다.<br>각자의 삶의 영역을 가지고 있으나, 자신이 관심을 가진 도서와 컨텐츠가 국내에서도 널리 읽히기를 바라는 마음에서 번역을 진행하고 있다.<br>대기업 직장인, IT 벤처기업가, 출판 및 서점 편집자, 대학 교원, 음악 전문가 등 다양한 직업군을 바탕으로, 본인들의 외국어 능력과 직업적 특기를 기반으로, 모던한 컨텐츠 번역을 추구하고 있다.<br></div>						
 					</div>
+					
+					<form action="ReviewWritePro.re" method="get" id="myReview">
 					<div class="d-tab review" data-sort="최신순" data-order="false" data-review-count="0" data-review-point="" data-page-num="1" data-etc-count="0">
+						
 						<h3>서평(<span>0</span>)</h3>
 						<div class="review-text-area">
 							<p class="star-gogo">
@@ -186,17 +197,17 @@
 								<div>
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" class="spoiler">
+											<input type="checkbox" class="spoiler" >
 											<span><i></i></span>
 										</label>
 										<p>스포일러가 포함되어 있습니다.</p>
 									</div>
 									<div class="text-btn">
-										<a href="javascript:;" class="btn reviewInput">등록</a>
-										<a href="javascript:;" class="btn reviewCancel">취소</a>
+										<input type="submit" value="등록" class="btn reviewInput">
+										<input type="reset" value="취소" class="btn reviewCancel">
 									</div>
 								</div>
-								<textarea placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>
+								<textarea name="content" placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>
 							</div>
 						</div>
 						<script>
@@ -233,15 +244,24 @@
 							<div id="comment">
 								<div class="comment_list">
 									<p class="no">회원님께서 첫 서평의 주인공이 되어주세요.</p>
+									
+									<%
+									ReviewBean article = (ReviewBean)request.getAttribute("atricle");
+									%>
+									<table>
+										<tr>
+											<td><%=article.getNum() %></td><td><%=article.getId()%></td><td><%=article.getContent() %></td>
+										</tr>
+									</table>
+									
 								</div>
 								<div class="d-more reviewMore">
 									<a href="javascript:;">20개 더보기</a>
 								</div>
 							</div>
 						</div>
-					</div>
-						
-					
+					</div>					
+					</form>
 					<div class="detail_class_best_book"></div>
 					
 					
@@ -889,136 +909,133 @@
 				$(".d-gift-wrap").data("order-book-num-arr", book_num_arr);				
 			}
 
-			if($.cookie("user_num")){
-				$.post("/data/_series_point_view.asp", {series_num : series_num}, function(data){						
-					if(data.success){
-						if (data.point > 0){
-							$('#star-'+data.point).attr('checked','checked');							
-						}
-						if (data.review_num != ""){
-							$(".my-review.effect-btn").data("review-yn", "Y");
-							$(".my-review.effect-btn").html("내가 쓴 서평 보기");
-						}
-					}
-				}, "json");
-			}
+// 			if($.cookie("user_num")){
+// 				$.post("/data/_series_point_view.asp", {series_num : series_num}, function(data){						
+// 					if(data.success){
+// 						if (data.point > 0){
+// 							$('#star-'+data.point).attr('checked','checked');							
+// 						}
+// 						if (data.review_num != ""){
+// 							$(".my-review.effect-btn").data("review-yn", "Y");
+// 							$(".my-review.effect-btn").html("내가 쓴 서평 보기");
+// 						}
+// 					}
+// 				}, "json");
+// 			}
 				
-			$("input[name=star]").click(function() {  //click 함수
-				var point = $(this).val();
-				if($.cookie("user_num")){
-					$.post("/data/_series_point_input.asp", {series_num : series_num, point : point}, function(data){						
-						if(data.success){
-							$(".d-tab.review").data("review-point",point);
-							var play = reviewlist();	// 리뷰리스트 출력
-						}else{
-							alert(data.message);
-						}
-					}, "json");
-				}else{
-					goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
-//					alert('로그인 후 이용가능합니다.');
-					return;
-				}
-			});
+// 			$("input[name=star]").click(function() {  //click 함수
+// 				var point = $(this).val();
+// 				if($.cookie("user_num")){
+// 					$.post("/data/_series_point_input.asp", {series_num : series_num, point : point}, function(data){						
+// 						if(data.success){
+// 							$(".d-tab.review").data("review-point",point);
+// 							var play = reviewlist();	// 리뷰리스트 출력
+// 						}else{
+// 							alert(data.message);
+// 						}
+// 					}, "json");
+// 				}else{
+// 					goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
+// //					alert('로그인 후 이용가능합니다.');
+// 					return;
+// 				}
+// 			});
 
-			$('.reviewCancel').click(function(){
-				$(".review-text").fadeOut();
-			});
+// 			$('.reviewCancel').click(function(){
+// 				$(".review-text").fadeOut();
+// 			});
 			
-			$(".review-text .reviewInput").on("click",function(){
-				var spoiler = $(".spoiler").is(':checked');
-				var content = $(".review-text").find("textarea").val();
-				var point = $(".d-tab.review").data("review-point");
+// 			$(".review-text .reviewInput").on("click",function(){
+// 				var spoiler = $(".spoiler").is(':checked');
+// 				var content = $(".review-text").find("textarea").val();
+// 				var point = $(".d-tab.review").data("review-point");
 
-				$.post("/data/_review_process.asp", {series_num : series_num, spoiler : spoiler, content : content, point : point}, function(data){						
-					if(data.success){
-						$(".review-text").hide();
-						$(".my-review.effect-btn").data("review-yn", "Y");						
-						$(".my-review.effect-btn").html("내가 쓴 서평 보기");
-						var play = reviewlist();	// 리뷰리스트 출력
-					}else{
-						alert(data.message);
-					}
-				}, "json");
-			});
+// 				$.post("/data/_review_process.asp", {series_num : series_num, spoiler : spoiler, content : content, point : point}, function(data){						
+// 					if(data.success){
+// 						$(".review-text").hide();
+// 						$(".my-review.effect-btn").data("review-yn", "Y");						
+// 						$(".my-review.effect-btn").html("내가 쓴 서평 보기");
+// 						var play = reviewlist();	// 리뷰리스트 출력
+// 					}else{
+// 						alert(data.message);
+// 					}
+// 				}, "json");
+// 			});
 
-			//리뷰 정렬순서
-			$('.radio.reviewSort').click(function(){
-				$(".d-tab.review").data("sort", $(this).data("sort"));
-				$(".reviewSort").find("span").removeClass('radio_on').addClass('radio_off')
-				$(".reviewSort[data-sort='"+ $(this).data("sort") +"']").find('span').removeClass('radio_off').addClass('radio_on');
-
-
+// 			//리뷰 정렬순서
+// 			$('.radio.reviewSort').click(function(){
+// 				$(".d-tab.review").data("sort", $(this).data("sort"));
+// 				$(".reviewSort").find("span").removeClass('radio_on').addClass('radio_off')
+// 				$(".reviewSort[data-sort='"+ $(this).data("sort") +"']").find('span').removeClass('radio_off').addClass('radio_on');
 
 
+// 				//$(this).parent().find('span').removeClass('radio_on').addClass('radio_off');
+// 				//$(this).find('span').removeClass('radio_off').addClass('radio_on');
+// 				//$('#'+$(this).attr('for')).attr('checked','checked');
+// 				localStorage["review_sort"] = $(this).data("sort") ;
+// 				var play = reviewlist();	// 리뷰리스트 출력
+// 			});
 
-				//$(this).parent().find('span').removeClass('radio_on').addClass('radio_off');
-				//$(this).find('span').removeClass('radio_off').addClass('radio_on');
-				//$('#'+$(this).attr('for')).attr('checked','checked');
-				localStorage["review_sort"] = $(this).data("sort") ;
-				var play = reviewlist();	// 리뷰리스트 출력
-			});
+// 			//리뷰(전체/구매자)
+// 			$(".orderYN a").on("click",function(){
+// 				var orderYN = $(this).data("order");
+// 				if($.cookie("user_num")){
+// 					$(".orderYN a").removeClass("on");
+// 					$(this).addClass("on");
+// 					$(".d-tab.review").data("order", orderYN);
+// 					var play = reviewlist();	// 리뷰리스트 출력
+// 				}else{
+// 					goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
+// //					alert('로그인 후 이용가능합니다.');
+// 					return;
+// 				}				
+// 			});
 
-			//리뷰(전체/구매자)
-			$(".orderYN a").on("click",function(){
-				var orderYN = $(this).data("order");
-				if($.cookie("user_num")){
-					$(".orderYN a").removeClass("on");
-					$(this).addClass("on");
-					$(".d-tab.review").data("order", orderYN);
-					var play = reviewlist();	// 리뷰리스트 출력
-				}else{
-					goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
-//					alert('로그인 후 이용가능합니다.');
-					return;
-				}				
-			});
+// 			//리뷰 더보기
+// 			$(".reviewMore a").on("click",function(){
+// 				var review_page_num = $(".d-tab.review").data("page-num"); 
+// 				$(".d-tab.review").data("page-num", review_page_num+1); 
 
-			//리뷰 더보기
-			$(".reviewMore a").on("click",function(){
-				var review_page_num = $(".d-tab.review").data("page-num"); 
-				$(".d-tab.review").data("page-num", review_page_num+1); 
+// 				var play = reviewlist();	// 리뷰리스트 출력
+// 			});
 
-				var play = reviewlist();	// 리뷰리스트 출력
-			});
+// 			//리뷰리스트
+// 			function reviewlist(){	
+// 				var strSort = $(".d-tab.review").data("sort"); 
+// 				var sell_yn = $(".d-tab.review").data("order"); 
+// 				var review_page_num = $(".d-tab.review").data("page-num"); 
+// 				var review_count = 10 ;
+// 				var total_count = 0 ;
 
-			//리뷰리스트
-			function reviewlist(){	
-				var strSort = $(".d-tab.review").data("sort"); 
-				var sell_yn = $(".d-tab.review").data("order"); 
-				var review_page_num = $(".d-tab.review").data("page-num"); 
-				var review_count = 10 ;
-				var total_count = 0 ;
+// 				$.post("/data/_review_count.asp", {series_num : series_num, sort : strSort, sell_yn : sell_yn}, function(data){						
+// 					$(".d-tab.review").data("order-count",data.list_count); 
 
-				$.post("/data/_review_count.asp", {series_num : series_num, sort : strSort, sell_yn : sell_yn}, function(data){						
-					$(".d-tab.review").data("order-count",data.list_count); 
+// 					var etc_count = data.list_count - 10 - (review_page_num-1) * 20 ; 
 
-					var etc_count = data.list_count - 10 - (review_page_num-1) * 20 ; 
+// 					//1페이지인경우
+// 					if (data.list_count < 11){						
+// 						$(".reviewMore").hide();
+// 					}else{
+// 						//2페이지부터
+// 						if (etc_count > 0){
+// 							if ( etc_count > 20){							
+// 								$(".reviewMore a").html("20개 더보기");
+// 							}else{
+// 								$(".reviewMore a").html(etc_count +"개 더보기");
+// 							}								
+// 						}													
+// 					}
+// 					$(".d-tab.review").data("etc-count", etc_count); 
+// 				}, "json");	
 
-					//1페이지인경우
-					if (data.list_count < 11){						
-						$(".reviewMore").hide();
-					}else{
-						//2페이지부터
-						if (etc_count > 0){
-							if ( etc_count > 20){							
-								$(".reviewMore a").html("20개 더보기");
-							}else{
-								$(".reviewMore a").html(etc_count +"개 더보기");
-							}								
-						}													
-					}
-					$(".d-tab.review").data("etc-count", etc_count); 
-				}, "json");	
+// 				$.post("/detail/_review_list.asp", {series_num : series_num, sort : strSort, sell_yn : sell_yn, review_page_num : review_page_num}, function(data){					
+// 					$(".comment_list").html(data);	
 
-				$.post("/detail/_review_list.asp", {series_num : series_num, sort : strSort, sell_yn : sell_yn, review_page_num : review_page_num}, function(data){					
-					$(".comment_list").html(data);	
-
-					if ($(".d-tab.review").data("etc-count") > 0 ){
-						$(".reviewMore").show();
-					}else{
-						$(".reviewMore").hide();
-					}
+// 					if ($(".d-tab.review").data("etc-count") > 0 ){
+// 						$(".reviewMore").show();
+// 					}else{
+// 						$(".reviewMore").hide();
+// 					}
 					
 					//스포일러
 					$(".comment-content .blur").each(function(){
@@ -1030,134 +1047,134 @@
 						$(this).parent().parent().prev().css("height","auto");
 					});
 
-					//댓글 입력창
-					$(".reply-write").hide();
+// 					//댓글 입력창
+// 					$(".reply-write").hide();
 
-					//댓글 입력창 보이기
-					$(".comment_write_show").on("click",function(){
-						if ($(this).parent().parent().parent().next().css("display") == "none"){
-							$(this).parent().parent().parent().next().show();
-						}else{
-							$(this).parent().parent().parent().next().hide();
-						}
-						if ($(this).data("comment-count") > 0)	{
-							if ($(this).parent().parent().parent().next().next().css("display") == "none"){
-								$(this).parent().parent().parent().next().next().show();
-							}else{
-								$(this).parent().parent().parent().next().next().hide();
-							}
+// 					//댓글 입력창 보이기
+// 					$(".comment_write_show").on("click",function(){
+// 						if ($(this).parent().parent().parent().next().css("display") == "none"){
+// 							$(this).parent().parent().parent().next().show();
+// 						}else{
+// 							$(this).parent().parent().parent().next().hide();
+// 						}
+// 						if ($(this).data("comment-count") > 0)	{
+// 							if ($(this).parent().parent().parent().next().next().css("display") == "none"){
+// 								$(this).parent().parent().parent().next().next().show();
+// 							}else{
+// 								$(this).parent().parent().parent().next().next().hide();
+// 							}
 
-						}
-					});
-					//댓글 입력창 보이기(수정)
-					$(".comment_modify").on("click",function(){
-						if($.cookie("user_num")){
-							$(this).parent().parent().parent().parent().hide();
-							$(this).parent().parent().parent().parent().next().show();
-						}else{
-							goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
-//							alert('로그인 후 이용가능합니다.');
-							return;
-						}
-					});
-					//댓글 좋아요
-					$(".heart-btn").on("click",function(){
-						var review_num = $(this).data("review-num");
-						var heart_btn = $(this);
+// 						}
+// 					});
+// 					//댓글 입력창 보이기(수정)
+// 					$(".comment_modify").on("click",function(){
+// 						if($.cookie("user_num")){
+// 							$(this).parent().parent().parent().parent().hide();
+// 							$(this).parent().parent().parent().parent().next().show();
+// 						}else{
+// 							goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
+// //							alert('로그인 후 이용가능합니다.');
+// 							return;
+// 						}
+// 					});
+// 					//댓글 좋아요
+// 					$(".heart-btn").on("click",function(){
+// 						var review_num = $(this).data("review-num");
+// 						var heart_btn = $(this);
 
-						$.post("/data/_review_heart.asp", {review_num : review_num}, function(data){					
-							if(data.success){
-								if (data.add_yn){
-									heart_btn.addClass("on");
-								}else{
-									heart_btn.removeClass("on");
-								}
-							}else{
-								alert(data.message);
-							}					
-						}, "json");
-					});
+// 						$.post("/data/_review_heart.asp", {review_num : review_num}, function(data){					
+// 							if(data.success){
+// 								if (data.add_yn){
+// 									heart_btn.addClass("on");
+// 								}else{
+// 									heart_btn.removeClass("on");
+// 								}
+// 							}else{
+// 								alert(data.message);
+// 							}					
+// 						}, "json");
+// 					});
 
-					//댓글 삭제
-					$(".comment_del").on("click",function(){
-						var comment_num = $(this).data("comment-num");
-						var series_comment = $(this);
-						$.post("/data/_comment_del.asp", {comment_num : comment_num}, function(data){					
-							if(data.success){
-								series_comment.parent().parent().parent().parent().hide();
-							}else{
-								alert(data.message);
-							}					
-						}, "json");
-					});					
-					//댓글 작성
-					$(".comment-write .commit").on("click",function(){
-						var content = $(this).parent().parent().find("textarea").val();
-						var review_num = $(this).parent().parent().data("review-num");
-						var comment_num = $(this).parent().parent().data("comment-num");
-						$.post("/data/_comment_input.asp", {comment_num : comment_num, review_num : review_num, content : content}, function(data){					
-							if(data.success){
-								var play = reviewlist(); //댓글목록
-							}else{
-								alert(data.message);
-							}					
-						}, "json");
-					});
+// 					//댓글 삭제
+// 					$(".comment_del").on("click",function(){
+// 						var comment_num = $(this).data("comment-num");
+// 						var series_comment = $(this);
+// 						$.post("/data/_comment_del.asp", {comment_num : comment_num}, function(data){					
+// 							if(data.success){
+// 								series_comment.parent().parent().parent().parent().hide();
+// 							}else{
+// 								alert(data.message);
+// 							}					
+// 						}, "json");
+// 					});					
+// 					//댓글 작성
+// 					$(".comment-write .commit").on("click",function(){
+// 						var content = $(this).parent().parent().find("textarea").val();
+// 						var review_num = $(this).parent().parent().data("review-num");
+// 						var comment_num = $(this).parent().parent().data("comment-num");
+// 						$.post("/data/_comment_input.asp", {comment_num : comment_num, review_num : review_num, content : content}, function(data){					
+// 							if(data.success){
+// 								var play = reviewlist(); //댓글목록
+// 							}else{
+// 								alert(data.message);
+// 							}					
+// 						}, "json");
+// 					});
 
-					//댓글 취소
-					$(".comment-write .cancel").on("click",function(){
-						$(this).parent().parent().hide();
-					});
+// 					//댓글 취소
+// 					$(".comment-write .cancel").on("click",function(){
+// 						$(this).parent().parent().hide();
+// 					});
 
-					//댓글 입력창 글쓰기
-					$(".comment-write.reply-write textarea").each(function(){
-						var maxcount = 500;
-						$(this).on("click",function(){
-							if(!$.cookie("user_num")){alert('로그인 후 작성 가능합니다.'); goUrl('/login.asp?return_url='+encodeURIComponent("/detail.asp?series_num="+ series_num));	}
+// 					//댓글 입력창 글쓰기
+// 					$(".comment-write.reply-write textarea").each(function(){
+// 						var maxcount = 500;
+// 						$(this).on("click",function(){
+// 							if(!$.cookie("user_num")){alert('로그인 후 작성 가능합니다.'); goUrl('/login.asp?return_url='+encodeURIComponent("/detail.asp?series_num="+ series_num));	}
 
-							var input = $(this);
-							var update = function(){
-								var count = input.val().length;
-								var li_len = 0;
-								var push = 0;
-								for (i = 0; i < count; i++) {
-									push++;
-									if (push <= maxcount) {
-										li_len = i + 1;
-									}
-								}
-								if(count > maxcount){
-									alert("500글자가 초과되었습니다.\r\n\n초과된 부분은 자동으로 삭제됩니다.");
-									var str2 = input.val().substr(0, li_len);
-									input.val(str2);
-									$(".comment-write p span em").text("500");
-								}
-								input.keyup(function(){
-									var content = input.val().length;	
-									input.next().find("span em").text(content);
-								});
-							}
-							input.bind('input keyup keydown paste change', function() {
-								setTimeout(update, 0)
-							});
-						});	
-					});
+// 							var input = $(this);
+// 							var update = function(){
+// 								var count = input.val().length;
+// 								var li_len = 0;
+// 								var push = 0;
+// 								for (i = 0; i < count; i++) {
+// 									push++;
+// 									if (push <= maxcount) {
+// 										li_len = i + 1;
+// 									}
+// 								}
+// 								if(count > maxcount){
+// 									alert("500글자가 초과되었습니다.\r\n\n초과된 부분은 자동으로 삭제됩니다.");
+// 									var str2 = input.val().substr(0, li_len);
+// 									input.val(str2);
+// 									$(".comment-write p span em").text("500");
+// 								}
+// 								input.keyup(function(){
+// 									var content = input.val().length;	
+// 									input.next().find("span em").text(content);
+// 								});
+// 							}
+// 							input.bind('input keyup keydown paste change', function() {
+// 								setTimeout(update, 0)
+// 							});
+// 						});	
+// 					});
 
-					$(".heart-btn").on("click",function(){ 
-						if($(this).hasClass("on")){ 
-							$(this).removeClass("on"); 
-						}else{ 
-							$(".ani").show(); 
-							$(this).addClass("on"); 
-							$(".heart-wrapper").addClass("active").delay(800).queue(function(){ 
-								$(this).removeClass("active").dequeue(); 
-								$(".ani").hide(); 
-							}); 
-						} 
-						return false; 
-					}); 
-				}, "html");						
-			}
+// 					$(".heart-btn").on("click",function(){ 
+// 						if($(this).hasClass("on")){ 
+// 							$(this).removeClass("on"); 
+// 						}else{ 
+// 							$(".ani").show(); 
+// 							$(this).addClass("on"); 
+// 							$(".heart-wrapper").addClass("active").delay(800).queue(function(){ 
+// 								$(this).removeClass("active").dequeue(); 
+// 								$(".ani").hide(); 
+// 							}); 
+// 						} 
+// 						return false; 
+// 					}); 
+// 				}, "html");						
+// 			}
 			
 			//이 분야의 베스트
 			$.post("/detail/_class_best_book.asp", {series_num : series_num, mainclass_num : mainclass_num, subclass_num : subclass_num}, function(data){					

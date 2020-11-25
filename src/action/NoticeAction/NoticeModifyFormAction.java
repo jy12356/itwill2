@@ -21,7 +21,7 @@ public class NoticeModifyFormAction implements action.NoticeAction.NoticeAction 
 		request.setAttribute("article", article);
 		
 		forward = new NoticeActionForward();
-		forward.setPath("/sub5/notice_modify.jsp");
+		forward.setPath("/sub5/notice_board_Modify.jsp");
 		
 		
 		return forward;

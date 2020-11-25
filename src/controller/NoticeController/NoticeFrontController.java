@@ -13,6 +13,7 @@ import action.NoticeAction.NoticeAction;
 import action.NoticeAction.NoticeDetailAction;
 import action.NoticeAction.NoticeListAction;
 import action.NoticeAction.NoticeModifyFormAction;
+import action.NoticeAction.NoticeModifyProAction;
 import action.NoticeAction.NoticeWriteProAction;
 import vo.NoticeVo.NoticeActionForward;                                                                                                                      
 
@@ -75,7 +76,6 @@ public class NoticeFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/NoticeBoardDetail.not")) {
 			action = new NoticeDetailAction();
-			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -89,6 +89,14 @@ public class NoticeFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+		}else if(command.equals("/NoticeBoardModifyPro.not")) {
+			action = new NoticeModifyProAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			
 		} else if(command.equals("/NoticeBoardDeleteForm.not")) {
 			forward = new NoticeActionForward();

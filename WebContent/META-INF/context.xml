@@ -25,11 +25,11 @@
 		name="jdbc/MySQL" 
 		auth="Container"
 		type="javax.sql.DataSource"
-		username="team2_db"
-		password="abcd1234"
+		username="root"
+		password="63520321"
 		driverClassName="com.mysql.jdbc.Driver"
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-		url="jdbc:mysql://192.168.1.22:3306/team_db?useSSL=false&amp;serverTimezone=UTC"
+		url="jdbc:mysql://localhost:3306/team_db?useSSL=false&amp;serverTimezone=UTC"
 		maxActive="500"
 		maxIdle="20"
 	/>
@@ -42,6 +42,7 @@
 
 
 
+<!-- 		"jdbc:mysql://192.168.1.22:3306/team_db?useSSL=false&amp;serverTimezone=UTC" -->
 
 
 

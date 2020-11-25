@@ -10,14 +10,8 @@ public class NoticeBean {
 	private String file;
 	private Date date;
 	private String kind;
-	private String member_id;
 	
-	public String getMember_id() {
-		return member_id;
-	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
-	}
+	
 	public int getNum() {
 		return num;
 	}
@@ -60,6 +54,5 @@ public class NoticeBean {
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
-	
-	
 }
+	

@@ -90,8 +90,8 @@ public class NoticeWriteProAction implements action.NoticeAction.NoticeAction {
 				//-----------------------------------------------------------------------------------------------------------
 				NoticeBean noticeBean = new NoticeBean();
 				noticeBean.setId(multi.getParameter("id"));
-				noticeBean.setSubject(multi.getParameter("title"));
-				noticeBean.setContent(multi.getParameter("desc"));
+				noticeBean.setSubject(multi.getParameter("subject"));
+				noticeBean.setContent(multi.getParameter("content"));
 				noticeBean.setFile(multi.getOriginalFileName("file")); // 주의!
 					
 				
@@ -139,7 +139,7 @@ public class NoticeWriteProAction implements action.NoticeAction.NoticeAction {
 					// 2. 포워딩 경로(URL) 지정
 					// Redirect방식에서 / 붙여서 쓰면 project명 날라간다. http://localhost:8080/BoardList.bo
 //				forward.setPath("/BoardList.bo");  // 주의! 경로명앞에 슬래시(/) 기호 붙이지 말 것!
-					forward.setPath("NoticeBoardList.bo");
+					forward.setPath("NoticeBoardList.not");
 					
 					// 3. 포워딩 방식(Redirect 방식) 지정
 					forward.setRedirect(true);

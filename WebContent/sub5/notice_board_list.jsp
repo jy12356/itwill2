@@ -14,12 +14,12 @@ if (id == null) {
 // "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 // 전부 Object타입이라 형변환 필요
 ArrayList<NoticeBean> articleList = (ArrayList<NoticeBean>) request.getAttribute("articleList");
-PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
-int nowPage = pageInfo.getPage();
-int maxPage = pageInfo.getMaxPage();
-int startPage = pageInfo.getStartPage();
-int endPage = pageInfo.getEndPage();
-int listCount = pageInfo.getListCount();
+PageInfo PageInfo = (PageInfo) request.getAttribute("PageInfo");
+int nowPage = PageInfo.getPage();
+int maxPage = PageInfo.getMaxPage();
+int startPage = PageInfo.getStartPage();
+int endPage = PageInfo.getEndPage();
+int listCount = PageInfo.getListCount();
 %>
 
 <jsp:include page="../include/header.jsp" />
@@ -34,7 +34,7 @@ int listCount = pageInfo.getListCount();
 	</div>
 	<div class="contents-wrap">
 		<div class="customer">
-			<h3 class="coTitle">자유게시판</h3>
+			<h3 class="coTitle">공지사항</h3>
 			<div class="customer-top-menu">
 				<ul>
 					<li><a href="../sub2/free_board.jsp" class=""><em>자유게시판</em></a></li>
@@ -60,7 +60,6 @@ int listCount = pageInfo.getListCount();
 								<th scope="col" abbr="제목">제목</th>
 								<th scope="col" abbr="작성자">작성자</th>
 								<th scope="col" abbr="등록일">등록일</th>
-								<th scope="col" abbr="조회수">조회수</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -70,7 +69,7 @@ int listCount = pageInfo.getListCount();
 							<tr>
 								<td align="center"><%=articleList.get(i).getNum()%></td>
 								<td>
-								<a href="NoticeDetail.not?board_num=<%=articleList.get(i).getNum()%>&page=<%=nowPage%>">
+								<a href="NoticeBoardDetail.not?num=<%=articleList.get(i).getNum()%>&page=<%=nowPage%>">
 										<%=articleList.get(i).getSubject()%>
 								</a>
 								</td>
@@ -83,11 +82,11 @@ int listCount = pageInfo.getListCount();
 						</tbody>
 					</table>
 					<div class="btn_inner">
-						<a href="NoticeWrite.not" class="btn">글쓰기</a>
+						<a href="NoticeWriteForm.not" class="btn">글쓰기</a>
 					</div>
 
 					<div class="paging">
-						<a href="notice.jsp?pageNum=1" class="arr" data-page-num="1"><img
+						<a href="NoticeList.not?pageNum=1" class="arr" data-page-num="1"><img
 							src="../images/p-first.png"><span class="hide">처음페이지</span></a>
 
 						<!-- 이전페이지 -->

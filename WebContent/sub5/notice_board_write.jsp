@@ -19,7 +19,7 @@
             <h3 class="coTitle">공지사항 작성</h3> 
             <div class="customer-contents">
                 <div class="customer-inner">
-                	<form action="NoticeWritePro.not" method="post"
+                	<form action="NoticeBoardWritePro.not" method="post"
                 	enctype="multipart/form-data" name="notice_writeForm">
 	                    <table summary="게시판" class="customer-notice">
 	                        <caption>게시판</caption>
@@ -30,17 +30,34 @@
 	                            <col width="35%">
 	                        </colgroup>
 	                        <tbody>
+	                        <div class="select-wrap">
+											<div class="one-sel">
+												<p class="one-select">
+													분류 선택
+												</p>
+												<ul class="one-list sel1" >
+												<li data-num="1"><input type="hidden" name="kind" id="kind" value="공지">공지</li>
+												<li data-num="2"><input type="hidden" name="kind" id="kind" value="공지2">공지2</li>
+												<li data-num="3"><input type="hidden" name="kind" id="kind" value="공지3">공지3</li>
+												<li data-num="4"><input type="hidden" name="kind" id="kind" value="공지4">공지4</li>
+<!-- 													<li data-num="1" value="">오류문의</li> -->
+<!-- 													<li data-num="2" value="">작품관련 문의</li> -->
+<!-- 													<li data-num="3" value="">취소/환불/현금영수증 발급</li> -->
+<!-- 													<li data-num="4" value="">이용관련 문의</li> -->
+												</ul>
+											</div>
+											</div>
 	                            <tr>
 	                                <td>제목</td>
 	                                <td colspan="3">
-	                                	<input type="text" name="title">
+	                                	<input type="text" name="subject">
 	                                </td>
 	                            </tr>
 	                            
 	                            <tr>
 	                            	<td>작성자</td>
 	                            	<td colspan="3">
-	                            		<input type="text" name="id" >
+	                            		<input type="text" name="id">
 	                            	</td>
 <!-- 	                            	<td class="th">비밀번호</td> -->
 <!-- 	                            	<td> -->
@@ -50,7 +67,7 @@
 	                            <tr>
 	                                <td>내용</td>
 	                                <td colspan="3">
-	                                    <textarea name="desc"></textarea>
+	                                    <textarea name="content"></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
@@ -63,7 +80,7 @@
 	                    </table>
 	                    <div class="default-btn-wrap">
 	                    	<input type="submit" class="btn" value="글쓰기">
-	                        <input type="submit" class="btn" value="목록"></a>
+	                        <input type="button" class="btn" value="목록" >
 	                    </div>
                     </form>
                 </div>

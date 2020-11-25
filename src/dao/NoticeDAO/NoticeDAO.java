@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dao.BoardDAO;
-import vo.BoardBean;
 import vo.NoticeVo.NoticeBean;
 
 public class NoticeDAO {
@@ -48,7 +46,6 @@ public class NoticeDAO {
 		// Service 클래스로부터 BoardBean 객체를 전달받아
 		// DB의 board 테이블에 INSERT 작업 수행하고 결과(int타입)를 리턴
 		System.out.println("NoticeDAO - insertArticle()");
-
 		int insertCount = 0; // INSERT 작업 수행 결과를 저장할 변수
 		
 		PreparedStatement pstmt = null;
@@ -57,6 +54,11 @@ public class NoticeDAO {
 		int num = 1; // 새 글 번호를 저장할 변수
 		
 		try {
+			System.out.println(noticeBean.getId());
+			System.out.println(noticeBean.getNum());
+			System.out.println(noticeBean.getSubject());
+			System.out.println(noticeBean.getContent());
+			System.out.println(noticeBean.getKind());
 			// 현재 게시물 번호(board_num) 중 가장 큰 번호를 조회하여
 			// 해당 번호 + 1 값을 새 글 번호(num)으로 저장
 			String sql = "SELECT MAX(num) FROM notice";
@@ -70,7 +72,7 @@ public class NoticeDAO {
 			} 
 			// 전달받은 BoardBean 객체 내의 데이터를 사용하여 INSERT 작업 수행
 			// => 컬럼 중 board_date 항목(작성일)은 now() 함수 사용
-			sql = "INSERT INTO notice VALUES (?,?,?,?,?,?,?,?,now())";
+			sql = "INSERT INTO notice VALUES (?,?,?,	?,now(),?,?)";
 			pstmt = con.prepareStatement(sql);
 			
 			
@@ -80,10 +82,7 @@ public class NoticeDAO {
 			pstmt.setString(3, noticeBean.getId());
 			pstmt.setString(4, noticeBean.getContent());
 			pstmt.setString(5, noticeBean.getFile());
-			pstmt.setInt(6, num); // 참조글 번호(새 글이므로 자신이 참조글이 됨)
-			pstmt.setString(7, noticeBean.getKind());
-			pstmt.setString(8, noticeBean.getMember_id());
-			pstmt.setDate(9, noticeBean.getDate());
+			pstmt.setString(6, "종류 시발없어");
 			// INSERT 구문 실행 결과값을 int형 변수 insertCount 에 저장
 			insertCount = pstmt.executeUpdate();
 			
@@ -134,7 +133,7 @@ public class NoticeDAO {
 			//참조글 번호(board_re_ref) 번호를 기준으로 내림차순 정렬,
 			//순서번호(board_re_seq) 번호를 기준으로 오름차순 정렬
 			//조회 시작 게시물 번호(startRow)를 기준으로 limit갯수만큼 조회
-			String sql = "select * from notice "+"ORDER BY board_re_ref desc, board_re_seq ASC " + "LIMIT ?,? ";
+			String sql = "select * from notice "+"ORDER BY num DESC " + "LIMIT ?,? ";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, limit);
@@ -153,7 +152,6 @@ public class NoticeDAO {
 				article.setContent(rs.getString("content"));
 				article.setFile(rs.getString("file"));
 				article.setKind(rs.getString("kind"));
-				article.setMember_id(rs.getString("member_id"));
 				article.setDate(rs.getDate("date"));
 				
 				articleList.add(article);
@@ -179,7 +177,7 @@ public class NoticeDAO {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT * FROM notice WHERE bnum=?";
+			String sql = "SELECT * FROM notice WHERE num=?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -194,7 +192,6 @@ public class NoticeDAO {
 				article.setContent(rs.getString("content"));
 				article.setFile(rs.getString("file"));
 				article.setKind(rs.getString("kind"));
-				article.setMember_id(rs.getString("member_id"));
 				article.setDate(rs.getDate("date"));
 				
 //				 임시 확인용 상세 내용 출력
@@ -222,17 +219,17 @@ public class NoticeDAO {
 		PreparedStatement pstmt = null;
 		
 		try {
-			String sql = "UPDATE board SET board_readcount=board_readcount+1 "
-					+ "WHERE board_num=?";
+			String sql = "UPDATE notice SET readcount=board_readcount+1 "
+					+ "WHERE num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			updateCount = pstmt.executeUpdate();
 			
 			// 임시 확인용
-			System.out.println("조회수 증가 결과 : " + updateCount);
+//			System.out.println("조회수 증가 결과 : " + updateCount);
 		} catch (SQLException e) {
-			System.out.println("updateReadcount() 오류! - " + e.getMessage());
-			e.printStackTrace();
+//			System.out.println("updateReadcount() 오류! - " + e.getMessage());
+//			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
@@ -270,12 +267,13 @@ public class NoticeDAO {
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
 		try {
-			String sql = "UPDATE notice SET id=? subject=? , content=? WHERE num=?";
+			String sql = "UPDATE notice SET id=? subject=? , content=?, file=? WHERE num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, article.getId());
 			pstmt.setString(2, article.getSubject());
 			pstmt.setString(3, article.getContent());
-			pstmt.setInt(4, article.getNum());
+			pstmt.setString(4, article.getFile());
+			pstmt.setInt(5, article.getNum());
 			updateCount = pstmt.executeUpdate();
 		}catch(SQLException e) {
 			System.out.println("updateArticle() - Notice 오류" + e.getMessage());
