@@ -1,3 +1,6 @@
+<%@page import="vo.CommentBean"%>
+<%@page import="vo.PageInfo"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="vo.FreeBoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -77,16 +80,31 @@
                     
                 </div>
             </div>
+            <%
+ArrayList<CommentBean> commentList = (ArrayList<CommentBean>) request.getAttribute("commentList");
+CommentBean commentBean = (CommentBean)request.getAttribute("comment");
+// PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+// int commentnowPage = pageInfo.getPage();
+// int maxPage = pageInfo.getMaxPage();
+// int startPage = pageInfo.getStartPage();
+// int endPage = pageInfo.getEndPage();
+// int listCount = pageInfo.getListCount();
+%>
 			<div class="comment_inner">
 				<div class="tab">
 					<ul class="tab-list orderYN">
+						<!-- 댓글 리스트 -->
 						<li><a href="javascript:;" class="on" data-order="False">댓글</a></li>
 						<!--li><a href="javascript:;" class="" data-order="True">구매자</a></li-->
 					</ul>
 					<div id="comment">
+	<!-- 댓글 ------------------------------------------------------------------------------>
+					<!-- 댓글이 없을떄 -->
 						<div class="comment_list">
+						
 							<p class="no">댓글이 없습니다.</p>
 						</div>
+					<!-- 댓글이 있을때 -->
 						<div class="comment_list">
 						    <div class="comment">
 						        <p class="comment-vote">
@@ -104,6 +122,7 @@
 						            </div>
 						        </div>
 						    </div>
+			<!-- 댓글수정/대댓글 -->
 						    <div class="comment-write reply-write" data-review-num="536286" data-comment-num="" style="display: none;">
 						        <textarea name=""></textarea>
 						        <p>
@@ -112,22 +131,33 @@
 						            <button name="" class="commit">등록</button>
 						        </p>
 						    </div>
+			<!-- 댓글수정/대댓글 -->
 						</div>
 						<div class="d-more reviewMore" style="display: none;">
 							<a href="javascript:;">20개 더보기</a>
 						</div>
 					</div>
 				</div>
+	<!------------------------------ 댓글쓰기 ---------------------------------------------------->
 				<div class="comment-text-area">
+				<form action="CommentWritePro.free" method="post">
 					<div class="comment-text" style="display: block;">
 						<h3 class="coTitle tal">댓글쓰기</h3>
-						<textarea placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>
+						<!-- board_num 넘기고 -->
+						<input type="hidden" name="board_num" value="<%=article.getBoard_num()%>">
+						<!-- session id가져오고 -->
+						<input type="hidden" name="comment_id" value="<%=id%>">
+						<!-- board_type 넘기고 -->
+						<input type="hidden" name="board_type" value="1">
+						<!-- comment_desc 작성하고 -->
+						<textarea name="comment_desc" placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>
 						<div class="btn_inner">
 	                       	<a href="javascript:;" class="btn reviewInput">등록</a>
 							<a href="javascript:;" class="btn reviewCancel">취소</a>
 	                   	</div>
 
 					</div>
+					</form>
 				</div>
 			</div>
         </div>
@@ -137,60 +167,6 @@
 </section>
 
 
-<!-- <section> -->
-<!-- 댓글목록 -->
-<!-- 			<div id="comment"> -->
-<!-- 				<ul> -->
-<%-- 				<% --%>
-<!-- // 					for (int i = 0; i < commentList.size(); i++) { -->
-<!-- // 					cb = (CommentBean) commentList.get(i); -->
-<%-- 				%> --%>
-<%-- 				<li class="clear a"><%=cb.getComment_id()%></li> --%>
-<%-- 				<li class="c-size"><%=cb.getComment_content()%></li> --%>
 
-<!-- 				<li class="f-right"> -->
-<%-- 					<% --%>
-<!-- // 						if (id != null) { -->
-<!-- // 							if (id.equals(cb.getComment_id())) { -->
-<%-- 					%> <a href="c_updateForm.jsp?num=<%=bb.getNum()%>&cnum=<%=cb.getCnum()%>&comment_content=<%=cb.getComment_content()%>">수정</a> /  --%>
-<%-- 					<a href="c_delete.jsp?content_num=<%=bb.getNum()%>&cnum=<%=cb.getCnum()%>">삭제</a>  --%>
-<%-- 					<% --%>
-<!-- //  							} else { -->
-<%--  								%><a href="commentcomment.jsp?num=<%=bb.getNum()%>&cnum=<%=cb.getCnum()%>">답글</a> --%>
- 								
-<%--  								<%  --%>
-<!-- //  							} -->
-							
-<!-- // 						 } -->
-<%--  					%> --%>
-<!-- 				</li> -->
-<%-- 				<% --%>
-<!-- // 					} -->
-<%-- 				%> --%>
-<!-- 					</ul> -->
-<!-- 				</div> -->
-
-<!-- <table> -->
-<!-- 				<tr> -->
-<!-- 					<td colspan="3"> -->
-<!-- 						<form action="commentPro.jsp" method="post"> -->
-<%-- 							<input type="hidden" name="content_num" value="<%=num%>"> --%>
-<%-- 							<input type="hidden" name="id" value="<%=id%>"> <input --%>
-<!-- 								type="hidden" name="board_type" value="1"> -->
-<%-- 							    						<input type="hidden" name="comment_num" value="<%=no %>"> --%>
-<!-- 							<textarea name="comment_content" rows="4" cols="90" -->
-<!-- 								placeholder="댓글 입력" required></textarea> -->
-<%-- 								<% --%>
-								
-<%-- 								%> --%>
-<!-- 							<span style="float: right;"><input type="submit" -->
-<!-- 								value="댓글등록"></span> -->
-<!-- 						</form> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-<!-- 			</table> -->
-
-
-<!-- </section> -->
 
 <jsp:include page="../include/footer.jsp"/>
