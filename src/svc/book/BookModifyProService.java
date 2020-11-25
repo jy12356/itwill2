@@ -8,12 +8,12 @@ import vo.BookBean;
 
 public class BookModifyProService {
 
-	public boolean modifyBook(BookBean bookBean) {
+	public boolean modifyBook(BookBean bookBean, String title, String isbn) {
 		boolean ismodify = false;
 		Connection con = getConnection();
 		BookDAO bookDAO = BookDAO.getInstance();
 		bookDAO.setConnection(con);
-		int modyfiySeccess = bookDAO.modifyBook(bookBean);
+		int modyfiySeccess = bookDAO.modifyBook(bookBean,title,isbn);
 		if(modyfiySeccess  > 0) {
 			ismodify = true;
 			commit(con);
