@@ -136,4 +136,11 @@ $(document).ready(function(){
 	};
 	
 	fix.init();
+	
+	/*댓글더보기 */
+	$(".d-more").on("click",function(){	
+		$(this).hide();
+		$(this).parent().find("li").show();	
+		return false;
+	});
 });
