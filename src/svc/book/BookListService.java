@@ -2,7 +2,6 @@ package svc.book;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-
 import dao.BookDAO;
 import vo.BookBean;
 import static db.JdbcUtil.*;

@@ -14,19 +14,21 @@ public class RequestModifyProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("RequestModifyProAction");
-		
+
 		ActionForward forward = null;
-		
+
 		int num = Integer.parseInt(request.getParameter("num"));
-
+		
+		System.out.println("1");
 		RequestModifyProService requestModifyProService = new RequestModifyProService();
-		boolean isRightUser = requestModifyProService.isArticleWriter(num);
-
-		if(!isRightUser) {
+		System.out.println("2");
+		boolean isRightUser = requestModifyProService.isArticleRequestWriter(num, request.getParameter("id"));
+		System.out.println("3");
+		if (!isRightUser) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('수정 권한이 없습니다!')");
+			out.println("alert('글 수정 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
 		} else {
@@ -49,12 +51,12 @@ public class RequestModifyProAction implements Action {
 				out.println("</script>");
 			} else {
 				forward = new ActionForward();
-				forward.setPath("BoardDetail.bo?board_num=" + num + "&page=" + request.getParameter("page"));
+				forward.setPath("RequestDetail.rq?num=" + num + "&page=" + request.getParameter("page"));
 				forward.setRedirect(true);
 			}
 			
 		}
-		
+
 		return forward;
 	}
 

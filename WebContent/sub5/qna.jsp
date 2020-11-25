@@ -4,15 +4,12 @@
 <div class="category-nav">
 	<div class="category-nav-inner">
 		<p>
-			HOME > 고객센터
-		</p>
+			HOME > 고객센터</p>
 	</div>
 </div>
 <div class="contents-wrap">
 	<div class="customer">
 		<h3 class="coTitle">고객센터</h3>
-		<br>
-		<br>
 		<!-- 				<div class="customer-top-menu"> -->
 		<!-- 					<ul> -->
 		<!-- 						<li><a href="../customer.asp?page=faq" class=""><em>FAQ</em></a></li> -->

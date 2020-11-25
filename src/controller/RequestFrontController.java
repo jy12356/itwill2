@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.RequestDeleteProAction;
 import action.RequestDetailAction;
 import action.RequestListAction;
 import action.RequestModifyFormAction;
@@ -81,6 +82,19 @@ public class RequestFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/RequestDeleteForm.rq")) {
+			forward = new ActionForward();
+			forward.setPath("/sub4/request_board_delete.jsp");
+			
+		} else if(command.equals("/RequestDeletePro.rq")) {
+			action = new RequestDeleteProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		// ----------------------------------------------------------------
 

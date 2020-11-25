@@ -1,5 +1,10 @@
+<%@page import="vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	MemberBean article = (MemberBean)request.getAttribute("article");
+%>    
+    
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
 	<div class="category-nav">
@@ -10,7 +15,8 @@
 	<div class="contents-wrap">
 		<div class="user-modify">
 			<h3>회원정보수정</h3>
-			<form action='' method='' id="member_register">
+			
+			<form action="MemberModifyPro.me" method='' id="member_register">
 			<input type="hidden" name="BusinessRegistrationNum" id="BusinessRegistrationNum" value="" />
 			<input type="hidden" name="register_mobile_num1" value="010">
 			<input type="hidden" name="ori_nickname" value="[juny1993]">
@@ -32,7 +38,7 @@
 						<tbody>
 							<tr>
 								<th>북큐브 ID</th>
-								<td>juny1993</td>
+								<td><%=article.getId()%></td>
 							</tr>
 							<tr>
 								<th>카카오계정</th>
@@ -56,11 +62,11 @@
 							</tr>
 							<tr>
 								<th><label for='register_pwd'>변경 비밀번호</label></th>
-								<td><input type='password' name='register_pwd' id='register_pwd' placeholder='변경비밀번호' /></td>
+								<td><input type='password' name='register_pwd' id='password' placeholder='변경비밀번호' /></td>
 							</tr>
 							<tr>
 								<th><label for='register_repwd'>변경 비밀번호 확인</label></th>
-								<td><input type='password' name='register_repwd' id='register_repwd' placeholder='변경비밀번호 확인' /></td>
+								<td><input type='password' name='register_repwd' id='password2' placeholder='변경비밀번호 확인' /></td>
 							</tr>
 							<tr>
 								<th><label for='register_name'>이름</label></th>
@@ -165,28 +171,7 @@
 									</div>
 								</td>
 							</tr>
-							<tr>
-								<th>휴대폰 번호</label></th>
-								<td>
-									<div class="option">
-										<div class="arrayBox">
-											<a href="javascript:;" class="s-result">010</a>
-											<ul>
-												<li><a href="#" class="register_mobile_num1_val" data="010" class="on">010</a></li>
-												<li><a href="#" class="register_mobile_num1_val" data="011">011</a></li>
-												<li><a href="#" class="register_mobile_num1_val" data="016">016</a></li>
-												<li><a href="#" class="register_mobile_num1_val" data="017">017</a></li>
-												<li><a href="#" class="register_mobile_num1_val" data="018">018</a></li>
-												<li><a href="#" class="register_mobile_num1_val" data="019">019</a></li>
-											</ul>
-										</div>
-										<strong>-</strong>
-										<label><input type="text" name="register_mobile_num2" value="" title='전화번호 앞자리' maxlength="4"></label>
-										<strong>-</strong>
-										<label><input type="text" name="register_mobile_num3" value="" title='전화번호 뒷자리'  maxlength="4"></label>
-									</div>
-								</td>
-							</tr>
+							
 						</tbody>
 					</table>
 					<div class="register-btn">

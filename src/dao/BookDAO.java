@@ -152,14 +152,15 @@ public class BookDAO {
 		return listCount;
 	}
 	//책상세정보
-	public BookBean getBookInfo(String book_isbn) {
+	public BookBean getBookInfo(String book_isbn, String title) {
 		PreparedStatement pstmt =  null;
 		ResultSet rs = null;
-		String sql="select * from book where isbn=?";
+		String sql="select * from book where isbn=? and title =?";
 		BookBean bookBean = null;
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setNString(1, book_isbn);
+			pstmt.setNString(2, title);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				bookBean = new BookBean();
@@ -261,5 +262,79 @@ public class BookDAO {
 			close(pstmt);
 		}
 		return bookList;
+	}
+	public int deleteBook(int book_num) {
+		System.out.println("bookDAO - deleteBook");
+		int isDeleteOk = 0;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "delete from book where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, book_num);
+			isDeleteOk = pstmt.executeUpdate();
+		}catch (Exception e) {
+			System.out.println("deleteBook 오류!" + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return isDeleteOk;
+	}
+	public int bookExis(int book_num) {
+		int isBookExisCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select * from book where num =?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, book_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				isBookExisCount = 1;
+			}
+		} catch (Exception e) {
+			System.out.println("bookExis 오류!" + e.getMessage() );
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rs);
+		}
+		
+		return isBookExisCount;
+	}
+	public int modifyBook(BookBean bookBean) {
+		System.out.println("bookDAO - modifyBook");
+		int modyfiySeccess =0;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "update set book "
+					+ "title=?, isbn=?, author=?,author_info=?,catg1=?,catg2=?," 
+					+ "description=?,index=?,pubdate=?,publisher=?,image=? "
+					+ "where title=? and isbn=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bookBean.getTitle());
+			pstmt.setString(2, bookBean.getIsbn());
+			pstmt.setString(3, bookBean.getAuthor());
+			pstmt.setString(4, bookBean.getAuthor_info());
+			pstmt.setString(5, bookBean.getCatg1());
+			pstmt.setString(6, bookBean.getCatg2());
+			pstmt.setString(7, bookBean.getDescription());
+			pstmt.setString(8, bookBean.getIndex());
+			pstmt.setString(9, bookBean.getPubdate());
+			pstmt.setString(10, bookBean.getPublisher());
+			pstmt.setString(11, bookBean.getImage());
+			pstmt.setString(12, bookBean.getTitle());
+			pstmt.setString(13, bookBean.getIsbn());
+			modyfiySeccess = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("bookDAO - modifyBook 오류()!"+ e.getMessage()); 
+			e.printStackTrace(); 
+		}finally {
+			close(pstmt);
+			
+		}
+		return modyfiySeccess;
 	}
 }

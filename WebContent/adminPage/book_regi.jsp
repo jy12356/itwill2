@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
     <div class="category-nav">
@@ -7,6 +6,28 @@
             <p>HOME > 책등록</p>
         </div>
     </div>
+    <script type="text/javascript">
+	    function bookSearchSubmit(){
+			var keyword = $(".search_input").val();
+			alert(keyword);
+			$.ajax({
+			    url: "/API/NaverBookApiTest.java", // 클라이언트가 요청을 보낼 서버의 URL 주소
+			    data: { keyword: "홍길동" },                // HTTP 요청과 함께 서버로 보낼 데이터
+			    type: "GET",                             // HTTP 요청 방식(GET, POST)
+			    dataType: "json"                         // 서버에서 보내줄 데이터의 타
+			}).done(function(html) {
+				result = html;
+			    for(var i=0; i< result; i++){
+			    	alert(result[i]);
+			    }
+			}).fail(function(xhr, status, errorThrown) {
+			    $("#text").html("오류가 발생했습니다.<br>")
+			    .append("오류명: " + errorThrown + "<br>")
+			    .append("상태: " + status);
+			})
+			
+		}
+    </script>
     <div class="contents-wrap">
         <div class="customer">
             <h3 class="subTit">책등록</h3> 
@@ -14,8 +35,41 @@
                 <div class="customer-inner">
                 	<div class="bookregiSearch-inner">
 	                	<div class="bookregiSearch">
-	          				<input type="text" name="searchString"  placeholder="검색어를 입력하세요" class="search_input" style="ime-mode:active;">
+	          				<input type="text" name="searchString"  placeholder="검색어를 입력하세요" id="search_input" class="search_input" style="ime-mode:active;">
 							<input type="button" onclick="bookSearchSubmit()">
+	                	</div>
+	                	<div class="serachBookResult">
+	                		<table summary="책검색결과" class="customer-table notice">
+		                        <caption>게시판</caption>
+		                        <colgroup>
+		                            <col width="10%">
+		                            <col width="30%">
+		                            <col width="10%">
+		                            <col width="20%">
+		                            <col width="10%">
+		                            
+		                        </colgroup>
+		                        <thead>
+		                            <tr>
+		                                <th scope="col"></th>
+		                                <th scope="col">제목</th>
+		                                <th scope="col">내용</th>
+		                                <th scope="col">저자</th>
+		                                <th scope="col">ISBN</th>
+		                                <th scope="col">출판사</th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+		                            <tr>
+		                                <td class="tac"><input type="checkbox" value=""></td>
+		                                <td>2020/10/27</td>
+		                                <td>2020/10/27</td>
+		                                <td>2020/10/27</td>
+		                                <td>2020/10/27</td>
+		                                <td>2020/10/27</td>
+		                            </tr>
+		                        </tbody>
+		                    </table>	
 	                	</div>
                 	</div>
                 	<form action="BookWritePro.bok" method="post" name="bookRegForm" enctype="multipart/form-data">

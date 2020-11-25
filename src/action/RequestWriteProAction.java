@@ -6,6 +6,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import svc.RequestWriteProService;
 import vo.ActionForward;
 import vo.RequestBean;
@@ -26,13 +29,23 @@ public class RequestWriteProAction implements Action {
 
 		int fileSize = 1024 * 1024 * 10;
 
-		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(
+				request, // HttpServletRequest(request) 객체 
+				realFolder, // 실제 업로드 폴더 
+				fileSize, // 한 번에 업로드 가능한 1개 파일 최대 크기 
+				"UTF-8", // 파일명에 대한 인코딩 방식 
+				new DefaultFileRenamePolicy() // 파일명 중복 시 중복 처리 객체
+		);
+		
 		RequestBean requestBean = new RequestBean();
-		requestBean.setRequest_name(multi.getParameter("name"));
-		requestBean.setRequest_pass(multi.getParameter("pass"));
-		requestBean.setRequest_subject(multi.getParameter("subject"));
-		requestBean.setRequest_content(multi.getParameter("content"));
-		requestBean.setRequest_file(multi.getOriginalFileName("file"));
+		requestBean.setId(multi.getParameter("id"));
+		requestBean.setSubject(multi.getParameter("subject"));
+		requestBean.setAuthor(multi.getParameter("author"));
+		requestBean.setPublisher(multi.getParameter("publisher"));
+		requestBean.setPubdate(multi.getParameter("pubdate"));
+		requestBean.setIsbn(multi.getParameter("isbn"));
+		requestBean.setContent(multi.getParameter("content"));
+		requestBean.setFile(multi.getOriginalFileName("file"));
 
 		RequestWriteProService requestWriteProService = new RequestWriteProService();
 		boolean isWriteSuccess = requestWriteProService.registArticle(requestBean);

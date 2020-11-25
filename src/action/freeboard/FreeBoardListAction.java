@@ -6,12 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import svc.freeboard.freeBoardListService;
+import svc.freeboard.FreeBoardListService;
 import vo.ActionForward;
+import vo.FreeBoardBean;
 import vo.PageInfo;
-import vo.freeboard.freeBoardBean;
 
-public class freeBoardListAction implements Action {
+public class FreeBoardListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -19,7 +19,7 @@ public class freeBoardListAction implements Action {
 		// 조회 결과를 request 객체에 저장하고, qna_board_list.jsp 페이지로 포워딩
 		// => 이 때, request 객체를 유지하고, 서블릿 주소의 변경 없이
 		//    포워딩 해야하므로 포워딩 방식을 Dispatcher 방식으로 지정
-		System.out.println("BoardListAction");
+		System.out.println("FreeBoardListAction");
 		
 		ActionForward forward = null;
 		
@@ -35,13 +35,13 @@ public class freeBoardListAction implements Action {
 		
 		// BoardListService 클래스 인스턴스 생성 후 
 		// getListCount() 메서드를 호출하여 전체 게시물 수(listCount) 가져오기
-		freeBoardListService boardListService = new freeBoardListService();
+		FreeBoardListService boardListService = new FreeBoardListService();
 		int listCount = boardListService.getListCount();
 //		System.out.println("전체 게시물 수 : " + listCount);
 		
 		// 전체 게시물 목록을 저장할 ArrayList 객체(articleList) 생성
 		// => 제네릭 타입으로 BoardBean 타입 지정
-		ArrayList<freeBoardBean> articleList = new ArrayList<freeBoardBean>();
+		ArrayList<FreeBoardBean> articleList = new ArrayList<FreeBoardBean>();
 		// BoardListService 클래스의 getArticleList() 메서드를 호출하여
 		// 전체 게시물 목록 리턴받아 ArrayList 객체에 저장
 		// => 파라미터 : 현재 페이지번호(page), 페이지 당 게시물 수(limit)
