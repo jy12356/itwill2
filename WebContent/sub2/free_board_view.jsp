@@ -77,11 +77,65 @@
                     
                 </div>
             </div>
+			<div class="comment_inner">
+				<div class="tab">
+					<ul class="tab-list orderYN">
+						<li><a href="javascript:;" class="on" data-order="False">댓글</a></li>
+						<!--li><a href="javascript:;" class="" data-order="True">구매자</a></li-->
+					</ul>
+					<div id="comment">
+						<div class="comment_list">
+							<p class="no">댓글이 없습니다.</p>
+						</div>
+						<div class="comment_list">
+						    <div class="comment">
+						        <p class="comment-vote">
+						        	<i>k20201009220236</i><em>|</em>
+						        	<span class="date">2020.11.10</span><em>|</em>
+						        	댓글 0
+					        	</p>
+						        <div class="comment-content">
+						            <span>댓글입니다.</span>
+						        </div>
+						        <div class="comment-btn">
+						            <div>
+						                <a href="javascript:;" class="comment_modify_show" data-comment-count="0">수정</a>
+						                <a href="javascript:;" class="comment_write_show" data-comment-count="0">댓글</a>
+						            </div>
+						        </div>
+						    </div>
+						    <div class="comment-write reply-write" data-review-num="536286" data-comment-num="" style="display: none;">
+						        <textarea name=""></textarea>
+						        <p>
+						            <span><em>0</em>/500자</span>
+						            <button name="" class="cancel">취소</button>
+						            <button name="" class="commit">등록</button>
+						        </p>
+						    </div>
+						</div>
+						<div class="d-more reviewMore" style="display: none;">
+							<a href="javascript:;">20개 더보기</a>
+						</div>
+					</div>
+				</div>
+				<div class="comment-text-area">
+					<div class="comment-text" style="display: block;">
+						<h3 class="coTitle tal">댓글쓰기</h3>
+						<textarea placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>
+						<div class="btn_inner">
+	                       	<a href="javascript:;" class="btn reviewInput">등록</a>
+							<a href="javascript:;" class="btn reviewCancel">취소</a>
+	                   	</div>
 
+					</div>
+				</div>
+			</div>
         </div>
+        
     </div>
-
+	
 </section>
+
 
 <!-- <section> -->
 <!-- 댓글목록 -->
