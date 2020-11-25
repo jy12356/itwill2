@@ -31,7 +31,7 @@ public class RequestListAction implements Action {
 		
 		ArrayList<RequestBean> articleList = new ArrayList<RequestBean>();
 		
-		articleList = requestListService.getArticleList(page, limit);	
+		articleList = requestListService.getArticleList(page, limit);
 
 		int maxPage = (int)((double) listCount / limit + 0.95);
 
@@ -49,7 +49,7 @@ public class RequestListAction implements Action {
 		request.setAttribute("pageInfo", pageInfo);
 
 		forward = new ActionForward();
-		forward.setPath("/sub4/request_board.jsp");
+		forward.setPath("/sub4/request_board_list.jsp");
 		
 		return forward;
 	}

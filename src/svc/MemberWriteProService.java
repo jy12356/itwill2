@@ -25,7 +25,7 @@ public class MemberWriteProService {
 		
 		memberDAO.setConnection(con);
 		
-		int insertCount = memberDAO.insertArticle(memberBean);
+		int insertCount = memberDAO.insertMember(memberBean);
 		
 		if(insertCount > 0) {
 			JdbcUtil.commit(con); 

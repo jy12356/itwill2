@@ -16,7 +16,8 @@ public class MemberWriteProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberWriteProAction!");
-
+		System.out.println(request.getParameter("sample4_postcode")+" : 오류확인중...");
+		
 		ActionForward forward = null;
 		
 		ServletContext context = request.getServletContext();
@@ -29,8 +30,15 @@ public class MemberWriteProAction implements Action {
 		memberBean.setPhone(request.getParameter("phone"));
 		memberBean.setCatg(request.getParameter("catg"));
 		memberBean.setAge(Integer.parseInt(request.getParameter("age")));
-		memberBean.setAddress(request.getParameter("address"));
+		memberBean.setAddress(request.getParameter("sample4_postcode")+'/'+request.getParameter("sample4_roadAddress")+'/'+request.getParameter("sample4_detailAddress"));
 		memberBean.setName(request.getParameter("name"));
+		
+		System.out.println(request.getParameter("sample4_postcode"));
+		System.out.println(request.getParameter("sample4_roadAddress"));
+		System.out.println(request.getParameter("sample4_detailAddress"));
+
+
+		
 		
 		MemberWriteProService memberWriteProService = new MemberWriteProService();
 		boolean isWriteSuccess = memberWriteProService.registArticle(memberBean);
@@ -40,7 +48,7 @@ public class MemberWriteProAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>"); 
-			out.println("alert('회원등록실패!')");
+			out.println("alert('fail!')");
 			out.println("history.back()");
 			out.println("</script>"); 
 		} else {

@@ -70,14 +70,14 @@
 				<input type="hidden" name="page" value="">
 					<fieldset>
 						<legend>검색</legend>
-						<h1 class="logo"><a href="https://www.bookcube.com/main.asp">북큐브서점</a></h1>
+						<h1 class="logo"><a href="Main.book">북큐브서점</a></h1>
 						<div class="search">						
 							<input type='text' name='searchString' class="search_input" style="ime-mode:active;" />
 							<input type='button' onclick="frmSearchSubmit()" />
 						</div>
 						<ul class="my-lnb">
 							<li class="btnLogin"><a href="javascript:;">로그인</a></li>
-							<li><a href="https://www.bookcube.com/member/register.asp">회원가입</a></li>
+							<li><a href="MemberWriteForm.me">회원가입</a></li>
 						</ul>
 					</fieldset>
 				</form>

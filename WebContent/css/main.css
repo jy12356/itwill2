@@ -311,7 +311,7 @@ section.manhwa .quick ul li:nth-child(4) a{background: url(../images/q-manhwa-04
 .special-title{width:100%;}
 .coTitle{margin-top: 20px;margin-bottom: 35px;font-weight:600;font-size:20px;color:#333;line-height:20px;}
 .coTitleL{float:left;}
-.special-title .date{float:left;margin-left: 14px;font-size: 14px;}
+.special-title .date{float:left;margin-left: 14px;font-size: 14px;margin-top: 22px;}
 .banner-list{/*position:relative;overflow:hidden;width:100%;height:151px;*/margin-top:14px;}
 /*.banner-list ul{position:absolute;top:0;height:151px;}*/
 .banner-list ul:after{content:"";display:block;clear:both;}
@@ -401,11 +401,11 @@ section.romance .best-list-wrap ul li:nth-child(2) p:nth-child(3) {margin-top:10
 .star-vote{display: inline-block;color: #909090 !important;}
 .best-list-wrap .star-vote{font-size:12px;}
 
-.md{margin-bottom:48px;}
+.md{position: relative;margin-bottom:48px;}
 .md-title{padding:0 15px 8px 0;border-bottom:2px solid #f0eef2;}
 .md-title:after{content:"";display:block;clear:both;}
-.md-title h3{float:left;}
-.md-title a{float:right;}
+.md-title h3{float:left;margin-bottom: 11px;}
+.md-title a{float:right;position: absolute;right: 18px;top: 23px;}
 .md ul{padding-top:27px;}
 .md ul:after{content:"";display:block;clear:both;}
 .md li{float:left;width:180px;text-align:center;box-sizing:border-box;}
@@ -2980,7 +2980,7 @@ margin-left:3px;border:1px solid #fb0707;display:inline-block;box-sizing:border-
 .rank_inner{background: linear-gradient(180deg, #eee 70%, #ffffff 30%);margin-bottom: 47px;}
 .rank_inner .more{position: absolute;top: 19px;right: -11px;}
 .realtime-hot-box {padding-top: 17px;background: url(../images//bg_realtime_hot.png) repeat-x 0 0;}
-.realtime-hot-box .realtime-hot-list {position:relative;margin-top: 40px;background: url('../images/bg_realtime_hot_box.png') no-repeat;background-size: 100% 100%;}
+.realtime-hot-box .realtime-hot-list {position:relative;background: url('../images/bg_realtime_hot_box.png') no-repeat;background-size: 100% 100%;}
 .realtime-hot-box .realtime-hot-list ul {position:relative;border-radius:5px;behavior:url('/Asset/css/utils/PIE.htc')}
 .realtime-hot-box .realtime-hot-list li {position:relative;overflow:hidden;cursor:pointer}
 .realtime-hot-box .realtime-hot-list li>* {position:relative;float:left;min-height:46px;padding:0 30px;box-sizing:border-box;border-left:1px solid #d5d5d5;background:url('../images//bg_realtime_hot_line02.png') no-repeat center 0}
