@@ -83,7 +83,7 @@ int listCount = pageInfo.getListCount();
 									<%for(int j = 0; j <= articleList.get(i).getRe_lev() * 2; j++) { %>
 										&nbsp;
 									<%} %>
-									▶
+									▶ 
 							<%} %>
 								&nbsp;
 						<a href="QnaDetail.qna?board_num=<%=articleList.get(i).getBoard_num() %>&page=<%=nowPage %>">

@@ -231,7 +231,6 @@ public class QnaDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				num = rs.getInt(1) + 1;
-				
 				int re_ref = article.getRe_ref(); // 기존글 참조번호
 				int re_lev = article.getRe_lev(); // 기존글 들여쓰기 값
 				int re_seq = article.getRe_seq(); // 기존글 순서번호	
@@ -244,9 +243,6 @@ public class QnaDAO {
 				
 				re_lev += 1;
 				re_seq += 1;
-				System.out.println(article.getRe_lev());
-				System.out.println(article.getRe_seq());
-				System.out.println(article.getTitle());
 				sql = "insert into qna values(?,?,?,?,?,?,now(),?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, num);
@@ -256,8 +252,8 @@ public class QnaDAO {
 				pstmt.setString(5, article.getContent());
 				pstmt.setString(6, article.getQna_genre());
 				pstmt.setInt(7, article.getRe_ref());
-				pstmt.setInt(8, article.getRe_lev());
-				pstmt.setInt(9, article.getRe_seq());
+				pstmt.setInt(8, re_lev);
+				pstmt.setInt(9, re_seq);
 				pstmt.setString(10, article.getContent2());
 				insertCount = pstmt.executeUpdate();
 			}
