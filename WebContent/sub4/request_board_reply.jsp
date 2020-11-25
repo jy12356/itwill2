@@ -36,7 +36,7 @@
 								<tbody>
 	                            	<tr>
 										<th>제목 <em><font color="red">(*)</font></em></th>
-										<td><input type="text" name="subject" value="<%=article.getSubject()%>" required="required"></td>
+										<td><input type="text" name="subject" value="Re : <%=article.getSubject()%>" required="required"></td>
 									</tr>
 									<tr>
 										<th>첨부 내용</th>

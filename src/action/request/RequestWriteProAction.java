@@ -63,7 +63,7 @@ public class RequestWriteProAction implements Action {
 			out.println("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("RequestList.bo");
+			forward.setPath("RequestList.rq");
 			forward.setRedirect(true);
 		}
 

@@ -47,9 +47,14 @@ public class RequestDAO {
 				num = rs.getInt(1) + 1;
 			}
 
-			sql = "INSERT INTO bookreq VALUES (?,?,?,?,?,?,?,?,?,now(),?,?,?)";
+			sql = "INSERT INTO bookreq VALUES (?,?,?,?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 
+			System.out.println(requestBean.getId());
+			System.out.println(requestBean.getPubdate());
+			System.out.println(requestBean.getRe_ref());
+			System.out.println(requestBean.getRe_lev());
+			
 			pstmt.setInt(1, num);
 			pstmt.setString(2, requestBean.getId());
 			pstmt.setString(3, requestBean.getSubject());
@@ -254,22 +259,22 @@ public class RequestDAO {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+	
 		try {
 			int num = 1;
 
 			String sql = "SELECT MAX(num) FROM bookreq";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-
+			
 			if (rs.next()) {
 				num = rs.getInt(1) + 1;
-			}
-
+			}		
+			
 			int re_ref = article.getRe_ref(); // 기존글 참조번호
 			int re_lev = article.getRe_lev(); // 기존글 들여쓰기 값
 			int re_seq = article.getRe_seq(); // 기존글 순서번호
-
+			
 			sql = "UPDATE bookreq SET re_seq=re_seq+1 WHERE re_ref=? AND re_seq>?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, re_ref);
@@ -278,24 +283,31 @@ public class RequestDAO {
 			
 			re_lev += 1;
 			re_seq += 1;
-
-			sql = "INSERT INTO bookreq VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,now())";
+			
+			System.out.println("a");
+			System.out.println(num);
+			System.out.println(article.getId());
+			System.out.println(article.getSubject());
+			System.out.println(article.getAuthor());
+			System.out.println(article.getContent());
+			
+			sql = "INSERT INTO bookreq VALUES(?,?,?,?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, article.getId());
 			pstmt.setString(3, article.getSubject());
 			pstmt.setString(4, ""); // 저자 생략
 			pstmt.setString(5, ""); // 출판사 생략
-			pstmt.setString(6, ""); // 출판사 생략
+			pstmt.setString(6, ""); // 출판일 생략
 			pstmt.setString(7, ""); // ISBN 생략
 			pstmt.setString(8, article.getContent());
 			pstmt.setString(9, ""); // 파일업로드 생략
 			pstmt.setInt(10, re_ref);
 			pstmt.setInt(11, re_lev);
 			pstmt.setInt(12, re_seq);
-			pstmt.setInt(13, 0);
 			insertCount = pstmt.executeUpdate();
 
+			System.out.println("1");
 		} catch (SQLException e) {
 			System.out.println("insertReplyArticle() 오류! - " + e.getMessage());
 			e.printStackTrace();
