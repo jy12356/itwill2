@@ -26,19 +26,19 @@ public class ReviewDeleteProAction implements Action {
 		
 		ReviewDeleteProService reviewDeleteProService = new ReviewDeleteProService();
 		
-		boolean isReviewWriter = reviewDeleteProService.isReviewWriter(num, id);
+//		boolean isReviewWriter = reviewDeleteProService.isReviewWriter(num, id);
 		
 		// 작성자 일치 판별
-		if(!isReviewWriter) { // 아이디가 틀릴 경우
-			response.setContentType("text/html;charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('삭제 권한이 없습니다!')");
-			out.println("history.back()");
-			out.println("</script>");			
-		} else { // 아이디가 일치 할 경우
+//		if(!isReviewWriter) { // 아이디가 틀릴 경우
+//			response.setContentType("text/html;charset=UTF-8");
+//			PrintWriter out = response.getWriter();
+//			out.println("<script>");
+//			out.println("alert('삭제 권한이 없습니다!')");
+//			out.println("history.back()");
+//			out.println("</script>");			
+//		} else { // 아이디가 일치 할 경우
 			boolean isDeleteSuccess = ReviewDeleteProService.removeArticle(num);
-		
+	
 			// 삭제 작업 요청 결과 판별
 			if(!isDeleteSuccess) { // 삭제 실패 시
 				// 자바스크립트를 활용하여 "삭제 실패!" 출력 후
@@ -50,11 +50,11 @@ public class ReviewDeleteProAction implements Action {
 				out.println("history.back()");
 			} else { // 삭제 성공 시
 				forward = new ActionForward();
-				forward.setPath("/Detail.re");
+				forward.setPath("BookDetail.re");
 				
 				forward.setRedirect(true);
 			}
-		}
+//		}
 		
 		return null;
 	}

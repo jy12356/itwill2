@@ -166,11 +166,12 @@ public class ReviewDAO {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT id FROM board WHERE num=?";
+			String sql = "SELECT id FROM review WHERE num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
-			
+			System.out.println("2.글번호 :" + num);
+			System.out.println("2.작성자 :" + id);
 			if(rs.next()) {
 				if(id.equals(rs.getString("id"))) {
 					isArticleWriter = true;
@@ -185,6 +186,30 @@ public class ReviewDAO {
 			close(rs);
 		}
 		return isArticleWriter;
+	}
+	// 글 삭제 -------------------------------------------------
+	public int deleteArticle(int num) {
+		System.out.println("ReviewDAO - 7. deleteArticle()");
+		
+		int deleteCount = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "DELETE FROM review WHERE num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			System.out.println("4.글번호 :" + num);
+
+			deleteCount = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("deleteArticle() 오류! - " + e.getMessage());
+		} finally {
+			close(pstmt);
+		}
+		return deleteCount;
 	}
 
 }
