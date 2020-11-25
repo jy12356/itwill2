@@ -76,15 +76,16 @@ int listCount = pageInfo.getListCount();
 						for(int i = 0; i < articleList.size(); i++) {
 						%>
 						<tr>
+						<%=articleList.get(i).getRe_lev() %>
 							<td align="center"><%=articleList.get(i).getBoard_num() %></td>
 							<td>
 							<%if(articleList.get(i).getRe_lev() != 0) { %>
-							<%for(int j = 0; j <= articleList.get(i).getRe_lev() * 2; j++) { %>
-									&nbsp;
+									<%for(int j = 0; j <= articleList.get(i).getRe_lev() * 2; j++) { %>
+										&nbsp;
+									<%} %>
+									▶
 							<%} %>
-							▶
-					<%} %>
-						&nbsp;&nbsp;
+								&nbsp;
 						<a href="QnaDetail.qna?board_num=<%=articleList.get(i).getBoard_num() %>&page=<%=nowPage %>">
 						<%=articleList.get(i).getTitle() %>
 						</a>

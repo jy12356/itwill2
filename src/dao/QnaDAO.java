@@ -43,7 +43,7 @@ public class QnaDAO {
 			if(rs.next()) {
 				num = rs.getInt(1) + 1; // 새 글 번호 만들기
 			}
-			sql = "Insert into qna values(?,?,?,?,?,?,now(),?,?,?)";
+			sql = "Insert into qna values(?,?,?,?,?,?,now(),?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, qnaBean.getId());
@@ -54,6 +54,7 @@ public class QnaDAO {
 			pstmt.setInt(7, num); // 참조글 번호(새글이므로 자신이 참조)
 			pstmt.setInt(8, qnaBean.getRe_lev());
 			pstmt.setInt(9, qnaBean.getRe_seq());
+			pstmt.setString(10, qnaBean.getContent2());
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -124,7 +125,6 @@ public class QnaDAO {
 				article.setRe_lev(rs.getInt("re_lev"));
 				article.setRe_seq(rs.getInt("re_seq"));
 				article.setDate(rs.getDate("date"));
-				
 				articleList.add(article);
 			}
 		} catch (SQLException e) {
@@ -162,6 +162,7 @@ public class QnaDAO {
 				article.setRe_lev(rs.getInt("re_lev"));
 				article.setRe_seq(rs.getInt("re_seq"));
 				article.setDate(rs.getDate("date"));
+				article.setContent2(rs.getString("content2"));
 				System.out.println("글 제목 : " + article.getTitle());
 			}
 		} catch (SQLException e) {
@@ -214,6 +215,60 @@ public class QnaDAO {
 		}
 		
 		return deleteCount;
+	}
+	
+	// 답글 등록
+	public int insertReplyArticle(QnaBean article) {
+		int insertCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int num = 1;
+		try {
+			String sql = "select max(board_num) from qna";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				num = rs.getInt(1) + 1;
+				
+				int re_ref = article.getRe_ref(); // 기존글 참조번호
+				int re_lev = article.getRe_lev(); // 기존글 들여쓰기 값
+				int re_seq = article.getRe_seq(); // 기존글 순서번호	
+				
+				sql = "update qna set re_seq=re_seq+1 where re_ref=? and re_seq>?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, re_ref);
+				pstmt.setInt(2, re_seq);
+				pstmt.executeUpdate();
+				
+				re_lev += 1;
+				re_seq += 1;
+				System.out.println(article.getRe_lev());
+				System.out.println(article.getRe_seq());
+				System.out.println(article.getTitle());
+				sql = "insert into qna values(?,?,?,?,?,?,now(),?,?,?,?)";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				pstmt.setString(2, article.getId());
+				pstmt.setString(3, article.getPass());
+				pstmt.setString(4, article.getTitle());
+				pstmt.setString(5, article.getContent());
+				pstmt.setString(6, article.getQna_genre());
+				pstmt.setInt(7, article.getRe_ref());
+				pstmt.setInt(8, article.getRe_lev());
+				pstmt.setInt(9, article.getRe_seq());
+				pstmt.setString(10, article.getContent2());
+				insertCount = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			System.out.println("insertReplyArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return insertCount;
 	}
 	
 	

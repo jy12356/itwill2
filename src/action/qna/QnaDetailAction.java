@@ -13,7 +13,6 @@ public class QnaDetailAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("QnaDetailAction - ActionForward");
-		
 		ActionForward forward = null;
 //		System.out.println("QnaDetailAction boardnum: "+request.getParameter("board_num"));
 		int board_num = Integer.parseInt(request.getParameter("board_num"));

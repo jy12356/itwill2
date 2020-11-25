@@ -6,6 +6,7 @@
 <%
 	// BoardBean 객체 파라미터 가져오기
 	QnaBean article = (QnaBean)request.getAttribute("article");
+// 	int board_num = Integer.parseInt(request.getParameter("board_num"));
 	// 1. BoardDetailAction 에서 request.setAttribute() 메서드로 저장했을 경우
 	// 	String nowPage = (String)request.getAttribute("page");
 
@@ -40,6 +41,18 @@
 								<li><a href="QnaWriteForm.qna" class="">1:1 문의하기</a></li>
 								<li><a href="QnaList.qna" class="on">문의 내역 확인</a></li>
 							</ul>
+							<form action="QnaReplyPro.qna" method="post" > 
+							
+							<input type="hidden" name="page" value="<%=request.getParameter("page") %>" />
+							<input type="hidden" name="id" value="<%=article.getId() %>" />
+							<input type="hidden" name="pass" value="<%=article.getPass() %>" />
+							<input type="hidden" name="board_num" value="<%=article.getBoard_num() %>" />
+							<input type="hidden" name="re_ref" value="<%=article.getRe_ref() %>" />
+							<input type="hidden" name="re_lev" value="<%=article.getRe_lev() %>" />
+							<input type="hidden" name="re_seq" value="<%=article.getRe_seq() %>" />
+							<input type="hidden" name="title" value="<%=article.getTitle() %>" />
+							<input type="hidden" name="qna_genre" value="<%=article.getQna_genre() %>" />
+							<input type="hidden" name="content" value="<%=article.getContent() %>" />
 							<div class="onebyone-step">
 								<p>
 									문의주신 내용을 24시간 내에 답변드릴 수 있도록 노력하고 있습니다.<br>
@@ -73,22 +86,25 @@
 								<th>
 									문의내용
 								</th>
-								<td align="center"><%=article.getContent() %></td>
+								<td align="center">
+								<%=article.getContent() %></td>
 							</tr>
 							<tr>
 								<th>
 									답변내용
 								</th>
-								<td align="center"><%=article.getContent2() %></td>
+								<td>
+								<textarea  cols="5" rows="8" name="content2" id="content2">
+								</textarea>
+								</td>
 							</tr>
 							</tbody>
 							</table>
 							<div class="one-btn">
-								<input type="button" value="수정" onclick="location.href='QnaModifyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
-								<input type="button" class="vs1Del" value="삭제" onclick="location.href='QnaDeletePro.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
-								<input type="button" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
-								<input type="button" value="답변" onclick="location.href='QnaReplyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="submit" value="답변글등록">&nbsp;&nbsp;
+								<input type="reset" value="다시쓰기">
 							</div>
+						</form>
 						</div>
 					</div>
 				</div>
