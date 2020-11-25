@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.CommentWriteProAction;
 import action.freeboard.FreeBoardDeleteProAction;
 import action.freeboard.FreeBoardDetailAction;
 import action.freeboard.FreeBoardListAction;
