@@ -279,17 +279,21 @@ public class RequestDAO {
 			re_lev += 1;
 			re_seq += 1;
 
-			sql = "INSERT INTO bookreq VALUES(?,?,?,?,?,?,?,?,?,now())";
+			sql = "INSERT INTO bookreq VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, article.getId());
 			pstmt.setString(3, article.getSubject());
-			pstmt.setString(4, article.getContent());
-			pstmt.setString(5, ""); // 파일업로드 생략
-			pstmt.setInt(6, re_ref);
-			pstmt.setInt(7, re_lev);
-			pstmt.setInt(8, re_seq);
-			pstmt.setInt(9, 0);
+			pstmt.setString(4, ""); // 저자 생략
+			pstmt.setString(5, ""); // 출판사 생략
+			pstmt.setString(6, ""); // 출판사 생략
+			pstmt.setString(7, ""); // ISBN 생략
+			pstmt.setString(8, article.getContent());
+			pstmt.setString(9, ""); // 파일업로드 생략
+			pstmt.setInt(10, re_ref);
+			pstmt.setInt(11, re_lev);
+			pstmt.setInt(12, re_seq);
+			pstmt.setInt(13, 0);
 			insertCount = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
