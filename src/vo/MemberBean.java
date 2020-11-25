@@ -1,6 +1,7 @@
 package vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class MemberBean {
 	private int num;
@@ -12,7 +13,30 @@ public class MemberBean {
 	private String catg;
 	private int age;
 	private String address;
-	private Date date;
+	private Timestamp date;
+	
+	public MemberBean() {}
+	
+	public MemberBean(int num, String id, String name, String password, String email, String phone, String catg,
+			int age, String address, Timestamp date) {
+		super();
+		this.num = num;
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.email = email;
+		this.phone = phone;
+		this.catg = catg;
+		this.age = age;
+		this.address = address;
+		this.date = date;
+	}
+	public Timestamp getDate() {
+		return date;
+	}
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
 	public int getNum() {
 		return num;
 	}
@@ -66,12 +90,6 @@ public class MemberBean {
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
 	}
 	
 	
