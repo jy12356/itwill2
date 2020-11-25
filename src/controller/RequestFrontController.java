@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.RequestDeleteProAction;
-import action.RequestDetailAction;
-import action.RequestListAction;
-import action.RequestModifyFormAction;
-import action.RequestModifyProAction;
-import action.RequestReplyFormAction;
-import action.RequestReplyProAction;
-import action.RequestWriteProAction;
+import action.request.RequestDeleteProAction;
+import action.request.RequestDetailAction;
+import action.request.RequestListAction;
+import action.request.RequestModifyFormAction;
+import action.request.RequestModifyProAction;
+import action.request.RequestReplyFormAction;
+import action.request.RequestReplyProAction;
+import action.request.RequestWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.rq")

@@ -1,8 +1,9 @@
-package action;
+package action.request;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.Action;
 import svc.RequestDetailService;
 import vo.ActionForward;
 import vo.RequestBean;
