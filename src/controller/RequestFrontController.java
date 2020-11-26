@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.RequestDeleteProAction;
-import action.RequestDetailAction;
-import action.RequestListAction;
-import action.RequestModifyFormAction;
-import action.RequestModifyProAction;
-import action.RequestWriteProAction;
+import action.request.RequestDeleteProAction;
+import action.request.RequestDetailAction;
+import action.request.RequestListAction;
+import action.request.RequestModifyFormAction;
+import action.request.RequestModifyProAction;
+import action.request.RequestReplyFormAction;
+import action.request.RequestReplyProAction;
+import action.request.RequestWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.rq")
@@ -65,6 +67,24 @@ public class RequestFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		} else if(command.equals("/RequestReplyForm.rq")) {
+			action = new RequestReplyFormAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/RequestReplyPro.rq")) {
+			action = new RequestReplyProAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
+			
 		} else if(command.equals("/RequestModifyForm.rq")) {
 			action = new RequestModifyFormAction();
 			
@@ -82,6 +102,7 @@ public class RequestFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 		} else if(command.equals("/RequestDeleteForm.rq")) {
 			forward = new ActionForward();
 			forward.setPath("/sub4/request_board_delete.jsp");

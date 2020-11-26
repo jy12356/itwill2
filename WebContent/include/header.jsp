@@ -47,6 +47,7 @@
 <script type="text/javascript" src="js/sub.js"></script>
 <script type="text/javascript" src="js/placeholders.min.js"></script>
 <script type="text/javascript" src="js/lib/swipe/swiper-4.3.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <!-- naver-->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>

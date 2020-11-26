@@ -152,8 +152,7 @@
 	                            <tr>
 	                            	<td class="th">저자 정보</td>
 	                            	<td class="td" colspan="3">
-	                            	 	<textarea rows="" cols="" name="author_info">
-	                                    </textarea>
+	                            	 	<textarea rows="" cols="" name="author_info"></textarea>
 	                            	</td>
 	                            </tr>
 	                            <tr>
@@ -165,15 +164,13 @@
 	                            <tr>
 	                                <td class="th">목차</td>
 	                                <td colspan="3">
-	                                    <textarea rows="" cols="" name="index">
-	                                    </textarea>
+	                                    <textarea rows="" cols="" name="index"></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">요약내용</td>
 	                                <td colspan="3">
-	                                    <textarea rows="" cols="" name="description">
-	                                    </textarea>
+	                                    <textarea rows="" cols="" name="description"></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
@@ -192,8 +189,11 @@
 		                        $(".categ1 select").on("change",function(){
 		                        	var val = $(".categ1 select option:selected").attr('data-tab');
 		                        	$(".categ2 select").removeClass("on");
-		                        	$(".categ2 #"+val).addClass("on");	                        	
+		                        	$(".categ2 #"+val).addClass("on");
+		                        	
 		                        });
+		                        
+		                        
 		                    });
 	                    </script>
 	                    <div class="default-btn-wrap">
