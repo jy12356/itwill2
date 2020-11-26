@@ -118,7 +118,7 @@ public class RequestDAO {
 		int startRow = (page - 1) * limit;
 
 		try {
-			String sql = "SELECT * FROM bookreq ORDER BY num DESC LIMIT ?,?";
+			String sql = "SELECT * FROM bookreq ORDER BY re_ref DESC,re_lev LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, limit);
@@ -129,11 +129,14 @@ public class RequestDAO {
 			while (rs.next()) {
 				RequestBean article = new RequestBean();
 				article.setNum(rs.getInt("num"));
-				article.setSubject(rs.getString("subject"));
 				article.setId(rs.getString("id"));
+				article.setSubject(rs.getString("subject"));
 				article.setDate(rs.getDate("date"));
-
+				article.setRe_ref(rs.getInt("re_ref"));
+				article.setRe_lev(rs.getInt("re_lev"));
+				article.setRe_seq(rs.getInt("re_seq"));
 				articleList.add(article);
+				
 			}
 
 		} catch (SQLException e) {

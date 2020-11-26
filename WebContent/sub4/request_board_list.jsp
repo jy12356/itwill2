@@ -49,11 +49,12 @@ int listCount = pageInfo.getListCount();
 							<th>도서 신청일</th>
 						</tr>
 						<%
+						
 						for(int i = 0; i < articleList.size(); i++) {
 						%>
 						<tr>
 							<td align="center">
-							<%=articleList.get(i).getNum() %>
+<%-- 							<%=articleList.get(i).getNum() %> --%>
 								<%if(articleList.get(i).getRe_lev() != 0){%>
 									<font color="purple">답변</font>
 								<%} else {%>
