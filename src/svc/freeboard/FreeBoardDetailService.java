@@ -11,7 +11,7 @@ public class FreeBoardDetailService {
 
 	// 게시물 1개에 대한 상세 내용을 요청하는 getArticle() 메서드 정의
 	public FreeBoardBean getArticle(int board_num) throws Exception {
-//		System.out.println("BoardDetailService - getArticle()");
+		System.out.println("BoardDetailService - getArticle()");
 		
 		// 1(공통). Connection 객체 가져오기
 		Connection con = getConnection();
