@@ -3,14 +3,13 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String)session.getAttribute("id");
-		id="id";
 	RequestBean article = (RequestBean)request.getAttribute("article");
 	String nowPage = request.getParameter("page");
 %>
 <jsp:include page="../include/header.jsp"/>
 <body>
 	<form action="RequestReplyPro.rq" method="post" name="replyForm">
-	<input type="hidden" name="id" value="id" />
+<!-- 	<input type="hidden" name="id" value="id" /> -->
 	<input type="hidden" name="num" value="<%=article.getNum()%>" />
 	<input type="hidden" name="page" value="<%=nowPage%>" />
 	<input type="hidden" name="re_ref" value="<%=article.getRe_ref() %>" />

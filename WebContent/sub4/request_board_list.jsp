@@ -43,29 +43,28 @@ int listCount = pageInfo.getListCount();
 						</colgroup>
 						<tbody>
 						<tr>
-							<th>글 번호</th>
+							<th>처리 현황</th>
 							<th>신청 도서명</th>
 							<th>신청자명</th>
 							<th>도서 신청일</th>
 						</tr>
 						<%
+						
 						for(int i = 0; i < articleList.size(); i++) {
 						%>
 						<tr>
-							<td align="center"><%=articleList.get(i).getNum() %></td>
+							<td align="center">
+<%-- 							<%=articleList.get(i).getNum() %> --%>
+								<%if(articleList.get(i).getRe_lev() != 0){%>
+									<font color="purple">답변</font>
+								<%} else {%>
+									<font color="orange">신청 접수</font>
+								<%}%>
+							</td>
 							<td>
-							<%if(articleList.get(i).getRe_lev() != 0) { %>
-							<%for(int j = 0; j <= articleList.get(i).getRe_lev() * 2; j++) { %>
-									&nbsp;
-							<%} %>
-							▶
-						<%
-							}
-						%>
-						&nbsp;&nbsp;
-						<a href="RequestDetail.rq?num=<%=articleList.get(i).getNum() %>&page=<%=nowPage %>">
-						<%=articleList.get(i).getSubject() %>
-						</a>
+								<a href="RequestDetail.rq?num=<%=articleList.get(i).getNum() %>&page=<%=nowPage %>">
+								<%=articleList.get(i).getSubject() %>
+								</a>
 							</td>
 							<td align="center"><%=articleList.get(i).getId() %></td>
 							<td align="center"><%=articleList.get(i).getDate() %></td>
@@ -92,7 +91,7 @@ int listCount = pageInfo.getListCount();
 			if(i == nowPage) { %>
 				<a href="RequestList.rq?page=<%=i %>" class = "on fir" data-page-num="1"><%=i %>&nbsp;</a>
 			<%} else { %>
-					<a href="RequestList.rq?page=<%=i %>" class = "on fir">[<%=i %>]</a>&nbsp;
+				<a href="RequestList.rq?page=<%=i %>" class = "on fir">[<%=i %>]</a>&nbsp;
 			<%} %>
 	<%} %>
 	
