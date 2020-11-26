@@ -98,7 +98,7 @@
 	                	</div>
                 	</div>
                 	<form action="BookModifyPro.bok" method="post" name="bookRegForm" enctype="multipart/form-data">
-                		<input type="hidden" value="<%=nowPage%>" name="page">
+                		<input type="hidden" value="<%=nowPage%>" name="page" >
                 		<input type="hidden" value="<%=title%>" name="title1">
                 		<input type="hidden" value="<%=isbn%>" name="isbn1">
 	                    <table summary="책정보수정" class="customer-notice">
@@ -113,13 +113,13 @@
 	                            <tr>
 	                                <td class="th">책제목</td>
 	                                <td colspan="3" class="td">
-	                                	<input type="text" name="title" value="<%=bookBean.getTitle()%>">
+	                                	<input type="text" name="title" value="<%=bookBean.getTitle()%>"  required="required">
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">대분류</td>
 	                            	<td class="categ1 td">
-	                            		<select name="catg1">
+	                            		<select name="catg1"  required="required">
 	                            			<option value="" data-tab="cateDef" <%if(catg1.equals("")){ %>selected<%}%>>선택해주세요.</option>
 	                            			<option value="소설" data-tab="novel" <%if(catg1.equals("소설")){ %>selected<%}%>>소설</option>
 	                            			<option value="인문/경제" data-tab="he" <%if(catg1.equals("인문/경제")){ %>selected<%}%>>인문/경제</option>
@@ -173,32 +173,32 @@
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">저자</td>
-	                            	<td class="td"><input type="text" name="author" value="<%=bookBean.getAuthor()%>"></td>
+	                            	<td class="td"><input type="text" name="author" value="<%=bookBean.getAuthor()%>"  required="required"></td>
 	                            	<td class="th">출판사</td>
-	                            	<td class="td"><input type="text" name="publisher" value="<%=bookBean.getPublisher()%>"></td>
+	                            	<td class="td"><input type="text" name="publisher" value="<%=bookBean.getPublisher()%>" required="required"></td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">저자 정보</td>
 	                            	<td class="td" colspan="3">
-	                            	 	<textarea rows="" cols="" name="author_info"><%=bookBean.getAuthor_info()%></textarea>
+	                            	 	<textarea rows="" cols="" name="author_info" required="required"><%=bookBean.getAuthor_info()%></textarea>
 	                            	</td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">ISBN번호</td>
-	                            	<td class="td"><input type="text" name="isbn" value="<%=bookBean.getIsbn()%>"></td>
+	                            	<td class="td"><input type="text" name="isbn" value="<%=bookBean.getIsbn()%>" required="required"></td>
 	                            	<td class="th">출판날짜</td>
-	                            	<td class="td"><input type="text" id="pubDatePicker" name="pubdate" value="<%=bookBean.getPubdate()%>"></td>
+	                            	<td class="td"><input type="text" id="pubDatePicker" name="pubdate" value="<%=bookBean.getPubdate()%>" required="required"></td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">목차</td>
 	                                <td colspan="3">
-	                                    <textarea rows="" cols="" name="index"><%=bookBean.getIndex()%></textarea>
+	                                    <textarea rows="" cols="" name="index" required="required"><%=bookBean.getIndex()%></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">요약내용</td>
 	                                <td colspan="3">
-	                                    <textarea rows="" cols="" name="description"><%=bookBean.getDescription()%></textarea>
+	                                    <textarea rows="" cols="" name="description" required="required"><%=bookBean.getDescription()%></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
