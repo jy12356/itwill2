@@ -118,7 +118,7 @@ public class RequestDAO {
 		int startRow = (page - 1) * limit;
 
 		try {
-			String sql = "SELECT * FROM bookreq ORDER BY num DESC LIMIT ?,?";
+			String sql = "SELECT * FROM bookreq ORDER BY re_ref DESC,re_lev LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, limit);
@@ -129,11 +129,14 @@ public class RequestDAO {
 			while (rs.next()) {
 				RequestBean article = new RequestBean();
 				article.setNum(rs.getInt("num"));
-				article.setSubject(rs.getString("subject"));
 				article.setId(rs.getString("id"));
+				article.setSubject(rs.getString("subject"));
 				article.setDate(rs.getDate("date"));
-
+				article.setRe_ref(rs.getInt("re_ref"));
+				article.setRe_lev(rs.getInt("re_lev"));
+				article.setRe_seq(rs.getInt("re_seq"));
 				articleList.add(article);
+				
 			}
 
 		} catch (SQLException e) {
@@ -284,12 +287,9 @@ public class RequestDAO {
 			re_lev += 1;
 			re_seq += 1;
 			
-			System.out.println("a");
-			System.out.println(num);
-			System.out.println(article.getId());
-			System.out.println(article.getSubject());
-			System.out.println(article.getAuthor());
-			System.out.println(article.getContent());
+			System.out.println("Re_ref" + article.getRe_ref());
+			System.out.println(article.getRe_lev());
+			System.out.println(article.getRe_seq());
 			
 			sql = "INSERT INTO bookreq VALUES(?,?,?,?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
