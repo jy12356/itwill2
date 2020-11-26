@@ -1,3 +1,4 @@
+<%@page import="vo.NoticeVo.NoticeBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
@@ -6,6 +7,8 @@
 // if(id==null) { // 로긴안한상태면 로그인화면으로
 // 	response.sendRedirect("../member.login.jsp");
 // }
+NoticeBean article = (NoticeBean)request.getAttribute("article");
+    String nowPage = request.getParameter("page");
 %>
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
@@ -80,7 +83,7 @@
 	                    </table>
 	                    <div class="default-btn-wrap">
 	                    	<input type="submit" class="btn" value="글쓰기">
-	                        <input type="button" class="btn" value="목록" >
+	                        <input type="button" value="목록" class="btn" onclick="history.back()">
 	                    </div>
                     </form>
                 </div>

@@ -4,6 +4,10 @@
     <%
     NoticeBean article = (NoticeBean)request.getAttribute("article");
     String nowPage = request.getParameter("page");
+	String id = (String) session.getAttribute("id");
+	if (id == null) {
+	id = "ㅇㅇ";
+	}
     %>
 <% 
 // 글쓰기 폼
@@ -24,8 +28,8 @@
             <h3 class="coTitle">공지사항 작성</h3> 
             <div class="customer-contents">
                 <div class="customer-inner">
-                	<form action="NoticeBoardModifyPro.not" method="post"
-                	enctype="multipart/form-data" name="notice_writeForm">
+                	<form action="NoticeBoardDeletePro.not" method="post"
+                	enctype="multipart/form-data" name="notice_DeleteForm">
 	                    <table summary="게시판" class="customer-notice">
 	                        <caption>게시판</caption>
 	                        <colgroup>
@@ -52,50 +56,21 @@
 												</ul>
 											</div>
 											</div>
-								<tr>
-	                            <td>글 번호</td>
-	                            <td colspan="3">
-	                            	<%=article.getNum() %>
-	                            	<input type="hidden" name="page" value="<%=nowPage %>" />
-	                            	<input type="hidden" name="num" value=<%=article.getNum() %>>
-	                            	</td>
-	                            </tr>
+										
 	                            <tr>
-	                                <td>제목</td>
-	                                <td colspan="3">
-	                                	<input type="text" name="subject" required="required" value=<%=article.getSubject() %> />
-	                                	
-	                                </td>
+	                           <td colspan="3">
+	                            공지사항이 삭제 됩니다.
+	                            <input type="hidden" name="page" value="<%=nowPage %>" />
+	                            <input type="hidden" name="num" value=<%=article.getNum() %>>
+	                            <input type="hidden" name="id" value=<%=article.getId() %>/>
+	                            </td>
 	                            </tr>
-	                            
-	                            <tr>
-	                            	<td>작성자</td>
-	                            	<td colspan="3">
-	                            	<input type="text" name="id" required="required" value=<%=article.getId() %> />
-	                            	</td>
-<!-- 	                            	<td class="th">비밀번호</td> -->
-<!-- 	                            	<td> -->
-<!-- 	                            		<input type="text" name="pass"> -->
-<!-- 	                            	</td> -->
-	                            </tr>
-	                            <tr>
-	                                <td>내용</td>
-	                                <td colspan="3">
-	                                <input type="text" name="content" required="required" value=<%=article.getContent() %> />
-	                                </td>
-	                            </tr>
-	                            <tr>
-	                                <td>파일</td>
-	                            	<td colspan="3">
-	                            	<%=article.getFile() %>
-	                            	<input type="file" name="file" value=<%=article.getFile() %>>
-	                            	</td>
-	                            </tr>
+	                      
 	                        </tbody>
 	                    </table>
 	                    <div class="default-btn-wrap">	
-	                    	<input type="submit" value="수정" class="btn">&nbsp;&nbsp;
-	                        <input type="button" value="목록" class="btn" onclick="history.back()">
+	                        <input type="submit" value="삭제" class="btn"value="삭제">
+	                        <input type="button" value="목록" class="btn" onclick="location.href='NoticeBoardList.not?page=<%=nowPage%>'">
 	                    </div>
                     </form>
                 </div>

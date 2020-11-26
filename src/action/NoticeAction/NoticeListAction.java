@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import action.NoticeAction.NoticeAction;
 import svc.NoticeSvc.NoticeListService;
 import vo.NoticeVo.NoticeActionForward;
 import vo.NoticeVo.NoticeBean;

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.NoticeAction.NoticeAction;
+import action.NoticeAction.NoticeDeleteProAction;
 import action.NoticeAction.NoticeDetailAction;
 import action.NoticeAction.NoticeListAction;
 import action.NoticeAction.NoticeModifyFormAction;
@@ -35,6 +36,8 @@ public class NoticeFrontController extends HttpServlet {
 		// 각 요청 처리에 필요한 객체를 다루는 변수 선언
 		NoticeAction action = null;
 		NoticeActionForward forward = null;
+		
+		
 		
 		// if문을 사용하여 각 서블릿 주소 판별 및 각 요청 처리를 위한 작업 요청
 		if(command.equals("/NoticeWriteForm.not")) {
@@ -98,14 +101,18 @@ public class NoticeFrontController extends HttpServlet {
 					e.printStackTrace();
 				}
 			
-		} else if(command.equals("/NoticeBoardDeleteForm.not")) {
+		}else if(command.equals("/NoticeBoardDelete.not")) {
 			forward = new NoticeActionForward();
-			forward.setPath("/sub5/notice_board_delete.jsp");
+			forward.setPath("/sub5/notice_board_Delete.jsp");
 			
-			
-			
+		}else if(command.equals("/NoticeBoardDeletePro.not")) {
+			action = new NoticeDeleteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
 		
 		
 		
@@ -134,10 +141,10 @@ public class NoticeFrontController extends HttpServlet {
 			}
 			// ----------------------------------------------------------------
 		
-		}
 		
 	}   
-	
+		}
+			
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 서블릿 요청 시 GET 방식 요청이 들어오면 자동으로 호출되는 메서드
 		// => 파라미터로 request 객체와 response 객체를 전달받음

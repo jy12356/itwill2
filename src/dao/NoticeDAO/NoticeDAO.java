@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import vo.RequestBean;
 import vo.NoticeVo.NoticeBean;
 
 public class NoticeDAO {
@@ -236,8 +237,9 @@ public class NoticeDAO {
 		
 		return updateCount;
 	}
+	
 	//공지 작성자 확인
-	public boolean isArticleBoardWriter(int num, String id) {
+	public boolean isArticleNoticeWriter(int num, String id) {
 		boolean isArticleWriter = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -267,10 +269,10 @@ public class NoticeDAO {
 		int updateCount = 0;
 		PreparedStatement pstmt = null;
 		try {
-			String sql = "UPDATE notice SET id=? subject=? , content=?, file=? WHERE num=?";
+			String sql = "UPDATE notice SET subject=?, id=? , content=?, file=? WHERE num=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, article.getId());
-			pstmt.setString(2, article.getSubject());
+			pstmt.setString(1, article.getSubject());
+			pstmt.setString(2, article.getId());
 			pstmt.setString(3, article.getContent());
 			pstmt.setString(4, article.getFile());
 			pstmt.setInt(5, article.getNum());
@@ -283,4 +285,29 @@ public class NoticeDAO {
 		}
 		return updateCount;
 	}
+	
+	// 글 삭제
+
+	public int deleteArticle(int num) {
+		int deleteCount = 0;
+
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "DELETE FROM notice WHERE num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			deleteCount = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("deleteArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return deleteCount;
+	}
+
+
 }

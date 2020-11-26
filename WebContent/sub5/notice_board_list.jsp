@@ -6,7 +6,7 @@
 <%
 	String id = (String) session.getAttribute("id");
 if (id == null) {
-	id = "홍길동";
+	id = "ㅇㅇ";
 }
 
 // 전달받은 request 객체로부터 데이터 가져오기

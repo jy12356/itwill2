@@ -24,7 +24,7 @@ public class NoticeModifyProService {
 				// 4. BoardDAO 클래스의 isArticleBoardWriter() 메서드를 호출하여
 				//    적합한 사용자인지 판별
 				//    => 파라미터 : 글번호, 패스워드, 리턴타입 : boolean(isArticleWriter)
-				isArticleWriter = noticeDAO.isArticleBoardWriter(num, id);
+				isArticleWriter = noticeDAO.isArticleNoticeWriter(num, id);
 				
 				// 5(공통). Connection 객체 반환하기
 				close(con);

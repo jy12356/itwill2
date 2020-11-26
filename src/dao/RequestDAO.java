@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.RequestBean;
+import vo.NoticeVo.NoticeBean;
 
 import static db.JdbcUtil.*;
 
@@ -269,5 +270,6 @@ public class RequestDAO {
 
 		return deleteCount;
 	}
+
 
 }
