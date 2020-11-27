@@ -10,6 +10,7 @@
 NoticeBean article = (NoticeBean)request.getAttribute("article");
     String nowPage = request.getParameter("page");
 %>
+
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
     <div class="category-nav">
@@ -43,13 +44,9 @@ NoticeBean article = (NoticeBean)request.getAttribute("article");
 												<li data-num="2"><input type="hidden" name="kind" id="kind" value="공지2">공지2</li>
 												<li data-num="3"><input type="hidden" name="kind" id="kind" value="공지3">공지3</li>
 												<li data-num="4"><input type="hidden" name="kind" id="kind" value="공지4">공지4</li>
-<!-- 													<li data-num="1" value="">오류문의</li> -->
-<!-- 													<li data-num="2" value="">작품관련 문의</li> -->
-<!-- 													<li data-num="3" value="">취소/환불/현금영수증 발급</li> -->
-<!-- 													<li data-num="4" value="">이용관련 문의</li> -->
 												</ul>
 											</div>
-											</div>
+							</div>
 	                            <tr>
 	                                <td>제목</td>
 	                                <td colspan="3">

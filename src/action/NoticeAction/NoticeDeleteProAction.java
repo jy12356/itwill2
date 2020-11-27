@@ -32,7 +32,6 @@ public class NoticeDeleteProAction implements NoticeAction {
 		
 		int num = Integer.parseInt(multi.getParameter("num"));
 		String id = multi.getParameter("id");
-		
 		NoticeDeleteProService noticeDeleteProService = new NoticeDeleteProService();
 		boolean isArticleNoticeWriter = noticeDeleteProService.isArticleNoticeWriter(num, id);
 		
