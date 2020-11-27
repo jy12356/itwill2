@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 import vo.ReviewBean;
 
@@ -207,6 +206,7 @@ public class ReviewDAO {
 			e.printStackTrace();
 			System.out.println("deleteArticle() 오류! - " + e.getMessage());
 		} finally {
+
 			close(pstmt);
 		}
 		return deleteCount;
