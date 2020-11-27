@@ -1,3 +1,4 @@
+
 package dao;
 
 import java.sql.Connection;
@@ -6,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import vo.CommentBean;
 import vo.FreeBoardBean;
 
 import static db.JdbcUtil.*;
@@ -215,7 +217,7 @@ public class FreeBoardDAO {
 				article.setBoard_date(rs.getDate("board_date"));
 
 //				 임시 확인용 상세 내용 출력
-				System.out.println("글 제목 : " + article.getBoard_subject());
+				System.out.println("DAO - selectArticle 글 제목 : " + article.getBoard_subject());
 			}
 
 		} catch (SQLException e) {
@@ -354,5 +356,117 @@ public class FreeBoardDAO {
 		return deleteCount;
 	}
 
+	public int insertComment(CommentBean cb) {
+		System.out.println("DAO - insertComment");
+		int insertCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int num = 1;
+		
+		try {
+			String sql = "SELECT MAX(comment_num) FROM comment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { // 등록된 게시물이 하나라도 존재할 경우
+				num = rs.getInt(1) + 1; // 새 글 번호 = 현재 가장 큰 번호 + 1
+			}
+//			System.out.println(cb.getRe_ref());
+//			int re_ref = cb.getRe_ref(); // 기존글 참조번호
+////			int re_ref = 28;
+//			int re_lev = cb.getRe_lev(); // 기존글 들여쓰기 값
+//			int re_seq = cb.getRe_seq(); // 기존글 순서번호
+//			
+//			sql = "UPDATE comment SET re_seq=re_seq+1 "
+//					+ "WHERE re_ref=? AND re_seq>?";
+			
+			
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, re_ref);
+//			pstmt.setInt(2, re_seq);
+//			System.out.println(pstmt);
+//			pstmt.executeUpdate();
+//			
+//			if(re_ref != 0) {
+//				//0은 댓글 1은 대댓글
+//				re_lev += 1;
+//				 // 기존글 순서번호
+//				re_seq += 1;
+//			}
+			
+			sql = "INSERT INTO comment VALUES (?,?,?,?,?,?,?,?,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, cb.getBoard_type());
+			pstmt.setInt(3, cb.getBoard_num());
+			pstmt.setString(4, cb.getComment_id());
+			pstmt.setString(5, cb.getComment_desc());
+			pstmt.setInt(6, cb.getRe_ref());
+			pstmt.setInt(7, cb.getRe_lev());
+			pstmt.setInt(8, cb.getRe_seq());
+			
+			
+//			pstmt.setInt(6, re_ref);
+//			pstmt.setInt(7, re_lev);
+//			pstmt.setInt(8, re_seq);
+			
+			
+			insertCount = pstmt.executeUpdate();
+			
+			
+			
+//			if(commentBean.getRe_leb() == 1) { 
+//				String sql2 = "insert into comment(comment_num, board_type, board_num, comment_id,"
+//						+ "comment_desc, re_ref, re_leb) values(?,?,?,?,?,?,?)";
+//				pstmt = con.prepareStatement(sql2);
+//				pstmt.setInt(1, num);
+//				pstmt.setInt(2,commentBean.getBoard_type());
+//				pstmt.setInt(3, commentBean.getBoard_num());
+//				pstmt.setString(4, commentBean.getComment_id());
+//				pstmt.setString(5, commentBean.getComment_desc());
+//				pstmt.setInt(6,commentBean.getRe_ref());
+//				pstmt.setInt(7,commentBean.getRe_leb());
+//				
+//				insertCount = pstmt.executeUpdate();
+//				
+//			} else if (commentBean.getRe_leb() == 2) {
+//				String sql2 = "insert into comment(comment_num, board_type, board_num, comment_id,"
+//						+ "comment_desc, re_ref, re_leb) values(?,?,?,?,?,?,?)";
+//				pstmt = con.prepareStatement(sql2);
+//				pstmt.setInt(1, num);
+//				pstmt.setInt(2,commentBean.getBoard_type());
+//				pstmt.setInt(3, commentBean.getBoard_num());
+//				pstmt.setString(4, commentBean.getComment_id());
+//				pstmt.setString(5, commentBean.getComment_desc());
+//				pstmt.setInt(6,commentBean.getRe_ref());
+//				pstmt.setInt(7,commentBean.getRe_leb());
+//
+//				insertCount = pstmt.executeUpdate();
+//			}
+			
+			
+			
+			
+			
+		} catch (SQLException e) {
+			System.out.println("insertComment() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return insertCount;
+	}
 
 }

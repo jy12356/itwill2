@@ -18,7 +18,7 @@
 		   Oracle : jdbc:oracle:thin:@접속주소:포트번호:DB명
 	maxActive = "최대 동시 대여 가능한 커넥션 갯수"
 	maxldle="최대 보유 가능한 유휴 커넥션 갯수"
-		   
+		   useSSL=false"
 -->
 
 	<Resource 
@@ -29,7 +29,7 @@
 		password="abcd1234"
 		driverClassName="com.mysql.jdbc.Driver"
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-		url="jdbc:mysql://192.168.1.22:3306/team_db?useSSL=false"
+		url="jdbc:mysql://192.168.1.22:3306/team_db??zeroDateTimeBehavior=convertToNull"
 		maxActive="500"
 		maxIdle="20"
 	/>
