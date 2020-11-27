@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.MemberDeleteFormAction;
-import action.MemberDeleteProAction;
 import action.MemberJoinProService;
 import action.MemberListAction;
 import action.MemberLoginProAction;
+import action.MemberModifyFormAction;
 import action.MemberModifyProAction;
 import vo.ActionForward;
 
@@ -54,20 +54,22 @@ public class MemberFrontController extends HttpServlet {
 			
 			try {
 				forward = action.execute(request, response);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/MemberModifyForm.me")) {
 			System.out.println("MemberModifyForm");
+			action = new MemberModifyFormAction();
 			try {
-				forward = new ActionForward();
-				forward.setPath("/sub1/update.jsp");
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MemberModifyPro.me")) {  
-			action = new MemberModifyProAction();
 			
+		} else if(command.equals("/MemberModifyPro.me")) {  
+			System.out.println("MemberModifyPro");
+			action = new MemberModifyProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -80,7 +82,6 @@ public class MemberFrontController extends HttpServlet {
 			action = new MemberListAction();
 			try {
 				forward = action.execute(request, response);
-				forward.setPath("/sub1/update.jsp");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -98,22 +99,14 @@ public class MemberFrontController extends HttpServlet {
 		} else if(command.equals("/MemberDeletePro.me")) {
 			System.out.println("MemberDeleteForm");
 			
-			action = new MemberDeleteProAction();
+//			action = new MemberDeleteProAction();
 			try {
 				forward = action.execute(request, response);
 				forward = new ActionForward();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/Prac.me")) {
-			System.out.println("Prac");
-			
-			try {
-				forward = new ActionForward();
-				forward.setPath("/sub1/joinPagePrac.jsp");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		
 		} 
 		
 		if(forward != null) {

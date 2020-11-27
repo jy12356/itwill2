@@ -36,20 +36,20 @@
 				</div>
 				<div class="join-info mt20">
 					<div class="js-join">
-						<input type="text" name="name" id="name" placeholder="이름" class="strName" required="required">
+						<input type="text" name="name" id="name" placeholder="이름" class="strName" required="required" onkeyup="checkName(this)">
 						<p class="check" style="display: none;"></p>
 					</div>
 					<div class="js-join">
-						<input type="text" name="email" id="email" placeholder="이메일" class="strMail" required="required">
+						<input type="text" name="email" id="email" placeholder="이메일" class="strMail" required="required" onkeyup="checkEmail(this)">
 						<p class="check" style="display: none;"></p>
 					</div>
 					<div class="js-join">
-						<input type="text" name="phone" id="phone" placeholder="전화번호" class="strMail" required="required">
-						<p class="check" style="display: none;"></p>
+						<input type="text" name="phone" id="phone" placeholder="전화번호" class="strMail" required="required"  onkeyup="checkPhone(this)">
+						<p class="check" style="display: none;"><div id="checkPhoneResult"><!-- 자바스크립트에서 메세지 출력 공간 --></div></p>
 					</div>
 					<div class="js-join">
-						<input type="text" name="age" id="age" placeholder="생년월일" class="strAge" required="required">
-						<p class="check" style="display: none;"></p>
+						<input type="text" name="age" id="age" placeholder="생년월일" class="strAge" required="required" onkeyup="checkAge(this)">
+						<p class="check" style="display: none;"><div id="checkAgeResult"><!-- 자바스크립트에서 메세지 출력 공간 --></div></p>
 					</div>
 					
 				<div class="join-info mt20">
@@ -302,7 +302,10 @@
 	<script type="text/javascript">
 
 
-	var checkIdResult = false, checkPasswdResult = false; 
+	var checkIdResult = false, checkPasswdResult = false,
+	checkNameResult = false, checkEmailResult = false,
+	checkPhoneResult = false, checkAgeResult = false,
+	checkPasswd2Result = false; 
 
 	function checkId(idForm) { 
 		var id = idForm.value; 
@@ -329,20 +332,19 @@
 		
 	}
 	
-	function checkId2(idForm) { 
-		var id = idForm.value; 
+// 	function checkId2(idForm) { 
+// 		var id = idForm.value; 
 		
-		var element = document.getElementById('checkIdResult');
+// 		var element = document.getElementById('checkIdResult');
 		
-		var regex = /^[A-Za-z][A-Za-z0-9]{5,}$/g;
+// 		var regex = /^[A-Za-z][A-Za-z0-9]{5,}$/g;
 		
-		if(!regex.exec(id)) {
-			element.innerHTML = "사용 불가";
-			checkIdResult = false; 
-		}
+// 		if(!regex.exec(id)) {
+// 			element.innerHTML = "사용 불가";
+// 			checkIdResult = false; 
+// 		}
 		
-	}
-	
+// 	}
 	
 	
 	function checkPasswd(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
@@ -415,12 +417,71 @@
 			var myElement = document.getElementById('checkPasswdResult2');
 			myElement.style.color="red";
 			myElement.style.padding="0.3em";
+			checkPasswd2Result = false;
 		} else {
 			element.innerHTML = "";
+			checkPasswd2Result = true;
 		}
-		
-		
 	}
+	
+	function checkName (nameForm) { 
+		var name = nameForm.value; 
+		
+		var regex = /^[가-힣]{2,6}$/g;
+		
+		if(regex.exec(name)) { 
+			checkNameResult = true; 
+		}
+	}
+	
+	function checkEmail (emailForm) { 
+		var email = emailForm.value; 
+		
+		var regex =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+		if(regex.exec(email)) { 
+			checkEmailResult  = true; 
+		}
+	}
+	function checkPhone (phoneForm) { 
+		var phone = phoneForm.value; 
+		
+		var regex =  /^\d{3}-\d{3,4}-\d{4}$/;
+		
+		var element = document.getElementById('checkPhoneResult');
+		
+		
+		if(!regex.exec(phone)){
+			element.innerHTML = "예 010-1234-5678";
+			var myElement = document.getElementById('checkPhoneResult');
+			myElement.style.color="red";
+			myElement.style.padding="0.3em";
+			checkPasswd2Result = false;
+		} else {
+			element.innerHTML = "";
+			checkPasswd2Result = true;
+		}
+	}
+	function checkAge (phoneForm) { 
+		var phone = phoneForm.value; 
+		
+		var regex =  /^\d{8}$/;
+		
+		var element = document.getElementById('checkAgeResult');
+		
+		
+		if(!regex.exec(phone)){
+			element.innerHTML = "예 19901225";
+			var myElement = document.getElementById('checkAgeResult');
+			myElement.style.color="red";
+			myElement.style.padding="0.3em";
+			checkAgeResult  = false;
+		} else {
+			element.innerHTML = "";
+			checkAgeResult  = true;
+		}
+	}
+	
 	// 아이디, 패스워드 정규표현식 체크 후 정상이면 true 리턴(submit), 아니면 false 리턴
 	function check() {
 		if(checkIdResult && checkPasswdResult) {
