@@ -1,4 +1,4 @@
-package action;
+package action.request;
 
 import java.io.PrintWriter;
 
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import action.Action;
 import svc.RequestWriteProService;
 import vo.ActionForward;
 import vo.RequestBean;
@@ -62,7 +63,7 @@ public class RequestWriteProAction implements Action {
 			out.println("</script>");
 		} else {
 			forward = new ActionForward();
-			forward.setPath("RequestList.bo");
+			forward.setPath("RequestList.rq");
 			forward.setRedirect(true);
 		}
 

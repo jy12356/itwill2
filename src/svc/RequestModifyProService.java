@@ -25,7 +25,7 @@ public class RequestModifyProService {
 		return isArticleRequestWriter;
 	}
 	
-	public static boolean modifyArticle(RequestBean article) {
+	public boolean modifyArticle(RequestBean article) {
 		boolean isModifySuccess = true;
 		
 		Connection con = getConnection();
