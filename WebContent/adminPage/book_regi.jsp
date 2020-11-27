@@ -85,13 +85,13 @@
 	                            <tr>
 	                                <td class="th">책제목</td>
 	                                <td colspan="3" class="td">
-	                                	<input type="text" name="title">
+	                                	<input type="text" name="title" required="required">
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">대분류</td>
 	                            	<td class="categ1 td">
-	                            		<select name="catg1">
+	                            		<select name="catg1" required="required">
 	                            			<option value="" data-tab="cateDef">선택해주세요.</option>
 	                            			<option value="소설" data-tab="novel">소설</option>
 	                            			<option value="인문/경제" data-tab="he">인문/경제</option>
@@ -145,41 +145,38 @@
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">저자</td>
-	                            	<td class="td"><input type="text" name="author"></td>
+	                            	<td class="td"><input type="text" name="author" required="required"></td>
 	                            	<td class="th">출판사</td>
-	                            	<td class="td"><input type="text" name="publisher"></td>
+	                            	<td class="td"><input type="text" name="publisher" required="required"></td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">저자 정보</td>
 	                            	<td class="td" colspan="3">
-	                            	 	<textarea rows="" cols="" name="author_info">
-	                                    </textarea>
+	                            	 	<textarea rows="" cols="" name="author_info" required="required"></textarea>
 	                            	</td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">ISBN번호</td>
-	                            	<td class="td"><input type="text" name="isbn"></td>
+	                            	<td class="td"><input type="text" name="isbn" required="required"></td>
 	                            	<td class="th">출판날짜</td>
-	                            	<td class="td"><input type="text" id="pubDatePicker" name="pubdate"></td>
+	                            	<td class="td"><input type="text" id="pubDatePicker" name="pubdate" required="required"></td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">목차</td>
 	                                <td colspan="3">
-	                                    <textarea rows="" cols="" name="index">
-	                                    </textarea>
+	                                    <textarea rows="" cols="" name="index" required="required"></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">요약내용</td>
 	                                <td colspan="3">
-	                                    <textarea rows="" cols="" name="description">
-	                                    </textarea>
+	                                    <textarea rows="" cols="" name="description" required="required"></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">이미지 파일</td>
 	                            	<td colspan="3">
-	                            		<input type="file" name="image">
+	                            		<input type="file" name="image" required="required">
 	                            	</td>
 	                            </tr>
 	                        </tbody>
@@ -192,8 +189,11 @@
 		                        $(".categ1 select").on("change",function(){
 		                        	var val = $(".categ1 select option:selected").attr('data-tab');
 		                        	$(".categ2 select").removeClass("on");
-		                        	$(".categ2 #"+val).addClass("on");	                        	
+		                        	$(".categ2 #"+val).addClass("on");
+		                        	
 		                        });
+		                        
+		                        
 		                    });
 	                    </script>
 	                    <div class="default-btn-wrap">
