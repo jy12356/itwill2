@@ -141,18 +141,32 @@ String nowPage = request.getParameter("page");
 									</div>
 								</div>
 							</div>
-							
-							<!-- 댓글수정/대댓글 -->
-							<div class="comment-write reply-write" data-review-num="536286"	data-comment-num="" style="display: none;">
+				<!-- 대댓글 ------------------------------------------->
+							<form action="CommentReply.free" method="post" class="comment-write reply-write" style="display: none;">
+<!-- 							<div class="comment-write reply-write" data-review-num="536286"	data-comment-num="" style="display: none;"> -->
+<%-- <input type="hidden" name="page" value="<%=request.getParameter("page") %>" /> --%>
+<%-- 			<input type="hidden" name="board_num" value="<%=article.getBoard_num() %>" /> --%>
+<%-- 			<input type="hidden" name="board_re_ref" value="<%=article.getBoard_re_ref() %>" /> --%>
+<%-- 			<input type="hidden" name="board_re_lev" value="<%=article.getBoard_re_lev() %>" /> --%>
+<%-- 			<input type="hidden" name="board_re_seq" value="<%=article.getBoard_re_seq() %>" /> --%>
+							<input type="hidden" name="board_type" value="1"> 
+							<input type="hidden" name="page" value=<%=nowPage %>>
+							<input type="hidden" name="board_num" value="<%=article.getBoard_num()%>"> 
+							<input type="hidden" name="comment_id" value="<%=id%>">
 								<input type="hidden" name="" value="">
-								<textarea name=""></textarea>
+								<textarea name="comment_desc"></textarea>
 								<p>
 									<span><em>0</em>/500자</span>
-									<button name="" class="cancel">취소</button>
-									<button name="" class="commit" onclick="location.href='CommentReply.free?page=<%=nowPage%>'">등록</button>
+<!-- 									<button name="" class="cancel">취소</button> -->
+<!-- 									<button name="" class="commit">등록</button> -->
 								</p>
-							</div>
-							<!-- 댓글수정/대댓글 -->
+									<div class="btn_inner">
+									<input type="submit" value="등록" class="btn">
+									<input type="button" value="취소" class="btn" onclick="history.back()">
+									</div>
+<!-- 							</div> -->
+							</form>
+				<!-- 대댓글 ------------------------------------------->
 							<%
 								}
 							}

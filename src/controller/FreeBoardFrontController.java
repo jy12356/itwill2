@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.freeboard.CommentReplyProAction;
+import action.freeboard.CommentReplyAction;
 import action.freeboard.CommentWriteProAction;
 import action.freeboard.FreeBoardDeleteProAction;
 import action.freeboard.FreeBoardDetailAction;
@@ -121,7 +121,7 @@ public class FreeBoardFrontController extends HttpServlet {
 			}
 			
 		} else if(command.equals("/CommentReply.free")) {
-			action = new CommentReplyProAction();
+			action = new CommentReplyAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
