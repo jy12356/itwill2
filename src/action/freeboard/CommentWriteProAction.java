@@ -20,7 +20,8 @@ public class CommentWriteProAction implements Action {
 		
 		
 		ActionForward forward = null;
-		
+		System.out.println(" CommentWriteProAction - 페이지가져와?  " + Integer.parseInt(request.getParameter("page")));
+		int page = Integer.parseInt(request.getParameter("page"));
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		System.out.println("board_type : " + Integer.parseInt(request.getParameter("board_type")));
 		System.out.println("board_num : " + Integer.parseInt(request.getParameter("board_num")));
@@ -33,11 +34,11 @@ public class CommentWriteProAction implements Action {
 		commentBean.setComment_id(request.getParameter("comment_id"));
 		commentBean.setComment_desc(request.getParameter("comment_desc"));
 		
-		if(request.getParameter("cmt_num")!=null) {
-			commentBean.setRe_ref(Integer.parseInt(request.getParameter("cmt_num")));			
-		}else {
-			commentBean.setRe_ref(0);		
-		}
+//		if(request.getParameter("cmt_num")!=null) {
+//			commentBean.setRe_ref(Integer.parseInt(request.getParameter("cmt_num")));			
+//		}else {
+//			commentBean.setRe_ref(0);		
+//		}
 		
 		CommentWriteProService commentWriteProService = new CommentWriteProService();
 		boolean isWriteSuccess = commentWriteProService.registComment(commentBean);

@@ -16,6 +16,7 @@ public class FreeBoardBean {
 	
 	
 	
+	
 	public int getBoard_num() {
 		return board_num;
 	}
