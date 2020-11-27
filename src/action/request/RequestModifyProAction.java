@@ -1,10 +1,11 @@
-package action;
+package action.request;
 
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import action.Action;
 import svc.RequestModifyProService;
 import vo.ActionForward;
 import vo.RequestBean;
@@ -19,11 +20,10 @@ public class RequestModifyProAction implements Action {
 
 		int num = Integer.parseInt(request.getParameter("num"));
 		
-		System.out.println("1");
 		RequestModifyProService requestModifyProService = new RequestModifyProService();
-		System.out.println("2");
+//		System.out.println("num : " +num);
+//		System.out.println("id : " + request.getParameter("id"));
 		boolean isRightUser = requestModifyProService.isArticleRequestWriter(num, request.getParameter("id"));
-		System.out.println("3");
 		if (!isRightUser) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -35,10 +35,12 @@ public class RequestModifyProAction implements Action {
 			RequestBean article = new RequestBean();
 			article.setNum(num);
 			article.setSubject(request.getParameter("subject"));
-			article.setSubject(request.getParameter("booktitle"));
-			article.setSubject(request.getParameter("publisher"));
-			article.setSubject(request.getParameter("author"));
+			article.setAuthor(request.getParameter("author"));
+			article.setPublisher(request.getParameter("publisher"));
+			article.setPubdate(request.getParameter("pubdate"));
+			article.setIsbn(request.getParameter("isbn"));
 			article.setContent(request.getParameter("content"));
+			article.setFile(request.getParameter("file"));
 			
 			boolean isModifySuccess = requestModifyProService.modifyArticle(article);
 

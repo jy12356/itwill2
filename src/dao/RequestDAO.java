@@ -47,9 +47,14 @@ public class RequestDAO {
 				num = rs.getInt(1) + 1;
 			}
 
-			sql = "INSERT INTO bookreq VALUES (?,?,?,?,?,?,?,?,?,now(),?,?,?)";
+			sql = "INSERT INTO bookreq VALUES (?,?,?,?,?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 
+			System.out.println(requestBean.getId());
+			System.out.println(requestBean.getPubdate());
+			System.out.println(requestBean.getRe_ref());
+			System.out.println(requestBean.getRe_lev());
+			
 			pstmt.setInt(1, num);
 			pstmt.setString(2, requestBean.getId());
 			pstmt.setString(3, requestBean.getSubject());
@@ -113,7 +118,7 @@ public class RequestDAO {
 		int startRow = (page - 1) * limit;
 
 		try {
-			String sql = "SELECT * FROM bookreq ORDER BY num DESC LIMIT ?,?";
+			String sql = "SELECT * FROM bookreq ORDER BY re_ref DESC,re_lev LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, limit);
@@ -124,11 +129,14 @@ public class RequestDAO {
 			while (rs.next()) {
 				RequestBean article = new RequestBean();
 				article.setNum(rs.getInt("num"));
-				article.setSubject(rs.getString("subject"));
 				article.setId(rs.getString("id"));
+				article.setSubject(rs.getString("subject"));
 				article.setDate(rs.getDate("date"));
-
+				article.setRe_ref(rs.getInt("re_ref"));
+				article.setRe_lev(rs.getInt("re_lev"));
+				article.setRe_seq(rs.getInt("re_seq"));
 				articleList.add(article);
+				
 			}
 
 		} catch (SQLException e) {
@@ -234,7 +242,7 @@ public class RequestDAO {
 			pstmt.setString(4, article.getPubdate());
 			pstmt.setString(5, article.getIsbn());
 			pstmt.setString(6, article.getContent());
-			pstmt.setNString(7, article.getFile());
+			pstmt.setString(7, article.getFile());
 			pstmt.setInt(8, article.getNum());
 			updateCount = pstmt.executeUpdate();
 
@@ -246,6 +254,69 @@ public class RequestDAO {
 		}
 
 		return updateCount;
+	}
+
+	// 답글 등록
+	public int insertReplyArticle(RequestBean article) {
+		int insertCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+	
+		try {
+			int num = 1;
+
+			String sql = "SELECT MAX(num) FROM bookreq";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				num = rs.getInt(1) + 1;
+			}		
+			
+			int re_ref = article.getRe_ref(); // 기존글 참조번호
+			int re_lev = article.getRe_lev(); // 기존글 들여쓰기 값
+			int re_seq = article.getRe_seq(); // 기존글 순서번호
+			
+			sql = "UPDATE bookreq SET re_seq=re_seq+1 WHERE re_ref=? AND re_seq>?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, re_ref);
+			pstmt.setInt(2, re_seq);
+			pstmt.executeUpdate();
+			
+			re_lev += 1;
+			re_seq += 1;
+			
+			System.out.println("Re_ref" + article.getRe_ref());
+			System.out.println(article.getRe_lev());
+			System.out.println(article.getRe_seq());
+			
+			sql = "INSERT INTO bookreq VALUES(?,?,?,?,?,?,?,?,?,?,?,?,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, article.getId());
+			pstmt.setString(3, article.getSubject());
+			pstmt.setString(4, ""); // 저자 생략
+			pstmt.setString(5, ""); // 출판사 생략
+			pstmt.setString(6, ""); // 출판일 생략
+			pstmt.setString(7, ""); // ISBN 생략
+			pstmt.setString(8, article.getContent());
+			pstmt.setString(9, ""); // 파일업로드 생략
+			pstmt.setInt(10, re_ref);
+			pstmt.setInt(11, re_lev);
+			pstmt.setInt(12, re_seq);
+			insertCount = pstmt.executeUpdate();
+
+			System.out.println("1");
+		} catch (SQLException e) {
+			System.out.println("insertReplyArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return insertCount;
 	}
 
 	// 글 삭제
