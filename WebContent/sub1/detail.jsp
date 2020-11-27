@@ -7,6 +7,11 @@
 <jsp:include page="../include/header.jsp"/>
 
    <%
+// 	String id = (String) session.getAttribute("id");
+// 	if (id == null) {
+// 	id = "admin";
+// 	}
+	
     ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage = pageInfo.getPage();
@@ -169,9 +174,10 @@
 						<div class="author-intro-text">〈저자 소개〉<br>델마 햄 에반스 (Thelma Hamm Evans)는 1950년대와 60년대 활동한 미국의 SF 작가이다. T. D. Hamm 등의 필명을 사용했다.<br><br>〈번역자 소개〉<br>2014년, 활동을 시작한 TR 클럽의 구성원은 인문학과 공학 등을 전공한 전문 직업인들로, 모두 5년 이상의 유학 또는 현지 생활 경험을 가지고 있다.<br>각자의 삶의 영역을 가지고 있으나, 자신이 관심을 가진 도서와 컨텐츠가 국내에서도 널리 읽히기를 바라는 마음에서 번역을 진행하고 있다.<br>대기업 직장인, IT 벤처기업가, 출판 및 서점 편집자, 대학 교원, 음악 전문가 등 다양한 직업군을 바탕으로, 본인들의 외국어 능력과 직업적 특기를 기반으로, 모던한 컨텐츠 번역을 추구하고 있다.<br></div>						
 					</div>
 		
-<!-- 서평 및 댓글 쓰기  -->	
+<!-- 서평 및 댓글  -->
+	<!-- 서평쓰기 -->
+<div class="d-tab review" data-sort="최신순" data-order="false" data-review-count="0" data-review-point="" data-page-num="1" data-etc-count="0">
 <form action="ReviewWritePro.re" method="get" id="myReview">
-	<div class="d-tab review" data-sort="최신순" data-order="false" data-review-count="0" data-review-point="" data-page-num="1" data-etc-count="0">
 
 	<h3>서평(<span><%=listCount %></span>)</h3>
 	<div class="review-text-area">
@@ -214,9 +220,10 @@
 					<input type="reset" value="취소" class="btn reviewCancel">
 				</div>
 			</div>
-			<textarea placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>
+			<textarea name="content" placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>
 		</div>
 	</div>
+</form>
 	<script>
 		$(function(){
 			$(".my-review").on("click",function(){
@@ -230,6 +237,9 @@
 			});	
 		});
 	</script>
+	<!-- 서평쓰기 -->
+	
+	<!-- 서평리스트 목차(별점 카운트)-->
 	<div class="tab">
 		<ul class="tab-list orderYN">
 			<li><a href="javascript:;" class="on" data-order="False">전체</a></li>
@@ -248,197 +258,89 @@
 					<p class="rank-user">(<span>0</span>명)</p>
 				</div>
 			</div>
+	<!-- 서평리스트 목차(별점 카운트)-->
+	
+	<!-- 서평리스트 내용-->
 			<div id="comment">
+		<!-- 서평 없을 때 -->	
+		<%
+		if(articleList == null && listCount < 0) {
+		%>
 				<div class="comment_list">
 					<p class="no">회원님께서 첫 서평의 주인공이 되어주세요.</p>
 				</div>
+		<!-- 서평 없을 때 -->
+		
+		<!-- 서평 있을 때 -->
+		<%
+		} else if (articleList != null && listCount > 0) {
+			 for(int i = 0; i < articleList.size(); i++) {
+		%>
+			<div class="comment">
+				<p class="comment-vote bookcube">
+					<i><%=articleList.get(i).getId() %></i>
+					<em>|</em>
+					<span class="date"><%=articleList.get(i).getDate() %></span>
+					<em>|</em>
+					<span class="list-star rank10"><%=articleList.get(i).getStarcount() %></span>
+					<em>|</em>좋아요  <%=articleList.get(i).getLikecount() %>
+					<em>|</em>댓글 0
+				</p>
+				<div class="comment-content">
+					<span><%=articleList.get(i).getContent() %></span>				
+				</div>
+				<div class="comment-btn">
+					<div>
+						<a href="javascript:;" class="heart-btn" data-review-num="498631">수정</a>
+						<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>" class="heart-btn" data-review-num="498631">삭제</a>
+						<a href="javascript:;" class="heart-btn" data-review-num="498631">좋아요</a>
+						<a href="javascript:;" class="comment_write_show" data-comment-count="0">댓글</a>
+					</div>
+				</div>
+			</div>
+			<!-- 서평 있을 때 댓글 등록 입력창-->
+			<div class="comment-write reply-write" data-review-num="498631" data-comment-num="" style="display: block;">
+				<textarea name=""></textarea>
+				<p>
+					<span><em>0</em>/500자</span>
+					<button name="" class="btn-cancel">취소</button>
+					<button name="" class="commit">등록</button>
+				</p>
+			</div>
+			<%
+				}
+			}
+			%>
+			<!-- 서평 있을 때 댓글 등록 입력창-->
+		<!-- 서평 있을 때 -->	
+		
+		<!-- 서평 리스트 더보기 -->					
 				<div class="d-more reviewMore">
 					<a href="javascript:;">20개 더보기</a>
 				</div>
+		<!-- 서평 리스트 더보기 -->
 			</div>
+	<!-- 서평리스트 내용-->
 		</div>
 	</div>
-</form>
 <!-- 서평 및 댓글 쓰기  -->
 <!-- -------------------------------------------------------------------------------------------------- -->
 
-
-
-
-
-
-
-
-
-
-				
-
-
-						
 			
-<h3>서평(<span><%=listCount %></span>)</h3>
-<div class="review-text-area">
-	<p class="star-gogo">
-		<input type="radio" name="star" class="star-1" id="star-1" value="0.5">
-		<label class="star-1" for="star-1">1</label>
-		<input type="radio" name="star" class="star-2" id="star-2" value="1">
-		<label class="star-2" for="star-2">2</label>
-		<input type="radio" name="star" class="star-3" id="star-3" value="1.5">
-		<label class="star-3" for="star-3">3</label>
-		<input type="radio" name="star" class="star-4" id="star-4" value="2">
-		<label class="star-4" for="star-4">4</label>
-		<input type="radio" name="star" class="star-5" id="star-5" value="2.5">
-		<label class="star-5" for="star-5">5</label>
-		<input type="radio" name="star" class="star-6" id="star-6" value="3">
-		<label class="star-6" for="star-6">5</label>
-		<input type="radio" name="star" class="star-7" id="star-7" value="3.5">
-		<label class="star-7" for="star-7">5</label>
-		<input type="radio" name="star" class="star-8" id="star-8" value="4">
-		<label class="star-8" for="star-8">5</label>
-		<input type="radio" name="star" class="star-9" id="star-9" value="4.5">
-		<label class="star-9" for="star-9">5</label>
-		<input type="radio" name="star" class="star-10" id="star-10" value="5">
-		<label class="star-10" for="star-10">5</label>
-		<span></span>
-	</p>
-	<p class="star-vote">별점으로 평가해주세요.</p>
-		<a href="javascript:;" class="my-review effect-btn" data-review-yn="N">서평쓰기</a>
-		<div class="review-text">
-		<div>
-			<div class="checkbox">
-				<label>
-					<input type="checkbox" class="spoiler" value="1">
-					<span><i></i></span>
-				</label>
-				<p>스포일러가 포함되어 있습니다.</p>
-			</div>
-			<div class="text-btn">
-				<input type="submit" value="등록" class="btn reviewInput">
-				<input type="reset" value="취소" class="btn reviewCancel">
-			</div>
-		</div>
-		<textarea name="content" placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>
-	</div>
-</div>
 
-<script>
-$(function(){
-	$(".my-review").on("click",function(){
-		if ($(this).data("review-yn") == "N"){
-			$(".review-text:not(:animated)").animate({
-				height: "toggle"
-			});	
-		}else{
-			location.href = "/mypage.asp?list=_review";
-		}									
-	});	
-});
-
-$(document).ready(function(){
-
-
-</script>
-
-<div class="tab">
-	<ul class="tab-list orderYN">
-		<li><a href="javascript:;" class="on" data-order="False">전체</a></li>
-	</ul>
-<div class="review-score-box">
-	<div class="k-array">
-		<input type="radio" name="" id="">
-		<label for="" class="radio reviewSort" data-sort="좋아요"><span class="radio_off"><em>좋아요순</em></span></label>
-		<input type="radio" name="" id="">
-		<label for="" class="radio reviewSort" data-sort="최신순"><span class="radio_on"><em>최신순</em></span></label>
-	</div>
-	<div class="review-score">
-		<span class="list-star rank0"></span>
-		<p class="score">0.0</p>
-		<p class="rank-user">(<span>0</span>명)</p>
-	</div>
-</div>
-<div id="comment">
-<!-- 리뷰 없을 때 -->
-<%
- if(articleList == null && listCount < 0) {
-%>
-	<div class="comment_list">
-		<p class="no">회원님께서 첫 서평의 주인공이 되어주세요.</p>
-		
-<!-- 리뷰 있을 때 -->
-<% } else if (articleList != null && listCount > 0) {%>
-	<div class="comment_list">
-		<% for(int i = 0; i < articleList.size(); i++) {%>
-		<div class="comment">
-		<p class="comment-vote">
-			<i id="test"><%=articleList.get(i).getId() %></i>
-			<em> | </em>
-			<span class="data"><%=articleList.get(i).getDate() %></span>
-			<em> | </em>
-			<span class="list-star rank10"><%=articleList.get(i).getStarcount() %></span>
-			<em> | </em>
-			<i>좋아요 <%=articleList.get(i).getLikecount() %></i>
-			<em> | </em>
-			<i>댓글 ()</i>
-			</p>
-			</div>
-			<div class="comment-content">
-			<span><%=articleList.get(i).getContent() %></span>
-			</div>
-			<div class="comment-btn">
-			<div>
 <%-- 			<i><input type="button" value="수정" onclick="location.href='ReviewModifyPro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>'"></i> --%>
-				<a href="javascript:;" class="comment_modify_show" data-comment-count="0">수정</a>
-				<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>" class="comment_delete_show" data-comment-count="0">삭제</a>
-				<a href="javascript:;" class="heart-btn" data-review-num="533867">좋아요</a>
-				<a href="javascript:;" class="comment_write_show" data-comment-count="0">댓글</a>
-			</div>
-			</div>
+<!-- 				<a href="javascript:;" class="comment_modify_show" data-comment-count="0">수정</a> -->
+<%-- 				<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>" class="comment_delete_show" data-comment-count="0">삭제</a> --%>
+
 <!-- ------------------------------------------------------------------------------ -->
 	<!-- 댓글수정/대댓글 -->
-			<div class="comment-write reply-write" data-review-num="536286"	data-comment-num="" style="display: none;">
-				<input type="hidden" name="" value="">
-					<textarea name=""></textarea>
-						<p>
-						<span><em>0</em>/500자</span>
-						<button name="" class="cancel" id="comment_reset" onclick="">취소</button>
-						<button name="" class="commit" onclick="location.href='ReviewCommetPro.re?'">등록</button>
-						</p>
-						</div>
+
 	<!-- 댓글수정/대댓글 -->
 <!-- ------------------------------------------------------------------------------ -->
 
 <!-- ------------------------------------------------------------------------------ -->
-<script>
-// $(function(){
-// 	$(".comment-write").hide();
-// });
-// $(function(){
-// 	$(".comment_write_show").click(function(){
-// 		$(".comment-write").show();
-// 	});
-// });
-// $(function(){
-// 	$("#comment_reset").click(function(){
-// 		$(".comment-write").hide();
-// 	});
-// });
 
-
-	
-</script>
 <!-- ------------------------------------------------------------------------------ -->
-		</div>
-	</div>
-		<%} {}} %>
-	</div>
-		<div class="d-more reviewMore">
-			<a href="javascript:;">20개 더보기</a>
-		</div>
-	</div>
-</div>
-
-</div>					
-<!-- 서평 및 댓글 쓰기  -->
 					
 <div class="detail_class_best_book"></div>
 <div class="md">
@@ -527,7 +429,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</div>
-		
+		</div>
 
 	</section>
 
