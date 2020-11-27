@@ -13,7 +13,6 @@ import javax.xml.ws.Dispatch;
 import sun.rmi.server.Dispatcher;
 import svc.MemberListService;
 import vo.ActionForward;
-import vo.BoardBean;
 import vo.MemberBean;
 import vo.PageInfo;
 
@@ -22,7 +21,7 @@ public class MemberListAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		System.out.println("BoardListAction");
+		System.out.println("MemberListAction");
 		
 		ActionForward forward = null;
 		
@@ -53,7 +52,7 @@ public class MemberListAction implements Action {
 		request.setAttribute("pageInfo", pageInfo);
 		
 		forward = new ActionForward();
-		forward.setPath("/board/qna_board_list.jsp");
+		forward.setPath("/sub1/memberList.jsp");
 		
 		return forward;
 	}

@@ -35,7 +35,7 @@ public class MemberLoginProAction implements Action {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
 			forward = new ActionForward();
-			forward.setPath("MemberList.bo");
+			forward.setPath("Main.book");
 			forward.setRedirect(false);	
 		}
 		

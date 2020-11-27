@@ -44,7 +44,7 @@ public class MemberJoinProService implements Action {
 			out.println("</script>"); 
 		} else {
 			forward = new ActionForward();
-			forward.setPath("Prac.me");
+			forward.setPath("Main.book");
 			forward.setRedirect(true);
 		}
 		
