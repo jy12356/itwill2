@@ -4,45 +4,26 @@
 
 			<!-- 카카오 공유하기 20201125 서지연 추가 시작-->
 <script type='text/javascript'>
-  //<![CDATA[
-    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('b528aa836fabfb8e8ebeb7dde7277a0f');
-    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-    Kakao.Link.createDefaultButton({
-      container: '#kakao-link-btn',
-      objectType: 'feed',
-      content: {
-        title: '딸기 치즈 케익',
-        description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
-        imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-        link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com'
-        }
-      },
-      social: {
-        likeCount: 286,
-        commentCount: 45,
-        sharedCount: 845
-      },
-      buttons: [
-        {
-          title: '웹으로 보기',
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
-          }
-        },
-        {
-          title: '앱으로 보기',
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
-          }
-        }
-      ]
-    });
-  //]]>
+	var firstImg=$(".thum-box img"); 
+	var contents=""; 
+	if(firstImg.attr("src")){ 
+		var firstImgSrc=firstImg.attr("src"); 
+		var firstImgRatio = parseInt(firstImg.css("height"))/parseInt(firstImg.css("width")); 
+		if (firstImgRatio <=0.27) var firstImgRatio=0.27; 
+	}else{
+	// 	var firstImgSrc=location.origin+"/favicon.ico";
+		var firstImgRatio=1
+	} 
+	Kakao.init('b528aa836fabfb8e8ebeb7dde7277a0f'); 
+	// 사용할 앱의 JavaScript 키를 설정해 주세요. 
+	function sendLink() { 
+		Kakao.Link.sendTalkLink({ 
+			label: '[동서남북 책 공유]', // 공유할 메세지의 제목을 설정 
+			image: { src: firstImgSrc, width: '300', height: parseInt(300*firstImgRatio)}, // 이건 썸네일을 설정 하는 겁니다. 
+			webButton: { text: '기사 꼭 보러가기^ㅡ^',	url : document.URL}  // 각각의 포스팅 본문의 링크를 거는 코드입니다. 
+		}); 
+	}
+
 </script>
  <!-- 카카오 공유하기 20201125 서지연 추가 끝-->
 <% 
