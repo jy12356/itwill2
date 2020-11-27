@@ -11,10 +11,10 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import action.Action;
 import svc.book.BookWriteService;
-import svc.freeboard.freeBoardWriteProService;
+import svc.freeboard.FreeBoardWriteProService;
 import vo.ActionForward;
 import vo.BookBean;
-import vo.freeboard.freeBoardBean;
+import vo.FreeBoardBean;
 
 public class BookWriteProAction implements Action {
 
@@ -22,7 +22,6 @@ public class BookWriteProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BookWriteProAction!");
-		
 		ActionForward forward =null;
 		//파일업로드를 위한 소스
 		ServletContext context = request.getServletContext();
@@ -39,6 +38,9 @@ public class BookWriteProAction implements Action {
 		);
 		
 		//전달할 데이터를 BoardBean객체에 저장
+
+		System.out.println("111111"+request.getParameter("catg1"));
+		System.out.println("222222"+request.getParameter("catg2"));
 		BookBean bookBean = new BookBean();
 		bookBean.setTitle(multi.getParameter("title"));
 		bookBean.setImage(multi.getOriginalFileName("image"));

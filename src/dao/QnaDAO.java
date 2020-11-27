@@ -145,20 +145,59 @@ public class QnaDAO {
 		QnaBean article = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		System.out.println("QnaDAO-selectArticle"+board_num);
 		
 		try {
-			String sql = "select * from qna where board_num";
+			String sql = "select * from qna where board_num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, board_num);
 			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				article = new QnaBean();
+				article.setBoard_num(rs.getInt("board_num"));
+				article.setId(rs.getString("id"));
+				article.setTitle(rs.getString("title"));
+				article.setContent(rs.getString("content"));
+				article.setQna_genre(rs.getString("qna_genre"));
+				article.setRe_ref(rs.getInt("re_ref"));
+				article.setRe_lev(rs.getInt("re_lev"));
+				article.setRe_seq(rs.getInt("re_seq"));
+				article.setDate(rs.getDate("date"));
+				System.out.println("글 제목 : " + article.getTitle());
+			}
 		} catch (SQLException e) {
 			System.out.println("selectArticle() 오류! - " + e.getMessage());
 			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return article;
+	}
+	
+	// 글 수정
+	public  int updateArticle(QnaBean article) {
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		try {
+		String sql = "update qna "
+				+ "set title=?, qna_genre=? content=? "
+				+ "where board_num= ?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, article.getTitle());
+		pstmt.setString(2, article.getQna_genre());
+		pstmt.setString(3, article.getContent());
+		pstmt.setInt(4, article.getBoard_num());
+		updateCount = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			System.out.println("updateArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
-		
-		
-		return article;
+		return updateCount;
 	}
 	
 	

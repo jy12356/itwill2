@@ -15,12 +15,17 @@ public class QnaDetailAction implements Action {
 		System.out.println("QnaDetailAction - ActionForward");
 		
 		ActionForward forward = null;
-		
+//		System.out.println("QnaDetailAction boardnum: "+request.getParameter("board_num"));
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		int page = Integer.parseInt(request.getParameter("page"));
 		
 		QnaDetailService qnaDetailService = new QnaDetailService();
 		QnaBean article = qnaDetailService.getArticle(board_num);
 		
+		request.setAttribute("article", article);
+		forward = new ActionForward();
+		forward.setRedirect(false);
+		forward.setPath("/sub5/qna3.jsp?page="+page);
 		
 		return forward;
 	}

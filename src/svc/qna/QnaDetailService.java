@@ -9,12 +9,16 @@ import static db.JdbcUtil.*;
 public class QnaDetailService {
 
 	public QnaBean getArticle(int board_num) throws Exception {
+		System.out.println("QnaDetailService");
 		
 		Connection con = getConnection();
 		QnaDAO qnaDAO = QnaDAO.getInstance();
 		qnaDAO.setConnection(con);
 		
 		QnaBean article = qnaDAO.selectArticle(board_num);
+		
+		System.out.println("QnaDetailService : "+article);
+		close(con);
 		return article; 
 	}
 }

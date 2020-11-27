@@ -32,14 +32,14 @@
 <title>e북포털 북큐브</title>
 <link rel="shortcut icon" type="image/x-icon" href="images/icon/bookcube_ci.ico">
 <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css">
-<link type="text/css" rel="stylesheet" href="css/reset.css" />
 <link type="text/css" rel="stylesheet" href="css/common.css" />
+<link type="text/css" rel="stylesheet" href="css/reset.css" />
 <link type="text/css" rel="stylesheet" href="css/main.css?v=20200917" />
 <link type="text/css" rel="stylesheet" href="css/slick.css" />
 <link type="text/css" rel="stylesheet"  href="js/lib/swipe/swiper.css" />
-<script type="text/javascript" src="js/bookcube.js?200519"></script>
-<script type="text/javascript" src="js/lib/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="js/lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/bookcube.js?200519"></script>
 <script type="text/javascript" src="js/lib/slick.min.js"></script>
 <script type="text/javascript" src="js/slimScroll.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -47,6 +47,7 @@
 <script type="text/javascript" src="js/sub.js"></script>
 <script type="text/javascript" src="js/placeholders.min.js"></script>
 <script type="text/javascript" src="js/lib/swipe/swiper-4.3.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <!-- naver-->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
@@ -70,14 +71,14 @@
 				<input type="hidden" name="page" value="">
 					<fieldset>
 						<legend>검색</legend>
-						<h1 class="logo"><a href="https://www.bookcube.com/main.asp">북큐브서점</a></h1>
+						<h1 class="logo"><a href="Main.book">북큐브서점</a></h1>
 						<div class="search">						
 							<input type='text' name='searchString' class="search_input" style="ime-mode:active;" />
 							<input type='button' onclick="frmSearchSubmit()" />
 						</div>
 						<ul class="my-lnb">
 							<li class="btnLogin"><a href="javascript:;">로그인</a></li>
-							<li><a href="https://www.bookcube.com/member/register.asp">회원가입</a></li>
+							<li><a href="MemberWriteForm.me">회원가입</a></li>
 						</ul>
 					</fieldset>
 				</form>

@@ -1,6 +1,10 @@
+<%@page import="vo.NoticeBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%
+	NoticeBean article = (NoticeBean)request.getAttribute("article");
+	String nowPage = request.getParameter("page");
+%>
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
     <div class="category-nav">

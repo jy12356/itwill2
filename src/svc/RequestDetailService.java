@@ -13,7 +13,7 @@ public class RequestDetailService {
 
 		Connection con = getConnection();
 
-		RequestDAO boardDAO = RequestDAO.getInstance();
+		RequestDAO requestDAO = RequestDAO.getInstance();
 
 		requestDAO.setConnection(con);
 
