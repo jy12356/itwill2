@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import svc.RequestListService;
+import svc.request.RequestListService;
 import vo.ActionForward;
 import vo.PageInfo;
 import vo.RequestBean;

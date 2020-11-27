@@ -14,50 +14,47 @@
                 <div class="customer-inner">
                 	<form action="RequestWritePro.rq" method="post"
                 		enctype="multipart/form-data" name="request_board_write">
-                    <table summary="게시판" class="onebyone">
+                    <table summary="게시판" class="customer-notice">
                         <caption>희망도서 신청</caption>
                         <colgroup>
                             <col width="15%">
-                            <col width="*">
+                            <col width="35%">
+                            <col width="15%">
+                            <col width="35%">
                         </colgroup>
                         <tbody>
-                            	<tr>
-									<th>도서명 <em><font color="red">(*)</font></em></th>
-									<td><input type="text" name="subject" id="booktitle" required="required"></td>
-								</tr>
-								<tr>
-									<th>저자 <em><font color="red">(*)</font></em></th>
-									<td><input type="text" name="author" id="author" required="required"></td>
-								</tr>
-								<tr>
-									<th>출판사 <em><font color="red">(*)</font></em></th>
-									<td><input type="text" name="publisher" id="publisher" required="required"></td>
-								</tr>
-								<tr>
-									<th>출판년도 <em><font color="red">(*)</font></em></th>
-									<td><input type="text" id="pubdate" name="pubdate" required="required"></td>
-								</tr>
-								<tr>
-									<th>ISBN</th>
-									<td><input type="text" id="isbn" name="isbn" maxlength="13"></td>
-								</tr>
-								<tr>
-									<th>첨부 내용 </th>
-									<td><textarea name="content" id="content" name="content"></textarea>
+                       		<tr>
+								<td>도서명 <font color="red">(*)</font></td>
+								<td colspan="3"><input type="text" name="subject" id="booktitle" required="required"></td>
+							</tr>
+							<tr>
+								<td>저자 <font color="red">(*)</font></td>
+								<td colspan="3"><input type="text" name="author" id="author" required="required"></td>
+							</tr>
+							<tr>
+								<td>출판사 <font color="red">(*)</font></td>
+								<td colspan="3"><input type="text" name="publisher" id="publisher" required="required"></td>
+							</tr>
+							<tr>
+								<td>첨부 내용</td>
+								<td  colspan="3"><input type="text" id="pubdate" name="pubdate" required="required"></td>
+							</tr>
+							<tr>
+								<td>출판사</td>
+								<td  colspan="3"><textarea name="content" id="content" name="content"></textarea>
                                 </td>
-								</tr>
-								<tr>
-									<th>파일첨부</th>
-									<td>
-										<input type="file" name="file">
-										<p class="one-s-ps">*2MB 이하의 이미지 파일 및 5MB  이하의 *hwp, *doc, *docx 확장자만 첨부 가능합니다.</p>
-									</td>
-								</tr>
+							</tr>
+							<tr>
+								<td>파일 첨부</td>	
+								<td>
+									<input type="file" name="file">
+								</td>
+							</tr>
                         </tbody>
                     </table>
-                    <div class="default-btn-wrap">
+                    <div class="btn_inner">
 						<input type="submit" class="btn" value="신청">
-						<a href="RequestList.rq" class="btn">목록</a>
+						<input type="button" class="btn"  value="목록" onclick="location.href='RequestList.rq'">
 					</div>
 					</form>
                 </div>
