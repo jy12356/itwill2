@@ -22,36 +22,36 @@
                     <table summary="게시판" class="onebyone">
                         <caption>희망도서 신청</caption>
                         <colgroup>
-                            <col width="15%">
+                            <col width="100px">
                             <col width="*">
                         </colgroup>
                         <tbody>
                             <tr>
-                                <td>도서명</td>
+                                <th>도서명</th>
                                 <td><%= article.getSubject() %></td>
                             </tr>
                               <tr>
-                                <td>저자</td>
+                                <th>저자</th>
                                 <td><%= article.getAuthor() %></td>
                             </tr>
                             <tr>
-                                <td>출판사</td>
+                                <th>출판사</th>
                                 <td><%= article.getPublisher() %></td>
                             </tr>
                             <tr>
-                                <td>출판년도</td>
+                                <th>출판년도</th>
                                 <td><%= article.getPubdate() %></td>
                             </tr>
                             <tr>
-                                <td>ISBN</td>
+                                <th>ISBN</th>
                                 <td><%= article.getIsbn() %></td>
                             </tr>
                             <tr>
-                                <td>첨부 내용</td>
+                                <th>첨부 내용</th>
                                 <td><%= article.getContent() %></td>
                             </tr>
                              <tr>
-                                <td>첨부파일</td>
+                                <th>첨부파일</th>
                                 <td><%
 									if(article.getFile() != null) {
 									%> <a href="sub2/file_down.jsp?file=<%=article.getFile()%>"><%=article.getFile()%></a><%
@@ -60,23 +60,11 @@
                             </tr>
                         </tbody>
                     </table>
-                    <span class="default-btn-wrap">
-                        <a href="RequestList.rq" class="btn">목록</a></span>
-                        <%
-//                         if(id != null) {
-//                         	if(id.equals(article.getBoard_id())) {
-                        		%>
-                        		<span class="default-btn-wrap">
-                    		    <a href="RequestReplyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=id %>" class="btn">답글</a></span>
-                        		<span class="default-btn-wrap">
-                    		    <a href="RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=id %>" class="btn">수정</a></span>
-                        		<span class="default-btn-wrap">
-                       			<a href="RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=id %>" class="btn">삭제</a></span>
-                        		<% 
-//                         	}
-//                         }
-                        %>
-                    
+                    <div class="one-btn">
+                        <input type="button" value="수정" onclick="location.href='RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+						<input type="button" value="삭제" onclick="location.href='RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+						<input type="button" value="목록" onclick="location.href='RequestList.rq?page=<%=nowPage%>'">
+						<input type="button" value="답변" onclick="location.href='RequestReplyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">  
                 </div>
             </div>
 
