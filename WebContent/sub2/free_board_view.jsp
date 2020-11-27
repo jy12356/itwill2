@@ -169,6 +169,7 @@ String nowPage = request.getParameter("page");
 						<div class="comment-text" style="display: block;">
 							<h3 class="coTitle tal">댓글쓰기</h3>
 							<input type="hidden" name="board_type" value="1"> 
+							<input type="hidden" name="page" value=<%=nowPage %>>
 							<input type="hidden" name="board_num" value="<%=article.getBoard_num()%>"> 
 							<input type="hidden" name="comment_id" value="<%=id%>">
 							<textarea name="comment_desc" placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>

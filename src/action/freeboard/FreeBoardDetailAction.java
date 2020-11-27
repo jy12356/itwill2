@@ -26,7 +26,7 @@ public class FreeBoardDetailAction implements Action {
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		int board_type = Integer.parseInt(request.getParameter("board_type"));
 		System.out.println("게시물 번호 : " + board_num);
-		System.out.println("게시글 번호 : " + Integer.parseInt(request.getParameter("board_type")));
+		System.out.println("게시판 타입 : " + Integer.parseInt(request.getParameter("board_type")));
 
 		// BoardDetailService 클래스의 인스턴스 생성 후
 		// getArticle() 메서드를 호출하여 게시물 번호에 해당하는 글내용 가져오기
@@ -39,7 +39,7 @@ public class FreeBoardDetailAction implements Action {
 
 		int page = 1; // 현재 페이지 번호 저장할 변수
 		int limit = 10; // 페이지 당 표시할 게시물 수를 결정하는 변수
-//System.out.println("page 가져오나? " + Integer.parseInt(request.getParameter("page")));
+System.out.println("FreeBoardDetailAction - page 가져오나? " + Integer.parseInt(request.getParameter("page")));
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
