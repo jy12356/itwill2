@@ -49,7 +49,8 @@ public class ReviewDeleteProAction implements Action {
 				out.println("history.back()");
 			} else { // 삭제 성공 시
 				forward = new ActionForward();
-				forward.setPath("/BookDetail.re");
+				forward.setRedirect(true);
+				forward.setPath("BookDetail.re");
 			}
 		}
 		
