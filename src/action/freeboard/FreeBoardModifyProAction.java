@@ -92,6 +92,14 @@ public class FreeBoardModifyProAction implements Action {
 			// => 아니면 ActionForward 객체 생성 후 BoardDetail.bo 로 포워딩
 			//    새 요청이 발생하므로 Redirect 방식으로 이동
 			//    파라미터로 글번호(board_num)와 페이지번호(page) 전달 필요
+			
+			
+			int board_type = 1;
+			
+//			System.out.println("board_num 가져오나?  " +  board_num);
+//			System.out.println("page 가져오나?" + multi.getParameter("page"));
+//			System.out.println("board_type 가져오나?" + board_type);
+			
 			if(!isModifySuccess) {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();
@@ -103,8 +111,7 @@ public class FreeBoardModifyProAction implements Action {
 				forward = new ActionForward();
 //				forward.setPath("FreeBoardDetail.free?board_num=" + board_num + 
 //										"&page=" + request.getParameter("page"));
-				forward.setPath("FreeBoardDetail.free?board_num=" + board_num + 
-						"&page=" + multi.getParameter("page"));
+				forward.setPath("FreeBoardDetail.free?board_num="+board_num+"&page="+multi.getParameter("page")+"&board_type="+board_type);
 				forward.setRedirect(true);
 			}
 			

@@ -149,7 +149,7 @@ String nowPage = request.getParameter("page");
 								<p>
 									<span><em>0</em>/500자</span>
 									<button name="" class="cancel">취소</button>
-									<button name="" class="commit">등록</button>
+									<button name="" class="commit" onclick="location.href='CommentReply.free?page=<%=nowPage%>'">등록</button>
 								</p>
 							</div>
 							<!-- 댓글수정/대댓글 -->
