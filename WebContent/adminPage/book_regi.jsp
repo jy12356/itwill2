@@ -102,47 +102,12 @@
 	                            	</td>
 	                            	<td class="th">소분류</td>
 	                            	<td class="categ2 td">
-	                            		<select id="cateDef" class="on" name="catg2"> 
+	                            		<select id="cateDef" class="catg2" name="catg2"> 
 	                            			<option value="def">선택해주세요.</option>
-	                            		</select>
-	                            		<select id="novel" name="catg2"> 
-	                            			<option value="소설">소설</option>
-	                            			<option value="에세이">에세이</option>
-	                            			<option value="여행">여행</option>
-	                            			<option value="시">시</option>
-	                            		</select>
-	                            		<select id="he" name="catg2"> 
-	                            			<option value="자기개발">자기개발</option>
-	                            			<option value="경영">경영</option>
-	                            			<option value="경제">경제</option>
-	                            			<option value="마케팅">마케팅</option>
-	                            			<option value="역사">역사</option>
-	                            			<option value="철학">철학</option>
-	                            			<option value="종교">종교</option>
-	                            			<option value="정치">정치</option>
-	                            			<option value="예술">예술</option>
-	                            			<option value="인문">인문</option>
-	                            		</select>
-	                            		<select id="si" name="catg2"> 
-	                            			<option value="수학">수학</option>
-	                            			<option value="과학">과학</option>
-	                            			<option value="비즈니스">IT비즈니스</option>
-	                            			<option value="자격증">자격증</option>
-	                            			<option value="프로그래밍">프로그래밍</option>
-	                            		</select>
-	                            		<select id="hby" name="catg2"> 
-	                            			<option value="건강">건강</option>
-	                            			<option value="요리">요리</option>
-	                            			<option value="스포츠">스포츠</option>
-	                            			<option value="결혼/임신/출산">결혼/임신/출산</option>
-	                            			<option value="기타">기타</option>
-	                            		</select>
-	                            		<select id="cwn" name="catg2"> 
-	                            			<option value="만화">만화</option>
-	                            			<option value="웹소설">웹소설</option>
 	                            		</select>
 	                            	</td>
 	                            </tr>
+   	                    
 	                            <tr>
 	                            	<td class="th">저자</td>
 	                            	<td class="td"><input type="text" name="author" required="required"></td>
@@ -182,20 +147,7 @@
 	                        </tbody>
 	                    </table>
 	                    
-	                    <script type="text/javascript">
-                    		$(document).ready( function() {
-		                        $( "#pubDatePicker" ).datepicker({});
-		                        
-		                        $(".categ1 select").on("change",function(){
-		                        	var val = $(".categ1 select option:selected").attr('data-tab');
-		                        	$(".categ2 select").removeClass("on");
-		                        	$(".categ2 #"+val).addClass("on");
-		                        	
-		                        });
-		                        
-		                        
-		                    });
-	                    </script>
+
 	                    <div class="default-btn-wrap">
 	                   	    <input type="submit" class="btn" value="작성">
 	                        <a href="BookList.bok" class="btn">목록</a>
@@ -209,5 +161,43 @@
     </div>
 
 </section>
+<script type="text/javascript">
+$(document).ready( function() {
+    $( "#pubDatePicker" ).datepicker({});
+    
+   
+    $(".categ1 select").on("change",function(){
+    	var catval = $(this).val();
+    	var sel1 = ['소설','에세이','여행','시'];
+    	var sel2 = ['자기개발','경영','경제','마케팅','역사','철학','종교','정치','예술','인문'];
+    	var sel3 = ['수학','과학','IT비즈니스','자격증','프로그래밍'];
+    	var sel4 = ['건강','요리','스포츠','결혼/임신/출산','기타'];
+    	var sel5 = ['만화','웹소설'];
+    	$('.smcatg').remove();
+    	if(catval == "소설"){
+    		$.each(sel1,function(i,item){
+    			$('.catg2').append('<option class="smcatg" value="'+item+'">'+item+'</option>')
+    		});
+    	}else if(catval == "인문/경제"){
+    		$.each(sel2,function(i,item){
+    			$('.catg2').append('<option class="smcatg"  value="'+item+'">'+item+'</option>')
+    		});
+    	}else if(catval == "과학/IT"){
+    		$.each(sel3,function(i,item){
+    			$('.catg2').append('<option class="smcatg"  value="'+item+'">'+item+'</option>')
+    		});
+    	}else if(catval == "취미"){
+    		$.each(sel4,function(i,item){
+    			$('.catg2').append('<option class="smcatg"  value="'+item+'">'+item+'</option>')
+    		});
+    	}else if(catval == "만화/웹소설"){
+    		$.each(sel5,function(i,item){
+    			$('.catg2').append('<option class="smcatg"  value="'+item+'">'+item+'</option>')
+    		});
+    	}
+   	})
+    
+});
+</script>
 
 <jsp:include page="../include/footer.jsp"/>

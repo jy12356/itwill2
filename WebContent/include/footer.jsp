@@ -68,7 +68,7 @@
 			<div class="so-pop blind" id="so">
 				<div class="login-bg"></div>
 				<div class="so">
-					<img src="../images/so-img.png" alt="도서.공연비 소득공제 사업자 관련 이미지">
+					<img src="images/so-img.png" alt="도서.공연비 소득공제 사업자 관련 이미지">
 					<p>소득공제 대상 사업자 인증번호<br><span>312018060044</span></p>
 					<button onclick="pop.close('#so')">닫기</button>
 				</div>
@@ -89,7 +89,7 @@
 		</address>
 		<div class="copy-text">
 			<p>Copyright © BOOKCUBENETWORKS Co.,Ltd. All Rights Reserved.</p>
-			<img src="../images/site.png" alt='클린사이트' usemap="#cleanSite" />
+			<img src="images/site.png" alt='클린사이트' usemap="#cleanSite" />
 			<map name="cleanSite">
 				<area shape="RECT" coords="1,1,47,43" href="https://www.copyrightok.kr/" target="_blank" />
 			</map>

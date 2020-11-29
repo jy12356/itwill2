@@ -14,16 +14,47 @@
 	// 	var firstImgSrc=location.origin+"/favicon.ico";
 		var firstImgRatio=1
 	} 
-	Kakao.init('b528aa836fabfb8e8ebeb7dde7277a0f'); 
 	// 사용할 앱의 JavaScript 키를 설정해 주세요. 
-	function sendLink() { 
-		Kakao.Link.sendTalkLink({ 
-			label: '[동서남북 책 공유]', // 공유할 메세지의 제목을 설정 
-			image: { src: firstImgSrc, width: '300', height: parseInt(300*firstImgRatio)}, // 이건 썸네일을 설정 하는 겁니다. 
-			webButton: { text: '기사 꼭 보러가기^ㅡ^',	url : document.URL}  // 각각의 포스팅 본문의 링크를 거는 코드입니다. 
-		}); 
-	}
+	//<![CDATA[
+	Kakao.init('b528aa836fabfb8e8ebeb7dde7277a0f'); 
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn',
+      objectType: 'feed',
+      content: {
+        title: $('meta[property="og:title"]').attr( 'content' ),
+        description: $('meta[property="og:description"]').attr( 'content' ),
+        imageUrl: $( 'meta[property="og:image"]' ).attr( 'content' ),
+        link: {
+          mobileWebUrl: window.location.href,
+          webUrl: window.location.href
+        }
+      },
+      social: {
+        likeCount: 286,
+        commentCount: 45,
+        sharedCount: 845
+      },
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            webUrl: window.location.href
+          }
+        }
+      ]
+    });
+  //]]>
+	//링크복
+	function shareUrl(){
+		var urlLink = window.location.href;
+		urlLink.value = window.location.href;
+		alert(urlLink);
+		urlLink.select();
+	    document.execCommand("copy"); // 클립보드에 복사합니다. 
+	 	 alert('복사되었습니다, 감사합니다.');
 
+	}
 </script>
  <!-- 카카오 공유하기 20201125 서지연 추가 끝-->
 <% 
@@ -88,7 +119,7 @@
 											<div class="sns" data-options="">
 												<a class="share-facebook" data-sns="facebook" onclick="javascript:facebook('http://itwillbs6.cafe24.com/MODEL2/BookDetail.bok?isbn=<%=bookBean.getIsbn()%>&page=<%=nowPage %>&title=<%=bookBean.getTitle()%>');">페이스북</a>
 												<a class="share-kakao" data-sns="kakao" id="kakao-link-btn" href="javascript:sendLink();">카카오</a>
-												<a class="share-url" onclick="shareUrl('https://www.bookcube.com/detail.asp?series_num=920026812&page=buy');">URL</a>
+												<a class="share-url" onClick="javascript:shareUrl();">URL</a>
 											</div>
 										</div>
 										<button class="share-cancel">닫기</button>
