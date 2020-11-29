@@ -50,7 +50,7 @@ public class BookModifyProAction implements Action{
 		if(multi.getOriginalFileName("image") == null){
 			bookBean.setImage(multi.getParameter("oldimage"));
 		}else {
-			bookBean.setImage(multi.getParameter("image"));
+			bookBean.setImage(multi.getOriginalFileName("image"));
 		}
 
 		
@@ -66,7 +66,7 @@ public class BookModifyProAction implements Action{
 			out.println("</script>");// 자바스크립트끝태그
 		}else {
 			forward = new ActionForward();
-			forward.setPath("BookDetail.bok?isbn="+bookBean.getIsbn()+"&page="+page+"&title="+bookBean.getTitle());
+			forward.setPath("BookDetail.bok?isbn="+bookBean.getIsbn()+"&page="+page);
 			forward.setRedirect(true);			
 		}
 		return forward;

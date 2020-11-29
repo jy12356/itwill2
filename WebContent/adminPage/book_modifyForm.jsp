@@ -37,22 +37,6 @@
 			
 		}
     </script>
-    <script type="text/javascript">
-  		$(document).ready( function() {
-           $( "#pubDatePicker" ).datepicker({});
-           if($(".categ1 select option:selected")){
-           	var val = $(".categ1 select option:selected").attr('data-tab');
-           	alert(val);
-           	$(".categ2 select").removeClass("on");
-           	$(".categ2 #"+val).addClass("on");	     
-           }
-           $(".categ1 select").on("change",function(){
-           	var val = $(".categ1 select option:selected").attr('data-tab');
-           	$(".categ2 select").removeClass("on");
-           	$(".categ2 #"+val).addClass("on");	                        	
-           });
-       });
-      </script>
     <div class="contents-wrap">
         <div class="customer">
             <h3 class="subTit">책정보수정</h3> 
@@ -130,44 +114,8 @@
 	                            	</td>
 	                            	<td class="th">소분류</td>
 	                            	<td class="categ2 td">
-	                            		<select id="cateDef" class="on" name="catg2"> 
-	                            			<option value="def">선택해주세요.</option>
-	                            		</select>
-	                            		<select id="novel" name="catg2"> 
-	                            			<option value="소설" <%if(catg2.equals("소설")){ %>selected<%}%>>소설</option>
-	                            			<option value="에세이" <%if(catg2.equals("에세이")){ %>selected<%}%>>에세이</option>
-	                            			<option value="여행" <%if(catg2.equals("여행")){ %>selected<%}%>>여행</option>
-	                            			<option value="시" <%if(catg2.equals("시")){ %>selected<%}%>>시</option>
-	                            		</select>
-	                            		<select id="he" name="catg2"> 
-	                            			<option value="자기개발" <%if(catg2.equals("자기개발")){ %>selected<%}%>>자기개발</option>
-	                            			<option value="경영" <%if(catg2.equals("경영")){ %>selected<%}%>>경영</option>
-	                            			<option value="경제" <%if(catg2.equals("경제")){ %>selected<%}%>>경제</option>
-	                            			<option value="마케팅" <%if(catg2.equals("마케팅")){ %>selected<%}%>>마케팅</option>
-	                            			<option value="역사" <%if(catg2.equals("역사")){ %>selected<%}%>>역사</option>
-	                            			<option value="철학" <%if(catg2.equals("철학")){ %>selected<%}%>>철학</option>
-	                            			<option value="종교" <%if(catg2.equals("종교")){ %>selected<%}%>>종교</option>
-	                            			<option value="정치" <%if(catg2.equals("정치")){ %>selected<%}%>>정치</option>
-	                            			<option value="예술" <%if(catg2.equals("예술")){ %>selected<%}%>>예술</option>
-	                            			<option value="인문" <%if(catg2.equals("인문")){ %>selected<%}%>>인문</option>
-	                            		</select>
-	                            		<select id="si" name="catg2"> 
-	                            			<option value="수학" <%if(catg2.equals("수학")){ %>selected<%}%>>수학</option>
-	                            			<option value="과학" <%if(catg2.equals("과학")){ %>selected<%}%>>과학</option>
-	                            			<option value="비즈니스" <%if(catg2.equals("비즈니스")){ %>selected<%}%>>IT비즈니스</option>
-	                            			<option value="자격증" <%if(catg2.equals("자격증")){ %>selected<%}%>>자격증</option>
-	                            			<option value="프로그래밍" <%if(catg2.equals("프로그래밍")){ %>selected<%}%>>프로그래밍</option>
-	                            		</select>
-	                            		<select id="hby" name="catg2"> 
-	                            			<option value="건강" <%if(catg2.equals("건강")){ %>selected<%}%>>건강</option>
-	                            			<option value="요리" <%if(catg2.equals("요리")){ %>selected<%}%>>요리</option>
-	                            			<option value="스포츠" <%if(catg2.equals("스포츠")){ %>selected<%}%>>스포츠</option>
-	                            			<option value="결혼/임신/출산" <%if(catg2.equals("결혼/임신/출산")%><%){ %>selected<%}%>>결혼/임신/출산</option>
-	                            			<option value="기타" <%if(catg2.equals("기타")){ %>selected<%}%>>기타</option>
-	                            		</select>
-	                            		<select id="cwn" name="catg2"> 
-	                            			<option value="만화" <%if(catg2.equals("만화")){ %>selected<%}%>>만화</option>
-	                            			<option value="웹소설" <%if(catg2.equals("웹소설")){ %>selected<%}%>>웹소설</option>
+	                            		<select id="cateDef" class="catg2" name="catg2"> 
+	                            			<option value="def" <%if(catg1.equals("")){ %>selected<%}%>>선택해주세요.</option>
 	                            		</select>
 	                            	</td>
 	                            </tr>
@@ -225,5 +173,86 @@
     </div>
 
 </section>
+<script type="text/javascript">
+$(document).ready( function() {
+    $( "#pubDatePicker" ).datepicker({});
+    var seledcatg1 =$(".categ1 select > option:selected").val();
+    var sel1 = ['소설','에세이','여행','시'];
+	var sel2 = ['자기개발','경영','경제','마케팅','역사','철학','종교','정치','예술','인문'];
+	var sel3 = ['수학','과학','IT비즈니스','자격증','프로그래밍'];
+	var sel4 = ['건강','요리','스포츠','결혼/임신/출산','기타'];
+	var sel5 = ['만화','웹소설'];
+	var catg2 = '<%=catg2%>';
+    if(seledcatg1 == "소설"){
+		$.each(sel1,function(i,item){
+			if(catg2 == item){
+				$('.catg2').append('<option class="smcatg" value="'+item+'" selected>'+item+'</option>')			
+			}else{
+				$('.catg2').append('<option class="smcatg" value="'+item+'">'+item+'</option>')		
+			}
+		});
+	}else if(seledcatg1 == "인문/경제"){
+		$.each(sel2,function(i,item){
+			if(catg2 == item){
+				$('.catg2').append('<option class="smcatg" value="'+item+'" selected>'+item+'</option>')			
+			}else{
+				$('.catg2').append('<option class="smcatg" value="'+item+'">'+item+'</option>')		
+			}
+		});
+	}else if(seledcatg1 == "과학/IT"){
+		$.each(sel3,function(i,item){
+			if(catg2 == item){
+				$('.catg2').append('<option class="smcatg" value="'+item+'" selected>'+item+'</option>')			
+			}else{
+				$('.catg2').append('<option class="smcatg" value="'+item+'">'+item+'</option>')		
+			}
+		});
+	}else if(seledcatg1 == "취미"){
+		$.each(sel4,function(i,item){
+			if(catg2 == item){
+				$('.catg2').append('<option class="smcatg" value="'+item+'" selected>'+item+'</option>')			
+			}else{
+				$('.catg2').append('<option class="smcatg" value="'+item+'">'+item+'</option>')		
+			}
+		});
+	}else if(seledcatg1 == "만화/웹소설"){
+		$.each(sel5,function(i,item){
+			if(catg2 == item){
+				$('.catg2').append('<option class="smcatg" value="'+item+'" selected>'+item+'</option>')			
+			}else{
+				$('.catg2').append('<option class="smcatg" value="'+item+'">'+item+'</option>')		
+			}
+		});
+	}
+    
+    $(".categ1 select").on("change",function(){
+    	var catval = $(this).val();
+    	
+    	$('.smcatg').remove();
+    	if(catval == "소설"){
+    		$.each(sel1,function(i,item){
+    			$('.catg2').append('<option class="smcatg" value="'+item+'">'+item+'</option>')
+    		});
+    	}else if(catval == "인문/경제"){
+    		$.each(sel2,function(i,item){
+    			$('.catg2').append('<option class="smcatg"  value="'+item+'">'+item+'</option>')
+    		});
+    	}else if(catval == "과학/IT"){
+    		$.each(sel3,function(i,item){
+    			$('.catg2').append('<option class="smcatg"  value="'+item+'">'+item+'</option>')
+    		});
+    	}else if(catval == "취미"){
+    		$.each(sel4,function(i,item){
+    			$('.catg2').append('<option class="smcatg"  value="'+item+'">'+item+'</option>')
+    		});
+    	}else if(catval == "만화/웹소설"){
+    		$.each(sel5,function(i,item){
+    			$('.catg2').append('<option class="smcatg"  value="'+item+'">'+item+'</option>')
+    		});
+    	}
+   	})
+    
+});
+</script>
 
 <jsp:include page="../include/footer.jsp"/>
