@@ -43,7 +43,7 @@ int listCount = pageInfo.getListCount();
 						</colgroup>
 						<tbody>
 						<tr>
-							<th>처리 현황</th>
+							<th>유형</th>
 							<th>신청 도서명</th>
 							<th>신청자명</th>
 							<th>도서 신청일</th>
@@ -58,7 +58,7 @@ int listCount = pageInfo.getListCount();
 								<%if(articleList.get(i).getRe_lev() != 0){%>
 									<font color="purple">답변</font>
 								<%} else {%>
-									<font color="orange">신청 접수</font>
+									<font color="orange">문의</font>
 								<%}%>
 							</td>
 							<td>

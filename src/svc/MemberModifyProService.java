@@ -21,8 +21,8 @@ public class MemberModifyProService {
 		
 		memberDAO.setConnection(con);
 		
-		isArticleRequestWriter = memberDAO.isArticleMemberWriter(id, password);
-		
+		isArticleWriter = memberDAO.isMember(id, password);
+
 		close(con);
 		
 		return isArticleRequestWriter;

@@ -46,7 +46,7 @@ public class ReviewWriteProAction implements Action {
 			// 리뷰 등록 성공시
 			forward = new ActionForward();
 			forward.setPath("BookDetail.re");
-			forward.setRedirect(false);			
+			forward.setRedirect(true);			
 		}
 		return forward;
 	}

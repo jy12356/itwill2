@@ -22,7 +22,7 @@ public class BookDetailAction implements Action {
 		BookBean bookBean = bookDetailService.getBookInfo(book_isbn,title);
 		request.setAttribute("bookBean", bookBean);
 		forward = new ActionForward();
-		forward.setPath("/sub1/bookDetail.jsp?isbn="+bookBean.getIsbn()+"&page="+page+"&title="+bookBean.getTitle());
+		forward.setPath("/sub1/bookDetail.jsp?isbn="+book_isbn+"&page="+page);
 		
 		return forward;
 	}

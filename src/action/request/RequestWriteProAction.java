@@ -10,7 +10,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import action.Action;
-import svc.RequestWriteProService;
+import svc.request.RequestWriteProService;
 import vo.ActionForward;
 import vo.RequestBean;
 

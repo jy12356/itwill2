@@ -34,7 +34,7 @@ public class FreeBoardDetailAction implements Action {
 		FreeBoardDetailService boardDetailService = new FreeBoardDetailService();
 		FreeBoardBean article = boardDetailService.getArticle(board_num);
 
-		// ====================== 댓글리스트 ========================
+		// ====================== 댓글리스트1 ========================
 		System.out.println("FreeBoardDetailAction - 댓글리스트뿌리기");
 
 		int page = 1; // 현재 페이지 번호 저장할 변수
@@ -65,6 +65,7 @@ System.out.println("FreeBoardDetailAction - page 가져오나? " + Integer.parse
 		}
 		PageInfo pageInfo = new PageInfo(
 				page, maxPage, startPage, endPage, listCount);
+		// ====================== 댓글리스트1 ========================
 
 		// 글내용이 저장된 BoardBean 객체를 request 객체에 저장
 		request.setAttribute("article", article);
