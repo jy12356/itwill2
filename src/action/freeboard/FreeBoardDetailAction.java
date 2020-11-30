@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import svc.freeboard.CommentDetailService;
 import svc.freeboard.FBCommentListService;
 import svc.freeboard.FreeBoardDetailService;
 import vo.ActionForward;
@@ -38,7 +39,7 @@ public class FreeBoardDetailAction implements Action {
 		System.out.println("FreeBoardDetailAction - 댓글리스트뿌리기");
 
 		int page = 1; // 현재 페이지 번호 저장할 변수
-		int limit = 10; // 페이지 당 표시할 게시물 수를 결정하는 변수
+		int limit = 1000; // 페이지 당 표시할 게시물 수를 결정하는 변수
 System.out.println("FreeBoardDetailAction - page 가져오나? " + Integer.parseInt(request.getParameter("page")));
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -65,13 +66,38 @@ System.out.println("FreeBoardDetailAction - page 가져오나? " + Integer.parse
 		}
 		PageInfo pageInfo = new PageInfo(
 				page, maxPage, startPage, endPage, listCount);
-		// ====================== 댓글리스트1 ========================
+		
+		
+		CommentDetailService commentDetailService = new CommentDetailService();
+		System.out.println("FreeBoardDetailAction 대댓글작업중");
+		
+		
+//		if() {
+			
+			CommentBean cb = commentDetailService.getComment(board_type, board_num);
+			System.out.println("1");
+			// request에 comment정보 CommentBean 저장
+			// ====================== 댓글리스트1 ========================
+			request.setAttribute("comment", cb);
+			System.out.println("2");
 
+			request.setAttribute("commentList", commentList);
+			System.out.println("3");
+
+//		} else {
+//			System.out.println("코멘트가없어서 페이지못띄움 오류");
+//		}
+
+		
+		
+		
 		// 글내용이 저장된 BoardBean 객체를 request 객체에 저장
 		request.setAttribute("article", article);
+		System.out.println("4");
 
-		request.setAttribute("commentList", commentList);
 		request.setAttribute("pageInfo", pageInfo);
+		System.out.println("5");
+
 		// board 폴더 내의 qna_board_view.jsp 페이지로 포워딩
 		// => request 객체를 유지하고, 서블릿 주소가 유지되어야 하므로
 		// Dispatcher 방식으로 포워딩
