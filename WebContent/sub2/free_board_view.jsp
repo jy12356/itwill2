@@ -152,9 +152,10 @@ String nowPage = request.getParameter("page");
 // 						 if(id != null) {
 // 		                        if(id.equals(commentList.get(i).getComment_id())) {
 						%>
-						<a href="javascript:;" class="comment_write_show" data-comment-count="0">수정</a> 
 						
 						<div class="btn_inner">
+						<a href="javascript:;" class="comment_modi_show btn" data-comment-count="0">수정</a> 
+						<a href="javascript:;" class="comment_write_show btn" data-comment-count="0" class="btn">댓글</a>
 						<a href="CommentDelete.free?board_num=<%=cb.getBoard_num()%>
 						&comment_num=<%=commentList.get(i).getComment_num()%>
 						&board_type=<%=cb.getBoard_type()%>&page=<%=nowPage%>" class="btn">삭제</a>
@@ -164,7 +165,7 @@ String nowPage = request.getParameter("page");
 // 		                        }
 // 						 }
 						%>
-										<a href="javascript:;" class="comment_write_show" data-comment-count="0">댓글</a>
+										
 									</div>
 								</div>
 							</div>
@@ -173,50 +174,54 @@ String nowPage = request.getParameter("page");
 // 							 if(id != null) {
 // 		                        if(id.equals(commentList.get(i).getComment_id())) {
 							%>
-							
-							<form action="CommentModify.free" method="post" class="comment-write reply-write" style="display: none;">
-							<input type="hidden" name="comment_num" value="<%=commentList.get(i).getComment_num()%>" /> 
-							<input type="hidden" name="board_type" value="<%=cb.getBoard_type()%>" /> 
-							<input type="hidden" name="page" value="<%=nowPage%>" />
-							<input type="hidden" name="board_num" value="<%=cb.getBoard_num()%>" /> 
-							<input type="hidden" name="comment_id" value="<%=id%>" />
-							<input type="hidden" name="re_ref" value="<%=commentList.get(i).getRe_ref()%>" />
-							<input type="hidden" name="re_lev" value="<%=commentList.get(i).getRe_lev()%>" />
-							<input type="hidden" name="re_seq" value="<%=commentList.get(i).getRe_seq()%>" />
-							<textarea name="comment_desc"><%=commentList.get(i).getComment_desc()%></textarea>
-							<div class="btn_inner">
-									<input type="submit" value="수정하기" class="btn">
-									<input type="reset" value="취소" class="btn">
+							<div class="cmtModi"  style="display: none;">
+								<form action="CommentModify.free" method="post" class="comment-write reply-write">
+									<input type="hidden" name="comment_num" value="<%=commentList.get(i).getComment_num()%>" /> 
+									<input type="hidden" name="board_type" value="<%=cb.getBoard_type()%>" /> 
+									<input type="hidden" name="page" value="<%=nowPage%>" />
+									<input type="hidden" name="board_num" value="<%=cb.getBoard_num()%>" /> 
+									<input type="hidden" name="comment_id" value="<%=id%>" />
+									<input type="hidden" name="re_ref" value="<%=commentList.get(i).getRe_ref()%>" />
+									<input type="hidden" name="re_lev" value="<%=commentList.get(i).getRe_lev()%>" />
+									<input type="hidden" name="re_seq" value="<%=commentList.get(i).getRe_seq()%>" />
+									<textarea name="comment_desc"><%=commentList.get(i).getComment_desc()%></textarea>
+									<div class="btn_inner">
+										<input type="submit" value="수정하기" class="btn">
+										<input type="reset" value="취소" class="btn">
 									</div>
-							</form>
+								</form>
+							</div>
 							<%
 // 		                        }
 // 							 }
 							%>
 							
 				<!-- 대댓글작성 ------------------------------------------->
-							<form action="CommentReply.free" method="post" class="comment-write reply-write" style="display: none;">
-<!-- 							<div class="comment-write reply-write" data-review-num="536286"	data-comment-num="" style="display: none;"> -->
-							<input type="hidden" name="comment_num" value="<%=commentList.get(i).getComment_num()%>" /> 
-							<input type="hidden" name="board_type" value="<%=cb.getBoard_type()%>" /> 
-							<input type="hidden" name="page" value="<%=nowPage%>" />
-							<input type="hidden" name="board_num" value="<%=cb.getBoard_num()%>" /> 
-							<input type="hidden" name="comment_id" value="<%=id%>" />
-							<input type="hidden" name="re_ref" value="<%=commentList.get(i).getRe_ref()%>" />
-							<input type="hidden" name="re_lev" value="<%=commentList.get(i).getRe_lev()%>" />
-							<input type="hidden" name="re_seq" value="<%=commentList.get(i).getRe_seq()%>" />
-							<textarea name="comment_desc" value="<%%>"></textarea>
-								<p>
-									<span><em>0</em>/500자</span>
-<!-- 									<button name="" class="cancel">취소</button> -->
-<!-- 									<button name="" class="commit">등록</button> -->
-								</p>
-									<div class="btn_inner">
-									<input type="submit" value="등록" class="btn">
-									<input type="reset" value="취소" class="btn">
-									</div>
-<!-- 							</div> -->
-							</form>
+				
+							<div class="cmtRly clearfix"  style="display: none;">
+								<form action="CommentReply.free" method="post" class="comment-write reply-write">
+	<!-- 							<div class="comment-write reply-write" data-review-num="536286"	data-comment-num="" style="display: none;"> -->
+								<input type="hidden" name="comment_num" value="<%=commentList.get(i).getComment_num()%>" /> 
+								<input type="hidden" name="board_type" value="<%=cb.getBoard_type()%>" /> 
+								<input type="hidden" name="page" value="<%=nowPage%>" />
+								<input type="hidden" name="board_num" value="<%=cb.getBoard_num()%>" /> 
+								<input type="hidden" name="comment_id" value="<%=id%>" />
+								<input type="hidden" name="re_ref" value="<%=commentList.get(i).getRe_ref()%>" />
+								<input type="hidden" name="re_lev" value="<%=commentList.get(i).getRe_lev()%>" />
+								<input type="hidden" name="re_seq" value="<%=commentList.get(i).getRe_seq()%>" />
+								<textarea name="comment_desc" value="<%%>"></textarea>
+									<p>
+										<span><em>0</em>/500자</span>
+	<!-- 									<button name="" class="cancel">취소</button> -->
+	<!-- 									<button name="" class="commit">등록</button> -->
+									</p>
+										<div class="btn_inner">
+										<input type="submit" value="등록" class="btn">
+										<input type="reset" value="취소" class="btn">
+										</div>
+	<!-- 							</div> -->
+								</form>
+							</div>
 				<!-- 대댓글작성 ------------------------------------------->
 				<!-- 일반 댓글리스트 뿌려주기 ㄲ -->
 							<%
