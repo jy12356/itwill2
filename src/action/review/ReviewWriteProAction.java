@@ -27,7 +27,7 @@ public class ReviewWriteProAction implements Action {
 		reviewBean.setId(request.getParameter("id"));
 		reviewBean.setContent(request.getParameter("content"));
 		reviewBean.setIsbn(request.getParameter("isbn"));
-//		reviewBean.setSpoiler(Integer.parseInt(request.getParameter("spoiler")));
+		reviewBean.setSpoiler(Integer.parseInt(request.getParameter("spoiler")));
 		
 		System.out.println("리뷰내용 :" + reviewBean.getContent());
 		
