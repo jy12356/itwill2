@@ -43,9 +43,9 @@
 									</tr>
 								</tbody>
 							</table>
-							<div class="one-btn">
+							<div class="btn_inner">
 								<input type="submit" class="btn" value="작성">
-								<a href="RequestList.rq" class="btn">목록</a>
+								<input type="button" class="btn" value="목록" onclick="location.href='RequestList.rq'">
 							</div>
 						</div>
 					</div>

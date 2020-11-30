@@ -75,7 +75,7 @@ int listCount = pageInfo.getListCount();
 						</tbody>
 						</table>
 						<div class="btn_inner">
-							<a href="RequestWriteForm.rq" class="btn">도서 신청</a>
+							<input type="button" class="btn" value="도서 신청" onclick="location.href='RequestWriteForm.rq'">
 						</div>
 						<div class ="paging">
 						<section id="pageList">
