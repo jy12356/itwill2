@@ -7,10 +7,10 @@
 <jsp:include page="../include/header.jsp"/>
 
    <%
-// 	String id = (String) session.getAttribute("id");
-// 	if (id == null) {
-// 	id = "admin";
-// 	}
+	String id = (String) session.getAttribute("id");
+	if (id == null) {
+	id = "admin";
+	}
 	
     ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
@@ -220,6 +220,8 @@
 					<input type="reset" value="취소" class="btn reviewCancel">
 				</div>
 			</div>
+			<input type="hidden" name="id" value="<%=id%>">
+			<input type="hidden" name="isbn" value="1">
 			<textarea name="content" placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>
 		</div>
 	</div>
@@ -291,27 +293,54 @@
 				</div>
 				<div class="comment-btn">
 					<div>
-						<a href="javascript:;" class="heart-btn" data-review-num="498631">수정</a>
+						<a href="javascript:;" class="modify_write_show">수정</a>
 						<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>" class="heart-btn" data-review-num="498631">삭제</a>
 						<a href="javascript:;" class="heart-btn" data-review-num="498631">좋아요</a>
 						<a href="javascript:;" class="comment_write_show" data-comment-count="0">댓글</a>
 					</div>
 				</div>
 			</div>
-			<!-- 서평 있을 때 댓글 등록 입력창-->
+			
+			<!-- 서평 수정-->
+<!-- 			<div class="moditfy-write" style="display: block;"> -->
+<!-- 			<form action="ReviewModifyPro.re" method="post" id="MyReModify"> -->
+<!-- 				<p> -->
+<%-- 					<input type="hidden" name="num" value="<%=articleList.get(i).getNum()%>"> --%>
+<%-- 					<input type="hidden" name="id" value="<%=articleList.get(i).getId() %>"> --%>
+<%-- 					<textarea name="content"><%=articleList.get(i).getContent() %></textarea> --%>
+<!-- 				</p> -->
+<!-- 					<input type="submit" value="수정" class="btn"> -->
+<!-- 					<input type="reset" value="취소" class="btn"> -->
+<!-- 			</form> -->
+<!-- 			</div> -->
+			<!-- 서평 수정-->	
+			
+			<!-- 댓글 등록 입력창-->
 			<div class="comment-write reply-write" data-review-num="498631" data-comment-num="" style="display: block;">
-				<textarea name=""></textarea>
+			<form action="ReCommentWritePro.re" method="get" id="myReComment">
+				<p>
+				<input type="hidden" name="board_type" value="2">
+				<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
+				<input type="hidden" name="comment_id" value="<%=id%>">
+				<textarea name="comment_desc"></textarea>
 				<p>
 					<span><em>0</em>/500자</span>
-					<button name="" class="btn-cancel">취소</button>
-					<button name="" class="commit">등록</button>
+					<input type="submit" value="등록" class="btn reviewInput">
+					<input type="reset" value="취소" class="btn reviewCancele">
 				</p>
+			</form>
 			</div>
 			<%
 				}
 			}
 			%>
-			<!-- 서평 있을 때 댓글 등록 입력창-->
+			<!-- 댓글 등록 입력창-->
+			
+			<!-- 댓글 수정창-->
+			<!-- 댓글 수정창-->
+			
+			<!-- 댓글 리스트-->
+			<!-- 댓글 리스트-->
 		<!-- 서평 있을 때 -->	
 		
 		<!-- 서평 리스트 더보기 -->					

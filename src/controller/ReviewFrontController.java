@@ -10,8 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.review.ReCommentDeleteProAction;
+import action.review.ReCommentListAction;
+import action.review.ReCommentModifyProAction;
+import action.review.ReCommentWriteProAction;
 import action.review.ReviewDeleteProAction;
 import action.review.ReviewListAction;
+import action.review.ReviewModifyProAction;
 import action.review.ReviewWriteProAction;
 import vo.ActionForward;
 
@@ -30,7 +35,7 @@ public class ReviewFrontController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 		
-		if(command.equals("/BookDetail.re")) {
+		if(command.equals("/BookDetail.re")) { // 상세보기
 			System.out.println("BookDetail.re 포워딩");
 			action = new ReviewListAction();
 			try {
@@ -39,9 +44,18 @@ public class ReviewFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		
-		} else if(command.equals("/ReviewWritePro.re")) {
+		} else if(command.equals("/ReviewWritePro.re")) { // 서평쓰기
 			System.out.println("ReviewWritePro.re 포워딩");
 			action = new ReviewWriteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+				
+		} else if(command.equals("/ReviewModifyPro.re")) { // 서평수정
+			System.out.println("ReviewModifyPro.re 포워딩");
+			action = new ReviewModifyProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -51,6 +65,41 @@ public class ReviewFrontController extends HttpServlet {
 		} else if(command.equals("/ReviewDeletePro.re")) {
 			System.out.println("ReviewDeletePro.re 포워딩");
 			action = new ReviewDeleteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ReCommentWritePro.re")) { // 댓글쓰기
+			System.out.println("ReCommentWritePro.re 포워딩");
+			action = new ReCommentWriteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/ReCommentModifyPro.re")) { // 댓글수정
+			System.out.println("ReCommentModifyPro.re 포워딩");
+			action = new ReCommentModifyProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/ReCommentDeletePro.re")) { // 댓글삭제
+			System.out.println("ReCommentDeletePro.re 포워딩");
+			action = new ReCommentDeleteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/ReCommentList.re")) { // 댓글 리스트
+			System.out.println("ReCommentList.re 포워딩");
+			action = new ReCommentListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
