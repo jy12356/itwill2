@@ -37,7 +37,7 @@
 								<tbody>
 	                            	<tr>
 										<td>제목</td>
-										<td colspan="3"><input type="text" name="subject" value="Re : <%=article.getSubject()%>" required="required"></td>
+										<td colspan="3"><input type="text" name="subject" value="Re : <%=article.getSubject()%>" required="required" readonly></td>
 									</tr>
 									<tr>
 										<td>저자</td>
