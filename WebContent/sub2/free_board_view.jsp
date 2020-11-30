@@ -136,16 +136,37 @@ String nowPage = request.getParameter("page");
 								
 								
 								%>
+								<style>
+									.cmt_rereply_inner{}
+									.cmt_rereply_inner::before{    content: '';
+    background: url(images/replyBg.png) no-repeat 10px 50px;
+    width: 24px;
+    height: 24px;}
+								</style>
 							<div class="comment">
-								<p class="comment-vote">
-									<i><%=commentList.get(i).getComment_id()%></i><em>|</em> <span class="date"><%=commentList.get(i).getDate()%></span><em>|</em>
-									댓글 <%=commentList.get(i).getRe_lev()%>
-								</p>
-								<div class="comment-content">
-									<span><%=commentList.get(i).getComment_desc()%></span>
-								</div>
-								<div class="comment-btn">
-									<div>
+								<%if(commentList.get(i).getRe_lev() > 0) {%>
+									<div class="pl20 cmt_rereply_inner">
+										<p class="comment-vote">
+											<i><%=commentList.get(i).getComment_id()%></i><em>|</em> <span class="date"><%=commentList.get(i).getDate()%></span><em>|</em>
+											댓글 <%=commentList.get(i).getRe_lev()%>
+										</p>
+										<div class="comment-content">
+											<span><%=commentList.get(i).getComment_desc()%></span>
+										</div>
+										<div class="comment-btn">
+											<div>
+									</div>
+									<%}else{%>
+									<p class="comment-vote">
+										<i><%=commentList.get(i).getComment_id()%></i><em>|</em> <span class="date"><%=commentList.get(i).getDate()%></span><em>|</em>
+										댓글 <%=commentList.get(i).getRe_lev()%>
+									</p>
+									<div class="comment-content">
+										<span><%=commentList.get(i).getComment_desc()%></span>
+									</div>
+									<div class="comment-btn">
+										<div>
+									<%} %>
 <!-- 										<a href="javascript:;" class="comment_modify_show" data-comment-count="0">수정</a>  -->
 						<!-- 댓글수정, 삭제 -->
 						<%
