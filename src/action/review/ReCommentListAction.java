@@ -7,35 +7,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import svc.review.ReCommentListService;
-import svc.review.ReviewListService;
 import vo.ActionForward;
+import vo.CommentBean;
 import vo.PageInfo;
 import vo.ReviewBean;
 
-public class ReviewListAction implements Action {
+public class ReCommentListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("Action - 2.ReviewListAction!");
+		System.out.println("Action - ReCommentListAction!");
 		
 		ActionForward forward = null;
-		// 서평 수 ---------------------------------------------------------
-		ReviewListService reviewListService = new ReviewListService();
-		int listCount = reviewListService.getListCount();
-		System.out.println("전체게시물 수 : " + listCount);
-		
-		// 댓글 수 ---------------------------------------------------------
 		
 		ReCommentListService reCommentListService = new ReCommentListService();
-		int listCount2 = reCommentListService.getCommetListCount();
-		System.out.println("전체댓글 수 : " + listCount2);
 		
-		// ---------------------------------------------------------------
-		
+		int listCount = reCommentListService.getCommetListCount();
+		System.out.println("전체댓글 수 : " + listCount);
 		
 		
-		// 서평 리스트 -------------------------------------------------------
-		// 페이지 처리를 위한 변수 선언
+		// ----------------------------------------------------------
 		int page = 1; // 현재 페이지 번호 저장할 변수
 		int limit = 5; // 페이지 당 표시할 게시물 수를 결정하는 변수
 		
@@ -44,10 +35,9 @@ public class ReviewListAction implements Action {
 		if(request.getParameter("limit") != null) {
 			page = Integer.parseInt(request.getParameter("limit"))+20;
 		}	
-		ArrayList<ReviewBean> articleList = new ArrayList<ReviewBean>();
+		ArrayList<CommentBean> articleList = new ArrayList<CommentBean>();
 
-		articleList = reviewListService.getArticleList(page, limit);
-		
+		articleList = reCommentListService.getCommArticleList(page, limit);
 		// 페이지 계산 작업 수행
 		// 1. 전체 페이지 수 계산
 		// 	  (총 게시물 수 / 페이지 당 게시물 수 + 0.95) -> 정수로 변화
@@ -69,7 +59,7 @@ public class ReviewListAction implements Action {
 		// 게시물 목록 정보(ArrayList)와 페이지 정보(PageInfo) 객체를 저장
 		request.setAttribute("articleList", articleList);
 		request.setAttribute("pageInfo", pageInfo);
-		
+				
 		forward = new ActionForward();
 		forward.setPath("/sub1/detail.jsp");
 		
