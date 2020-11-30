@@ -63,28 +63,6 @@ public class CommentWriteProAction implements Action {
 			forward.setRedirect(true);
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		return forward;
 	}
 

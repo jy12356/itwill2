@@ -371,28 +371,6 @@ public class FreeBoardDAO {
 			if(rs.next()) { // 등록된 게시물이 하나라도 존재할 경우
 				num = rs.getInt(1) + 1; // 새 글 번호 = 현재 가장 큰 번호 + 1
 			}
-//			System.out.println(cb.getRe_ref());
-//			int re_ref = cb.getRe_ref(); // 기존글 참조번호
-////			int re_ref = 28;
-//			int re_lev = cb.getRe_lev(); // 기존글 들여쓰기 값
-//			int re_seq = cb.getRe_seq(); // 기존글 순서번호
-//			
-//			sql = "UPDATE comment SET re_seq=re_seq+1 "
-//					+ "WHERE re_ref=? AND re_seq>?";
-			
-			
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, re_ref);
-//			pstmt.setInt(2, re_seq);
-//			System.out.println(pstmt);
-//			pstmt.executeUpdate();
-//			
-//			if(re_ref != 0) {
-//				//0은 댓글 1은 대댓글
-//				re_lev += 1;
-//				 // 기존글 순서번호
-//				re_seq += 1;
-//			}
 			
 			sql = "INSERT INTO comment VALUES (?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
@@ -401,14 +379,11 @@ public class FreeBoardDAO {
 			pstmt.setInt(3, cb.getBoard_num());
 			pstmt.setString(4, cb.getComment_id());
 			pstmt.setString(5, cb.getComment_desc());
-			pstmt.setInt(6, cb.getRe_ref());
+			pstmt.setInt(6, num);
 			pstmt.setInt(7, cb.getRe_lev());
 			pstmt.setInt(8, cb.getRe_seq());
 			
 			
-//			pstmt.setInt(6, re_ref);
-//			pstmt.setInt(7, re_lev);
-//			pstmt.setInt(8, re_seq);
 			
 			
 			insertCount = pstmt.executeUpdate();

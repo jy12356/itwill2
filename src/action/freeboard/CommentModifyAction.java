@@ -6,36 +6,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import svc.freeboard.CommentReplyService;
+import svc.freeboard.CommentModifyService;
 import vo.ActionForward;
 import vo.CommentBean;
 
-public class CommentReplyAction implements Action {
+public class CommentModifyAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		System.out.println("CommentReplyAction!");
-		
+		System.out.println("CommentModifyAction - start");
 		
 		ActionForward forward = null;
-		System.out.println("page : " + Integer.parseInt(request.getParameter("page")));
-		System.out.println("comment_num : " + Integer.parseInt(request.getParameter("comment_num")));
-		System.out.println("board_type : " + Integer.parseInt(request.getParameter("board_type")));
-		System.out.println("board_num : " + Integer.parseInt(request.getParameter("board_num")));
-		System.out.println("comment_id : " + request.getParameter("comment_id"));
-		System.out.println("comment_desc : " + request.getParameter("comment_desc"));
-		System.out.println("re_ref : " + Integer.parseInt(request.getParameter("re_ref")));
-		System.out.println("re_lev : " + Integer.parseInt(request.getParameter("re_lev")));
-		System.out.println("re_seq : " + Integer.parseInt(request.getParameter("re_seq")));
-		int page = Integer.parseInt(request.getParameter("page"));
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		int board_type = Integer.parseInt(request.getParameter("board_type"));
 		
+		int page = Integer.parseInt(request.getParameter("page"));
+		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
+		int board_type = Integer.parseInt(request.getParameter("board_type"));
+		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		
+//		System.out.println("가져오나? " + comment_num + " , " +  board_type);
+		// 가져옴
+//		System.out.println(request.getParameter("comment_desc"));
+		CommentModifyService commentModifyService = new CommentModifyService();
+		
+//		boolean isRightUser 세션으로 확인하니까 필요없을듯.
 		
 		CommentBean cb = new CommentBean();
-		cb.setComment_num(Integer.parseInt(request.getParameter("comment_num")));
-		cb.setBoard_type(Integer.parseInt(request.getParameter("board_type")));
+		cb.setComment_num(comment_num);
+		cb.setBoard_type(board_type);
 		cb.setBoard_num(Integer.parseInt(request.getParameter("board_num")));
 		cb.setComment_id(request.getParameter("comment_id"));
 		cb.setComment_desc(request.getParameter("comment_desc"));
@@ -43,14 +40,16 @@ public class CommentReplyAction implements Action {
 		cb.setRe_lev(Integer.parseInt(request.getParameter("re_lev")));
 		cb.setRe_seq(Integer.parseInt(request.getParameter("re_seq")));
 		
-		CommentReplyService commentReplyService = new CommentReplyService();
-		boolean isReplySuccess = CommentReplyService.replyComment(cb);
+		boolean isModifySuccess = 
+				commentModifyService.modifyComment(cb);
 		
-		if(!isReplySuccess) {
+		System.out.println("CommentModifyAction - mid");
+		
+		if(!isModifySuccess) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('대댓글 등록 실패!')");
+			out.println("alert('댓글 수정 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
 		} else {
@@ -61,6 +60,10 @@ public class CommentReplyAction implements Action {
 //					"&page=" + request.getParameter("page")+"&board_type="+board_type);
 			forward.setRedirect(true);
 		}
+		
+		
+		
+		
 		
 		return forward;
 	}
