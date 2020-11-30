@@ -136,13 +136,6 @@ String nowPage = request.getParameter("page");
 								
 								
 								%>
-								<style>
-									.cmt_rereply_inner{}
-									.cmt_rereply_inner::before{    content: '';
-    background: url(images/replyBg.png) no-repeat 10px 50px;
-    width: 24px;
-    height: 24px;}
-								</style>
 							<div class="comment">
 								<%if(commentList.get(i).getRe_lev() > 0) {%>
 									<div class="pl20 cmt_rereply_inner">
