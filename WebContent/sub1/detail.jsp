@@ -278,7 +278,7 @@
 		} else if (articleList != null && listCount > 0) {
 			 for(int i = 0; i < articleList.size(); i++) {
 		%>
-			<div class="comment">
+			<div class="comment comment_inner ">
 				<p class="comment-vote bookcube">
 					<i><%=articleList.get(i).getId() %></i>
 					<em>|</em>
@@ -291,44 +291,47 @@
 				<div class="comment-content">
 					<span><%=articleList.get(i).getContent() %></span>				
 				</div>
-				<div class="comment-btn">
-					<div>
-						<a href="javascript:;" class="modify_write_show">수정</a>
-						<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>" class="heart-btn" data-review-num="498631">삭제</a>
-						<a href="javascript:;" class="heart-btn" data-review-num="498631">좋아요</a>
-						<a href="javascript:;" class="comment_write_show" data-comment-count="0">댓글</a>
-					</div>
+				<div class="btn_inner">
+						<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
+						<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>" class="heart-btn btn" data-review-num="498631">삭제</a>
+						<a href="javascript:;" class="heart-btn btn" data-review-num="498631">좋아요</a>
+						<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
 				</div>
 			</div>
 			
 			<!-- 서평 수정-->
-<!-- 			<div class="moditfy-write" style="display: block;"> -->
-<!-- 			<form action="ReviewModifyPro.re" method="post" id="MyReModify"> -->
-<!-- 				<p> -->
-<%-- 					<input type="hidden" name="num" value="<%=articleList.get(i).getNum()%>"> --%>
-<%-- 					<input type="hidden" name="id" value="<%=articleList.get(i).getId() %>"> --%>
-<%-- 					<textarea name="content"><%=articleList.get(i).getContent() %></textarea> --%>
-<!-- 				</p> -->
-<!-- 					<input type="submit" value="수정" class="btn"> -->
-<!-- 					<input type="reset" value="취소" class="btn"> -->
-<!-- 			</form> -->
-<!-- 			</div> -->
+			<div class="cmtModi" style="display: none;">
+				<form action="ReviewModifyPro.re" class="comment-write reply-write" method="post" id="MyReModify">
+					<div>
+						<input type="hidden" name="num" value="<%=articleList.get(i).getNum()%>">
+						<input type="hidden" name="id" value="<%=articleList.get(i).getId() %>">
+						<textarea name="content"><%=articleList.get(i).getContent() %></textarea>
+					</div>
+					<div class="btn_inner">
+						<input type="submit" value="수정" class="btn">
+						<input type="reset" value="취소" class="btn">
+					</div>
+				</form>
+			</div>
 			<!-- 서평 수정-->	
 			
 			<!-- 댓글 등록 입력창-->
-			<div class="comment-write reply-write" data-review-num="498631" data-comment-num="" style="display: block;">
-			<form action="ReCommentWritePro.re" method="get" id="myReComment">
-				<p>
-				<input type="hidden" name="board_type" value="2">
-				<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
-				<input type="hidden" name="comment_id" value="<%=id%>">
-				<textarea name="comment_desc"></textarea>
-				<p>
-					<span><em>0</em>/500자</span>
-					<input type="submit" value="등록" class="btn reviewInput">
-					<input type="reset" value="취소" class="btn reviewCancele">
-				</p>
-			</form>
+			<div class="cmtRly clearfix" data-review-num="498631" data-comment-num="" style="display: block;">
+				<form action="ReCommentWritePro.re" class="comment-write reply-write" method="get" id="myReComment">
+					<div>
+						<input type="hidden" name="board_type" value="2">
+						<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
+						<input type="hidden" name="comment_id" value="<%=id%>">
+						<textarea name="comment_desc"></textarea>
+					</div>
+					<p>
+						<span><em>0</em>/500자</span>
+					</p>
+					<div class="btn_inner">
+						<input type="submit" value="등록" class="btn reviewInput">
+						<input type="reset" value="취소" class="btn reviewCancele">
+					</div>
+				</form>
 			</div>
 			<%
 				}
@@ -461,6 +464,71 @@
 		</div>
 
 	</section>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			//리뷰 입력창
+			$(".cmtModi").hide();
+			$(".cmtRly").hide();
+			//리뷰댓글 수정입력창 보이기
+			$(".rview_modi_show").on("click", function() {
+				$(".cmtModi").hide();
+				$(".cmtRly").hide();
+				var modi = $(this).parent().parent().next();
+			    if (modi.css("display") == "none") {
+			    	$(".cmtModi").hide();
+					$(".cmtRly").hide();
+			        $(this).parent().parent().next().show();
+			    } else {
+			        $(this).parent().parent().next().hide();
+			    }
+			    if ($(this).data("comment-count") > 0) {
+			        if (modi.css("display") == "none") {
+			        	$(".cmtModi").hide();
+						$(".cmtRly").hide();
+			            $(this).parent().parent().next().next().next().show();
+			        } else {
+			            $(this).parent().parent().next().next().next().hide();
+			        }
+			
+			    }
+			});
+			
+			//리뷰대댓글 입력창 보이기
+			$(".comment_write_show").on("click", function() {
+				
+				var reply = $(this).parent().parent().next().next();
+			    if (reply.css("display") == "none") {
+			    	$(".cmtModi").hide();
+					$(".cmtRly").hide();
+			        $(this).parent().parent().next().next().show();
+			    } else {
+			        $(this).parent().parent().next().next().hide();
+			    }
+			    if ($(this).data("comment-count") > 0) {
+			        if (reply.css("display") == "none") {
+			        	$(".cmtModi").hide();
+						$(".cmtRly").hide();
+			            $(this).parent().parent().next().next().next().show();
+			        } else {
+			            $(this).parent().parent().next().next().next().hide();
+			        }
+			
+			    }
+			});
+			//댓글 입력창 보이기(수정)
+			$(".comment_modify").on("click", function() {
+			    if ($.cookie("user_num")) {
+			        $(this).parent().parent().parent().parent().hide();
+			        $(this).parent().parent().parent().parent().next().show();
+			    } else {
+			        goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
+			        //							alert('로그인 후 이용가능합니다.');
+			        return;
+			    }
+			});
+		});
+	</script>
 
 <!-- 	<script>
 		$(function(){
