@@ -36,12 +36,12 @@
 								<td colspan="3"><input type="text" name="publisher" id="publisher" required="required"></td>
 							</tr>
 							<tr>
-								<td>첨부 내용</td>
-								<td  colspan="3"><input type="text" id="pubdate" name="pubdate" required="required"></td>
+								<td>출판년도</td>
+								<td colspan="3"><input type="text" id="pubdate" name="pubdate" required="required"></td>
 							</tr>
 							<tr>
-								<td>출판사</td>
-								<td  colspan="3"><textarea name="content" id="content" name="content"></textarea>
+								<td>첨부 내용</td>
+								<td colspan="3"><textarea name="content" id="content" name="content"></textarea>
                                 </td>
 							</tr>
 							<tr>

@@ -26,20 +26,35 @@
 					<h3 class="coTitle">답글 작성</h3>
 					<div class="customer-contents">
 						<div class="customer-inner">
-							<table summary="답글 작성" class="onebyone">
+							<table summary="답글 작성" class="customer-notice">
 								<caption>답글 작성</caption>
 								<colgroup>
 									<col width="15%">
-									<col width="*">
+		                            <col width="35%">
+		                            <col width="15%">
+		                            <col width="35%">
 								</colgroup>
 								<tbody>
 	                            	<tr>
-										<th>제목 <em><font color="red">(*)</font></em></th>
-										<td><input type="text" name="subject" value="Re : <%=article.getSubject()%>" required="required"></td>
+										<td>제목</td>
+										<td colspan="3"><input type="text" name="subject" value="Re : <%=article.getSubject()%>" required="required"></td>
 									</tr>
 									<tr>
-										<th>첨부 내용</th>
-										<td><textarea name="content" required="required"></textarea></td>
+										<td>저자</td>
+										<td colspan="3"><input type="text" name="author" value="<%=article.getAuthor()%>" required="required" readonly></td>
+									</tr>
+									<tr>
+										<td>출판사</td>
+										<td colspan="3"><input type="text" name="publisher" value="<%=article.getPublisher()%>" required="required" readonly></td>
+									</tr>
+									<tr>
+										<td>출판년도</td>
+										<td colspan="3"><input type="text" name="pubdate" value="<%=article.getPubdate()%>" required="required" readonly></td>
+									</tr>
+									<tr>
+										<td>첨부 내용</td>
+										<td colspan="3"><textarea name="content" id="content" name="content"></textarea>
+		                                </td>
 									</tr>
 								</tbody>
 							</table>
