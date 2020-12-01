@@ -23,6 +23,14 @@ public class BookListAction implements Action {
 		if(request.getParameter("page")!=null) {
 			page = Integer.parseInt(request.getParameter("page"));			
 		}
+		String catg1 = "";
+		String catg2 = "";
+		if(request.getParameter("catg1") != null) {
+			catg1 = request.getParameter("catg1");
+		}
+		if(request.getParameter("catg2") != null) {
+			catg2 = request.getParameter("catg2");
+		}
 		BookListService bookListService = new BookListService();
 		int listCount = bookListService.getListCount();
 		System.out.println("전체 게시물 수 : " + listCount);
@@ -30,7 +38,7 @@ public class BookListAction implements Action {
 		
 		
 		ArrayList<BookBean> bookList = new ArrayList<BookBean>();
-		bookList = bookListService.getBookList(page,limit);
+		bookList = bookListService.getBookList(page,limit,catg1,catg2);
 
 		int maxPage = (int)((double)listCount/ limit+0.95);
 		int startPage = ((int)((double)page/10+0.9)-1)*10+1;
