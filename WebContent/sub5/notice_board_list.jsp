@@ -47,9 +47,11 @@ int listCount = PageInfo.getListCount();
 
 						<caption>자유게시판</caption>
 						<colgroup>
-							<col width="75%">
-							<col width="10%">
-							<col width="*">
+							<col style="width: 8%;">
+							<col style="width: 50%;">
+							<col style="width: 20%;">
+							<col style="width: 15%;">
+							<col style="width: 7%;">
 						</colgroup>
 						<%
 							if (articleList != null && listCount > 0) {

@@ -1931,7 +1931,7 @@ border-radius:4px;background:#fff;}
 .one-ps:after{content:"";display:block;clear:both;}
 .one-ps p{float:right;color:#f46000;font-weight:600;}
 .onebyone{margin-top:10px;width:100%;border-top:1px solid #b7b7b7;border-collapse:separate;}
-.onebyone th{border-right:1px solid #d4d4d4;border-bottom:1px solid #d4d4d4;height:44px;font-weight:600;font-size:14px;color:#666;}
+.onebyone th{border-right:1px solid #d4d4d4;border-bottom:1px solid #d4d4d4;height:44px;font-weight:600;font-size:14px;color:#666; background-color: #f4f4f4;}
 .onebyone th span{color:#f46000;}
 .onebyone td{border-bottom:1px solid #d4d4d4;padding:10px 18px;font-size:14px;line-height:18px;color:#666;}
 .select-wrap:after{content:"";display:block;clear:both;}
