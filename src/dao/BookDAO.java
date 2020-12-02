@@ -83,7 +83,7 @@ public class BookDAO {
 		return insertCount;		
 	}
 	//책 리스트
-	public ArrayList<BookBean> selectBookList(int page, int limit) {
+	public ArrayList<BookBean> selectBookList(int page, int limit,String catg1,String catg2) {
 		System.out.println("BookDAO - selectList()");
 		ArrayList<BookBean> bookList = null;
 		PreparedStatement pstmt = null;
@@ -92,11 +92,13 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		
-		String sql = "select * from book order by pubdate desc limit ?,?";
+		String sql = "select * from book where catg1 like ? and catg2 like ? order by pubdate desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, limit);
+			pstmt.setString(1, "%"+catg1);
+			pstmt.setString(2, "%"+catg2);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, limit);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			bookList = new ArrayList<BookBean>();
