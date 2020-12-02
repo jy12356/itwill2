@@ -40,14 +40,9 @@
 								<li><a href="QnaWriteForm.qna" class="">1:1 문의하기</a></li>
 								<li><a href="QnaList.qna" class="on">문의 내역 확인</a></li>
 							</ul>
-							<div class="onebyone-step">
-								<p>
-									문의주신 내용을 24시간 내에 답변드릴 수 있도록 노력하고 있습니다.<br>
-									단, <span>주말,공휴일 문의 및 확인 절차가 많아지는 경우</span>에는 지연될 수 있는 점 양해 부탁드립니다.
-								</p>
-							</div>
 							
-							<table class="onebyone" summary="1:1 문의">
+			
+							<table class="onebyone customer-notice" summary="1:1 문의">
 						
 							<caption>1:1 문의하기</caption>
 							<colgroup>
@@ -83,11 +78,11 @@
 							</tr>
 							</tbody>
 							</table>
-							<div class="one-btn">
-								<input type="button" value="수정" onclick="location.href='QnaModifyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
-								<input type="button" class="vs1Del" value="삭제" onclick="location.href='QnaDeletePro.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
-								<input type="button" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
-								<input type="button" value="답변" onclick="location.href='QnaReplyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+							<div class="btn_inner">
+								<input type="button" class="btn" value="수정" onclick="location.href='QnaModifyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" class="vs1Del btn" value="삭제" onclick="location.href='QnaDeletePro.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" class="btn" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
+								<input type="button" class="btn" value="답변" onclick="location.href='QnaReplyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
 							</div>
 						</div>
 					</div>

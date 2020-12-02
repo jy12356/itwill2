@@ -143,9 +143,9 @@
 									<td class="q-device">
 										PC
 									</td>
+									</table>
 								</tr>
 								</tbody>
-								</table>
 								<div class="one-btn">
 									<input type="submit" name="" class="" value="등록하기">
 								</div>
