@@ -4,20 +4,30 @@
 
 			<!-- 카카오 공유하기 20201125 서지연 추가 시작-->
 <script type='text/javascript'>
-  //<![CDATA[
-    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('b528aa836fabfb8e8ebeb7dde7277a0f');
+	var firstImg=$(".thum-box img"); 
+	var contents=""; 
+	if(firstImg.attr("src")){ 
+		var firstImgSrc=firstImg.attr("src"); 
+		var firstImgRatio = parseInt(firstImg.css("height"))/parseInt(firstImg.css("width")); 
+		if (firstImgRatio <=0.27) var firstImgRatio=0.27; 
+	}else{
+	// 	var firstImgSrc=location.origin+"/favicon.ico";
+		var firstImgRatio=1
+	} 
+	// 사용할 앱의 JavaScript 키를 설정해 주세요. 
+	//<![CDATA[
+	Kakao.init('b528aa836fabfb8e8ebeb7dde7277a0f'); 
     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
     Kakao.Link.createDefaultButton({
       container: '#kakao-link-btn',
       objectType: 'feed',
       content: {
-        title: '딸기 치즈 케익',
-        description: '#케익 #딸기 #삼평동 #카페 #분위기 #소개팅',
-        imageUrl: 'http://mud-kage.kakao.co.kr/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+        title: $('meta[property="og:title"]').attr( 'content' ),
+        description: $('meta[property="og:description"]').attr( 'content' ),
+        imageUrl: $( 'meta[property="og:image"]' ).attr( 'content' ),
         link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com'
+          mobileWebUrl: window.location.href,
+          webUrl: window.location.href
         }
       },
       social: {
@@ -29,20 +39,22 @@
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
-          }
-        },
-        {
-          title: '앱으로 보기',
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com'
+            webUrl: window.location.href
           }
         }
       ]
     });
   //]]>
+	//링크복
+	function shareUrl(){
+		var urlLink = window.location.href;
+		urlLink.value = window.location.href;
+		alert(urlLink);
+		urlLink.select();
+	    document.execCommand("copy"); // 클립보드에 복사합니다. 
+	 	 alert('복사되었습니다, 감사합니다.');
+
+	}
 </script>
  <!-- 카카오 공유하기 20201125 서지연 추가 끝-->
 <% 
@@ -107,7 +119,7 @@
 											<div class="sns" data-options="">
 												<a class="share-facebook" data-sns="facebook" onclick="javascript:facebook('http://itwillbs6.cafe24.com/MODEL2/BookDetail.bok?isbn=<%=bookBean.getIsbn()%>&page=<%=nowPage %>&title=<%=bookBean.getTitle()%>');">페이스북</a>
 												<a class="share-kakao" data-sns="kakao" id="kakao-link-btn" href="javascript:sendLink();">카카오</a>
-												<a class="share-url" onclick="shareUrl('https://www.bookcube.com/detail.asp?series_num=920026812&page=buy');">URL</a>
+												<a class="share-url" onClick="javascript:shareUrl();">URL</a>
 											</div>
 										</div>
 										<button class="share-cancel">닫기</button>

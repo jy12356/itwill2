@@ -1,53 +1,50 @@
 package svc.review;
 
+import static db.JdbcUtil.*;
+
 import java.sql.Connection;
 
 import dao.ReviewDAO;
+import vo.ReviewBean;
 
-import static db.JdbcUtil.*;
+public class ReviewModifyService {
 
-public class ReviewDeleteProService {
-
-	public boolean isReviewWriter(int num, String id) {
-		System.out.println("ReviewDeleteProService - isReviewWriter");
-
+	public static boolean isReviewWriter(int num, String id) {
+		System.out.println("ReviewModifyService - isReviewWriter");
+		
 		boolean isReviewWriter = false;
 		
 		Connection con = getConnection();
 		
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
-		
+
 		reviewDAO.setConnection(con);
 		
 		isReviewWriter = reviewDAO.isArticleReviewWriter(num, id);
 		
 		close(con);
 		
-		return isReviewWriter;	
+		return isReviewWriter;
 	}
 
-	public static boolean removeArticle(int num) {
-		System.out.println("ReviewDeleteProService - removeArticle ");
+	public static boolean modifyArticle(ReviewBean article) {
+		System.out.println("ReviewModifyService - modifyArticle");
 		
-		boolean isDeleteSuccess = false;
+		boolean isModifySuccess = false;
 		
 		Connection con = getConnection();
 		
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
-		
+
 		reviewDAO.setConnection(con);
 		
-		int deleteCount = reviewDAO.deleteArticle(num);
-		if(deleteCount > 0) {
+		int updateCount = reviewDAO.updateArticle(article);
+		
+		if(updateCount > 0) {
 			commit(con);
-			isDeleteSuccess = true;
-
 		} else {
 			rollback(con);
 		}
-		close(con);		
-		
-		return isDeleteSuccess;
+		return isModifySuccess;
 	}
-
 }

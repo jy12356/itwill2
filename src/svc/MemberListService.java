@@ -10,7 +10,7 @@ import vo.MemberBean;
 public class MemberListService {
 	public int getListCount() throws Exception {
 		
-		System.out.println("BoardListService - getListCount");
+		System.out.println("MemberListService - getListCount");
 		
 		int listCount = 0;
 		
@@ -32,7 +32,6 @@ public class MemberListService {
 	}
 
 	public static ArrayList<MemberBean> getArticleList(int page, int limit) {
-		
 		
 		ArrayList<MemberBean> articleList = null;
 		

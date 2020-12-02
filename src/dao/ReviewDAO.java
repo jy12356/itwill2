@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
+import vo.CommentBean;
 import vo.ReviewBean;
 
 import static db.JdbcUtil.*;
@@ -31,7 +31,7 @@ public class ReviewDAO {
 		this.con = con;
 	}
 	
-	// 리뷰 등록 --------------------------------------------------------
+	// 서평 등록 --------------------------------------------------------
 	public int insertArticle(ReviewBean reviewBean) {
 		System.out.println("ReviewDAO - 3. insertArticle()");
 		
@@ -72,7 +72,7 @@ public class ReviewDAO {
 		return insertCount;
 	}
 
-	// 리뷰등록 수 -------------------------------------------------------
+	// 서평 등록 수 -------------------------------------------------------
 	public int selectListCount() {
 		System.out.println("ReviewDAO - 4. selectListCount()");
 		
@@ -98,7 +98,7 @@ public class ReviewDAO {
 		return listCount;
 	}	
 	
-	// 리뷰리스트 ---------------------------------------------------------
+	// 서평 리스트 ---------------------------------------------------------
 	public ArrayList<ReviewBean> selectArticleList(int page, int limit) {
 		System.out.println("ReviewDAO - 5. selectArticleList()");
 		
@@ -187,7 +187,32 @@ public class ReviewDAO {
 		}
 		return isArticleWriter;
 	}
-	// 글 삭제 -------------------------------------------------
+	
+	// 서평 수정 -------------------------------------------------
+		public int updateArticle(ReviewBean article) {
+			System.out.println("ReviewDAO - 7. updateArticle()");
+			
+			int updateCount = 0;
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql="UPDATE review SET content=? WHERE num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, article.getContent());
+				pstmt.setInt(2, article.getNum());
+				updateCount = pstmt.executeUpdate();
+				
+			}catch(Exception e) {
+				System.out.println("updateArticle() 오류! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return updateCount;
+		}
+	
+	// 서평 삭제 -------------------------------------------------
 	public int deleteArticle(int num) {
 		System.out.println("ReviewDAO - 7. deleteArticle()");
 		
@@ -207,9 +232,132 @@ public class ReviewDAO {
 			e.printStackTrace();
 			System.out.println("deleteArticle() 오류! - " + e.getMessage());
 		} finally {
+
 			close(pstmt);
 		}
 		return deleteCount;
 	}
 
-}
+	// 댓글 등록-------------------------------------------------
+		public int insertComment(CommentBean commentBean) {
+			System.out.println("ReviewDAO - 9. insertComment()");
+			
+			int insertCount = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			int num = 1;
+			
+			try {
+				String sql = "SELECT MAX(comment_num) FROM comment";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					num = rs.getInt(1) + 1;
+				}
+				sql = "INSERT INTO comment values(?,?,?,?,?,?,?,?,now())";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				pstmt.setInt(2, commentBean.getBoard_type());
+				pstmt.setInt(3, commentBean.getBoard_num());
+				pstmt.setString(4, commentBean.getComment_id());
+				pstmt.setString(5, commentBean.getComment_desc());
+				pstmt.setInt(6, num);
+				pstmt.setInt(7, commentBean.getRe_lev());
+				pstmt.setInt(8, commentBean.getRe_seq());
+				
+				insertCount = pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("insertArticle() 오류! - " + e.getMessage());
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return insertCount;
+		}	
+		// 댓글 수 -------------------------------------------------
+		public int selectCommListCount() {
+			System.out.println("ReviewDAO - 4. selectCommListCount()");
+			
+			int listCount2 = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT COUNT(board_type='2') FROM comment";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					listCount2 = rs.getInt(1);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("selectCommListCount() 오류! - " + e.getMessage());
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return listCount2;
+		}
+
+		// 리뷰 댓글 리스트 -------------------------------------------------
+		public ArrayList<CommentBean> selectCommentList(int page, int limit) {
+			System.out.println("ReviewDAO - 5. selectArticleList()");
+			
+			ArrayList<CommentBean> articleCommList = null;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			// 조회를 시작할 레코드(행) 번호 계산
+			int startRow = (page - 1) * limit;
+			
+			try {
+				// 게시물 조회
+				// 리뷰번호(num)을 기준으로 내림차순 정렬
+				// 조회 시작 게시물 번호(StarRow)를 기준으로 limit 갯수만큼 조회
+				String sql = "SELECT * FROM comment ORDER BY comment_num DESC LIMIT ?,?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, limit);
+				rs = pstmt.executeQuery();
+				
+				// articleCommList 객체 생성
+				articleCommList = new ArrayList<CommentBean>();
+				System.out.println(000);
+				while(rs.next()) {
+					CommentBean article = new CommentBean();
+					article.setComment_num(rs.getInt("comment_num"));
+					article.setBoard_type(rs.getInt("board_type"));
+					article.setBoard_num(rs.getInt("board_num"));
+					article.setComment_id(rs.getString("comment_id"));
+					article.setComment_desc(rs.getNString("comment_desc"));
+					article.setRe_ref(rs.getInt("re_ref"));
+					article.setRe_lev(rs.getInt("re_lev"));
+					article.setRe_seq(rs.getInt("re_seq"));
+
+					// 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
+					articleCommList.add(article);
+
+				}		
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("selectArticleList() 오류! - " + e.getMessage());
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return articleCommList;
+		}
+		// 리뷰 댓글 수정 -------------------------------------------------
+
+
+		
+		// 리뷰 댓글 삭제 -------------------------------------------------
+
+	}

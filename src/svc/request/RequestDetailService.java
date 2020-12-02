@@ -1,4 +1,4 @@
-package svc;
+package svc.request;
 
 import static db.JdbcUtil.*;
 

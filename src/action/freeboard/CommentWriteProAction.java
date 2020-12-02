@@ -23,6 +23,7 @@ public class CommentWriteProAction implements Action {
 		System.out.println(" CommentWriteProAction - 페이지가져와?  " + Integer.parseInt(request.getParameter("page")));
 		int page = Integer.parseInt(request.getParameter("page"));
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		int board_type = Integer.parseInt(request.getParameter("board_type"));
 		System.out.println("board_type : " + Integer.parseInt(request.getParameter("board_type")));
 		System.out.println("board_num : " + Integer.parseInt(request.getParameter("board_num")));
 		System.out.println("comment_id : " + request.getParameter("comment_id"));
@@ -46,9 +47,7 @@ public class CommentWriteProAction implements Action {
 		if(!isWriteSuccess) {
 			
 			response.setContentType("text/html; charset=UTF-8"); 
-			
 			PrintWriter out = response.getWriter();
-			
 			out.println("<script>"); // 자바스크립트 시작 태그
 			out.println("alert('댓글 등록 실패!')"); // 다이얼로그 메세지 출력
 			out.println("history.back()"); // 이전 페이지로 이동
@@ -58,33 +57,11 @@ public class CommentWriteProAction implements Action {
 			
 			forward = new ActionForward();
 			forward.setPath("FreeBoardDetail.free?board_num=" + board_num + 
-									"&page=" + request.getParameter("page"));
+									"&page=" + request.getParameter("page")+"&board_type="+board_type);
 			
 			// 3. 포워딩 방식(Redirect 방식) 지정
-//			forward.setRedirect(true);
+			forward.setRedirect(true);
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		return forward;
 	}

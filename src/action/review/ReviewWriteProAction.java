@@ -24,9 +24,10 @@ public class ReviewWriteProAction implements Action {
 		
 		ReviewBean reviewBean = new ReviewBean();
 		
-		reviewBean.setId("임시");
+		reviewBean.setId(request.getParameter("id"));
 		reviewBean.setContent(request.getParameter("content"));
-//		reviewBean.setSpoiler(Integer.parseInt(request.getParameter("spoiler")));
+		reviewBean.setIsbn(request.getParameter("isbn"));
+		reviewBean.setSpoiler(Integer.parseInt(request.getParameter("spoiler")));
 		
 		System.out.println("리뷰내용 :" + reviewBean.getContent());
 		
@@ -46,7 +47,7 @@ public class ReviewWriteProAction implements Action {
 			// 리뷰 등록 성공시
 			forward = new ActionForward();
 			forward.setPath("BookDetail.re");
-			forward.setRedirect(false);			
+			forward.setRedirect(true);			
 		}
 		return forward;
 	}

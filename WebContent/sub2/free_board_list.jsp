@@ -25,6 +25,7 @@ int maxPage = pageInfo.getMaxPage();
 int startPage = pageInfo.getStartPage();
 int endPage = pageInfo.getEndPage();
 int listCount = pageInfo.getListCount();
+
 %>
 
 <jsp:include page="../include/header.jsp" />

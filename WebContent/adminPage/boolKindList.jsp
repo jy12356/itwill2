@@ -46,7 +46,7 @@
                         <tbody>
                         <%for(int i=0; i < bookList.size(); i++ ){ %>
                             <tr>
-                                <td class="tac"><input type="checkbox" id="checkbox_num" class="check_num" value="<%=bookList.get(i).getNum()%>" name="book_num"></td>
+                                <td class="tac check_box"><input type="checkbox" id="checkbox_num" class="check_num" value="<%=bookList.get(i).getNum()%>" name="book_num"></td>
                                 <td><%=bookList.get(i).getTitle()%></td>
                                 <td><%=bookList.get(i).getAuthor()%></td>
                                 <td><%=bookList.get(i).getIsbn()%></td>
@@ -127,15 +127,12 @@
 	   		 	var title = requestParam.getParameter("title");
 	   		 	var isbn = requestParam.getParameter("isbn");
 	   			var checked_seq = "";
-	   		  	var check_count = document.getElementsByName("book_num").length;
-	   		 	for (var i=0; i<check_count; i++) {
-		   			if (document.getElementsByName("book_num")[i].checked == true) {
-		                checked_seq = document.getElementsByName("book_num")[i].value;
-		            }else{
-	                	alert("게시물을 선택해주시길 바랍니다.");
-	                	return false;	            	
-		            }
-	   		 	}
+	   		 	if ($('.check_box input[type="checkbox"]:checked').length != 0) {
+	                checked_seq = $('.check_box input[type="checkbox"]:checked').val();
+	            }else{
+             		alert("게시물을 선택해주시길 바랍니다.");
+             		return false;	            	
+	            }
 				location.href="BookDeletePro.bok?book_num="+checked_seq+"&title="+title+"&isbn="+isbn;
 				return true;
        	    } else {
@@ -147,16 +144,20 @@
 	   	function modifyBook(){
 	   		if(confirm("수정하시겠습니까?")){
 	   			var checked_seq = "";
+	   		    var requestParam = new Request();;
+	   		 	var title = requestParam.getParameter("title");
+	   		 	var isbn = requestParam.getParameter("isbn");
 	   		  	var check_count = document.getElementsByName("book_num").length;
-	   		 	for (var i=0; i<check_count; i++) {
-		   			if (document.getElementsByName("book_num")[i].checked == true) {
-		                checked_seq = document.getElementsByName("book_num")[i].value;
-		            }else{
-	                	alert("게시물을 선택해주시길 바랍니다.");
-	                	return false;	            	
-		            }
-	   		 	}
-				location.href="BookModify.bok?book_num="+checked_seq;
+	   		  	
+	   		 	if ($('.check_box input[type="checkbox"]:checked').length != 0) {
+	                checked_seq = $('.check_box input[type="checkbox"]:checked').val();
+	                alert(checked_seq);
+	            }else{
+                	alert("게시물을 선택해주시길 바랍니다.");
+                	return false;	            	
+	            }
+	   		 	alert(title);
+				location.href="BookModify.bok?book_num="+checked_seq+"&title="+title+"&isbn="+isbn;
 				return true;
        	    } else {
        	    	alert("수정에 실패하였습니다.")

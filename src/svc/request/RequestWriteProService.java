@@ -1,4 +1,4 @@
-package svc;
+package svc.request;
 
 import java.sql.Connection;
 

@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+// 	String id = (String)session.getAttribute("id");
 	MemberBean article = (MemberBean)request.getAttribute("article");
 %>    
     
@@ -15,17 +16,17 @@
 	<div class="contents-wrap">
 		<div class="user-modify">
 			<h3>회원정보수정</h3>
-			
-			<form action="MemberModifyPro.me" method='' id="member_register">
-			<input type="hidden" name="BusinessRegistrationNum" id="BusinessRegistrationNum" value="" />
-			<input type="hidden" name="register_mobile_num1" value="010">
-			<input type="hidden" name="ori_nickname" value="[juny1993]">
-			<input type="hidden" name="ori_email" id="ori_email" value="bonafide93@naver.com">
-			<input type="hidden" name="nick_chk" id="nick_chk" value="0">
-			<input type="hidden" name="email_chk" id="email_chk" value="0">
-			<input type="hidden" name="register_id" id="register_id" value="juny1993">
-			<input type="hidden" name="register_sms" id="register_sms" value="False">
-			<input type="hidden" name="register_name" id="register_name" value="차준희">
+			 <form action="MemberModifyPro.me">
+<!-- 			<form action="MemberModifyPro.me" method='' id="member_register"> -->
+<!-- 			<input type="hidden" name="BusinessRegistrationNum" id="BusinessRegistrationNum" value="" /> -->
+<!-- 			<input type="hidden" name="register_mobile_num1" value="010"> -->
+<!-- 			<input type="hidden" name="ori_nickname" value="[juny1993]"> -->
+<!-- 			<input type="hidden" name="ori_email" id="ori_email" value="bonafide93@naver.com"> -->
+<!-- 			<input type="hidden" name="nick_chk" id="nick_chk" value="0"> -->
+<!-- 			<input type="hidden" name="email_chk" id="email_chk" value="0"> -->
+<!-- 			<input type="hidden" name="register_id" id="register_id" value="juny1993"> -->
+<!-- 			<input type="hidden" name="register_sms" id="register_sms" value="False"> -->
+<!-- 			<input type="hidden" name="register_name" id="register_name" value="차준희"> -->
 				<fieldset>
 					<legend>회원정보수정 입력</legend>
 					<div class="register-title"><p>필수입력항목</p></div>
@@ -48,7 +49,7 @@
 							<tr>
 								<th>네이버계정</th>
 								<td>
-									<a href="" onClick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false" class="naver outside_input">연동하기</a><span>네이버 계정으로 북큐브를 이용해 보세요!</span></td>
+<!-- 									<a href="" onClick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+,top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false" class="naver outside_input">연동하기</a><span>네이버 계정으로 북큐브를 이용해 보세요!</span></td> -->
 							</tr>
 							<tr>
 								<th>페이스북계정</th>
@@ -62,19 +63,15 @@
 							</tr>
 							<tr>
 								<th><label for='register_pwd'>변경 비밀번호</label></th>
-								<td><input type='password' name='register_pwd' id='password' placeholder='변경비밀번호' /></td>
+								<td><input type='password' name='password' id='password' placeholder='변경비밀번호' /></td>
 							</tr>
 							<tr>
 								<th><label for='register_repwd'>변경 비밀번호 확인</label></th>
-								<td><input type='password' name='register_repwd' id='password2' placeholder='변경비밀번호 확인' /></td>
+								<td><input type='password' name='password2' id='password2' placeholder='변경비밀번호 확인' /></td>
 							</tr>
 							<tr>
 								<th><label for='register_name'>이름</label></th>
-								<td>차준희</td>
-							</tr>
-							<tr>
-								<th><label for='register_nickname'>닉네임</label></th>
-								<td><input type='text' name='register_nickname' id='register_nickname' value='[juny1993]' maxlength='20' /><span id="check_nickname_msg">닉네임은 한글, 영문 및 숫자 20자까지 입력 가능</span></td>
+								<td><%=article.getName() %></td>
 							</tr>
 							<tr>
 								<th><label for='register_email_id'>e-Mail</label></th>
@@ -125,6 +122,7 @@
 														if (register_email_domain_val == ""){$("#register_email_domain").focus();}
 													});
 												});
+												
 										</script>
 										</div>
 										<input type='button' name='' value='중복체크' class="emailchk"/>
@@ -163,11 +161,7 @@
 								<th>전화번호</label></th>
 								<td>
 									<div class="option">
-										<label><input type="text" name="phone_area_num" value="" maxlength="3" onkeyup="numChk(this);checkLength(this);" maxlength="3"></label>
-										<strong>-</strong>
-										<label><input type="text" name="phone_num1" value="" title='전화번호 앞자리' maxlength="4" onkeyup="numChk(this);checkLength(this);"></label>
-										<strong>-</strong>
-										<label><input type="text" name="phone_num2" value="" title='전화번호 뒷자리'  maxlength="4" onkeyup="numChk(this);checkLength(this);"></label>
+										<input type="text" name="phone" id="phone" value="<%=article.getPhone() %>" class="strMail" required="required"  onkeyup="checkPhone(this)">
 									</div>
 								</td>
 							</tr>
