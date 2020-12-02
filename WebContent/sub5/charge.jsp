@@ -7,12 +7,12 @@
 			<div class="charge-top">
 				<div class="ct-inner">
 					<div>
-						<h2>북큐브 북캐시 충전하기</h2>
+						<h2>동서남Book 북캐시 충전하기</h2>
 						<ul>
-							<li> - 매월 1일 ~ 3일 북캐시 충전 금액별 추가 적립금 지급 (2,000원 / 5,000원은 제외, 적립금 유효기간 : 30일)</li>
-							<li> - 북캐시 결제 후 유료 서비스 및 콘텐츠 구매 시 환불 불가</li>
-							<li> - 북캐시 결제 후 7일 이내에 유료 서비스나 콘텐츠를 구매하지 않은 경우 주문취소 및 환불 (주문취소 불가의 경우) 가능</li>
-							<li> - 북캐시 환불 시에는 북캐시 결제 시 추가적으로 제공된 적립금 차감 및 환불 수수료 공제</li>
+							<li> - 매월 1일 ~ 3일 동서남Book 구독 초기화 및 연장 결제(1개월 / 3개월 / 12개월 적립금 유효기간 : 30일)</li>
+							<li> - 동서남Book 구독 결제 후 유료 서비스 및 콘텐츠 구매 시 환불 불가</li>
+							<li> - 동서남Book 구독 결제 후 7일 이내에 유료 서비스나 콘텐츠를 구매하지 않은 경우 주문취소 및 환불 (주문취소 불가의 경우) 가능</li>
+							<li> - 동서남Book 구독 환불 시에는 동서남Book 구독 시 추가적으로 제공된 적립금 차감 및 환불 수수료 공제</li>
 						</ul>
 					</div>
 				</div>
@@ -64,69 +64,70 @@
 				<input type="hidden" name="good_expr" value="0">
 				<input type="hidden" name="order_info" value="bookcash"/>
 					<fieldset>
-						<legend>북캐시 충전 금액 선택</legend>
-						<h3>북캐시 충전 금액 선택</h3>
+						<legend>동서남Book 구독 금액 선택</legend>
+						<h3>동서남Book 구독 금액 선택</h3>
 						<div class="bookcash-charge">
 							<table>
-								<caption>북캐시 충전 금액 및 적립금</caption>
+								<caption>동서남Book 구독 금액 및 적립금</caption>
 								<colgroup>
 									<col width="50%" />
 									<col width="50%" />
 								</colgroup>
 								<tbody>
 									<tr>
-										<th>북캐시 충전 금액</th>
-										<th>추가 지급 적립금</th>
+										<th>동서남Book 구독 </th>
+										<th>※세부사항</th>
 									</tr>
 									<tr>
-										<td><input type="radio" class="cashamount" name='cash' value='2000' checked="checked"/><label for='cash2000'>2,000원</label></td>
+										<td><input type="hidden" class="cashamount" name='cash' value='1month' checked="checked"/><label for='cash2000'>1개월 구독(19900원)</label></td>
 										<td>-</td>
 									</tr>
 									<tr>
-										<td><input type="radio" class="cashamount" name='cash' value='5000' /><label for='cash5000'>5,000원</label></td>
-										<td>-</td>
+										<td><input type="hidden" class="cashamount" name='cash' value='3month' /><label for='cash5000'>3개월 정기 구독(39900원)</label></td>
+										<td>정기 구독을 결제 했을 시, 만료 일 전 갱신을 위한 연락을 취해드립니다. 만약 구독 갱신을 하지 않았을 시, 자동적으로 결제 되지 않습니다.</td>
 									</tr>
 									<tr>
-										<td><input type="radio" class="cashamount" name='cash' value='10000' /><label for='cash10000'>10,000원</label></td>
-										<td>+5% (500원)</td>
+										<td><input type="hidden" class="cashamount" name='cash' value='1year' /><label for='cash10000'>12개월 정기 구독(99900원)</label></td>
+										<td>정기 구독을 결제 했을 시, 만료 일 전 갱신을 위한 연락을 취해드립니다. 만약 구독 갱신을 하지 않았을 시, 자동적으로 결제 되지 않습니다.</td>
 									</tr>
-									<tr>
-										<td><input type="radio" class="cashamount" name='cash' value='30000' /><label for='cash30000'>30,000원</label></td>
-										<td>+7% (2,100원)</td>
-									</tr>
-									<tr>
-										<td><input type="radio" class="cashamount" name='cash' value='50000' /><label for='cash50000'>50,000원</label></td>
-										<td>+7% (3,500원)</td>
-									</tr>
-									<tr>
-										<td><input type="radio" class="cashamount" name='cash' value='100000' /><label for='cash100000'>100,000원</label></td>
-										<td>+9% (9,000원)</td>
-									</tr>
-									<tr>
-										<td><input type="radio" class="cashamount" name='cash' value='200000' /><label for='cash200000'>200,000원</label></td>
-										<td>+10% (20,000원)</td>
-									</tr>
-									<tr>
-										<td><input type="radio" class="cashamount" name='cash' value='300000' /><label for='cash300000'>300,000원</label></td>
-										<td>+10% (30,000원)</td>
-									</tr>
+<!-- 									<tr> -->
+<!-- 										<td><input type="radio" class="cashamount" name='cash' value='30000' /><label for='cash30000'>30,000원</label></td> -->
+<!-- 										<td>+7% (2,100원)</td> -->
+<!-- 									</tr> -->
+<!-- 									<tr> -->
+<!-- 										<td><input type="radio" class="cashamount" name='cash' value='50000' /><label for='cash50000'>50,000원</label></td> -->
+<!-- 										<td>+7% (3,500원)</td> -->
+<!-- 									</tr> -->
+<!-- 									<tr> -->
+<!-- 										<td><input type="radio" class="cashamount" name='cash' value='100000' /><label for='cash100000'>100,000원</label></td> -->
+<!-- 										<td>+9% (9,000원)</td> -->
+<!-- 									</tr> -->
+<!-- 									<tr> -->
+<!-- 										<td><input type="radio" class="cashamount" name='cash' value='200000' /><label for='cash200000'>200,000원</label></td> -->
+<!-- 										<td>+10% (20,000원)</td> -->
+<!-- 									</tr> -->
+<!-- 									<tr> -->
+<!-- 										<td><input type="radio" class="cashamount" name='cash' value='300000' /><label for='cash300000'>300,000원</label></td> -->
+<!-- 										<td>+10% (30,000원)</td> -->
+<!-- 									</tr> -->
 								</tbody>
 							</table>
 						</div>
-						<h3>결제수단 선택</h3>
+						<h3>결제가능 수단</h3>
 						<div class="pay-way">
 							<ul>
-								<li><label><input type="radio" name="payMethod" onclick="paymethod('naver')" value="naver"><img src="../images/pay-naver.png" alt='네이버페이' /></label></li>
-								<li><label><input type="radio" name="payMethod" onclick="paymethod('kakao')" value="kakao"><img src="../images/pay-kakao.png" alt='카카오페이' /></label></li>
-								<li><label><input type="radio" name="payMethod" onclick="paymethod('payco')" value="payco"><img src="../images/pay-payco.png" alt='페이코' /></label></li>									
-								<li><label><input type="radio" name="payMethod" id="pay_samsung_card" onclick="paymethod('100000000000')" value="100000000000"><img src="../images/pay-samsung.png" alt='삼성페이' /></label></li>
-								<li><label><input type="radio" name="payMethod" onclick="paymethod('paypal')" value="paypal"><img src="../images/pay-paypal.png" alt='페이팔' /></label></li>
+								<li><label><input type="radio" name="payMethod" onclick="paymethod('naver')" value="naver"><img src="sub5/mypageimg/naver.png" alt='네이버페이' /></label></li>
+								<li><label><input type="radio" name="payMethod" onclick="paymethod('kakao')" value="kakao"><img src="sub5/mypageimg/pay-kakao.png" alt='카카오페이' /></label></li>
+								<li><label><input type="radio" name="payMethod" onclick="paymethod('payco')" value="payco"><img src="sub5/mypageimg/pay-payco.png" alt='페이코' /></label></li>									
+								<li><label><input type="radio" name="payMethod" id="pay_samsung_card" onclick="paymethod('100000000000')" value="100000000000"><img src="sub5/mypageimg/pay-samsung.png" alt='삼성페이' /></label></li>
+<!-- 								<li><label><input type="radio" name="payMethod" onclick="paymethod('paypal')" value="paypal"><img src="../images/pay-paypal.png" alt='페이팔' /></label></li> -->
 								<li><label><input type="radio" name="payMethod" onclick="paymethod('100000000000')" value="100000000000" checked="checked">신용카드</label></li>
-								<li><label><input type="radio" name="payMethod" id="pay_used_card" onclick="paymethod('100000000000')" value="100000000000">해외 신용카드</label></li>									
+<!-- 								<li><label><input type="radio" name="payMethod" id="pay_used_card" onclick="paymethod('100000000000')" value="100000000000">해외 신용카드</label></li>									 -->
 								<li><label><input type="radio" name="payMethod" onclick="paymethod('010000000000')" value="010000000000">계좌이체</label></li>
 								<li><label><input type="radio" name="payMethod" onclick="paymethod('000010000000')" value="000010000000">휴대폰</label></li>									
 								<li><label><input type="radio" name="payMethod" onclick="paymethod('000000001000')" value="000000001000">해피머니/도서/문화상품권</label></li>									
 							</ul>
+							</div>
 						<div class="naver-choice">
 							<dl>
 								<dt>네이버페이 간편결제 안내</dt>									
@@ -172,7 +173,7 @@
 							</dl>
 						</div>															
 						<div class="payment-result">
-							<p>총 결제 금액 : <span class="total_pay_amount">2,000원</span></p>
+							<p>총 구독 금액 : <span class="total_pay_amount">2,000원</span></p>
 							<p class="deduction-result">소득공제 <span>불가</span></p>
 							<input type="button" onclick="jsf__pay(this.form);" value="결제하기">
 							<!--input type="button"  value='결제하기' onclick="kakao_set();" class="kakaoBtn"/-->
@@ -184,5 +185,277 @@
 	</div>
 	
 </section>
+<script>
+$(function(){	
+	var page = $(".wrap").data("page");
+	var series_num = $(".wrap").data("serial-num");
+
+	$('.cashamount').click(function(){
+		$(".total_pay_amount").text(commify($(this).val())+'원');
+		document.order_info.good_mny.value = $(this).val();
+		document.order_info.good_name.value = "북캐시 "+ commify($(this).val())+'원'
+		
+		//document.order_info.user_good_mny.value = $(this).val();
+		document.regForm.item_0_product.value = 'BOOKCASH '+ $(this).val() ;
+		document.regForm.amt.value = $(this).val() ;
+		document.regForm.item_0_unitPrice.value = $(this).val() ;
+	});	
+});
+
+/* Payplus Plug-in 실행 */
+function jsf__pay( form )
+{
+	var good_mny = $(".good_mny").val();
+	var pay_method = $("input:radio[name='payMethod']:checked").val();
+
+	$(".used_card_YN").val('');
+	$(".used_card").val('');
+	
+
+	//페이코
+	if (pay_method == "payco"){
+		var good_mny = document.order_info.good_mny.value ;
+		var order_title = document.order_info.good_name.value ;
+		
+		var Params = 'order_info=bookcash&order_title='+ order_title +'&customerOrderNumber=98972402&good_mny='+ good_mny ;
+		window.open("https://www.bookcube.com/order/payco/payco_popup.asp?"+Params, 'popupPayco', 'top=100, left=300, width=727px, height=512px, resizble=no, scrollbars=yes');
+			
+		return false ;
+	}
+
+	//페이팔 경우
+	if (pay_method == "paypal"){
+		if (parseInt(good_mny) < 10000){
+			alert('10000원이상 결제 가능합니다.');
+			mny_reset();
+			return false ;
+		}else{
+			paypal_payment();			
+			return false ;
+		}
+	}	
+	//계좌이체, 해피머니
+	if (pay_method == "010000000000" || pay_method == "000000001000"){
+		if (parseInt(good_mny) < 1000){
+			alert('1000원이상 결제 가능합니다.');
+			mny_reset();
+			return ;
+		}
+	}
+	if (pay_method == "kakao"){
+		kakao_set();	
+		return false ;
+	}
+	if (pay_method == "naver"){
+		naver_set();	
+		return false ;	
+	}
+	try
+	{
+		KCP_Pay_Execute( form ); 
+	}
+	catch (e)
+	{
+		/* IE 에서 결제 정상종료시 throw로 스크립트 종료 */ 
+	}
+} 
+
+/* 결제수단 선택 */
+function paymethod(arg){
+	if (arg == 'payco'){
+		$(".payco-choice").show();
+		$(".paypal-choice").hide();
+		$(".kakao-choice").hide();
+		$(".naver-choice").hide();	
+	}else if (arg == 'paypal'){
+		$(".paypal-choice").show();
+		$(".payco-choice").hide();
+		$(".kakao-choice").hide();
+		$(".naver-choice").hide();	
+		$(".cashamount").eq(0).attr("disabled", true); 
+		$(".cashamount").eq(1).attr("disabled", true); 
+		$(".cashamount").eq(2).attr("disabled", true); 
+		if ($(".cashamount").eq(0).is(":checked") || $(".cashamount").eq(1).is(":checked") || $(".cashamount").eq(2).is(":checked")){			
+			alert('페이팔 결제는 30,000원 이상 가능합니다.');
+			$(".cashamount").eq(3).attr("checked", true);
+			$(".cashamount").eq(3).trigger('click');
+		}
+	}else if (arg == 'kakao'){
+		$(".paypal-choice").hide();
+		$(".payco-choice").hide();
+		$(".naver-choice").hide();	
+		$(".kakao-choice").show();
+	}else if (arg == 'naver'){
+		$(".paypal-choice").hide();
+		$(".payco-choice").hide();
+		$(".kakao-choice").hide();
+		$(".naver-choice").show();		
+	}else{
+		$(".payco-choice").hide();
+		$(".paypal-choice").hide();
+		$(".kakao-choice").hide();
+		$(".naver-choice").hide();	
+		$(".cashamount").eq(0).attr("disabled", false); 
+		$(".cashamount").eq(1).attr("disabled", false); 
+		$(".cashamount").eq(2).attr("disabled", false);
+		document.order_info.pay_method.value = arg ;
+	}
+}
+
+/*결제수단 리셋*/
+function mny_reset(){
+	$(".payco-choice").css("display", "none");
+	$(".paypal-choice").css("display", "none");	
+	for (i==0;i<7;i++ ){
+		document.order_info.payMethod[i].disabled = false ;
+	}
+}
+
+function kakao_set(){
+
+	var order_num = $(".wrap").data("order-num");
+	var order_info = "bookcash";
+	var total_amount = document.order_info.good_mny.value ;
+	var bookcash_pay_amount = 0 ;
+	var savemoney_pay_amount = 0 ;
+	var member_coupon_num = "";
+	var product_num = "";
+	var order_title = document.order_info.good_name.value ;
+	var gift_yn = "" ;
+	var rental_yn = "";
+
+	$.post(httpsUrl +"/order/kakao/order_reserve.asp", {order_num : order_num, order_info : order_info, total_amount : total_amount, bookcash : bookcash_pay_amount, savemoney : savemoney_pay_amount, member_coupon_num : member_coupon_num, product_num : product_num, order_title : order_title, gift_yn : gift_yn, rental_yn : rental_yn}, function(data){
+		if(data.success){
+		//	alert(data.next_redirect_mobile_url);
+			window.open(data.next_redirect_pc_url, 'popupKakao', 'top=100, left=300, width=727px, height=512px, resizble=no, scrollbars=yes');
+		//	location.href = data.next_redirect_mobile_url;
+		}else{
+			alert("결제 요청이 실패했습니다.\n관리자에게 문의 바랍니다.");			
+			return false;
+		}
+	}, "json");
+}
+
+function naver_set(){
+	var order_info = "bookcash";
+	var total_amount = document.order_info.good_mny.value ;
+	var bookcash_pay_amount = 0 ;
+	var savemoney_pay_amount = 0 ;
+	var member_coupon_num = "";
+	var product_num = "";
+	var gift_yn = 0 ;
+	var rental_yn = "";
+	var deduction_yn = 0;
+
+	if (parseInt(total_amount) < 100){
+		alert('북캐시/적립금을 제외한 다른 결제수단의 결제금액은 100원 이상만 가능합니다. ');
+		return ;
+	}
+
+	$.post("/order/naver/order_reserve.asp", {total_amount : total_amount, bookcash : bookcash_pay_amount, savemoney : savemoney_pay_amount, member_coupon_num : member_coupon_num, product_num : product_num,gift_yn : gift_yn, deduction_yn : deduction_yn}, function(data){
+		if(data.success){
+			$(".wrap").data("order-num",data.ordernum);
+			naver_order();
+		}else{
+			alert(data.message);
+			return ;
+		}
+	}, "json");
+}
+
+function naver_order(){
+	var order_info = "bookcash";
+	var order_num = $(".wrap").data("order-num");
+//	var order_title = $(".good_name").val();
+	var total_amount = document.order_info.good_mny.value ;
+	var naver_use_ymdt = $(".wrap").data("naver-use-ymdt");
+	var gift_yn = "";
+	var npayMode = $(".wrap").data("npay-mode");
+	var cart_count = 1;
+	var isbn_list = "";
+	var title_list = document.order_info.good_name.value ;
+
+	if ( total_amount != 2000 && total_amount != 5000 && total_amount != 10000 && total_amount != 30000 && total_amount != 50000 && total_amount != 100000 && total_amount != 200000 && total_amount != 300000){
+		alert("충전 가능한 금액이 아닙니다.");
+		return ;
+	}
+
+	extraDeduction = false ;
+	var isbnStr = isbn_list;
+	var titleStr = title_list;
+	var order_title = titleStr;
+
+	var ProductList = new Array() ;
+
+	var data = new Object() ;		
+	 
+	data.categoryType = "PRODUCT" ;
+	data.categoryId = "CASHABLE" ;
+//	data.uid = order_num ;	//주문번호로
+	data.uid = String(total_amount) ;	//금액으로
+	data.name = titleStr ;	//북캐시2000
+//		data.payReferrer = "ETC" ;
+	data.count = 1 ;
+	 
+	// 리스트에 생성된 객체 삽입
+	ProductList.push(data) ;	
+	 
+	// String 형태로 변환
+	var jsonData = JSON.stringify(ProductList) ;
+	var productItems = jsonData ;
+
+	var oPay = Naver.Pay.create({ //SDK Parameters를 참고 바랍니다.
+	  "mode" : npayMode,
+	  "payType" : "normal",
+	  "clientId": "sSAt_jSOQrnNxTPEFWTN",
+	  "openType": "popup",
+		"onAuthorize" : function(oData) {
+			/*
+			layer 타입을 사용했을 때 페이지 전환 없이 구현이 가능하도록 지원되며, 그 외의 경우는 returnUrl 로 참조 정보와 함께 redirect 됩니다.
+			oData 객체에는 결제 인증 결과와 전달한 returnUrl 정보가 함께 전달되며,
+			이 정보는 이후 승인 요청 처리를 위한 정보 (resultCode, resultMessage, returnUrl, paymentId, reserveId 등) 입니다.
+			전달되는 값은 https://developer.pay.naver.com/docs/v2/api#payments-payments_window 의 성공 & 실패 응답 값을 참조해주세요.
+			*/
+			if(oData.resultCode == "Success") {
+				$.post("/order/naver/order_approval.asp", {order_info : order_info, order_num : order_num, resultCode : "Success", paymentId : oData.paymentId}, function(data){
+					if(data.success){
+						if (gift_yn){
+							location.href = "/order/gift_complete.asp?order_num="+ data.ordernum ;
+						}else{
+							location.href = "/order/bookcash_complete.asp?order_num="+ data.ordernum ;
+						}
+					}else{
+						alert(data.message);
+						return ;				
+					}
+				}, "json");
+			} else {
+			  // 필요 시 oData.resultMessage 에 따라 적절한 사용자 안내 처리
+			 // alert(oData.resultMessage);
+				var resultMsg = oData.resultMessage ;
+				if (oData.resultMessage == "userCancel"){var resultMsg = "구매자에 의해 취소되었습니다.";}
+				if (oData.resultMessage == "webhookFail"){var resultMsg = "webhookUrl 호출 응답 실패되었습니다.";}
+				if (oData.resultMessage == "paymentTimeExpire"){var resultMsg = "결제 시간이 초과되었습니다.";}
+				if (oData.resultMessage == "OwnerAuthFail"){var resultMsg = "본인 카드 인증 오류(네이버 로그인 계정과 카드의 명의자가 다릅니다.)";}
+				alert(resultMsg);
+				return ;
+			}
+		}
+	  //"chainId" : "{그룹형일 경우 chainId를 넣어주세요}"
+    });
+	oPay.open({ // Pay Reserve Parameters를 참고 바랍니다.
+	  "merchantPayKey": order_num,
+	  "productCount": cart_count,
+	  "productName": order_title,
+	  "totalPayAmount": total_amount,
+	  "taxScopeAmount": 0,
+	  "taxExScopeAmount": total_amount,
+	  "returnUrl": httpsUrl,	  
+	  "extraDeduction": Boolean(extraDeduction),
+	//  "useCfmYmdt": String(naver_use_ymdt),
+	  "productItems" : productItems
+	});
+}
+</script>
 
 <jsp:include page="../include/footer.jsp"/>
