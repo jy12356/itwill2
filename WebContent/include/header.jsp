@@ -48,6 +48,8 @@
 <script type="text/javascript" src="js/placeholders.min.js"></script>
 <script type="text/javascript" src="js/lib/swipe/swiper-4.3.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
 <!-- naver-->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 	<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
@@ -77,7 +79,7 @@
 						</div>
 						<ul class="my-lnb">
 							<li class="btnLogin"><a href="javascript:;">로그인</a></li>
-							<li><a href="MemberWriteForm.me">회원가입</a></li>
+							<li><a href="MemberJoinForm.me">회원가입</a></li>
 						</ul>
 					</fieldset>
 				</form>
@@ -131,15 +133,15 @@
 			<div class="h-top-bottom">
 				<h2 class="hide">메인메뉴</h2>
 				<ul class="gnb">
-					<li><a href="../main/index.jsp" class="on">홈</a></li>
-					<li><a href="../sub2/free_board.jsp">게시판</a></li>
+					<li><a href="Main.book" class="on">홈</a></li>
+					<li><a href="FreeBoardList.free">게시판</a></li>
 					<li><a href="../sub5/card.jsp">카트</a></li>
 					<li><a href="../sub5/mypage.jsp">마이페이지</a></li>
 					<!-- <li><a href="https://www.bookcube.com/toon/main.asp">관리자페이지</a></li> -->
 				</ul>
 				<ul class="lnb">
 					<li><a href="../sub5/charge.jsp">캐시충전</a>
-					<li><a href="../sub5/notice.jsp">고객센터</a>
+					<li><a href="QnaList.qna">고객센터</a>
 				</ul>
 			</div>
 		</div>

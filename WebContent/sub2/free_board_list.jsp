@@ -39,12 +39,13 @@ int listCount = pageInfo.getListCount();
 		</div>
 	</div>
 	<div class="contents-wrap">
-		<div class="customer">
+		<div class="sub_container">
 			<h3 class="coTitle">자유게시판</h3>
-			<div class="customer-top-menu">
+			<div class="boxmenu1-top-menu">
 				<ul>
-					<li><a href="../sub2/free_board.jsp" class=""><em>자유게시판</em></a></li>
-					<li><a href="../sub2/book_apl.jsp" class=""><em>도서신청</em></a></li>
+					<li><a href="FreeBoardList.free" class="on"><em>자유게시판</em></a></li>
+					<li><a href="RequestList.rq" class=""><em>도서신청</em></a></li>
+					<li><a href="NoticeBoardList.not?page=1" class=""><em>공지사항</em></a></li>
 				</ul>
 			</div>
 			<div class="customer-contents">
@@ -168,4 +169,5 @@ int listCount = pageInfo.getListCount();
 	</div>
 
 </section>
+
 <jsp:include page="../include/footer.jsp" />

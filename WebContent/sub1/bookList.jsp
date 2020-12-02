@@ -14,9 +14,11 @@
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
-	String catg1 = request.getParameter("catg1");
-	
-	String catg2 = "전";
+	String catg1 = "소설";
+	if(request.getParameter("catg1")!=null){
+		catg1 = request.getParameter("catg1");
+	}
+	String catg2 = "전체";
 	if(request.getParameter("catg2")!=null){
 		catg2 = request.getParameter("catg2");
 	}
@@ -24,7 +26,7 @@
 <section class="sub">
     <div class="category-nav">
         <div class="category-nav-inner">
-            <p>HOME ><%=catg1%> </p>
+            <p>HOME ><%=catg1%></p>
         </div>
     </div>
     <div class="contents-wrap">

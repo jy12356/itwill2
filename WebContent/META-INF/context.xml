@@ -32,8 +32,22 @@
 		url="jdbc:mysql://115.91.129.236:3306/team_db?zeroDateTimeBehavior=convertToNull"
 		maxActive="500"
 		maxIdle="20"
-		
 	/>
+	
+<!-- 		<Resource  -->
+<!-- 		name="jdbc/MySQL"  -->
+<!-- 		auth="Container" -->
+<!-- 		type="javax.sql.DataSource" -->
+<!-- 		username="itwillbs6" -->
+<!-- 		password="itwillbs8030909" -->
+<!-- 		driverClassName="com.mysql.jdbc.Driver" -->
+<!-- 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory" -->
+<!-- 		url="jdbc:mysql://itwillbs6.cafe24.com/itwillbs6?zeroDateTimeBehavior=convertToNull" -->
+<!-- 		maxActive="500" -->
+<!-- 		maxIdle="20" -->
+<!-- 	/> -->
+		
+
 </Context>
 
 <!-- 		url="jdbc:mysql://localhost:3306/team_db?useSSL=false&amp;serverTimezone=UTC" -->
