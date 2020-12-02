@@ -124,13 +124,13 @@
 								<%}%>
 								<%for(int i = startPage; i <= endPage; i++) { 
 										if(i == nowPage) { %>
-											<a href="BoardList.bok?page=<%=i %>" class="on fir" data-page-num="<%=i %>"><%=i %></a>
+											<a href="BoardList.bok?page=<%=i%>" class="on fir" data-page-num="<%=i%>"><%=i%></a>
 										<%} else { %>
-											<a href="BoardList.bok?page=<%=i %>" class="" data-page-num="<%=i %>"><%=i %></a>
+											<a href="BoardList.bok?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
 										<%} %>
 								<%} %>
                             	<%if(nowPage >= maxPage) { %>
-									<a href="BoardList.bok?page=<%=nowPage + 1 %>" class="arr next" data-page-num="11">
+									<a href="BoardList.bok?page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
 	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
 	                            	</a>
 	                            	<a href="BoardList.bok?page=<%=maxPage%>" class="arr" data-page-num="781">

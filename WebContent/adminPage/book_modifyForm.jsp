@@ -85,6 +85,11 @@
                 		<input type="hidden" value="<%=nowPage%>" name="page" >
                 		<input type="hidden" value="<%=title%>" name="title1">
                 		<input type="hidden" value="<%=isbn%>" name="isbn1">
+                		<div class="one-ps pb10">
+                			<p>
+								* 항목은 필수 입력 항목입니다.
+							</p>
+						</div>
 	                    <table summary="책정보수정" class="customer-notice">
 	                        <caption>책정보수정</caption>
 	                        <colgroup>
@@ -95,13 +100,13 @@
 	                        </colgroup>
 	                        <tbody>
 	                            <tr>
-	                                <td class="th">책제목</td>
+	                                <td class="th"><span class="point">*</span>책제목</td>
 	                                <td colspan="3" class="td">
 	                                	<input type="text" name="title" value="<%=bookBean.getTitle()%>"  required="required">
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                            	<td class="th">대분류</td>
+	                            	<td class="th"><span class="point">*</span>대분류</td>
 	                            	<td class="categ1 td">
 	                            		<select name="catg1"  required="required">
 	                            			<option value="" data-tab="cateDef" <%if(catg1.equals("")){ %>selected<%}%>>선택해주세요.</option>
@@ -112,7 +117,7 @@
 	                            			<option value="만화/웹소설" data-tab="cwn" <%if(catg1.equals("만화/웹소설")){ %>selected<%}%>>만화/웹소설</option>
 	                            		</select>
 	                            	</td>
-	                            	<td class="th">소분류</td>
+	                            	<td class="th"><span class="point">*</span>소분류</td>
 	                            	<td class="categ2 td">
 	                            		<select id="cateDef" class="catg2" name="catg2"> 
 	                            			<option value="def" <%if(catg1.equals("")){ %>selected<%}%>>선택해주세요.</option>
@@ -120,37 +125,37 @@
 	                            	</td>
 	                            </tr>
 	                            <tr>
-	                            	<td class="th">저자</td>
+	                            	<td class="th"><span class="point">*</span>저자</td>
 	                            	<td class="td"><input type="text" name="author" value="<%=bookBean.getAuthor()%>"  required="required"></td>
-	                            	<td class="th">출판사</td>
+	                            	<td class="th"><span class="point">*</span>출판사</td>
 	                            	<td class="td"><input type="text" name="publisher" value="<%=bookBean.getPublisher()%>" required="required"></td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">저자 정보</td>
 	                            	<td class="td" colspan="3">
-	                            	 	<textarea rows="" cols="" name="author_info" required="required"><%=bookBean.getAuthor_info()%></textarea>
+	                            	 	<textarea rows="" cols="" name="author_info"><%=bookBean.getAuthor_info()%></textarea>
 	                            	</td>
 	                            </tr>
 	                            <tr>
-	                            	<td class="th">ISBN번호</td>
+	                            	<td class="th"><span class="point">*</span>ISBN번호</td>
 	                            	<td class="td"><input type="text" name="isbn" value="<%=bookBean.getIsbn()%>" required="required"></td>
-	                            	<td class="th">출판날짜</td>
-	                            	<td class="td"><input type="text" id="pubDatePicker" name="pubdate" value="<%=bookBean.getPubdate()%>" required="required"></td>
+	                            	<td class="th"><span class="point">*</span>출판날짜</td>
+	                            	<td class="td cal"><input type="text" id="pubDatePicker" name="pubdate" value="<%=bookBean.getPubdate()%>" required="required"></td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">목차</td>
 	                                <td colspan="3">
-	                                    <textarea rows="" cols="" name="index" required="required"><%=bookBean.getIndex()%></textarea>
+	                                    <textarea rows="" cols="" name="index"><%=bookBean.getIndex()%></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">요약내용</td>
 	                                <td colspan="3">
-	                                    <textarea rows="" cols="" name="description" required="required"><%=bookBean.getDescription()%></textarea>
+	                                    <textarea rows="" cols="" name="description" ><%=bookBean.getDescription()%></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                            	<td class="th">이미지 파일</td>
+	                            	<td class="th"><span class="point">*</span>이미지 파일</td>
 	                            	<td colspan="3">
 			                            <input type="hidden" name="oldimage" title="첨부파일1" value="<%=bookBean.getImage() %>">
 	                            		<input type="file" name="image">
