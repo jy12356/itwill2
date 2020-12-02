@@ -2,20 +2,44 @@
 $(document).ready(function(){
 	
 	//댓글 입력창
-	$(".reply-write").hide();
-	
-	//댓글 입력창 보이기
-	$(".comment_write_show").on("click", function() {
-	    if ($(this).parent().parent().parent().next().css("display") == "none") {
-	        $(this).parent().parent().parent().next().show();
+	$(".cmtModi").hide();
+	$(".cmtRly").hide();
+	//댓글 수정입력창 보이기
+	$(".comment_modi_show").on("click", function() {
+		$(".cmtModi").hide();
+		$(".cmtRly").hide();
+		var modi = $(this).parent().parent().parent().parent().next();
+	    if (modi.css("display") == "none") {
+	        $(this).parent().parent().parent().parent().next().show();
 	    } else {
-	        $(this).parent().parent().parent().next().hide();
+	        $(this).parent().parent().parent().parent().next().hide();
 	    }
 	    if ($(this).data("comment-count") > 0) {
-	        if ($(this).parent().parent().parent().next().next().css("display") == "none") {
-	            $(this).parent().parent().parent().next().next().show();
+	        if (modi.css("display") == "none") {
+	            $(this).parent().parent().parent().parent().next().next().next().show();
 	        } else {
-	            $(this).parent().parent().parent().next().next().hide();
+	            $(this).parent().parent().parent().parent().next().next().next().hide();
+	        }
+	
+	    }
+	});
+	
+	//대댓글 입력창 보이기
+	$(".comment_write_show").on("click", function() {
+		
+		$(".cmtModi").hide();
+		$(".cmtRly").hide();
+		var reply = $(this).parent().parent().parent().parent().next().next();
+	    if (reply.css("display") == "none") {
+	        $(this).parent().parent().parent().parent().next().next().show();
+	    } else {
+	        $(this).parent().parent().parent().parent().next().next().hide();
+	    }
+	    if ($(this).data("comment-count") > 0) {
+	        if (reply.css("display") == "none") {
+	            $(this).parent().parent().parent().parent().next().next().next().show();
+	        } else {
+	            $(this).parent().parent().parent().parent().next().next().next().hide();
 	        }
 	
 	    }

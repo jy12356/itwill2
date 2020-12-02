@@ -74,7 +74,7 @@ public class CommentDAO {
 		int startRow = (page - 1) * limit;
 		
 		try {
-			String sql = "SELECT * FROM comment WHERE board_type=? and board_num=? ORDER BY comment_num desc LIMIT ?,?";
+			String sql = "SELECT * FROM comment WHERE board_type=? and board_num=? ORDER BY re_ref DESC,re_seq ASC LIMIT ?,?";
 		
 			pstmt = con.prepareStatement(sql);
 			CommentBean commentBean = new CommentBean();
@@ -115,6 +115,162 @@ public class CommentDAO {
 		
 		
 		return commentList;
+	}
+
+
+
+
+	public CommentBean selectComment(int board_type, int board_num) {
+		System.out.println("selectComment");
+		CommentBean cb = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			String sql = "SELECT * FROM comment WHERE board_type=? and board_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_type);
+			pstmt.setInt(2, board_num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cb = new CommentBean();
+				cb.setComment_num(rs.getInt("comment_num"));
+				cb.setBoard_type(rs.getInt("board_type"));
+				cb.setBoard_num(rs.getInt("board_num"));
+				cb.setComment_id(rs.getString("comment_id"));
+				cb.setComment_desc(rs.getString("comment_desc"));
+				cb.setRe_ref(rs.getInt("re_ref"));
+				cb.setRe_lev(rs.getInt("re_lev"));
+				cb.setRe_seq(rs.getInt("re_seq"));
+				cb.setDate(rs.getDate("date"));
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			System.out.println("selectComment() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		return cb;
+	}
+
+
+	public int insertReplyComment(CommentBean cb) {
+		int insertCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			int num = 1;
+			
+			String sql = "SELECT MAX(comment_num) FROM comment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				num = rs.getInt(1) + 1;
+			}
+			
+			int re_ref = cb.getRe_ref();
+			int re_lev = cb.getRe_lev();
+			int re_seq = cb.getRe_seq();
+			
+			sql = "UPDATE comment SET re_seq=re_seq+1 "
+					+ "WHERE re_ref=? AND re_seq>?";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, re_ref);
+			pstmt.setInt(2, re_seq);
+			pstmt.executeUpdate();
+			
+			re_lev += 1;
+			re_seq += 1;
+			
+			sql = "INSERT INTO comment VALUES(?,?,?,?,?,?,?,?,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setInt(2, cb.getBoard_type());
+			pstmt.setInt(3, cb.getBoard_num());
+			pstmt.setString(4, cb.getComment_id());
+			pstmt.setString(5, cb.getComment_desc());
+			pstmt.setInt(6, re_ref);
+			pstmt.setInt(7, re_lev);
+			pstmt.setInt(8, re_seq);
+			insertCount = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("DAO - insertReplyComment() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+			
+		return insertCount;
+	}
+
+
+
+
+	public int updateComment(CommentBean cb) {
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+
+		try {
+			String sql = "UPDATE comment SET comment_desc=? WHERE comment_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, cb.getComment_desc());
+			pstmt.setInt(2, cb.getComment_num());
+			updateCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("updateComment() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		System.out.println("updateCount = " + updateCount);
+
+		return updateCount;
+	}
+
+
+
+
+	public int removeComment(int comment_num, int board_type, int board_num) {
+		
+		int deleteCount = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "DELETE FROM comment WHERE comment_num=? AND board_type=? AND board_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, comment_num);
+			pstmt.setInt(2, board_type);
+			pstmt.setInt(3, board_num);
+			deleteCount = pstmt.executeUpdate();
+
+			
+		} catch (SQLException e) {
+			System.out.println("removeComment() 오류!  - " +  e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return deleteCount;
 	}
 
 }

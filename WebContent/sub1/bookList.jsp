@@ -14,24 +14,30 @@
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
+	String catg1 = request.getParameter("catg1");
+	
+	String catg2 = "전";
+	if(request.getParameter("catg2")!=null){
+		catg2 = request.getParameter("catg2");
+	}
 %>    
 <section class="sub">
     <div class="category-nav">
         <div class="category-nav-inner">
-            <p>HOME > 문학</p>
+            <p>HOME ><%=catg1%> </p>
         </div>
     </div>
     <div class="contents-wrap">
         <div class="detail-inner">
             <div class="search-result">
-                <h3 class="coTitle">소설</h3>
+                <h3 class="coTitle"><%=catg2 %></h3>
                 <div class="field">
                     <ul class="field-list">
-                        <li><a href="/categorylist.asp?mainclass_num=00" class="on">전체</a></li>
-                        <li><a href="/categorylist.asp?mainclass_num=00&subclass_num=00" class="">소설</a></li>
-                        <li><a href="/categorylist.asp?mainclass_num=00&subclass_num=01" class="">에세이</a></li>
-                        <li><a href="/categorylist.asp?mainclass_num=00&subclass_num=02" class="">여행</a></li>
-                        <li><a href="/categorylist.asp?mainclass_num=00&subclass_num=03" class="">시</a></li>
+                        <li><a href="BookList.bok" <%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
+                        <li><a href="BookList.bok?catg1=소설&catg2=소설" <%if(catg2.equals("소설")){%>class="on"<%}%>>소설</a></li>	
+						<li><a href="BookList.bok?catg1=소설&catg2=에세이" <%if(catg2.equals("에세이")){%>class="on"<%}%>>에세이</a></li>	
+						<li><a href="BookList.bok?catg1=소설&catg2=여행" <%if(catg2.equals("여행")){%>class="on"<%}%>>여행</a></li>	
+						<li><a href="BookList.bok?catg1=소설&catg2=시" <%if(catg2.equals(">시")){%>class="on"<%}%>>시</a></li>	
                     </ul>
 
                     <div class="main_event"></div>

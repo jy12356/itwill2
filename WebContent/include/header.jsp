@@ -174,48 +174,48 @@
 			<div class="category-inner">
 				<div>
 					<ul class="">
-						<li><a href="../sub1/list.jsp">소설</a></li>	
-						<li><a href="../sub1/list.jsp">에세이</a></li>	
-						<li><a href="../sub1/list.jsp">여행</a></li>	
-						<li><a href="../sub1/list.jsp">시</a></li>	
+						<li><a href="BookList.bok?catg1=소설&catg2=소설">소설</a></li>	
+						<li><a href="BookList.bok?catg1=소설&catg2=에세이">에세이</a></li>	
+						<li><a href="BookList.bok?catg1=소설&catg2=여행">여행</a></li>	
+						<li><a href="BookList.bok?catg1=소설&catg2=시">시</a></li>	
 					</ul>
 				</div>
 				<div>
 					<ul class="">
-						<li><a href="../sub1/list.jsp">자기개발</a></li>	
-						<li><a href="../sub1/list.jsp">경영</a></li>	
-						<li><a href="../sub1/list.jsp">경제</a></li>	
-						<li><a href="../sub1/list.jsp">마케팅</a></li>	
-						<li><a href="../sub1/list.jsp">역사</a></li>
-						<li><a href="../sub1/list.jsp">철학</a></li>	
-						<li><a href="../sub1/list.jsp">종교</a></li>	
-						<li><a href="../sub1/list.jsp">정치</a></li>								
-						<li><a href="../sub1/list.jsp">예술</a></li>	
-						<li><a href="../sub1/list.jsp">인문</a></li>					
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=자기개발">자기개발</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=경영">경영</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=경제">경제</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=마케팅">마케팅</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=역사">역사</a></li>
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=철학">철학</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=종교">종교</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=정치">정치</a></li>								
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=예술">예술</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=인문">인문</a></li>					
 					</ul>
 				</div>
 				<div>
 					<ul class="">
-						<li><a href="../sub1/list.jsp">수학</a></li>	
-						<li><a href="../sub1/list.jsp">과학</a></li>	
-						<li><a href="../sub1/list.jsp">IT/비즈니스</a></li>	
-						<li><a href="../sub1/list.jsp">자격증</a></li>	
-						<li><a href="../sub1/list.jsp">프로그래밍</a></li>		
+						<li><a href="BookList.bok?catg1=과학&catg2=수학">수학</a></li>	
+						<li><a href="BookList.bok?catg1=과학&catg2=과학">과학</a></li>	
+						<li><a href="BookList.bok?catg1=과학&catg2=IT/비즈니스">IT/비즈니스</a></li>	
+						<li><a href="BookList.bok?catg1=과학&catg2=자격증">자격증</a></li>	
+						<li><a href="BookList.bok?catg1=과학&catg2=프로그래밍">프로그래밍</a></li>		
 					</ul>
 				</div>
 				<div>
 					<ul class="">
-						<li><a href="../sub1/list.jsp">건강</a></li>	
-						<li><a href="../sub1/list.jsp">요리</a></li>	
-						<li><a href="../sub1/list.jsp">스포츠</a></li>	
-						<li><a href="../sub1/list.jsp">결혼/임신/출산</a></li>	
-						<li><a href="../sub1/list.jsp">기타</a></li>		
+						<li><a href="BookList.bok?catg1=취미&catg2=건강">건강</a></li>	
+						<li><a href="BookList.bok?catg1=취미&catg2=요리">요리</a></li>	
+						<li><a href="BookList.bok?catg1=취미&catg2=스포츠">스포츠</a></li>	
+						<li><a href="BookList.bok?catg1=취미&catg2=결혼/임신/출산">결혼/임신/출산</a></li>	
+						<li><a href="BookList.bok?catg1=취미&catg2=기타">기타</a></li>		
 					</ul>
 				</div>
 				<div>
 					<ul class="">
-						<li><a href="../sub1/list.jsp">만화</a></li>	
-						<li><a href="../sub1/list.jsp">웹소설</a></li>	
+						<li><a href="BookList.bok?catg1=만화/웹소설&catg2=만화">만화</a></li>	
+						<li><a href="BookList.bok?catg1=만화/웹소설&catg2=웹소설">웹소설</a></li>	
 					</ul>
 				</div>
 				<a href="javascript:;" class="category-close">close</a>
