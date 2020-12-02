@@ -28,7 +28,7 @@
 							<a href="QnaWriteForm.qna" class="on">1:1 문의하기</a>
 							</li>
 							<li>
-							<a href="qna2.jsp" class="">문의 내역 확인</a>
+							<a href="QnaList.qna" class="">문의 내역 확인</a>
 							</li>
 						</ul>
 						<div class="one-ps">
@@ -63,10 +63,10 @@
 													오류문의
 												</p>
 												<ul class="one-list sel1" >
-												<li data-num="1"><input type="hidden" name="qna_genre" id="qna_genre" value="오류문의">오류문의</li>
-												<li data-num="2"><input type="hidden" name="qna_genre" id="qna_genre" value="작품관련 문의">작품관련 문의</li>
-												<li data-num="3"><input type="hidden" name="qna_genre" id="qna_genre" value="취소/환불/현금영수증 발급">취소/환불/현금영수증 발급</li>
-												<li data-num="4"><input type="hidden" name="qna_genre" id="qna_genre" value="이용관련 문의">이용관련 문의</li>
+												<li data-num="1"><input type="radio" name="qna_genre" id="qna_genre" value="오류문의">오류문의</li>
+												<li data-num="2"><input type="radio" name="qna_genre" id="qna_genre" value="작품관련 문의">작품관련 문의</li>
+												<li data-num="3"><input type="radio" name="qna_genre" id="qna_genre" value="취소/환불/현금영수증 발급">취소/환불/현금영수증 발급</li>
+												<li data-num="4"><input type="radio" name="qna_genre" id="qna_genre" value="이용관련 문의">이용관련 문의</li>
 <!-- 													<li data-num="1" value="">오류문의</li> -->
 <!-- 													<li data-num="2" value="">작품관련 문의</li> -->
 <!-- 													<li data-num="3" value="">취소/환불/현금영수증 발급</li> -->
@@ -78,7 +78,7 @@
 													2차 선택
 												</p>
 												<ul class="one-list sel2 on">
-													<!-- 												<li data-num="1">전자책 다운로드 오류</li><li data-num="2">결제오류</li><li data-num="3">앱오류</li><li data-num="4">도서 파일 오류</li><li data-num="5">기타오류 </li> -->
+<!-- 																									<li data-num="1">전자책 다운로드 오류</li><li data-num="2">결제오류</li><li data-num="3">앱오류</li><li data-num="4">도서 파일 오류</li><li data-num="5">기타오류 </li> -->
 												</ul>
 											</div>
 										</div>
@@ -143,9 +143,9 @@
 									<td class="q-device">
 										PC
 									</td>
+									</table>
 								</tr>
 								</tbody>
-								</table>
 								<div class="one-btn">
 									<input type="submit" name="" class="" value="등록하기">
 								</div>
@@ -182,8 +182,8 @@
                                  select1 += "<li data-num='1'>작품 출간일정 문의</li>" + "<li data-num='2'>오탈자 문의</li>" + "<li data-num='3'>기타 작품 문의</li>";
                                  select2 += "<li data-num='1'>구독취소/환불안내</li>" + "<li data-num='2'>주문 취소</li>" + "<li data-num='3'>현금영수증 발급신청</li>" + "<li data-num='4'>기타 문의</li>";
                                  select3 += "<li data-num='1'>가입/탈퇴/로그인</li>" + "<li data-num='2'>본인/성인인증</li>" + "<li data-num='3'>서비스 이용문의</li>" + "<li data-num='4'>쿠폰/상품권 문의</li>" + "<li data-num='5'>기타 문의</li>";
-                                 select4 += "<li data-num='1'>주문 취소</li>" + "<li data-num='2'>북캐시 환불 요청</li>" + "<li data-num='3'>현금영수증 발급신청</li>";
-                                 select5 += "<li data-num='1'>개인저자 투고문의</li>" + "<li data-num='2'>출판사 제휴문의</li>";
+//                                  select4 += "<li data-num='1'>주문 취소</li>" + "<li data-num='2'>북캐시 환불 요청</li>" + "<li data-num='3'>현금영수증 발급신청</li>";
+//                                  select5 += "<li data-num='1'>개인저자 투고문의</li>" + "<li data-num='2'>출판사 제휴문의</li>";
                                  // 문의유형 사전 안내 문구
                                  var ps0 = '',
                                      ps1 = '',
