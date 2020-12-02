@@ -21,7 +21,7 @@
 		   useSSL=false"
 -->
 
-	<Resource 
+	<Resource
 		name="jdbc/MySQL" 
 		auth="Container"
 		type="javax.sql.DataSource"
@@ -29,20 +29,15 @@
 		password="abcd1234"
 		driverClassName="com.mysql.jdbc.Driver"
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-		url="jdbc:mysql://192.168.1.22:3306/team_db?zeroDateTimeBehavior=convertToNull"
+		url="jdbc:mysql://115.91.129.236:3306/team_db?zeroDateTimeBehavior=convertToNull"
 		maxActive="500"
 		maxIdle="20"
-	/>
-	
 		
-
-
+	/>
 </Context>
 
-
-
-
-
+<!-- 		url="jdbc:mysql://localhost:3306/team_db?useSSL=false&amp;serverTimezone=UTC" -->
+<!-- url="jdbc:mysql://192.168.1.22:3306/team_db?zeroDateTimeBehavior=convertToNull" -->
 
 
 
