@@ -66,7 +66,7 @@
 <div class="category-nav">
 	<div class="category-nav-inner">
 		<p>
-			HOME > <a href="/categorylist.asp?mainclass_num=00"><%=bookBean.getCatg1()%></a> > <a href="/categorylist.asp?mainclass_num=00&subclass_num=11"><%=bookBean.getCatg2()%></a>
+			HOME > <a href="BookList.bok?catg1=<%=bookBean.getCatg1()%>"><%=bookBean.getCatg1()%></a> > <a href="BookList.bok?catg1=<%=bookBean.getCatg1()%>&catg2=<%=bookBean.getCatg2()%>"><%=bookBean.getCatg2()%></a>
 		</p>
 	</div>
 </div>

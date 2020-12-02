@@ -15,11 +15,11 @@ public class BookDetailAction implements Action {
 		System.out.println("BookDetailAction");
 		ActionForward forward = null;
 		String book_isbn=request.getParameter("isbn");
-		String title=request.getParameter("title");
+//		String title=request.getParameter("title");
 		String page=request.getParameter("page");
 		
 		BookDetailService bookDetailService = new BookDetailService();
-		BookBean bookBean = bookDetailService.getBookInfo(book_isbn,title);
+		BookBean bookBean = bookDetailService.getBookInfo(book_isbn);
 		request.setAttribute("bookBean", bookBean);
 		forward = new ActionForward();
 		forward.setPath("/sub1/bookDetail.jsp?isbn="+book_isbn+"&page="+page);
