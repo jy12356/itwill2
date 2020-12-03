@@ -78,7 +78,7 @@ public class FreeBoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/FreeBoardDetail.free")) {
-			System.out.println("control 넘어온값 : "+request.getParameter("b"));
+			System.out.println("control 넘어온값 : "+request.getParameter("limit"));
 			action = new FreeBoardDetailAction();
 
 			try {

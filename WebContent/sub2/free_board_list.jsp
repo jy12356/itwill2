@@ -90,7 +90,7 @@ int listCount = pageInfo.getListCount();
  %> ▶ <%
  	}
  %>  <a
-									href="FreeBoardDetail.free?board_num=<%=articleList.get(i).getBoard_num()%>&page=<%=nowPage%>&board_type=<%=1%>">
+									href="FreeBoardDetail.free?board_num=<%=articleList.get(i).getBoard_num()%>&page=<%=nowPage%>&board_type=<%=1%>&limit=10">
 										<%=articleList.get(i).getBoard_subject()%>
 								</a>
 								</td>

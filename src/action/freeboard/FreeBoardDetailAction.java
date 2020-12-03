@@ -21,7 +21,7 @@ public class FreeBoardDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("FreeBoardDetailAction!");
 		
-		System.out.println("action 넘어온값 : "+request.getParameter("b"));
+		System.out.println("action 넘어온값 : "+request.getParameter("limit"));
 		
 //		System.out.println("b값 가져오나? " + request.getParameter("b"));
 		ActionForward forward = null;
@@ -45,7 +45,7 @@ public class FreeBoardDetailAction implements Action {
 
 		int page = 1; // 현재 페이지 번호 저장할 변수
 		
-		int limit = 1000; // 페이지 당 표시할 게시물 수를 결정하는 변수
+		int limit = Integer.parseInt(request.getParameter("limit")); // 페이지 당 표시할 게시물 수를 결정하는 변수
 System.out.println("FreeBoardDetailAction - page 가져오나? " + Integer.parseInt(request.getParameter("page")));
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -88,6 +88,7 @@ System.out.println("FreeBoardDetailAction - page 가져오나? " + Integer.parse
 			System.out.println("2");
 
 			request.setAttribute("commentList", commentList);
+			request.setAttribute("limit", limit);
 			System.out.println("3");
 
 //		} else {

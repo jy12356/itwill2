@@ -10,14 +10,15 @@ if (id == null) {
 	id = "gang";
 }
 // int b=0;
-// Integer bb = (Integer)request.getAttribute("b");
-// if(bb==null){
-// 	b=11;
+int limit = ((Integer)request.getAttribute("limit")).intValue();
+System.out.println("limit :" + limit);
+	limit = limit+10;
+
+// if(limit==10){
+// 	limit = limit+10;
 // }else{
-// 	b=bb;
-// 	b = b+11;
+// 	limit = limit+10;
 // }
-// int c = (int)request.getAttribute("c");
 FreeBoardBean article = (FreeBoardBean) request.getAttribute("article");
 String nowPage = request.getParameter("page");
 int board_type = 1;
@@ -143,9 +144,9 @@ int board_num = article.getBoard_num();
 							<%
 							
 							for(int i=0; i < commentList.size(); i++){
-								count += 1;
+// 								count += 1;
 									
-								if(count < 11) { // 댓글 11개까지보여주기
+// 								if(count <= b) { // 댓글 11개까지보여주기
 									
 								
 								
@@ -255,22 +256,22 @@ int board_num = article.getBoard_num();
 				<!-- 대댓글작성 ------------------------------------------->
 				<!-- 일반 댓글리스트 뿌려주기 ㄲ -->
 							<%
-									}
+// 									}
 								}
 							}
 							%>
 						</div>
 						
 						<%
-						if(commentList != null && listCount > 0) {
-							if(commentList.size() > 10) {
+// 						if(commentList != null && listCount > 0) {
+// 							if(commentList.size() > 10) {
 						%>
 <!-- 						<div class="d-more reviewMore" style="display: ;"> -->
 <!-- 							<a href="javascript:;" class="moreComment">댓글 더보기</a> -->
 <!-- 						</div> -->
 <div class="d-more reviewMore" style="display: ;">
-<%-- 	<a href="location.href='FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%> --%>
-<%-- 	&board_type=<%=board_type%>">댓글 더보기</a> --%>
+	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%>
+	&board_type=<%=board_type%>&limit=<%=limit%>">댓글 더보기</a>
 <%-- 	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%> --%>
 <%-- 	&board_type=<%=board_type%>&b=<%=b%>">댓글 더보기</a> --%>
 <%-- 	<a href="#" onclick="location.href='FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%> --%>
@@ -279,8 +280,8 @@ int board_num = article.getBoard_num();
 
 						</div>
 						<%
-							}
-						}
+// 							}
+// 						}
 						%>
 					</div>
 				</div>
