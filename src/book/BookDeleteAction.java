@@ -1,4 +1,4 @@
-package action.bookRegi;
+package book;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
