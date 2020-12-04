@@ -14,10 +14,18 @@ public class QnaBean {
 	private int re_ref;
 	private int re_lev;
 	private int re_seq;
+	private String content2;
 	
 	
 	
 	
+	
+	public String getContent2() {
+		return content2;
+	}
+	public void setContent2(String content2) {
+		this.content2 = content2;
+	}
 	public int getRe_ref() {
 		return re_ref;
 	}

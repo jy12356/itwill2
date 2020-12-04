@@ -154,15 +154,14 @@ public class BookDAO {
 		return listCount;
 	}
 	//책상세정보
-	public BookBean getBookInfo(String book_isbn, String title) {
+	public BookBean getBookInfo(String book_isbn) {
 		PreparedStatement pstmt =  null;
 		ResultSet rs = null;
-		String sql="select * from book where isbn=? and title =?";
+		String sql="select * from book where isbn=?";
 		BookBean bookBean = null;
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setNString(1, book_isbn);
-			pstmt.setNString(2, title);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				bookBean = new BookBean();
