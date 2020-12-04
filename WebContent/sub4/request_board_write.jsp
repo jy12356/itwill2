@@ -46,7 +46,7 @@
 							</tr>
 							<tr>
 								<td>파일 첨부</td>	
-								<td>
+								<td colspan="3">
 									<input type="file" name="file">
 								</td>
 							</tr>
