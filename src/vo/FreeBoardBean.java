@@ -13,10 +13,9 @@ public class FreeBoardBean {
 	private int board_re_lev;
 	private int board_re_seq;
 	private Date board_date;
+
 	
-	
-	
-	
+
 	public int getBoard_num() {
 		return board_num;
 	}
