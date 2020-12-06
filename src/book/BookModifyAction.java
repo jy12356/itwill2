@@ -15,13 +15,13 @@ public class BookModifyAction implements Action {
 		
 		ActionForward forward = null;
 		String page = request.getParameter("page");
-//		String title = request.getParameter("title");
+		String title = request.getParameter("title");
 		String isbn = request.getParameter("isbn");
 		BookDetailService bookDetailService = new BookDetailService();
 		BookBean bookBean = bookDetailService.getBookInfo(isbn);
 		request.setAttribute("bookBean", bookBean);
 		forward = new ActionForward();
-		forward.setPath("/adminPage/book_modifyForm.jsp?&isbn="+isbn+"&page="+page);
+		forward.setPath("/adminPage/book_modifyForm.jsp?title="+title+"&isbn="+isbn+"&page="+page);
 		return forward;
 	}
 

@@ -34,34 +34,26 @@ public class BookModifyProAction implements Action{
 		String page = multi.getParameter("page");
 		String title= multi.getParameter("title1");
 		String isbn= multi.getParameter("isbn1");
+		System.out.println(title);
 		BookBean bookBean = new BookBean();
 		bookBean.setTitle(multi.getParameter("title"));
 		bookBean.setIsbn(multi.getParameter("isbn"));
 		bookBean.setAuthor(multi.getParameter("author"));
+		bookBean.setAuthor_info(multi.getParameter("author_info"));
 		bookBean.setCatg1(multi.getParameter("catg1"));
 		bookBean.setCatg2(multi.getParameter("catg2"));
+		bookBean.setDescription(multi.getParameter("description"));
+		bookBean.setIndex(multi.getParameter("index"));
 		bookBean.setPubdate(multi.getParameter("pubdate"));
 		bookBean.setPublisher(multi.getParameter("publisher"));
-		if(multi.getParameter("description") ==null) {
-			bookBean.setDescription("요약정보가 없습니다.");
-		}else {			
-			bookBean.setDescription(multi.getParameter("description"));
-		}
-		if(multi.getParameter("author_info") ==null) {
-			bookBean.setAuthor_info("저자상세정보가 없습니다.");
-		}else {			
-			bookBean.setAuthor_info(multi.getParameter("author_info"));
-		}
-		if(multi.getParameter("index") ==null) {
-			bookBean.setIndex("저자상세정보가 없습니다.");
-		}else {			
-			bookBean.setIndex(multi.getParameter("index"));
-		}
+
 		if(multi.getOriginalFileName("image") == null){
 			bookBean.setImage(multi.getParameter("oldimage"));
 		}else {
 			bookBean.setImage(multi.getOriginalFileName("image"));
 		}
+
+		
 		
 		BookModifyProService bookModifyProService = new BookModifyProService(); 
 		boolean ismodify = bookModifyProService.modifyBook(bookBean,title, isbn);
