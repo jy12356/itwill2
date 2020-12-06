@@ -43,9 +43,9 @@ int listCount = pageInfo.getListCount();
 			<h3 class="coTitle">자유게시판</h3>
 			<div class="boxmenu1-top-menu">
 				<ul>
-					<li><a href="FreeBoardList.free" class="on"><em>자유게시판</em></a></li>
-					<li><a href="RequestList.rq" class=""><em>도서신청</em></a></li>
-					<li><a href="NoticeBoardList.not?page=1" class=""><em>공지사항</em></a></li>
+					<li class="on"><a href="FreeBoardList.free"><em>자유게시판</em></a></li>
+					<li><a href="RequestList.rq"><em>희망도서신청</em></a></li>
+					<li><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li>
 				</ul>
 			</div>
 			<div class="customer-contents">

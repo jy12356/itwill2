@@ -1,4 +1,4 @@
-<%@page import="vo.PageInfo"%>
+<%@page im	port="vo.PageInfo"%>
 <%@page import="vo.QnaBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -16,22 +16,20 @@
 	<div class="category-nav">
 		<div class="category-nav-inner">
 			<p>
-				HOME > 고객센터
+				HOME > 고객센터 > 1:1문의
 			</p>
 		</div>
 	</div>
 	<div class="contents-wrap">
 		<div class="customer">
-			<h3 class="coTitle">고객센터</h3>
-			<div class="customer-top-menu">
-				<!-- 					<ul> -->
-				<!-- 						<li><a href="/customer.asp?page=faq" class=""><em>FAQ</em></a></li> -->
-				<!-- 						<li><a href="/customer.asp?page=notice" class=""><em>공지사항</em></a></li> -->
-				<!-- 						<li><a href="/customer.asp?page=viewer" class=""><em>뷰어 이용안내</em></a></li> -->
-				<!-- 						<li><a href="/customer.asp?page=service" class=""><em>서비스 안내</em></a></li> -->
-				<!-- 						<li><a href="/customer.asp?page=vs1" class="on"><em>1:1문의</em></a></li> -->
-				<!-- 					</ul> -->
-			</div>
+			<h3 class="coTitle">1:1문의</h3>
+			<div class="boxmenu1-top-menu">
+			<ul>
+				<li class="on"><a href="QnaList.qna"><em>1:1문의</em></a></li>
+				<li><a href="../customer.asp?page=faq"><em>FAQ</em></a></li>
+				<li><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li>
+			</ul>
+		</div>
 			<div class="customer-contents">
 				<div class="customer-inner">
 					<div class="customer-contents">

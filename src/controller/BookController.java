@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.bookRegi.BookDeleteProAction;
-import action.bookRegi.BookDetailAction;
-import action.bookRegi.BookKindListAction;
-import action.bookRegi.BookListAction;
-import action.bookRegi.BookModifyAction;
-import action.bookRegi.BookModifyProAction;
-import action.bookRegi.BookRegiSerchAction;
-import action.bookRegi.BookWriteProAction;
+import book.BookDeleteProAction;
+import book.BookDetailAction;
+import book.BookKindListAction;
+import book.BookListAction;
+import book.BookModifyAction;
+import book.BookModifyProAction;
+import book.BookRegiSerchAction;
+import book.BookWriteProAction;
 import vo.ActionForward;
 @WebServlet("*.bok") 
 public class BookController extends HttpServlet {
@@ -98,6 +98,15 @@ public class BookController extends HttpServlet {
 		}else if(command.equals("/BookRegiSerch.bok")) {
 			System.out.println("BookRegiSerch.bok 포워딩");
 			action = new BookRegiSerchAction();
+			try {				
+				forward =  action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BookDibs.bok")) {
+			System.out.println("BookDibs.bok.bok 포워딩");
+			action = new BookDibsAction();
 			try {				
 				forward =  action.execute(request, response);
 				
