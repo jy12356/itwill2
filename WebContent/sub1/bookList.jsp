@@ -1,8 +1,8 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../include/header.jsp"/>
 <%@page import="vo.PageInfo"%>
-<%@page import="vo.BookBean"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="vo.BookBean"%>ß
 <%
 	// 전달받은 request 객체로부터 데이터 가져오기
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
@@ -39,7 +39,7 @@
                         <li><a href="BookList.bok?catg1=소설&catg2=소설" <%if(catg2.equals("소설")){%>class="on"<%}%>>소설</a></li>	
 						<li><a href="BookList.bok?catg1=소설&catg2=에세이" <%if(catg2.equals("에세이")){%>class="on"<%}%>>에세이</a></li>	
 						<li><a href="BookList.bok?catg1=소설&catg2=여행" <%if(catg2.equals("여행")){%>class="on"<%}%>>여행</a></li>	
-						<li><a href="BookList.bok?catg1=소설&catg2=시" <%if(catg2.equals(">시")){%>class="on"<%}%>>시</a></li>	
+						<li><a href="BookList.bok?catg1=소설&catg2=시" <%if(catg2.equals("시")){%>class="on"<%}%>>시</a></li>	
                     </ul>
 
                     <div class="main_event"></div>

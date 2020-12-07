@@ -1,4 +1,4 @@
-package book;
+package action.book;
 
 import java.io.PrintWriter;
 

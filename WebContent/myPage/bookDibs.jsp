@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../include/header.jsp"/>
+<%@page import="vo.BookInterestBean"%>
 <%@page import="vo.PageInfo"%>
-<%@page import="vo.BookBean"%>
 <%@page import="java.util.ArrayList"%>
 <%
 	// 전달받은 request 객체로부터 데이터 가져오기
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
-	ArrayList<BookBean> bookList = (ArrayList<BookBean>)request.getAttribute("bookList");
+	ArrayList<BookInterestBean> bookListDibsList = (ArrayList<BookInterestBean>)request.getAttribute("bookListDibsList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage = pageInfo.getPage();
 	int maxPage = pageInfo.getMaxPage();
@@ -36,21 +36,15 @@
                             <tr>
                                 <th scope="col" abbr="책번호"></th>
                                 <th scope="col" abbr="등록일">제목</th>
-                                <th scope="col" abbr="등록일">작가</th>
                                 <th scope="col" abbr="등록일">isbn</th>
-                                <th scope="col" abbr="등록일">출판사</th>
-                                <th scope="col" abbr="등록일">출간일</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <%for(int i=0; i < bookList.size(); i++ ){ %>
+                        <%for(int i=0; i < bookListDibsList.size(); i++ ){ %>
                             <tr>
-                                <td class="tac check_box"><input type="checkbox" id="checkbox_num" class="check_num" value="<%=bookList.get(i).getNum()%>" name="book_num"></td>
-                                <td><%=bookList.get(i).getTitle()%></td>
-                                <td><%=bookList.get(i).getAuthor()%></td>
-                                <td><%=bookList.get(i).getIsbn()%></td>
-                                <td><%=bookList.get(i).getPublisher()%></td>
-                                <td><%=bookList.get(i).getPubdate()%></td>
+                                <td class="tac check_box"><input type="checkbox" id="checkbox_num" class="check_num" value="<%=bookListDibsList.get(i).getNum()%>" name="book_num"></td>
+                                <td><%=bookListDibsList.get(i).getTitle()%></td>
+                                <td><%=bookListDibsList.get(i).getIsbn()%></td>
                             </tr>
                         <%} %>
                         </tbody>
@@ -58,30 +52,30 @@
                     <div class="btn_inner"> 
                     	<a href="javascript:void(0);" onclick="deleteBook(); return false;"class="btn">삭제하기</a>
                     	<a href="javascript:void(0);" onclick="modifyBook(); return false;" class="btn">수정하기</a>
-                    	<a href="BookList.bok?page=<%=nowPage%>" class="btn">목록보기</a>
+                    	
                     </div>
                     
                     <div class="paging">
                   	<%if(nowPage <= 1) {%>
-						<a href="BoardList.bok?page=1" class="arr" data-page-num="1">
+						<a href="BookDibsList.bok?page=1" class="arr" data-page-num="1">
 							<img src="images/p-first.png"><span class="hide">처음페이지</span>
 						</a>
-                         		<a href="BoardList.bok?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="<%=nowPage - 1 %>">
+                         		<a href="BookDibsList.bok?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="<%=nowPage - 1 %>">
 							<img src="images/p-prev.png"><span class="hide">이전페이지</span>
 						</a>
 					<%}%>
 					<%for(int i = startPage; i <= endPage; i++) { 
 							if(i == nowPage) { %>
-								<a href="BoardList.bok?page=<%=i %>" class="on fir" data-page-num="<%=i %>"><%=i %></a>
+								<a href="BookDibsList.bok?page=<%=i %>" class="on fir" data-page-num="<%=i %>"><%=i %></a>
 							<%} else { %>
-								<a href="BoardList.bok?page=<%=i %>" class="" data-page-num="<%=i %>"><%=i %></a>
+								<a href="BookDibsList.bok?page=<%=i %>" class="" data-page-num="<%=i %>"><%=i %></a>
 							<%} %>
 					<%} %>
                    	<%if(nowPage >= maxPage) { %>
-						<a href="BoardList.bok?page=<%=nowPage + 1 %>" class="arr next" data-page-num="<%=nowPage + 1 %>">
+						<a href="BookDibsList.bok?page=<%=nowPage + 1 %>" class="arr next" data-page-num="<%=nowPage + 1 %>">
                         		<img src="images/p-next.png"><span class="hide">다음페이지</span>
                        	</a>
-                       	<a href="BoardList.bok?page=<%=maxPage%>" class="arr"data-page-num="<%=maxPage%>">
+                       	<a href="BookDibsList.bok?page=<%=maxPage%>" class="arr"data-page-num="<%=maxPage%>">
                       		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
                    		</a>
 					<%}%>                                
