@@ -7,6 +7,7 @@
 	// 전달받은 request 객체로부터 데이터 가져오기
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
+	String id = (String) session.getAttribute("id"); 
 	ArrayList<BookBean> bookList = (ArrayList<BookBean>)request.getAttribute("bookList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage = pageInfo.getPage();
@@ -34,14 +35,55 @@
             <div class="search-result">
                 <h3 class="coTitle"><%=catg2 %></h3>
                 <div class="field">
+                <%if(catg1.equals("소설")){ %>
                     <ul class="field-list">
-                        <li><a href="BookList.bok" <%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
+                        <li><a href="BookList.bok?catg1=소설" <%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
                         <li><a href="BookList.bok?catg1=소설&catg2=소설" <%if(catg2.equals("소설")){%>class="on"<%}%>>소설</a></li>	
 						<li><a href="BookList.bok?catg1=소설&catg2=에세이" <%if(catg2.equals("에세이")){%>class="on"<%}%>>에세이</a></li>	
 						<li><a href="BookList.bok?catg1=소설&catg2=여행" <%if(catg2.equals("여행")){%>class="on"<%}%>>여행</a></li>	
 						<li><a href="BookList.bok?catg1=소설&catg2=시" <%if(catg2.equals("시")){%>class="on"<%}%>>시</a></li>	
                     </ul>
-
+				<%}else if(catg1.equals("인문/경제")){ %>
+					<ul class="field-list">
+                        <li><a href="BookList.bok?catg1=인문/경제" <%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
+                        <li><a href="BookList.bok?catg1=인문/경제&catg2=자기개발" <%if(catg2.equals("자기개발")){%>class="on"<%}%>>자기개발</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=경영" <%if(catg2.equals("경영")){%>class="on"<%}%>>경영</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=경제" <%if(catg2.equals("경제")){%>class="on"<%}%>>경제</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=마케팅" <%if(catg2.equals("마케팅")){%>class="on"<%}%>>마케팅</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=역사" <%if(catg2.equals("역사")){%>class="on"<%}%>>역사</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=철학" <%if(catg2.equals("철학")){%>class="on"<%}%>>철학</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=종교" <%if(catg2.equals("종교")){%>class="on"<%}%>>종교</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=정치" <%if(catg2.equals("정치")){%>class="on"<%}%>>정치</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=예술" <%if(catg2.equals("예술")){%>class="on"<%}%>>예술</a></li>	
+						<li><a href="BookList.bok?catg1=인문/경제&catg2=인문" <%if(catg2.equals("인문")){%>class="on"<%}%>>인문</a></li>	
+							
+                    </ul>
+				<%}else if(catg1.equals("과학")){  %>
+					<ul class="field-list">
+                        <li><a href="BookList.bok?catg1=과학" <%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
+                        <li><a href="BookList.bok?catg1=과학&catg2=수학" <%if(catg2.equals("수학")){%>class="on"<%}%>>수학</a></li>	
+						<li><a href="BookList.bok?catg1=과학&catg2=과학" <%if(catg2.equals("과학")){%>class="on"<%}%>>과학</a></li>	
+						<li><a href="BookList.bok?catg1=과학&catg2=IT/비즈니스" <%if(catg2.equals("IT/비즈니스")){%>class="on"<%}%>>IT/비즈니스</a></li>	
+						<li><a href="BookList.bok?catg1=과학&catg2=자격증" <%if(catg2.equals("자격증")){%>class="on"<%}%>>자격증</a></li>	
+						<li><a href="BookList.bok?catg1=과학&catg2=프로그래밍" <%if(catg2.equals("프로그래밍")){%>class="on"<%}%>>프로그래밍</a></li>	
+							
+                    </ul>
+				<%}else if(catg1.equals("취미")){  %>
+					<ul class="field-list">
+                        <li><a href="BookList.bok?catg1=취미" <%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
+                        <li><a href="BookList.bok?catg1=취미&catg2=건강" <%if(catg2.equals("건강")){%>class="on"<%}%>>건강</a></li>	
+						<li><a href="BookList.bok?catg1=취미&catg2=요리" <%if(catg2.equals("요리")){%>class="on"<%}%>>요리</a></li>	
+						<li><a href="BookList.bok?catg1=취미&catg2=스포츠" <%if(catg2.equals("스포츠")){%>class="on"<%}%>>스포츠</a></li>	
+						<li><a href="BookList.bok?catg1=취미&catg2=결혼/임신/출산" <%if(catg2.equals("결혼/임신/출산")){%>class="on"<%}%>>결혼/임신/출산</a></li>	
+						<li><a href="BookList.bok?catg1=취미&catg2=기타" <%if(catg2.equals("기타")){%>class="on"<%}%>>기타</a></li>	
+                    </ul>
+				<%}else if(catg1.equals("만화/웹소설")){  %>
+					<ul class="field-list">
+                        <li><a href="BookList.bokcatg1=만화/웹소설" <%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
+                        <li><a href="BookList.bok?catg1=만화/웹소설&catg2=만화" <%if(catg2.equals("만화")){%>class="on"<%}%>>만화</a></li>	
+						<li><a href="BookList.bok?catg1=만화/웹소설&catg2=웹소설" <%if(catg2.equals("웹소설")){%>class="on"<%}%>>웹소설</a></li>	
+                    </ul>
+				<%} %>
                     <div class="main_event"></div>
                 </div>
                 <div class="tab">
@@ -148,9 +190,11 @@
                             	<li>등록된 도서가 없습니다.</li>
                             </ul>
                     	</div>
+                    	<%if(id.equals("admin")){ %>
 	                   	<div class="btn_inner">
 								<a href="BookWriteForm.bok" class="btn">글쓰기</a>
 						</div>
+						<%} %>
                     </div>
 					<%
 					}

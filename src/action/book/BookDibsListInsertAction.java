@@ -21,7 +21,6 @@ public class BookDibsListInsertAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String isbn = request.getParameter("isbn");
-        
 		BookDibsInsertService bookDibsInsertService = new BookDibsInsertService();
 		boolean isInsertSuccess = bookDibsInsertService.insertBookDibs(isbn,id);
 		
@@ -35,7 +34,6 @@ public class BookDibsListInsertAction implements Action {
 		} else {
 			forward = new ActionForward();
 			forward.setPath("BookDibsList.bok");
-			
 			forward.setRedirect(true);
 		}
 		return forward;
