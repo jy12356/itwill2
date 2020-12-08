@@ -1,10 +1,11 @@
-package action;
+package action.member;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import action.Action;
 import svc.MemberModifyFormService;
 import vo.ActionForward;
 import vo.MemberBean;
