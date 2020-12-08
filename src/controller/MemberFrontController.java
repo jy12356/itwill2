@@ -16,6 +16,7 @@ import action.MemberListAction;
 import action.MemberLoginProAction;
 import action.MemberModifyFormAction;
 import action.MemberModifyProAction;
+import action.freeboard.MyBasketAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -107,7 +108,14 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		
-		} 
+		} else if (command.equals("/MyBasket.me")) {
+			action = new MyBasketAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {
