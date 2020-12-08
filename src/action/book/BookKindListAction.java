@@ -1,4 +1,4 @@
-package book;
+package action.book;
 
 import java.util.ArrayList;
 
@@ -22,11 +22,10 @@ public class BookKindListAction implements Action{
 		if(request.getParameter("page")!=null) {
 			page = Integer.parseInt(request.getParameter("page"));			
 		}
-		String title = request.getParameter("title");
 		String isbn = request.getParameter("isbn");
 		BookKindListService bookKindListService = new BookKindListService();
-		int listCount = bookKindListService.getListCount(title, isbn);
-		ArrayList<BookBean> bookList = bookKindListService.bookKindList(title,isbn, page, limit);
+		int listCount = bookKindListService.getListCount(isbn);
+		ArrayList<BookBean> bookList = bookKindListService.bookKindList(isbn, page, limit);
 		int maxPage = (int)((double)listCount/ limit+0.95);
 		int startPage = ((int)((double)page/10+0.9)-1)*10+1;
 		int endPage=startPage+10-1;
