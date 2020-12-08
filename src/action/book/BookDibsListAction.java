@@ -32,14 +32,14 @@ public class BookDibsListAction implements Action {
 		
 		
 		
-		ArrayList<BookInterestBean> bookDibsList = new ArrayList<BookInterestBean>();
-		bookDibsList = bookDibsListService.getBookListDibsList(page,limit,id);
+		ArrayList<BookInterestBean> bookListDibsList = new ArrayList<BookInterestBean>();
+		bookListDibsList = bookDibsListService.getBookListDibsList(page,limit,id);
 
 		int maxPage = (int)((double)listCount/ limit+0.95);
 		int startPage = ((int)((double)page/10+0.9)-1)*10+1;
 		int endPage=startPage+10-1;
 		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
-		request.setAttribute("bookDibsList", bookDibsList);
+		request.setAttribute("bookListDibsList", bookListDibsList);
 		request.setAttribute("pageInfo", pageInfo);
 		forward = new ActionForward();
 		forward.setPath("/myPage/bookDibs.jsp");
