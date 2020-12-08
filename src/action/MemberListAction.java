@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.Dispatch;
 
+import action.Action;
 import sun.rmi.server.Dispatcher;
 import svc.MemberListService;
 import vo.ActionForward;

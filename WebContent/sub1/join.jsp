@@ -7,6 +7,7 @@
 #checkIdResult2 {color: green; font-weight: bold;font-size: 1em;padding: 0.2em;} 
 #checkPasswdResult {color: red; font-weight: bold;font-size: 1em;padding: 0.2em;} */
 </style>
+
 <section class="sub">
 <div class="common-title">
 	<h3>회원가입</h3>
@@ -263,42 +264,6 @@
 
 	<script>
 	</script>
-	<script>				
-		$(document).ready(function(){
-			
-			$('.strId').focus(function(){
-				$(this).attr("placeholder","6~20자 영문, 숫자");
-			})
-			$('.strId').blur(function(){
-				$('.strId').attr("placeholder","아이디");
-			})
-			
-			$('.strPass').focus(function(){
-				$(this).attr("placeholder","6자 이상만 입력 가능합니다.");
-			})
-			$('.strPass').blur(function(){
-				$('.strPass').attr("placeholder","비밀번호");
-			})
-			
-			$('.rePass').focus(function(){
-				$(this).attr("placeholder","6자 ~ 16자만 입력 가능합니다.");
-			})
-			$('.rePass').blur(function(){
-				$('.rePass').attr("placeholder","비밀번호");
-			})
-			
-			$('.strAge').focus(function(){
-				$(this).attr("placeholder","예-901225");
-			})
-			$('.strAge').blur(function(){
-				$('.strAge').attr("placeholder","생년월일");
-			})
-			
-				
-				
-				
-		});	
-	</script>
 	<script type="text/javascript">
 
 
@@ -312,9 +277,9 @@
 		
 		var element = document.getElementById('checkIdResult');
 		
-		var regex = /^[A-Za-z][A-Za-z0-9]{5,}$/g;
+		var regex = /^[a-z0-9][a-z0-9_\-]{4,19}$/g;
 		
-		if(regex.exec(id)) { 
+		if(regex.test(id)) { 
 			element.innerHTML = "멋진 아이디네요!";
 			checkIdResult = true; 
 			var myElement = document.getElementById('checkIdResult');
@@ -322,29 +287,25 @@
 			myElement.style.padding="0.3em";
 		
 		} else {
-			element.innerHTML = "이미 사용중이거나 탈퇴한 아이디입니다.";
+			element.innerHTML = "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.";
 			checkIdResult = false;
 			var myElement = document.getElementById('checkIdResult');
 			myElement.style.color="red"
 			myElement.style.padding="0.3em";
 			
 		}
+		$.ajax({
+			type:"GET",
+			url:"MemberCheck.me",
+			data : {
+                id : id
+            },
+			success : function(data) {
+				isIdCheckSuccess
+			}
+		})
 		
 	}
-	
-// 	function checkId2(idForm) { 
-// 		var id = idForm.value; 
-		
-// 		var element = document.getElementById('checkIdResult');
-		
-// 		var regex = /^[A-Za-z][A-Za-z0-9]{5,}$/g;
-		
-// 		if(!regex.exec(id)) {
-// 			element.innerHTML = "사용 불가";
-// 			checkIdResult = false; 
-// 		}
-		
-// 	}
 	
 	
 	function checkPasswd(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
