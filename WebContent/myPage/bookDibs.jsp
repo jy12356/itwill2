@@ -26,17 +26,26 @@
                         <caption>내가 찜한 리스트</caption>
                         <colgroup>
                             <col style="width:5%">
-                            <col style="width:25%">
-                            <col style="width:20%">
                             <col style="width:20%">
                             <col style="width:15%">
                             <col style="width:15%">
+                            <col style="width:15%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            
                         </colgroup>
                         <thead>
                             <tr>
                                 <th scope="col" abbr="책번호"></th>
-                                <th scope="col" abbr="등록일">제목</th>
-                                <th scope="col" abbr="등록일">isbn</th>
+                                <th scope="col" abbr="제목">제목</th>
+                                <th scope="col" abbr="작가">작가</th>
+                                <th scope="col" abbr="isbn">isbn</th>
+                                <th scope="col" abbr="출판사">출판사</th>
+                                <th scope="col" abbr="출판일">출판일</th>
+                                <th scope="col" abbr="상태">상태</th>
+                                <th scope="col" abbr="책바구니">책바구니</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -44,14 +53,27 @@
                             <tr>
                                 <td class="tac check_box"><input type="checkbox" id="checkbox_num" class="check_num" value="<%=bookListDibsList.get(i).getNum()%>" name="book_num"></td>
                                 <td><%=bookListDibsList.get(i).getTitle()%></td>
+                                <td><%=bookListDibsList.get(i).getAuthor()%></td>
                                 <td><%=bookListDibsList.get(i).getIsbn()%></td>
+                                <td><%=bookListDibsList.get(i).getPublisher()%></td>
+                                <td><%=bookListDibsList.get(i).getPubdate()%></td>
+                                <td><%=bookListDibsList.get(i).getState()%></td>
+                                <td class="book_basketbtn">
+                                	<%if(bookListDibsList.get(i).getState().equals("대여가능")){%>
+                                		<div class="btn_inner"> 
+					                    	<a href="MyBasket.me?isbn=<%=bookListDibsList.get(i).getIsbn()%>" class="btn">책바구니</a>
+					                    </div>
+                                	<%}else{%>
+                                		대여불가능
+                                	<%} %>
+                                	
+                               	</td>
                             </tr>
                         <%} %>
                         </tbody>
                     </table>
                     <div class="btn_inner"> 
                     	<a href="javascript:void(0);" onclick="deleteBook(); return false;"class="btn">삭제하기</a>
-                    	<a href="javascript:void(0);" onclick="modifyBook(); return false;" class="btn">수정하기</a>
                     	
                     </div>
                     
