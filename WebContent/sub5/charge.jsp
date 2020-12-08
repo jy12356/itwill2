@@ -185,7 +185,7 @@
 </section>
 <script>
 function cCheck(){
-	var win = window.open("sub5/charge.html","width=1200, height=950");
+	var win = window.open("charge.html","width=1200, height=950");
 }
 
 $(function(){	
