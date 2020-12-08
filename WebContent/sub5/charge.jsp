@@ -34,13 +34,7 @@
 				<input type="hidden" name="site_name"       value="BookCube" />
 				<input type="hidden" name="quotaopt"        value="12"/>
 				
-				<!-- 해외카드 관련 정보 -->
-				<input type="hidden" name="used_card_YN" class="used_card_YN" value="">
-				<input type="hidden" name="used_card" class="used_card"  value="">
-				<!-- 문화상품권 관련 shop_id 처리-->
-				<input type="hidden" name="tk_shop_id" value="n20201105095815"/>
-				<input type="hidden" name="shop_user_id" value="n20201105095815"/>
-				<input type="hidden" name="pay_method" value="100000000000">
+				
 				<!-- 필수 항목 : 결제 금액/화폐단위 -->
 				<input type="hidden" name="currency"        value="WON"/>
 				<!-- PLUGIN 설정 정보입니다(변경 불가) -->
@@ -177,7 +171,7 @@
 						<div class="payment-result">
 							<p>총 구독 금액 : <span class="total_pay_amount">199000원</span></p>
 							<p class="deduction-result">소득공제 <span>불가</span></p>
-							<input type="button" onclick="jsf__pay(this.form);" value="결제하기">
+							<input type="button" onclick="cCheck()" value="결제하기">
 							<script>
 							
 							</script>
@@ -190,6 +184,10 @@
 	
 </section>
 <script>
+function cCheck(){
+	var win = window.open("sub5/charge.html","width=1200, height=950");
+}
+
 $(function(){	
 	var page = $(".wrap").data("page");
 	var series_num = $(".wrap").data("serial-num");
