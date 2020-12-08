@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.bookRegi.BookDeleteProAction;
-import action.bookRegi.BookDetailAction;
-import action.bookRegi.BookKindListAction;
-import action.bookRegi.BookListAction;
-import action.bookRegi.BookModifyAction;
-import action.bookRegi.BookModifyProAction;
-import action.bookRegi.BookRegiSerchAction;
-import action.bookRegi.BookWriteProAction;
+import action.book.BookDeleteProAction;
+import action.book.BookDetailAction;
+import action.book.BookKindListAction;
+import action.book.BookListAction;
+import action.book.BookModifyAction;
+import action.book.BookModifyProAction;
+import action.book.BookRegiSerchAction;
+import action.book.BookWriteProAction;
 import vo.ActionForward;
 @WebServlet("*.book") 
 public class mainController extends HttpServlet {

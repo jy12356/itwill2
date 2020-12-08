@@ -78,7 +78,7 @@
 							<input type='button' onclick="frmSearchSubmit()" />
 						</div>
 						<ul class="my-lnb">
-							<li class="btnLogin"><a href="javascript:;">로그인</a></li>
+							<li class="btnLogin"><a href="MemberLoginForm.me">로그인</a></li>
 							<li><a href="MemberJoinForm.me">회원가입</a></li>
 						</ul>
 					</fieldset>

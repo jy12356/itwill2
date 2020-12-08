@@ -1,4 +1,4 @@
-package action.bookRegi;
+package action.book;
 
 import java.io.PrintWriter;
 

@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.bookRegi.BookDeleteProAction;
-import action.bookRegi.BookDetailAction;
-import action.bookRegi.BookKindListAction;
-import action.bookRegi.BookListAction;
-import action.bookRegi.BookModifyAction;
-import action.bookRegi.BookModifyProAction;
-import action.bookRegi.BookRegiSerchAction;
-import action.bookRegi.BookWriteProAction;
+import action.book.BookDeleteProAction;
+import action.book.BookDetailAction;
+import action.book.BookDibsListAction;
+import action.book.BookDibsListInsertAction;
+import action.book.BookKindListAction;
+import action.book.BookListAction;
+import action.book.BookModifyAction;
+import action.book.BookModifyProAction;
+import action.book.BookRegiSerchAction;
+import action.book.BookWriteProAction;
 import vo.ActionForward;
 @WebServlet("*.bok") 
 public class BookController extends HttpServlet {
@@ -98,6 +100,24 @@ public class BookController extends HttpServlet {
 		}else if(command.equals("/BookRegiSerch.bok")) {
 			System.out.println("BookRegiSerch.bok 포워딩");
 			action = new BookRegiSerchAction();
+			try {				
+				forward =  action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BookDibsList.bok")) {
+			System.out.println("BookDibsList.bok 포워딩");
+			action = new BookDibsListAction();
+			try {				
+				forward =  action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BookDibsInsert.bok")) {
+			System.out.println("BookDibsInsert.bok 포워딩");
+			action = new BookDibsListInsertAction();
 			try {				
 				forward =  action.execute(request, response);
 				
