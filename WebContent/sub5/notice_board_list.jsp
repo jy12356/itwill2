@@ -47,7 +47,7 @@ int listCount = PageInfo.getListCount();
 
 						<caption>자유게시판</caption>
 						<colgroup>
-							<col style="width: 8%;">
+							<col style="width: 10%;">
 							<col style="width: 50%;">
 							<col style="width: 20%;">
 							<col style="width: 15%;">
@@ -88,7 +88,7 @@ int listCount = PageInfo.getListCount();
 					</div>
 
 					<div class="paging">
-						<a href="NoticeList.not?pageNum=1" class="arr" data-page-num="1"><img
+						<a href="NoticeBoardList.not?pageNum=1" class="arr" data-page-num="1"><img
 							src="../images/p-first.png"><span class="hide">처음페이지</span></a>
 
 						<!-- 이전페이지 -->
@@ -100,7 +100,7 @@ int listCount = PageInfo.getListCount();
 							} else {
 						%>
 						<input type="button" value="이전"
-							onclick="location.href='NoticeList.not?page=<%=nowPage - 1%>'">&nbsp;
+							onclick="location.href='NoticeBoardList.not?page=<%=nowPage - 1%>'">&nbsp;
 						<%
 							}
 						%>
@@ -114,7 +114,7 @@ int listCount = PageInfo.getListCount();
 						<%
 							} else {
 						%>
-						<a href="NoticeList.not?page=<%=i%>">[<%=i%>]
+						<a href="NoticeBoardList.not?page=<%=i%>">[<%=i%>]
 						</a>&nbsp;
 						<%
 							}
@@ -131,7 +131,7 @@ int listCount = PageInfo.getListCount();
 							} else {
 						%>
 						<input type="button" value="다음"
-							onclick="location.href='NoticeList.not?page=<%=nowPage + 1%>'">
+							onclick="location.href='NoticeBoardList.not?page=<%=nowPage + 1%>'">
 						<%
 							}
 						%>
