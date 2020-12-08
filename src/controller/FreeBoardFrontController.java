@@ -20,6 +20,7 @@ import action.freeboard.FreeBoardListAction;
 import action.freeboard.FreeBoardModifyFormAction;
 import action.freeboard.FreeBoardModifyProAction;
 import action.freeboard.FreeBoardWriteProAction;
+import action.freeboard.MyBasketAction;
 import vo.ActionForward;
 
 @WebServlet("*.free") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
@@ -141,7 +142,8 @@ public class FreeBoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} 
+		
 
 		// ----------------------------------------------------------------
 		// 기본적인 작업 후 공통적으로 수행할 포워딩 작업

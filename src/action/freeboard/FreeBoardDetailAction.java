@@ -44,18 +44,31 @@ public class FreeBoardDetailAction implements Action {
 		System.out.println("FreeBoardDetailAction - 댓글리스트뿌리기");
 
 		int page = 1; // 현재 페이지 번호 저장할 변수
+		System.out.println("1");
+		int limit = 0;
+		if(request.getParameter("limit") != null) {
+			limit = Integer.parseInt(request.getParameter("limit")); // 페이지 당 표시할 게시물 수를 결정하는 변수
+		} else {
+			limit = 10;
+		}
 		
-		int limit = Integer.parseInt(request.getParameter("limit")); // 페이지 당 표시할 게시물 수를 결정하는 변수
+		
 System.out.println("FreeBoardDetailAction - page 가져오나? " + Integer.parseInt(request.getParameter("page")));
+System.out.println("2");
+
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
+		System.out.println("3");
+
 		FBCommentListService fbCommentListService = new FBCommentListService();
 		int listCount = fbCommentListService.getListCount();
+		System.out.println("4");
 
 		ArrayList<CommentBean> commentList = new ArrayList<CommentBean>();
 		commentList = fbCommentListService.getCommentList(page, limit, board_type, board_num);
-		
+		System.out.println("5");
+
 		int maxPage = (int) ((double) listCount / limit + 0.95);
 
 		// 2. 현재 페이지에서 보여줄 시작 페이지 번호(1, 11, 21 페이지 등)
@@ -70,13 +83,17 @@ System.out.println("FreeBoardDetailAction - page 가져오나? " + Integer.parse
 		if (endPage > maxPage) {
 			endPage = maxPage;
 		}
+		System.out.println("6");
+
 		PageInfo pageInfo = new PageInfo(
 				page, maxPage, startPage, endPage, listCount);
 		
-		
+		System.out.println("7");
+
 		CommentDetailService commentDetailService = new CommentDetailService();
 		System.out.println("FreeBoardDetailAction 대댓글작업중");
-		
+		System.out.println("8");
+
 		
 //		if() {
 			
