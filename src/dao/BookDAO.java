@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.security.auth.login.LoginException;
+
 import vo.BookBean;
 import vo.BookInterestBean;
 
@@ -62,7 +64,7 @@ public class BookDAO {
 			pstmt.setString(3, bookBean.getImage());
 			pstmt.setString(4, bookBean.getAuthor());
 			pstmt.setString(5, bookBean.getPublisher());
-			pstmt.setString(6, bookBean.getPubdate());
+			pstmt.setDate(6, bookBean.getPubdate());
 			pstmt.setString(7, bookBean.getIsbn());
 			pstmt.setString(8, bookBean.getDescription());
 			pstmt.setString(9, bookBean.getCatg1());
@@ -111,7 +113,7 @@ public class BookDAO {
 				bookBean.setCatg2(rs.getString("catg2"));
 				bookBean.setAuthor(rs.getString("author"));
 				bookBean.setPublisher(rs.getString("publisher"));
-				bookBean.setPubdate(rs.getString("pubdate"));
+				bookBean.setPubdate(rs.getDate("pubdate"));
 				bookBean.setIsbn(rs.getString("isbn"));
 				bookBean.setState(rs.getString("state"));
 				bookBean.setCount(rs.getInt("count"));
@@ -177,7 +179,7 @@ public class BookDAO {
 				bookBean.setIndex(rs.getString("index_info"));
 				bookBean.setIsbn(rs.getString("isbn"));
 				bookBean.setNum(rs.getInt("num"));
-				bookBean.setPubdate(rs.getString("pubdate"));
+				bookBean.setPubdate(rs.getDate("pubdate"));
 				bookBean.setPublisher(rs.getString("publisher"));
 				bookBean.setState(rs.getString("state"));
 				
@@ -240,7 +242,7 @@ public class BookDAO {
 				bookBean.setCatg2(rs.getString("catg2"));
 				bookBean.setAuthor(rs.getString("author"));
 				bookBean.setPublisher(rs.getString("publisher"));
-				bookBean.setPubdate(rs.getString("pubdate"));
+				bookBean.setPubdate(rs.getDate("pubdate"));
 				bookBean.setIsbn(rs.getString("isbn"));
 				bookBean.setState(rs.getString("state"));
 				bookBean.setCount(rs.getInt("count"));
@@ -318,7 +320,7 @@ public class BookDAO {
 			pstmt.setString(6, bookBean.getCatg2());
 			pstmt.setString(7, bookBean.getDescription());
 			pstmt.setString(8, bookBean.getIndex());
-			pstmt.setString(9, bookBean.getPubdate());
+			pstmt.setDate(9, bookBean.getPubdate());
 			pstmt.setString(10, bookBean.getPublisher());
 			pstmt.setString(11, bookBean.getImage());
 			pstmt.setString(12, title);
@@ -402,7 +404,7 @@ public class BookDAO {
 						+ "i.isbn isbn,i.id id, b.title title, b.author author, "
 						+ "b.publisher publisher, b.pubdate pubdate, "
 						+ "case when b.state = 0 then '대여가능' else '대여불가능' end as state "
-						+ "from interestinglist  as i join book as b on i.num = b.num "
+						+ "from interestinglist  as i join book as b on i.isbn = b.isbn "
 						+ "where i.id=? order by i.num desc limit ?,?;";
 		try {
 			pstmt=con.prepareStatement(sql);
@@ -434,4 +436,30 @@ public class BookDAO {
 		}
 		return bookListDibsList;
 	}
+	
+	
+	public int istBookDibsList(String isbn, String id) {
+		int istBookDibsList = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT isbn FROM interestinglist WHERE id=? and isbn=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, isbn);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				istBookDibsList=1;			
+			}
+		} catch (SQLException e) {
+			System.out.println("istBookDibsList() ERROR! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return istBookDibsList;
+	
+	}
+
 }
