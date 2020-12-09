@@ -7,7 +7,7 @@
         </div>
     </div>
     <script type="text/javascript">
-	    function bookSearchSubmit(){
+	   /*  function bookSearchSubmit(){
 			var keyword = $(".search_input").val();
 			alert(keyword);
 			$.ajax({
@@ -27,6 +27,31 @@
 			})
 			
 		}
+	     */
+	    var main = { 
+	    		init : function () { 
+	    			var _this = this; 
+	    			$('#btn-movies-find').on('click', function () {
+	    				_this.find(); 
+    				}); 
+    			},find : function () { 
+   					var keyword = $('#search_input').val(); 
+   					$.ajax({ 
+   						type: 'GET', 
+   						url: 'BookNaverAPISearch.bok?keyword='+keyword, 
+   						dataType: 'json', 
+   						contentType:'application/json; charset=utf-8', 
+				}).done(function(res) { 
+					alert(JSON.stringify(res)); 
+				}).fail(function (error) { 
+					alert(JSON.stringify(error)); 
+				}); 
+			}
+   		};
+	    main.init();
+	    
+
+
     </script>
     <div class="contents-wrap">
         <div class="customer">
@@ -36,7 +61,7 @@
                 	<div class="bookregiSearch-inner">
 	                	<div class="bookregiSearch mb10">
 	          				<input type="text" name="searchString"  placeholder="검색어를 입력하세요" id="search_input" class="search_input" style="ime-mode:active;">
-							<input type="button" onclick="bookSearchSubmit()">
+							<input type="button" id="btn-movies-find">
 	                	</div>
 	                	<div class="serachBookResult">
 	                		<table summary="책검색결과" class="customer-table notice">

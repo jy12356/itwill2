@@ -170,7 +170,7 @@ font-weight:600;box-shadow:0 2px #f2f2f2;border-radius:4px;float:right;}
 .h-top-bottom .gnb li:nth-child(1) a{padding:0 25px;width:34px;}
 .h-top-bottom .gnb li:nth-child(1) a.on{width:34px;/* background:url(../images/gnb-book-on.png) no-repeat center top; *//* border-bottom:4px solid #17897a; */}
 .h-top-bottom .gnb li:nth-child(2) a{width:53px;padding:0 16px;}
-.h-top-bottom .gnb li:nth-child(3) a{width:36px;padding:0 25px;}
+.h-top-bottom .gnb li:nth-child(3) a{padding:0 25px;}
 .h-top-bottom .lnb{float:right;}
 .h-top-bottom .lnb:after{content:"";display:block;clear:both;}
 .h-top-bottom .lnb li{float:left;background: url(../images/lnb-dot.gif) no-repeat left center;padding:0 10px;}
