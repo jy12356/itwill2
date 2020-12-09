@@ -6,12 +6,12 @@ import java.sql.Connection;
 
 import dao.ReviewDAO;
 import vo.LikeBean;
+import vo.ReviewBean;
 
 public class ReviewLikeCountService {
-
-	public boolean ReviewLikeUp(LikeBean likeBean) {
-		System.out.println("ReCommentWriteProService - getReviewLike");
 		
+	public boolean ReviewLikeUp(LikeBean likeBean) {
+		System.out.println("ReCommentWriteProService - ReviewLikeUp");
 		boolean isLikeSuccess = false;
 		
 		Connection con = getConnection();
@@ -33,12 +33,20 @@ public class ReviewLikeCountService {
 		return isLikeSuccess;
 	}
 
-	public int ReviewLikeCount() {
-		System.out.println("ReCommentWriteProService - ReviewLikeCount");
+
+	public boolean getArticle(int num) throws Exception {
+		System.out.println("ReCommentWriteProService - getArticle");
 		
-		int likeCount = 0;
+		Connection con = getConnection();
 		
-		return likeCount;
+		ReviewDAO reviewDAO = ReviewDAO.getInstance();
+		
+		reviewDAO.setConnection(con);
+		
+		ReviewBean article = reviewDAO.selectArtticle(num);
+		
+		return false;
 	}
+
 
 }

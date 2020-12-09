@@ -400,7 +400,14 @@ public class ReviewDAO {
 			}
 			return insertLike;
 		}
-		
-		// 좋아요 등록 수 ---------------------------------------------------
+
+		// 리뷰 게시물 조회 ---------------------------------------------------	
+		public ReviewBean selectArtticle(int num) {
+			System.out.println("ReviewDAO - 11. insertLikeCount()");
+			
+			return null;
+		}
+
+		// 좋아요 등록 수 ---------------------------------------------------		
 		
 	}

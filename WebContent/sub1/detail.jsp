@@ -7,13 +7,14 @@
 <jsp:include page="../include/header.jsp"/>
 
    <%
-	String id = (String) session.getAttribute("id");
+	String id = (String)session.getAttribute("id");
 	if (id == null) {
-	id = "admin";
+	id = "kim";
 	}
+	
 	String isbn = (String)request.getAttribute("page");
 	if (isbn == null) {
-	isbn = "1";
+	isbn = "2";
 	}
 	
     ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
@@ -64,7 +65,7 @@
 								<div>
 									<span class="list-star rank0"></span>
 									<p class="rank-user"><span>0.0</span>(0명)</p>
-									<p class="review-user">서평(<span>0</span>)</p>
+									<p class="review-user">서평(<span><%=listCount %></span>)</p>
 									<button class="share">공유하기</button>
 									<div class="js-share-box">
 										<span class="share-dot"></span>
@@ -186,27 +187,26 @@
 	<h3>서평(<span><%=listCount %></span>)</h3>
 	<div class="review-text-area">
 		<p class="star-gogo">
-			<input type="hidden" name="starcount" value=0>
-			<input type="radio" name="star" class="star-1" id="star-1" value=1>
+			<input type="radio" name="starcount" class="star-1" id="star-1" value=1>
 			<label class="star-1" for="star-1">1</label>
-			<input type="radio" name="star" class="star-2" id="star-2" value=2>
+			<input type="radio" name="starcount" class="star-2" id="star-2" value=2>
 			<label class="star-2" for="star-2">2</label>
-			<input type="radio" name="star" class="star-3" id="star-3" value=3>
+			<input type="radio" name="starcount" class="star-3" id="star-3" value=3>
 			<label class="star-3" for="star-3">3</label>
-			<input type="radio" name="star" class="star-4" id="star-4" value=4>
+			<input type="radio" name="starcount" class="star-4" id="star-4" value=4>
 			<label class="star-4" for="star-4">4</label>
-			<input type="radio" name="star" class="star-5" id="star-5" value=5>
+			<input type="radio" name="starcount" class="star-5" id="star-5" value=5>
 			<label class="star-5" for="star-5">5</label>
-			<input type="radio" name="star" class="star-6" id="star-6" value=6>
-			<label class="star-6" for="star-6">6</label>
-			<input type="radio" name="star" class="star-7" id="star-7" value=7>
-			<label class="star-7" for="star-7">7</label>
-			<input type="radio" name="star" class="star-8" id="star-8" value=8>
-			<label class="star-8" for="star-8">8</label>
-			<input type="radio" name="star" class="star-9" id="star-9" value=9>
-			<label class="star-9" for="star-9">9</label>
-			<input type="radio" name="star" class="star-10" id="star-10" value=10>
-			<label class="star-10" for="star-10">10</label>
+			<input type="radio" name="starcount" class="star-6" id="star-6" value=6>
+			<label class="star-6" for="star-6">5</label>
+			<input type="radio" name="starcount" class="star-7" id="star-7" value=7>
+			<label class="star-7" for="star-7">5</label>
+			<input type="radio" name="starcount" class="star-8" id="star-8" value=8>
+			<label class="star-8" for="star-8">5</label>
+			<input type="radio" name="starcount" class="star-9" id="star-9" value=9>
+			<label class="star-9" for="star-9">5</label>
+			<input type="radio" name="starcount" class="star-10" id="star-10" value=10>
+			<label class="star-10" for="star-10">5</label>
 			<span></span>
 		</p>
 		<p class="star-vote">별점으로 평가해주세요.</p>
@@ -303,11 +303,11 @@
 				<div class="btn_inner">
 						<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
 						<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>" class="heart-btn btn" data-review-num="498631">삭제</a>
-						<a href="javascript:;" class="heart-btn btn" data-review-num="498631">좋아요</a>
+						<a href="javascript:;" class="heart-btn btn" data-review-num="<%=articleList.get(i).getNum()%>" data-like-id="<%=id%>">좋아요</a>
 						<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
 				</div>
 			</div>
-			
+								
 			<!-- 서평 수정-->
 			<div class="cmtModi" style="display: none;">
 				<form action="ReviewModifyPro.re" class="comment-write reply-write" method="post" id="MyReModify">
@@ -336,8 +336,8 @@
 					</div>
 				</form>
 			</div>
-			<!-- 서평 수정-->	
-			
+			<!-- 서평 수정-->
+		
 			<!-- 댓글 등록 입력창-->
 			<div class="cmtRly clearfix" data-review-num="498631" data-comment-num="" style="display: block;">
 				<form action="ReCommentWritePro.re" class="comment-write reply-write" method="get" id="myReComment">
@@ -356,7 +356,7 @@
 					</div>
 				</form>
 			</div>
-			
+		
 			<%
 				}
 			}
@@ -465,6 +465,7 @@
 
 			// 좋아요
 			$(".heart-btn").on("click",function() {
+				var num = $(this).data("review-num");
 				var review_num = $(this).data("review-num");
 				var like_id = $(this).data("like-id");
 				alert(review_num);
@@ -472,9 +473,10 @@
 				$.ajax({
 					url: 'ReviewlikeCount.re',
 					type: "POST",
-					data: {review_num, like_id},
+					data: {num,review_num,like_id},
 					success: function(data){
-						alert("성공!~")
+						alert("성공!~");
+						
 					},
 				});
 		});	
@@ -575,71 +577,7 @@
 		</div>
 
 	</section>
-	<script type="text/javascript">
-// 		$(document).ready(function(){
-			
-// 			//리뷰 입력창
-// 			$(".cmtModi").hide();
-// 			$(".cmtRly").hide();
-// 			//리뷰댓글 수정입력창 보이기
-// 			$(".rview_modi_show").on("click", function() {
-// 				$(".cmtModi").hide();
-// 				$(".cmtRly").hide();
-// 				var modi = $(this).parent().parent().next();
-// 			    if (modi.css("display") == "none") {
-// 			    	$(".cmtModi").hide();
-// 					$(".cmtRly").hide();
-// 			        $(this).parent().parent().next().show();
-// 			    } else {
-// 			        $(this).parent().parent().next().hide();
-// 			    }
-// 			    if ($(this).data("comment-count") > 0) {
-// 			        if (modi.css("display") == "none") {
-// 			        	$(".cmtModi").hide();
-// 						$(".cmtRly").hide();
-// 			            $(this).parent().parent().next().next().next().show();
-// 			        } else {
-// 			            $(this).parent().parent().next().next().next().hide();
-// 			        }
-			
-// 			    }
-// 			});
-			
-// 			//리뷰대댓글 입력창 보이기
-// 			$(".comment_write_show").on("click", function() {
-				
-// 				var reply = $(this).parent().parent().next().next();
-// 			    if (reply.css("display") == "none") {
-// 			    	$(".cmtModi").hide();
-// 					$(".cmtRly").hide();
-// 			        $(this).parent().parent().next().next().show();
-// 			    } else {
-// 			        $(this).parent().parent().next().next().hide();
-// 			    }
-// 			    if ($(this).data("comment-count") > 0) {
-// 			        if (reply.css("display") == "none") {
-// 			        	$(".cmtModi").hide();
-// 						$(".cmtRly").hide();
-// 			            $(this).parent().parent().next().next().next().show();
-// 			        } else {
-// 			            $(this).parent().parent().next().next().next().hide();
-// 			        }
-			
-// 			    }
-// 			});
-// 			//댓글 입력창 보이기(수정)
-// 			$(".comment_modify").on("click", function() {
-// 			    if ($.cookie("user_num")) {
-// 			        $(this).parent().parent().parent().parent().hide();
-// 			        $(this).parent().parent().parent().parent().next().show();
-// 			    } else {
-// 			        goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
-// 			        //							alert('로그인 후 이용가능합니다.');
-// 			        return;
-// 			    }
-// 			});
-// 		});
- 		</script>
+
 
 <!-- 	<script>
 		$(function(){
