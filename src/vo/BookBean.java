@@ -1,12 +1,14 @@
 package vo;
 
+import java.sql.Date;
+
 public class BookBean {
 		private int num;
 	    private String title;
 	    private String image;
 	    private String author;
 	    private String publisher;
-	    private String pubdate;
+	    private Date pubdate;
 	    private String isbn;
 	    private String description;
 	    private String catg1;
@@ -46,10 +48,10 @@ public class BookBean {
 	    public void setPublisher(String publisher) {
 	        this.publisher = publisher;
 	    }
-	    public String getPubdate() {
+	    public Date getPubdate() {
 	        return pubdate;
 	    }
-	    public void setPubdate(String pubdate) {
+	    public void setPubdate(Date pubdate) {
 	        this.pubdate = pubdate;
 	    }
 	    public String getIsbn() {
