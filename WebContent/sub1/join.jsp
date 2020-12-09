@@ -83,7 +83,7 @@
 					<div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="catg" id="catg" value="소설">
+								<input type="checkbox" name="catg" id="catg" value="소설" onclick="doOpenCheck(this);">
 								<span><i></i></span>
 							</label>
 							<p>소설</p>
@@ -91,7 +91,7 @@
 						
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="catg" id="catg" value="인문">
+								<input type="checkbox" name="catg" id="catg" value="인문" onclick="doOpenCheck(this);">
 								<span><i></i></span>
 							</label>
 							<p>인문</p>
@@ -99,7 +99,7 @@
 						
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="catg" id="catg" value="자기계발">
+								<input type="checkbox" name="catg" id="catg" value="자기계발" onclick="doOpenCheck(this);">
 								<span><i></i></span>
 							</label>
 							<p>자기계발</p>
@@ -107,7 +107,7 @@
 						
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="catg" id="catg" value="경제">
+								<input type="checkbox" name="catg" id="catg" value="경제" onclick="doOpenCheck(this);">
 								<span><i></i></span>
 							</label>
 							<p>경제</p>
@@ -115,7 +115,7 @@
 						
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="catg" id="catg" value="과학">
+								<input type="checkbox" name="catg" id="catg" value="과학" onclick="doOpenCheck(this);">
 								<span><i></i></span>
 							</label>
 							<p>과학</p>
@@ -123,7 +123,7 @@
 						
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="catg" id="catg" value="IT">
+								<input type="checkbox" name="catg" id="catg" value="IT" onclick="doOpenCheck(this);">
 								<span><i></i></span>
 							</label>
 							<p>IT</p>
@@ -131,7 +131,7 @@
 						
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="catg" id="catg" value="취미">
+								<input type="checkbox" name="catg" id="catg" value="취미" onclick="doOpenCheck(this);">
 								<span><i></i></span>
 							</label>
 							<p>취미</p>
@@ -139,7 +139,7 @@
 						
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="catg" id="catg" value="만화">
+								<input type="checkbox" name="catg" id="catg" value="만화" onclick="doOpenCheck(this);">
 								<span><i></i></span>
 							</label>
 							<p>만화</p>
@@ -147,7 +147,7 @@
 						
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name="catg" id="catg" value="웹소설">
+								<input type="checkbox" name="catg" id="catg" value="웹소설" onclick="doOpenCheck(this);">
 								<span><i></i></span>
 							</label>
 							<p>웹소설</p>
@@ -294,20 +294,30 @@
 			myElement.style.padding="0.3em";
 			
 		}
-		$.ajax({
-			type:"GET",
-			url:"MemberCheck.me",
-			data : {
-                id : id
-            },
-			success : function(data) {
-				isIdCheckSuccess
-			}
-		})
-		
+			$.ajax({
+				type:"GET",
+				url:"MemberCheck.me",
+				data : {
+	                id : id
+	            },
+				success : function(data) {
+					
+					if(data==true){
+						$("#checkIdResult").text("이미 사용중이거나 탈퇴한 회원의 아이디 입니다.");
+						$("#checkIdResult").css("color","red");
+						checkIdResult = false;
+					} else {
+						/* $("#checkIdResult").text("이미 사용중이거나 탈퇴한 회원의 아이디 입니다.222");
+						$("#checkIdResult").css("color","red"); */
+					}
+				},
+	            error : function(data) {
+					$("#checkIdResult").text(data);
+					$("#checkIdResult").css("color","red");
+					/* checkIdResult = false; */
+				}
+			})
 	}
-	
-	
 	function checkPasswd(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
 		var passwd = passwdForm.value; // ID 입력폼의 입력값을 가져와서 변수에 저장
 		
@@ -423,16 +433,16 @@
 			checkPasswd2Result = true;
 		}
 	}
-	function checkAge (phoneForm) { 
-		var phone = phoneForm.value; 
+	function checkAge (ageForm) { 
+		var age = ageForm.value; 
 		
 		var regex =  /^\d{8}$/;
 		
 		var element = document.getElementById('checkAgeResult');
 		
 		
-		if(!regex.exec(phone)){
-			element.innerHTML = "예 19901225";
+		if(!regex.exec(age)){
+			element.innerHTML = "예> 19901225";
 			var myElement = document.getElementById('checkAgeResult');
 			myElement.style.color="red";
 			myElement.style.padding="0.3em";
@@ -445,7 +455,9 @@
 	
 	// 아이디, 패스워드 정규표현식 체크 후 정상이면 true 리턴(submit), 아니면 false 리턴
 	function check() {
-		if(checkIdResult && checkPasswdResult) {
+		if(checkIdResult && checkPasswdResult && checkNameResult 
+			&& checkEmailResult && checkPhoneResult && checkAgeResult 
+			&& checkPasswd2Result) {
 			return true;
 		} else {
 			alert('아이디 또는 패스워드 규칙 확인 필수!');
@@ -453,6 +465,28 @@
 		}
 	}
 	
+	$("input[name=all_chk]").on("click", function(){
+		$(this).prop("checked") ? $("input[name=reply_chk]").prop("checked", true) : $("input[name=reply_chk]").prop("checked", false);
+	});
+
+	$("input[name=reply_chk]").on("click", function(){
+		if($(this).prop("checked")){
+			if($("input[name=reply_chk]").length > 0 && $("input[name=reply_chk]:not(:checked)").length == 0){
+				$("input[name=all_chk]").prop("checked", true);
+			}
+		}else{
+			$("input[name=all_chk]").prop("checked", false);
+		}
+	});
+	
+	function doOpenCheck(chk){
+	    var obj = document.getElementsByName("catg");
+	    for(var i=0; i<obj.length; i++){
+	        if(obj[i] != chk){
+	            obj[i].checked = false;
+	        }
+	    }
+	}
 </script>
 		</div>
 	</section>

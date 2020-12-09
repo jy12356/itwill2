@@ -17,24 +17,30 @@ public class MemberCheckAction implements Action {
 
 		ActionForward forward = null;
 		String id = request.getParameter("id");
-		System.out.println("MemberCheckAction 아이디 가져오라그! "+id);
+		System.out.println("MemberCheckAction id : "+id);
 		MemberCheckService memberCheckService = new MemberCheckService();
+//		String data = null; 
 		boolean isIdCheckSuccess = memberCheckService.registArticle(id);
 		System.out.println(isIdCheckSuccess);
-		/*
-		 * if(!isIdCheckSuccess) {
-		 * 
-		 * response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
-		 * response.getWriter(); out.println("<script>"); // 자바스크립트 시작 태그
-		 * out.println("alert('로그인에 실패하였습니다.')"); // 다이얼로그 메세지 출력
-		 * out.println("history.back()"); // 이전 페이지로 이동 out.println("</script>"); //
-		 * 자바스크립트 끝 태그
-		 * 
-		 * } else { HttpSession session = request.getSession();
-		 * session.setAttribute("id", id); forward = new ActionForward();
-		 * forward.setPath("MemberModifyForm.me"); forward.setRedirect(false); }
-		 */
 
+//		if (!isIdCheckSuccess) {
+//			// "아이디중복"
+//			response.setContentType("text/html; charset=UTF-8");
+//			PrintWriter out = response.getWriter();
+//			out.println("<script>"); // 자바스크립트 시작 태그
+//			out.println("아이디 중복");
+//			out.println("</script>"); // 자바스크립트 끝 태그
+//		} else {
+//			// "아이디 사용가능"
+//			response.setContentType("text/html; charset=UTF-8");
+//			PrintWriter out = response.getWriter();
+//			out.println("<script>"); // 자바스크립트 시작 태그
+//			out.println("아이디 사용가능");
+//			out.println("</script>"); // 자바스크립트 끝 태그
+//		}
+		
+		forward = new ActionForward();
+		forward.setRedirect(false);
 		return forward;
 	}
 

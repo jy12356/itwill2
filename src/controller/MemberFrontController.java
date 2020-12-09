@@ -117,6 +117,16 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/Mypage.me")) {
+			System.out.println("Mypage");
+			action = new MyPageAction();
+			try {
+				forward = action.execute(request, response);
+				forward = new ActionForward();
+				forward.setPath("/sub1/mypage.jsp");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null) {

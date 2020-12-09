@@ -183,8 +183,8 @@ public class MemberDAO {
 		return articleList;
 	}
 	public MemberBean selectArticle(String id) {
-		// 글번호(board_num)에 해당하는 레코드를 SELECT
-		// 조회 결과가 있을 경우 BoardBean 객체에 저장한 뒤 리턴
+		// 湲�踰덊샇(board_num)�뿉 �빐�떦�븯�뒗 �젅肄붾뱶瑜� SELECT
+		// 議고쉶 寃곌낵媛� �엳�쓣 寃쎌슦 BoardBean 媛앹껜�뿉 ���옣�븳 �뮘 由ы꽩
 		MemberBean article = null;
 		
 		PreparedStatement pstmt = null;
@@ -197,7 +197,7 @@ public class MemberDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
-			// 게시물이 존재할 경우 BoardBean 객체를 생성하여 게시물 내용 저장
+			// 寃뚯떆臾쇱씠 議댁옱�븷 寃쎌슦 BoardBean 媛앹껜瑜� �깮�꽦�븯�뿬 寃뚯떆臾� �궡�슜 ���옣
 			if(rs.next()) {
 				article = new MemberBean();
 				article.setId(rs.getString("id"));
@@ -210,8 +210,8 @@ public class MemberDAO {
 				article.setPhone(rs.getString("phone"));
 				article.setCatg(rs.getString("catg"));
 				
-				// 임시 확인용 상세 내용 출력
-//				System.out.println("글 제목 : " + article.getBoard_subject());
+				// �엫�떆 �솗�씤�슜 �긽�꽭 �궡�슜 異쒕젰
+//				System.out.println("湲� �젣紐� : " + article.getBoard_subject());
 			}
 				
 			
@@ -309,7 +309,7 @@ public class MemberDAO {
 				System.out.println(id);
 				rs = pstmt.executeQuery();
 				
-				// 게시물이 존재할 경우 BoardBean 객체를 생성하여 게시물 내용 저장
+				// 寃뚯떆臾쇱씠 議댁옱�븷 寃쎌슦 BoardBean 媛앹껜瑜� �깮�꽦�븯�뿬 寃뚯떆臾� �궡�슜 ���옣
 				if(rs.next()) {
 					article = new MemberBean();
 					article.setId(rs.getString("id"));
@@ -321,13 +321,13 @@ public class MemberDAO {
 					article.setEmail(rs.getString("email"));
 					article.setNum(rs.getInt("num"));
 					article.setPhone(rs.getString("phone"));
-					// 임시 확인용 상세 내용 출력
-//					System.out.println("글 제목 : " + article.getBoard_subject());
+					// �엫�떆 �솗�씤�슜 �긽�꽭 �궡�슜 異쒕젰
+//					System.out.println("湲� �젣紐� : " + article.getBoard_subject());
 				}
 					
 				
 			} catch (SQLException e) {
-				System.out.println("selectArticle() 오류! - " + e.getMessage());
+				System.out.println("selectArticle() �삤瑜�! - " + e.getMessage());
 				e.printStackTrace();
 			} finally {
 				close(rs);
@@ -337,29 +337,29 @@ public class MemberDAO {
 			
 			return article;
 		}
-
+		
 		public boolean isIdCheck(String id) throws LoginException  {
 			boolean isIdCheckSuccess = false;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
-			System.out.println("111여기보세여~ id = "+id);
 			try {
 				String sql = "SELECT id FROM member WHERE id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
-				System.out.println("222여기보세여~ id = "+id);
-				isIdCheckSuccess=true;
+				
+				if(rs.next()) {
+					isIdCheckSuccess=true;
+				} else {
+					
+				}
 			} catch (SQLException e) {
 				System.out.println("isIdCheck() ERROR! - " + e.getMessage());
-				
 				e.printStackTrace();
 			} finally {
-				
 				close(rs);
 				close(pstmt);
 			}
-			
 			return isIdCheckSuccess;
 		}
 	}
