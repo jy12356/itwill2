@@ -401,11 +401,11 @@ public class BookDAO {
 		int startRow=(page-1)*limit;
 		
 		String sql = "select i.num num, "
-						+ "i.isbn isbn,i.id id, b.title title, b.author author, "
-						+ "b.publisher publisher, b.pubdate pubdate, "
-						+ "case when b.state = 0 then '대여가능' else '대여불가능' end as state "
-						+ "from interestinglist  as i join book as b on i.isbn = b.isbn "
-						+ "where i.id=? order by i.num desc limit ?,?;";
+				+ "i.isbn isbn,i.id id, b.title title, b.author author, "
+				+ "b.publisher publisher, b.pubdate pubdate, "
+				+ "case when b.state = 0 then '대여가능' else '대여불가능' end as state "
+				+ "from interestinglist  as i join book as b on i.isbn = b.isbn "
+				+ "where i.id=? order by i.num desc limit ?,?;";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -436,30 +436,47 @@ public class BookDAO {
 		}
 		return bookListDibsList;
 	}
-	
-	
-	public int istBookDibsList(String isbn, String id) {
-		int istBookDibsList = 0;
+	public int dibsDelete(String id, int num) {
+		System.out.println("bookDAO - dibsDelete");
+		int isDeleteOk = 0;
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "delete from interestinglist where id=? and num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2,num);
+			isDeleteOk = pstmt.executeUpdate();
+		}catch (Exception e) {
+			System.out.println("dibsDelete 오류!" + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return isDeleteOk;
+	}
+	public int dibsYn(String id, int num) {
+		int isDibsYnCount = 0;
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT isbn FROM interestinglist WHERE id=? and isbn=?";
-			pstmt = con.prepareStatement(sql);
+			String sql = "select * from book where id=? and num =?";
+			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setString(2, isbn);
+			pstmt.setInt(2, num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				istBookDibsList=1;			
+				isDibsYnCount = 1;
 			}
-		} catch (SQLException e) {
-			System.out.println("istBookDibsList() ERROR! - " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("isDibsYnCount 오류!" + e.getMessage() );
 			e.printStackTrace();
-		} finally {
-			close(rs);
+		}finally{
 			close(pstmt);
+			close(rs);
 		}
-		return istBookDibsList;
-	
+		
+		return isDibsYnCount;
 	}
-
 }
+
