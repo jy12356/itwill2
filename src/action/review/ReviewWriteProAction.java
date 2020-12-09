@@ -2,7 +2,6 @@ package action.review;
 
 import java.io.PrintWriter;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,11 +20,20 @@ public class ReviewWriteProAction implements Action {
 		
 //		// 현재 컨텍스트(객체) 정보 가져오기 위해  request 객체의 getServletContext() 메서드를 호출
 //		ServletContext context = request.getServletContext();
-		
+			
 		ReviewBean reviewBean = new ReviewBean();
+		
+		// 12.06 
+//		System.out.println("글쓴이 : " + request.getParameter("id")); 
+//		System.out.println("글내용 : " + request.getParameter("content"));
+//		System.out.println("별점 : " + Integer.parseInt(request.getParameter("starcount")));
+//		System.out.println("페이지번호 : " + request.getParameter("isbn"));
+//		System.out.println("스포 : " + Integer.parseInt(request.getParameter("spoiler")));
+		 
 		
 		reviewBean.setId(request.getParameter("id"));
 		reviewBean.setContent(request.getParameter("content"));
+		reviewBean.setStarcount(Integer.parseInt(request.getParameter("starcount"))); 
 		reviewBean.setIsbn(request.getParameter("isbn"));
 		reviewBean.setSpoiler(Integer.parseInt(request.getParameter("spoiler")));
 		
