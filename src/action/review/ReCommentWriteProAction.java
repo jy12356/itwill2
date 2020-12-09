@@ -20,10 +20,10 @@ public class ReCommentWriteProAction implements Action {
 		
 		CommentBean commentBean = new CommentBean();
 		
-		commentBean.setBoard_type(Integer.parseInt(request.getParameter("board_type")));
-		commentBean.setBoard_num(Integer.parseInt(request.getParameter("board_num")));
-		commentBean.setComment_id(request.getParameter("comment_id"));
-		commentBean.setComment_desc(request.getParameter("comment_desc"));
+		commentBean.setBoard_type(Integer.parseInt(request.getParameter("board_type"))); // 리뷰게시판
+		commentBean.setBoard_num(Integer.parseInt(request.getParameter("board_num"))); // 리뷰게시번호
+		commentBean.setComment_id(request.getParameter("comment_id")); // 댓글ID
+		commentBean.setComment_desc(request.getParameter("comment_desc")); // 댓글내용
 		
 		System.out.println("댓글내용 :" + commentBean.getComment_desc());
 		
