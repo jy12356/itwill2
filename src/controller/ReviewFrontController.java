@@ -18,6 +18,7 @@ import action.review.ReviewDeleteProAction;
 import action.review.ReviewListAction;
 import action.review.ReviewModifyProAction;
 import action.review.ReviewWriteProAction;
+import action.review.ReviewLikeCountAction;
 import vo.ActionForward;
 
 
@@ -100,6 +101,15 @@ public class ReviewFrontController extends HttpServlet {
 		} else if(command.equals("/ReCommentList.re")) { // 댓글 리스트
 			System.out.println("ReCommentList.re 포워딩");
 			action = new ReCommentListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/ReviewlikeCount.re")) { // 댓글 리스트
+			System.out.println("ReviewlikeCount.re 포워딩");
+			action = new ReviewLikeCountAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

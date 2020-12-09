@@ -42,6 +42,7 @@ public class ReviewModifyService {
 		
 		if(updateCount > 0) {
 			commit(con);
+			isModifySuccess = true;
 		} else {
 			rollback(con);
 		}

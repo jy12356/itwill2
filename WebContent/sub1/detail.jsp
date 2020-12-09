@@ -11,6 +11,10 @@
 	if (id == null) {
 	id = "admin";
 	}
+	String isbn = (String)request.getAttribute("page");
+	if (isbn == null) {
+	isbn = "1";
+	}
 	
     ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
@@ -152,7 +156,7 @@
 								<li class="on"><a href="javascript:;">책소개</a><span></span></li>
 								<li><a href="javascript:;">목차</a><span></span></li>
 								<li><a href="javascript:;">저자소개</a><span></span></li>
-								<li><a href="javascript:;">서평<span>(0)</span></a><span></span></li>
+								<li><a href="javascript:;">서평<span>(<%=listCount %>)</span></a><span></span></li>
 							</ul>
 						</div>
 					</div>
@@ -182,26 +186,27 @@
 	<h3>서평(<span><%=listCount %></span>)</h3>
 	<div class="review-text-area">
 		<p class="star-gogo">
-			<input type="radio" name="star" class="star-1" id="star-1" value="0.5">
+			<input type="hidden" name="starcount" value=0>
+			<input type="radio" name="star" class="star-1" id="star-1" value=1>
 			<label class="star-1" for="star-1">1</label>
-			<input type="radio" name="star" class="star-2" id="star-2" value="1">
+			<input type="radio" name="star" class="star-2" id="star-2" value=2>
 			<label class="star-2" for="star-2">2</label>
-			<input type="radio" name="star" class="star-3" id="star-3" value="1.5">
+			<input type="radio" name="star" class="star-3" id="star-3" value=3>
 			<label class="star-3" for="star-3">3</label>
-			<input type="radio" name="star" class="star-4" id="star-4" value="2">
+			<input type="radio" name="star" class="star-4" id="star-4" value=4>
 			<label class="star-4" for="star-4">4</label>
-			<input type="radio" name="star" class="star-5" id="star-5" value="2.5">
+			<input type="radio" name="star" class="star-5" id="star-5" value=5>
 			<label class="star-5" for="star-5">5</label>
-			<input type="radio" name="star" class="star-6" id="star-6" value="3">
-			<label class="star-6" for="star-6">5</label>
-			<input type="radio" name="star" class="star-7" id="star-7" value="3.5">
-			<label class="star-7" for="star-7">5</label>
-			<input type="radio" name="star" class="star-8" id="star-8" value="4">
-			<label class="star-8" for="star-8">5</label>
-			<input type="radio" name="star" class="star-9" id="star-9" value="4.5">
-			<label class="star-9" for="star-9">5</label>
-			<input type="radio" name="star" class="star-10" id="star-10" value="5">
-			<label class="star-10" for="star-10">5</label>
+			<input type="radio" name="star" class="star-6" id="star-6" value=6>
+			<label class="star-6" for="star-6">6</label>
+			<input type="radio" name="star" class="star-7" id="star-7" value=7>
+			<label class="star-7" for="star-7">7</label>
+			<input type="radio" name="star" class="star-8" id="star-8" value=8>
+			<label class="star-8" for="star-8">8</label>
+			<input type="radio" name="star" class="star-9" id="star-9" value=9>
+			<label class="star-9" for="star-9">9</label>
+			<input type="radio" name="star" class="star-10" id="star-10" value=10>
+			<label class="star-10" for="star-10">10</label>
 			<span></span>
 		</p>
 		<p class="star-vote">별점으로 평가해주세요.</p>
@@ -210,8 +215,9 @@
 			<div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" class="spoiler">
+						<input type="checkbox" class="spoiler" name="spoiler" value=1>
 						<span><i></i></span>
+						<input type="hidden" class="spoiler" name="spoiler" value=0>
 					</label>
 					<p>스포일러가 포함되어 있습니다.</p>
 				</div>
@@ -221,7 +227,7 @@
 				</div>
 			</div>
 			<input type="hidden" name="id" value="<%=id%>">
-			<input type="hidden" name="isbn" value="1">
+			<input type="hidden" name="isbn" value="<%=isbn%>">
 			<textarea name="content" placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>
 		</div>
 	</div>
@@ -287,6 +293,9 @@
 					<span class="list-star rank10"><%=articleList.get(i).getStarcount() %></span>
 					<em>|</em>좋아요  <%=articleList.get(i).getLikecount() %>
 					<em>|</em>댓글 0
+					<%if(articleList.get(i).getSpoiler()==1){%>
+					<em>|</em>스포일러 포함
+					<%} %>
 				</p>
 				<div class="comment-content">
 					<span><%=articleList.get(i).getContent() %></span>				
@@ -302,14 +311,28 @@
 			<!-- 서평 수정-->
 			<div class="cmtModi" style="display: none;">
 				<form action="ReviewModifyPro.re" class="comment-write reply-write" method="post" id="MyReModify">
+					<div class="checkbox">
+					<label>
+						<%if(articleList.get(i).getSpoiler()==1){%>
+						<input type="checkbox" class="spoiler" name="spoiler" checked="checked" value=<%=articleList.get(i).getSpoiler() %>>
+						<span><i></i></span>
+						<input type="hidden" class="spoiler" name="spoiler" value=0>
+						<%} else {%>
+						<input type="checkbox" class="spoiler" name="spoiler" value=<%=articleList.get(i).getSpoiler() %>>
+						<span><i></i></span>
+						<input type="hidden" class="spoiler" name="spoiler" value=1>
+						<%} %>
+					</label>
+					<p>스포일러가 포함되어 있습니다.</p>
+					</div>
 					<div>
 						<input type="hidden" name="num" value="<%=articleList.get(i).getNum()%>">
 						<input type="hidden" name="id" value="<%=articleList.get(i).getId() %>">
 						<textarea name="content"><%=articleList.get(i).getContent() %></textarea>
 					</div>
 					<div class="btn_inner">
-						<input type="submit" value="수정" class="btn">
-						<input type="reset" value="취소" class="btn">
+						<input type="submit" value="수정" class="btn reviewInput">
+						<input type="reset" value="취소" class="btn reviewCancele">
 					</div>
 				</form>
 			</div>
@@ -333,6 +356,7 @@
 					</div>
 				</form>
 			</div>
+			
 			<%
 				}
 			}
@@ -369,7 +393,94 @@
 
 	<!-- 댓글수정/대댓글 -->
 <!-- ------------------------------------------------------------------------------ -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			//리뷰 입력창
+			$(".cmtModi").hide();
+			$(".cmtRly").hide();
+			//리뷰댓글 수정입력창 보이기
+			$(".rview_modi_show").on("click", function() {
+				$(".cmtModi").hide();
+				$(".cmtRly").hide();
+				var modi = $(this).parent().parent().next();
+			    if (modi.css("display") == "none") {
+			    	$(".cmtModi").hide();
+					$(".cmtRly").hide();
+			        $(this).parent().parent().next().show();
+			    } else {
+			        $(this).parent().parent().next().hide();
+			    }
+			    if ($(this).data("comment-count") > 0) {
+			        if (modi.css("display") == "none") {
+			        	$(".cmtModi").hide();
+						$(".cmtRly").hide();
+			            $(this).parent().parent().next().next().next().show();
+			        } else {
+			            $(this).parent().parent().next().next().next().hide();
+			        }
+			
+			    }
+			});
+			
+			//리뷰대댓글 입력창 보이기
+			$(".comment_write_show").on("click", function() {
+				
+				var reply = $(this).parent().parent().next().next();
+			    if (reply.css("display") == "none") {
+			    	$(".cmtModi").hide();
+					$(".cmtRly").hide();
+			        $(this).parent().parent().next().next().show();
+			    } else {
+			        $(this).parent().parent().next().next().hide();
+			    }
+			    if ($(this).data("comment-count") > 0) {
+			        if (reply.css("display") == "none") {
+			        	$(".cmtModi").hide();
+						$(".cmtRly").hide();
+			            $(this).parent().parent().next().next().next().show();
+			        } else {
+			            $(this).parent().parent().next().next().next().hide();
+			        }
+			
+			    }
+			});
+			//댓글 입력창 보이기(수정)
+			$(".comment_modify").on("click", function() {
+			    if ($.cookie("user_num")) {
+			        $(this).parent().parent().parent().parent().hide();
+			        $(this).parent().parent().parent().parent().next().show();
+			    } else {
+			        goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
+			        //							alert('로그인 후 이용가능합니다.');
+			        return;
+			    }
+			});
+			
+			// 리뷰수정/댓글 입력창 닫기
+			$(".reviewCancele").on("click", function() {
+				$(".cmtModi").hide();
+				$(".cmtRly").hide();
+				});
 
+			// 좋아요
+			$(".heart-btn").on("click",function() {
+				var review_num = $(this).data("review-num");
+				var like_id = $(this).data("like-id");
+				alert(review_num);
+				alert(like_id);
+				$.ajax({
+					url: 'ReviewlikeCount.re',
+					type: "POST",
+					data: {review_num, like_id},
+					success: function(data){
+						alert("성공!~")
+					},
+				});
+		});	
+	});
+		
+	</script>
 <!-- ------------------------------------------------------------------------------ -->
 
 <!-- ------------------------------------------------------------------------------ -->
@@ -465,70 +576,70 @@
 
 	</section>
 	<script type="text/javascript">
-		$(document).ready(function(){
+// 		$(document).ready(function(){
 			
-			//리뷰 입력창
-			$(".cmtModi").hide();
-			$(".cmtRly").hide();
-			//리뷰댓글 수정입력창 보이기
-			$(".rview_modi_show").on("click", function() {
-				$(".cmtModi").hide();
-				$(".cmtRly").hide();
-				var modi = $(this).parent().parent().next();
-			    if (modi.css("display") == "none") {
-			    	$(".cmtModi").hide();
-					$(".cmtRly").hide();
-			        $(this).parent().parent().next().show();
-			    } else {
-			        $(this).parent().parent().next().hide();
-			    }
-			    if ($(this).data("comment-count") > 0) {
-			        if (modi.css("display") == "none") {
-			        	$(".cmtModi").hide();
-						$(".cmtRly").hide();
-			            $(this).parent().parent().next().next().next().show();
-			        } else {
-			            $(this).parent().parent().next().next().next().hide();
-			        }
+// 			//리뷰 입력창
+// 			$(".cmtModi").hide();
+// 			$(".cmtRly").hide();
+// 			//리뷰댓글 수정입력창 보이기
+// 			$(".rview_modi_show").on("click", function() {
+// 				$(".cmtModi").hide();
+// 				$(".cmtRly").hide();
+// 				var modi = $(this).parent().parent().next();
+// 			    if (modi.css("display") == "none") {
+// 			    	$(".cmtModi").hide();
+// 					$(".cmtRly").hide();
+// 			        $(this).parent().parent().next().show();
+// 			    } else {
+// 			        $(this).parent().parent().next().hide();
+// 			    }
+// 			    if ($(this).data("comment-count") > 0) {
+// 			        if (modi.css("display") == "none") {
+// 			        	$(".cmtModi").hide();
+// 						$(".cmtRly").hide();
+// 			            $(this).parent().parent().next().next().next().show();
+// 			        } else {
+// 			            $(this).parent().parent().next().next().next().hide();
+// 			        }
 			
-			    }
-			});
+// 			    }
+// 			});
 			
-			//리뷰대댓글 입력창 보이기
-			$(".comment_write_show").on("click", function() {
+// 			//리뷰대댓글 입력창 보이기
+// 			$(".comment_write_show").on("click", function() {
 				
-				var reply = $(this).parent().parent().next().next();
-			    if (reply.css("display") == "none") {
-			    	$(".cmtModi").hide();
-					$(".cmtRly").hide();
-			        $(this).parent().parent().next().next().show();
-			    } else {
-			        $(this).parent().parent().next().next().hide();
-			    }
-			    if ($(this).data("comment-count") > 0) {
-			        if (reply.css("display") == "none") {
-			        	$(".cmtModi").hide();
-						$(".cmtRly").hide();
-			            $(this).parent().parent().next().next().next().show();
-			        } else {
-			            $(this).parent().parent().next().next().next().hide();
-			        }
+// 				var reply = $(this).parent().parent().next().next();
+// 			    if (reply.css("display") == "none") {
+// 			    	$(".cmtModi").hide();
+// 					$(".cmtRly").hide();
+// 			        $(this).parent().parent().next().next().show();
+// 			    } else {
+// 			        $(this).parent().parent().next().next().hide();
+// 			    }
+// 			    if ($(this).data("comment-count") > 0) {
+// 			        if (reply.css("display") == "none") {
+// 			        	$(".cmtModi").hide();
+// 						$(".cmtRly").hide();
+// 			            $(this).parent().parent().next().next().next().show();
+// 			        } else {
+// 			            $(this).parent().parent().next().next().next().hide();
+// 			        }
 			
-			    }
-			});
-			//댓글 입력창 보이기(수정)
-			$(".comment_modify").on("click", function() {
-			    if ($.cookie("user_num")) {
-			        $(this).parent().parent().parent().parent().hide();
-			        $(this).parent().parent().parent().parent().next().show();
-			    } else {
-			        goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
-			        //							alert('로그인 후 이용가능합니다.');
-			        return;
-			    }
-			});
-		});
-	</script>
+// 			    }
+// 			});
+// 			//댓글 입력창 보이기(수정)
+// 			$(".comment_modify").on("click", function() {
+// 			    if ($.cookie("user_num")) {
+// 			        $(this).parent().parent().parent().parent().hide();
+// 			        $(this).parent().parent().parent().parent().next().show();
+// 			    } else {
+// 			        goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
+// 			        //							alert('로그인 후 이용가능합니다.');
+// 			        return;
+// 			    }
+// 			});
+// 		});
+ 		</script>
 
 <!-- 	<script>
 		$(function(){

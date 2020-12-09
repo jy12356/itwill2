@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.security.auth.login.LoginException;
+
 import vo.BookBean;
 import vo.BookInterestBean;
 
@@ -398,7 +400,12 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		
-		String sql = "select i.num num, i.isbn isbn, b.title title from interestinglist  as i join book as b on i.num = b.num where id=? order by i.num desc limit ?,?;";
+		String sql = "select i.num num, "
+						+ "i.isbn isbn,i.id id, b.title title, b.author author, "
+						+ "b.publisher publisher, b.pubdate pubdate, "
+						+ "case when b.state = 0 then '대여가능' else '대여불가능' end as state "
+						+ "from interestinglist  as i join book as b on i.isbn = b.isbn "
+						+ "where i.id=? order by i.num desc limit ?,?;";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -413,6 +420,10 @@ public class BookDAO {
 				bookInterestBean.setIsbn(rs.getString("isbn"));
 				bookInterestBean.setId(rs.getString("id"));
 				bookInterestBean.setTitle(rs.getString("title"));
+				bookInterestBean.setAuthor(rs.getString("author"));
+				bookInterestBean.setPublisher(rs.getString("publisher"));
+				bookInterestBean.setPubdate(rs.getDate("pubdate"));
+				bookInterestBean.setState(rs.getString("state"));
 				bookListDibsList.add(bookInterestBean);
 			}
 			
@@ -425,4 +436,30 @@ public class BookDAO {
 		}
 		return bookListDibsList;
 	}
+	
+	
+	public int istBookDibsList(String isbn, String id) {
+		int istBookDibsList = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT isbn FROM interestinglist WHERE id=? and isbn=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, isbn);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				istBookDibsList=1;			
+			}
+		} catch (SQLException e) {
+			System.out.println("istBookDibsList() ERROR! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return istBookDibsList;
+	
+	}
+
 }
