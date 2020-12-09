@@ -88,8 +88,8 @@ String id = (String)session.getAttribute("id");
 						<%}else{ %>
 						<ul class="my-lnb">
 							<li class="btnLogOut"><a href="MemberLogOut.me">로그아웃</a></li>
-							<li><a href="https://www.bookcube.com/mypage.asp?list=_main" class="mypop on">MY</a></li>
-							<li><a href="MyBasket.me">책바구니</a></li>
+							<li><a href="MyPage?id=<%=id%>">MY</a></li>
+							<li><a href="MyBasketInsert.bk">책바구니</a></li>
 							<li class="alarm on"><a href="#">알리미</a></li>
 						</ul>
 						<%} %>
