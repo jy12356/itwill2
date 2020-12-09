@@ -7,7 +7,7 @@
 			<div class="charge-top">
 				<div class="ct-inner">
 					<div>
-						<h2>동서남Book 북캐시 충전하기</h2>
+						<h2>동서남Book 북캐시 구독하기</h2>
 						<ul>
 							<li> - 매월 1일 ~ 3일 동서남Book 구독 초기화 및 연장 결제(1개월 / 3개월 / 12개월 적립금 유효기간 : 30일)</li>
 							<li> - 동서남Book 구독 결제 후 유료 서비스 및 콘텐츠 구매 시 환불 불가</li>

@@ -37,6 +37,7 @@ IMP.request_pay({
     }
 
     alert(msg);
+//     opener.location.href='QnaList.qna';
     window.close();
 });
 </script>
