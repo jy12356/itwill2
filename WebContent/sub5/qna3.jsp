@@ -1,4 +1,4 @@
-<%@page im	port="vo.PageInfo"%>
+<%@page import="vo.PageInfo"%>
 <%@page import="vo.QnaBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
