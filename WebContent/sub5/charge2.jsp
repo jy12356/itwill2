@@ -1,18 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
   </head>
   <body>
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 
 <script>
 var IMP = window.IMP;
 IMP.init('imp36747748');
 IMP.request_pay({
     pg : 'html5_inicis',
-    pay_method : 'vbank',
+    pay_method : 'card',
     merchant_uid : 'merchant_' + new Date().getTime(),
     name : '동서남Book 구독',
     amount : 100,
@@ -34,6 +37,7 @@ IMP.request_pay({
     }
 
     alert(msg);
+//     opener.location.href='QnaList.qna';
     window.close();
 });
 </script>
