@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:include page="../include/header.jsp"/>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
 <section class="sub">
 	<div class="contents-wrap">
 		<div class="charge">
@@ -185,7 +183,10 @@
 </section>
 <script>
 function cCheck(){
-	var win = window.open("charge.html","width=1200, height=950");
+	var u = "sub5/charge2.jsp";
+	var name = "charge2";
+	var option = "width = 900, height = 650, top = 100, left = 400, location = no"
+	window.open(u,name,option);
 }
 
 $(function(){	
