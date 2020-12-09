@@ -3,9 +3,11 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import vo.CommentBean;
+import vo.LikeBean;
 import vo.ReviewBean;
 
 import static db.JdbcUtil.*;
@@ -196,10 +198,11 @@ public class ReviewDAO {
 			PreparedStatement pstmt = null;
 			
 			try {
-				String sql="UPDATE review SET content=? WHERE num=?";
+				String sql="UPDATE review SET content=?, spoiler=? WHERE num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, article.getContent());
-				pstmt.setInt(2, article.getNum());
+				pstmt.setInt(2, article.getSpoiler());
+				pstmt.setInt(3, article.getNum());
 				updateCount = pstmt.executeUpdate();
 				
 			}catch(Exception e) {
@@ -359,5 +362,45 @@ public class ReviewDAO {
 
 		
 		// 리뷰 댓글 삭제 -------------------------------------------------
+		
+		// 좋아요 등록 ---------------------------------------------------
+		public int insertLikeCount(LikeBean likeBean) {
+			System.out.println("ReviewDAO - 11. insertLikeCount()");
+			
+			int insertLike = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			int like_num = 1;
+			
+			try {
+				String sql = "SELECT MAX(like_num) FROM likecount";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					like_num = rs.getInt(1) + 1;
+					}
+				sql = "INSERT INTO likecount values(?,?,?,?)";
+	
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, like_num);
+				pstmt.setString(2, likeBean.getLike_id());
+				pstmt.setInt(3, likeBean.getLike_check());
+				pstmt.setInt(4, likeBean.getReview_num());
+				
+				insertLike = pstmt.executeUpdate();
 
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("insertLikeCount() 오류! - " + e.getMessage());
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return insertLike;
+		}
+		
+		// 좋아요 등록 수 ---------------------------------------------------
+		
 	}
