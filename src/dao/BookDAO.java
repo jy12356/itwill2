@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.security.auth.login.LoginException;
+
 import vo.BookBean;
 import vo.BookInterestBean;
 
@@ -434,4 +436,30 @@ public class BookDAO {
 		}
 		return bookListDibsList;
 	}
+	
+	
+	public int istBookDibsList(String isbn, String id) {
+		int istBookDibsList = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT isbn FROM interestinglist WHERE id=? and isbn=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, isbn);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				istBookDibsList=1;			
+			}
+		} catch (SQLException e) {
+			System.out.println("istBookDibsList() ERROR! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return istBookDibsList;
+	
+	}
+
 }

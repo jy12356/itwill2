@@ -124,6 +124,15 @@ public class BookController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/BookNaverAPISearch.bok")) {
+			System.out.println("BookNaverAPISearch.bok 포워딩");
+			action = new BookDibsListInsertAction();
+			try {				
+				forward =  action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		//1.ActionForward객체 존재 여부 확인(객체가 존재할때 포워딩 수행)
