@@ -151,7 +151,7 @@
 <!-- 						</p> -->
 <!-- 					</div> -->
 					<div class="detail-btn">
-						<a href="MyBasket.bk?isbn=<%=bookBean.getIsbn()%>" data-order-type="buy" class="d-basket"><span>책바구니</span></a>
+						<a href="MyBasketInsert.bk?isbn=<%=bookBean.getIsbn()%>" data-order-type="buy" class="d-basket"><span>책바구니</span></a>
 						<a href="BookDibsInsert.bok?isbn=<%=bookBean.getIsbn()%>" class="effect-btn">찜바구니</a>
 						<a href="BookKindList.bok?isbn=<%=bookBean.getIsbn() %>" class="effect-btn">삭제하기</a>
 						<a href="BookModify.bok?isbn=<%=bookBean.getIsbn() %>&page=<%=nowPage%>" class="effect-btn">수정하기</a>
