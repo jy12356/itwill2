@@ -126,7 +126,7 @@ public class BookController extends HttpServlet {
 			}
 		}else if(command.equals("/BookNaverAPISearch.bok")) {
 			System.out.println("BookNaverAPISearch.bok 포워딩");
-			action = new BookDibsListInsertAction();
+//			action = new BookDibsListInsertAction();
 			try {				
 				forward =  action.execute(request, response);
 				
