@@ -402,7 +402,7 @@ public class BookDAO {
 						+ "i.isbn isbn,i.id id, b.title title, b.author author, "
 						+ "b.publisher publisher, b.pubdate pubdate, "
 						+ "case when b.state = 0 then '대여가능' else '대여불가능' end as state "
-						+ "from interestinglist  as i join book as b on i.num = b.num "
+						+ "from interestinglist  as i join book as b on i.isbn = b.isbn "
 						+ "where i.id=? order by i.num desc limit ?,?;";
 		try {
 			pstmt=con.prepareStatement(sql);

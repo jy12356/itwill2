@@ -21,7 +21,7 @@ public class NaverBookApiTest {
 	public static StringBuilder sb;
 	private String clientID="P3nq6LUKrLz6LOPOVOMf"; //네이버 개발자 센터에서 발급받은 clientID입력
 	private String clientSecret = "f_078uxS96";        //네이버 개발자 센터에서 발급받은 clientSecret입력
-	public List<BookBean> searchBookApi(String title) throws Exception{
+	public JSONObject searchBookApi(String title) throws Exception{
 		 //java코드로 특정 url에 요청보내고 응답받기
         //기본 자바 API를 활용한 방법
         
@@ -54,9 +54,10 @@ public class NaverBookApiTest {
         JSONObject jsonObj = (JSONObject) jParse.parse(sb.toString());
         //JSONObject에서 PersonsArray를 get하여 JSONArray에 저장한다. 
         JSONArray bookArray = (JSONArray) jsonObj.get("items");
+        JSONObject personObject = null;
         for(int i=0; i < bookArray.size(); i++) { 
         	System.out.println("======== book : " + i + " ========"); 
-        	JSONObject personObject = (JSONObject) bookArray.get(i); 
+        	personObject = (JSONObject) bookArray.get(i); 
         	System.out.println(personObject.get("title")); 
         	System.out.println(personObject.get("link")); 
         	System.out.println(personObject.get("image")); 
@@ -71,12 +72,13 @@ public class NaverBookApiTest {
         
 
         
-		return null;
+		return personObject;
 
 	}
 	public static void main(String[] args) {
 		String title = null;
 		try {
+			
 			title = URLEncoder.encode("보건교사 안은영", "UTF-8");
 			NaverBookApiTest nb = new NaverBookApiTest();
 			nb.searchBookApi(title);
