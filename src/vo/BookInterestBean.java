@@ -1,10 +1,18 @@
 package vo;
 
+import java.sql.Date;
+
 public class BookInterestBean {
 	private int num;
 	private String id;
 	private String isbn;
 	private String title;
+	private String author;
+	private Date pubdate;
+    private String state;
+    private String publisher;
+    private int count;
+	 
 	public void setNum(int num) {
 		this.num = num;
 	}
@@ -28,6 +36,37 @@ public class BookInterestBean {
 	}
 	public String getTitle() {
 		return title;
+	}
+
+    public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public Date getPubdate() {
+		return pubdate;
+	}
+	public void setPubdate(Date pubdate) {
+		this.pubdate = pubdate;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public String getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
 	}
 	
 	

@@ -338,5 +338,28 @@ public class MemberDAO {
 			return article;
 		}
 
-
+		public boolean isIdCheck(String id) throws LoginException  {
+			boolean isIdCheckSuccess = false;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			System.out.println("111여기보세여~ id = "+id);
+			try {
+				String sql = "SELECT id FROM member WHERE id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				System.out.println("222여기보세여~ id = "+id);
+				isIdCheckSuccess=true;
+			} catch (SQLException e) {
+				System.out.println("isIdCheck() ERROR! - " + e.getMessage());
+				
+				e.printStackTrace();
+			} finally {
+				
+				close(rs);
+				close(pstmt);
+			}
+			
+			return isIdCheckSuccess;
+		}
 	}

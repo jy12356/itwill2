@@ -7,26 +7,36 @@
         </div>
     </div>
     <script type="text/javascript">
-	    function bookSearchSubmit(){
-			var keyword = $(".search_input").val();
-			alert(keyword);
-			$.ajax({
-			    url: "/API/NaverBookApiTest.java", // 클라이언트가 요청을 보낼 서버의 URL 주소
-			    data: { keyword: "홍길동" },                // HTTP 요청과 함께 서버로 보낼 데이터
-			    type: "GET",                             // HTTP 요청 방식(GET, POST)
-			    dataType: "json"                         // 서버에서 보내줄 데이터의 타
-			}).done(function(html) {
-				result = html;
-			    for(var i=0; i< result; i++){
-			    	alert(result[i]);
-			    }
-			}).fail(function(xhr, status, errorThrown) {
-			    $("#text").html("오류가 발생했습니다.<br>")
-			    .append("오류명: " + errorThrown + "<br>")
-			    .append("상태: " + status);
+	    $(function () { 
+			$('#btn-movies-find').click(function () {
+				var keyword = $('#search_input').val(); 
+				$.ajax({ 
+					type: 'POST', 
+					url: 'BookNaverAPISearch.bok',
+					data: {keyword : keyword},
+					success: function(result){
+						
+						alert(result);
+						$.each(result,function(index,arrjson){
+							console.log( index + " : " + value.title);
+							alert(arrjson.title+','+arrjson.description+','
+									+arrjson.author+','+arrjson.isbn+','
+									+arrjson.publisher+','+arrjson.pubdate);
+							$(".serachBookResult table tbody").append(
+									'<tr><td>'+arrjson.title+'</td><td>'+arrjson.description+'</td><td>'
+									+arrjson.author+'</td><td>'+arrjson.isbn+'</td><td>'
+									+arrjson.publisher+'</td><td>'+arrjson.pubdate+'</td></tr>'
+									);
+									
+								
+						});
+					},
+					error: function(request,status,error){
+	   		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			       }
 			})
-			
-		}
+			})
+		})
     </script>
     <div class="contents-wrap">
         <div class="customer">
@@ -36,7 +46,7 @@
                 	<div class="bookregiSearch-inner">
 	                	<div class="bookregiSearch mb10">
 	          				<input type="text" name="searchString"  placeholder="검색어를 입력하세요" id="search_input" class="search_input" style="ime-mode:active;">
-							<input type="button" onclick="bookSearchSubmit()">
+							<input type="button" id="btn-movies-find">
 	                	</div>
 	                	<div class="serachBookResult">
 	                		<table summary="책검색결과" class="customer-table notice">
@@ -47,7 +57,7 @@
 		                            <col width="10%">
 		                            <col width="20%">
 		                            <col width="10%">
-		                            
+		                            <col width="10%">
 		                        </colgroup>
 		                        <thead>
 		                            <tr>
@@ -57,17 +67,10 @@
 		                                <th scope="col">저자</th>
 		                                <th scope="col">ISBN</th>
 		                                <th scope="col">출판사</th>
+		                                <th scope="col">출판일</th>
 		                            </tr>
 		                        </thead>
 		                        <tbody>
-		                            <tr>
-		                                <td class="tac"><input type="checkbox" value=""></td>
-		                                <td>2020/10/27</td>
-		                                <td>2020/10/27</td>
-		                                <td>2020/10/27</td>
-		                                <td>2020/10/27</td>
-		                                <td>2020/10/27</td>
-		                            </tr>
 		                        </tbody>
 		                    </table>	
 	                	</div>

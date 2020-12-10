@@ -59,7 +59,6 @@ public class FreeBoardWriteProAction implements Action {
 				"UTF-8", // 파일명에 대한 인코딩 방식 
 				new DefaultFileRenamePolicy() // 파일명 중복 시 중복 처리 객체
 		);
-		
 		// 주의! request객체의 getParameter() 메서드가 아닌
 		// MultipartRequest 객체의 getparameter() 메서드 호출 필수
 //		String board_name = multi.getParameter("board_name");
@@ -96,7 +95,6 @@ public class FreeBoardWriteProAction implements Action {
 		boardBean.setBoard_content(multi.getParameter("desc"));
 		boardBean.setBoard_file(multi.getOriginalFileName("file")); // 주의!
 			
-		
 		// -----------------------------------------------------------------------------------------------------------
 		// 서비스 클래스를 통해 실제 글 등록 작업 수행을 위한 요청
 		// BoardWriteProService 클래스의 인스턴스 생성후
@@ -110,7 +108,6 @@ public class FreeBoardWriteProAction implements Action {
 		// 만약 실패했을경우 자바스크립트를 사용하여 이전페이지로 이동
 		// 성공 했을경우 ActionForward 객체를 생성하여
 		// 포워딩 경로(BoardList.bo) 와 방식(새 요청이므로 Redirect) 지정
-		
 		if(!isWriteSuccess) {
 			
 			// 글쓰기 작업 실패시 자바 스크립트롤 
@@ -135,7 +132,6 @@ public class FreeBoardWriteProAction implements Action {
 			out.println("</script>"); // 자바스크립트 끝 태그
 			
 		} else {
-			
 			// 1. ActionForward 객체 생성
 			forward = new ActionForward();
 			// 2. 포워딩 경로(URL) 지정
@@ -150,7 +146,6 @@ public class FreeBoardWriteProAction implements Action {
 		
 		// 4. ActionForward 객체 리턴 => BoardFrontController 클래스로 전달
 		
-
 		return forward;
 		
 		

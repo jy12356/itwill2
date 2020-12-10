@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberCheckAction;
 import action.MemberDeleteFormAction;
 import action.MemberJoinProService;
 import action.MemberListAction;
 import action.MemberLoginProAction;
 import action.MemberModifyFormAction;
 import action.MemberModifyProAction;
+import action.freeboard.MyBasketAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -107,7 +109,24 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		
-		} 
+		} else if(command.equals("/MemberCheck.me")) {
+			System.out.println("MemberCheck");
+			action = new MemberCheckAction();
+			try {
+				forward = action.execute(request, response);
+				forward = new ActionForward();
+      } catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/MyBasket.me")) {
+			action = new MyBasketAction();
+			try {
+				forward = action.execute(request, response);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {
