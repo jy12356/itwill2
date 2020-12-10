@@ -54,8 +54,8 @@ public class BookDAO {
 			// 전달받은 BoardBean 객체 내의 데이터를 사용하여 INSERT 작업 수행
 			// => 컬럼 중 board_date 항목(작성일)은 now() 함수 사용
 			sql = "insert into book "
-					+ "(num,title,image,author,publisher,pubdate,isbn,description,catg1,catg2,state,count,author_info,index_info)"
-					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "(num,title,image,author,publisher,pubdate,isbn,description,catg1,catg2,state,count,author_info,index_info, date)"
+					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate())";
 			pstmt = con.prepareStatement(sql);
 			
 			// BoardBean 객체로부터 데이터를 꺼내서 쿼리문 ? 대체
@@ -95,7 +95,7 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		
-		String sql = "select * from book where catg1 like ? and catg2 like ? order by pubdate desc limit ?,?";
+		String sql = "select * from book where catg1 like ? and catg2 like ? group by isbn order by pubdate desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, "%"+catg1);
@@ -454,19 +454,20 @@ public class BookDAO {
 		}
 		return isDeleteOk;
 	}
-	public int dibsYn(String id, int num) {
+	public int dibsYn(String isbn, String id) {
 		int isDibsYnCount = 0;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "select * from book where id=? and num =?";
+			String sql = "select isbn from interestinglist where id=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setInt(2, num);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				isDibsYnCount = 1;
+				if(rs.getString("isbn").equals(isbn)) {
+					isDibsYnCount = 1;					
+				}
 			}
 		} catch (Exception e) {
 			System.out.println("isDibsYnCount 오류!" + e.getMessage() );
