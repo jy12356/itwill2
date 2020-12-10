@@ -297,7 +297,24 @@
 			
 		}
 	}
-	
+	/* $(document).ready(function(){ */
+    $.ajax({
+       type:"POST",
+       url:"MemberCheck.me",
+       data : {
+              id : id
+          }, 
+       success : function(resultObj) {
+          /* $("#checkIdResult").css("color","pink"); */
+          $("#checkIdResult").html(resultObj);
+          alert(resultObj+"성공!");            
+       }
+          ,
+          error: function(request,status,error){
+                alert("code:"+request.status+"\n"+"error:"+error+"message:"+request.responseText+"\n"+"error:"+error);
+              }
+    })   
+ /* }); */
 	function checkPasswd(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
 		var passwd = passwdForm.value; // ID 입력폼의 입력값을 가져와서 변수에 저장
 		
