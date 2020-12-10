@@ -6,38 +6,7 @@
             <p>HOME > 책등록</p>
         </div>
     </div>
-    <script type="text/javascript">
-	    $(function () { 
-			$('#btn-movies-find').click(function () {
-				var keyword = $('#search_input').val(); 
-				$.ajax({ 
-					type: 'POST', 
-					url: 'BookNaverAPISearch.bok',
-					data: {keyword : keyword},
-					success: function(result){
-						
-						alert(result);
-						$.each(result,function(index,arrjson){
-							console.log( index + " : " + value.title);
-							alert(arrjson.title+','+arrjson.description+','
-									+arrjson.author+','+arrjson.isbn+','
-									+arrjson.publisher+','+arrjson.pubdate);
-							$(".serachBookResult table tbody").append(
-									'<tr><td>'+arrjson.title+'</td><td>'+arrjson.description+'</td><td>'
-									+arrjson.author+'</td><td>'+arrjson.isbn+'</td><td>'
-									+arrjson.publisher+'</td><td>'+arrjson.pubdate+'</td></tr>'
-									);
-									
-								
-						});
-					},
-					error: function(request,status,error){
-	   		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			       }
-			})
-			})
-		})
-    </script>
+    
     <div class="contents-wrap">
         <div class="customer">
             <h3 class="subTit">책등록</h3> 
@@ -170,6 +139,38 @@
     </div>
 
 </section>
+<script type="text/javascript">
+	    $(function () { 
+			$('#btn-movies-find').click(function () {
+				var keyword = $('#search_input').val(); 
+				$.ajax({ 
+					type: 'POST', 
+					url: 'BookNaverAPISearch.bok',
+					data: {keyword : keyword},
+					dataType:"JSON",
+					success: function(result){
+						alert(result);
+						$.each(result,function(index,arrjson){
+// 							console.log( index + " : " + arrjson.title);
+							alert(arrjson.title+','+arrjson.description+','
+									+arrjson.author+','+arrjson.isbn+','
+									+arrjson.publisher+','+arrjson.pubdate);
+							$(".serachBookResult table tbody").append(
+									'<tr><td>'+arrjson.title+'</td><td>'+arrjson.description+'</td><td>'
+									+arrjson.author+'</td><td>'+arrjson.isbn+'</td><td>'
+									+arrjson.publisher+'</td><td>'+arrjson.pubdate+'</td></tr>'
+									);
+									
+								
+						});
+					},
+					error: function(request,status,error){
+	   		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			       }
+			})
+			})
+		})
+    </script>
 <script type="text/javascript">
 $(document).ready( function() {
     $( "#pubDatePicker" ).datepicker({});

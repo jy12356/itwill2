@@ -26,8 +26,8 @@
                         <caption>내가 찜한 리스트</caption>
                         <colgroup>
                             <col style="width:5%">
-                            <col style="width:20%">
-                            <col style="width:15%">
+                            <col style="width:25%">
+                            <col style="width:10%">
                             <col style="width:15%">
                             <col style="width:15%">
                             <col style="width:10%">
@@ -52,10 +52,10 @@
                         <%for(int i=0; i < bookListDibsList.size(); i++ ){ %>
                             <tr>
                                 <td class="tac check_box"><input type="checkbox" id="checkbox_num" class="check_num" value="<%=bookListDibsList.get(i).getNum()%>" name="book_num"></td>
-                                <td><%=bookListDibsList.get(i).getTitle()%></td>
-                                <td><%=bookListDibsList.get(i).getAuthor()%></td>
+                                <td><p class="title"><a href="BookDetail.bok?isbn=<%=bookListDibsList.get(i).getIsbn()%>"><%=bookListDibsList.get(i).getTitle()%></a></p></td>
+                                <td><p class="autor"><%=bookListDibsList.get(i).getAuthor()%></p></td>
                                 <td><%=bookListDibsList.get(i).getIsbn()%></td>
-                                <td><%=bookListDibsList.get(i).getPublisher()%></td>
+                                <td><p class="publisher"><%=bookListDibsList.get(i).getPublisher()%></p></td>
                                 <td><%=bookListDibsList.get(i).getPubdate()%></td>
                                 <td><%=bookListDibsList.get(i).getState()%></td>
                                 <td class="book_basketbtn">
