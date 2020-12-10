@@ -23,24 +23,18 @@ public class MemberCheckAction implements Action {
 		boolean isIdCheckSuccess = memberCheckService.registArticle(id);
 		System.out.println(isIdCheckSuccess);
 		JSONObject resultObj = new JSONObject();
-		if (!isIdCheckSuccess) {
-			resultObj = new JSONObject();
+
+		if (isIdCheckSuccess) {
+			 resultObj = new JSONObject();
 	        response.setContentType("text/html; charset=UTF-8");
 	        PrintWriter out = response.getWriter();
-	        String str =  "¸ÚÁø ¾ÆÀÌµğ³×¿ä!";
-//	        String resultObj = "[{\"keyword\":\""+str+"\"}]";
-	        resultObj.put("result", id );
-	        out.print(resultObj);
-		} else {
-			resultObj = new JSONObject();
-	        response.setContentType("text/html; charset=UTF-8");
-	        PrintWriter out = response.getWriter();
-	        String str =  "ÀÌ¹Ì »ç¿ëÁßÀÌ°Å³ª Å»ÅğÇÑ È¸¿øÀÇ ¾ÆÀÌµğ ÀÔ´Ï´Ù.";
-//	        String resultObj = "[{\"keyword\":\""+str+"\"}]";
-	        resultObj.put("result", id );
-	        out.print(resultObj);
-		}
-		System.out.println("¿©±âº¸¼¼¿ä! : "+resultObj);
+	        String str =  "ì´ë¯¸ ì‚¬ìš©ì¤‘ì´ê±°ë‚˜ íƒˆí‡´í•œ íšŒì›ì˜ ì•„ì´ë”” ì…ë‹ˆë‹¤.";
+	        resultObj.put("result", str );
+	        out.print(str);
+		} 
+		String result = resultObj.get("str").toString();
+		System.out.println("isIdCheckSuccess : "+isIdCheckSuccess);
+		System.out.printf("resultObj! : "+resultObj+", id : "+id);
 		return null;
 	}
 

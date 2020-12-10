@@ -283,37 +283,40 @@
 		
 		if(regex.test(id)) { 
 			element.innerHTML = "멋진 아이디네요!";
-			checkIdResult = true; 
 			var myElement = document.getElementById('checkIdResult');
 			myElement.style.color="green";
 			myElement.style.padding="0.3em";
+			checkIdResult = true; 
 		
 		} else {
 			element.innerHTML = "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.";
-			checkIdResult = false;
 			var myElement = document.getElementById('checkIdResult');
 			myElement.style.color="red"
 			myElement.style.padding="0.3em";
+			checkIdResult = false;
 			
 		}
-	/* $(document).ready(function(){  */
-    $.ajax({
-       type:"POST",
-       url:"MemberCheck.me",
-       data : {
-              id : id
-          }, 
-       success : function(resultObj) {
-          $("#checkIdResult").css("color","pink");
-          $("#checkIdResult").html(resultObj);
-          alert(resultObj+"성공!");            
-       }
-          ,
-          error: function(request,status,error){
-                alert("code:"+request.status+"\n"+"error:"+error+"message:"+request.responseText+"\n"+"error:"+error);
-              }
-    })   
-  /* });  */
+		$.ajax({
+		       type:"POST",
+		       url:"MemberCheck.me",
+		       async: false, 
+		       data : {
+		              id : id
+		          }, 
+
+		       success : function(resultObj) {
+		          if(resultObj){
+			          $("#checkIdResult").css("color","red"); 
+			          $("#checkIdResult").html(resultObj);
+			          checkIdResult = false;
+		          } else {
+                      hideMsg(resultObj);
+                  }
+			    },
+		        error: function(request,status,error,resultObj){
+		              alert("code:"+request.status+"\n"+"error:"+error+"message:"+request.responseText+"\n"+"error:"+error);
+		        }
+		 })
 	}
 	function checkPasswd(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
 		var passwd = passwdForm.value; // ID 입력폼의 입력값을 가져와서 변수에 저장
