@@ -72,11 +72,11 @@ public class MyBasketDAO {
 		int startRow = (page - 1) * limit;
 		try {
 			// 게시물 조회
-			String sql = "select b.title title, b.author author, "
-					+ "b.publisher publisher, b.pubdate pubdate, b.state state, "
-					+ "k.isbn isbn, case when b.state = 0 then '대여가능' else '대여불가능' end as state "
+			String sql = "select b.num num, b.title title, b.author author, "
+					+ "b.publisher publisher, b.pubdate pubdate,"
+					+ "k.isbn isbn, min(case when b.state = 0 then '대여가능' else '대여불가능' end) as state "
 					+ "from mybasket as k join book as b on k.isbn = b.isbn "
-					+ "where k.id=? order by k.num desc limit ?,?;";
+					+ "where k.id=? group by b.isbn limit ?,?;";
 
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -89,6 +89,7 @@ public class MyBasketDAO {
 			basketList = new ArrayList<BookBean>();
 			while(rs.next()) {
 				BookBean basket = new BookBean();
+				basket.setNum(rs.getInt("num"));
 				basket.setTitle(rs.getString("title"));
 				basket.setAuthor(rs.getString("author"));
 				basket.setPublisher(rs.getString("publisher"));
