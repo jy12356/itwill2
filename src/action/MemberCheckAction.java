@@ -1,5 +1,5 @@
 package action;
-
+import org.json.simple.*;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,26 +22,26 @@ public class MemberCheckAction implements Action {
 //		String data = null; 
 		boolean isIdCheckSuccess = memberCheckService.registArticle(id);
 		System.out.println(isIdCheckSuccess);
-
-//		if (!isIdCheckSuccess) {
-//			// "아이디중복"
-//			response.setContentType("text/html; charset=UTF-8");
-//			PrintWriter out = response.getWriter();
-//			out.println("<script>"); // 자바스크립트 시작 태그
-//			out.println("아이디 중복");
-//			out.println("</script>"); // 자바스크립트 끝 태그
-//		} else {
-//			// "아이디 사용가능"
-//			response.setContentType("text/html; charset=UTF-8");
-//			PrintWriter out = response.getWriter();
-//			out.println("<script>"); // 자바스크립트 시작 태그
-//			out.println("아이디 사용가능");
-//			out.println("</script>"); // 자바스크립트 끝 태그
-//		}
-		
-		forward = new ActionForward();
-		forward.setRedirect(false);
-		return forward;
+		JSONObject resultObj = new JSONObject();
+		if (!isIdCheckSuccess) {
+			resultObj = new JSONObject();
+	        response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = response.getWriter();
+	        String str =  "멋진 아이디네요!";
+//	        String resultObj = "[{\"keyword\":\""+str+"\"}]";
+	        resultObj.put("result", id );
+	        out.print(resultObj);
+		} else {
+			resultObj = new JSONObject();
+	        response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = response.getWriter();
+	        String str =  "이미 사용중이거나 탈퇴한 회원의 아이디 입니다.";
+//	        String resultObj = "[{\"keyword\":\""+str+"\"}]";
+	        resultObj.put("result", id );
+	        out.print(resultObj);
+		}
+		System.out.println("여기보세요! : "+resultObj);
+		return null;
 	}
 
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="../include/header.jsp"/>
+<jsp:include page="../include/header.jsp"/> 
 <style>
 
 /* #checkIdResult {color: red; font-weight: bold;font-size: 1em;padding: 0.2em;} 
@@ -221,7 +221,7 @@
 						<div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="all_chk" value="">
+									<input type="checkbox" name="all_chk" value="" required="required">
 									<span><i></i></span>
 								</label>
 								<p>전체 동의</p>
@@ -230,7 +230,7 @@
 						<div>
 							<div class="checkbox">
 								<label>
-									<input type="checkbox" name="reply_chk" id="service" value="">
+									<input type="checkbox" name="reply_chk" id="service" value="" >
 									<span><i></i></span>
 								</label>
 								<p>이용약관 동의</p>
@@ -264,6 +264,8 @@
 
 	<script>
 	</script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript">
 
 
@@ -294,30 +296,8 @@
 			myElement.style.padding="0.3em";
 			
 		}
-			$.ajax({
-				type:"GET",
-				url:"MemberCheck.me",
-				data : {
-	                id : id
-	            },
-				success : function(data) {
-					
-					if(data==true){
-						$("#checkIdResult").text("이미 사용중이거나 탈퇴한 회원의 아이디 입니다.");
-						$("#checkIdResult").css("color","red");
-						checkIdResult = false;
-					} else {
-						/* $("#checkIdResult").text("이미 사용중이거나 탈퇴한 회원의 아이디 입니다.222");
-						$("#checkIdResult").css("color","red"); */
-					}
-				},
-	            error : function(data) {
-					$("#checkIdResult").text(data);
-					$("#checkIdResult").css("color","red");
-					/* checkIdResult = false; */
-				}
-			})
 	}
+	
 	function checkPasswd(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
 		var passwd = passwdForm.value; // ID 입력폼의 입력값을 가져와서 변수에 저장
 		
@@ -492,4 +472,4 @@
 	</section>
 	
 
-<jsp:include page="../include/footer.jsp"/>
+<%-- <jsp:include page="../include/footer.jsp"/> --%>
