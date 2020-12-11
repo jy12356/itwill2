@@ -4,11 +4,43 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <%
 	Date nowTime = new Date();
-	SimpleDateFormat sf = new SimpleDateFormat("yyyy.MM.dd a hh:mm");
+SimpleDateFormat sf = new SimpleDateFormat("yyyy.MM.dd a hh:mm");
 %>
 <jsp:include page="../include/header.jsp" />
 <section class="" id="contents">
-
+<script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.js"></script>
+ 
+<script type="text/javascript">
+$(document).ready(function() {
+    brandnewNotice();
+});
+ 
+function brandnewNotice() {
+    $
+            .ajax({
+                dataType : "json",
+                url : "menu/brandnewNotice.do",
+                type : "GET",
+                success : function(data) {
+                    var html = '';
+                    html += '<table class="table" align="center" width="700" border="1" cellspacing="0">';
+                    html += '<tr>';
+                    html += '<td>' + data.ntitle + '</td>';
+                    html += '<td>' + data.nContents + '</td>';
+                    html += '<td>' + data.nDate + '</td>';
+                    html += '</tr>';
+                    html += '</table>';
+                    $("#brandnewNotice").html(html);
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    /* alert("에러 발생~~ \n" + textStatus + " : " + errorThrown); */
+                    /* 주석처리 안해놓으면 블로그에서 alert창이 뜬다.. 귀찮 (가끔 특정 사이트를 웹 또는 폰으로 서칭도중에 "바이러스가 발견되었습니다~
+어쩌구 하는 팝업창이 뜨는건 이런걸 이용한 눈속임 사기.." */
+                }
+            });
+}
+</script>
 	<div class="today-hot">
 		<h3 class="hot-title">오늘의 추천</h3>
 		<div class="hot-inner">
@@ -440,47 +472,102 @@
 										class="more"></span></a>
 								</p>
 							</li>
-							<!-- 									<li class="top-rank top-one"> -->
-							<!-- 									<p class="rank"> -->
-							<!-- 										<span><strong>1</strong></span><span class="icon"></span> -->
-							<!-- 									</p> -->
-							<!-- 									<div class="webtoon"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>인 마이 클로젯</strong><span>RISA LISA</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="인 마이 클로젯" href="/webtoon/wt_closet_wz"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/wt_closet_wz/thumb_sq.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>인 마이 클로젯</strong></span><span>RISA LISA</span><span>BL</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="comic"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>괴 (연재)</strong><span>야설록</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="괴 (연재)" href="/comic/goe"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/goe/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>괴 (연재)</strong></span><span>야설록</span><span>무협</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="fiction"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>무인이곽 (연재)</strong><span>우각</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="무인이곽 (연재)" href="/novel/E000072153"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/ebook/E000072153/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>무인이곽 (연재)</strong></span><span>우각</span><span>무협</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									</li> -->
+							
+							<li class="top-rank top-one">
+								<p class="rank">
+									<span><strong>1</strong></span><span class="icon"></span>
+								</p>
+								<div class="webtoon">
+									<p>
+										<strong>인 마이 클로젯</strong><span>RISA LISA</span>
+									</p>
+									<div>
+										<a title="인 마이 클로젯" href="/webtoon/wt_closet_wz">
+											<div>
+												<img
+													src="https://img.mrblue.com/prod_img/comics/wt_closet_wz/thumb_sq.jpg"
+													alt="">
+											</div> <span><strong>인 마이 클로젯</strong></span><span>RISA LISA</span><span>BL</span>
+										</a>
+									</div>
+								</div>
+								<div class="comic">
+									<p>
+										<strong>괴 (연재)</strong><span>야설록</span>
+									</p>
+									<div>
+										<a title="괴 (연재)" href="/comic/goe">
+											<div>
+												<img
+													src="https://img.mrblue.com/prod_img/comics/goe/main_large.jpg"
+													alt="">
+											</div> <span><strong>괴 (연재)</strong></span><span>야설록</span><span>무협</span>
+										</a>
+									</div>
+								</div>
+								<div class="fiction">
+									<p>
+										<strong>무인이곽 (연재)</strong><span>우각</span>
+									</p>
+									<div>
+										<a title="무인이곽 (연재)" href="/novel/E000072153">
+											<div>
+												<img
+													src="https://img.mrblue.com/prod_img/ebook/E000072153/main_large.jpg"
+													alt="">
+											</div> <span><strong>무인이곽 (연재)</strong></span><span>우각</span><span>무협</span>
+										</a>
+									</div>
+								</div>
+							</li>
+							
+							<li class="top-rank top-one">
+								<p class="rank">
+									<span><strong>1</strong></span><span class="icon"></span>
+								</p>
+								<div class="webtoon">
+									<p>
+										<strong>인 마이 클로젯</strong><span>RISA LISA</span>
+									</p>
+									<div>
+										<a title="인 마이 클로젯" href="/webtoon/wt_closet_wz">
+											<div>
+												<img
+													src="https://img.mrblue.com/prod_img/comics/wt_closet_wz/thumb_sq.jpg"
+													alt="">
+											</div> <span><strong>인 마이 클로젯</strong></span><span>RISA LISA</span><span>BL</span>
+										</a>
+									</div>
+								</div>
+								<div class="comic">
+									<p>
+										<strong>괴 (연재)</strong><span>야설록</span>
+									</p>
+									<div>
+										<a title="괴 (연재)" href="/comic/goe">
+											<div>
+												<img
+													src="https://img.mrblue.com/prod_img/comics/goe/main_large.jpg"
+													alt="">
+											</div> <span><strong>괴 (연재)</strong></span><span>야설록</span><span>무협</span>
+										</a>
+									</div>
+								</div>
+								<div class="fiction">
+									<p>
+										<strong>무인이곽 (연재)</strong><span>우각</span>
+									</p>
+									<div>
+										<a title="무인이곽 (연재)" href="/novel/E000072153">
+											<div>
+												<img
+													src="https://img.mrblue.com/prod_img/ebook/E000072153/main_large.jpg"
+													alt="">
+											</div> <span><strong>무인이곽 (연재)</strong></span><span>우각</span><span>무협</span>
+										</a>
+									</div>
+								</div>
+							</li>
 							<!-- 									<li class="top-rank"> -->
 							<!-- 									<p class="rank"> -->
 							<!-- 										<span><strong>2</strong></span><span class="icon"></span> -->
@@ -863,101 +950,102 @@
 					<h3 class="coTitle">신간</h3>
 					<a href="https://www.bookcube.com/new.asp?page=nm" class="more">더보기</a>
 				</div>
+				
 				<ul>
 					<li>
 						<div class="figure">
-							<a
-								href="https://www.bookcube.com/detail.asp?series_num=920030001&amp;page=">
-								<span class="rm_br"><img
-									src="https://bookimg.bookcube.com/150/2011/201100479.jpg"
-									alt="도서 이미지 - 가족사진"></span> <span class="light"></span>
+							<a href="https://www.bookcube.com/detail.asp?series_num=920030001&amp;page=">
+								<span class="rm_br">
+								<img src="https://bookimg.bookcube.com/150/2011/201100479.jpg" alt="도서 이미지 - 가족사진"></span> 
+<!-- 								<span class="light"></span> -->
 							</a>
 						</div>
 						<div class="hot-info">
 							<p class="hot-title">
-								<a
-									href="https://www.bookcube.com/detail.asp?series_num=920030001&amp;page=">가족사진</a>
+								<a href="https://www.bookcube.com/detail.asp?series_num=920030001&amp;page=">가족사진</a>
 							</p>
 							<p>최영철</p>
 						</div>
 					</li>
-					<li>
-						<div class="figure">
-							<a
-								href="https://www.bookcube.com/detail.asp?series_num=920030020&amp;page=">
-								<span class="rm_br"><img
-									src="https://bookimg.bookcube.com/150/2011/201100501.jpg"
-									alt="도서 이미지 - 30 Lessons on Grammar"></span> <span class="light"></span>
-							</a>
-						</div>
-						<div class="hot-info">
-							<p class="hot-title">
-								<a
-									href="https://www.bookcube.com/detail.asp?series_num=920030020&amp;page=">30
-									Lessons on Grammar</a>
-							</p>
-							<p>Michael A. Putlack</p>
-						</div>
-					</li>
-					<li>
-						<div class="figure">
-							<a
-								href="https://www.bookcube.com/detail.asp?series_num=920030035&amp;page=">
-								<span class="rm_br"><img
-									src="https://bookimg.bookcube.com/150/2011/201100522.jpg"
-									alt="도서 이미지 - 7대 이슈로 보는 돈의 역사"></span> <span class="light"></span>
-							</a>
-						</div>
-						<div class="hot-info">
-							<p class="hot-title">
-								<a
-									href="https://www.bookcube.com/detail.asp?series_num=920030035&amp;page=">7대
-									이슈로 보는 돈의 역사</a>
-							</p>
-							<p>홍춘욱</p>
-						</div>
-					</li>
-					<li>
-						<div class="figure">
-							<a
-								href="https://www.bookcube.com/detail.asp?series_num=920029992&amp;page=">
-								<span class="rm_br"><img
-									src="https://bookimg.bookcube.com/150/2011/201100475.jpg"
-									alt="도서 이미지 - 10대가 알아야 할 미래직업의 이동 (개정판)"></span> <span
-								class="light"></span>
-							</a>
-						</div>
-						<div class="hot-info">
-							<p class="hot-title">
-								<a
-									href="https://www.bookcube.com/detail.asp?series_num=920029992&amp;page=">10대가
-									알아야 할 미래직업의 이동 ...</a>
-							</p>
-							<p>박종서,신지나,민준홍</p>
-						</div>
-					</li>
-					<li>
-						<div class="figure">
-							<a
-								href="https://www.bookcube.com/detail.asp?series_num=920029977&amp;page=">
-								<span class="rm_br"><img
-									src="https://bookimg.bookcube.com/150/2011/201100517.jpg"
-									alt="도서 이미지 - 걸스 라이크 어스"></span> <span class="light"></span>
-							</a>
-						</div>
-						<div class="hot-info">
-							<p class="hot-title">
-								<a
-									href="https://www.bookcube.com/detail.asp?series_num=920029977&amp;page=">걸스
-									라이크 어스</a>
-							</p>
-							<p>크리스티나 앨저</p>
-						</div>
-					</li>
+					
+<!-- 					<li> -->
+<!-- 						<div class="figure"> -->
+<!-- 							<a -->
+<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920030020&amp;page="> -->
+<!-- 								<span class="rm_br"><img -->
+<!-- 									src="https://bookimg.bookcube.com/150/2011/201100501.jpg" -->
+<!-- 									alt="도서 이미지 - 30 Lessons on Grammar"></span> <span class="light"></span> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 						<div class="hot-info"> -->
+<!-- 							<p class="hot-title"> -->
+<!-- 								<a -->
+<!-- 									href="https://www.bookcube.com/detail.asp?series_num=920030020&amp;page=">30 -->
+<!-- 									Lessons on Grammar</a> -->
+<!-- 							</p> -->
+<!-- 							<p>Michael A. Putlack</p> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="figure"> -->
+<!-- 							<a -->
+<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920030035&amp;page="> -->
+<!-- 								<span class="rm_br"><img -->
+<!-- 									src="https://bookimg.bookcube.com/150/2011/201100522.jpg" -->
+<!-- 									alt="도서 이미지 - 7대 이슈로 보는 돈의 역사"></span> <span class="light"></span> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 						<div class="hot-info"> -->
+<!-- 							<p class="hot-title"> -->
+<!-- 								<a -->
+<!-- 									href="https://www.bookcube.com/detail.asp?series_num=920030035&amp;page=">7대 -->
+<!-- 									이슈로 보는 돈의 역사</a> -->
+<!-- 							</p> -->
+<!-- 							<p>홍춘욱</p> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="figure"> -->
+<!-- 							<a -->
+<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029992&amp;page="> -->
+<!-- 								<span class="rm_br"><img -->
+<!-- 									src="https://bookimg.bookcube.com/150/2011/201100475.jpg" -->
+<!-- 									alt="도서 이미지 - 10대가 알아야 할 미래직업의 이동 (개정판)"></span> <span -->
+<!-- 								class="light"></span> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 						<div class="hot-info"> -->
+<!-- 							<p class="hot-title"> -->
+<!-- 								<a -->
+<!-- 									href="https://www.bookcube.com/detail.asp?series_num=920029992&amp;page=">10대가 -->
+<!-- 									알아야 할 미래직업의 이동 ...</a> -->
+<!-- 							</p> -->
+<!-- 							<p>박종서,신지나,민준홍</p> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 					<li> -->
+<!-- 						<div class="figure"> -->
+<!-- 							<a -->
+<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029977&amp;page="> -->
+<!-- 								<span class="rm_br"><img -->
+<!-- 									src="https://bookimg.bookcube.com/150/2011/201100517.jpg" -->
+<!-- 									alt="도서 이미지 - 걸스 라이크 어스"></span> <span class="light"></span> -->
+<!-- 							</a> -->
+<!-- 						</div> -->
+<!-- 						<div class="hot-info"> -->
+<!-- 							<p class="hot-title"> -->
+<!-- 								<a -->
+<!-- 									href="https://www.bookcube.com/detail.asp?series_num=920029977&amp;page=">걸스 -->
+<!-- 									라이크 어스</a> -->
+<!-- 							</p> -->
+<!-- 							<p>크리스티나 앨저</p> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
 				</ul>
 			</div>
 		</div>
 	</div>
+	
 	<div class="main-inner">
 		<div class="main_free_book">
 			<div class="md">

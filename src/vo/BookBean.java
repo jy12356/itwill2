@@ -14,7 +14,8 @@ public class BookBean {
 	    private String catg1;
 		private String catg2;
 	    private String state;
-	    private int count;  
+	    private Date date;
+		private int count;
 	    private String author_info;
 	    private String index;
 	    
@@ -87,6 +88,12 @@ public class BookBean {
 		}
 		public int getCount() {
 			return count;
+		}
+	    public Date getDate() {
+			return date;
+		}
+		public void setDate(Date date) {
+			this.date = date;
 		}
 		public void setCount(int count) {
 			this.count = count;
