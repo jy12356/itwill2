@@ -423,7 +423,7 @@
 		
 		
 		if(!regex.exec(phone)){
-			element.innerHTML = "예 010-1234-5678";
+			element.innerHTML = "예> 010-1234-5678";
 			var myElement = document.getElementById('checkPhoneResult');
 			myElement.style.color="red";
 			myElement.style.padding="0.3em";

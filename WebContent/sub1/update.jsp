@@ -28,6 +28,8 @@
 <!-- 			<input type="hidden" name="register_sms" id="register_sms" value="False"> -->
 <!-- 			<input type="hidden" name="register_name" id="register_name" value="차준희"> -->
 <input type="hidden" value="<%=article.getId()%>" id="id" name="id">
+<input type="hidden" value="<%=article.getCatg()%>" id="catg1" name="catg1">
+<input type="hidden" value="<%=article.getAddress()%>" id="address" name="address">
 				<fieldset>
 					<legend>회원정보수정 입력</legend>
 <!-- 					<div class="register-title"><p>필수입력항목</p></div> -->
@@ -95,11 +97,11 @@
 							
 							<tr>
 								<th><label for='register_zipcode'>우편번호</label></th>
-								<td><div><input type='text' name='register_zipcosample4_postcodede' id='sample4_postcode' value=''  maxlength="24" />
+								<td><div><input type='text' name='register_zipcosample4_postcodede' id='sample4_postcode' maxlength="24" />
 									<input type="button" onclick="sample4_execDaumPostcode()"  class="emailchk" value="우편번호 찾기"></div>
 							
 							
-							<input type="hidden" name="sample4_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" class="strMail" required="required">
+							<input type="hidden" name="sample4_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" class="strMail"  required="required">
 						<input type="hidden" name="sample4_extraAddress" id="sample4_extraAddress" placeholder="참고항목" class="strMail" required="required"></td>
 						
 							
@@ -215,6 +217,7 @@
 					</table>
 					<div class="register-btn">
 						<input type="submit" class="btn" value="수정" >
+						<!-- <input type="hidden" onclick="getAddre()" class="btn" value="ad" name="ad" id="ad"> -->
 						<input type="button" src="Main.book" class="btn" value="취소">
 					</div>
 				</fieldset>
@@ -250,6 +253,30 @@
 	
 </section>
 </body>
+
+<script type="text/javascript">
+$(function getAddre() {
+    	var address = document.getElementById('address').value
+    	var cutAddre = address.split('/')
+    	var postcode=cutAddre[0]
+    	var roadAddre=cutAddre[1]
+    	var extraAddre=cutAddre[2]
+    	
+    	if(address!=null){
+    		document.getElementById("sample4_postcode").value = postcode  
+    		document.getElementById("sample4_roadAddress").value = roadAddre  
+    		document.getElementById("register_address").value = extraAddre  
+    	} else {
+    		alert("주소 가져오지 못했습니다!")
+    	}  
+	});
+/* $("input:checkbox[name='catg']:checked").val() */
+if(catg1){
+	$("input:checkbox[id='catg']").prop("checked", true);
+}
+
+
+</script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -307,28 +334,6 @@
             }
         }).open();
     }
-    
-    var checkEmailResult = false, checkPhoneResult = false, 
-    checkAgeResult = false, checkPasswd2Result = false; 
-    
-    
-    function checkPasswd2(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
-		var password2 = passwdForm.value; // ID 입력폼의 입력값을 가져와서 변수에 저장
-		var password1 = document.getElementById('password').value;
-		var element = document.getElementById('checkPasswdResult2');
-		
-		
-		if(password1!=password2){
-			element.innerHTML = "비밀번호가 일치하지 않습니다.";
-			var myElement = document.getElementById('checkPasswdResult2');
-			myElement.style.color="red";
-			myElement.style.padding="0.3em";
-			checkPasswd2Result = false;
-		} else {
-			element.innerHTML = "";
-			checkPasswd2Result = true;
-		}
-	}
 	
 	
 	function checkEmail (emailForm) { 
