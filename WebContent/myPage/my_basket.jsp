@@ -14,6 +14,7 @@
 // "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 ArrayList<BookBean> myBasketList = (ArrayList<BookBean>) request.getAttribute("myBasketList");
 PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+String memState = (String)request.getAttribute("memState");
 int nowPage = pageInfo.getPage();
 int maxPage = pageInfo.getMaxPage();
 int startPage = pageInfo.getStartPage();
@@ -57,7 +58,7 @@ int listCount = pageInfo.getListCount();
 
 									if (myBasketList.get(i).getState().equals("대여가능")) {
 								String a = myBasketList.get(i).getState();
-								a = "대출가능";
+								a = "대여가능";
 								// 대출가능한 목록리스트
 							%>
 							<tr>
@@ -121,8 +122,7 @@ int listCount = pageInfo.getListCount();
 							총 선택 도서 수 : <span class="totalbookcnt">0권</span>
 						</p>
 					
-						<input type="button" class="orderbtn" value="대출하기" 
-						onclick="location.href='rental.bk?isbn=<%=isbn%>';" >
+						<input type="button" class="orderbtn" value="대여하기" >
 					</div>
 				</div>
 				<div class="ps-box">
@@ -136,6 +136,7 @@ int listCount = pageInfo.getListCount();
 			</div>
 		</div>
 	</div>
+	<input type="hidden" value="<%=memState %>" class="abcabc">
 	<script type="text/javascript">
 		
 		$("#checkbox_num").click(function() {
@@ -149,7 +150,15 @@ int listCount = pageInfo.getListCount();
 			
 			$(".totalbookcnt").html(total_cnt +"권");
 		});
-	
+		$(".orderbtn").click(function(){
+			
+			
+			if($(".abcabc").val() == "구독안함") {
+				var u ="myPage/subscribe.jsp";
+				var option = "width = 900, height = 650, top = 100, left = 400, location = no"
+					window.open(u,option);
+				} 
+		});	
 	</script>
 </section>
 
