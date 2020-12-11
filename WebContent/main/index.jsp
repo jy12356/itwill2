@@ -568,6 +568,31 @@ function brandnewNotice() {
 									</div>
 								</div>
 							</li>
+							
+							function brandnewNotice() {
+    $
+            .ajax({
+                dataType : "json",
+                url : "menu/brandnewNotice.do",
+                type : "GET",
+                success : function(data) {
+                    var html = '';
+                    html += '<table class="table" align="center" width="700" border="1" cellspacing="0">';
+                    html += '<tr>';
+                    html += '<td>' + data.ntitle + '</td>';
+                    html += '<td>' + data.nContents + '</td>';
+                    html += '<td>' + data.nDate + '</td>';
+                    html += '</tr>';
+                    html += '</table>';
+                    $("#brandnewNotice").html(html);
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    /* alert("에러 발생~~ \n" + textStatus + " : " + errorThrown); */
+                    /* 주석처리 안해놓으면 블로그에서 alert창이 뜬다.. 귀찮 (가끔 특정 사이트를 웹 또는 폰으로 서칭도중에 "바이러스가 발견되었습니다~
+어쩌구 하는 팝업창이 뜨는건 이런걸 이용한 눈속임 사기.." */
+                }
+            });
+            
 							<!-- 									<li class="top-rank"> -->
 							<!-- 									<p class="rank"> -->
 							<!-- 										<span><strong>2</strong></span><span class="icon"></span> -->
