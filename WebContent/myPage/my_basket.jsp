@@ -1,3 +1,5 @@
+<%@page import="svc.Mybasket.MyBasketListService"%>
+<%@page import="vo.MyBasketBean"%>
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"%>
 <%@page import="vo.BookBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -49,7 +51,8 @@ int listCount = pageInfo.getListCount();
 						</thead>
 
 							<%
-
+							String isbn = "";
+// 							ArrayList list = new ArrayList();
 							for (int i = 0; i < myBasketList.size(); i++) {
 
 									if (myBasketList.get(i).getState().equals("대여가능")) {
@@ -59,20 +62,17 @@ int listCount = pageInfo.getListCount();
 							%>
 							<tr>
 								<td class="tac check_box"><input type="checkbox"
-									id="checkbox_num" class="check_num"
+									id="checkbox_num" class="check_num1"
 									value="<%=myBasketList.get(i).getNum()%>" name="book_num"></td>
 								<td><%=myBasketList.get(i).getTitle()%></td>
 								<td><%=myBasketList.get(i).getAuthor()%></td>
 								<td><%=myBasketList.get(i).getPublisher()%></td>
 								<td><%=myBasketList.get(i).getPubdate()%></td>
 								<td><%=a%></td>
-
+							
 							</tr>
-
-
-
-
 							<%
+							isbn = myBasketList.get(i).getIsbn();
 								} else if (myBasketList.get(i).getState().equals("대여불가능")) {
 							String b = myBasketList.get(i).getState();
 							b = "예약가능";
@@ -91,7 +91,7 @@ int listCount = pageInfo.getListCount();
 						</thead>
 							<tr>
 								<td class="tac check_box"><input type="checkbox"
-									id="checkbox_num" class="check_num"
+									id="checkbox_num" class="check_num2"
 									value="<%=myBasketList.get(i).getNum()%>" name="book_num"></td>
 								<td><%=myBasketList.get(i).getTitle()%></td>
 								<td><%=myBasketList.get(i).getAuthor()%></td>
@@ -115,25 +115,14 @@ int listCount = pageInfo.getListCount();
 					</table>
 <div class="btn_inner"> 
                     	<a href="javascript:void(0);" onclick="deleteBook(); return false;"class="btn">삭제하기</a>
-					<div class="tab-sort">
-						<div>
-							<div class="checkbox">
-								<label> <input type="checkbox" value=""
-									class="allchkSeries"> <span><i></i></span>
-								</label>
-							</div>
-							<a href="javascript:;" class="btn carDel">삭제</a>
-						</div>
-					</div>
+					
 					<div class="payment-result basket">
 						<p>
-							총 주문 상품 수 : <span class="totalbookcnt">0권</span>
+							총 선택 도서 수 : <span class="totalbookcnt">0권</span>
 						</p>
-						<p>
-							총 결제 금액 : <span class="totalamount">0원</span>
-						</p>
-						<a href="javascript:parent.goUrl('/main.asp');" class="btn">쇼핑
-							계속하기</a> <input type="button" class="orderbtn" value="주문하기">
+					
+						<input type="button" class="orderbtn" value="대출하기" 
+						onclick="location.href='rental.bk?isbn=<%=isbn%>';" >
 					</div>
 				</div>
 				<div class="ps-box">
@@ -148,83 +137,19 @@ int listCount = pageInfo.getListCount();
 		</div>
 	</div>
 	<script type="text/javascript">
-		// 		파라미터 들고오기
-		function Request() {
-			var requestParam = "";
-			//getParameter 펑션
-			this.getParameter = function(param) {
-				//현재 주소를 decoding
-				var url = unescape(location.href);
-				//파라미터만 자르고, 다시 &그분자를 잘라서 배열에 넣는다.
-				var paramArr = (url.substring(url.indexOf("?") + 1, url.length))
-						.split("&");
-				for (var i = 0; i < paramArr.length; i++) {
-					var temp = paramArr[i].split("="); //파라미터 변수명을 담음
-
-					if (temp[0].toUpperCase() == param.toUpperCase()) {
-						// 변수명과 일치할 경우 데이터 삽입
-						requestParam = paramArr[i].split("=")[1];
-						break;
-					}
+		
+		$("#checkbox_num").click(function() {
+			var total_cnt = 0 ;
+			$('input:checkbox[name="book_num"]').each(function() {
+				if(this.checked){
+					total_cnt += 1 ;
 				}
-				return requestParam;
-			}
-		}
-		//다중 체크 안되게 방지
-		$(function() {
-			$(".check_num").bind('click', function() {
-				$(".check_num").not(this).prop("checked", false);
-			})
+			});	
+	
+			
+			$(".totalbookcnt").html(total_cnt +"권");
 		});
-		//삭제
-		function deleteBook() {
-			if (confirm("삭제하시겠습니까?")) {
-				var requestParam = new Request();
-				var title = requestParam.getParameter("title");
-				var isbn = requestParam.getParameter("isbn");
-				var checked_seq = "";
-				if ($('.check_box input[type="checkbox"]:checked').length != 0) {
-					checked_seq = $('.check_box input[type="checkbox"]:checked')
-							.val();
-				} else {
-					alert("게시물을 선택해주시길 바랍니다.");
-					return false;
-				}
-				location.href = "myBasket.bk?book_num=" + checked_seq
-						+ "&title=" + title + "&isbn=" + isbn;
-				return true;
-			} else {
-				alert("삭제에 실패하였습니다.");
-				return false;
-			}
-		};
-		//수정
-		function modifyBook() {
-			if (confirm("수정하시겠습니까?")) {
-				var checked_seq = "";
-				var requestParam = new Request();
-				;
-				var title = requestParam.getParameter("title");
-				var isbn = requestParam.getParameter("isbn");
-				var check_count = document.getElementsByName("book_num").length;
-
-				if ($('.check_box input[type="checkbox"]:checked').length != 0) {
-					checked_seq = $('.check_box input[type="checkbox"]:checked')
-							.val();
-					alert(checked_seq);
-				} else {
-					alert("게시물을 선택해주시길 바랍니다.");
-					return false;
-				}
-				alert(title);
-				location.href = "BookModify.bok?book_num=" + checked_seq
-						+ "&title=" + title + "&isbn=" + isbn;
-				return true;
-			} else {
-				alert("수정에 실패하였습니다.")
-				return false;
-			}
-		};
+	
 	</script>
 </section>
 
