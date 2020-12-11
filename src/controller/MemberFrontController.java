@@ -17,7 +17,7 @@ import action.MemberListAction;
 import action.MemberLoginProAction;
 import action.MemberModifyFormAction;
 import action.MemberModifyProAction;
-import action.freeboard.MyBasketAction;
+import action.member.MyPageAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -29,7 +29,7 @@ public class MemberFrontController extends HttpServlet {
 		
 		String command = request.getServletPath();
 		System.out.println("MemberFrontController : " + command);
-		
+		if(command==null){command="";}
 		Action action = null;
 		ActionForward forward = null;
 		
@@ -115,14 +115,16 @@ public class MemberFrontController extends HttpServlet {
 			try {
 				forward = action.execute(request, response);
 				forward = new ActionForward();
-      } catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (command.equals("/MyBasket.me")) {
-			action = new MyBasketAction();
+		} else if(command.equals("/Mypage.me")) {
+			System.out.println("Mypage");
+			action = new MyPageAction();
 			try {
-				forward = action.execute(request, response);
-
+				forward = new ActionForward();
+				forward.setPath("/sub5/mypage.jsp");
+//				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -138,8 +140,8 @@ public class MemberFrontController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			// ----------------------------------------------------------------joinPagePrac.jsp
-		
 		}
+		
 		
 	}   
 	
