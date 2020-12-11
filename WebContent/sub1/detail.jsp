@@ -8,13 +8,13 @@
 
    <%
 	String id = (String)session.getAttribute("id");
-	if (id == null) {
-	id = "kim";
-	}
+   	if(id == null) {
+   		id = "test";
+   	}
 	
-	String isbn = (String)request.getAttribute("page");
-	if (isbn == null) {
-	isbn = "2";
+	String isbn = (String)request.getAttribute("isbn");
+	if(isbn == null) {
+		isbn = "2";
 	}
 	
     ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
@@ -262,7 +262,7 @@
 				</div>
 				<div class="review-score">
 					<span class="list-star rank0"></span>
-					<p class="score">0.0</p>
+					<p class="score" >0</p>
 					<p class="rank-user">(<span>0</span>명)</p>
 				</div>
 			</div>
@@ -284,6 +284,7 @@
 		} else if (articleList != null && listCount > 0) {
 			 for(int i = 0; i < articleList.size(); i++) {
 		%>
+
 			<div class="comment comment_inner ">
 				<p class="comment-vote bookcube">
 					<i><%=articleList.get(i).getId() %></i>
@@ -302,8 +303,8 @@
 				</div>
 				<div class="btn_inner">
 						<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
-						<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>" class="heart-btn btn" data-review-num="498631">삭제</a>
-						<a href="javascript:;" class="heart-btn btn" data-review-num="<%=articleList.get(i).getNum()%>" data-like-id="<%=id%>">좋아요</a>
+						<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>" class="delete-btn btn">삭제</a>
+						<a href="javascript:;" class="heart-btn btn" data-review-num="<%=articleList.get(i).getNum()%>" data-like-id="<%=id%>" data-isbn="<%=isbn%>">좋아요</a>
 						<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
 				</div>
 			</div>
@@ -338,7 +339,8 @@
 			</div>
 			<!-- 서평 수정-->
 		
-			<!-- 댓글 등록 입력창-->
+			<!-- 댓글 창 -->
+				<!-- 댓글 등록 입력창-->
 			<div class="cmtRly clearfix" data-review-num="498631" data-comment-num="" style="display: block;">
 				<form action="ReCommentWritePro.re" class="comment-write reply-write" method="get" id="myReComment">
 					<div>
@@ -355,19 +357,24 @@
 						<input type="reset" value="취소" class="btn reviewCancele">
 					</div>
 				</form>
+				<!-- 댓글 등록 입력창-->
 			</div>
-		
 			<%
 				}
 			}
 			%>
-			<!-- 댓글 등록 입력창-->
-			
-			<!-- 댓글 수정창-->
-			<!-- 댓글 수정창-->
-			
-			<!-- 댓글 리스트-->
-			<!-- 댓글 리스트-->
+				</div>
+			</div>
+				<!-- 댓글 리스트-->
+	
+					<!-- 댓글 없을때 -->
+					<!-- 댓글 없을때 -->
+					<!-- 댓글 있을때 -->
+					<!-- 댓글 있을때 -->
+					<!-- 댓글 수정창-->
+					<!-- 댓글 수정창-->
+				<!-- 댓글 리스트-->		
+			<!-- 댓글 창 -->
 		<!-- 서평 있을 때 -->	
 		
 		<!-- 서평 리스트 더보기 -->					
@@ -375,10 +382,10 @@
 					<a href="javascript:;">20개 더보기</a>
 				</div>
 		<!-- 서평 리스트 더보기 -->
-			</div>
+
 	<!-- 서평리스트 내용-->
-		</div>
-	</div>
+
+
 <!-- 서평 및 댓글 쓰기  -->
 <!-- -------------------------------------------------------------------------------------------------- -->
 
@@ -442,9 +449,9 @@
 			        } else {
 			            $(this).parent().parent().next().next().next().hide();
 			        }
-			
 			    }
 			});
+		
 			//댓글 입력창 보이기(수정)
 			$(".comment_modify").on("click", function() {
 			    if ($.cookie("user_num")) {
@@ -462,30 +469,31 @@
 				$(".cmtModi").hide();
 				$(".cmtRly").hide();
 				});
-
+			
 			// 좋아요
 			$(".heart-btn").on("click",function() {
 				var num = $(this).data("review-num");
 				var review_num = $(this).data("review-num");
 				var like_id = $(this).data("like-id");
-				alert(review_num);
-				alert(like_id);
+				var book_isbn = $(this).data("isbn");
 				$.ajax({
 					url: 'ReviewlikeCount.re',
 					type: "POST",
-					data: {num,review_num,like_id},
+					data: {num,review_num,like_id,book_isbn},
 					success: function(data){
-						alert("성공!~");
-						
+						alert("좋아요 성공!~");
 					},
 				});
 		});	
+			
+
 	});
-		
 	</script>
 <!-- ------------------------------------------------------------------------------ -->
 
+
 <!-- ------------------------------------------------------------------------------ -->
+
 					
 <div class="detail_class_best_book"></div>
 <div class="md">
