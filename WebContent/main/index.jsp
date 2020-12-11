@@ -1,11 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="vo.PageInfo"%>
+<%@page import="vo.BookBean"%>
 <%
 	Date nowTime = new Date();
-SimpleDateFormat sf = new SimpleDateFormat("yyyy.MM.dd a hh:mm");
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy.MM.dd a hh:mm");
 %>
+<%
+	// 전달받은 request 객체로부터 데이터 가져오기
+	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
+	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
+	String id = (String) session.getAttribute("id"); 
+	ArrayList<BookBean> bookList = (ArrayList<BookBean>)request.getAttribute("bookList");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	int nowPage = pageInfo.getPage();
+	int maxPage = pageInfo.getMaxPage();
+	int startPage = pageInfo.getStartPage();
+	int endPage = pageInfo.getEndPage();
+	int listCount = pageInfo.getListCount();
+	String catg1 = "소설";
+	if(request.getParameter("catg1")!=null){
+		catg1 = request.getParameter("catg1");
+	}
+	String catg2 = "전체";
+	if(request.getParameter("catg2")!=null){
+		catg2 = request.getParameter("catg2");
+	}
+%>  
+
 <jsp:include page="../include/header.jsp" />
 <section class="" id="contents">
 <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.min.js"></script>
@@ -568,30 +592,6 @@ function brandnewNotice() {
 									</div>
 								</div>
 							</li>
-							
-							function brandnewNotice() {
-    $
-            .ajax({
-                dataType : "json",
-                url : "menu/brandnewNotice.do",
-                type : "GET",
-                success : function(data) {
-                    var html = '';
-                    html += '<table class="table" align="center" width="700" border="1" cellspacing="0">';
-                    html += '<tr>';
-                    html += '<td>' + data.ntitle + '</td>';
-                    html += '<td>' + data.nContents + '</td>';
-                    html += '<td>' + data.nDate + '</td>';
-                    html += '</tr>';
-                    html += '</table>';
-                    $("#brandnewNotice").html(html);
-                },
-                error : function(jqXHR, textStatus, errorThrown) {
-                    /* alert("에러 발생~~ \n" + textStatus + " : " + errorThrown); */
-                    /* 주석처리 안해놓으면 블로그에서 alert창이 뜬다.. 귀찮 (가끔 특정 사이트를 웹 또는 폰으로 서칭도중에 "바이러스가 발견되었습니다~
-어쩌구 하는 팝업창이 뜨는건 이런걸 이용한 눈속임 사기.." */
-                }
-            });
             
 							<!-- 									<li class="top-rank"> -->
 							<!-- 									<p class="rank"> -->
@@ -977,40 +977,45 @@ function brandnewNotice() {
 				</div>
 				
 				<ul>
+					<%
+						for(int i = 0; i < bookList.size(); i++) {
+					%>
 					<li>
 						<div class="figure">
-							<a href="https://www.bookcube.com/detail.asp?series_num=920030001&amp;page=">
+							<a href="BookDetail.bok?isbn<%=bookList.get(i).getIsbn()%>">
 								<span class="rm_br">
-								<img src="https://bookimg.bookcube.com/150/2011/201100479.jpg" alt="도서 이미지 - 가족사진"></span> 
+									<img src="https://bookimg.bookcube.com/150/2011/201100479.jpg" alt="도서 이미지 - 가족사진">
+								</span> 
 <!-- 								<span class="light"></span> -->
 							</a>
 						</div>
+						
 						<div class="hot-info">
 							<p class="hot-title">
-								<a href="https://www.bookcube.com/detail.asp?series_num=920030001&amp;page=">가족사진</a>
+								<a href="BookDetail.bok?isbn<%=bookList.get(i).getIsbn()%>"><%=bookList.get(i).getTitle() %>도서명</a>
 							</p>
-							<p>최영철</p>
+							<p><%=bookList.get(i).getAuthor() %>저자명</p>
 						</div>
 					</li>
 					
-<!-- 					<li> -->
-<!-- 						<div class="figure"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920030020&amp;page="> -->
-<!-- 								<span class="rm_br"><img -->
-<!-- 									src="https://bookimg.bookcube.com/150/2011/201100501.jpg" -->
-<!-- 									alt="도서 이미지 - 30 Lessons on Grammar"></span> <span class="light"></span> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 						<div class="hot-info"> -->
-<!-- 							<p class="hot-title"> -->
-<!-- 								<a -->
-<!-- 									href="https://www.bookcube.com/detail.asp?series_num=920030020&amp;page=">30 -->
-<!-- 									Lessons on Grammar</a> -->
-<!-- 							</p> -->
-<!-- 							<p>Michael A. Putlack</p> -->
-<!-- 						</div> -->
-<!-- 					</li> -->
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920030020&amp;page=">
+								<span class="rm_br">
+									<img src="https://bookimg.bookcube.com/150/2011/201100501.jpg" alt="도서 이미지 - 30 Lessons on Grammar">
+								</span> 
+								<span class="light"></span>
+							</a>
+						</div>
+						
+						<div class="hot-info">
+							<p class="hot-title">
+								<a href="https://www.bookcube.com/detail.asp?series_num=920030020&amp;page=">30 Lessons on Grammar</a>
+							</p>
+							<p>Michael A. Putlack</p>
+						</div>
+					</li>
+					
 <!-- 					<li> -->
 <!-- 						<div class="figure"> -->
 <!-- 							<a -->
@@ -1066,6 +1071,7 @@ function brandnewNotice() {
 <!-- 							<p>크리스티나 앨저</p> -->
 <!-- 						</div> -->
 <!-- 					</li> -->
+					<%} %>
 				</ul>
 			</div>
 		</div>
