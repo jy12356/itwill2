@@ -1,5 +1,5 @@
 package action;
-
+import org.json.simple.*;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,25 +17,25 @@ public class MemberCheckAction implements Action {
 
 		ActionForward forward = null;
 		String id = request.getParameter("id");
-		System.out.println("MemberCheckAction ¾ÆÀÌµğ °¡Á®¿À¶ó±×! "+id);
+		System.out.println("MemberCheckAction id : "+id);
 		MemberCheckService memberCheckService = new MemberCheckService();
+//		String data = null; 
 		boolean isIdCheckSuccess = memberCheckService.registArticle(id);
 		System.out.println(isIdCheckSuccess);
-		/*
-		 * if(!isIdCheckSuccess) {
-		 * 
-		 * response.setContentType("text/html; charset=UTF-8"); PrintWriter out =
-		 * response.getWriter(); out.println("<script>"); // ÀÚ¹Ù½ºÅ©¸³Æ® ½ÃÀÛ ÅÂ±×
-		 * out.println("alert('·Î±×ÀÎ¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.')"); // ´ÙÀÌ¾ó·Î±× ¸Ş¼¼Áö Ãâ·Â
-		 * out.println("history.back()"); // ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿ out.println("</script>"); //
-		 * ÀÚ¹Ù½ºÅ©¸³Æ® ³¡ ÅÂ±×
-		 * 
-		 * } else { HttpSession session = request.getSession();
-		 * session.setAttribute("id", id); forward = new ActionForward();
-		 * forward.setPath("MemberModifyForm.me"); forward.setRedirect(false); }
-		 */
+		JSONObject resultObj = new JSONObject();
 
-		return forward;
+		if (isIdCheckSuccess) {
+			 resultObj = new JSONObject();
+	        response.setContentType("text/html; charset=UTF-8");
+	        PrintWriter out = response.getWriter();
+	        String str =  "ì´ë¯¸ ì‚¬ìš©ì¤‘ì´ê±°ë‚˜ íƒˆí‡´í•œ íšŒì›ì˜ ì•„ì´ë”” ì…ë‹ˆë‹¤.";
+	        resultObj.put("result", str );
+	        out.print(str);
+		} 
+		String result = resultObj.get("str").toString();
+		System.out.println("isIdCheckSuccess : "+isIdCheckSuccess);
+		System.out.printf("resultObj! : "+resultObj+", id : "+id);
+		return null;
 	}
 
 }

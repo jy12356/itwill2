@@ -1,7 +1,7 @@
 package svc;
 
 import static db.JdbcUtil.close;
-
+import org.json.simple.*;
 import java.sql.Connection;
 
 import javax.security.auth.login.LoginException;
@@ -15,13 +15,12 @@ public class MemberCheckService {
 		
 		boolean isIdCheckSuccess = false; 
 		Connection con = JdbcUtil.getConnection();
-		
+		System.out.println("MemberCheckService¿« id11 : "+id);
 		MemberDAO memberDAO = MemberDAO.getInstance();
-		
 		memberDAO.setConnection(con);
-		System.out.println("MemberCheckService¿« id : "+id);
 		isIdCheckSuccess = memberDAO.isIdCheck(id);
-		
+		System.out.println("MemberCheckService¿« isIdCheckSuccess22 : "+isIdCheckSuccess);
+
 		close(con);
 
 		return isIdCheckSuccess;
