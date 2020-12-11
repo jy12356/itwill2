@@ -183,8 +183,6 @@ public class MemberDAO {
 		return articleList;
 	}
 	public MemberBean selectArticle(String id) {
-		// 湲�踰덊샇(board_num)�뿉 �빐�떦�븯�뒗 �젅肄붾뱶瑜� SELECT
-		// 議고쉶 寃곌낵媛� �엳�쓣 寃쎌슦 BoardBean 媛앹껜�뿉 ���옣�븳 �뮘 由ы꽩
 		MemberBean article = null;
 		
 		PreparedStatement pstmt = null;
@@ -197,21 +195,16 @@ public class MemberDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
-			// 寃뚯떆臾쇱씠 議댁옱�븷 寃쎌슦 BoardBean 媛앹껜瑜� �깮�꽦�븯�뿬 寃뚯떆臾� �궡�슜 ���옣
 			if(rs.next()) {
 				article = new MemberBean();
 				article.setId(rs.getString("id"));
 				article.setName(rs.getString("name"));
 				article.setPassword(rs.getString("password"));
 				article.setEmail(rs.getString("email"));
-//				article.setDate(date);(rs.getString("board_file"));
 				article.setAddress(rs.getString("address"));
 				article.setAge(rs.getInt("age"));
 				article.setPhone(rs.getString("phone"));
 				article.setCatg(rs.getString("catg"));
-				
-				// �엫�떆 �솗�씤�슜 �긽�꽭 �궡�슜 異쒕젰
-//				System.out.println("湲� �젣紐� : " + article.getBoard_subject());
 			}
 				
 			
@@ -231,7 +224,7 @@ public class MemberDAO {
 			
 			PreparedStatement pstmt = null;
 			try {
-				String sql = "UPDATE member SET name=?, email=?, phone=?, catg=?, age=?, address=? WHERE id=?";
+				String sql = "UPDATE member SET name=?, email=?, phone=?, catg=?, age=?, address=?, password=? WHERE id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, article.getName());
 				pstmt.setString(2, article.getEmail());
@@ -239,9 +232,10 @@ public class MemberDAO {
 				pstmt.setString(4, article.getCatg());
 				pstmt.setInt(5, article.getAge());
 				pstmt.setString(6, article.getAddress());
-				pstmt.setString(7, article.getId());
+				pstmt.setString(7, article.getPassword());
+				pstmt.setString(8, article.getId());
 				updateCount = pstmt.executeUpdate();
-				
+				System.out.println("updateArticle() 성공! updateCount : "+updateCount);
 			} catch (SQLException e) {
 				System.out.println("updateArticle() ERROR! - " + e.getMessage());
 				e.printStackTrace();
@@ -253,14 +247,14 @@ public class MemberDAO {
 		}
 		
 		public int deleteArticle(MemberBean article) {
-			int updateCount = 0;
+			int deleteCount = 0;
 			
 			PreparedStatement pstmt = null;
 			try {
 				String sql = "delete from member WHERE id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, article.getId());
-				updateCount = pstmt.executeUpdate();
+				deleteCount = pstmt.executeUpdate();
 				
 			} catch (SQLException e) {
 				System.out.println("deleteArticle() ERROR! " + e.getMessage());
@@ -269,7 +263,7 @@ public class MemberDAO {
 				close(pstmt);
 			}
 			
-		return updateCount;
+		return deleteCount;
 	}
 		public int deleteMember(String id) {
 			System.out.println("MemberDAO : deleteMember()");
@@ -282,6 +276,7 @@ public class MemberDAO {
 				pstmt.setString(1,id);
 				System.out.println(pstmt);
 				deleteCount = pstmt.executeUpdate();
+				System.out.println("deleteMember() 성공! deleteCount : "+ deleteCount);
 			} catch (SQLException e) {
 				System.out.println("deleteMember() ERROR! "+ e.getMessage());
 				e.printStackTrace();
@@ -320,10 +315,9 @@ public class MemberDAO {
 					article.setNum(rs.getInt("num"));
 					article.setPhone(rs.getString("phone"));
 				}
-					
 				
 			} catch (SQLException e) {
-				System.out.println("selectArticle() �삤瑜�! - " + e.getMessage());
+				System.out.println("selectArticle() ERROR! - " + e.getMessage());
 				e.printStackTrace();
 			} finally {
 				close(rs);

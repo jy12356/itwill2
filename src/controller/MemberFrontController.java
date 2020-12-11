@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MemberCheckAction;
 import action.MemberDeleteFormAction;
+import action.MemberDeleteProAction;
 import action.MemberJoinProService;
 import action.MemberListAction;
 import action.MemberLoginProAction;
@@ -68,7 +69,6 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/MemberModifyPro.me")) {  
 			System.out.println("MemberModifyPro");
 			action = new MemberModifyProAction();
@@ -89,26 +89,23 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}  else if(command.equals("/MemberDeleteForm.me")) {
 			System.out.println("MemberDeleteForm");
-			
 			action = new MemberDeleteFormAction();
 			try {
-				forward = new ActionForward();
-				forward.setPath("/sub1/delete.jsp");
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 			
 		} else if(command.equals("/MemberDeletePro.me")) {
-			System.out.println("MemberDeleteForm");
-			
-//			action = new MemberDeleteProAction();
+			System.out.println("MemberDeletePro");
+			action = new MemberDeleteProAction();
 			try {
 				forward = action.execute(request, response);
-				forward = new ActionForward();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
+			
 		} else if(command.equals("/MemberCheck.me")) {
 			System.out.println("MemberCheck");
 			action = new MemberCheckAction();

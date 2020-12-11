@@ -28,7 +28,7 @@ public class MemberModifyProService {
 	}
 
 	public boolean modifyArticle(MemberBean article) {
-		boolean isModifySuccess = true;
+		boolean isModifySuccess = false;
 		
 		Connection con = getConnection();
 		
@@ -37,8 +37,10 @@ public class MemberModifyProService {
 		memberDAO.setConnection(con);
 		
 		int updateCount = memberDAO.updateArticle(article);
-		
+		System.out.println("modifyArticle updateArticle updateCount : "+updateCount);
 		if(updateCount>0) {
+			isModifySuccess = true;
+			System.out.println();
 			commit(con); 
 		} else {
 			rollback(con);

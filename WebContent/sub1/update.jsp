@@ -17,19 +17,11 @@
 		<div class="user-modify">
 			<h3>회원정보수정</h3>
 			 <form action="MemberModifyPro.me">
-<!-- 			<form action="MemberModifyPro.me" method='' id="member_register"> -->
-<!-- 			<input type="hidden" name="BusinessRegistrationNum" id="BusinessRegistrationNum" value="" /> -->
-<!-- 			<input type="hidden" name="register_mobile_num1" value="010"> -->
-<!-- 			<input type="hidden" name="ori_nickname" value="[juny1993]"> -->
-<!-- 			<input type="hidden" name="ori_email" id="ori_email" value="bonafide93@naver.com"> -->
-<!-- 			<input type="hidden" name="nick_chk" id="nick_chk" value="0"> -->
-<!-- 			<input type="hidden" name="email_chk" id="email_chk" value="0"> -->
-<!-- 			<input type="hidden" name="register_id" id="register_id" value="juny1993"> -->
-<!-- 			<input type="hidden" name="register_sms" id="register_sms" value="False"> -->
-<!-- 			<input type="hidden" name="register_name" id="register_name" value="차준희"> -->
+<input type="hidden" value="<%=article.getPassword()%>" id="password" name="password">
 <input type="hidden" value="<%=article.getId()%>" id="id" name="id">
 <input type="hidden" value="<%=article.getCatg()%>" id="catg1" name="catg1">
 <input type="hidden" value="<%=article.getAddress()%>" id="address" name="address">
+<input type="hidden" value="<%=article.getName()%>" id="name" name="name">
 				<fieldset>
 					<legend>회원정보수정 입력</legend>
 <!-- 					<div class="register-title"><p>필수입력항목</p></div> -->
@@ -66,11 +58,11 @@
 							</tr>
 							<tr>
 								<th><label for='register_pwd'>변경 비밀번호</label></th>
-								<td><input type='password' name='password' id='password' placeholder='변경비밀번호' onkeyup="checkPasswd(this)"/></td>
+								<td><input type="password" name="password1" id="password1" placeholder="변경비밀번호" onkeyup="checkPasswd(this)"/><div id="checkPasswdResult" style="font-size: 12px; font-weight: 500;"></div></td>
 							</tr>
 							<tr>
 								<th><label for='register_repwd'>변경 비밀번호 확인</label></th>
-								<td><input type='password' name='password2' id='password2' placeholder='변경비밀번호 확인' onkeyup="checkPasswd2(this)"/></td>
+								<td><input type="password"  name="password2" id="password2" placeholder="비밀번호 확인" onkeyup="checkPasswd2(this)"><div id="checkPasswdResult2" style="font-size: 12px; font-weight: 500;"></div></td>
 							</tr>
 							<tr>
 								<th><label for='register_name'>이름</label></th>
@@ -97,24 +89,18 @@
 							
 							<tr>
 								<th><label for='register_zipcode'>우편번호</label></th>
-								<td><div><input type='text' name='register_zipcosample4_postcodede' id='sample4_postcode' maxlength="24" />
-									<input type="button" onclick="sample4_execDaumPostcode()"  class="emailchk" value="우편번호 찾기"></div>
-							
-							
-							<input type="hidden" name="sample4_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" class="strMail"  required="required">
-						<input type="hidden" name="sample4_extraAddress" id="sample4_extraAddress" placeholder="참고항목" class="strMail" required="required"></td>
-						
-							
-							
-							
+								<td><div><input type="text" name="sample4_postcode" id="sample4_postcode" maxlength="24" required="required">
+										 <input type="button" onclick="sample4_execDaumPostcode()" class="emailchk" value="우편번호 찾기"></div>
 							</tr>
 							<tr>
 								<th><label for='register_address'>도로명 주소</label></th>
-								<td><input type='text' name='sample4_detailAddress' id='sample4_roadAddress' class="register_address" /></td>
+								<td><input type="text" name="sample4_roadAddress" id="sample4_roadAddress" class="register_address" required="required" /></td>
 							</tr>
 							<tr>
 								<th><label for='register_address'>상세주소</label></th>
-								<td><input type='text' name='sample4_extraAddress' id='register_address' class="register_address" /></td>
+								<td><input type="text" name="sample4_detailAddress" id="sample4_detailAddress" class="register_address" required="required"/>
+									<input type="hidden" name="sample4_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" class="strMail" >
+									<input type="hidden" name="sample4_extraAddress" id="sample4_extraAddress" placeholder="참고항목" class="strMail"></td>
 							</tr>
 							<tr>
 								<th><label>전화번호</label></th>
@@ -246,7 +232,7 @@
 			</table>
 			<div class="user-leave">
 				<p>회원 탈퇴를 원하실 경우 우측의 회원 탈퇴 버튼을 클릭하세요.</p>
-				<a href="https://www.bookcube.com/member_delete.asp" class="btn">회원탈퇴</a>
+				<a href="MemberDeletePro.me" class="btn">회원탈퇴</a>
 			</div>
 		</div>		
 	</div>
@@ -255,25 +241,30 @@
 </body>
 
 <script type="text/javascript">
+// 주소 값 나눠서 넣기
 $(function getAddre() {
-    	var address = document.getElementById('address').value
-    	var cutAddre = address.split('/')
-    	var postcode=cutAddre[0]
-    	var roadAddre=cutAddre[1]
-    	var extraAddre=cutAddre[2]
-    	
-    	if(address!=null){
-    		document.getElementById("sample4_postcode").value = postcode  
-    		document.getElementById("sample4_roadAddress").value = roadAddre  
-    		document.getElementById("register_address").value = extraAddre  
-    	} else {
-    		alert("주소 가져오지 못했습니다!")
-    	}  
+   	var address = document.getElementById('address').value
+   	var cutAddre = address.split('/')
+   	var postcode=cutAddre[0]
+   	var roadAddre=cutAddre[1]
+   	var extraAddre=cutAddre[2]
+   	
+   	if(address!=null){
+   		document.getElementById("sample4_postcode").value = postcode  
+   		document.getElementById("sample4_roadAddress").value = roadAddre  
+   		document.getElementById("sample4_detailAddress").value = extraAddre  
+   	} else {
+   		alert("주소 가져오지 못했습니다!")
+   	}  
+});
+// 디비의 선호항목 값 가져와서 체크
+$(function getCatg() {
+	$("input:checkbox[id='catg']").each(function() {
+	     if(this.value == catg1.value){ //값 비교
+	            this.checked = true; //checked 처리
+	      }
 	});
-/* $("input:checkbox[name='catg']:checked").val() */
-if(catg1){
-	$("input:checkbox[id='catg']").prop("checked", true);
-}
+});
 
 
 </script>
@@ -334,7 +325,87 @@ if(catg1){
             }
         }).open();
     }
+	function checkPasswd(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
+		var passwd = passwdForm.value; // ID 입력폼의 입력값을 가져와서 변수에 저장
+		
+		var element = document.getElementById('checkPasswdResult');
+		
+		var lengthRegex = /^[A-Za-z0-9!@#$%]{6,16}$/;
+		var upperCaseRegex = /[A-Z]/;
+		var lowerCaseRegex = /[a-z]/;
+		var digitRegex = /[0-9]/;
+		var specRegex = /[!@#$%]/;
+		
+		if(lengthRegex.exec(passwd)) {
+			var count = 0;
+			if(upperCaseRegex.exec(passwd)) count++;
+			if(lowerCaseRegex.exec(passwd)) count++;
+			if(digitRegex.exec(passwd)) count++;
+			if(specRegex.exec(passwd)) count++;
+			
+
+			// 점수(count) 에 따른 안전도 출력
+			if(count == 4) {
+				element.innerHTML = "사용 가능(안전)";
+				checkPasswdResult = true; // 전역변수 true 로 변경
+				var myElement = document.getElementById('checkPasswdResult');
+				myElement.style.color="green";
+				myElement.style.padding="0.3em";
+			} else if(count == 3) {
+				element.innerHTML = "사용 가능(보통)";
+				checkPasswdResult = true; // 전역변수 true 로 변경
+				var myElement = document.getElementById('checkPasswdResult');
+				myElement.style.color="green";
+				myElement.style.padding="0.3em";
+			} else if(count == 2) {
+				element.innerHTML = "사용 가능(위험)";
+				checkPasswdResult = true; // 전역변수 true 로 변경
+				var myElement = document.getElementById('checkPasswdResult');
+				myElement.style.color="green";
+				myElement.style.padding="0.3em";
+			} else {
+				element.innerHTML = "6~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+				checkPasswdResult = false; // 전역변수 false 로 변경
+				var myElement = document.getElementById('checkPasswdResult');
+				myElement.style.color="red";
+				myElement.style.padding="0.3em";
+			}
+
+		} else {
+			element.innerHTML = "6~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
+			checkPasswdResult = false; // 전역변수 false 로 변경
+			var myElement = document.getElementById('checkPasswdResult');
+			myElement.style.color="red";
+			myElement.style.padding="0.3em";
+		}
+		
+		
+		
+	}
 	
+	function checkPasswd2(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
+		var password2 = passwdForm.value; // ID 입력폼의 입력값을 가져와서 변수에 저장
+		var password1 = document.getElementById('password1').value;
+		var password = document.getElementById('password').value;
+		var element = document.getElementById('checkPasswdResult2');
+		
+		
+		if(password==null){
+			password1 = password
+		} else {
+			if(password1!=password2){
+				element.innerHTML = "비밀번호가 일치하지 않습니다!";
+				var myElement = document.getElementById('checkPasswdResult2');
+				myElement.style.color="red";
+				checkPasswd2Result = false;
+			} else if(password1=password2) {
+				element.innerHTML = "";
+				checkPasswd2Result = true;
+			}
+			
+		}
+		
+	}
 	
 	function checkEmail (emailForm) { 
 		var email = emailForm.value; 

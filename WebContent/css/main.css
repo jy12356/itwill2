@@ -2082,6 +2082,7 @@ border-radius:4px;box-shadow:0 2px #ffe7de;transition:.5s;}
 /* 성인인증페이지 */
 .common-title{height:80px;border-bottom:1px solid #f4f4f4;text-align:center;}
 .common-title h1, .common-title h3{line-height:80px;color: #069e89;font-weight:600;font-size:30px;}
+.common-title h1, .common-title #h33{line-height:90px;color: #069e89;font-weight:600;font-size:30px;}
 .adult-certify{width:900px;margin:0 auto;padding:50px 0 100px;}
 .adult-certify .adult-box{margin-bottom:50px;background:#f4f4f4;border-radius:6px;height:260px;box-sizing:border-box;padding:50px 80px 0;}
 .adult-certify .adult-box:after{content:"";display:block;clear:both;}
@@ -2151,7 +2152,7 @@ box-shadow:-1px 1px 15px rgba(0,0,0,0.75);}
 .login-find{padding:15px 0;border-bottom:1px solid #ccc;}
 .login-find input[type='button']{cursor:pointer;display:block;width:100%;height:58px;line-height:60px;border:1px solid #dc4510;background:#f26432;color:#fff;text-align:center;font-weight:600;font-size:20px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
 .login-btn{margin-top:20px;}
-.login-btn input[type='submit']{box-sizing:border-box;cursor:pointer;display:block;width:100%;height:46px;line-height:46px;border:1px solid #dc4510;background:#f26432;color:#fff;text-align:center;font-weight:600;font-size:20px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
+.login-btn input[type='submit']{box-sizing:border-box;cursor:pointer;display:block;width:100%;height:46px;line-height:46px;border:1px solid #069e89;background:#069e89;color:#fff;text-align:center;font-weight:600;font-size:20px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
 .login-btn a{box-sizing:border-box;margin-top:10px;display:block;width:100%;height:46px;line-height:46px;border:1px solid #ccc;background:#fff;color:#666;text-align:center;font-weight:600;font-size:16px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
 .login-btn a.go-main{display:block;width:100%;height:58px;line-height:60px;border:1px solid #dc4510;background:#f26432;color:#fff;text-align:center;font-weight:600;font-size:20px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
 .simple-login p.join-title{font-size:16px;font-weight:600;color:#666;padding-bottom:10px;padding-left:3px;}
@@ -2175,8 +2176,8 @@ box-shadow:-1px 1px 15px rgba(0,0,0,0.75);}
 .simple-login-btn .login-btn a span.payco{background:url(../images/payco.png) no-repeat left center !important;padding:0;border:none;}
 .simple-login-btn p.now-start{margin-bottom:15px;text-align:center;font-size:13px;color:#999;}
 .simple-login-btn p.now-start span{background:url(../images/now-start.png) no-repeat left center;padding-left:15px;display:inline-block;color:#666;}
-.simple-login-btn p.now-start a{margin-left:10px;display:inline-block;color:#f26432;font-weight:bold;}
-.simple-login-btn input[type='submit']{box-sizing:border-box;cursor:pointer;display:block;width:100%;height:46px;line-height:46px;border:1px solid #dc4510;background:#f26432;color:#fff;text-align:center;font-weight:600;font-size:16px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
+.simple-login-btn p.now-start a{margin-left:10px;display:inline-block;color:#069e89;font-weight:bold;}
+.simple-login-btn input[type='submit']{box-sizing:border-box;cursor:pointer;display:block;width:100%;height:46px;line-height:46px;border:1px solid #069e89;background:#069e89;color:#fff;text-align:center;font-weight:600;font-size:16px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
 .simple-login-btn.or{padding-top:13px;position:relative;}
 .login-or{position:relative;margin-top:20px;border-top:1px solid #cbcbcb;}
 p.or{text-align:center;width:60px;line-height:16px;position:absolute;left:50%;margin-left:-30px;top:-9px;background:#fff;font-size:13px;color:#999;}

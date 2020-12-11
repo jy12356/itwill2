@@ -67,13 +67,13 @@
 						<p class="check" style="display: none;"></p>
 					</div>
 					<div class="js-join">
-						<input type="hidden" name="sample4_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" class="strMail" required="required">
+						<input type="hidden" name="sample4_jibunAddress" id="sample4_jibunAddress" placeholder="지번주소" class="strMail">
 						<p class="check" style="display: none;"></p>
 					</div><div class="js-join">
 						<input type="text" name="sample4_detailAddress" id="sample4_detailAddress" placeholder="상세주소" class="strMail" required="required">
 						<p class="check" style="display: none;"></p>
 					</div><div class="js-join">
-						<input type="hidden" name="sample4_extraAddress" id="sample4_extraAddress" placeholder="참고항목" class="strMail" required="required">
+						<input type="hidden" name="sample4_extraAddress" id="sample4_extraAddress" placeholder="참고항목" class="strMail">
 						<p class="check" style="display: none;"></p>
 					</div>
 				</div>
@@ -358,7 +358,7 @@
 				myElement.style.color="green";
 				myElement.style.padding="0.3em";
 			} else {
-				element.innerHTML = "사용 불가(두 가지 이상 조합)";
+				element.innerHTML = "6~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
 				checkPasswdResult = false; // 전역변수 false 로 변경
 				var myElement = document.getElementById('checkPasswdResult');
 				myElement.style.color="red";
@@ -366,7 +366,7 @@
 			}
 
 		} else {
-			element.innerHTML = "사용 불가";
+			element.innerHTML = "6~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
 			checkPasswdResult = false; // 전역변수 false 로 변경
 			var myElement = document.getElementById('checkPasswdResult');
 			myElement.style.color="red";
