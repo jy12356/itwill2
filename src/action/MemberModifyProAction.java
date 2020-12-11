@@ -18,15 +18,15 @@ public class MemberModifyProAction implements Action {
 		ActionForward forward = null;
 		
 		String id = request.getParameter("id");
-		
+		System.out.println("MemberModifyProAction id : "+id);
 		MemberModifyProService memberModifyProService = new MemberModifyProService();
-		boolean isRightUser = memberModifyProService.isArticleWriter(id, request.getParameter("password"));
+		boolean isRightUser = memberModifyProService.isArticleWriter(id);
 		
 		if(!isRightUser) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('¼öÁ¤ ±ÇÇÑÀÌ ¾ø½À´Ï´Ù!')");
+			out.println("alert('ì•„ì´ë””ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤!')");
 			out.println("history.back()");
 			out.println("</script>");
 		} else {
@@ -47,7 +47,7 @@ public class MemberModifyProAction implements Action {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
-				out.println("alert('±Û ¼öÁ¤ ½ÇÆĞ!')");
+				out.println("alert('íšŒì›ìˆ˜ì •ì´ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤!')");
 				out.println("history.back()");
 				out.println("</script>");
 			} else {

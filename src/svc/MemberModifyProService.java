@@ -12,7 +12,7 @@ import vo.MemberBean;
 
 public class MemberModifyProService {
 
-	public boolean isArticleWriter(String id, String password) throws Exception {
+	public boolean isArticleWriter(String id) throws Exception {
 		boolean isArticleWriter = false;
 		
 		Connection con = getConnection();
@@ -20,12 +20,7 @@ public class MemberModifyProService {
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		
 		memberDAO.setConnection(con);
-		
-//<<<<<<< HEAD
-		isArticleWriter = memberDAO.isMember(id, password);
-//=======
-//		isArticleRequestWriter = memberDAO.isArticleMemberWriter(id, password);
-//>>>>>>> refs/heads/master
+		isArticleWriter = memberDAO.isIdCheck(id);
 		
 		close(con);
 		

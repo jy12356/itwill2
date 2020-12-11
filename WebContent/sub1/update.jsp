@@ -27,7 +27,7 @@
 <!-- 			<input type="hidden" name="register_id" id="register_id" value="juny1993"> -->
 <!-- 			<input type="hidden" name="register_sms" id="register_sms" value="False"> -->
 <!-- 			<input type="hidden" name="register_name" id="register_name" value="차준희"> -->
-<input type="hidden" value="<%=article.getAddress()%>" id="address">
+<input type="hidden" value="<%=article.getId()%>" id="id" name="id">
 				<fieldset>
 					<legend>회원정보수정 입력</legend>
 <!-- 					<div class="register-title"><p>필수입력항목</p></div> -->
@@ -78,7 +78,7 @@
 								<th><label for='register_email_id'>e-Mail</label></th>
 								<td>
 									<div>
-										<label><input type='text' name='register_email_id' id='register_email_id'  onkeyup="checkEmail(this)" value='<%=article.getEmail() %>' /></label>
+										<label><input type='text' name='email' id='email'  onkeyup="checkEmail(this)" value='<%=article.getEmail() %>' /></label>
 										<input type='button' name='' value='중복체크' class="emailchk"/>
 									</div>
 									<div>
@@ -128,6 +128,87 @@
 <!-- 									<div class="option"> -->
 										<input type="text" name="age" id="age" value="<%=article.getAge()%>" class="strMail" class="register_address" required="required"   onkeyup="checkAge(this)">
 <!-- 									</div> -->
+								</td>
+							</tr>
+							<tr>
+								<th><label>선택입력항목</label></th>
+								<td>
+				<!-- <div class="join-check"> -->
+					<div>
+						<div class="checkbox01">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="소설" onclick="doOpenCheck(this);">
+								<span><i></i></span>
+							</label>
+							<p class="01">소설</p>
+						</div>
+						
+						<div class="checkbox01">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="인문" onclick="doOpenCheck(this);">
+								<span><i></i></span>
+							</label>
+							<p>인문</p>
+						</div>
+						
+						<div class="checkbox01">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="자기계발" onclick="doOpenCheck(this);">
+								<span><i></i></span>
+							</label>
+							<p id="01">자기계발</p>
+						</div>
+						
+						<div class="checkbox01">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="경제" onclick="doOpenCheck(this);">
+								<span><i></i></span>
+							</label>
+							<p id="01">경제</p>
+						</div>
+						
+						<div class="checkbox01">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="과학" onclick="doOpenCheck(this);">
+								<span><i></i></span>
+							</label>
+							<p id="01">과학</p>
+						</div>
+						
+						<div class="checkbox01">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="IT" onclick="doOpenCheck(this);">
+								<span><i></i></span>
+							</label>
+							<p id="01">IT</p>
+						</div>
+						
+						<div class="checkbox01">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="취미" onclick="doOpenCheck(this);">
+								<span><i></i></span>
+							</label>
+							<p>취미</p>
+						</div>
+						
+						<div class="checkbox01">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="만화" onclick="doOpenCheck(this);">
+								<span><i></i></span>
+							</label>
+							<p id="01">만화</p>
+						</div>
+						
+						<div class="checkbox01">
+							<label>
+								<input type="checkbox" name="catg" id="catg" value="웹소설" onclick="doOpenCheck(this);">
+								<span><i></i></span>
+							</label>
+							<p id="01">웹소설</p>
+						</div>
+						
+					</div>
+				<!-- </div> -->
 								</td>
 							</tr>
 						</tbody>
@@ -296,6 +377,14 @@
 			element.innerHTML = "";
 			checkAgeResult  = true;
 		}
+	}
+	function doOpenCheck(chk){
+	    var obj = document.getElementsByName("catg");
+	    for(var i=0; i<obj.length; i++){
+	        if(obj[i] != chk){
+	            obj[i].checked = false;
+	        }
+	    }
 	}
 	
 </script>

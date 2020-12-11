@@ -1438,7 +1438,8 @@ box-sizing:border-box;transition:border-color ease-in-out .15s, box-shadow ease-
 .user-modify table td > div .arrayBox .s-result{padding:0 30px 0 0;width:auto;line-height:28px;}
 .user-modify table td > div input[type='button']{cursor:pointer;border:1px solid #ea4d14;background:#17897a;color:#fff;text-align:center;line-height:30px;box-sizing:border-box;padding:0 14px;
 box-shadow:0 2px #ffe7de;border-radius:4px;font-size:13px;font-weight:bold;}
-.user-modify table tr:last-child td p{font-size:13px;color:#999;margin:10px 0;}
+
+.user-modify table tr:last-child td p{font-size:13px;color:#999;margin:4px 0;}
 .user-modify table tr td .checkbox{font-size:13px;color:#999;line-height:20px;}
 .user-modify table tr td .checkbox span{margin-left:0;margin-right:5px;}
 .user-modify table tr td .register_address{width:644px;}
@@ -1448,8 +1449,14 @@ box-shadow:0 2px #ffe7de;border-radius:4px;font-size:13px;font-weight:bold;}
 .user-modify .register-btn{margin-bottom:100px;text-align:center;}
 .user-modify .register-btn input[type='button']{margin:0 2px;cursor:pointer;display:inline-block;border:1px solid #ea4d14;background:#17897a;color:#fff;text-align:center;line-height:48px;box-sizing:border-box;padding:0 40px;
 box-shadow:0 2px #ffe7de;border-radius:4px;font-size:14px;font-weight:bold;vertical-align:middle;transition:.5s;}
+.user-modify .register-btn input[type='submit']{margin:0 2px;cursor:pointer;display:inline-block;border:1px solid #ea4d14;background:#17897a;color:#fff;text-align:center;line-height:48px;box-sizing:border-box;padding:0 40px;
+box-shadow:0 2px #ffe7de;border-radius:4px;font-size:14px;font-weight:bold;vertical-align:middle;transition:.5s;}
+
+
 .user-modify .register-btn a{display:inline-block;font-size:14px;color:#333;line-height:48px;padding:0 40px;vertical-align:middle;margin:0 2px;transition:.5s;}
 .user-modify .register-btn input[type='button']:hover{box-shadow:0 6px 4px rgba(0,0,0,.075),0 0 30px rgba(249,132,90,.6);}
+.user-modify .register-btn input[type='submit']:hover{box-shadow:0 6px 4px rgba(0,0,0,.075),0 0 30px rgba(249,132,90,.6);}
+
 .user-modify .register-btn a:hover{box-shadow:0 4px 4px rgba(0,0,0,.075),0 0 10px rgba(243,243,243,.6);}
 .user-modify .certify-tbl th{padding:20px 0 20px 18px !important;}
 .user-modify .certify-tbl td{color:#17897a !important;}

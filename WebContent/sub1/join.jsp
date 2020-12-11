@@ -460,11 +460,10 @@
 			&& checkPasswd2Result) {
 			return true;
 		} else {
-			alert('아이디 또는 패스워드 규칙 확인 필수!');
+			alert("아이디 또는 패스워드 규칙 확인 필수!");
 			return false;
 		}
 	}
-	
 	$("input[name=all_chk]").on("click", function(){
 		$(this).prop("checked") ? $("input[name=reply_chk]").prop("checked", true) : $("input[name=reply_chk]").prop("checked", false);
 	});
@@ -488,8 +487,8 @@
 	    }
 	}
 </script>
-		</div>
-	</section>
+</div>
+</section>
 	
 
-<%-- <jsp:include page="../include/footer.jsp"/> --%>
+<jsp:include page="../include/footer.jsp"/> 
