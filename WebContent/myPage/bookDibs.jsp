@@ -60,7 +60,7 @@
                                 <td><%=bookListDibsList.get(i).getState()%></td>
                                 <td class="book_basketbtn">
                                 	<%if(bookListDibsList.get(i).getState().equals("대여가능")){%>
-				                    	<a href="MyBasket.me?isbn=<%=bookListDibsList.get(i).getIsbn()%>" class="btn">책바구니</a>					               
+				                    	<a href="MyBasketInsert.bk?isbn=<%=bookListDibsList.get(i).getIsbn()%>" class="btn">책바구니</a>					               
                                 	<%}else{%>
                                 		대여불가능
                                 	<%} %>
@@ -72,6 +72,7 @@
                     </table>
                     <div class="btn_inner"> 
                     	<a href="javascript:void(0);" onclick="deleteBook(); return false;"class="btn">삭제하기</a>
+                    	<!-- <a href="javascript:void(0);" class="btn delbtn">삭제하기</a> -->
                     	
                     </div>
                     
@@ -105,6 +106,7 @@
 
         </div>
     </div>
+    <!-- 
 	<script type="text/javascript">
 // 		파라미터 들고오기
 		function Request(){
@@ -137,8 +139,6 @@
 	   	function deleteBook(){
 	   		if(confirm("삭제하시겠습니까?")){
 	   		    var requestParam = new Request();
-	   		 	var title = requestParam.getParameter("title");
-	   		 	var isbn = requestParam.getParameter("isbn");
 	   			var checked_seq = "";
 	   		 	if ($('.check_box input[type="checkbox"]:checked').length != 0) {
 	                checked_seq = $('.check_box input[type="checkbox"]:checked').val();
@@ -146,43 +146,47 @@
              		alert("게시물을 선택해주시길 바랍니다.");
              		return false;	            	
 	            }
-				location.href="BookDeletePro.bok?book_num="+checked_seq+"&title="+title+"&isbn="+isbn;
+				location.href="BookDibsDelete.bok?num="+checked_seq;
 				return true;
        	    } else {
        	    	alert("삭제에 실패하였습니다.");
        	        return false;
        	    }
 	    };
-	    //수정
-	   	function modifyBook(){
-	   		if(confirm("수정하시겠습니까?")){
-	   			var checked_seq = "";
-	   		    var requestParam = new Request();;
-	   		 	var title = requestParam.getParameter("title");
-	   		 	var isbn = requestParam.getParameter("isbn");
-	   		  	var check_count = document.getElementsByName("book_num").length;
-	   		  	
-	   		 	if ($('.check_box input[type="checkbox"]:checked').length != 0) {
-	                checked_seq = $('.check_box input[type="checkbox"]:checked').val();
-	                alert(checked_seq);
-	            }else{
-                	alert("게시물을 선택해주시길 바랍니다.");
-                	return false;	            	
-	            }
-	   		 	alert(title);
-				location.href="BookModify.bok?book_num="+checked_seq+"&title="+title+"&isbn="+isbn;
-				return true;
-       	    } else {
-       	    	alert("수정에 실패하였습니다.")
-       	        return false;
-       	    }
-	    };
-	    
 	    	
 	   	 
 	                    	                    	
                     	 
     </script>
+     -->
+     
+     <script>
+	   	function deleteBook(){
+			var confirm_val = confirm("정말 삭제하시겠습니까?");
+			
+			if(confirm_val) {
+				var checkArr = new Array();
+				if ($('.check_box input[type="checkbox"]:checked').length != 0) {
+					$('.check_box input[type="checkbox"]:checked').each(function(){
+						checkArr.push($(this).attr("value"));  
+					});
+				}else{
+					alert("게시물을 선택해주시길 바랍니다.");
+					return false;	            	
+				};	
+		    
+				$.ajax({
+					url : "BookDibsDelete.bok",
+					type : "post",
+					data : { chbox : checkArr },
+					success : function(){
+						location.href = "BookDibsList.bok";
+					}
+				});
+			} 
+	    };
+    	
+	</script>
 </section>
 
 <jsp:include page="../include/footer.jsp"/>

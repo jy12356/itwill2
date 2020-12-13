@@ -1,6 +1,8 @@
 package action.book;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +19,8 @@ public class BookDibsDeleteAction implements Action {
 		ActionForward forward = null;
 
 		String id = request.getParameter("id");
-		int num = Integer.parseInt(request.getParameter("num"));
+	
+		List<Integer> num = List request.getParameter("chbox");
 		
 		BookDibsDeleteService bookDibsDeleteService = new BookDibsDeleteService(); 
 		boolean isBookDel =  bookDibsDeleteService.dibsDelete(id,num);
@@ -34,6 +37,7 @@ public class BookDibsDeleteAction implements Action {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
+				
 				out.println("alert('삭제에 실패하였습니다.')");
 				out.println("history.back()");
 				out.println("</script>");
