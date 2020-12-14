@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.book.BookDeleteProAction;
 import action.book.BookDetailAction;
+import action.book.BookDibsDeleteAction;
 import action.book.BookDibsListAction;
 import action.book.BookDibsListInsertAction;
 import action.book.BookKindListAction;
 import action.book.BookListAction;
 import action.book.BookModifyAction;
 import action.book.BookModifyProAction;
+import action.book.BookRegiSearchAction;
 import action.book.BookRegiSerchAction;
 import action.book.BookWriteProAction;
 import vo.ActionForward;
@@ -124,9 +126,18 @@ public class BookController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/BookDibsDelete.bok")) {
+			System.out.println("BookDibsDelete.bok 포워딩");
+			action = new BookDibsDeleteAction();
+			try {				
+				forward =  action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/BookNaverAPISearch.bok")) {
 			System.out.println("BookNaverAPISearch.bok 포워딩");
-			action = new BookDibsListInsertAction();
+			action = new BookRegiSearchAction();
 			try {				
 				forward =  action.execute(request, response);
 				
