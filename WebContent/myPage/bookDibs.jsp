@@ -109,7 +109,7 @@
      
      <script>
      
-     //전체체크 
+     //전체체크 해제 
      $('#allCheck').click(function(){
     	 if($('input[id="allCheck"]').prop("checked")){
     	 	$('.check_box input[type="checkbox"]').prop('checked',true);
