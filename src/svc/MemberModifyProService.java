@@ -12,7 +12,7 @@ import vo.MemberBean;
 
 public class MemberModifyProService {
 
-	public boolean isArticleWriter(String id, String password) throws Exception {
+	public boolean isArticleWriter(String id) throws Exception {
 		boolean isArticleWriter = false;
 		
 		Connection con = getConnection();
@@ -20,12 +20,7 @@ public class MemberModifyProService {
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		
 		memberDAO.setConnection(con);
-		
-//<<<<<<< HEAD
-		isArticleWriter = memberDAO.isMember(id, password);
-//=======
-//		isArticleRequestWriter = memberDAO.isArticleMemberWriter(id, password);
-//>>>>>>> refs/heads/master
+		isArticleWriter = memberDAO.isIdCheck(id);
 		
 		close(con);
 		
@@ -33,7 +28,7 @@ public class MemberModifyProService {
 	}
 
 	public boolean modifyArticle(MemberBean article) {
-		boolean isModifySuccess = true;
+		boolean isModifySuccess = false;
 		
 		Connection con = getConnection();
 		
@@ -42,8 +37,10 @@ public class MemberModifyProService {
 		memberDAO.setConnection(con);
 		
 		int updateCount = memberDAO.updateArticle(article);
-		
+		System.out.println("modifyArticle updateArticle updateCount : "+updateCount);
 		if(updateCount>0) {
+			isModifySuccess = true;
+			System.out.println();
 			commit(con); 
 		} else {
 			rollback(con);
