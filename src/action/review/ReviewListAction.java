@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.REUtil;
+
 import action.Action;
 import svc.review.ReCommentListService;
 import svc.review.ReviewListService;
 import vo.ActionForward;
+import vo.CommentBean;
 import vo.PageInfo;
 import vo.ReviewBean;
 
@@ -19,34 +22,32 @@ public class ReviewListAction implements Action {
 		System.out.println("Action - 2.ReviewListAction!");
 		
 		ActionForward forward = null;
-		// 서평 수 ---------------------------------------------------------
-		ReviewListService reviewListService = new ReviewListService();
-		int listCount = reviewListService.getListCount();
-		System.out.println("전체게시물 수 : " + listCount);
-		
-		// 댓글 수 ---------------------------------------------------------
-		
-		ReCommentListService reCommentListService = new ReCommentListService();
-		int listCount2 = reCommentListService.getCommetListCount();
-		System.out.println("전체댓글 수 : " + listCount2);
-		
-		// ---------------------------------------------------------------
-		
-		
+			
+//		String isbn = request.getParameter("isbn");
+//		String id = request.getParameter("id");
+		String isbn = "2"; // 작업 후 삭제
+		String id = "test"; // 작업 후 삭제
+		System.out.println("책코드 : " + isbn);
+		System.out.println("아이디 : " + id);
 		
 		// 서평 리스트 -------------------------------------------------------
+		// 서평 수 확인 ----------
+		ReviewListService reviewListService = new ReviewListService();
+		
+		int listCount = reviewListService.getListCount(isbn);
+		System.out.println("전체게시물 수 : " + listCount);
+		
 		// 페이지 처리를 위한 변수 선언
 		int page = 1; // 현재 페이지 번호 저장할 변수
-		int limit = 5; // 페이지 당 표시할 게시물 수를 결정하는 변수
-		
-		// request 객체로부터 "page" 파라미터가 전달됐을 경우(null 이 아닐 경우)
-		// 해당 파라미터 값을 page 변수에 저장
-		if(request.getParameter("limit") != null) {
-			page = Integer.parseInt(request.getParameter("limit"))+20;
-		}	
-		ArrayList<ReviewBean> articleList = new ArrayList<ReviewBean>();
+		int limit = 10; // 페이지 당 표시할 게시물 수를 결정하는 변수
 
-		articleList = reviewListService.getArticleList(page, limit);
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+
+		// 서평 리스트 출력 ----------
+		ArrayList<ReviewBean> articleList = new ArrayList<ReviewBean>();
+		articleList = reviewListService.getArticleList(page, limit, isbn);
 		
 		// 페이지 계산 작업 수행
 		// 1. 전체 페이지 수 계산
@@ -62,14 +63,15 @@ public class ReviewListAction implements Action {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
-		// 계산된 모든 페이지 정보를 PageInfo 객체에 저장
+		
 		PageInfo pageInfo = new PageInfo(
-				page, maxPage, startPage, endPage, listCount);
+		page, maxPage, startPage, endPage, listCount);
 		// request 객체의 setAtribute() 메서드를 호출하여
 		// 게시물 목록 정보(ArrayList)와 페이지 정보(PageInfo) 객체를 저장
-		request.setAttribute("articleList", articleList);
-		request.setAttribute("pageInfo", pageInfo);
 		
+		request.setAttribute("articleList", articleList);			
+		request.setAttribute("pageInfo", pageInfo);
+
 		forward = new ActionForward();
 		forward.setPath("/sub1/detail.jsp");
 		
@@ -77,3 +79,9 @@ public class ReviewListAction implements Action {
 	}
 
 }
+
+// 댓글 수 ---------------------------------------------------------
+
+//		ReCommentListService reCommentListService = new ReCommentListService();
+//		int listCount2 = reCommentListService.getCommetListCount();
+//		System.out.println("전체댓글 수 : " + listCount2);
