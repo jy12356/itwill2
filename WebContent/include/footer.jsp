@@ -1,8 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="vo.NoticeBean"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
 
 	<%-- <%
 	ArrayList<NoticeBean> articleList = (ArrayList<NoticeBean>) request.getAttribute("articleList");
@@ -13,7 +14,8 @@ int startPage = PageInfo.getStartPage();
 int endPage = PageInfo.getEndPage();
 int listCount = PageInfo.getListCount();
 %>
-<footer> --%>
+--%>
+<footer> 
 	<div class="footer-top">
 		<div class="notice-wrap">
 			<div class="notice-inner">
