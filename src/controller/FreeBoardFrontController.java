@@ -20,7 +20,6 @@ import action.freeboard.FreeBoardListAction;
 import action.freeboard.FreeBoardModifyFormAction;
 import action.freeboard.FreeBoardModifyProAction;
 import action.freeboard.FreeBoardWriteProAction;
-import action.freeboard.MyBasketAction;
 import vo.ActionForward;
 
 @WebServlet("*.free") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리

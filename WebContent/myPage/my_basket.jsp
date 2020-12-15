@@ -28,7 +28,7 @@ int listCount = pageInfo.getListCount();
 
 			<div class="customer-contents">
 				<div class="customer-inner">
-					<table summary="내가 찜한 리스트" class="customer-table notice">
+					<table summary="내가 찜한 리스트" class="customer-table notice" id="wow">
 						<caption>책바구니2ㅁ</caption>
 						<colgroup>
 							<col style="width: 5%">
@@ -67,7 +67,7 @@ int listCount = pageInfo.getListCount();
 						%>
 						<tr>
 							<td class="tac check_box"><input type="checkbox"
-								id="checkRow1" class="checkRow1"
+								id="checkRow" class="checkRow1"
 								value="<%=myBasketList.get(i).getNum()%>" name="checkRow1"
 								onclick="checkRow1();"><%=myBasketList.get(i).getNum()%></td>
 							<td><%=myBasketList.get(i).getTitle()%></td>
@@ -105,7 +105,7 @@ int listCount = pageInfo.getListCount();
 						</thead>
 						<tr>
 							<td class="tac check_box"><input type="checkbox"
-								id="checkRow2" class="checkRow2"
+								id="checkRow" class="checkRow2"
 								value="<%=myBasketList.get(i).getNum()%>" name="checkRow2"
 								onclick="checkRow2();"><%=myBasketList.get(i).getNum()%></td>
 							<td><%=myBasketList.get(i).getTitle()%></td>
@@ -125,8 +125,9 @@ int listCount = pageInfo.getListCount();
 					<div class="btn_inner">
 						<a href="javascript:void(0);"
 							onclick="deleteBook(); return false;" class="btn">삭제하기</a>
-<button onclick="value_check()">checkbox 선택(체크)된 객체 값(value)
-		가져오기</button>
+						<button onclick="value_check()">checkbox 선택(체크)된 객체
+							값(value) 가져오기</button>
+							<input type="button" value="삭제해버려" id="selectDelete_btn" >
 						<div class="payment-result basket">
 							<p>
 								총 선택 도서 수 : <span class="totalbookcnt">0권</span>
@@ -150,9 +151,31 @@ int listCount = pageInfo.getListCount();
 		</div>
 	</div>
 	<input type="hidden" value="<%=memState%>" class="abcabc">
-	
+
 	<script type="text/javascript">
-		// 		if($("#checkAll1").is(':checked') || $("#checkRow1").is(':checked')) {
+$(document).ready(function(){
+
+	$(".selectDelete_btn").click(function(){
+		  var confirm_val = confirm("정말 삭제하시겠습니까?");
+		  
+		  if(confirm_val) {
+		   var checkArr = new Array();
+		   
+		   $("input[id='checkRow']:checked").each(function(){
+		    checkArr.push($(this).attr("value"));
+		   });
+		    
+		   $.ajax({
+		    url : "delete.bk",
+		    type : "post",
+		    data : { chbox : checkArr },
+		    success : function(){
+		     location.href = "/shop/cartList";
+		    }
+		   });
+		  } 
+		 });
+ 
 
 		function value_check() {
 			var checkRow1value = '';
@@ -167,11 +190,11 @@ int listCount = pageInfo.getListCount();
 			alert(checkRow1value);
 		}
 		// 배열선언
-		var arrValues = new Array();
-		for(var i =1; i<= checkRow1value.length; i ++ ) {
-			
-			arrValues.push(checkRowvalue)
-		}
+// 		var arrValues = new Array();
+// 		for (var i = 1; i <= checkRow1value.length; i++) {
+
+// 			arrValues.push(checkRowvalue)
+// 		}
 
 		$("#checkAll1").click(function() {
 			if ($(this).is(":checked")) {
@@ -281,7 +304,10 @@ int listCount = pageInfo.getListCount();
 								window.open(u, option);
 							}
 						});
+});
 	</script>
 </section>
 
 <jsp:include page="../include/footer.jsp" />
+
+

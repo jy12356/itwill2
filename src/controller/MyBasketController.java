@@ -51,7 +51,7 @@ public class MyBasketController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} 
 
 		if (forward != null) {
 			if (forward.isRedirect()) {
