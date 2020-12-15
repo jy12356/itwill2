@@ -18,7 +18,6 @@ public class BookBean {
 		private int count;
 	    private String author_info;
 	    private String index;
-	    private String date;
 	    
 	    public int getNum() {
 			return num;
@@ -111,11 +110,4 @@ public class BookBean {
 		public void setIndex(String index) {
 			this.index = index;
 		}
-		public String getDate() {
-			return date;
-		}
-		public void setDate(String date) {
-			this.date = date;
-		}
-		
 }

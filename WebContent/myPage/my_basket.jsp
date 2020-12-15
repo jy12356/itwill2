@@ -154,6 +154,7 @@ int listCount = pageInfo.getListCount();
 
 	<script type="text/javascript">
 $(document).ready(function(){
+
 	$(".selectDelete_btn").click(function(){
 		  var confirm_val = confirm("정말 삭제하시겠습니까?");
 		  
@@ -175,21 +176,26 @@ $(document).ready(function(){
 		  } 
 		 });
  
+
 		function value_check() {
 			var checkRow1value = '';
+
 			$('input[name="checkRow1"]:checked').each(function(index) {
 				if (index != 0) {
 					checkRow1value += ',';
 				}
 				checkRow1value += $(this).val();
 			});
+
 			alert(checkRow1value);
 		}
 		// 배열선언
 // 		var arrValues = new Array();
 // 		for (var i = 1; i <= checkRow1value.length; i++) {
+
 // 			arrValues.push(checkRowvalue)
 // 		}
+
 		$("#checkAll1").click(function() {
 			if ($(this).is(":checked")) {
 				$(".checkRow1").prop("checked", true);
@@ -200,7 +206,9 @@ $(document).ready(function(){
 				$(".checkRow1").prop("checked", false);
 				$(".checkAll1").prop("checked", false);
 			}
+
 		});
+
 		$("#checkAll2").click(function() {
 			if ($(this).is(":checked")) {
 				$(".checkRow2").prop("checked", true);
@@ -211,7 +219,9 @@ $(document).ready(function(){
 				$(".checkRow2").prop("checked", false);
 				$(".checkAll2").prop("checked", false);
 			}
+
 		});
+
 		$("#checkRow1").click(function() {
 			if ($(this).is(":checked")) {
 				$(".checkRow2").prop("checked", false);
@@ -219,6 +229,7 @@ $(document).ready(function(){
 			} else {
 				$(".checkAll1").prop("checked", false);
 			}
+
 		});
 		$("#checkRow2").click(function() {
 			if ($(this).is(":checked")) {
@@ -227,13 +238,16 @@ $(document).ready(function(){
 			} else {
 				$(".checkAll2").prop("checked", false);
 			}
+
 		});
+
 		$("#checkRow1").click(function() {
 			if ($(this).is(":checked")) {
 				$(".rentalbtn").show();
 			} else {
 				$(".rentalbtn").hide();
 			}
+
 		});
 		$("#checkRow2").click(function() {
 			if ($(this).is(":checked")) {
@@ -241,7 +255,9 @@ $(document).ready(function(){
 			} else {
 				$(".reservationbtn").hide();
 			}
+
 		});
+
 		// 		function checkRow1() {
 		// 			if($("#checkRow1").is(':checked') ) {
 		// 				$("input[name=checkRow2]").prop("checked", false);
@@ -253,7 +269,9 @@ $(document).ready(function(){
 		// 				$("input[name=checkRow1]").prop("checked", false);
 		// 				$("input[name=checkAll1]").prop("checked", false);
 		// 			}
+
 		// 		}
+
 		$("#checkRow1").click(function() {
 			var total_cnt1 = 0;
 			$('input:checkbox[name="checkRow1"]').each(function() {
@@ -261,8 +279,10 @@ $(document).ready(function(){
 					total_cnt1 += 1;
 				}
 			});
+
 			$(".totalbookcnt").html(total_cnt1 + "권");
 		});
+
 		$("#checkRow2").click(function() {
 			var total_cnt2 = 0;
 			$('input:checkbox[name="checkRow2"]').each(function() {
@@ -270,11 +290,14 @@ $(document).ready(function(){
 					total_cnt2 += 1;
 				}
 			});
+
 			$(".totalbookcnt").html(total_cnt2 + "권");
 		});
+
 		$(".orderbtn")
 				.click(
 						function() {
+
 							if ($(".abcabc").val() == "구독안함") {
 								var u = "myPage/subscribe.jsp";
 								var option = "width = 900, height = 650, top = 100, left = 400, location = no"
