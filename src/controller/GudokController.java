@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.gudok.ChargeProAction;
-import action.qna.QnaWriteProAction;
 import vo.ActionForward;
 
 @WebServlet("*.dok")
@@ -28,10 +27,10 @@ public class GudokController extends HttpServlet{
 			
 			forward = new ActionForward();
 			forward.setPath("/sub5/charge.jsp");
-		}else if(command.equals("/ChargePro.qna")) {
+		}else if(command.equals("/ChargePro.dok")) {
 			
-			System.out.println("ChargePro.qna 포워딩!!");
-			action = new QnaWriteProAction();
+			System.out.println("ChargePro.dok 포워딩!!");
+			action = new ChargeProAction();
 			
 			try {
 				forward =  action.execute(request, response);
