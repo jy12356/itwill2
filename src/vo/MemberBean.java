@@ -14,11 +14,12 @@ public class MemberBean {
 	private int age;
 	private String address;
 	private Timestamp date;
+	private String status;
 	
 	public MemberBean() {}
 	
 	public MemberBean(int num, String id, String name, String password, String email, String phone, String catg,
-			int age, String address, Timestamp date) {
+			int age, String address, Timestamp date,String status) {
 		super();
 		this.num = num;
 		this.id = id;
@@ -30,7 +31,16 @@ public class MemberBean {
 		this.age = age;
 		this.address = address;
 		this.date = date;
+		this.status = status;
 	}
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public Timestamp getDate() {
 		return date;
 	}
