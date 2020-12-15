@@ -122,6 +122,7 @@ public class BookDAO {
 				bookBean.setIndex(rs.getString("index_info"));
 				bookBean.setImage(rs.getString("image"));
 				bookBean.setDescription(rs.getString("description"));
+				bookBean.setDate(rs.getDate("date"));
 				bookList.add(bookBean);
 			}
 			

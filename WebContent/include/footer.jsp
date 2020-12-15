@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-	<%
+	<%-- <%
 	ArrayList<NoticeBean> articleList = (ArrayList<NoticeBean>) request.getAttribute("articleList");
 PageInfo PageInfo = (PageInfo) request.getAttribute("PageInfo");
 int nowPage = PageInfo.getPage();
@@ -13,7 +13,7 @@ int startPage = PageInfo.getStartPage();
 int endPage = PageInfo.getEndPage();
 int listCount = PageInfo.getListCount();
 %>
-<footer>
+<footer> --%>
 	<div class="footer-top">
 		<div class="notice-wrap">
 			<div class="notice-inner">
