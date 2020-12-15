@@ -23,6 +23,13 @@ int listCount = pageInfo.getListCount();
 <div class="contents-wrap">
 	<div class="customer">
 	<h3 class="coTitle">희망도서 신청 목록</h3>
+		<div class="boxmenu1-top-menu">
+			<ul>
+				<li><a href="FreeBoardList.free"><em>자유게시판</em></a></li>
+				<li class="on"><a href="RequestList.rq"><em>희망도서신청</em></a></li>
+				<li><a href="NoticeBoardList.not?page=1" class=""><em>공지사항</em></a></li>
+			</ul>
+		</div>
 		<div class="customer-contents">
 			<div class="customer-inner">
 					<div class="customer-use-wrap">
@@ -75,7 +82,7 @@ int listCount = pageInfo.getListCount();
 						</tbody>
 						</table>
 						<div class="btn_inner">
-							<a href="RequestWriteForm.rq" class="btn">도서 신청</a>
+							<input type="button" class="btn" value="도서 신청" onclick="location.href='RequestWriteForm.rq'">
 						</div>
 						<div class ="paging">
 						<section id="pageList">

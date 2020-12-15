@@ -5,8 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.security.auth.login.LoginException;
 
 import vo.BookBean;
+import vo.BookInterestBean;
 
 import static db.JdbcUtil.*;
 
@@ -51,8 +55,8 @@ public class BookDAO {
 			// 전달받은 BoardBean 객체 내의 데이터를 사용하여 INSERT 작업 수행
 			// => 컬럼 중 board_date 항목(작성일)은 now() 함수 사용
 			sql = "insert into book "
-					+ "(num,title,image,author,publisher,pubdate,isbn,description,catg1,catg2,state,count,author_info,index_info)"
-					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ "(num,title,image,author,publisher,pubdate,isbn,description,catg1,catg2,state,count,author_info,index_info, date)"
+					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate())";
 			pstmt = con.prepareStatement(sql);
 			
 			// BoardBean 객체로부터 데이터를 꺼내서 쿼리문 ? 대체
@@ -92,7 +96,7 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		
-		String sql = "select * from book where catg1 like ? and catg2 like ? order by pubdate desc limit ?,?";
+		String sql = "select * from book where catg1 like ? and catg2 like ? group by isbn order by pubdate desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, "%"+catg1);
@@ -154,15 +158,14 @@ public class BookDAO {
 		return listCount;
 	}
 	//책상세정보
-	public BookBean getBookInfo(String book_isbn, String title) {
+	public BookBean getBookInfo(String book_isbn) {
 		PreparedStatement pstmt =  null;
 		ResultSet rs = null;
-		String sql="select * from book where isbn=? and title =?";
+		String sql="select * from book where isbn=?";
 		BookBean bookBean = null;
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setNString(1, book_isbn);
-			pstmt.setNString(2, title);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				bookBean = new BookBean();
@@ -188,18 +191,18 @@ public class BookDAO {
 		}
 		return bookBean;
 	}
-	public int selectListKindCount(String title,String isbn) {
+	public int selectListKindCount(String isbn) {
 		System.out.println("BookDAO - selectListKindCount()");
 		int listCount = 0; // select 작업 수행 결과를 저장할 변수
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql="select count(num) from book where title=? and isbn=?";
+		String sql="select count(num) from book where isbn=?";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, title);
-			pstmt.setString(2, isbn);
+			
+			pstmt.setString(1, isbn);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				listCount=rs.getInt(1);
@@ -214,7 +217,7 @@ public class BookDAO {
 		}		
 		return listCount;	
 	}
-	public ArrayList<BookBean> bookKindList(String title, String isbn,int page,int limit) {
+	public ArrayList<BookBean> bookKindList(String isbn,int page,int limit) {
 		System.out.println("bookDAO - bookKindList");
 		ArrayList<BookBean> bookList = null;
 		PreparedStatement pstmt = null;
@@ -223,13 +226,12 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		
-		String sql = "select * from book where title=? and isbn=? order by pubdate desc limit ?,? ";
+		String sql = "select * from book where isbn=? order by pubdate desc limit ?,? ";
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, title);
-			pstmt.setString(2, isbn);
-			pstmt.setInt(3, startRow);
-			pstmt.setInt(4, limit);
+			pstmt.setString(1, isbn);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			bookList = new ArrayList<BookBean>();
@@ -336,4 +338,151 @@ public class BookDAO {
 		}
 		return modyfiySeccess;
 	}
+	public int insertBookDibs(String isbn, String id) {
+		System.out.println("BookDAO - insertBookDibs()");
+
+		int insertCount = 0; // INSERT 작업 수행 결과를 저장할 변수
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int num = 1; // 새 글 번호를 저장할 변수
+		
+		try {
+			String sql = "select max(num) from interestinglist";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				num = rs.getInt(1) + 1; // 새 글 번호 만들기
+			} 
+			sql = "insert into interestinglist (num,isbn,id) VALUES (?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num); 
+			pstmt.setString(2, isbn);
+			pstmt.setString(3, id);
+			System.out.println(pstmt);
+			// INSERT 구문 실행 결과값을 int형 변수 insertCount 에 저장
+			insertCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("insertBookDibs() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return insertCount;		
+	}
+	public int selectListDibsCount(String id) {
+		System.out.println("BookDAO - selectListDibsCount()");
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) from interestinglist where id=?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		}catch (Exception e) {
+			System.out.println("selectListDibsCount 오류!:"+e.getMessage());
+			e.printStackTrace();
+		}
+		return listCount;
+	}
+	public ArrayList<BookInterestBean> selectBookListDibsList(int page, int limit, String id) {
+		System.out.println("BookDAO - selectBookListDibsList()");
+		ArrayList<BookInterestBean> bookListDibsList = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		//조회를 시작할 레코드 행 번호 계산
+		int startRow=(page-1)*limit;
+		
+		String sql = "select i.num num, "
+				+ "i.isbn isbn,i.id id, b.title title, b.author author, "
+				+ "b.publisher publisher, b.pubdate pubdate, "
+				+ "min(case when b.state = 0 then '대여가능' else '대여불가능' end) as state "
+				+ "from interestinglist  as i join book as b on i.isbn = b.isbn "
+				+ "where i.id=? group by i.isbn order by i.num desc limit ?,?;";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
+			System.out.println(pstmt);
+			rs = pstmt.executeQuery();
+			bookListDibsList = new ArrayList<BookInterestBean>();
+			while(rs.next()) {
+				BookInterestBean bookInterestBean = new BookInterestBean();
+				bookInterestBean.setNum(rs.getInt("num"));
+				bookInterestBean.setIsbn(rs.getString("isbn"));
+				bookInterestBean.setId(rs.getString("id"));
+				bookInterestBean.setTitle(rs.getString("title"));
+				bookInterestBean.setAuthor(rs.getString("author"));
+				bookInterestBean.setPublisher(rs.getString("publisher"));
+				bookInterestBean.setPubdate(rs.getDate("pubdate"));
+				bookInterestBean.setState(rs.getString("state"));
+				bookListDibsList.add(bookInterestBean);
+			}
+			
+		}catch (Exception e) {
+			System.out.println("bookListDibsList오류!" + e.getMessage());;
+			e.printStackTrace();
+		}finally {
+			close(rs);	
+			close(pstmt);
+		}
+		return bookListDibsList;
+	}
+	public int dibsDelete(List<Integer> interNumList, String id) {
+		System.out.println("bookDAO - dibsDelete");
+		int isDeleteOk = 0;
+		PreparedStatement pstmt = null;
+		try {
+			for(int i=0; i< interNumList.size(); i++) {
+				String sql = "delete from interestinglist where num=? and id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, interNumList.get(i));
+				pstmt.setString(2,id);
+				System.out.println(pstmt);
+				isDeleteOk = pstmt.executeUpdate();
+			}
+		}catch (Exception e) {
+			System.out.println("dibsDelete 오류!" + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return isDeleteOk;
+	}
+	
+	public int dibsYn(String isbn, String id) {
+		int isDibsYnCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select isbn from interestinglist where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString("isbn").equals(isbn)) {
+					isDibsYnCount = 1;					
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("isDibsYnCount 오류!" + e.getMessage() );
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rs);
+		}
+		
+		return isDibsYnCount;
+	}
 }
+

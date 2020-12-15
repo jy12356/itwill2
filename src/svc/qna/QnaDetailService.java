@@ -16,8 +16,6 @@ public class QnaDetailService {
 		qnaDAO.setConnection(con);
 		
 		QnaBean article = qnaDAO.selectArticle(board_num);
-		
-		System.out.println("QnaDetailService : "+article);
 		close(con);
 		return article; 
 	}

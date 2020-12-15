@@ -28,7 +28,7 @@ int listCount = pageInfo.getListCount();
 
 			<div class="customer-contents">
 				<div class="customer-inner">
-					<table summary="내가 찜한 리스트" class="customer-table notice" id="wow">
+					<table summary="내가 찜한 리스트" class="customer-table notice">
 						<caption>책바구니2ㅁ</caption>
 						<colgroup>
 							<col style="width: 5%">
@@ -67,7 +67,7 @@ int listCount = pageInfo.getListCount();
 						%>
 						<tr>
 							<td class="tac check_box"><input type="checkbox"
-								id="checkRow" class="checkRow1"
+								id="checkRow1" class="checkRow1"
 								value="<%=myBasketList.get(i).getNum()%>" name="checkRow1"
 								onclick="checkRow1();"><%=myBasketList.get(i).getNum()%></td>
 							<td><%=myBasketList.get(i).getTitle()%></td>
@@ -105,7 +105,7 @@ int listCount = pageInfo.getListCount();
 						</thead>
 						<tr>
 							<td class="tac check_box"><input type="checkbox"
-								id="checkRow" class="checkRow2"
+								id="checkRow2" class="checkRow2"
 								value="<%=myBasketList.get(i).getNum()%>" name="checkRow2"
 								onclick="checkRow2();"><%=myBasketList.get(i).getNum()%></td>
 							<td><%=myBasketList.get(i).getTitle()%></td>
@@ -125,9 +125,8 @@ int listCount = pageInfo.getListCount();
 					<div class="btn_inner">
 						<a href="javascript:void(0);"
 							onclick="deleteBook(); return false;" class="btn">삭제하기</a>
-						<button onclick="value_check()">checkbox 선택(체크)된 객체
-							값(value) 가져오기</button>
-							<input type="button" value="삭제해버려" id="selectDelete_btn" >
+<button onclick="value_check()">checkbox 선택(체크)된 객체 값(value)
+		가져오기</button>
 						<div class="payment-result basket">
 							<p>
 								총 선택 도서 수 : <span class="totalbookcnt">0권</span>
@@ -151,51 +150,25 @@ int listCount = pageInfo.getListCount();
 		</div>
 	</div>
 	<input type="hidden" value="<%=memState%>" class="abcabc">
-
+	
 	<script type="text/javascript">
-$(document).ready(function(){
-
-	$(".selectDelete_btn").click(function(){
-		  var confirm_val = confirm("정말 삭제하시겠습니까?");
-		  
-		  if(confirm_val) {
-		   var checkArr = new Array();
-		   
-		   $("input[id='checkRow']:checked").each(function(){
-		    checkArr.push($(this).attr("value"));
-		   });
-		    
-		   $.ajax({
-		    url : "delete.bk",
-		    type : "post",
-		    data : { chbox : checkArr },
-		    success : function(){
-		     location.href = "/shop/cartList";
-		    }
-		   });
-		  } 
-		 });
- 
-
+		// 		if($("#checkAll1").is(':checked') || $("#checkRow1").is(':checked')) {
 		function value_check() {
 			var checkRow1value = '';
-
 			$('input[name="checkRow1"]:checked').each(function(index) {
 				if (index != 0) {
 					checkRow1value += ',';
 				}
 				checkRow1value += $(this).val();
 			});
-
 			alert(checkRow1value);
 		}
 		// 배열선언
-// 		var arrValues = new Array();
-// 		for (var i = 1; i <= checkRow1value.length; i++) {
-
-// 			arrValues.push(checkRowvalue)
-// 		}
-
+		var arrValues = new Array();
+		for(var i =1; i<= checkRow1value.length; i ++ ) {
+			
+			arrValues.push(checkRowvalue)
+		}
 		$("#checkAll1").click(function() {
 			if ($(this).is(":checked")) {
 				$(".checkRow1").prop("checked", true);
@@ -206,9 +179,7 @@ $(document).ready(function(){
 				$(".checkRow1").prop("checked", false);
 				$(".checkAll1").prop("checked", false);
 			}
-
 		});
-
 		$("#checkAll2").click(function() {
 			if ($(this).is(":checked")) {
 				$(".checkRow2").prop("checked", true);
@@ -219,9 +190,7 @@ $(document).ready(function(){
 				$(".checkRow2").prop("checked", false);
 				$(".checkAll2").prop("checked", false);
 			}
-
 		});
-
 		$("#checkRow1").click(function() {
 			if ($(this).is(":checked")) {
 				$(".checkRow2").prop("checked", false);
@@ -229,7 +198,6 @@ $(document).ready(function(){
 			} else {
 				$(".checkAll1").prop("checked", false);
 			}
-
 		});
 		$("#checkRow2").click(function() {
 			if ($(this).is(":checked")) {
@@ -238,16 +206,13 @@ $(document).ready(function(){
 			} else {
 				$(".checkAll2").prop("checked", false);
 			}
-
 		});
-
 		$("#checkRow1").click(function() {
 			if ($(this).is(":checked")) {
 				$(".rentalbtn").show();
 			} else {
 				$(".rentalbtn").hide();
 			}
-
 		});
 		$("#checkRow2").click(function() {
 			if ($(this).is(":checked")) {
@@ -255,9 +220,7 @@ $(document).ready(function(){
 			} else {
 				$(".reservationbtn").hide();
 			}
-
 		});
-
 		// 		function checkRow1() {
 		// 			if($("#checkRow1").is(':checked') ) {
 		// 				$("input[name=checkRow2]").prop("checked", false);
@@ -269,9 +232,7 @@ $(document).ready(function(){
 		// 				$("input[name=checkRow1]").prop("checked", false);
 		// 				$("input[name=checkAll1]").prop("checked", false);
 		// 			}
-
 		// 		}
-
 		$("#checkRow1").click(function() {
 			var total_cnt1 = 0;
 			$('input:checkbox[name="checkRow1"]').each(function() {
@@ -279,10 +240,8 @@ $(document).ready(function(){
 					total_cnt1 += 1;
 				}
 			});
-
 			$(".totalbookcnt").html(total_cnt1 + "권");
 		});
-
 		$("#checkRow2").click(function() {
 			var total_cnt2 = 0;
 			$('input:checkbox[name="checkRow2"]').each(function() {
@@ -290,24 +249,18 @@ $(document).ready(function(){
 					total_cnt2 += 1;
 				}
 			});
-
 			$(".totalbookcnt").html(total_cnt2 + "권");
 		});
-
 		$(".orderbtn")
 				.click(
 						function() {
-
 							if ($(".abcabc").val() == "구독안함") {
 								var u = "myPage/subscribe.jsp";
 								var option = "width = 900, height = 650, top = 100, left = 400, location = no"
 								window.open(u, option);
 							}
 						});
-});
 	</script>
 </section>
 
 <jsp:include page="../include/footer.jsp" />
-
-

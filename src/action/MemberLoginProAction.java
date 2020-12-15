@@ -26,11 +26,10 @@ public class MemberLoginProAction implements Action {
 		System.out.println(isMember);
 		if(!isMember) {
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>"); // ÀÚ¹Ù½ºÅ©¸³Æ® ½ÃÀÛ ÅÂ±×
-			out.println("alert('·Î±×ÀÎ¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.')"); // ´ÙÀÌ¾ó·Î±× ¸Ş¼¼Áö Ãâ·Â
-			out.println("history.back()"); // ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿
-			out.println("</script>"); // ÀÚ¹Ù½ºÅ©¸³Æ® ³¡ ÅÂ±×
+			PrintWriter out = response.getWriter();// ï¿½Ú¹Ù½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Â±ï¿½
+			out.println("alert('íšŒì›ë“±ë¡ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤!");
+			out.println("history.back()"); 
+			out.println("</script>"); 
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);

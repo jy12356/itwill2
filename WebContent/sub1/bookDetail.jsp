@@ -66,7 +66,7 @@
 <div class="category-nav">
 	<div class="category-nav-inner">
 		<p>
-			HOME > <a href="/categorylist.asp?mainclass_num=00"><%=bookBean.getCatg1()%></a> > <a href="/categorylist.asp?mainclass_num=00&subclass_num=11"><%=bookBean.getCatg2()%></a>
+			HOME > <a href="BookList.bok?catg1=<%=bookBean.getCatg1()%>"><%=bookBean.getCatg1()%></a> > <a href="BookList.bok?catg1=<%=bookBean.getCatg1()%>&catg2=<%=bookBean.getCatg2()%>"><%=bookBean.getCatg2()%></a>
 		</p>
 	</div>
 </div>
@@ -151,10 +151,10 @@
 <!-- 						</p> -->
 <!-- 					</div> -->
 					<div class="detail-btn">
-						<a href="javascript:;" data-order-type="buy" class="d-basket"><span>책바구니</span></a>
-						<a href="javascript:instant_view('920026812','buy','200906066');" class="effect-btn">찜바구니</a>
-						<a href="BookKindList.bok?title=<%=bookBean.getTitle() %>&isbn=<%=bookBean.getIsbn() %>" class="effect-btn">삭제하기</a>
-						<a href="BookModify.bok?title=<%=bookBean.getTitle()%>&isbn=<%=bookBean.getIsbn() %>&page=<%=nowPage%>" class="effect-btn">수정하기</a>
+						<a href="MyBasketInsert.bk?isbn=<%=bookBean.getIsbn()%>" data-order-type="buy" class="d-basket"><span>책바구니</span></a>
+						<a href="BookDibsInsert.bok?isbn=<%=bookBean.getIsbn()%>" class="effect-btn">찜바구니</a>
+						<a href="BookKindList.bok?isbn=<%=bookBean.getIsbn() %>" class="effect-btn">삭제하기</a>
+						<a href="BookModify.bok?isbn=<%=bookBean.getIsbn() %>&page=<%=nowPage%>" class="effect-btn">수정하기</a>
 					</div>
 				</div>
 			</div>
