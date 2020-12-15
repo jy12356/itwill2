@@ -18,8 +18,8 @@ import action.NoticeAction.NoticeModifyProAction;
 import action.NoticeAction.NoticeWriteProAction;
 import vo.NoticeActionForward;                                                                                                                      
 
-@WebServlet("*.not") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
-public class NoticeFrontController extends HttpServlet {
+@WebServlet("*.ca") // 서블릿 주소 중 XXX.bo 주소에 대한 요청을 전달받아 처리
+public class CalendarFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 서블릿 요청 시 GET 방식 또는 POST 방식의 요청이 들어오면 
@@ -40,79 +40,12 @@ public class NoticeFrontController extends HttpServlet {
 		
 		
 		// if문을 사용하여 각 서블릿 주소 판별 및 각 요청 처리를 위한 작업 요청
-		if(command.equals("/NoticeWriteForm.not")) {
-			/*
-			 * 글쓰기 페이지에 대한 요청은 비즈니스 로직 없이
-			 * View 페이지(JSP)로 바로 포워딩 수행
-			 * - 기존 서블릿 주소가 유지되어야 하므로 Dispatcher 방식 포워딩
-			 *   => ActionForward 객체에 redirect 변수값을 false 로 설정
-			 *      (boolean 타입 기본 값이 false 이므로 별도 설정 필요 없음)\
-			 *   => 따라서, 포워딩 주소만 지정
-			 * - 포워딩 주소 : board 폴더 내의 qna_board_write.jsp
-			 */
-			// 1. ActionForward 객체 생성(변수는 이미 선언되어 있음)
+		if(command.equals("/FullCalendar.ca")) {
 			forward = new NoticeActionForward();
-			// 2. 포워딩 경로 설정
-			forward.setPath("/sub5/notice_board_write.jsp");
-			// 3. 포워딩 방식 설정(Dispatcher 방식)
-//			forward.setRedirect(false); // 기본값이 false 이므로 설정 생략 가능
-		} else if(command.equals("/NoticeBoardWritePro.not")) { // BoardWritePro.bo 서블릿 요청에 대한 처리
-			// 1. BoardWriteProAction 클래스 객체 생성
-			// => Action 클래스는 Action 인터페이스를 구현하므로 다형성 활용 가능
-			action = new NoticeWriteProAction();
-			
-			try {
-				// 2. Action 클래스의 execute() 메서드 호출
-				// => 리턴되는 ActionForward 객체 전달받기(직접 생성하지 않음!)
-				// => throws 에 의해 예외가 전달되므로 try ~ catch 필요
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/NoticeBoardList.not")) {
-			action = new NoticeListAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} else if(command.equals("/NoticeBoardDetail.not")) {
-			action = new NoticeDetailAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-		} else if(command.equals("/NoticeBoardModifyForm.not")) {
-			action = new NoticeModifyFormAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-		}else if(command.equals("/NoticeBoardModifyPro.not")) {
-			action = new NoticeModifyProAction();
-				try {
-					forward = action.execute(request, response);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			
-		}else if(command.equals("/NoticeBoardDelete.not")) {
-			forward = new NoticeActionForward();
-			forward.setPath("/sub5/notice_board_Delete.jsp");
-			
-		}else if(command.equals("/NoticeBoardDeletePro.not")) {
-			action = new NoticeDeleteProAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			forward.setPath("/sub5/FullCalendar/FullCalendar.jsp");
 		}
+		
+		
 		
 		
 		// ----------------------------------------------------------------
