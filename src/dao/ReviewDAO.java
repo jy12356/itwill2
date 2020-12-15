@@ -3,9 +3,12 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import vo.BookBean;
 import vo.CommentBean;
+import vo.LikeBean;
 import vo.ReviewBean;
 
 import static db.JdbcUtil.*;
@@ -73,7 +76,7 @@ public class ReviewDAO {
 	}
 
 	// 서평 등록 수 -------------------------------------------------------
-	public int selectListCount() {
+	public int selectListCount(String isbn) {
 		System.out.println("ReviewDAO - 4. selectListCount()");
 		
 		int listCount = 0;
@@ -82,8 +85,9 @@ public class ReviewDAO {
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT count(num) from review";
+			String sql = "SELECT COUNT(isbn) FROM review WHERE isbn=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, isbn);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				listCount = rs.getInt(1);
@@ -99,7 +103,7 @@ public class ReviewDAO {
 	}	
 	
 	// 서평 리스트 ---------------------------------------------------------
-	public ArrayList<ReviewBean> selectArticleList(int page, int limit) {
+	public ArrayList<ReviewBean> selectArticleList(int page, int limit, String isbn) {
 		System.out.println("ReviewDAO - 5. selectArticleList()");
 		
 		ArrayList<ReviewBean> articleList = null;
@@ -114,10 +118,11 @@ public class ReviewDAO {
 			// 게시물 조회
 			// 리뷰번호(num)을 기준으로 내림차순 정렬
 			// 조회 시작 게시물 번호(StarRow)를 기준으로 limit 갯수만큼 조회
-			String sql = "SELECT * FROM review ORDER BY num DESC LIMIT ?,?";
+			String sql = "SELECT * FROM review WHERE isbn=? ORDER BY num DESC LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, limit);
+			pstmt.setString(1, isbn);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 			
 			// ArrayList 객체 생성
@@ -153,41 +158,6 @@ public class ReviewDAO {
 		return articleList;
 	}
 	
-	// 글 작성자 복인 확인 -------------------------------------------------
-	public boolean isArticleReviewWriter(int num, String id) {
-		System.out.println("ReviewDAO - 6. isArticleReviewWriter()");
-		
-		boolean isArticleWriter = false;
-		
-		// board_num에 해당하는 레코드의 board_pass를 가져와서
-		// 파라미터로 전달받은 board_pass와 비교하여 일치 여부
-		// => 만약, 패스워드 일치하는 경우 isArticleWriter를 true로 변경
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			String sql = "SELECT id FROM review WHERE num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-			System.out.println("2.글번호 :" + num);
-			System.out.println("2.작성자 :" + id);
-			if(rs.next()) {
-				if(id.equals(rs.getString("id"))) {
-					isArticleWriter = true;
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("isArticleReviewWriter() 오류! - " + e.getMessage());
-		} finally {
-			close(pstmt);
-			close(rs);
-		}
-		return isArticleWriter;
-	}
-	
 	// 서평 수정 -------------------------------------------------
 		public int updateArticle(ReviewBean article) {
 			System.out.println("ReviewDAO - 7. updateArticle()");
@@ -196,10 +166,11 @@ public class ReviewDAO {
 			PreparedStatement pstmt = null;
 			
 			try {
-				String sql="UPDATE review SET content=? WHERE num=?";
+				String sql="UPDATE review SET content=?, spoiler=? WHERE num=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, article.getContent());
-				pstmt.setInt(2, article.getNum());
+				pstmt.setInt(2, article.getSpoiler());
+				pstmt.setInt(3, article.getNum());
 				updateCount = pstmt.executeUpdate();
 				
 			}catch(Exception e) {
@@ -236,6 +207,41 @@ public class ReviewDAO {
 			close(pstmt);
 		}
 		return deleteCount;
+	}
+	
+	// 글 작성자 복인 확인 -------------------------------------------------
+	public boolean isArticleReviewWriter(int num, String id) {
+		System.out.println("ReviewDAO - 6. isArticleReviewWriter()");
+		
+		boolean isArticleWriter = false;
+		
+		// board_num에 해당하는 레코드의 board_pass를 가져와서
+		// 파라미터로 전달받은 board_pass와 비교하여 일치 여부
+		// => 만약, 패스워드 일치하는 경우 isArticleWriter를 true로 변경
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT id FROM review WHERE num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			System.out.println("2.글번호 :" + num);
+			System.out.println("2.작성자 :" + id);
+			if(rs.next()) {
+				if(id.equals(rs.getString("id"))) {
+					isArticleWriter = true;
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("isArticleReviewWriter() 오류! - " + e.getMessage());
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return isArticleWriter;
 	}
 
 	// 댓글 등록-------------------------------------------------
@@ -279,56 +285,59 @@ public class ReviewDAO {
 			}
 			return insertCount;
 		}	
-		// 댓글 수 -------------------------------------------------
-		public int selectCommListCount() {
-			System.out.println("ReviewDAO - 4. selectCommListCount()");
-			
-			int listCount2 = 0;
+		
+		// 댓글 등록수 -------------------------------------------------
+		public int selectListCount(int board_num, int board_type) {
+			int listCount = 0;
 			
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
 			try {
-				String sql = "SELECT COUNT(board_type='2') FROM comment";
+				String sql = "SELECT COUNT(board_num) FROM comment WHERE board_num=?, board_type=?";
 				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, board_num);
+				pstmt.setInt(2, board_type);
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
-					listCount2 = rs.getInt(1);
+					listCount = rs.getInt(1);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("selectCommListCount() 오류! - " + e.getMessage());
+				System.out.println("selectListCount() 오류! - " + e.getMessage());
 			} finally {
 				close(pstmt);
 				close(rs);
 			}
-			return listCount2;
+			return listCount;
 		}
-
-		// 리뷰 댓글 리스트 -------------------------------------------------
-		public ArrayList<CommentBean> selectCommentList(int page, int limit) {
+		
+		// 댓글 리스트
+		public ArrayList<CommentBean> selectArticleList(int page, int limit, int board_num, int board_type) {
 			System.out.println("ReviewDAO - 5. selectArticleList()");
 			
-			ArrayList<CommentBean> articleCommList = null;
+			ArrayList<CommentBean> articleList = null;
 			
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
-			// 조회를 시작할 레코드(행) 번호 계산
 			int startRow = (page - 1) * limit;
 			
 			try {
 				// 게시물 조회
 				// 리뷰번호(num)을 기준으로 내림차순 정렬
 				// 조회 시작 게시물 번호(StarRow)를 기준으로 limit 갯수만큼 조회
-				String sql = "SELECT * FROM comment ORDER BY comment_num DESC LIMIT ?,?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, startRow);
-				pstmt.setInt(2, limit);
-				rs = pstmt.executeQuery();
+				String sql = "SELECT * FROM comment WHERE board_type=? and board_num=? ORDER BY comment_num DESC LIMIT ?,?";
 				
-				// articleCommList 객체 생성
-				articleCommList = new ArrayList<CommentBean>();
+				pstmt = con.prepareStatement(sql);
+				CommentBean commentBean = new CommentBean();
+				pstmt.setInt(1, board_type);
+				pstmt.setInt(2, board_num);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, limit);
+				rs = pstmt.executeQuery();
+
+				articleList = new ArrayList<CommentBean>();
 				System.out.println(000);
 				while(rs.next()) {
 					CommentBean article = new CommentBean();
@@ -340,10 +349,10 @@ public class ReviewDAO {
 					article.setRe_ref(rs.getInt("re_ref"));
 					article.setRe_lev(rs.getInt("re_lev"));
 					article.setRe_seq(rs.getInt("re_seq"));
+					commentBean.setDate(rs.getDate("date"));
 
 					// 1개 게시물을 전체 게시물 저장 객체(ArrayList)에 추가
-					articleCommList.add(article);
-
+					articleList.add(article);
 				}		
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -352,12 +361,151 @@ public class ReviewDAO {
 				close(pstmt);
 				close(rs);
 			}
-			return articleCommList;
+			return articleList;
 		}
-		// 리뷰 댓글 수정 -------------------------------------------------
+
+		// 댓글 수정 -------------------------------------------------
 
 
 		
 		// 리뷰 댓글 삭제 -------------------------------------------------
+		
+		// 좋아요 등록 ---------------------------------------------------
+		public int insertLikeCount(LikeBean likeBean) {
+			System.out.println("ReviewDAO - 11. insertLikeCount()");
+			
+			int insertLike = 0;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			int like_num = 1;
+			
+			try {
+				String sql = "SELECT MAX(like_num) FROM likecount";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					like_num = rs.getInt(1) + 1;
+					}
+				sql = "INSERT INTO likecount values(?,?,?,?)";
+	
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, like_num);
+				pstmt.setString(2, likeBean.getLike_id());
+				pstmt.setString(3, likeBean.getBook_isbn());
+				pstmt.setInt(4, likeBean.getReview_num());
+				
+				insertLike = pstmt.executeUpdate();
 
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("insertLikeCount() 오류! - " + e.getMessage());
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return insertLike;
+		}
+		
+		// 좋아요 등록 글 확인 ---------------------------------------------------		
+		public ReviewBean selectArticle(int num) {
+			System.out.println("ReviewDAO - 11. insertLikeCount()");
+			
+			ReviewBean article = null;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT * FROM review WHERE num=?";
+				
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				rs = pstmt.executeQuery();
+				
+				// 게시물이 존재할 경우 BoardBean 객체를 생성하여 게시물 내용 저장
+				if(rs.next()) {
+					article = new ReviewBean();
+					article.setNum(rs.getInt("num"));
+					article.setId(rs.getString("id"));
+					article.setContent(rs.getString("content"));
+					article.setDate(rs.getDate("date"));
+					article.setStarcount(rs.getInt("starcount"));
+					article.setLikecount(rs.getInt("likecount"));
+					article.setIsbn(rs.getString("isbn"));
+					article.setSpoiler(rs.getInt("spoiler"));
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("selectArticle() 오류! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return article;
+		}
+		
+		// 좋아요 LikeCount 올리기 ---------------------------------------------------		
+		public int updateLikecount(int num) {
+			System.out.println("ReviewDAO - updateLikecount()");
+			
+			int updateCount = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql = "UPDATE review SET likecount=likecount+1 WHERE num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				updateCount = pstmt.executeUpdate();
+				// 임시 확인용
+				System.out.println("좋아요 증가 결과 : " + updateCount);
+				
+			} catch (SQLException e) {
+				System.out.println("updateReadcount() 오류! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return updateCount;
+		}
+
+		// 좋아요 중복 체크 ---------------------------------------------------------
+		public boolean isArticleLikeWriter(String like_id, int review_num) {
+			System.out.println("ReviewDAO - 6. isArticleLikeWriter()");
+			
+			boolean isLikeWriter = false;
+			
+			// board_num에 해당하는 레코드의 board_pass를 가져와서
+			// 파라미터로 전달받은 board_pass와 비교하여 일치 여부
+			// => 만약, 패스워드 일치하는 경우 isArticleWriter를 true로 변경
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT like_id FROM likecount WHERE review_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, review_num);
+				rs = pstmt.executeQuery();
+				System.out.println("2.글번호 :" + review_num);
+				System.out.println("2.작성자 :" + like_id);
+				
+				if(rs.next()) {
+					if(like_id.equals(rs.getString("like_id"))) {
+						isLikeWriter = true;
+					}
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("isArticleReviewWriter() 오류! - " + e.getMessage());
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return isLikeWriter;
+		}
+		
 	}

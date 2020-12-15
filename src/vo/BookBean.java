@@ -1,5 +1,7 @@
 package vo;
 
+import java.sql.Date;
+
 public class BookBean {
 		private int num;
 	    private String title;
@@ -12,9 +14,11 @@ public class BookBean {
 	    private String catg1;
 		private String catg2;
 	    private String state;
-	    private int count;  
+	    private Date date;
+		private int count;
 	    private String author_info;
 	    private String index;
+	    private String date;
 	    
 	    public int getNum() {
 			return num;
@@ -86,6 +90,12 @@ public class BookBean {
 		public int getCount() {
 			return count;
 		}
+	    public Date getDate() {
+			return date;
+		}
+		public void setDate(Date date) {
+			this.date = date;
+		}
 		public void setCount(int count) {
 			this.count = count;
 		}
@@ -100,6 +110,12 @@ public class BookBean {
 		}
 		public void setIndex(String index) {
 			this.index = index;
+		}
+		public String getDate() {
+			return date;
+		}
+		public void setDate(String date) {
+			this.date = date;
 		}
 		
 }

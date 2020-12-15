@@ -29,14 +29,15 @@ public class ReviewModifyProAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('글 수정 실패!')");
+			out.println("alert('수정권한이 없습니다.')");
 			out.println("history.back()");
 			out.println("</script>");			
 		} else { 
 			ReviewBean article = new ReviewBean();
 			article.setNum(num);
-			article.setId(id);
+			article.setId(request.getParameter("id"));
 			article.setContent(request.getParameter("content"));
+			article.setSpoiler(Integer.parseInt(request.getParameter("spoiler")));
 			
 			boolean isModifySuccess = reviewModifyService.modifyArticle(article);
 			

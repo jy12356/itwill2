@@ -9,9 +9,24 @@
 if (id == null) {
 	id = "gang";
 }
+// int b=0;
+int limit = ((Integer)request.getAttribute("limit")).intValue();
+System.out.println("limit :" + limit);
+	limit = limit+10;
+
+// if(limit==10){
+// 	limit = limit+10;
+// }else{
+// 	limit = limit+10;
+// }
 FreeBoardBean article = (FreeBoardBean) request.getAttribute("article");
 String nowPage = request.getParameter("page");
+int board_type = 1;
+int board_num = article.getBoard_num();
+
+
 %>
+
 <!-- <script src="../js/swipe/jquery-3.5.1.min.js"></script> -->
 <jsp:include page="../include/header.jsp" />
 <section class="sub">
@@ -100,7 +115,6 @@ String nowPage = request.getParameter("page");
 			int endPage = pageInfo.getEndPage();
 			int listCount = pageInfo.getListCount();
 			CommentBean cb = (CommentBean)request.getAttribute("comment");
-			int b = 11;
 			int count = 0;
 			%>
 			<div class="comment_inner">
@@ -130,13 +144,16 @@ String nowPage = request.getParameter("page");
 							<%
 							
 							for(int i=0; i < commentList.size(); i++){
-								count += 1;
-								if(count < b) { // 댓글 11개까지보여주기
+// 								count += 1;
+									
+// 								if(count <= b) { // 댓글 11개까지보여주기
 									
 								
 								
 								%>
 							<div class="comment">
+<%-- 							<p><%=c %></p> --%>
+<%-- 							<p><%=c %></p> --%>
 								<%if(commentList.get(i).getRe_lev() > 0) {%>
 									<div class="pl20 cmt_rereply_inner">
 										<p class="comment-vote">
@@ -239,22 +256,32 @@ String nowPage = request.getParameter("page");
 				<!-- 대댓글작성 ------------------------------------------->
 				<!-- 일반 댓글리스트 뿌려주기 ㄲ -->
 							<%
-							}
+// 									}
 								}
 							}
 							%>
 						</div>
 						
 						<%
-						if(commentList != null && listCount > 0) {
-							if(commentList.size() > 10) {
+// 						if(commentList != null && listCount > 0) {
+// 							if(commentList.size() > 10) {
 						%>
-						<div class="d-more reviewMore" style="display: ;">
-							<a href="javascript:;" class="moreComment">댓글 더보기</a>
+<!-- 						<div class="d-more reviewMore" style="display: ;"> -->
+<!-- 							<a href="javascript:;" class="moreComment">댓글 더보기</a> -->
+<!-- 						</div> -->
+<div class="d-more reviewMore" style="display: ;">
+	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%>
+	&board_type=<%=board_type%>&limit=<%=limit%>">댓글 더보기</a>
+<%-- 	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%> --%>
+<%-- 	&board_type=<%=board_type%>&b=<%=b%>">댓글 더보기</a> --%>
+<%-- 	<a href="#" onclick="location.href='FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%> --%>
+<%-- 	&board_type=<%=board_type%>&b=<%=b%> return false;">댓글 더보기</a> --%>
+<%-- 	<a href="#" onclick=" location.href = 'http://blog.naver.com/kyoungseop?a=<%=a%>&b=<%=b%>' + '&c=' + c; return false;">Myblog</a> --%>
+
 						</div>
 						<%
-							}
-						}
+// 							}
+// 						}
 						%>
 					</div>
 				</div>

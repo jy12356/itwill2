@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemberCheckAction;
 import action.MemberDeleteFormAction;
+import action.MemberDeleteProAction;
 import action.MemberJoinProService;
 import action.MemberListAction;
 import action.MemberLoginProAction;
 import action.MemberModifyFormAction;
 import action.MemberModifyProAction;
+import action.member.MyPageAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -27,7 +30,7 @@ public class MemberFrontController extends HttpServlet {
 		
 		String command = request.getServletPath();
 		System.out.println("MemberFrontController : " + command);
-		
+		if(command==null){command="";}
 		Action action = null;
 		ActionForward forward = null;
 		
@@ -66,7 +69,6 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/MemberModifyPro.me")) {  
 			System.out.println("MemberModifyPro");
 			action = new MemberModifyProAction();
@@ -87,27 +89,43 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}  else if(command.equals("/MemberDeleteForm.me")) {
 			System.out.println("MemberDeleteForm");
-			
 			action = new MemberDeleteFormAction();
 			try {
-				forward = new ActionForward();
-				forward.setPath("/sub1/delete.jsp");
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-		} else if(command.equals("/MemberDeletePro.me")) {
-			System.out.println("MemberDeleteForm");
 			
-//			action = new MemberDeleteProAction();
+		} else if(command.equals("/MemberDeletePro.me")) {
+			System.out.println("MemberDeletePro");
+			action = new MemberDeleteProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/MemberCheck.me")) {
+			System.out.println("MemberCheck");
+			action = new MemberCheckAction();
 			try {
 				forward = action.execute(request, response);
 				forward = new ActionForward();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
-		} 
+		} else if(command.equals("/Mypage.me")) {
+			System.out.println("Mypage");
+			action = new MyPageAction();
+			try {
+				forward = new ActionForward();
+				forward.setPath("/sub5/mypage.jsp");
+//				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {
@@ -119,8 +137,8 @@ public class MemberFrontController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			// ----------------------------------------------------------------joinPagePrac.jsp
-		
 		}
+		
 		
 	}   
 	

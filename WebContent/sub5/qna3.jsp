@@ -16,38 +16,31 @@
 	<div class="category-nav">
 		<div class="category-nav-inner">
 			<p>
-				HOME > 고객센터
+				HOME > 고객센터 > 1:1문의
 			</p>
 		</div>
 	</div>
 	<div class="contents-wrap">
 		<div class="customer">
-			<h3 class="coTitle">고객센터</h3>
-			<div class="customer-top-menu">
-				<!-- 					<ul> -->
-				<!-- 						<li><a href="/customer.asp?page=faq" class=""><em>FAQ</em></a></li> -->
-				<!-- 						<li><a href="/customer.asp?page=notice" class=""><em>공지사항</em></a></li> -->
-				<!-- 						<li><a href="/customer.asp?page=viewer" class=""><em>뷰어 이용안내</em></a></li> -->
-				<!-- 						<li><a href="/customer.asp?page=service" class=""><em>서비스 안내</em></a></li> -->
-				<!-- 						<li><a href="/customer.asp?page=vs1" class="on"><em>1:1문의</em></a></li> -->
-				<!-- 					</ul> -->
-			</div>
+			<h3 class="coTitle">1:1문의</h3>
+			<div class="boxmenu1-top-menu">
+			<ul>
+				<li class="on"><a href="QnaList.qna"><em>1:1문의</em></a></li>
+				<li><a href="../customer.asp?page=faq"><em>FAQ</em></a></li>
+				<li><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li>
+			</ul>
+		</div>
 			<div class="customer-contents">
 				<div class="customer-inner">
 					<div class="customer-contents">
 						<div class="customer-use-wrap">
 							<ul class="customer-s-menu one">
 								<li><a href="QnaWriteForm.qna" class="">1:1 문의하기</a></li>
-								<li><a href="qna2.html" class="on">문의 내역 확인</a></li>
+								<li><a href="QnaList.qna" class="on">문의 내역 확인</a></li>
 							</ul>
-							<div class="onebyone-step">
-								<p>
-									문의주신 내용을 24시간 내에 답변드릴 수 있도록 노력하고 있습니다.<br>
-									단, <span>주말,공휴일 문의 및 확인 절차가 많아지는 경우</span>에는 지연될 수 있는 점 양해 부탁드립니다.
-								</p>
-							</div>
 							
-							<table class="onebyone" summary="1:1 문의">
+			
+							<table class="onebyone customer-notice" summary="1:1 문의">
 						
 							<caption>1:1 문의하기</caption>
 							<colgroup>
@@ -66,7 +59,8 @@
 								<th>
 									문의유형
 								</th>
-									<td align="center">오류문의 &gt;<%=article.getQna_genre() %></td>
+									<td align="center">오류문의 &gt;<%=article.getQna_genre() %>
+									</td>
 							</tr>
 							<tr>
 								<th>
@@ -78,16 +72,15 @@
 								<th>
 									답변내용
 								</th>
-								<td>
-								</td>
+								<td align="center"><%=article.getContent2() %></td>
 							</tr>
 							</tbody>
 							</table>
-							<div class="one-btn">
-								<input type="button" value="수정" onclick="location.href='QnaModifyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
-								<input type="button" class="vs1Del" value="삭제" onclick="location.href='QnaDeleteForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
-								<input type="button" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
-								<input type="button" value="답변" onclick="location.href='BoardReplyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+							<div class="btn_inner">
+								<input type="button" class="btn" value="수정" onclick="location.href='QnaModifyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" class="vs1Del btn" value="삭제" onclick="location.href='QnaDeletePro.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" class="btn" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
+								<input type="button" class="btn" value="답변" onclick="location.href='QnaReplyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
 							</div>
 						</div>
 					</div>

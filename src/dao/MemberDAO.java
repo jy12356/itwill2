@@ -183,8 +183,6 @@ public class MemberDAO {
 		return articleList;
 	}
 	public MemberBean selectArticle(String id) {
-		// 글번호(board_num)에 해당하는 레코드를 SELECT
-		// 조회 결과가 있을 경우 BoardBean 객체에 저장한 뒤 리턴
 		MemberBean article = null;
 		
 		PreparedStatement pstmt = null;
@@ -197,21 +195,16 @@ public class MemberDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
-			// 게시물이 존재할 경우 BoardBean 객체를 생성하여 게시물 내용 저장
 			if(rs.next()) {
 				article = new MemberBean();
 				article.setId(rs.getString("id"));
 				article.setName(rs.getString("name"));
 				article.setPassword(rs.getString("password"));
 				article.setEmail(rs.getString("email"));
-//				article.setDate(date);(rs.getString("board_file"));
 				article.setAddress(rs.getString("address"));
 				article.setAge(rs.getInt("age"));
 				article.setPhone(rs.getString("phone"));
 				article.setCatg(rs.getString("catg"));
-				
-				// 임시 확인용 상세 내용 출력
-//				System.out.println("글 제목 : " + article.getBoard_subject());
 			}
 				
 			
@@ -231,7 +224,7 @@ public class MemberDAO {
 			
 			PreparedStatement pstmt = null;
 			try {
-				String sql = "UPDATE member SET name=?, email=?, phone=?, catg=?, age=?, address=? password=? WHERE id=?";
+				String sql = "UPDATE member SET name=?, email=?, phone=?, catg=?, age=?, address=?, password=? WHERE id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, article.getName());
 				pstmt.setString(2, article.getEmail());
@@ -242,7 +235,7 @@ public class MemberDAO {
 				pstmt.setString(7, article.getPassword());
 				pstmt.setString(8, article.getId());
 				updateCount = pstmt.executeUpdate();
-				
+				System.out.println("updateArticle() 성공! updateCount : "+updateCount);
 			} catch (SQLException e) {
 				System.out.println("updateArticle() ERROR! - " + e.getMessage());
 				e.printStackTrace();
@@ -254,14 +247,14 @@ public class MemberDAO {
 		}
 		
 		public int deleteArticle(MemberBean article) {
-			int updateCount = 0;
+			int deleteCount = 0;
 			
 			PreparedStatement pstmt = null;
 			try {
 				String sql = "delete from member WHERE id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, article.getId());
-				updateCount = pstmt.executeUpdate();
+				deleteCount = pstmt.executeUpdate();
 				
 			} catch (SQLException e) {
 				System.out.println("deleteArticle() ERROR! " + e.getMessage());
@@ -270,7 +263,7 @@ public class MemberDAO {
 				close(pstmt);
 			}
 			
-		return updateCount;
+		return deleteCount;
 	}
 		public int deleteMember(String id) {
 			System.out.println("MemberDAO : deleteMember()");
@@ -283,6 +276,7 @@ public class MemberDAO {
 				pstmt.setString(1,id);
 				System.out.println(pstmt);
 				deleteCount = pstmt.executeUpdate();
+				System.out.println("deleteMember() 성공! deleteCount : "+ deleteCount);
 			} catch (SQLException e) {
 				System.out.println("deleteMember() ERROR! "+ e.getMessage());
 				e.printStackTrace();
@@ -302,14 +296,13 @@ public class MemberDAO {
 			ResultSet rs = null;
 			
 			try {
-				String sql = "SELECT * FROM member WHERE id=?";
-				
+				String sql = "SELECT * FROM member WHERE id=?;";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, id);
+				
 				System.out.println(id);
 				rs = pstmt.executeQuery();
 				
-				// 게시물이 존재할 경우 BoardBean 객체를 생성하여 게시물 내용 저장
 				if(rs.next()) {
 					article = new MemberBean();
 					article.setId(rs.getString("id"));
@@ -321,13 +314,10 @@ public class MemberDAO {
 					article.setEmail(rs.getString("email"));
 					article.setNum(rs.getInt("num"));
 					article.setPhone(rs.getString("phone"));
-					// 임시 확인용 상세 내용 출력
-//					System.out.println("글 제목 : " + article.getBoard_subject());
 				}
-					
 				
 			} catch (SQLException e) {
-				System.out.println("selectArticle() 오류! - " + e.getMessage());
+				System.out.println("selectArticle() ERROR! - " + e.getMessage());
 				e.printStackTrace();
 			} finally {
 				close(rs);
@@ -337,6 +327,29 @@ public class MemberDAO {
 			
 			return article;
 		}
-
-
+		
+		public boolean isIdCheck(String id) throws LoginException  {
+			boolean isIdCheckSuccess = false;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			try {
+				String sql = "SELECT id FROM member WHERE id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					isIdCheckSuccess=true;
+				} else {
+					
+				}
+			} catch (SQLException e) {
+				System.out.println("isIdCheck() ERROR! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			return isIdCheckSuccess;
+		}
 	}
