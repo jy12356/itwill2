@@ -78,7 +78,7 @@ public class ReCommentListAction implements Action {
 		request.setAttribute("pageInfo", pageInfo);
 				
 		forward = new ActionForward();
-		forward.setPath("/sub1/detail.jsp");
+		forward.setPath("/sub1/bookDetail.jsp");
 		
 		return forward;
 	}

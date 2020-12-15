@@ -59,7 +59,7 @@ public class ReviewLikeCountAction implements Action {
 				ReviewBean article = reviewLikeCountService.getArticle(num);
 				request.setAttribute("article", article);
 				forward = new ActionForward();
-				forward.setPath("BookDetail.re");
+				forward.setPath("BookDetail.bok");
 				forward.setRedirect(true);
 			}
 		}
