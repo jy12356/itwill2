@@ -1438,7 +1438,8 @@ box-sizing:border-box;transition:border-color ease-in-out .15s, box-shadow ease-
 .user-modify table td > div .arrayBox .s-result{padding:0 30px 0 0;width:auto;line-height:28px;}
 .user-modify table td > div input[type='button']{cursor:pointer;border:1px solid #ea4d14;background:#17897a;color:#fff;text-align:center;line-height:30px;box-sizing:border-box;padding:0 14px;
 box-shadow:0 2px #ffe7de;border-radius:4px;font-size:13px;font-weight:bold;}
-.user-modify table tr:last-child td p{font-size:13px;color:#999;margin:10px 0;}
+
+.user-modify table tr:last-child td p{font-size:13px;color:#999;margin:4px 0;}
 .user-modify table tr td .checkbox{font-size:13px;color:#999;line-height:20px;}
 .user-modify table tr td .checkbox span{margin-left:0;margin-right:5px;}
 .user-modify table tr td .register_address{width:644px;}
@@ -1448,8 +1449,14 @@ box-shadow:0 2px #ffe7de;border-radius:4px;font-size:13px;font-weight:bold;}
 .user-modify .register-btn{margin-bottom:100px;text-align:center;}
 .user-modify .register-btn input[type='button']{margin:0 2px;cursor:pointer;display:inline-block;border:1px solid #ea4d14;background:#17897a;color:#fff;text-align:center;line-height:48px;box-sizing:border-box;padding:0 40px;
 box-shadow:0 2px #ffe7de;border-radius:4px;font-size:14px;font-weight:bold;vertical-align:middle;transition:.5s;}
+.user-modify .register-btn input[type='submit']{margin:0 2px;cursor:pointer;display:inline-block;border:1px solid #ea4d14;background:#17897a;color:#fff;text-align:center;line-height:48px;box-sizing:border-box;padding:0 40px;
+box-shadow:0 2px #ffe7de;border-radius:4px;font-size:14px;font-weight:bold;vertical-align:middle;transition:.5s;}
+
+
 .user-modify .register-btn a{display:inline-block;font-size:14px;color:#333;line-height:48px;padding:0 40px;vertical-align:middle;margin:0 2px;transition:.5s;}
 .user-modify .register-btn input[type='button']:hover{box-shadow:0 6px 4px rgba(0,0,0,.075),0 0 30px rgba(249,132,90,.6);}
+.user-modify .register-btn input[type='submit']:hover{box-shadow:0 6px 4px rgba(0,0,0,.075),0 0 30px rgba(249,132,90,.6);}
+
 .user-modify .register-btn a:hover{box-shadow:0 4px 4px rgba(0,0,0,.075),0 0 10px rgba(243,243,243,.6);}
 .user-modify .certify-tbl th{padding:20px 0 20px 18px !important;}
 .user-modify .certify-tbl td{color:#17897a !important;}
@@ -2075,6 +2082,7 @@ border-radius:4px;box-shadow:0 2px #ffe7de;transition:.5s;}
 /* 성인인증페이지 */
 .common-title{height:80px;border-bottom:1px solid #f4f4f4;text-align:center;}
 .common-title h1, .common-title h3{line-height:80px;color: #069e89;font-weight:600;font-size:30px;}
+.common-title h1, .common-title #h33{line-height:90px;color: #069e89;font-weight:600;font-size:30px;}
 .adult-certify{width:900px;margin:0 auto;padding:50px 0 100px;}
 .adult-certify .adult-box{margin-bottom:50px;background:#f4f4f4;border-radius:6px;height:260px;box-sizing:border-box;padding:50px 80px 0;}
 .adult-certify .adult-box:after{content:"";display:block;clear:both;}
@@ -2144,7 +2152,7 @@ box-shadow:-1px 1px 15px rgba(0,0,0,0.75);}
 .login-find{padding:15px 0;border-bottom:1px solid #ccc;}
 .login-find input[type='button']{cursor:pointer;display:block;width:100%;height:58px;line-height:60px;border:1px solid #dc4510;background:#f26432;color:#fff;text-align:center;font-weight:600;font-size:20px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
 .login-btn{margin-top:20px;}
-.login-btn input[type='submit']{box-sizing:border-box;cursor:pointer;display:block;width:100%;height:46px;line-height:46px;border:1px solid #dc4510;background:#f26432;color:#fff;text-align:center;font-weight:600;font-size:20px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
+.login-btn input[type='submit']{box-sizing:border-box;cursor:pointer;display:block;width:100%;height:46px;line-height:46px;border:1px solid #069e89;background:#069e89;color:#fff;text-align:center;font-weight:600;font-size:20px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
 .login-btn a{box-sizing:border-box;margin-top:10px;display:block;width:100%;height:46px;line-height:46px;border:1px solid #ccc;background:#fff;color:#666;text-align:center;font-weight:600;font-size:16px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
 .login-btn a.go-main{display:block;width:100%;height:58px;line-height:60px;border:1px solid #dc4510;background:#f26432;color:#fff;text-align:center;font-weight:600;font-size:20px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
 .simple-login p.join-title{font-size:16px;font-weight:600;color:#666;padding-bottom:10px;padding-left:3px;}
@@ -2168,8 +2176,8 @@ box-shadow:-1px 1px 15px rgba(0,0,0,0.75);}
 .simple-login-btn .login-btn a span.payco{background:url(../images/payco.png) no-repeat left center !important;padding:0;border:none;}
 .simple-login-btn p.now-start{margin-bottom:15px;text-align:center;font-size:13px;color:#999;}
 .simple-login-btn p.now-start span{background:url(../images/now-start.png) no-repeat left center;padding-left:15px;display:inline-block;color:#666;}
-.simple-login-btn p.now-start a{margin-left:10px;display:inline-block;color:#f26432;font-weight:bold;}
-.simple-login-btn input[type='submit']{box-sizing:border-box;cursor:pointer;display:block;width:100%;height:46px;line-height:46px;border:1px solid #dc4510;background:#f26432;color:#fff;text-align:center;font-weight:600;font-size:16px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
+.simple-login-btn p.now-start a{margin-left:10px;display:inline-block;color:#069e89;font-weight:bold;}
+.simple-login-btn input[type='submit']{box-sizing:border-box;cursor:pointer;display:block;width:100%;height:46px;line-height:46px;border:1px solid #069e89;background:#069e89;color:#fff;text-align:center;font-weight:600;font-size:16px;border-radius:4px;box-shadow:1px 1px #eaeaea;}
 .simple-login-btn.or{padding-top:13px;position:relative;}
 .login-or{position:relative;margin-top:20px;border-top:1px solid #cbcbcb;}
 p.or{text-align:center;width:60px;line-height:16px;position:absolute;left:50%;margin-left:-30px;top:-9px;background:#fff;font-size:13px;color:#999;}

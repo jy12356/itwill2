@@ -35,7 +35,7 @@ public class ReviewModifyProAction implements Action {
 		} else { 
 			ReviewBean article = new ReviewBean();
 			article.setNum(num);
-			article.setId(id);
+			article.setId(request.getParameter("id"));
 			article.setContent(request.getParameter("content"));
 			article.setSpoiler(Integer.parseInt(request.getParameter("spoiler")));
 			

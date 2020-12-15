@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import svc.review.ReCommentListService;
+import svc.review.ReviewListService;
 import vo.ActionForward;
 import vo.CommentBean;
 import vo.PageInfo;
@@ -20,27 +21,37 @@ public class ReCommentListAction implements Action {
 		
 		ActionForward forward = null;
 		
+//		String isbn = request.getParameter("isbn");
+//		String id = request.getParameter("id");
+		String isbn = "2"; // 작업 후 삭제
+		String id = "test"; // 작업 후 삭제
+		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		int board_type = Integer.parseInt(request.getParameter("board_type"));
+		System.out.println("책코드 : " + isbn);
+		System.out.println("아이디 : " + id);
+		System.out.println("게시물 번호 : " + board_num);
+		System.out.println("게시판 타입 : " + board_type);
+
+		
+		// 리뷰게시물 확인
 		ReCommentListService reCommentListService = new ReCommentListService();
-		
-		int listCount = reCommentListService.getCommetListCount();
-		System.out.println("전체댓글 수 : " + listCount);
-		
-		
 		// ----------------------------------------------------------
 		int page = 1; // 현재 페이지 번호 저장할 변수
 		int limit = 5; // 페이지 당 표시할 게시물 수를 결정하는 변수
 		
 		// request 객체로부터 "page" 파라미터가 전달됐을 경우(null 이 아닐 경우)
 		// 해당 파라미터 값을 page 변수에 저장
-		if(request.getParameter("limit") != null) {
-			page = Integer.parseInt(request.getParameter("limit"))+20;
-		}	
-		ArrayList<CommentBean> articleList = new ArrayList<CommentBean>();
+		int listCount = reCommentListService.getListCount(board_num, board_type);
+		System.out.println("전체게시물 수 : " + listCount);
+		
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
 
-		articleList = reCommentListService.getCommArticleList(page, limit);
-		// 페이지 계산 작업 수행
-		// 1. 전체 페이지 수 계산
-		// 	  (총 게시물 수 / 페이지 당 게시물 수 + 0.95) -> 정수로 변화
+		// 댓글 리스트 출력 -----
+		ArrayList<CommentBean> articleList = new ArrayList<CommentBean>();
+		articleList = reCommentListService.getArticleList(page, limit, board_num, board_type);
+
 		int maxPage = (int)((double)listCount / limit + 0.95);
 		// 2. 현재 페이지에서 보여줄 시작 페이지 수(1, 11, 21페이지 등)
 		int startPage = ((int)((double)page / 10 + 0.9) - 1) * 10 + 1;
@@ -52,12 +63,18 @@ public class ReCommentListAction implements Action {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
-		// 계산된 모든 페이지 정보를 PageInfo 객체에 저장
+		
 		PageInfo pageInfo = new PageInfo(
-				page, maxPage, startPage, endPage, listCount);
+		page, maxPage, startPage, endPage, listCount);
+		// 계산된 모든 페이지 정보를 PageInfo 객체에 저장
+
+		request.setAttribute("articleList", articleList);
+		
+		
+		// 댓글 리스트
+
 		// request 객체의 setAtribute() 메서드를 호출하여
 		// 게시물 목록 정보(ArrayList)와 페이지 정보(PageInfo) 객체를 저장
-		request.setAttribute("articleList", articleList);
 		request.setAttribute("pageInfo", pageInfo);
 				
 		forward = new ActionForward();

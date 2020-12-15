@@ -149,6 +149,34 @@ public class MyBasketDAO {
 		
 		
 	}
+
+
+	public String stateMem(String id) {
+		System.out.println("MyBasketDAO - stateMem()");
+		String state = "";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select state from member where id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				state = rs.getString(1);
+			}
+			System.out.println(state);
+		} catch (Exception e) {
+			System.out.println("stateMem() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return state;
+	}
 	
 	
 	
