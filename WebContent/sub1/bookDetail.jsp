@@ -66,7 +66,7 @@
 	String nowPage=request.getParameter("page"); 
 	
 	String id = (String)session.getAttribute("id");
-	String isbn = (String)request.getAttribute("isbn");
+	String isbn = request.getParameter("isbn");
     ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage2 = pageInfo.getPage();
@@ -209,11 +209,12 @@
 			<!-- 서평 및 댓글  -->
 			<!-- 서평쓰기 -->
 			<div class="d-tab review" data-sort="최신순" data-order="false" data-review-count="0" data-review-point="" data-page-num="1" data-etc-count="0">
-			<form  name="myReview" action="ReviewWritePro.re" method="post" onsubmit="return idYn()" id="myReview">
+			<form  name="myReview" action="ReviewWritePro.re" method="post" onsubmit="return idYn();">
 				<h3>서평(<span><%=listCount %></span>)</h3>
 				<div class="review-text-area">
-					<input type="hidden" name="id" value="<%=id%>">
+					<input type="hidden" name="id" id="myId" value="<%=id%>">
 					<input type="hidden" name="isbn" value="<%=isbn%>">	
+					<input type="hidden" name="page" value="<%=nowPage%>">	
 					<p class="star-gogo">
 						<input type="radio" name="starcount" class="star-1" id="star-1" value=1>
 						<label class="star-1" for="star-1">1</label>
@@ -300,13 +301,13 @@
 		%>
 
 			<div class="comment comment_inner ">
-				<p class="comment-vote bookcube">
+				<p class="comment-vote bookcube"id="cmt_vote">
 					<i><%=articleList.get(i).getId() %></i>
 					<em>|</em>
 					<span class="date"><%=articleList.get(i).getDate() %></span>
 					<em>|</em>
 					<span class="list-star rank10"><%=articleList.get(i).getStarcount() %></span>
-					<em>|</em>좋아요  <%=articleList.get(i).getLikecount() %>
+					<em>|</em>좋아요<span class="likeCountInner"> <%=articleList.get(i).getLikecount() %></span>
 					<em>|</em>댓글 0
 					<%if(articleList.get(i).getSpoiler()==1){%>
 					<em>|</em>스포일러 포함
@@ -415,17 +416,20 @@
 	<!-- 댓글수정/대댓글 -->
 <!-- ------------------------------------------------------------------------------ -->
 	<script type="text/javascript">
-		function idYn(){
-			alert("11111" + document.myReview.id.value());
-			if(!document.myReview.id.value()){
-				alert("로그인 해주시길 바랍니다.");
-				return false;
-			}
-			
-		};		
+	
+
+		
 		$(document).ready(function(){
 						
+			function idYn(){
+				var myid = document.getElementById('myId').value;
+				alert(myid);
+				if(myid==null){
+					alert("로그인 해주시길 바랍니다.");
+					return false;
+				}
 				
+			};		
 			$(".my-review").on("click",function(){
 				if ($(this).data("review-yn") == "N"){
 					$(".review-text:not(:animated)").animate({
@@ -502,25 +506,43 @@
 			$(".reviewCancele").on("click", function() {
 				$(".cmtModi").hide();
 				$(".cmtRly").hide();
-				});
+			});
 			
-// 			// 좋아요
-// 			$(".heart-btn").on("click",function() {
-// 				var num = $(this).data("review-num");
-// 				var review_num = $(this).data("review-num");
-// 				var like_id = $(this).data("like-id");
-// 				var book_isbn = $(this).data("isbn");
-// 				$.ajax({
-// 					url: 'ReviewlikeCount.re',
-// 					type: "POST",
-// 					data: {num,review_num,like_id,book_isbn},
-// 					success: function(data){
-// 						alert("좋아요 성공!~");
-// 					},
-// 				});
-// 			});	
+ 			// 좋아요
+ 			$(".heart-btn").on("click",function() {
+ 				var num = $(this).data("review-num");
+ 				var review_num = $(this).data("review-num");
+ 				var like_id = $(this).data("like-id");
+ 				var book_isbn = $(this).data("isbn");
+ 				if(like_id==null){
+ 					alert("로그인을 해주시길 바랍니다.");
+ 					return false;
+ 				}
+ 				var btnPar = $(this).parent().siblings("#cmt_vote").children('span.likeCountInner');
+ 				$.ajax({
+ 					url: 'ReviewlikeCount.re',
+ 					type: "POST",
+ 					dataType : 'json',
+ 					data: {
+ 						"num":num,
+ 						"review_num":review_num,
+ 						"like_id":like_id,
+ 						"book_isbn":book_isbn
+ 					},
+ 					success: function(data){
+ 						var text = data.text;
+ 						var likeCount = data.likeCount;
+ 						alert(text);
+ 						if(likeCount > 0){
+ 							btnPar.text(likeCount);
+ 						}
+ 					},error:
+ 						function(request,status,error){
+ 		   		        	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+ 		   		   }
+ 				});
+ 			});	 
 			
-
 	});
 	</script>
 <!-- ------------------------------------------------------------------------------ -->
@@ -654,3 +676,4 @@
 		});	
 	</script>
 <jsp:include page="../include/footer.jsp"/>
+
