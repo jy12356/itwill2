@@ -1,19 +1,32 @@
+<%@page import="vo.PageInfo"%>
+<%@page import="vo.NoticeBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	
+	<%
+	ArrayList<NoticeBean> articleList = (ArrayList<NoticeBean>) request.getAttribute("articleList");
+PageInfo PageInfo = (PageInfo) request.getAttribute("PageInfo");
+int nowPage = PageInfo.getPage();
+int maxPage = PageInfo.getMaxPage();
+int startPage = PageInfo.getStartPage();
+int endPage = PageInfo.getEndPage();
+int listCount = PageInfo.getListCount();
+%>
 <footer>
 	<div class="footer-top">
 		<div class="notice-wrap">
 			<div class="notice-inner">
-				<p><a href="/customer.asp?page=notice">공지사항</a></p>
+				<p><a href="NoticeBoardList.not">공지사항</a></p>
 				<div class="swiper-container notice">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
-							<a href="/customer.asp?page=notice&num=112688&page2=view&pageNum=1">장르/만화 정액권 판매 종료 예정 안내<span>2020-10-27</span></a>
+						<!-- Null오류로 인한 푸터 공지사항 수정중 -->
+<!-- 							<a href="NoticeBoardDetail.not?num=1&page=1"> -->
+<%-- 										<span><%=articleList.get(i).getSubject()%></span></a> --%>
 						</div>
-						<div class="swiper-slide">
-							<a href="/customer.asp?page=notice&num=112679&page2=view&pageNum=1">메리 미 (Marry Me)〉 적립금 지급 안내<span>2020-10-27</span></a>
-						</div>						
+<!-- 						<div class="swiper-slide"> -->
+<!-- 							<a href="/customer.asp?page=notice&num=112679&page2=view&pageNum=1">메리 미 (Marry Me)〉 적립금 지급 안내<span>2020-10-27</span></a> -->
+<!-- 						</div>						 -->
 					</div>
 				</div>
 				<div class="notice-control">
