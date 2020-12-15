@@ -32,7 +32,7 @@ public GudokDAO() {}
 		ResultSet rs = null; 
 		
 		int num = 1;
-		String sql = "Select Min(gnum) from gudok";
+		String sql = "Select Max(gnum) from gudok";
 		try {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -40,11 +40,11 @@ public GudokDAO() {}
 			if(rs.next()) {
 				num = rs.getInt(1) + 1;
 			}
-			sql = "Insert into gudok values(?,?,?,now())";
+			sql = "Insert into gudok values(?,?,now(),?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setInt(2, gudokBean.getGproduct());
-			pstmt.setInt(3, gudokBean.getGprice());
+			pstmt.setString(2, gudokBean.getGproduct());
+			pstmt.setString(3, gudokBean.getId());
 			insertCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("insertArticle() 오류! - " + e.getMessage());

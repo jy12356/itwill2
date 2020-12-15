@@ -15,7 +15,7 @@ public class ChargeProService {
 		boolean isWriteSuccess = false; //글 등록 성공 여부를 저장
 		
 		Connection con = getConnection();
-		GudokDAO gudokDAO = new GudokDAO();
+		GudokDAO gudokDAO = GudokDAO.getInstance();
 		gudokDAO.setConnection(con);
 		
 		int insertCount = gudokDAO.insertArticle(gudokBean);

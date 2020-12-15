@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- <% String id = request.getParameter("id"); %> --%>
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
 	<div class="contents-wrap">
@@ -18,7 +19,7 @@
 				</div>
 			</div>
 			<div class="charge-bottom">
-				<form name="order_info" method="post" action="https://www.bookcube.com/order/kcp/pp_ax_hub.asp">	
+				<form name="order_info" method="post" action="ChargePro.dok">	
 				<input type="hidden" name="ordr_idxx" value="97651418"/>
 				<input type="hidden" name="sspay_direct" class="sspay_direct" value="N"> 
 				<input type="hidden" name="good_name" value="북캐시 2,000원"/>
@@ -31,6 +32,7 @@
 				<input type="hidden" name="site_cd"         value="K4282" />
 				<input type="hidden" name="site_name"       value="BookCube" />
 				<input type="hidden" name="quotaopt"        value="12"/>
+				<input type="hidden" name="id" value="B"/>
 				
 				
 				<!-- 필수 항목 : 결제 금액/화폐단위 -->
@@ -73,15 +75,15 @@
 										<th>※세부사항</th>
 									</tr>
 									<tr>
-										<td><input type="radio" class="cashamount" name='cash' value='199000' checked="checked"/><label for='cash2000'>1개월 구독(199000원)</label></td>
+										<td><input type="radio" class="cashamount" name='gproduct' id="gproduct" value="1개월" checked="checked"/><label>1개월 구독(19900원)</label></td>
 										<td>-</td>
 									</tr>
 									<tr>
-										<td><input type="radio" class="cashamount" name='cash' value='399000' /><label for='cash5000'>3개월 정기 구독(399000원)</label></td>
+										<td><input type="radio" class="cashamount" name='gproduct' id="gproduct" value="3개월" /><label>3개월 정기 구독(39900원)</label></td>
 										<td>정기 구독을 결제 했을 시, 만료 일 전 갱신을 위한 연락을 취해드립니다. 만약 구독 갱신을 하지 않았을 시, 자동적으로 결제 되지 않습니다.</td>
 									</tr>
 									<tr>
-										<td><input type="radio" class="cashamount" name='cash' value='9990000' /><label for='cash10000'>12개월 정기 구독(9990000원)</label></td>
+										<td><input type="radio" class="cashamount" name='gproduct' id="gproduct" value="12개월" /><label>12개월 정기 구독(190000원)</label></td>
 										<td>정기 구독을 결제 했을 시, 만료 일 전 갱신을 위한 연락을 취해드립니다. 만약 구독 갱신을 하지 않았을 시, 자동적으로 결제 되지 않습니다.</td>
 									</tr>
 <!-- 									<tr> -->
@@ -167,9 +169,9 @@
 							</dl>
 						</div>															
 						<div class="payment-result">
-							<p>총 구독 금액 : <span class="total_pay_amount">199000원</span></p>
+							<p>구매할 구독권 : <span class="total_pay_amount">1개월</span></p>
 							<p class="deduction-result">소득공제 <span>불가</span></p>
-							<input type="button" onclick="cCheck()" value="결제하기">
+							<input type="submit"value="결제하기">
 							<script>
 							
 							</script>
@@ -182,6 +184,7 @@
 	
 </section>
 <script>
+
 function cCheck(){
 	var u = "sub5/charge2.jsp";
 	var name = "charge2";
@@ -194,9 +197,9 @@ $(function(){
 	var series_num = $(".wrap").data("serial-num");
 
 	$('.cashamount').click(function(){
-		$(".total_pay_amount").text(commify($(this).val())+'원');
+		$(".total_pay_amount").text(commify($(this).val()));
 		document.order_info.good_mny.value = $(this).val();
-		document.order_info.good_name.value = "북캐시 "+ commify($(this).val())+'원'
+		document.order_info.good_name.value = "북캐시 "+ commify($(this).val())
 		
 		//document.order_info.user_good_mny.value = $(this).val();
 		document.regForm.item_0_product.value = 'BOOKCASH '+ $(this).val() ;

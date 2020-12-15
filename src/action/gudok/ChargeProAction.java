@@ -21,10 +21,11 @@ public class ChargeProAction implements Action{
 		System.out.println("ChargeProAction!!");
 		ActionForward forward = null;
 		
+		String gproduct = request.getParameter("gproduct");
+		
 		GudokBean gudokBean = new GudokBean();
-//		gudokBean.setGnum(Integer.parseInt(request.getParameter("gnum")));
-//		gudokBean.setGproduct(Integer.parseInt(request.getParameter("gproduct")));
-		gudokBean.setGprice(Integer.parseInt(request.getParameter("gprice")));
+		gudokBean.setId("id");
+		gudokBean.setGproduct(gproduct);
 		
 		ChargeProService chargeProService = new ChargeProService();
 		boolean isWriteSuccess = chargeProService.registArticle(gudokBean);
@@ -38,7 +39,7 @@ public class ChargeProAction implements Action{
 			out.println("</script>");
 		}else {
 			forward = new ActionForward();
-			forward.setPath("sub5/charge2.jsp");
+			forward.setPath("sub5/Charge2.jsp");
 			forward.setRedirect(true);
 		}
 		return forward;
