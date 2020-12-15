@@ -9,9 +9,6 @@
 <%@page import="vo.PageInfo"%>
 <%@page import="java.util.ArrayList"%>
 <%
-	// 전달받은 request 객체로부터 데이터 가져오기
-// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
-// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 ArrayList<BookBean> myBasketList = (ArrayList<BookBean>) request.getAttribute("myBasketList");
 PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 String memState = (String) request.getAttribute("memState");
@@ -67,7 +64,7 @@ int listCount = pageInfo.getListCount();
 						%>
 						<tr>
 							<td class="tac check_box"><input type="checkbox"
-								id="checkRow" class="checkRow1"
+								id="checkRow1" class="check_box"
 								value="<%=myBasketList.get(i).getNum()%>" name="checkRow1"
 								onclick="checkRow1();"><%=myBasketList.get(i).getNum()%></td>
 							<td><%=myBasketList.get(i).getTitle()%></td>
@@ -105,7 +102,7 @@ int listCount = pageInfo.getListCount();
 						</thead>
 						<tr>
 							<td class="tac check_box"><input type="checkbox"
-								id="checkRow" class="checkRow2"
+								id="checkRow2" class="check_box"
 								value="<%=myBasketList.get(i).getNum()%>" name="checkRow2"
 								onclick="checkRow2();"><%=myBasketList.get(i).getNum()%></td>
 							<td><%=myBasketList.get(i).getTitle()%></td>
@@ -124,7 +121,7 @@ int listCount = pageInfo.getListCount();
 					</table>
 					<div class="btn_inner">
 						<a href="javascript:void(0);"
-							onclick="deleteBook(); return false;" class="btn">삭제하기</a>
+							onclick="deleteBook()" class="btn">삭제하기</a>
 						<button onclick="value_check()">checkbox 선택(체크)된 객체
 							값(value) 가져오기</button>
 							<input type="button" value="삭제해버려" id="selectDelete_btn" >
@@ -154,109 +151,130 @@ int listCount = pageInfo.getListCount();
 
 	<script type="text/javascript">
 $(document).ready(function(){
-
-	$(".selectDelete_btn").click(function(){
-		  var confirm_val = confirm("정말 삭제하시겠습니까?");
-		  
-		  if(confirm_val) {
-		   var checkArr = new Array();
-		   
-		   $("input[id='checkRow']:checked").each(function(){
-		    checkArr.push($(this).attr("value"));
-		   });
-		    
-		   $.ajax({
-		    url : "delete.bk",
-		    type : "post",
-		    data : { chbox : checkArr },
-		    success : function(){
-		     location.href = "/shop/cartList";
-		    }
-		   });
-		  } 
-		 });
  
+	function deleteBook(){
+		var confirm_val = confirm("정말 삭제하시겠습니까?");
+		
+		if(confirm_val) {
+			var inter_num = [];
+			if ($('.check_box input[type="checkbox"]:checked').length > 0) {
+				$('.check_box input[type="checkbox"]:checked').each(function(){
+					inter_num.push($(this).attr("value"));  
+				});
+			}else{
+				alert("게시물을 선택해주시길 바랍니다.");
+				return false;	            	
+			};	
+			var interArr = {"inter_num" :inter_num};
+			$.ajax({
+				url : "BasketDelete.bok",
+				type : "post",
+				dataType: 'text',
+				data : interArr,
+				success : function(){
+					location.href = "MyBasketList.bk";
+				},error:function(request,status,error){
+			        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			       }
 
-		function value_check() {
-			var checkRow1value = '';
-
-			$('input[name="checkRow1"]:checked').each(function(index) {
-				if (index != 0) {
-					checkRow1value += ',';
-				}
-				checkRow1value += $(this).val();
 			});
+		} 
+    };
 
-			alert(checkRow1value);
-		}
-		// 배열선언
-// 		var arrValues = new Array();
-// 		for (var i = 1; i <= checkRow1value.length; i++) {
+// 		function value_check() {
+// 			var checkRow1value = '';
 
-// 			arrValues.push(checkRowvalue)
+// 			$('input[name="checkRow1"]:checked').each(function(index) {
+// 				if (index != 0) {
+// 					checkRow1value += ',';
+// 				}
+// 				checkRow1value += $(this).val();
+// 			});
+
+// 			alert(checkRow1value);
 // 		}
+
 
 		$("#checkAll1").click(function() {
 			if ($(this).is(":checked")) {
-				$(".checkRow1").prop("checked", true);
-				$(".checkAll1").prop("checked", true);
-				$(".checkRow2").prop("checked", false);
-				$(".checkAll2").prop("checked", false);
+				$("#checkRow1").prop("checked", true);
+				$("#checkRow2").prop("checked", false);
+				$("#checkAll2").prop("checked", false);
 			} else {
-				$(".checkRow1").prop("checked", false);
-				$(".checkAll1").prop("checked", false);
+				$("#checkRow1").prop("checked", false);
 			}
 
 		});
 
 		$("#checkAll2").click(function() {
 			if ($(this).is(":checked")) {
-				$(".checkRow2").prop("checked", true);
-				$(".checkAll2").prop("checked", true);
-				$(".checkRow1").prop("checked", false);
-				$(".checkAll1").prop("checked", false);
+				$("#checkRow2").prop("checked", true);
+				$("#checkRow1").prop("checked", false);
+				$("#checkAll1").prop("checked", false);
 			} else {
-				$(".checkRow2").prop("checked", false);
-				$(".checkAll2").prop("checked", false);
+				$("#checkRow2").prop("checked", false);
 			}
 
 		});
 
 		$("#checkRow1").click(function() {
 			if ($(this).is(":checked")) {
-				$(".checkRow2").prop("checked", false);
-				$(".checkAll2").prop("checked", false);
-			} else {
-				$(".checkAll1").prop("checked", false);
-			}
-
-		});
-		$("#checkRow2").click(function() {
-			if ($(this).is(":checked")) {
-				$(".checkRow1").prop("checked", false);
-				$(".checkAll1").prop("checked", false);
-			} else {
-				$(".checkAll2").prop("checked", false);
-			}
-
-		});
-
-		$("#checkRow1").click(function() {
-			if ($(this).is(":checked")) {
+				$("#checkRow2").prop("checked", false);
+				$("#checkAll2").prop("checked", false);
 				$(".rentalbtn").show();
 			} else {
+				$("#checkAll1").prop("checked", false);
 				$(".rentalbtn").hide();
 			}
+			
+			var total_cnt1 = 0;
+			$('input:checkbox[name="checkRow1"]').each(function() {
+				if (this.checked) {
+					total_cnt1 += 1;
+				}
+			});
 
+			$(".totalbookcnt").html(total_cnt1 + "권");
 		});
+
+		
 		$("#checkRow2").click(function() {
 			if ($(this).is(":checked")) {
+				$("#checkRow1").prop("checked", false);
+				$("#checkAll1").prop("checked", false);
 				$(".reservationbtn").show();
+				
+				var total_cnt2 = 0;
+				$('input:checkbox[name="checkRow2"]').each(function() {
+					if (this.checked) {
+						total_cnt2 += 1;
+					}
+				});
+
+				$(".totalbookcnt").html(total_cnt2 + "권");
 			} else {
+				$("#checkAll2").prop("checked", false);
 				$(".reservationbtn").hide();
 			}
 
 		});
+
+// 		$("#checkRow1").click(function() {
+// 			if ($(this).is(":checked")) {
+				
+// 			} else {
+				
+// 			}
+
+// 		});
+// 		$("#checkRow2").click(function() {
+// 			if ($(this).is(":checked")) {
+				
+// 			} else {
+				
+// 			}
+
+// 		});
 
 		// 		function checkRow1() {
 		// 			if($("#checkRow1").is(':checked') ) {
@@ -272,38 +290,35 @@ $(document).ready(function(){
 
 		// 		}
 
-		$("#checkRow1").click(function() {
-			var total_cnt1 = 0;
-			$('input:checkbox[name="checkRow1"]').each(function() {
-				if (this.checked) {
-					total_cnt1 += 1;
-				}
-			});
+// 		$("#checkRow1").click(function() {
+// 			var total_cnt1 = 0;
+// 			$('input:checkbox[name="checkRow1"]').each(function() {
+// 				if (this.checked) {
+// 					total_cnt1 += 1;
+// 				}
+// 			});
 
-			$(".totalbookcnt").html(total_cnt1 + "권");
+// 			$(".totalbookcnt").html(total_cnt1 + "권");
+// 		});
+
+// 		$("#checkRow2").click(function() {
+// 			var total_cnt2 = 0;
+// 			$('input:checkbox[name="checkRow2"]').each(function() {
+// 				if (this.checked) {
+// 					total_cnt2 += 1;
+// 				}
+// 			});
+
+// 			$(".totalbookcnt").html(total_cnt2 + "권");
+// 		});
+
+		$(".orderbtn").click(function() {
+			if ($(".abcabc").val() == "구독안함") {
+				var u = "myPage/subscribe.jsp";
+				var option = "width = 900, height = 650, top = 100, left = 400, location = no"
+				window.open(u, option);
+			}
 		});
-
-		$("#checkRow2").click(function() {
-			var total_cnt2 = 0;
-			$('input:checkbox[name="checkRow2"]').each(function() {
-				if (this.checked) {
-					total_cnt2 += 1;
-				}
-			});
-
-			$(".totalbookcnt").html(total_cnt2 + "권");
-		});
-
-		$(".orderbtn")
-				.click(
-						function() {
-
-							if ($(".abcabc").val() == "구독안함") {
-								var u = "myPage/subscribe.jsp";
-								var option = "width = 900, height = 650, top = 100, left = 400, location = no"
-								window.open(u, option);
-							}
-						});
 });
 	</script>
 </section>
