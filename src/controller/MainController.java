@@ -20,7 +20,7 @@ import action.book.BookRegiSerchAction;
 import action.book.BookWriteProAction;
 import vo.ActionForward;
 @WebServlet("*.book") 
-public class mainController extends HttpServlet {
+public class MainController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");

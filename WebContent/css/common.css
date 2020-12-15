@@ -188,10 +188,20 @@ a:hover {text-decoration:underline;}
 .checkbox label input[type='checkbox']{display:none;padding:0;}
 .checkbox span{position:relative;display:inline-block;border:1px solid #a9a9a9;width:20px;height:20px;cursor:pointer;box-sizing:border-box;background:#fff;}
 .checkbox span i{left:-1px;top:-2px;display:inline-block;transform:scale(3) rotateZ(-20deg);opacity:0;transition:all .3s ease-in;position:absolute;display:inline-block;}
-.checkbox span i:before{display:inline-block;content:"";box-sizing: border-box;width:20px;height:20px;background:url(/images/main/checkbox.png) no-repeat center center;}
+.checkbox span i:before{display:inline-block;content:"";box-sizing: border-box;width:20px;height:20px;background:url(../images/checkbox.png) no-repeat center center;}
 .checkbox label input[type="checkbox"]:checked + span > i{transform:scale(1) rotateZ(0deg);opacity:1;}
 .checkbox label input[type="checkbox"]:checked + span{border-color:#f26532;}
 .checkbox label input[type=checkbox]:disabled + span{background:#e6e6e6;border-color:#bdbdbd;cursor:default;}
+
+.checkbox01{position:relative;display:inline-flex;height:20px;}
+.checkbox01 label{min-height:20px;cursor:pointer;display:inline-block;max-width:100%;}
+.checkbox01 label input[type='checkbox']{display:none;padding:0;}
+.checkbox01 span{position:relative;display:inline-block;border:1px solid #a9a9a9;width:20px;height:20px;cursor:pointer;box-sizing:border-box;background:#fff;}
+.checkbox01 span i{left:-1px;top:-2px;display:inline-block;transform:scale(3) rotateZ(-20deg);opacity:0;transition:all .3s ease-in;position:absolute;display:inline-block;}
+.checkbox01 span i:before{display:inline-block;content:"";box-sizing: border-box;width:20px;height:20px;background:url(../images/checkbox.png) no-repeat center center;}
+.checkbox01 label input[type="checkbox"]:checked + span > i{transform:scale(1) rotateZ(0deg);opacity:1;}
+.checkbox01 label input[type="checkbox"]:checked + span{border-color:#f26532;}
+.checkbox01 label input[type=checkbox]:disabled + span{background:#e6e6e6;border-color:#bdbdbd;cursor:default;}
 
 /* 이펙트 버튼 */
 .effect-btn{position:relative;transition:all 0.3s ease;overflow:hidden;z-index:0;}
@@ -257,7 +267,7 @@ box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);}
 
 /*게시판폼*/
 .customer-table{width:100%;}
-.customer-table thead th{line-height:33px;background:#f4f4f4;color:#333;}
+.customer-table thead th{line-height:33px;background:#f4f4f4;color:#069e89;}
 .customer-table tbody td{border-bottom:1px solid #d4d5d6;line-height:44px;cursor:pointer;font-size:14px;color:#46474b;overflow: hidden;}
 .customer-table tbody td span{float:left;display:inline-block;color:#17897a;font-weight:600;margin-right:7px;}
 .customer-table tbody td p{float:left;width:90%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
@@ -297,3 +307,7 @@ box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);}
 .boxmenu1-top-menu ul li:first-child::before{content:'';display:none;}
 .boxmenu1-top-menu ul li::before{content:'';display: block;position: absolute;top: 27px;left: 0;width: 1px;background: #c1bebe;height: 26px;}
 .boxmenu1-top-menu ul li a em{font-weight: 700;font-size: 17px;border-left:none;}
+
+tbody .publisher,
+tbody .title,
+tbody .author{float: none !important;max-width: 203px !important;white-space: nowrap !important;overflow: hidden !important;text-overflow: ellipsis !important;}

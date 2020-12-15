@@ -31,8 +31,8 @@ public class MyBasketListService {
 	}
 
 	public ArrayList<BookBean> getBasketList(int page, int limit, String id) {
-		
 		System.out.println("MyBasketListService - getBasketList");
+		
 		ArrayList<BookBean> basketList = new ArrayList<BookBean>();
 		
 		Connection con = getConnection();
@@ -46,6 +46,22 @@ public class MyBasketListService {
 		return basketList;
 		
 		
+	}
+
+	public String getMemState(String id) {
+		System.out.println("MyBasketListService - getMemState()");
+		
+		String state = "";
+		
+		Connection con = getConnection();
+		
+		MyBasketDAO myBasketDAO = MyBasketDAO.getInstance();
+		myBasketDAO.setConnection(con);
+		
+		state = myBasketDAO.stateMem(id);
+		
+		
+		return state;
 	}
 
 }

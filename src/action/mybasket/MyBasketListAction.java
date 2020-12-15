@@ -47,6 +47,8 @@ public class MyBasketListAction implements Action {
 			int listCount = myBasketListService.getListCount(id);
 			// 현재는 든게없지
 			System.out.println("가져온 listCount : " + listCount);
+			String memState = myBasketListService.getMemState(id);
+			System.out.println(memState);
 			System.out.println("3");
 
 			ArrayList<BookBean> myBasketList = new ArrayList<BookBean>();
@@ -71,6 +73,7 @@ public class MyBasketListAction implements Action {
 //			}
 			PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
 			System.out.println("5");
+			request.setAttribute("memState", memState);
 			request.setAttribute("myBasketList", myBasketList);
 			System.out.println("myBasketList : " + myBasketList);
 			request.setAttribute("pageInfo", pageInfo);
