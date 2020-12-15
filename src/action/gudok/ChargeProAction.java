@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -21,12 +22,12 @@ public class ChargeProAction implements Action{
 		ActionForward forward = null;
 		
 		GudokBean gudokBean = new GudokBean();
-		gudokBean.setGnum(Integer.parseInt(request.getParameter("gnum")));
-		gudokBean.setGproduct(Integer.parseInt(request.getParameter("gproduct")));
+//		gudokBean.setGnum(Integer.parseInt(request.getParameter("gnum")));
+//		gudokBean.setGproduct(Integer.parseInt(request.getParameter("gproduct")));
 		gudokBean.setGprice(Integer.parseInt(request.getParameter("gprice")));
 		
 		ChargeProService chargeProService = new ChargeProService();
-		boolean isWriteSuccess = ChargeProService.registArticle(gudokBean);
+		boolean isWriteSuccess = chargeProService.registArticle(gudokBean);
 		
 		if(!isWriteSuccess) {
 			response.setContentType("text/html; charset=UTF-8");
@@ -37,11 +38,10 @@ public class ChargeProAction implements Action{
 			out.println("</script>");
 		}else {
 			forward = new ActionForward();
-			forward.setPath("Chage2.dok");
+			forward.setPath("sub5/charge2.jsp");
 			forward.setRedirect(true);
 		}
 		return forward;
-		
-		
 }
 }
+
