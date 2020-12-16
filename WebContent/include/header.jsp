@@ -122,7 +122,7 @@ String id = (String)session.getAttribute("id");
 					
 				</ul>
 				<ul class="lnb">
-					<li><a href="Charge.qna">정기권 결제</a>
+					<li><a href="Charge.dok">정기권 결제</a>
 					<li><a href="QnaList.qna">고객센터</a>
 				</ul>
 			</div>

@@ -130,9 +130,8 @@ int listCount = pageInfo.getListCount();
 								총 선택 도서 수 : <span class="totalbookcnt">0권</span>
 							</p>
 
-							<input type="button" style="display: none;" class="rentalbtn"
-								value="대여하기"> <input type="button"
-								style="display: none;" class="reservationbtn" value="예약하기">
+							<input type="button" style="display: none;" class="rentalbtn" value="대여하기" onclick="rental()"> 
+							<input type="button" style="display: none;" class="reservationbtn" value="예약하기">
 						</div>
 					</div>
 					<div class="ps-box">
@@ -147,10 +146,47 @@ int listCount = pageInfo.getListCount();
 			</div>
 		</div>
 	</div>
-	<input type="hidden" value="<%=memState%>" class="abcabc">
+	<input type="hidden" value="<%=memState%>" class="isRentalable">
 
-	<script type="text/javascript">
-$(document).ready(function(){
+	<script>
+	
+	function rental(){
+		if ($(".isRentalable").val()=="구독안함") {
+			var u = "myPage/subscribe.jsp";
+			var name = "leggo";
+			var option = "width = 500, height = 150, top = 100, left = 400, location = no"
+			window.open(u,name,option);
+		} else if($(".isRentalable").val()=="구독중"){
+			
+		}
+	}
+// 		var confirm_val = confirm("선택하신 도서를 대여하시겠습니까?");
+		
+// 		if(confirm_val) {
+// 			var inter_num = []; 
+// 			if ($('.check_box input[type="checkbox"]:checked').length > 0) {
+// 					$('.check_box input[type="checkbox"]:checked').each(function(){	
+// 						inter_num.push($(this).attr("value"));  
+// 					});
+// 			}else{
+// 				alert("대여할 도서를 선택해주시기 바랍니다.");
+// 				return false;	            	
+// 			};	
+// 			var interArr = {"inter_num" :inter_num};
+// 			$.ajax({
+// 				url : "rental.bk",
+// 				type : "post",
+// 				dataType: 'text',
+// 				data : interArr,
+// 				success : function(){
+// 					location.href = "MyBasketList.bk";
+// 				},error:function(request,status,error){
+// 			        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+// 			       }
+
+// 			});
+// 		} 
+//     };
  
 	function deleteBook(){
 		var confirm_val = confirm("정말 삭제하시겠습니까?");
@@ -158,16 +194,16 @@ $(document).ready(function(){
 		if(confirm_val) {
 			var inter_num = [];
 			if ($('.check_box input[type="checkbox"]:checked').length > 0) {
-				$('.check_box input[type="checkbox"]:checked').each(function(){
-					inter_num.push($(this).attr("value"));  
-				});
+					$('.check_box input[type="checkbox"]:checked').each(function(){	
+						inter_num.push($(this).attr("value"));  
+					});
 			}else{
-				alert("게시물을 선택해주시길 바랍니다.");
+				alert("삭제할 도서를 선택해주시기 바랍니다.");
 				return false;	            	
 			};	
 			var interArr = {"inter_num" :inter_num};
 			$.ajax({
-				url : "BasketDelete.bok",
+				url : "BasketDelete.bk",
 				type : "post",
 				dataType: 'text',
 				data : interArr,
@@ -180,6 +216,7 @@ $(document).ready(function(){
 			});
 		} 
     };
+    
 
 // 		function value_check() {
 // 			var checkRow1value = '';
@@ -319,7 +356,6 @@ $(document).ready(function(){
 				window.open(u, option);
 			}
 		});
-});
 	</script>
 </section>
 

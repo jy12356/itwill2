@@ -21,13 +21,14 @@ public class ReCommentListAction implements Action {
 		
 		ActionForward forward = null;
 		
-//		String isbn = request.getParameter("isbn");
-//		String id = request.getParameter("id");
-		String isbn = "2"; // 작업 후 삭제
-		String id = "test"; // 작업 후 삭제
+		String book_isbn = request.getParameter("isbn");
+		String page=request.getParameter("page");
+		System.out.println("책코드 : " + book_isbn);
+		System.out.println("페이지번호 : " + page);
+		
+		String id = request.getParameter("id");
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		int board_type = Integer.parseInt(request.getParameter("board_type"));
-		System.out.println("책코드 : " + isbn);
+		int board_type = Integer.parseInt(request.getParameter("board_type"));		
 		System.out.println("아이디 : " + id);
 		System.out.println("게시물 번호 : " + board_num);
 		System.out.println("게시판 타입 : " + board_type);
@@ -78,8 +79,8 @@ public class ReCommentListAction implements Action {
 		request.setAttribute("pageInfo", pageInfo);
 				
 		forward = new ActionForward();
-		forward.setPath("/sub1/bookDetail.jsp");
-		
+		forward.setPath("BookDetail.bok?isbn="+book_isbn+"&page="+page);
+		forward.setRedirect(true);			
 		return forward;
 	}
 

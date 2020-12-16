@@ -18,6 +18,11 @@ public class ReviewModifyProAction implements Action {
 		
 		ActionForward forward = null;
 		
+		String book_isbn = request.getParameter("isbn");
+		String page=request.getParameter("page");
+		System.out.println("책코드 : " + book_isbn);
+		System.out.println("페이지번호 : " + page);
+		
 		int num = Integer.parseInt(request.getParameter("num"));
 		String id = request.getParameter("id");
 		
@@ -50,7 +55,7 @@ public class ReviewModifyProAction implements Action {
 				out.println("</script>");
 			} else {
 				forward = new ActionForward();
-				forward.setPath("BookDetail.bok");
+				forward.setPath("BookDetail.bok?isbn="+book_isbn+"&page="+page);				
 				forward.setRedirect(true);
 			}
 		}	
