@@ -8,14 +8,8 @@
 
    <%
 	String id = (String)session.getAttribute("id");
-   	if(id == null) {
-   		id = "test";
-   	}
-	
 	String isbn = (String)request.getAttribute("isbn");
-	if(isbn == null) {
-		isbn = "2";
-	}
+
 	
     ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");

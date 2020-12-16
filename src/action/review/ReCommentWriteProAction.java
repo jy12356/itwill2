@@ -18,6 +18,11 @@ public class ReCommentWriteProAction implements Action {
 		
 		ActionForward forward = null;
 		
+		String book_isbn = request.getParameter("isbn");
+		String page=request.getParameter("page");
+		System.out.println("책코드 : " + book_isbn);
+		System.out.println("페이지번호 : " + page);
+		
 		CommentBean commentBean = new CommentBean();
 		
 		commentBean.setBoard_type(Integer.parseInt(request.getParameter("board_type"))); // 리뷰게시판
@@ -42,7 +47,7 @@ public class ReCommentWriteProAction implements Action {
 		} else {
 			// 리뷰 등록 성공시
 			forward = new ActionForward();
-			forward.setPath("BookDetail.re");
+			forward.setPath("BookDetail.bok?isbn="+book_isbn+"&page="+page);
 			forward.setRedirect(true);			
 		}
 		return forward;
