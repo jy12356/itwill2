@@ -14,7 +14,7 @@ public class MemberBean {
 	private int age;
 	private String address;
 	private Timestamp date;
-	private String status;
+	private String state;
 	
 	public MemberBean() {}
 	
@@ -31,14 +31,14 @@ public class MemberBean {
 		this.age = age;
 		this.address = address;
 		this.date = date;
-		this.status = status;
+		this.state = status;
 	}
-	public String getStatus() {
-		return status;
+	public String getState() {
+		return state;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public Timestamp getDate() {

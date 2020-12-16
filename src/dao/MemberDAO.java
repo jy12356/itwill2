@@ -169,7 +169,7 @@ public class MemberDAO {
 				article.setAddress(rs.getString("address"));
 				article.setDate(rs.getTimestamp("date"));
 				article.setName(rs.getString("name"));
-				article.setStatus(rs.getString("status"));
+				article.setState(rs.getString("state"));
 				articleList.add(article);
 			}
 			

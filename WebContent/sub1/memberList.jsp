@@ -134,7 +134,7 @@ th.memSortTbody {font-size: 13px; font-weight: 500; padding: 3px;}
                                 <th scope="col" class="memSortTbody" abbr="가입일" id="date"><%=articleList.get(i).getDate()%></th>
                                 <th scope="col" class="memSortTbody" abbr="주소" id="address"><%=articleList.get(i).getAddress()%></th>
                                 <th scope="col" class="memSortTbody" abbr="선호장르" id="catg"><%=articleList.get(i).getCatg()%></th>
-                                <th scope="col" class="memSortTbody" abbr="상태" id="status"><%=articleList.get(i).getStatus()%></th>
+                                <th scope="col" class="memSortTbody" abbr="상태" id="state"><%=articleList.get(i).getState()%></th>
                            <%} %>
                             </tr>
                         </tbody>
@@ -167,7 +167,7 @@ function memlist(nameForm) {
 	var age = document.getElementById('age');
 	var address = document.getElementById('address');
 	var date = document.getElementById('date');
-	var status = document.getElementById('status');
+	var state = document.getElementById('state');
 	
 	
 /* 	$.ajax({
