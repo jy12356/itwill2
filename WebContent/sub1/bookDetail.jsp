@@ -121,7 +121,7 @@
 								<span>0.0</span>(0명)
 							</p>
 							<p class="review-user">
-								서평(<span>0</span>)
+								서평(<span><%=listCount %></span>)
 							</p>
 							<button class="share">공유하기</button>
 							<div class="js-share-box">
@@ -180,7 +180,8 @@
 						<li class="on"><a href="javascript:;">책소개</a><span></span></li>
 						<li><a href="javascript:;">목차</a><span></span></li>
 						<li><a href="javascript:;">저자소개</a><span></span></li>
-						<li><a href="javascript:;">서평<span><%=listCount %></span></a><span></span></li>
+						<li><a href="javascript:;">서평<span>(<%=listCount %>)</span></a><span></span></li>
+
 					</ul>
 				</div>
 			</div>
@@ -420,6 +421,59 @@
 
 	<!-- 댓글수정/대댓글 -->
 <!-- ------------------------------------------------------------------------------ -->
+
+<!-- ------------------------------------------------------------------------------ -->
+
+
+<!-- ------------------------------------------------------------------------------ -->
+
+	
+			<div class="detail_class_best_book">
+			</div>
+			<div class="md">
+				<div class="md-title">
+					<h3 class="coTitle">이 분야의 베스트</h3>
+					<a href="https://www.bookcube.com/categorylist.asp?mainclass_num=00&amp;subclass_num=11&amp;page=best" class="more">더보기</a>
+				</div>
+				<ul>
+					<li>
+					<div class="figure">
+						<a href="https://www.bookcube.com/detail.asp?series_num=920028772&amp;page=">
+						<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201003358.jpg" alt="도서 이미지 - 대통령이 사라졌다 1"></span>
+						<span class="light"></span>
+						</a>
+					</div>
+					<div class="hot-info">
+						<p class="hot-title">
+							대통령이 사라졌다 1
+						</p>
+						<p>
+							빌 클린턴, 제임스 패터슨 저
+						</p>
+					</div>
+					</li>
+				</ul>
+			</div>
+			<div class="detail_class_md_book">
+			</div>
+			<div class="e-book-ps">
+				<h3>동서남북 이용안내</h3>
+				<ul>
+					<li>구매 후 배송이 필요 없이 다운로드를 통해 이용 가능한 전자책 상품입니다.</li>
+					<li>전자책 1회 구매로 PC, 스마트폰, 태블릿 PC에서 이용하실 수 있습니다.<br/>(도서 특성에 따라 이용 가능한 기기의 제한이 있을 수 있습니다.)</li>
+					<li>책파일 내 판권정보 정가와 북큐브 사이트 정가 표시가 다를 수 있으며, 실제 정가는 사이트에 표시된 정가를 기준으로 합니다.</li>
+					<li>적립금 지급은 적립금 및 북큐브 상품권으로 결제한 금액을 뺀 나머지가 적립금으로 지급됩니다.<br/>(적립금 유효기간은 마이페이지>북캐시/적립금/상품권>적립금 적립내역에서 확인 가능합니다.)</li>
+					<li>저작권 보호를 위해 인쇄/출력 기능은 지원하지 않습니다.</li>
+					<li>구매하신 전자책은 “마이페이지 > 구매목록” 또는 “북큐브 내서재 프로그램 > 구매목록”에서 다운로드할 수 있습니다.</li>
+					<li>스마트폰, 태블릿PC의 경우 북큐브 어플리케이션을 설치하여 이용할 수 있습니다. (<a href="/customer.asp?page=viewer">모바일 페이지 바로가기</a>)</li>
+					<li>PC에서는 PC용 내서재 프로그램을 통해 도서를 이용하실 수 있습니다.</li>
+					<li>ID 계정 당 총 5대의 기기에서 횟수 제한 없이 이용하실 수 있습니다.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</section>
 	<script type="text/javascript">
 	
 
@@ -550,59 +604,6 @@
 			
 	});
 	</script>
-<!-- ------------------------------------------------------------------------------ -->
-
-
-<!-- ------------------------------------------------------------------------------ -->
-
-	
-			<div class="detail_class_best_book">
-			</div>
-			<div class="md">
-				<div class="md-title">
-					<h3 class="coTitle">이 분야의 베스트</h3>
-					<a href="https://www.bookcube.com/categorylist.asp?mainclass_num=00&amp;subclass_num=11&amp;page=best" class="more">더보기</a>
-				</div>
-				<ul>
-					<li>
-					<div class="figure">
-						<a href="https://www.bookcube.com/detail.asp?series_num=920028772&amp;page=">
-						<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201003358.jpg" alt="도서 이미지 - 대통령이 사라졌다 1"></span>
-						<span class="light"></span>
-						</a>
-					</div>
-					<div class="hot-info">
-						<p class="hot-title">
-							대통령이 사라졌다 1
-						</p>
-						<p>
-							빌 클린턴, 제임스 패터슨 저
-						</p>
-					</div>
-					</li>
-				</ul>
-			</div>
-			<div class="detail_class_md_book">
-			</div>
-			<div class="e-book-ps">
-				<h3>동서남북 이용안내</h3>
-				<ul>
-					<li>구매 후 배송이 필요 없이 다운로드를 통해 이용 가능한 전자책 상품입니다.</li>
-					<li>전자책 1회 구매로 PC, 스마트폰, 태블릿 PC에서 이용하실 수 있습니다.<br/>(도서 특성에 따라 이용 가능한 기기의 제한이 있을 수 있습니다.)</li>
-					<li>책파일 내 판권정보 정가와 북큐브 사이트 정가 표시가 다를 수 있으며, 실제 정가는 사이트에 표시된 정가를 기준으로 합니다.</li>
-					<li>적립금 지급은 적립금 및 북큐브 상품권으로 결제한 금액을 뺀 나머지가 적립금으로 지급됩니다.<br/>(적립금 유효기간은 마이페이지>북캐시/적립금/상품권>적립금 적립내역에서 확인 가능합니다.)</li>
-					<li>저작권 보호를 위해 인쇄/출력 기능은 지원하지 않습니다.</li>
-					<li>구매하신 전자책은 “마이페이지 > 구매목록” 또는 “북큐브 내서재 프로그램 > 구매목록”에서 다운로드할 수 있습니다.</li>
-					<li>스마트폰, 태블릿PC의 경우 북큐브 어플리케이션을 설치하여 이용할 수 있습니다. (<a href="/customer.asp?page=viewer">모바일 페이지 바로가기</a>)</li>
-					<li>PC에서는 PC용 내서재 프로그램을 통해 도서를 이용하실 수 있습니다.</li>
-					<li>ID 계정 당 총 5대의 기기에서 횟수 제한 없이 이용하실 수 있습니다.</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
-</section>
-
 		    
 <script>
 		$(function(){
