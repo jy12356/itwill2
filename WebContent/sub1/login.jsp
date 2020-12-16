@@ -6,7 +6,7 @@
 			<h3>로그인</h3>
 		</div>
 		<div class="user">
-			<form id="login" action="MemberLoginePro.me">
+			<form id="login" action="MemberLoginPro.me">
 			<input type="hidden" name="return_url" id="return_url" value="https://www.bookcube.com">
 				<fieldset>
 					<legend>로그인</legend>

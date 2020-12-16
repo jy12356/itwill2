@@ -388,14 +388,13 @@ public class ReviewDAO {
 				if(rs.next()) {
 					like_num = rs.getInt(1) + 1;
 					}
-				sql = "INSERT INTO likecount values(?,?,?,?)";
+				sql = "INSERT INTO likecount values(?,?,'y',?,?)";
 	
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, like_num);
 				pstmt.setString(2, likeBean.getLike_id());
-				pstmt.setString(3, likeBean.getBook_isbn());
-				pstmt.setInt(4, likeBean.getReview_num());
-				
+				pstmt.setInt(3, likeBean.getReview_num());
+				pstmt.setString(4, likeBean.getBook_isbn());
 				insertLike = pstmt.executeUpdate();
 
 			} catch (Exception e) {
@@ -423,6 +422,7 @@ public class ReviewDAO {
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, num);
 				rs = pstmt.executeQuery();
+				System.out.println(pstmt);
 				
 				// 게시물이 존재할 경우 BoardBean 객체를 생성하여 게시물 내용 저장
 				if(rs.next()) {
@@ -435,6 +435,7 @@ public class ReviewDAO {
 					article.setLikecount(rs.getInt("likecount"));
 					article.setIsbn(rs.getString("isbn"));
 					article.setSpoiler(rs.getInt("spoiler"));
+					System.out.println(article.getLikecount());
 				}
 				
 			} catch (SQLException e) {

@@ -5,6 +5,9 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import action.Action;
 import svc.review.ReviewLikeCountService;
 import vo.ActionForward;
@@ -19,20 +22,24 @@ public class ReviewLikeCountAction implements Action {
 		
 		ActionForward forward = null;
 		// ----- 중복체크 ---------------------------------------------------------------
+		
 		String like_id = request.getParameter("like_id");
 		int review_num = Integer.parseInt(request.getParameter("review_num"));
-		
+		System.out.println(like_id);
+		System.out.println(review_num);
 		ReviewLikeCountService reviewLikeCountService = new ReviewLikeCountService();
 		
 		boolean isLikeWriter = reviewLikeCountService.isLikeWriter(like_id, review_num);
-		
+
+		int num = Integer.parseInt(request.getParameter("num"));
+
+		JSONObject json = new JSONObject();
 		if(isLikeWriter) {
-			response.setContentType("text/html;charset=UTF-8");
+//			out.print("이미 좋아요를 누르셨습니다.");
+			json.put("text", "이미 좋아요를 누르셨습니다.");
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('좋아요 클릭 중복!')");
-			out.println("history.back()");
-			out.println("</script>");	
+			out.print(json.toString());
 		} else {
 			// ----- 좋아요 등록 --------------------------------------------------------------
 			LikeBean likeBean = new LikeBean();
@@ -40,30 +47,31 @@ public class ReviewLikeCountAction implements Action {
 			likeBean.setBook_isbn(request.getParameter("book_isbn")); // 좋아요 1 등록
 			likeBean.setReview_num(Integer.parseInt(request.getParameter("review_num"))); // 리뷰게시물번호
 			
-			boolean isLikeSuccess= reviewLikeCountService.ReviewLikeUp(likeBean);
+			boolean isLikeSuccess= reviewLikeCountService.ReviewLikeUp(likeBean,num);
 			
 			if(!isLikeSuccess) {
 				// 좋아요 등록 실패시
+				json.put("text", "좋아요 등록에 실패하였습니다. 다시시도 해주시길 바랍니다.");
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>");// 자바스크립트 시작 태그
-				out.println("alert('좋아요 등록 실패!')"); // 다이얼로그 메세지 출력
-				out.println("history.back()"); // 이전 페이저로 이동
-				out.println("</script>"); // 자바스크립트 끝 태그
+				out.print(json.toString());
 			} else {
 				// 좋아요 등록 성공시
 				// ----- 좋아요 수 반영 -------------------------------------------------------
-				int num = Integer.parseInt(request.getParameter("num"));
 				System.out.println("리뷰번호 : " + num);
-				
-				ReviewBean article = reviewLikeCountService.getArticle(num);
-				request.setAttribute("article", article);
-				forward = new ActionForward();
-				forward.setPath("BookDetail.bok");
-				forward.setRedirect(true);
+				ReviewBean rvb = reviewLikeCountService.getArticle(num);
+				JSONArray jsonArray = new JSONArray(); 
+				response.setContentType("text/html; charset=UTF-8");
+				json.put("text", "좋아요 성공했습니다.");
+				String likeCount = String.valueOf(rvb.getLikecount());
+				json.put("likeCount", likeCount);
+				jsonArray.add(json);
+				PrintWriter out = response.getWriter();
+				out.print(json);
 			}
 		}
-			return forward;
+			return null;
 	}
 
 }
+

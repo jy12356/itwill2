@@ -4,13 +4,15 @@ import static db.JdbcUtil.*;
 
 import java.sql.Connection;
 
+import dao.BookDAO;
 import dao.ReviewDAO;
+import vo.BookBean;
 import vo.LikeBean;
 import vo.ReviewBean;
 
 public class ReviewLikeCountService {
 		
-	public boolean ReviewLikeUp(LikeBean likeBean) {
+	public boolean ReviewLikeUp(LikeBean likeBean, int num) {
 		System.out.println("ReCommentWriteProService - ReviewLikeUp");
 		boolean isLikeSuccess = false;
 		
@@ -21,10 +23,13 @@ public class ReviewLikeCountService {
 		reviewDAO.setConnection(con);
 		
 		int insertLike = reviewDAO.insertLikeCount(likeBean);
-		
 		if(insertLike > 0) {
-			commit(con);
-			isLikeSuccess = true;
+			// 좋아요 수 올리기
+			int updateCount = reviewDAO.updateLikecount(num);
+			if(updateCount  > 0) {
+				commit(con);
+				isLikeSuccess = true;
+			}			
 		} else {
 			rollback(con);
 		}
@@ -37,28 +42,12 @@ public class ReviewLikeCountService {
 	// 좋아요 게시글 확인 후 count 올리기
 	public ReviewBean getArticle(int num) {
 		System.out.println("ReCommentWriteProService - updateLikeCount");
-		
 		Connection con = getConnection();
-		
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
-		
 		reviewDAO.setConnection(con);
-		
 		ReviewBean article = reviewDAO.selectArticle(num);
-		
-		if(article != null) { // 게시물 상세 내용이 리턴되었을 경우(= 조회 성공)
-			// 좋아요 수 올리기
-			int updateCount = reviewDAO.updateLikecount(num);
-			
-			if(updateCount > 0) {
-				commit(con);
-			} else {
-				rollback(con);
-			}
-		}
 		close(con);
-		
-		return null;
+		return article;
 	}
 
 	// 좋아요 중복 체크 

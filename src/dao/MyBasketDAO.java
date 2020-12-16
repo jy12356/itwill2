@@ -93,7 +93,8 @@ public class MyBasketDAO {
 				basket.setTitle(rs.getString("title"));
 				basket.setAuthor(rs.getString("author"));
 				basket.setPublisher(rs.getString("publisher"));
-				basket.setPubdate(rs.getDate("pubdate"));
+//				basket.setPubdate(rs.getDate("pubdate"));
+				basket.setPubdate(rs.getString("pubdate"));
 				basket.setState(rs.getString("state"));
 				basket.setIsbn(rs.getString("isbn")); // 필요한가이거?
 				System.out.println(basket.getState());

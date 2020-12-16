@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../include/header.jsp"/>
 <%@page import="vo.PageInfo"%>
-<%@page import="vo.BookBean"%>ß
+<%@page import="vo.BookBean"%>
 <%
 	// 전달받은 request 객체로부터 데이터 가져오기
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
@@ -152,9 +152,11 @@
                                 </li>
                                 <%} %>
                             </ul>
+                    		<%if(id != null && id.equals("admin")){ %>
                             <div class="btn_inner">
 								<a href="BookWriteForm.bok" class="btn">글쓰기</a>
 							</div>
+							<%} %>
                             <div class="paging">
                             	<%if(nowPage <= 1) {%>
 									<a href="BoardList.bok?page=1" class="arr" data-page-num="1">
