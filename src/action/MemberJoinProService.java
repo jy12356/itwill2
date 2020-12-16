@@ -34,12 +34,11 @@ public class MemberJoinProService implements Action {
 		MemberWriteProService memberWriteProService = new MemberWriteProService();
 		boolean isWriteSuccess = memberWriteProService.registArticle(memberBean);
 		
-		
 		if(!isWriteSuccess) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>"); 
-			out.println("alert('fail!')");
+			out.println("alert('다시 확인해주세요!')");
 			out.println("history.back()");
 			out.println("</script>"); 
 		} else {

@@ -16,7 +16,7 @@ public class BookDibsInsertService {
 		Connection con = getConnection();
 		BookDAO bookDAO = BookDAO.getInstance();
 		bookDAO.setConnection(con);
-		int istBookDibsLisCount = bookDAO.istBookDibsList(isbn,id);
+		int istBookDibsLisCount = bookDAO.dibsYn(isbn,id);
 		if(istBookDibsLisCount > 0) {
 			commit(con); // DB 커밋 작업 수행
 			checkBookDibsOverlap = true; // 리턴할 작업 수행 결과를 true 로 설정

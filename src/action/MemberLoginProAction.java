@@ -27,15 +27,14 @@ public class MemberLoginProAction implements Action {
 		if(!isMember) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>"); // ÀÚ¹Ù½ºÅ©¸³Æ® ½ÃÀÛ ÅÂ±×
-			out.println("alert('·Î±×ÀÎ¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.')"); // ´ÙÀÌ¾ó·Î±× ¸Ş¼¼Áö Ãâ·Â
-			out.println("history.back()"); // ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿
-			out.println("</script>"); // ÀÚ¹Ù½ºÅ©¸³Æ® ³¡ ÅÂ±×
+			out.println("alert('ë¡œê·¸ì¸ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤!");
+			out.println("history.back()"); 
+			out.println("</script>"); 
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
 			forward = new ActionForward();
-			forward.setPath("MemberModifyForm.me");
+			forward.setPath("Main.book");
 			forward.setRedirect(false);	
 		}
 		

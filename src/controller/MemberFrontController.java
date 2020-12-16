@@ -10,13 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.MemNameListAction;
 import action.MemberCheckAction;
 import action.MemberDeleteFormAction;
+import action.MemberDeleteProAction;
 import action.MemberJoinProService;
 import action.MemberListAction;
 import action.MemberLoginProAction;
 import action.MemberModifyFormAction;
 import action.MemberModifyProAction;
+import action.member.MemListDeleteAction;
 import action.member.MyPageAction;
 import vo.ActionForward;
 
@@ -51,12 +54,10 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MemberLoginePro.me")) {  
+		} else if(command.equals("/MemberLoginPro.me")) {  
 			action = new MemberLoginProAction();
-			
 			try {
 				forward = action.execute(request, response);
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -68,7 +69,6 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/MemberModifyPro.me")) {  
 			System.out.println("MemberModifyPro");
 			action = new MemberModifyProAction();
@@ -78,9 +78,7 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/MemberList.me")) {
-			
 			System.out.println("MemberList.me!");
-			
 			action = new MemberListAction();
 			try {
 				forward = action.execute(request, response);
@@ -89,26 +87,20 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}  else if(command.equals("/MemberDeleteForm.me")) {
 			System.out.println("MemberDeleteForm");
-			
 			action = new MemberDeleteFormAction();
 			try {
-				forward = new ActionForward();
-				forward.setPath("/sub1/delete.jsp");
+				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/MemberDeletePro.me")) {
-			System.out.println("MemberDeleteForm");
-			
-//			action = new MemberDeleteProAction();
+			System.out.println("MemberDeletePro");
+			action = new MemberDeleteProAction();
 			try {
 				forward = action.execute(request, response);
-				forward = new ActionForward();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
 		} else if(command.equals("/MemberCheck.me")) {
 			System.out.println("MemberCheck");
 			action = new MemberCheckAction();
@@ -125,6 +117,33 @@ public class MemberFrontController extends HttpServlet {
 				forward = new ActionForward();
 				forward.setPath("/sub5/mypage.jsp");
 //				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MemNameList.me")) {
+			System.out.println("MemNameList");
+			action = new MemNameListAction();
+			try {
+				forward = action.execute(request, response);
+				forward = new ActionForward();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MemListDelete.me")) {
+			System.out.println("MemListDelete");
+			action = new MemListDeleteAction();
+			try {
+				forward = action.execute(request, response);
+				forward = new ActionForward();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MemberLogOut.me")) {
+			System.out.println("MemberLogoutPro");
+			action = new MemberLoginProAction();
+			try {
+				forward = action.execute(request, response);
+				forward = new ActionForward();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

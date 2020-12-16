@@ -116,7 +116,7 @@ public class ReviewFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
+			
 		if(forward != null) {
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());

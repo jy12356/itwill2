@@ -112,12 +112,7 @@ public class NoticeFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/Calendar.ca")) {
-			forward = new NoticeActionForward();
-			forward.setPath("/sub5/FullCalendar.jsp");
-			
 		}
-		
 		
 		
 		// ----------------------------------------------------------------

@@ -4,7 +4,7 @@ public class LikeBean {
 	
 	private int like_num;
 	private String like_id;
-	private int like_check;
+	private String book_isbn;
 	private int review_num;
 	
 	public int getLike_num() {
@@ -19,11 +19,11 @@ public class LikeBean {
 	public void setLike_id(String like_id) {
 		this.like_id = like_id;
 	}
-	public int getLike_check() {
-		return like_check;
+	public String getBook_isbn() {
+		return book_isbn;
 	}
-	public void setLike_check(int like_check) {
-		this.like_check = like_check;
+	public void setBook_isbn(String book_isbn) {
+		this.book_isbn = book_isbn;
 	}
 	public int getReview_num() {
 		return review_num;

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.security.auth.login.LoginException;
 
@@ -30,7 +31,7 @@ public class MemberDAO {
 	public void setConnection(Connection con) {
 		this.con = con;
 	}
-
+	// MemberJoinPro.me
 	public int insertMember(MemberBean memberBean) {
 		System.out.println("MemberDAO - insertMember()");
 		int insertCount = 0; 
@@ -74,7 +75,7 @@ public class MemberDAO {
 		
 		return insertCount;
 	}
-
+	// MemberLoginePro.me
 	public boolean isMember(String id, String password) throws LoginException  {
 		boolean isMember = false;
 		PreparedStatement pstmt = null;
@@ -110,7 +111,7 @@ public class MemberDAO {
 		
 		return isMember;
 	}
-
+	// MemberList.me
 	public int selectListCount() {
 		int listCount = 0;
 		
@@ -139,7 +140,7 @@ public class MemberDAO {
 		return listCount;
 	}
 
-
+	// MemberList.me
 	public ArrayList<MemberBean> selectArticleList(int page, int limit) {
 		ArrayList<MemberBean> articleList = null;		
 		PreparedStatement pstmt = null;
@@ -169,6 +170,7 @@ public class MemberDAO {
 				article.setAddress(rs.getString("address"));
 				article.setDate(rs.getTimestamp("date"));
 				article.setName(rs.getString("name"));
+				article.setState(rs.getString("state"));
 				articleList.add(article);
 			}
 			
@@ -182,38 +184,80 @@ public class MemberDAO {
 		
 		return articleList;
 	}
-	public MemberBean selectArticle(String id) {
-		// 湲�踰덊샇(board_num)�뿉 �빐�떦�븯�뒗 �젅肄붾뱶瑜� SELECT
-		// 議고쉶 寃곌낵媛� �엳�쓣 寃쎌슦 BoardBean 媛앹껜�뿉 ���옣�븳 �뮘 由ы꽩
+	// MemberModifyPro
+	public int updateArticle(MemberBean article) {
+		int updateCount = 0;
+		
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "UPDATE member SET name=?, email=?, phone=?, catg=?, age=?, address=?, password=? WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, article.getName());
+			pstmt.setString(2, article.getEmail());
+			pstmt.setString(3, article.getPhone());
+			pstmt.setString(4, article.getCatg());
+			pstmt.setInt(5, article.getAge());
+			pstmt.setString(6, article.getAddress());
+			pstmt.setString(7, article.getPassword());
+			pstmt.setString(8, article.getId());
+			updateCount = pstmt.executeUpdate();
+			System.out.println("updateArticle() 성공! updateCount : "+updateCount);
+		} catch (SQLException e) {
+			System.out.println("updateArticle() ERROR! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return updateCount;
+	}
+	// MemberDeletePro.me
+	public int deleteArticle(MemberBean article) {
+		int deleteCount = 0;
+		
+		PreparedStatement pstmt = null;
+		try {
+			String sql = "delete from member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, article.getId());
+			deleteCount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("deleteArticle() ERROR! " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+	return deleteCount;
+}
+	// MemberModifyForm.me // MemberDeleteForm.me
+	public MemberBean selectMember(String id) {
 		MemberBean article = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
-			String sql = "SELECT * FROM member WHERE id=?";
-			
+			String sql = "SELECT * FROM member WHERE id=?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
+			
+			System.out.println(id);
 			rs = pstmt.executeQuery();
 			
-			// 寃뚯떆臾쇱씠 議댁옱�븷 寃쎌슦 BoardBean 媛앹껜瑜� �깮�꽦�븯�뿬 寃뚯떆臾� �궡�슜 ���옣
 			if(rs.next()) {
 				article = new MemberBean();
 				article.setId(rs.getString("id"));
 				article.setName(rs.getString("name"));
 				article.setPassword(rs.getString("password"));
-				article.setEmail(rs.getString("email"));
-//				article.setDate(date);(rs.getString("board_file"));
 				article.setAddress(rs.getString("address"));
 				article.setAge(rs.getInt("age"));
-				article.setPhone(rs.getString("phone"));
 				article.setCatg(rs.getString("catg"));
-				
-				// �엫�떆 �솗�씤�슜 �긽�꽭 �궡�슜 異쒕젰
-//				System.out.println("湲� �젣紐� : " + article.getBoard_subject());
+				article.setEmail(rs.getString("email"));
+				article.setNum(rs.getInt("num"));
+				article.setPhone(rs.getString("phone"));
 			}
-				
 			
 		} catch (SQLException e) {
 			System.out.println("selectArticle() ERROR! - " + e.getMessage());
@@ -226,140 +270,50 @@ public class MemberDAO {
 		
 		return article;
 	}
-		public int updateArticle(MemberBean article) {
-			int updateCount = 0;
+	// MemberModifyPro // MemberCheck.me
+	public boolean isIdCheck(String id) throws LoginException  {
+		boolean isIdCheckSuccess = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			String sql = "SELECT id FROM member WHERE id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
 			
-			PreparedStatement pstmt = null;
-			try {
-				String sql = "UPDATE member SET name=?, email=?, phone=?, catg=?, age=?, address=? password=? WHERE id=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, article.getName());
-				pstmt.setString(2, article.getEmail());
-				pstmt.setString(3, article.getPhone());
-				pstmt.setString(4, article.getCatg());
-				pstmt.setInt(5, article.getAge());
-				pstmt.setString(6, article.getAddress());
-				pstmt.setString(7, article.getPassword());
-				pstmt.setString(8, article.getId());
-				updateCount = pstmt.executeUpdate();
+			if(rs.next()) {
+				isIdCheckSuccess=true;
+			} else {
 				
-			} catch (SQLException e) {
-				System.out.println("updateArticle() ERROR! - " + e.getMessage());
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
 			}
-			
-			return updateCount;
+		} catch (SQLException e) {
+			System.out.println("isIdCheck() ERROR! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
 		}
-		
-		public int deleteArticle(MemberBean article) {
-			int updateCount = 0;
-			
-			PreparedStatement pstmt = null;
-			try {
-				String sql = "delete from member WHERE id=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, article.getId());
-				updateCount = pstmt.executeUpdate();
-				
-			} catch (SQLException e) {
-				System.out.println("deleteArticle() ERROR! " + e.getMessage());
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-			}
-			
-		return updateCount;
+		return isIdCheckSuccess;
 	}
-		public int deleteMember(String id) {
-			System.out.println("MemberDAO : deleteMember()");
-			int deleteCount = 0;
-			PreparedStatement pstmt = null;
-			
-			try {
-				String sql = "DELETE FROM member WHERE id=?";
+	public int dibsDelete(List<Integer> interNumList, String id) {
+		System.out.println("bookDAO - dibsDelete");
+		int isDeleteOk = 0;
+		PreparedStatement pstmt = null;
+		try {
+			for(int i=0; i< interNumList.size(); i++) {
+				String sql = "delete from interestinglist where num=? and id=?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1,id);
+				pstmt.setInt(1, interNumList.get(i));
+				pstmt.setString(2,id);
 				System.out.println(pstmt);
-				deleteCount = pstmt.executeUpdate();
-			} catch (SQLException e) {
-				System.out.println("deleteMember() ERROR! "+ e.getMessage());
-				e.printStackTrace();
-			} finally {
-				close(pstmt);
-				
+				isDeleteOk = pstmt.executeUpdate();
 			}
-			
-			
-			return deleteCount;
+		}catch (Exception e) {
+			System.out.println("dibsDelete 오류!" + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
-
-		public MemberBean selectMember(String id) {
-			MemberBean article = null;
-			
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			
-			try {
-				String sql = "SELECT * FROM member WHERE id=?";
-				
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, id);
-				System.out.println(id);
-				rs = pstmt.executeQuery();
-				
-				// 寃뚯떆臾쇱씠 議댁옱�븷 寃쎌슦 BoardBean 媛앹껜瑜� �깮�꽦�븯�뿬 寃뚯떆臾� �궡�슜 ���옣
-				if(rs.next()) {
-					article = new MemberBean();
-					article.setId(rs.getString("id"));
-					article.setName(rs.getString("name"));
-					article.setPassword(rs.getString("password"));
-					article.setAddress(rs.getString("address"));
-					article.setAge(rs.getInt("age"));
-					article.setCatg(rs.getString("catg"));
-					article.setEmail(rs.getString("email"));
-					article.setNum(rs.getInt("num"));
-					article.setPhone(rs.getString("phone"));
-					// �엫�떆 �솗�씤�슜 �긽�꽭 �궡�슜 異쒕젰
-//					System.out.println("湲� �젣紐� : " + article.getBoard_subject());
-				}
-					
-				
-			} catch (SQLException e) {
-				System.out.println("selectArticle() �삤瑜�! - " + e.getMessage());
-				e.printStackTrace();
-			} finally {
-				close(rs);
-				close(pstmt);
-			}
-			
-			
-			return article;
-		}
-		
-		public boolean isIdCheck(String id) throws LoginException  {
-			boolean isIdCheckSuccess = false;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			try {
-				String sql = "SELECT id FROM member WHERE id=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, id);
-				rs = pstmt.executeQuery();
-				
-				if(rs.next()) {
-					isIdCheckSuccess=true;
-				} else {
-					
-				}
-			} catch (SQLException e) {
-				System.out.println("isIdCheck() ERROR! - " + e.getMessage());
-				e.printStackTrace();
-			} finally {
-				close(rs);
-				close(pstmt);
-			}
-			return isIdCheckSuccess;
-		}
+		return isDeleteOk;
 	}
+}
