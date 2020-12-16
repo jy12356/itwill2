@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import vo.BookBean;
 
@@ -177,6 +178,30 @@ public class MyBasketDAO {
 		
 		
 		return state;
+	}
+
+
+	public int basketDelete(List<Integer> inerNumList, String id) {
+		System.out.println("MyBasketDAO - basketDelete()");
+		
+		int isDeleteOk = 0;
+		PreparedStatement pstmt = null;
+		try {
+			for(int i=0; i< inerNumList.size(); i++) {
+				String sql = "delete from mybasket where num=? and id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, inerNumList.get(i));
+				pstmt.setString(2,id);
+				System.out.println(pstmt);
+				isDeleteOk = pstmt.executeUpdate();
+			}
+		}catch (Exception e) {
+			System.out.println("basketDelete 오류!" + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return isDeleteOk;
 	}
 	
 	

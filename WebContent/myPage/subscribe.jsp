@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>장바구니에서 대출가기전 창</h1>
+
+
+현재 구독중이 아니십니다.<br>
+도서대여를 위해선 구독신청을 하셔야합니다.
+<input type="button" value="구독 신청하기" onclick="location.href='Charge.qna'">
+<input type="button" value="취소">
+
 </body>
 </html>
