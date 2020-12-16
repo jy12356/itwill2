@@ -152,9 +152,11 @@
                                 </li>
                                 <%} %>
                             </ul>
+                    		<%if(id.equals("admin")){ %>
                             <div class="btn_inner">
 								<a href="BookWriteForm.bok" class="btn">글쓰기</a>
 							</div>
+							<%} %>
                             <div class="paging">
                             	<%if(nowPage <= 1) {%>
 									<a href="BoardList.bok?page=1" class="arr" data-page-num="1">
