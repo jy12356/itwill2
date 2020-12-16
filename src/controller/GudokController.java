@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.gudok.ChargeListAction;
 import action.gudok.ChargeProAction;
+import action.qna.QnaDetailAction;
 import vo.ActionForward;
 
 @WebServlet("*.dok")
@@ -45,6 +46,14 @@ public class GudokController extends HttpServlet{
 			}catch (Exception e) {
 				e.printStackTrace();
 			}	
+		}else if(command.equals("/ChargeList2.dok")) {
+			action = new ChargeListAction2();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
