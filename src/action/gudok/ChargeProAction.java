@@ -39,7 +39,7 @@ public class ChargeProAction implements Action{
 			out.println("</script>");
 		}else {
 			forward = new ActionForward();
-			forward.setPath("sub5/Charge2.jsp");
+			forward.setPath("ChargeList.dok");
 			forward.setRedirect(true);
 		}
 		return forward;

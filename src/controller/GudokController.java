@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.gudok.ChargeListAction;
 import action.gudok.ChargeProAction;
 import vo.ActionForward;
 
@@ -37,7 +38,18 @@ public class GudokController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/ChargeList.dok")) {
+			action = new ChargeListAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}	
 		}
+		
+		
+		
+		
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {
