@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.security.auth.login.LoginException;
 
@@ -293,5 +294,26 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		return isIdCheckSuccess;
+	}
+	public int dibsDelete(List<Integer> interNumList, String id) {
+		System.out.println("bookDAO - dibsDelete");
+		int isDeleteOk = 0;
+		PreparedStatement pstmt = null;
+		try {
+			for(int i=0; i< interNumList.size(); i++) {
+				String sql = "delete from interestinglist where num=? and id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, interNumList.get(i));
+				pstmt.setString(2,id);
+				System.out.println(pstmt);
+				isDeleteOk = pstmt.executeUpdate();
+			}
+		}catch (Exception e) {
+			System.out.println("dibsDelete 오류!" + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return isDeleteOk;
 	}
 }

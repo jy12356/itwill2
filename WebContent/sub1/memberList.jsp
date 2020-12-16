@@ -98,7 +98,7 @@ th.memSortTbody {font-size: 13px; font-weight: 500; padding: 3px;}
 								<label for="" class="radio" data-sort="ㅍ"><span class="koSort_off" onclick="memlist(this)" id="파">ㅍ</span></label>
 								<input type="radio" name="" id="">
 								<label for="" class="radio" data-sort="ㅎ"><span class="koSort_off" onclick="memlist(this)" id="하">ㅎ</span></label>							
-								<label for="" class="radio" data-sort="등급">	<input type="button" name="reportChkBxRow" class="btn2" value="삭제" onclick="deleteReport()"></label>			
+								<label for="" class="radio" data-sort="등급">	<input type="button" name="reportChkBxRow" class="btn2" value="삭제" onclick="deleteListMem()"></label>			
 							
 								</div>
 	                        </div>
@@ -123,7 +123,7 @@ th.memSortTbody {font-size: 13px; font-weight: 500; padding: 3px;}
                         <tbody>
                         <%for(int i = 0; i < articleList.size(); i++) {%>
                             <tr>
-                                <th scope="col" class="memSortTbody" abbr="선택"><input type="checkbox" name="reportChkBxRow" id=<%=articleList.get(i).getId()%> > </th>
+                                <th scope="col" class="memSortTbody" abbr="선택"><input type="checkbox" name="reportChkBxRow" id="inter_num" value=<%=articleList.get(i).getId()%> > </th>
                                 <th scope="col" class="memSortTbody" abbr="회원번호" id="num"><%=articleList.get(i).getNum()%></th>
                                 <th scope="col" class="memSortTbody" abbr="아이디" id="id"><%=articleList.get(i).getId()%></th>
                                 <th scope="col" class="memSortTbody" abbr="비밀번호" id="password"><%=articleList.get(i).getPassword()%></th>
@@ -203,32 +203,33 @@ function memlist(nameForm) {
 	 */
 	
 }
-function deleteReport(){
-    var cnt = $("input[name='reportChkBxRow']:checked").length;
-    var arr = new Array();
-    $("input[name='reportChkBxRow']:checked").each(function() {
-        arr.push($(this).attr('id'));
-    });
-    if(cnt == 0){
-        alert("선택된 글이 없습니다.");
-    }
-    else{
-        $.ajax = {
-      		type:"POST",
-            url: "MemberDeletePro.me",
-            data: "RPRT_ODR=" + arr + "&CNT=" + cnt,
-            dataType:"json",
-            success: function(jdata){
-                if(jdata != 1) {
-                    alert("삭제 오류");
-                }
-                else{
-                    alert("삭제 성공");
-                }
-            },
-            error: function(){alert("서버통신 오류");}
-        };
-    }
-}
+	 function deleteListMem(){
+			var confirm_val = confirm("정말 삭제하시겠습니까?");
+			
+			if(confirm_val) {
+				var inter_num = [];
+				if ($('.check_box input[type="checkbox"]:checked').length > 0) {
+					$('.check_box input[type="checkbox"]:checked').each(function(){
+						inter_num.push($(this).attr("value"));  
+					});
+				}else{
+					alert("게시물을 선택해주시길 바랍니다.");
+					return false;	            	
+				};	
+				var interArr = {"inter_num" :inter_num};
+				$.ajax({
+					url : "MemListDelete.me",
+					type : "post",
+					dataType: 'text',
+					data : interArr,
+					success : function(){
+						location.href = "BookDibsList.bok";
+					},error:function(request,status,error){
+				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				       }
+
+				});
+			} 
+	    };
 </script>
 <jsp:include page="../include/footer.jsp"/>
