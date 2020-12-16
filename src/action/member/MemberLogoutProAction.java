@@ -20,7 +20,8 @@ public class MemberLogoutProAction implements Action {
 //		session.removeAttribute("id");
 		forward = new ActionForward();
 		forward.setPath("Main.book");
-		forward.setRedirect(true);
+//		forward.setPath("/main/index.jsp");
+		forward.setRedirect(true); 
 		return forward;
 	}
 

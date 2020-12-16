@@ -94,7 +94,7 @@
 	                            	<td class="th"><span class="point">*</span>저자</td>
 	                            	<td class="td"><input type="text" name="author" id="rgAuthor" required="required" value=""></td>
 	                            	<td class="th"><span class="point">*</span>출판사</td>
-	                            	<td class="td rgPublisher"><input type="text" name="publisher" required="required" value=""></td>
+	                            	<td class="td"><input type="text" name="publisher" id="rgPublisher" required="required" value=""></td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">저자 정보</td>
@@ -117,7 +117,7 @@
 	                            <tr>
 	                                <td class="th">요약내용</td>
 	                                <td colspan="3">
-	                                    <textarea rows="" cols="" id="rgDesc" name="description" value=""></textarea>
+	                                    <textarea rows="" cols="" id="rgDescription" name="description" value=""></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
@@ -263,17 +263,20 @@ $(document).ready( function() {
 			publisher = td.eq(6).text();
 			pubdate = td.eq(7).text();
 			
+			isbn = isbn.replace(/ /gi, "");
+			var year = pubdate.substr(0,4);
+		    var month = pubdate.substr(4,2);
+		    var day = pubdate.substr(6,2);
+		    pubdate=year + "-" + month + "-" + day
+			
 		});
-			alert(title);
-// 			alert(document.getElementById("rgtitle").value());
-			$("#rgtitle").val(title);
-			alert($("#rgtitle").val());
-			$("#rgimage").value =image;
-			$("#rgdescription").value = description;
-			$("#rgauthor").value = author;
-			$("#rgisbn").value = isbn;
-			$("#rgpublisher").value = publisher;
-			$("#pubDatePicker").value = pubdate;
+			$("#rgTitle").val(title);
+			$("#rgDescription").html(description);
+			$("#rgAuthor").val(author);
+			$("#rgIsbn").val(isbn);
+			$("#rgPublisher").val(publisher);
+			$("#pubDatePicker").val(pubdate);
+			$("#rgImage").val(image);
 		}else{
 			alert("체크박스 선택을 해주시길 바랍니다.")
 		}

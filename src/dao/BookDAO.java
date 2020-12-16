@@ -99,8 +99,8 @@ public class BookDAO {
 		String sql = "select * from book where catg1 like ? and catg2 like ? order by date desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, "%"+catg1);
-			pstmt.setString(2, "%"+catg2);
+			pstmt.setString(1, catg1+"%");
+			pstmt.setString(2, catg2+"%");
 			pstmt.setInt(3, startRow);
 			pstmt.setInt(4, limit);
 			System.out.println(pstmt);
