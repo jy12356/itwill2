@@ -443,7 +443,6 @@ $(document).ready(function() {
 					<li class="swiper-slide"><a href="" target="_blank"><img
 							src="images/e7652_pc_banner.jpg" alt=""></a></li>
 				</ul>
-				</ul>
 			</div>
 		</div>
 	</div>
@@ -473,9 +472,6 @@ $(document).ready(function() {
 					</div>
 					<div class="realtime-hot-list mt30">
 						<ul>
-						<%
-						for(int i = 0; i < bookList.size(); i++) {
-						%>
 							<li class="head">
 								<p class="rank">
 									<span>순위</span>
@@ -497,59 +493,63 @@ $(document).ready(function() {
 										class="more"></span></a>
 								</p>
 							</li>
+						<%
+						if(bookList2!=null){
+						for(int i = 0; i < bookList2.size(); i++) {
+						%>
 							
-							<li class="top-rank top-one">
-								<p class="rank">
-									<span><strong>1</strong></span><span class="icon"></span>
-								</p>
+<!-- 							<li class="top-rank top-one"> -->
+<!-- 								<p class="rank"> -->
+<!-- 									<span><strong>1</strong></span><span class="icon"></span> -->
+<!-- 								</p> -->
 								
-								<div class="webtoon">
-									<p>
-										<strong>인 마이 클로젯</strong><span>RISA LISA</span>
-									</p>
-									<div>
-										<a title="인 마이 클로젯" href="/webtoon/wt_closet_wz">
-											<div>
-												<img
-													src="https://img.mrblue.com/prod_img/comics/wt_closet_wz/thumb_sq.jpg"
-													alt="">
-											</div> <span><strong>인 마이 클로젯</strong></span><span>RISA LISA</span><span>BL</span>
-										</a>
-									</div>
-								</div>
+<!-- 								<div class="webtoon"> -->
+<!-- 									<p> -->
+<!-- 										<strong>인 마이 클로젯</strong><span>RISA LISA</span> -->
+<!-- 									</p> -->
+<!-- 									<div> -->
+<!-- 										<a title="인 마이 클로젯" href="/webtoon/wt_closet_wz"> -->
+<!-- 											<div> -->
+<!-- 												<img -->
+<!-- 													src="https://img.mrblue.com/prod_img/comics/wt_closet_wz/thumb_sq.jpg" -->
+<!-- 													alt=""> -->
+<!-- 											</div> <span><strong>인 마이 클로젯</strong></span><span>RISA LISA</span><span>BL</span> -->
+<!-- 										</a> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 								
-								<div class="comic">
-									<p>
-										<strong>괴 (연재)</strong><span>야설록</span>
-									</p>
-									<div>
-										<a title="괴 (연재)" href="/comic/goe">
-											<div>
-												<img
-													src="https://img.mrblue.com/prod_img/comics/goe/main_large.jpg"
-													alt="">
-											</div> <span><strong>괴 (연재)</strong></span><span>야설록</span><span>무협</span>
-										</a>
-									</div>
-								</div>
-								<div class="fiction">
-									<p>
-										<strong>무인이곽 (연재)</strong><span>우각</span>
-									</p>
-									<div>
-										<a title="무인이곽 (연재)" href="/novel/E000072153">
-											<div>
-												<img
-													src="https://img.mrblue.com/prod_img/ebook/E000072153/main_large.jpg"
-													alt="">
-											</div> 
-											<span><strong>무인이곽 (연재)</strong></span>
-											<span>우각</span>
-											<span>무협</span>
-										</a>
-									</div>
-								</div>
-							</li>
+<!-- 								<div class="comic"> -->
+<!-- 									<p> -->
+<!-- 										<strong>괴 (연재)</strong><span>야설록</span> -->
+<!-- 									</p> -->
+<!-- 									<div> -->
+<!-- 										<a title="괴 (연재)" href="/comic/goe"> -->
+<!-- 											<div> -->
+<!-- 												<img -->
+<!-- 													src="https://img.mrblue.com/prod_img/comics/goe/main_large.jpg" -->
+<!-- 													alt=""> -->
+<!-- 											</div> <span><strong>괴 (연재)</strong></span><span>야설록</span><span>무협</span> -->
+<!-- 										</a> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="fiction"> -->
+<!-- 									<p> -->
+<!-- 										<strong>무인이곽 (연재)</strong><span>우각</span> -->
+<!-- 									</p> -->
+<!-- 									<div> -->
+<!-- 										<a title="무인이곽 (연재)" href="/novel/E000072153"> -->
+<!-- 											<div> -->
+<!-- 												<img -->
+<!-- 													src="https://img.mrblue.com/prod_img/ebook/E000072153/main_large.jpg" -->
+<!-- 													alt=""> -->
+<!-- 											</div>  -->
+<!-- 											<span><strong>무인이곽 (연재)</strong></span> -->
+<!-- 											<span>우각</span> -->
+<!-- 											<span>무협</span> -->
+<!-- 										</a> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</li> -->
 							
 							<li class="top-rank top-one">
 								<p class="rank">
@@ -558,17 +558,17 @@ $(document).ready(function() {
 								</p>
 								<div class="webtoon">
 									<p>
-										<strong><%=bookList2.get(i).getTitle()%></strong>
-										<span><%=bookList2.get(i).getAuthor()%></span>
+										<strong><%=bookList2.get(1).getTitle()%></strong>
+										<span><%=bookList2.get(1).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="<%=bookList2.get(i).getTitle()%>" href="/webtoon/wt_closet_wz">
+										<a title="<%=bookList2.get(1).getTitle()%>" href="/webtoon/wt_closet_wz">
 											<div>
 												<img src="https://img.mrblue.com/prod_img/comics/wt_closet_wz/thumb_sq.jpg" alt="">
 											</div> 
-											<span><strong><%=bookList2.get(i).getTitle()%></strong></span>
-											<span><%=bookList2.get(i).getAuthor()%></span>
-											<span><%=bookList2.get(i).getCatg2()%></span>
+											<span><strong><%=bookList2.get(1).getTitle()%></strong></span>
+											<span><%=bookList2.get(1).getAuthor()%></span>
+											<span><%=bookList2.get(1).getCatg2()%></span>
 										</a>
 									</div>
 								</div>
@@ -607,7 +607,7 @@ $(document).ready(function() {
 							</li>
 							
 							<%
-								}
+								}}
 							%>
 						</ul>
 					</div>
@@ -625,11 +625,11 @@ $(document).ready(function() {
 				
 				<ul>
 					<%
-						for(int i = 0; i < bookList.size(); i++) {
+// 						for(int i = 0; i < bookList.size(); i++) {
 					%>
 					<li>
 						<div class="figure">
-							<a href="BookDetail.bok?isbn<%=bookList.get(i).getIsbn()%>">
+							<a href="BookDetail.bok?isbn<%//=bookList.get(i).getIsbn()%>">
 								<span class="rm_br">
 									<img src="https://bookimg.bookcube.com/150/2011/201100479.jpg" alt="도서 이미지 - 가족사진">
 								</span> 
@@ -638,13 +638,13 @@ $(document).ready(function() {
 						</div>
 						<div class="hot-info">
 							<p class="hot-title">
-								<a href="BookDetail.bok?isbn<%=bookList.get(i).getIsbn()%>"><%=bookList.get(i).getTitle() %>도서명</a>
+								<a href="BookDetail.bok?isbn<%//=bookList.get(i).getIsbn()%>"><%//=bookList.get(i).getTitle() %>도서명</a>
 							</p>
-							<p><%=bookList.get(i).getAuthor() %>저자명</p>
+							<p><%//=bookList.get(i).getAuthor() %>저자명</p>
 						</div>
 					</li>
 					<%
-						}
+// 						}
 					%>
 				</ul>
 			</div>

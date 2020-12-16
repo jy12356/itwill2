@@ -39,13 +39,25 @@ public class MainListAction implements Action {
 		
 		ArrayList<BookBean> bookList = new ArrayList<BookBean>();
 		bookList = mainListService.getBookList(page,limit,catg1,catg2);
-
 		int maxPage = (int)((double)listCount/ limit+0.95);
 		int startPage = ((int)((double)page/10+0.9)-1)*10+1;
 		int endPage=startPage+10-1;
 		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
+		
+		ArrayList<BookBean> bookList2 = new ArrayList<BookBean>();
+		bookList2 = mainListService.getBookList2(page,limit,catg1,catg2);
+		int maxPage2 = (int)((double)listCount/ limit+0.95);
+		int startPage2 = ((int)((double)page/10+0.9)-1)*10+1;
+		int endPage2 = startPage+10-1;
+		PageInfo pageInfo2 = new PageInfo(page, maxPage, startPage, endPage, listCount);
+		System.out.println("bookList2.size" + bookList2.size());
+		
 		request.setAttribute("bookList", bookList);
 		request.setAttribute("pageInfo", pageInfo);
+		
+		request.setAttribute("bookList2", bookList2);
+		request.setAttribute("pageInfo2", pageInfo2);
+		
 		forward = new ActionForward();
 		forward.setPath("/main/index.jsp");
 		System.out.println("MasinListAction 끝");

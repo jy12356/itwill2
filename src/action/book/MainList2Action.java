@@ -48,7 +48,7 @@ public class MainList2Action implements Action {
 		int endPage=startPage+10-1;
 		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, list2Count);
 		request.setAttribute("bookList2", bookList2);
-		request.setAttribute("pageInfo", pageInfo);
+		request.setAttribute("pageInfo2", pageInfo2);
 		forward = new ActionForward();
 		forward.setPath("/main/index.jsp");
 		System.out.println("MasinList2Action 끝");

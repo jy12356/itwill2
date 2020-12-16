@@ -27,17 +27,12 @@ public class MainController extends HttpServlet {
 			
 			action = new MainListAction();
 			System.out.println("최신순");
-			action = new MainList2Action();
-			System.out.println("조회순");
 			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-			forward = new ActionForward();
-			forward.setPath("/main/index.jsp");
 			
 		}
 		//1.ActionForward객체 존재 여부 확인(객체가 존재할때 포워딩 수행)
