@@ -7,13 +7,13 @@
 <%
 	Date nowTime = new Date();
 	SimpleDateFormat sf = new SimpleDateFormat("yyyy.MM.dd a hh:mm");
-%>
-<%
+
 	// 전달받은 request 객체로부터 데이터 가져오기
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 	String id = (String) session.getAttribute("id"); 
 	ArrayList<BookBean> bookList = (ArrayList<BookBean>)request.getAttribute("bookList");
+	ArrayList<BookBean> bookList2 = (ArrayList<BookBean>)request.getAttribute("bookList2");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage = pageInfo.getPage();
 	int maxPage = pageInfo.getMaxPage();
@@ -28,6 +28,7 @@
 	if(request.getParameter("catg2")!=null){
 		catg2 = request.getParameter("catg2");
 	}
+	
 %>  
 
 <jsp:include page="../include/header.jsp" />
@@ -40,30 +41,27 @@ $(document).ready(function() {
     brandnewNotice();
 });
  
-function brandnewNotice() {
-    $
-            .ajax({
-                dataType : "json",
-                url : "menu/brandnewNotice.do",
-                type : "GET",
-                success : function(data) {
-                    var html = '';
-                    html += '<table class="table" align="center" width="700" border="1" cellspacing="0">';
-                    html += '<tr>';
-                    html += '<td>' + data.ntitle + '</td>';
-                    html += '<td>' + data.nContents + '</td>';
-                    html += '<td>' + data.nDate + '</td>';
-                    html += '</tr>';
-                    html += '</table>';
-                    $("#brandnewNotice").html(html);
-                },
-                error : function(jqXHR, textStatus, errorThrown) {
-                    /* alert("에러 발생~~ \n" + textStatus + " : " + errorThrown); */
-                    /* 주석처리 안해놓으면 블로그에서 alert창이 뜬다.. 귀찮 (가끔 특정 사이트를 웹 또는 폰으로 서칭도중에 "바이러스가 발견되었습니다~
-어쩌구 하는 팝업창이 뜨는건 이런걸 이용한 눈속임 사기.." */
-                }
-            });
-}
+// function brandnewNotice() {
+//     $
+//             .ajax({
+//                 dataType : "json",
+//                 url : "menu/brandnewNotice.do",
+//                 type : "GET",
+//                 success : function(data) {
+//                     var html = '';
+//                     html += '<table class="table" align="center" width="700" border="1" cellspacing="0">';
+//                     html += '<tr>';
+//                     html += '<td>' + data.ntitle + '</td>';
+//                     html += '<td>' + data.nContents + '</td>';
+//                     html += '<td>' + data.nDate + '</td>';
+//                     html += '</tr>';
+//                     html += '</table>';
+//                     $("#brandnewNotice").html(html);
+//                 },
+//                 error : function(jqXHR, textStatus, errorThrown) {
+//                 }
+//             });
+// }
 </script>
 	<div class="today-hot">
 		<h3 class="hot-title">오늘의 추천</h3>
@@ -475,6 +473,9 @@ function brandnewNotice() {
 					</div>
 					<div class="realtime-hot-list mt30">
 						<ul>
+						<%
+						for(int i = 0; i < bookList.size(); i++) {
+						%>
 							<li class="head">
 								<p class="rank">
 									<span>순위</span>
@@ -501,6 +502,7 @@ function brandnewNotice() {
 								<p class="rank">
 									<span><strong>1</strong></span><span class="icon"></span>
 								</p>
+								
 								<div class="webtoon">
 									<p>
 										<strong>인 마이 클로젯</strong><span>RISA LISA</span>
@@ -515,6 +517,7 @@ function brandnewNotice() {
 										</a>
 									</div>
 								</div>
+								
 								<div class="comic">
 									<p>
 										<strong>괴 (연재)</strong><span>야설록</span>
@@ -539,7 +542,10 @@ function brandnewNotice() {
 												<img
 													src="https://img.mrblue.com/prod_img/ebook/E000072153/main_large.jpg"
 													alt="">
-											</div> <span><strong>무인이곽 (연재)</strong></span><span>우각</span><span>무협</span>
+											</div> 
+											<span><strong>무인이곽 (연재)</strong></span>
+											<span>우각</span>
+											<span>무협</span>
 										</a>
 									</div>
 								</div>
@@ -547,36 +553,42 @@ function brandnewNotice() {
 							
 							<li class="top-rank top-one">
 								<p class="rank">
-									<span><strong>1</strong></span><span class="icon"></span>
+									<span><strong>2</strong></span>
+									<span class="icon"></span>
 								</p>
 								<div class="webtoon">
 									<p>
-										<strong>인 마이 클로젯</strong><span>RISA LISA</span>
+										<strong><%=bookList2.get(i).getTitle()%></strong>
+										<span><%=bookList2.get(i).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="인 마이 클로젯" href="/webtoon/wt_closet_wz">
+										<a title="<%=bookList2.get(i).getTitle()%>" href="/webtoon/wt_closet_wz">
 											<div>
-												<img
-													src="https://img.mrblue.com/prod_img/comics/wt_closet_wz/thumb_sq.jpg"
-													alt="">
-											</div> <span><strong>인 마이 클로젯</strong></span><span>RISA LISA</span><span>BL</span>
+												<img src="https://img.mrblue.com/prod_img/comics/wt_closet_wz/thumb_sq.jpg" alt="">
+											</div> 
+											<span><strong><%=bookList2.get(i).getTitle()%></strong></span>
+											<span><%=bookList2.get(i).getAuthor()%></span>
+											<span><%=bookList2.get(i).getCatg2()%></span>
 										</a>
 									</div>
 								</div>
 								<div class="comic">
 									<p>
-										<strong>괴 (연재)</strong><span>야설록</span>
+										<strong>괴 (연재)</strong>
+										<span>야설록</span>
 									</p>
 									<div>
 										<a title="괴 (연재)" href="/comic/goe">
 											<div>
-												<img
-													src="https://img.mrblue.com/prod_img/comics/goe/main_large.jpg"
-													alt="">
-											</div> <span><strong>괴 (연재)</strong></span><span>야설록</span><span>무협</span>
+												<img src="https://img.mrblue.com/prod_img/comics/goe/main_large.jpg" alt="">
+											</div> 
+											<span><strong>괴 (연재)</strong></span>
+											<span>야설록</span>
+											<span>무협</span>
 										</a>
 									</div>
 								</div>
+								
 								<div class="fiction">
 									<p>
 										<strong>무인이곽 (연재)</strong><span>우각</span>
@@ -584,384 +596,19 @@ function brandnewNotice() {
 									<div>
 										<a title="무인이곽 (연재)" href="/novel/E000072153">
 											<div>
-												<img
-													src="https://img.mrblue.com/prod_img/ebook/E000072153/main_large.jpg"
-													alt="">
-											</div> <span><strong>무인이곽 (연재)</strong></span><span>우각</span><span>무협</span>
+												<img src="https://img.mrblue.com/prod_img/ebook/E000072153/main_large.jpg" alt="">
+											</div> 
+											<span><strong>무인이곽 (연재)</strong></span>
+											<span>우각</span>
+											<span>무협</span>
 										</a>
 									</div>
 								</div>
 							</li>
-            
-							<!-- 									<li class="top-rank"> -->
-							<!-- 									<p class="rank"> -->
-							<!-- 										<span><strong>2</strong></span><span class="icon"></span> -->
-							<!-- 									</p> -->
-							<!-- 									<div class="webtoon"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>겨울 지나 벚꽃</strong><span>밤우</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="겨울 지나 벚꽃" href="/webtoon/wt_blossom_wz"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/wt_blossom_wz/thumb_sq.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>겨울 지나 벚꽃</strong></span><span>밤우</span><span>BL</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="comic"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>일대검호</strong><span>황성</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="일대검호" href="/comic/C000045625"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/C000045625/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>일대검호</strong></span><span>황성</span><span>무협</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="fiction"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>재벌가 망나니 (연재)</strong><span>한유림</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="재벌가 망나니 (연재)" href="/novel/munpia0949"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/ebook/munpia0949/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>재벌가 망나니 (연재)</strong></span><span>한유림</span><span>판타지</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									</li> -->
-							<!-- 									<li class="top-rank"> -->
-							<!-- 									<p class="rank"> -->
-							<!-- 										<span><strong>3</strong></span><span class="icon"></span> -->
-							<!-- 									</p> -->
-							<!-- 									<div class="webtoon"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>어는점</strong><span>MEL</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="어는점" href="/webtoon/wt_freezing_wz"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/wt_freezing_wz/thumb_sq.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>어는점</strong></span><span>MEL</span><span>BL</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="comic"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>일검진천 [개정판]</strong><span>묵검향</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="일검진천 [개정판]" href="/comic/kocncm_0525"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/kocncm_0525/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>일검진천 [개정판]</strong></span><span>묵검향</span><span>무협</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="fiction"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>의술 펼치는 왕자님 (연재)</strong><span>목직</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="의술 펼치는 왕자님 (연재)" href="/novel/E000072283"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/ebook/E000072283/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>의술 펼치는 왕자님 (연재)</strong></span><span>목직</span><span>판타지</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									</li> -->
-							<!-- 									<li> -->
-							<!-- 									<p class="rank"> -->
-							<!-- 										<span><strong>4</strong></span><span class="icon"></span> -->
-							<!-- 									</p> -->
-							<!-- 									<div class="webtoon"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>살벌한 동거</strong><span>하엘 / 백하나</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="살벌한 동거" href="/webtoon/wt_scary_wz"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/wt_scary_wz/thumb_sq.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>살벌한 동거</strong></span><span>하엘 / 백하나</span><span>로맨스</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="comic"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>사류무사 (연재)</strong><span>황성</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="사류무사 (연재)" href="/comic/4ryumusa"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/4ryumusa/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>사류무사 (연재)</strong></span><span>황성</span><span>무협</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="fiction"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>음악천재 재벌3세 (연재)</strong><span>성불예정</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="음악천재 재벌3세 (연재)" href="/novel/E000072188"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/ebook/E000072188/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>음악천재 재벌3세 (연재)</strong></span><span>성불예정</span><span>판타지</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									</li> -->
-							<!-- 									<li class=""> -->
-							<!-- 									<p class="rank"> -->
-							<!-- 										<span><strong>5</strong></span><span class="icon"></span> -->
-							<!-- 									</p> -->
-							<!-- 									<div class="webtoon"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>화룡기</strong><span>명월당</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="화룡기" href="/webtoon/wt_hwalyong_wz"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/wt_hwalyong_wz/thumb_sq.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>화룡기</strong></span><span>명월당</span><span>BL</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="comic"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>제왕의 꽃 [스크롤]</strong><span>토연 / 이승희</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="제왕의 꽃 [스크롤]" href="/comic/C000045734"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/C000045734/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>제왕의 꽃 [스크롤]</strong></span><span>토연 / 이승희</span><span>순정</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="fiction"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>슬러거 포수 강건후 (연재)</strong><span>온필수</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="슬러거 포수 강건후 (연재)" href="/novel/E000072243"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/ebook/E000072243/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>슬러거 포수 강건후 (연재)</strong></span><span>온필수</span><span>판타지</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									</li> -->
-							<!-- 									<li> -->
-							<!-- 									<p class="rank"> -->
-							<!-- 										<span><strong>6</strong></span><span class="icon"></span> -->
-							<!-- 									</p> -->
-							<!-- 									<div class="webtoon"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>괴 [스크롤]</strong><span>야설록</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="괴 [스크롤]" href="/webtoon/wt_goe_wz"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/wt_goe_wz/thumb_sq.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>괴 [스크롤]</strong></span><span>야설록</span><span>액션</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="comic"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>일상다정사</strong><span>김세영</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="일상다정사" href="/comic/wbeast_0005"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/wbeast_0005/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>일상다정사</strong></span><span>김세영</span><span>BL</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="fiction"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>칼끝에 천하를 묻다</strong><span>오채지</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="칼끝에 천하를 묻다" href="/novel/baro689111"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/ebook/baro689111/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>칼끝에 천하를 묻다</strong></span><span>오채지</span><span>신무협</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									</li> -->
-							<!-- 									<li> -->
-							<!-- 									<p class="rank"> -->
-							<!-- 										<span><strong>7</strong></span><span class="icon"></span> -->
-							<!-- 									</p> -->
-							<!-- 									<div class="webtoon"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>나만의 스폰서</strong><span>최경아</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="나만의 스폰서" href="/webtoon/wt_sponsor_wz"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/wt_sponsor_wz/thumb_sq.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>나만의 스폰서</strong></span><span>최경아</span><span>로맨스</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="comic"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>군주의 여인(컬러연재)</strong><span>박다연 / 원작 독연</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="군주의 여인(컬러연재)" href="/comic/monarchlady_wz"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/monarchlady_wz/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>군주의 여인(컬러연재)</strong></span><span>박다연 / 원작 독연</span><span>순정</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="fiction"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>신투, 천하를 훔치다 (연재)</strong><span>윤하준</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="신투, 천하를 훔치다 (연재)" href="/novel/E000072285"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/ebook/E000072285/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>신투, 천하를 훔치다 (연재)</strong></span><span>윤하준</span><span>판타지</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									</li> -->
-							<!-- 									<li> -->
-							<!-- 									<p class="rank"> -->
-							<!-- 										<span><strong>8</strong></span><span class="icon"></span> -->
-							<!-- 									</p> -->
-							<!-- 									<div class="webtoon"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>스머프 월드 [일반판]</strong><span>오태 / 제이제이</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="스머프 월드 [일반판]" href="/webtoon/wt_smurf15_wz"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/wt_smurf15_wz/thumb_sq.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>스머프 월드 [일반판]</strong></span><span>오태 / 제이제이</span><span>BL</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="comic"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>견자전설</strong><span>황성</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="견자전설" href="/comic/gjjs_hs"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/gjjs_hs/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>견자전설</strong></span><span>황성</span><span>무협</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="fiction"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>아빠가 너무 강함 (연재)</strong><span>개벽s</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="아빠가 너무 강함 (연재)" href="/novel/jplus0185"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/ebook/jplus0185/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>아빠가 너무 강함 (연재)</strong></span><span>개벽s</span><span>판타지</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									</li> -->
-							<!-- 									<li> -->
-							<!-- 									<p class="rank"> -->
-							<!-- 										<span><strong>9</strong></span><span class="icon"></span> -->
-							<!-- 									</p> -->
-							<!-- 									<div class="webtoon"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>쉿, 아기가 자고 있어요</strong><span>몽글</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="쉿, 아기가 자고 있어요" href="/webtoon/wt_sleeping_wz"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/wt_sleeping_wz/thumb_sq.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>쉿, 아기가 자고 있어요</strong></span><span>몽글</span><span>BL</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="comic"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>도편수 [개정판]</strong><span>묵검향</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="도편수 [개정판]" href="/comic/kocncm_0268"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/kocncm_0268/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>도편수 [개정판]</strong></span><span>묵검향</span><span>무협</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="fiction"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>재벌집 서자, 그레이트 어게인 (연재)</strong><span>굿라이버</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="재벌집 서자, 그레이트 어게인 (연재)" href="/novel/jplus0309"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/ebook/jplus0309/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>재벌집 서자, 그레이트 어게인 (연재)</strong></span><span>굿라이버</span><span>판타지</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									</li> -->
-							<!-- 									<li class="last"> -->
-							<!-- 									<p class="rank"> -->
-							<!-- 										<span><strong>10</strong></span><span class="icon"></span> -->
-							<!-- 									</p> -->
-							<!-- 									<div class="webtoon"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>최강의 냄새</strong><span>이만세</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="최강의 냄새" href="/webtoon/wt_strongest_wz"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/wt_strongest_wz/thumb_sq.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>최강의 냄새</strong></span><span>이만세</span><span>BL</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="comic"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>천년왕</strong><span>황성</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="천년왕" href="/comic/chunnwang"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/comics/chunnwang/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>천년왕</strong></span><span>황성</span><span>무협</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									<div class="fiction"> -->
-							<!-- 										<p> -->
-							<!-- 											<strong>템빨 (연재)</strong><span>박새날</span> -->
-							<!-- 										</p> -->
-							<!-- 										<div> -->
-							<!-- 											<a title="템빨 (연재)" href="/novel/se1610"> -->
-							<!-- 											<div> -->
-							<!-- 												<img src="https://img.mrblue.com/prod_img/ebook/se1610/main_large.jpg" alt=""> -->
-							<!-- 											</div> -->
-							<!-- 											<span><strong>템빨 (연재)</strong></span><span>박새날</span><span>판타지</span></a> -->
-							<!-- 										</div> -->
-							<!-- 									</div> -->
-							<!-- 									</li> -->
+							
+							<%
+								}
+							%>
 						</ul>
 					</div>
 				</div>
@@ -989,7 +636,6 @@ function brandnewNotice() {
 <!-- 								<span class="light"></span> -->
 							</a>
 						</div>
-						
 						<div class="hot-info">
 							<p class="hot-title">
 								<a href="BookDetail.bok?isbn<%=bookList.get(i).getIsbn()%>"><%=bookList.get(i).getTitle() %>도서명</a>
@@ -997,81 +643,9 @@ function brandnewNotice() {
 							<p><%=bookList.get(i).getAuthor() %>저자명</p>
 						</div>
 					</li>
-					
-					<li>
-						<div class="figure">
-							<a href="https://www.bookcube.com/detail.asp?series_num=920030020&amp;page=">
-								<span class="rm_br">
-									<img src="https://bookimg.bookcube.com/150/2011/201100501.jpg" alt="도서 이미지 - 30 Lessons on Grammar">
-								</span> 
-								<span class="light"></span>
-							</a>
-						</div>
-						
-						<div class="hot-info">
-							<p class="hot-title">
-								<a href="https://www.bookcube.com/detail.asp?series_num=920030020&amp;page=">30 Lessons on Grammar</a>
-							</p>
-							<p>Michael A. Putlack</p>
-						</div>
-					</li>
-					
-<!-- 					<li> -->
-<!-- 						<div class="figure"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920030035&amp;page="> -->
-<!-- 								<span class="rm_br"><img -->
-<!-- 									src="https://bookimg.bookcube.com/150/2011/201100522.jpg" -->
-<!-- 									alt="도서 이미지 - 7대 이슈로 보는 돈의 역사"></span> <span class="light"></span> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 						<div class="hot-info"> -->
-<!-- 							<p class="hot-title"> -->
-<!-- 								<a -->
-<!-- 									href="https://www.bookcube.com/detail.asp?series_num=920030035&amp;page=">7대 -->
-<!-- 									이슈로 보는 돈의 역사</a> -->
-<!-- 							</p> -->
-<!-- 							<p>홍춘욱</p> -->
-<!-- 						</div> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<div class="figure"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029992&amp;page="> -->
-<!-- 								<span class="rm_br"><img -->
-<!-- 									src="https://bookimg.bookcube.com/150/2011/201100475.jpg" -->
-<!-- 									alt="도서 이미지 - 10대가 알아야 할 미래직업의 이동 (개정판)"></span> <span -->
-<!-- 								class="light"></span> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 						<div class="hot-info"> -->
-<!-- 							<p class="hot-title"> -->
-<!-- 								<a -->
-<!-- 									href="https://www.bookcube.com/detail.asp?series_num=920029992&amp;page=">10대가 -->
-<!-- 									알아야 할 미래직업의 이동 ...</a> -->
-<!-- 							</p> -->
-<!-- 							<p>박종서,신지나,민준홍</p> -->
-<!-- 						</div> -->
-<!-- 					</li> -->
-<!-- 					<li> -->
-<!-- 						<div class="figure"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029977&amp;page="> -->
-<!-- 								<span class="rm_br"><img -->
-<!-- 									src="https://bookimg.bookcube.com/150/2011/201100517.jpg" -->
-<!-- 									alt="도서 이미지 - 걸스 라이크 어스"></span> <span class="light"></span> -->
-<!-- 							</a> -->
-<!-- 						</div> -->
-<!-- 						<div class="hot-info"> -->
-<!-- 							<p class="hot-title"> -->
-<!-- 								<a -->
-<!-- 									href="https://www.bookcube.com/detail.asp?series_num=920029977&amp;page=">걸스 -->
-<!-- 									라이크 어스</a> -->
-<!-- 							</p> -->
-<!-- 							<p>크리스티나 앨저</p> -->
-<!-- 						</div> -->
-<!-- 					</li> -->
-					<%} %>
+					<%
+						}
+					%>
 				</ul>
 			</div>
 		</div>
