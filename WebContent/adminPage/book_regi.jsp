@@ -159,7 +159,7 @@
 							$.each(result,function(index,arrjson){
 								$(".serachBookResult table tbody").append(
 										'<tr><td><input type="hidden" value="'+arrjson.image+'" name="image_url">'
-										+'<input type="checkbox" value="'+arrjson.isbn+'" name="isbn_num" class="searbookCh"></td><td><a class="overf_width200" href="'+arrjson.link+'" target="_balnk">'
+										+'<input type="checkbox" class="searbookCh" value="'+arrjson.isbn+'" name="isbn_num" ></td><td><a class="overf_width200" href="'+arrjson.link+'" target="_balnk">'
 										+arrjson.title+'</a></td><td><p class="overf_line3">'
 										+arrjson.description+'</p></td><td><p class="overf_width60">'
 										+arrjson.author+'</p></td><td>'
@@ -179,11 +179,10 @@
 				});
 			});
 			//다중 체크 안되게 방지
-			$(function() { 
-				$('.searbookCh').bind('click',function() {
-			 		$('.searbookCh').not(this).prop("checked", false);
-			 	})
-		    }); 
+			$('.searbookCh').bind('click',function() {
+		 		$('.searbookCh').not(this).prop("checked", false);
+		 	})
+	    
 			$('.srappend').click(function(){
 				var checked_seq = "";
 	   		 	if ($('.serachBookResult table tbody input[type="checkbox"]:checked').length != 0) {
