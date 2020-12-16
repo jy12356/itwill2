@@ -27,12 +27,13 @@ public class ReviewWriteProAction implements Action {
 //		System.out.println("글쓴이 : " + request.getParameter("id")); 
 //		System.out.println("글내용 : " + request.getParameter("content"));
 //		System.out.println("별점 : " + Integer.parseInt(request.getParameter("starcount")));
-		System.out.println("페이지번호 : " + request.getParameter("isbn"));
 //		System.out.println("스포 : " + Integer.parseInt(request.getParameter("spoiler")));
 		 
 
-		String book_isbn=request.getParameter("isbn");
+		String book_isbn = request.getParameter("isbn");
 		String page=request.getParameter("page");
+		System.out.println("책코드 : " + book_isbn);
+		System.out.println("페이지번호 : " + page);
 		
 		reviewBean.setId(request.getParameter("id"));
 		reviewBean.setContent(request.getParameter("content"));

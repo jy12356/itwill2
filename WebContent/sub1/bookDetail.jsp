@@ -67,6 +67,7 @@
 	
 	String id = (String)session.getAttribute("id");
 	String isbn = request.getParameter("isbn");
+	
     ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>)request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage2 = pageInfo.getPage();
@@ -179,7 +180,7 @@
 						<li class="on"><a href="javascript:;">책소개</a><span></span></li>
 						<li><a href="javascript:;">목차</a><span></span></li>
 						<li><a href="javascript:;">저자소개</a><span></span></li>
-						<li><a href="javascript:;">서평<span>(0)</span></a><span></span></li>
+						<li><a href="javascript:;">서평<span><%=listCount %></span></a><span></span></li>
 					</ul>
 				</div>
 			</div>
@@ -318,7 +319,7 @@
 				</div>
 				<div class="btn_inner">
 						<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
-						<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>" class="delete-btn btn">삭제</a>
+						<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
 						<a href="javascript:;" class="heart-btn btn" data-review-num="<%=articleList.get(i).getNum()%>" data-like-id="<%=id%>" data-isbn="<%=isbn%>">좋아요</a>
 						<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
 				</div>
@@ -342,8 +343,10 @@
 					<p>스포일러가 포함되어 있습니다.</p>
 					</div>
 					<div>
+						<input type="hidden" name="isbn" value="<%=isbn%>">	
+						<input type="hidden" name="page" value="<%=nowPage%>">	
 						<input type="hidden" name="num" value="<%=articleList.get(i).getNum()%>">
-						<input type="hidden" name="id" value="<%=articleList.get(i).getId() %>">
+						<input type="hidden" name="id" value="<%=id%>">
 						<textarea name="content"><%=articleList.get(i).getContent() %></textarea>
 					</div>
 					<div class="btn_inner">
@@ -359,6 +362,8 @@
 			<div class="cmtRly clearfix" data-review-num="498631" data-comment-num="" style="display: block;">
 				<form action="ReCommentWritePro.re" class="comment-write reply-write" method="get" id="myReComment">
 					<div>
+						<input type="hidden" name="isbn" value="<%=isbn%>">	
+						<input type="hidden" name="page" value="<%=nowPage%>">	
 						<input type="hidden" name="board_type" value="2">
 						<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
 						<input type="hidden" name="comment_id" value="<%=id%>">
