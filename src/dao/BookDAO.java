@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.security.auth.login.LoginException;
 
@@ -55,8 +54,8 @@ public class BookDAO {
 			// 전달받은 BoardBean 객체 내의 데이터를 사용하여 INSERT 작업 수행
 			// => 컬럼 중 board_date 항목(작성일)은 now() 함수 사용
 			sql = "insert into book "
-					+ "(num,title,image,author,publisher,pubdate,isbn,description,catg1,catg2,state,count,author_info,index_info, date)"
-					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,sysdate())";
+					+ "(num,title,image,author,publisher,pubdate,isbn,description,catg1,catg2,state,count,author_info,index_info)"
+					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			
 			// BoardBean 객체로부터 데이터를 꺼내서 쿼리문 ? 대체
@@ -96,7 +95,7 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		
-		String sql = "select * from book where catg1 like ? and catg2 like ? group by isbn order by pubdate desc limit ?,?";
+		String sql = "select * from book where catg1 like ? and catg2 like ? order by date desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, "%"+catg1);
@@ -122,7 +121,6 @@ public class BookDAO {
 				bookBean.setIndex(rs.getString("index_info"));
 				bookBean.setImage(rs.getString("image"));
 				bookBean.setDescription(rs.getString("description"));
-				bookBean.setDate(rs.getDate("date"));
 				bookList.add(bookBean);
 			}
 			
@@ -134,6 +132,55 @@ public class BookDAO {
 			close(pstmt);
 		}
 		return bookList;
+	}
+	//책 리스트2 - 인기순
+	public ArrayList<BookBean> selectBookList2(int page, int limit,String catg1,String catg2) {
+		System.out.println("BookDAO - selectList2()");
+		ArrayList<BookBean> bookList2 = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		//조회를 시작할 레코드 행 번호 계산
+		int startRow=(page-1)*limit;
+		
+		String sql = "select * from book where catg1 like ? and catg2 like ? order by count desc limit ?,?";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, "%"+catg1);
+			pstmt.setString(2, "%"+catg2);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, limit);
+			System.out.println(pstmt);
+			rs = pstmt.executeQuery();
+			bookList2 = new ArrayList<BookBean>();
+			while(rs.next()) {
+				BookBean bookBean = new BookBean();
+				bookBean.setNum(rs.getInt("num"));
+				bookBean.setTitle(rs.getString("title"));
+				bookBean.setCatg1(rs.getString("catg1"));
+				bookBean.setCatg2(rs.getString("catg2"));
+				bookBean.setAuthor(rs.getString("author"));
+				bookBean.setPublisher(rs.getString("publisher"));
+				bookBean.setPubdate(rs.getString("pubdate"));
+				bookBean.setIsbn(rs.getString("isbn"));
+				bookBean.setState(rs.getString("state"));
+				bookBean.setCount(rs.getInt("count"));
+				bookBean.setAuthor_info(rs.getString("author_info"));
+				bookBean.setIndex(rs.getString("index_info"));
+				bookBean.setImage(rs.getString("image"));
+				bookBean.setDescription(rs.getString("description"));
+				bookList2.add(bookBean);
+				System.out.println("a");
+			}
+			
+		}catch (Exception e) {
+			System.out.println("selectBookList2오류!" + e.getMessage());;
+			e.printStackTrace();
+		}finally {
+			close(rs);	
+			close(pstmt);
+		}
+		return bookList2;
 	}
 	//전체책 갯수
 	public int selectListCount() {
@@ -403,11 +450,11 @@ public class BookDAO {
 		int startRow=(page-1)*limit;
 		
 		String sql = "select i.num num, "
-				+ "i.isbn isbn,i.id id, b.title title, b.author author, "
-				+ "b.publisher publisher, b.pubdate pubdate, "
-				+ "min(case when b.state = 0 then '대여가능' else '대여불가능' end) as state "
-				+ "from interestinglist  as i join book as b on i.isbn = b.isbn "
-				+ "where i.id=? group by i.isbn order by i.num desc limit ?,?;";
+						+ "i.isbn isbn,i.id id, b.title title, b.author author, "
+						+ "b.publisher publisher, b.pubdate pubdate, "
+						+ "case when b.state = 0 then '대여가능' else '대여불가능' end as state "
+						+ "from interestinglist  as i join book as b on i.isbn = b.isbn "
+						+ "where i.id=? order by i.num desc limit ?,?;";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -438,52 +485,30 @@ public class BookDAO {
 		}
 		return bookListDibsList;
 	}
-	public int dibsDelete(List<Integer> interNumList, String id) {
-		System.out.println("bookDAO - dibsDelete");
-		int isDeleteOk = 0;
-		PreparedStatement pstmt = null;
-		try {
-			for(int i=0; i< interNumList.size(); i++) {
-				String sql = "delete from interestinglist where num=? and id=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, interNumList.get(i));
-				pstmt.setString(2,id);
-				System.out.println(pstmt);
-				isDeleteOk = pstmt.executeUpdate();
-			}
-		}catch (Exception e) {
-			System.out.println("dibsDelete 오류!" + e.getMessage());
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return isDeleteOk;
-	}
 	
-	public int dibsYn(String isbn, String id) {
-		int isDibsYnCount = 0;
-		
+	
+	public int istBookDibsList(String isbn, String id) {
+		int istBookDibsList = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String sql = "select isbn from interestinglist where id=?";
-			pstmt=con.prepareStatement(sql);
+			String sql = "SELECT isbn FROM interestinglist WHERE id=? and isbn=?";
+			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
+			pstmt.setString(2, isbn);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				if(rs.getString("isbn").equals(isbn)) {
-					isDibsYnCount = 1;					
-				}
+				istBookDibsList=1;			
 			}
-		} catch (Exception e) {
-			System.out.println("isDibsYnCount 오류!" + e.getMessage() );
+		} catch (SQLException e) {
+			System.out.println("istBookDibsList() ERROR! - " + e.getMessage());
 			e.printStackTrace();
-		}finally{
-			close(pstmt);
+		} finally {
 			close(rs);
+			close(pstmt);
 		}
-		
-		return isDibsYnCount;
+		return istBookDibsList;
+	
 	}
-}
 
+}
