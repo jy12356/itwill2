@@ -6,38 +6,7 @@
             <p>HOME > 책등록</p>
         </div>
     </div>
-    <script type="text/javascript">
-	    $(function () { 
-			$('#btn-movies-find').click(function () {
-				var keyword = $('#search_input').val(); 
-				$.ajax({ 
-					type: 'POST', 
-					url: 'BookNaverAPISearch.bok',
-					data: {keyword : keyword},
-					success: function(result){
-						
-						alert(result);
-						$.each(result,function(index,arrjson){
-							console.log( index + " : " + value.title);
-							alert(arrjson.title+','+arrjson.description+','
-									+arrjson.author+','+arrjson.isbn+','
-									+arrjson.publisher+','+arrjson.pubdate);
-							$(".serachBookResult table tbody").append(
-									'<tr><td>'+arrjson.title+'</td><td>'+arrjson.description+'</td><td>'
-									+arrjson.author+'</td><td>'+arrjson.isbn+'</td><td>'
-									+arrjson.publisher+'</td><td>'+arrjson.pubdate+'</td></tr>'
-									);
-									
-								
-						});
-					},
-					error: function(request,status,error){
-	   		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			       }
-			})
-			})
-		})
-    </script>
+  
     <div class="contents-wrap">
         <div class="customer">
             <h3 class="subTit">책등록</h3> 
@@ -52,10 +21,11 @@
 	                		<table summary="책검색결과" class="customer-table notice">
 		                        <caption>게시판</caption>
 		                        <colgroup>
-		                            <col width="10%">
-		                            <col width="30%">
-		                            <col width="10%">
+		                            <col width="5%">
 		                            <col width="20%">
+		                            <col width="25%">
+		                            <col width="10%">
+		                            <col width="10%">
 		                            <col width="10%">
 		                            <col width="10%">
 		                        </colgroup>
@@ -73,6 +43,9 @@
 		                        <tbody>
 		                        </tbody>
 		                    </table>	
+							<div class="btn_inner">
+							    <input type="button" class="btn srappend" value="보내기">
+							</div>
 	                	</div>
                 	</div>
                 	
@@ -180,27 +153,49 @@
 					data: {keyword : keyword},
 					dataType:"JSON",
 					success: function(result){
-						alert(result);
-						$.each(result,function(index,arrjson){
-// 							console.log( index + " : " + arrjson.title);
-							alert(arrjson.title+','+arrjson.description+','
-									+arrjson.author+','+arrjson.isbn+','
-									+arrjson.publisher+','+arrjson.pubdate);
-							$(".serachBookResult table tbody").append(
-									'<tr><td>'+arrjson.title+'</td><td>'+arrjson.description+'</td><td>'
-									+arrjson.author+'</td><td>'+arrjson.isbn+'</td><td>'
-									+arrjson.publisher+'</td><td>'+arrjson.pubdate+'</td></tr>'
-									);
-									
-								
-						});
+						if(result.length > 0){
+							$(".serachBookResult table tbody").text("");
+							alert("총"+result.length+"개가 검색 되었습니다.");
+							$.each(result,function(index,arrjson){
+								$(".serachBookResult table tbody").append(
+										'<tr><td><input type="hidden" value="'+arrjson.image+'" name="image_url">'
+										+'<input type="checkbox" value="'+arrjson.isbn+'" name="isbn_num" class="searbookCh"></td><td><a class="overf_width200" href="'+arrjson.link+'" target="_balnk">'
+										+arrjson.title+'</a></td><td><p class="overf_line3">'
+										+arrjson.description+'</p></td><td><p class="overf_width60">'
+										+arrjson.author+'</p></td><td>'
+										+arrjson.isbn+'</td><td><p class="overf_width100">'
+										+arrjson.publisher+'</p></td><td>'
+										+arrjson.pubdate+'</td></tr>'
+								);
+							});	
+						}else{
+							alert("검색결과가 없습니다.");
+						}
+						
 					},
 					error: function(request,status,error){
 	   		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			       }
-			})
-			})
-		})
+				});
+			});
+			//다중 체크 안되게 방지
+			$(function() { 
+				$('.searbookCh').bind('click',function() {
+			 		$('.searbookCh').not(this).prop("checked", false);
+			 	})
+		    }); 
+			$('.srappend').click(function(){
+				var checked_seq = "";
+	   		 	if ($('.serachBookResult table tbody input[type="checkbox"]:checked').length != 0) {
+	   		 		
+	            }else{
+             		alert("게시물을 선택해주시길 바랍니다.");
+             		return false;	            	
+	            }
+				alert(html);
+				alert("보내기 완료");	
+			});
+		});
     </script>
 <script type="text/javascript">
 $(document).ready( function() {
