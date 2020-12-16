@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 
 <jsp:include page="../include/header.jsp"/>
+
+<%
+	String id= (String)session.getAttribute("id");
+
+%>
 <section class="sub">
 	<div class="category-nav">
 		<div class="category-nav-inner">
@@ -17,15 +22,15 @@
 						<ul>
 							<li>
 								<span class="kakaotalk">로그인정보</span> <!-- bookcube,kakaotalk,naver,twitter,facebook,payco-->
-								<p><span>계정 님</span></p>
-								<a href="https://www.bookcube.com/member_info.asp" class="btn">회원정보</a>
+								<p><span><%=id %> 님</span></p>
+								<a href="MemberModifyForm.me?id=<%=id %>" class="btn">회원정보</a>
 							</li>
 							<li>
-								<p>북캐시</p>
-								<p>0원</p>
+								<p>이용권</p>
+								<p>3개월</p>
 								<div class="mysel">
-									<a href="javascript:;" class="v-btn" data-fname="bookcash">내역보기 &gt;</a>
-									<a href="https://www.bookcube.com/order/bookcash.asp">충전하기 &gt;</a>
+									<a href="javascript:;" class="v-btn" data-fname="bookcash">나의이용권보기 &gt;</a>
+									<a href="https://www.bookcube.com/order/bookcash.asp">정기권결제하기 &gt;</a>
 								</div>
 								<div class="my-frame bookcash">
 								<iframe src="/mypage/_bookcash_history.asp?bookcash=0" width="100%" frameborder="0" name="bookcash_history" id="bookcash_history" scrolling="no" style="height: 263px;"></iframe>
