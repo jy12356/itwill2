@@ -54,7 +54,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MemberLoginePro.me")) {  
+		} else if(command.equals("/MemberLoginPro.me")) {  
 			action = new MemberLoginProAction();
 			try {
 				forward = action.execute(request, response);
@@ -138,7 +138,7 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MemberLogoutPro.me")) {
+		} else if(command.equals("/MemberLogOut.me")) {
 			System.out.println("MemberLogoutPro");
 			action = new MemberLogoutProAction();
 			try {
