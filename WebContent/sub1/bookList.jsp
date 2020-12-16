@@ -152,7 +152,7 @@
                                 </li>
                                 <%} %>
                             </ul>
-                    		<%if(id.equals("admin")){ %>
+                    		<%if(id != null && id.equals("admin")){ %>
                             <div class="btn_inner">
 								<a href="BookWriteForm.bok" class="btn">글쓰기</a>
 							</div>

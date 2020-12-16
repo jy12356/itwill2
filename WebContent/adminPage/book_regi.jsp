@@ -55,7 +55,7 @@
 								* 항목은 필수 입력 항목입니다.
 							</p>
 						</div>
-	                    <table summary="책등록" class="customer-notice">
+	                    <table summary="책등록" class="customer-notice bookRgTb">
 	                        <caption>책등록</caption>
 	                        <colgroup>
 	                            <col width="15%">
@@ -66,13 +66,13 @@
 	                        <tbody>
 	                            <tr>
 	                                <td class="th"><span class="point">*</span>책제목</td>
-	                                <td colspan="3" class="td">
+	                                <td colspan="3" class="td rgTitle">
 	                                	<input type="text" name="title" required="required">
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th"><span class="point">*</span>대분류</td>
-	                            	<td class="categ1 td">
+	                            	<td class="categ1 td rgCat1">
 	                            		<select name="catg1" required="required">
 	                            			<option value="" data-tab="cateDef">선택해주세요.</option>
 	                            			<option value="소설" data-tab="novel">소설</option>
@@ -83,7 +83,7 @@
 	                            		</select>
 	                            	</td>
 	                            	<td class="th"><span class="point">*</span>소분류</td>
-	                            	<td class="categ2 td">
+	                            	<td class="categ2 td rgCat2">
 	                            		<select id="cateDef" class="catg2" name="catg2"> 
 	                            			<option value="def">선택해주세요.</option>
 	                            		</select>
@@ -92,37 +92,37 @@
    	                    
 	                            <tr>
 	                            	<td class="th"><span class="point">*</span>저자</td>
-	                            	<td class="td"><input type="text" name="author" required="required"></td>
+	                            	<td class="td rgAuthor"><input type="text" name="author" required="required"></td>
 	                            	<td class="th"><span class="point">*</span>출판사</td>
-	                            	<td class="td"><input type="text" name="publisher" required="required"></td>
+	                            	<td class="td rgPublisher"><input type="text" name="publisher" required="required"></td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">저자 정보</td>
-	                            	<td class="td" colspan="3">
+	                            	<td class="td rgAuthor_info" colspan="3">
 	                            	 	<textarea rows="" cols="" name="author_info"></textarea>
 	                            	</td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th"><span class="point">*</span>ISBN번호</td>
-	                            	<td class="td"><input type="text" name="isbn" required="required"></td>
+	                            	<td class="td rgIsbn"><input type="text" name="isbn" required="required"></td>
 	                            	<td class="th"><span class="point">*</span>출판날짜</td>
-	                            	<td class="td cal"><input type="text" id="pubDatePicker" name="pubdate" required="required"></td>
+	                            	<td class="td cal rgCal"><input type="text" id="pubDatePicker" name="pubdate" required="required"></td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">목차</td>
-	                                <td colspan="3">
+	                                <td colspan="3" class="rgIndex">
 	                                    <textarea rows="" cols="" name="index"></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">요약내용</td>
-	                                <td colspan="3">
+	                                <td colspan="3" class="rgDesc">
 	                                    <textarea rows="" cols="" name="description"></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th"><span class="point">*</span>이미지 파일</td>
-	                            	<td colspan="3">
+	                            	<td colspan="3" class="rgImage">
 	                            		<input type="file" name="image" required="required">
 	                            	</td>
 	                            </tr>
@@ -158,8 +158,9 @@
 							alert("총"+result.length+"개가 검색 되었습니다.");
 							$.each(result,function(index,arrjson){
 								$(".serachBookResult table tbody").append(
-										'<tr><td><input type="hidden" value="'+arrjson.image+'" name="image_url">'
-										+'<input type="checkbox" class="searbookCh" value="'+arrjson.isbn+'" name="isbn_num" ></td><td><a class="overf_width200" href="'+arrjson.link+'" target="_balnk">'
+										'<tr><td><input type="checkbox" onclick="oneCheckbox(this)" class="oneCheckbox" value="'+arrjson.isbn+'" name="searbookCh">'
+										+'</td><td class="hidden">'+arrjson.image
+										+'</td><td><a class="overf_width200" href="'+arrjson.link+'" target="_balnk">'
 										+arrjson.title+'</a></td><td><p class="overf_line3">'
 										+arrjson.description+'</p></td><td><p class="overf_width60">'
 										+arrjson.author+'</p></td><td>'
@@ -178,26 +179,17 @@
 			       }
 				});
 			});
-			//다중 체크 안되게 방지
-			$('.searbookCh').bind('click',function() {
-		 		$('.searbookCh').not(this).prop("checked", false);
-		 	})
 	    
-			$('.srappend').click(function(){
-				var checked_seq = "";
-	   		 	if ($('.serachBookResult table tbody input[type="checkbox"]:checked').length != 0) {
-	   		 		
-	            }else{
-             		alert("게시물을 선택해주시길 바랍니다.");
-             		return false;	            	
-	            }
-				alert(html);
-				alert("보내기 완료");	
-			});
+
 		});
     </script>
 <script type="text/javascript">
+
+
+
 $(document).ready( function() {
+	
+	
     $( "#pubDatePicker" ).datepicker({});
     
    
@@ -233,6 +225,58 @@ $(document).ready( function() {
    	})
     
 });
+</script>
+<script type="text/javascript">
+	//다중 체크 안되게 방지
+	$(document).on('click', '.oneCheckbox', function(){
+		$(".oneCheckbox").not(this).prop("checked", false);
+	});
+	$(document).on('click','.srappend',function(){
+		var rowData = new Array();
+		var tdArr = new Array();
+		var checkbox = $('.serachBookResult table tbody input[type="checkbox"]:checked');
+		var image =null;
+		var title =null;
+		var desc =null;
+		var author =null;
+		var isbn =null;
+		var publisher =null;
+		var pubdate =null;
+		// 체크된 체크박스 값을 가져온다
+		if(checkbox.length > 0){
+		checkbox.each(function(i) {
+
+			// checkbox.parent() : checkbox의 부모는 <td>이다.
+			// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
+			var tr = checkbox.parent().parent().eq(i);
+			var td = tr.children();
+			
+			// 체크된 row의 모든 값을 배열에 담는다.
+			rowData.push(tr.text());
+			
+			// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
+			image = td.eq(1).text();
+			title = td.eq(2).text();
+			description = td.eq(3).text();
+			author = td.eq(4).text();
+			isbn = td.eq(5).text();
+			publisher = td.eq(6).text();
+			pubdate = td.eq(7).text();
+			
+		});
+			alert(title);
+			document.getElementsByName("title").innerText =title;
+			document.getElementsByName("image").innerText  = image;
+			document.getElementsByName("description").innerText  = description;
+			document.getElementsByName("author").innerText  = author;
+			document.getElementsByName("isbn").innerText  = isbn;
+			document.getElementsByName("publisher").innerText  = publisher;
+			document.getElementsByName("pubdate").innerText = pubdate;
+		}else{
+			alert("체크박스 선택을 해주시길 바랍니다.")
+		}
+		
+	});
 </script>
 
 <jsp:include page="../include/footer.jsp"/>
