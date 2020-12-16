@@ -29,6 +29,18 @@ public class MainListService {
 		System.out.println("MainListService 끝");
 		return bookList;
 	}
+	
+	public ArrayList<BookBean> getBookList2(int page, int limit,String catg1, String catg2) {
+		ArrayList<BookBean> bookList2 = new ArrayList<BookBean>();
+		BookDAO bookDAO = BookDAO.getInstance();
+		Connection con = getConnection();
+		bookDAO.setConnection(con);
+		bookList2 = bookDAO.selectBookList2(page,limit,catg1,catg2);
+		close(con);
+		System.out.println("servicesize" + bookList2.size());
+		System.out.println("MainListService2 끝");
+		return bookList2;
+	}
 
 
 	

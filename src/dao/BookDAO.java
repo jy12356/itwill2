@@ -136,6 +136,7 @@ public class BookDAO {
 	}
 	//책 리스트2 - 인기순
 	public ArrayList<BookBean> selectBookList2(int page, int limit,String catg1,String catg2) {
+		
 		System.out.println("BookDAO - selectList2()");
 		ArrayList<BookBean> bookList2 = null;
 		PreparedStatement pstmt = null;
@@ -143,14 +144,15 @@ public class BookDAO {
 
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
-		
-		String sql = "select * from book where catg1 like ? and catg2 like ? order by count desc limit ?,?";
+		catg1="소설";
+		catg2="소설";
+		String sql = "select * from book order by count desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, "%"+catg1);
-			pstmt.setString(2, "%"+catg2);
-			pstmt.setInt(3, startRow);
-			pstmt.setInt(4, limit);
+//			pstmt.setString(1, "%"+catg1);
+//			pstmt.setString(2, "%"+catg2);
+			pstmt.setInt(1, 0);
+			pstmt.setInt(2, 5);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			bookList2 = new ArrayList<BookBean>();
@@ -173,7 +175,7 @@ public class BookDAO {
 				bookList2.add(bookBean);
 				System.out.println("a");
 			}
-			
+			System.out.println("DAObookList2.size" + bookList2.size());
 		}catch (Exception e) {
 			System.out.println("selectBookList2오류!" + e.getMessage());;
 			e.printStackTrace();
