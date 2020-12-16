@@ -26,8 +26,8 @@ public class MemberLoginProAction implements Action {
 		System.out.println(isMember);
 		if(!isMember) {
 			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();// �ڹٽ�ũ��Ʈ ���� �±�
-			out.println("alert('회원등록에 실패하였습니다!");
+			PrintWriter out = response.getWriter();
+			out.println("alert('로그인에 실패하였습니다!");
 			out.println("history.back()"); 
 			out.println("</script>"); 
 		} else {

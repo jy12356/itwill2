@@ -49,9 +49,10 @@ public class MemberDeleteProService {
 		System.out.println("modifyArticle delelteArticle deleteCount : "+deleteCount);
 		if(deleteCount>0) {
 			isDeleteSuccess = true;
-			System.out.println();
+			System.out.println("delelteArticle isDeleteSuccess : "+isDeleteSuccess);
 			commit(con); 
 		} else {
+			System.out.println("delelteArticle isDeleteSuccess : "+isDeleteSuccess);
 			rollback(con);
 		}
 		

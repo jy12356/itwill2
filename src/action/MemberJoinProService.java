@@ -34,7 +34,6 @@ public class MemberJoinProService implements Action {
 		MemberWriteProService memberWriteProService = new MemberWriteProService();
 		boolean isWriteSuccess = memberWriteProService.registArticle(memberBean);
 		
-		
 		if(!isWriteSuccess) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

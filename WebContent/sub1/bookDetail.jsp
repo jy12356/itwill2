@@ -306,7 +306,7 @@
 					<em>|</em>
 					<span class="date"><%=articleList.get(i).getDate() %></span>
 					<em>|</em>
-					<span class="list-star rank10"><%=articleList.get(i).getStarcount() %></span>
+					<span class="list-star rank<%=articleList.get(i).getStarcount() %>"><%=articleList.get(i).getStarcount() %></span>
 					<em>|</em>좋아요<span class="likeCountInner"> <%=articleList.get(i).getLikecount() %></span>
 					<em>|</em>댓글 0
 					<%if(articleList.get(i).getSpoiler()==1){%>
