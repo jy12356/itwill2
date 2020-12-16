@@ -10,26 +10,28 @@ import vo.ReviewBean;
 
 public class ReviewListService {
 
-	public int getListCount() {
+	// 서평 등록 수
+	public int getListCount(String isbn) {
 		System.out.println("ReviewListService - 1. getListCount");
 	
 		int listCount = 0;
-		
+	
 		Connection con = getConnection();
 		
 		ReviewDAO reviewDAO = ReviewDAO.getInstance();
 		
 		reviewDAO.setConnection(con);
 		
-		listCount = reviewDAO.selectListCount();
+		listCount = reviewDAO.selectListCount(isbn);
 		
 		close(con);
 		
 		return listCount;
 	}
-
-	public ArrayList<ReviewBean> getArticleList(int page, int limit) {
-		System.out.println("ReviewListService - 2. getArticleList");
+	
+	// 서평 리스트 
+	public ArrayList<ReviewBean> getArticleList(int page, int limit, String isbn) {
+		System.out.println("ReviewListService - 2. getArticleList");	
 		
 		ArrayList<ReviewBean> articleList = null;
 		
@@ -39,10 +41,11 @@ public class ReviewListService {
 		
 		reviewDAO.setConnection(con);
 		
-		articleList = reviewDAO.selectArticleList(page, limit);
+		articleList = reviewDAO.selectArticleList(page, limit, isbn);
 		
 		close(con);
 
 		return articleList;
 	}
+
 }

@@ -1,5 +1,10 @@
 package svc;
 
+import static db.JdbcUtil.close;
+import static db.JdbcUtil.commit;
+import static db.JdbcUtil.getConnection;
+import static db.JdbcUtil.rollback;
+
 import java.sql.Connection;
 
 import dao.MemberDAO;
@@ -14,29 +19,45 @@ import vo.MemberBean;
 
 public class MemberDeleteProService {
 	
-	public boolean registArticle(MemberBean memberBean) {
-		System.out.println("memberDeleteProService - registArticle()");
+	public boolean isArticleWriter(String id) throws Exception {
 		
-		boolean isWriteSuccess = false; 
+		boolean isArticleWriter = false;
 		
-		Connection con = JdbcUtil.getConnection();
+		Connection con = getConnection();
 		
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		
 		memberDAO.setConnection(con);
 		
-		int insertCount = memberDAO.insertArticle(memberBean);
+		isArticleWriter = memberDAO.isIdCheck(id);
 		
-		if(insertCount > 0) {
-			JdbcUtil.commit(con); 
-			isWriteSuccess = true; 
+		close(con);
+		
+		return isArticleWriter;
+	}
+
+	public boolean delelteArticle(MemberBean article) {
+		boolean isDeleteSuccess = false;
+		
+		Connection con = getConnection();
+		
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		
+		memberDAO.setConnection(con);
+		
+		int deleteCount = memberDAO.deleteArticle(article);
+		System.out.println("modifyArticle delelteArticle deleteCount : "+deleteCount);
+		if(deleteCount>0) {
+			isDeleteSuccess = true;
+			System.out.println();
+			commit(con); 
 		} else {
-			JdbcUtil.rollback(con);
+			rollback(con);
 		}
 		
-		JdbcUtil.close(con);
-
-		return isWriteSuccess;
+		close(con);
+		return isDeleteSuccess;
 	}
 	
 }
+

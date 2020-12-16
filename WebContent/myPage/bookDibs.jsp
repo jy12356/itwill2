@@ -26,8 +26,8 @@
                         <caption>내가 찜한 리스트</caption>
                         <colgroup>
                             <col style="width:5%">
-                            <col style="width:20%">
-                            <col style="width:15%">
+                            <col style="width:25%">
+                            <col style="width:10%">
                             <col style="width:15%">
                             <col style="width:15%">
                             <col style="width:10%">
@@ -37,7 +37,7 @@
                         </colgroup>
                         <thead>
                             <tr>
-                                <th scope="col" abbr="책번호"></th>
+                                <th scope="col" abbr="책번호"><input type="checkbox" id="allCheck"></th>
                                 <th scope="col" abbr="제목">제목</th>
                                 <th scope="col" abbr="작가">작가</th>
                                 <th scope="col" abbr="isbn">isbn</th>
@@ -51,18 +51,16 @@
                         <tbody>
                         <%for(int i=0; i < bookListDibsList.size(); i++ ){ %>
                             <tr>
-                                <td class="tac check_box"><input type="checkbox" id="checkbox_num" class="check_num" value="<%=bookListDibsList.get(i).getNum()%>" name="book_num"></td>
-                                <td><%=bookListDibsList.get(i).getTitle()%></td>
-                                <td><%=bookListDibsList.get(i).getAuthor()%></td>
+                                <td class="tac check_box"><input type="checkbox" id="checkbox_num" class="check_num" value="<%=bookListDibsList.get(i).getNum()%>" name="inter_num"></td>
+                                <td><p class="title"><a href="BookDetail.bok?isbn=<%=bookListDibsList.get(i).getIsbn()%>"><%=bookListDibsList.get(i).getTitle()%></a></p></td>
+                                <td><p class="autor"><%=bookListDibsList.get(i).getAuthor()%></p></td>
                                 <td><%=bookListDibsList.get(i).getIsbn()%></td>
-                                <td><%=bookListDibsList.get(i).getPublisher()%></td>
+                                <td><p class="publisher"><%=bookListDibsList.get(i).getPublisher()%></p></td>
                                 <td><%=bookListDibsList.get(i).getPubdate()%></td>
                                 <td><%=bookListDibsList.get(i).getState()%></td>
                                 <td class="book_basketbtn">
                                 	<%if(bookListDibsList.get(i).getState().equals("대여가능")){%>
-                                		<div class="btn_inner"> 
-					                    	<a href="MyBasket.me?isbn=<%=bookListDibsList.get(i).getIsbn()%>" class="btn">책바구니</a>
-					                    </div>
+				                    	<a href="MyBasketInsert.bk?isbn=<%=bookListDibsList.get(i).getIsbn()%>" class="btn">책바구니</a>					               
                                 	<%}else{%>
                                 		대여불가능
                                 	<%} %>
@@ -74,6 +72,7 @@
                     </table>
                     <div class="btn_inner"> 
                     	<a href="javascript:void(0);" onclick="deleteBook(); return false;"class="btn">삭제하기</a>
+                    	<!-- <a href="javascript:void(0);" class="btn delbtn">삭제하기</a> -->
                     	
                     </div>
                     
@@ -107,84 +106,50 @@
 
         </div>
     </div>
-	<script type="text/javascript">
-// 		파라미터 들고오기
-		function Request(){
-	   	 var requestParam ="";
-	   	 //getParameter 펑션
-	   	  this.getParameter = function(param){
-	   	  //현재 주소를 decoding
-	   	  var url = unescape(location.href);
-	   	  //파라미터만 자르고, 다시 &그분자를 잘라서 배열에 넣는다.
-	   	   var paramArr = (url.substring(url.indexOf("?")+1,url.length)).split("&");
-	   	   for(var i = 0 ; i < paramArr.length ; i++){
-	   	     var temp = paramArr[i].split("="); //파라미터 변수명을 담음
-	   	 
-	   	     if(temp[0].toUpperCase() == param.toUpperCase()){
-	   	       // 변수명과 일치할 경우 데이터 삽입
-	   	       requestParam = paramArr[i].split("=")[1];
-	   	       break;
-	   	     }
-	   	   }
-	   	   return requestParam;
-	   	 }
-	   	}
-		//다중 체크 안되게 방지
-		$(function() { 
-			$(".check_num").bind('click',function() {
-		 		$(".check_num").not(this).prop("checked", false);
-		 	})
-	    }); 
-		//삭제
+     
+     <script>
+     
+     //전체체크 해제 
+     $('#allCheck').click(function(){
+    	 if($('input[id="allCheck"]').prop("checked")){
+    	 	$('.check_box input[type="checkbox"]').prop('checked',true);
+    	 }else{
+    		$('.check_box input[type="checkbox"]').prop('checked',false);
+    	 }
+     });
+    	
+     
+//     다중삭제
 	   	function deleteBook(){
-	   		if(confirm("삭제하시겠습니까?")){
-	   		    var requestParam = new Request();
-	   		 	var title = requestParam.getParameter("title");
-	   		 	var isbn = requestParam.getParameter("isbn");
-	   			var checked_seq = "";
-	   		 	if ($('.check_box input[type="checkbox"]:checked').length != 0) {
-	                checked_seq = $('.check_box input[type="checkbox"]:checked').val();
-	            }else{
-             		alert("게시물을 선택해주시길 바랍니다.");
-             		return false;	            	
-	            }
-				location.href="BookDeletePro.bok?book_num="+checked_seq+"&title="+title+"&isbn="+isbn;
-				return true;
-       	    } else {
-       	    	alert("삭제에 실패하였습니다.");
-       	        return false;
-       	    }
+			var confirm_val = confirm("정말 삭제하시겠습니까?");
+			
+			if(confirm_val) {
+				var inter_num = [];
+				if ($('.check_box input[type="checkbox"]:checked').length > 0) {
+					$('.check_box input[type="checkbox"]:checked').each(function(){
+						inter_num.push($(this).attr("value"));  
+					});
+				}else{
+					alert("게시물을 선택해주시길 바랍니다.");
+					return false;	            	
+				};	
+				var interArr = {"inter_num" :inter_num};
+				$.ajax({
+					url : "BookDibsDelete.bok",
+					type : "post",
+					dataType: 'text',
+					data : interArr,
+					success : function(){
+						location.href = "BookDibsList.bok";
+					},error:function(request,status,error){
+				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				       }
+
+				});
+			} 
 	    };
-	    //수정
-	   	function modifyBook(){
-	   		if(confirm("수정하시겠습니까?")){
-	   			var checked_seq = "";
-	   		    var requestParam = new Request();;
-	   		 	var title = requestParam.getParameter("title");
-	   		 	var isbn = requestParam.getParameter("isbn");
-	   		  	var check_count = document.getElementsByName("book_num").length;
-	   		  	
-	   		 	if ($('.check_box input[type="checkbox"]:checked').length != 0) {
-	                checked_seq = $('.check_box input[type="checkbox"]:checked').val();
-	                alert(checked_seq);
-	            }else{
-                	alert("게시물을 선택해주시길 바랍니다.");
-                	return false;	            	
-	            }
-	   		 	alert(title);
-				location.href="BookModify.bok?book_num="+checked_seq+"&title="+title+"&isbn="+isbn;
-				return true;
-       	    } else {
-       	    	alert("수정에 실패하였습니다.")
-       	        return false;
-       	    }
-	    };
-	    
-	    	
-	   	 
-	                    	                    	
-                    	 
-    </script>
+    	
+	</script>
 </section>
 
 <jsp:include page="../include/footer.jsp"/>
