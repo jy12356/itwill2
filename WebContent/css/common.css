@@ -8,6 +8,7 @@
 .blue {background: #21b9f1 !important;color: #fff !important;}
 .sub_container{padding:20px 0 100px;width:900px;margin:0 auto;box-sizing:border-box;}
 .point{color: #f46000}
+.hidden{display:none}
 /* Margin, Padding */
 .mt100{margin-top:100px !important;}
 .mt90{margin-top:90px !important;}
