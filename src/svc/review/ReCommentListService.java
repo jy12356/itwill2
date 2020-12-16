@@ -7,14 +7,15 @@ import java.util.ArrayList;
 
 import dao.ReviewDAO;
 import vo.CommentBean;
+import vo.ReviewBean;
 
 
 public class ReCommentListService {
 
-	public int getCommetListCount() {
-		System.out.println("ReCommentListService - 1. getCommetListCount");
+	// 서평 게시물 확인
+	public int getListCount(int board_num, int board_type) {
 		
-		int listCount2 = 0;
+		int listCount = 0;
 		
 		Connection con = getConnection();
 		
@@ -22,17 +23,18 @@ public class ReCommentListService {
 		
 		reviewDAO.setConnection(con);
 		
-		listCount2 = reviewDAO.selectCommListCount();
+		listCount = reviewDAO.selectListCount(board_num, board_type);
 		
 		close(con);
 		
-		return listCount2;
+		return listCount;
 	}
 
-	public ArrayList<CommentBean> getCommArticleList(int page2, int limit2) {
-		System.out.println("ReviewListService - 2. getCommArticleList");
-		
-		ArrayList<CommentBean> articleCommList = null;
+	// 서평 리스트 
+	public ArrayList<CommentBean> getArticleList(int page, int limit, int board_num, int board_type) {
+		System.out.println("ReviewListService - 2. getArticleList");	
+
+		ArrayList<CommentBean> articleList = null;
 		
 		Connection con = getConnection();
 		
@@ -40,9 +42,11 @@ public class ReCommentListService {
 		
 		reviewDAO.setConnection(con);
 		
-		articleCommList = reviewDAO.selectCommentList(page2, limit2);
+		articleList = reviewDAO.selectArticleList(page, limit, board_num, board_type);
 		
-		return articleCommList;
+		close(con);
+
+		return articleList;
 	}
 
 }

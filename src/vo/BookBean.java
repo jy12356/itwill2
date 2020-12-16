@@ -8,13 +8,14 @@ public class BookBean {
 	    private String image;
 	    private String author;
 	    private String publisher;
-	    private Date pubdate;
+	    private String pubdate;
 	    private String isbn;
 	    private String description;
 	    private String catg1;
 		private String catg2;
 	    private String state;
-	    private int count;  
+	    private Date date;
+		private int count;
 	    private String author_info;
 	    private String index;
 	    
@@ -48,10 +49,10 @@ public class BookBean {
 	    public void setPublisher(String publisher) {
 	        this.publisher = publisher;
 	    }
-	    public Date getPubdate() {
+	    public String getPubdate() {
 	        return pubdate;
 	    }
-	    public void setPubdate(Date pubdate) {
+	    public void setPubdate(String pubdate) {
 	        this.pubdate = pubdate;
 	    }
 	    public String getIsbn() {
@@ -88,6 +89,12 @@ public class BookBean {
 		public int getCount() {
 			return count;
 		}
+	    public Date getDate() {
+			return date;
+		}
+		public void setDate(Date date) {
+			this.date = date;
+		}
 		public void setCount(int count) {
 			this.count = count;
 		}
@@ -103,5 +110,4 @@ public class BookBean {
 		public void setIndex(String index) {
 			this.index = index;
 		}
-		
 }

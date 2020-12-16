@@ -38,7 +38,7 @@ int listCount = PageInfo.getListCount();
 			<div class="customer-top-menu">
 				<ul>
 					<li><a href="../sub2/free_board.jsp" class=""><em>자유게시판</em></a></li>
-					<li><a href="../sub2/book_apl.jsp" class=""><em>도서신청</em></a></li>
+					<li><a href="NoticeBoardList.not" class=""><em>공지사항</em></a></li>
 				</ul>
 			</div>
 			<div class="customer-contents">
@@ -72,8 +72,7 @@ int listCount = PageInfo.getListCount();
 								<td align="center"><%=articleList.get(i).getNum()%></td>
 								<td>
 								<a href="NoticeBoardDetail.not?num=<%=articleList.get(i).getNum()%>&page=<%=nowPage%>">
-										<%=articleList.get(i).getSubject()%>
-								</a>
+										<%=articleList.get(i).getSubject()%></a>
 								</td>
 								<td align="center"><%=articleList.get(i).getId()%></td>
 								<td align="center"><%=articleList.get(i).getDate()%></td>
