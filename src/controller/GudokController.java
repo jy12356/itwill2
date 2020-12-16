@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.gudok.ChargeListAction;
+import action.gudok.ChargeListAction2;
 import action.gudok.ChargeProAction;
 import action.qna.QnaDetailAction;
 import vo.ActionForward;

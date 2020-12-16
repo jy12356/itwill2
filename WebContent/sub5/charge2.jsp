@@ -41,7 +41,7 @@ IMP.request_pay({
 
     alert(msg);
 //     window.close();
-    location.href="sub5/charge3.jsp";
+    location.href="ChargeList2.dok";
     
 });
 </script>
