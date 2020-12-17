@@ -11,6 +11,7 @@ import action.Action;
 import svc.Mybasket.MyBasketListService;
 import vo.ActionForward;
 import vo.BookBean;
+import vo.MyBasketBean;
 import vo.PageInfo;
 
 public class MyBasketListAction implements Action {
@@ -26,6 +27,7 @@ public class MyBasketListAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		System.out.println("id : " +id);
+		
 		if (id == null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -38,21 +40,27 @@ public class MyBasketListAction implements Action {
 			int page = 1;
 			int limit = 10; 
 			System.out.println("MyBasketAction 1");
+			
 			if (request.getParameter("page") != null) {
 				page = Integer.parseInt(request.getParameter("page"));
 			}
 			System.out.println("MyBasketAction 2");
+			System.out.println("mybasketListAction에서 가져온 page : " + page);
 
 			MyBasketListService myBasketListService = new MyBasketListService();
 			int listCount = myBasketListService.getListCount(id);
-			// 현재는 든게없지
-			System.out.println("가져온 listCount : " + listCount);
+			System.out.println("mybasketListAction에서 listCount : " + listCount);
+			
 			String memState = myBasketListService.getMemState(id);
+			
 			System.out.println(memState);
 			System.out.println("MyBasketAction 3");
 
-			ArrayList<BookBean> myBasketList = new ArrayList<BookBean>();
-			myBasketList = myBasketListService.getBasketList(page, limit, id);
+			ArrayList<MyBasketBean> rentalableList = new ArrayList<MyBasketBean>();
+			rentalableList = myBasketListService.getRentalableList(page, limit, id);
+			
+			ArrayList<MyBasketBean> unRentalableList = new ArrayList<MyBasketBean>();
+			unRentalableList = myBasketListService.getUnRentalableList(page, limit, id);
 			// 페이지 계산 작업 수행
 			// 1. 전체 페이지 수 계산
 			// (총 게시물 수 / 페이지 당 게시물 수 + 0.95) -> 정수로 변환
@@ -74,11 +82,16 @@ public class MyBasketListAction implements Action {
 			PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
 			System.out.println("MyBasketAction 5");
 			request.setAttribute("memState", memState);
-			request.setAttribute("myBasketList", myBasketList);
-			System.out.println("myBasketList : " + myBasketList);
-			request.setAttribute("pageInfo", pageInfo);
-
+			request.setAttribute("rentalableList", rentalableList);
+			System.out.println("rentalableList : " + rentalableList);
 			System.out.println("MyBasketAction 6");
+			
+			request.setAttribute("unRentalableList", unRentalableList);
+			System.out.println("unRentalableList : " + unRentalableList);
+			
+			request.setAttribute("pageInfo", pageInfo);
+			System.out.println("MyBasketAction 7");
+
 
 			forward = new ActionForward();
 			forward.setPath("/myPage/my_basket.jsp");

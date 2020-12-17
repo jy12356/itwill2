@@ -29,20 +29,31 @@ public class MyBasketInsertAction implements Action {
 			out.println("</script>"); // 자바스크립트 끝 태그
 		}else {
 			MyBasketInsertService myBaksetInsertService = new MyBasketInsertService();
-			boolean isInsertSuccess = myBaksetInsertService.insertBasket(isbn,id);
-			
-			if(!isInsertSuccess) {
+			boolean isOverlap = myBaksetInsertService.checkOverlap(isbn,id);
+			if(isOverlap == true) {
 				response.setContentType("text/html; charset=UTF-8"); 
 				PrintWriter out = response.getWriter();
 				out.println("<script>"); // 자바스크립트 시작 태그
-				out.println("alert('장바구니 등록을 실패하였습니다.')"); // 다이얼로그 메세지 출력
+				out.println("alert('찜바구니에 이미 존재하는 도서입니다..')"); // 다이얼로그 메세지 출력
 				out.println("history.back()"); // 이전 페이지로 이동
 				out.println("</script>"); // 자바스크립트 끝 태그
-			} else {
-				forward = new ActionForward();
-				forward.setPath("MyBasketList.bk");
-				forward.setRedirect(true);
+			}else {
+				boolean isInsertSuccess = myBaksetInsertService.insertBasket(isbn,id);
+				
+				if(!isInsertSuccess) {
+					response.setContentType("text/html; charset=UTF-8"); 
+					PrintWriter out = response.getWriter();
+					out.println("<script>"); // 자바스크립트 시작 태그
+					out.println("alert('장바구니 등록을 실패하였습니다.')"); // 다이얼로그 메세지 출력
+					out.println("history.back()"); // 이전 페이지로 이동
+					out.println("</script>"); // 자바스크립트 끝 태그
+				} else {
+					forward = new ActionForward();
+					forward.setPath("MyBasketList.bk");
+					forward.setRedirect(true);
+				}
 			}
+			
 		}
 		return forward;
 	}

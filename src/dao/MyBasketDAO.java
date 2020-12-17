@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vo.BookBean;
+import vo.MyBasketBean;
 
 public class MyBasketDAO {
 
@@ -61,10 +62,10 @@ public class MyBasketDAO {
 	
 
 
-	public ArrayList<BookBean> selectBasketList(int page, int limit, String id) {
-		System.out.println("MyBasketDAO - selectBasketList()");
+	public ArrayList<MyBasketBean> selectRentalableList(int page, int limit, String id) {
+		System.out.println("MyBasketDAO - selectRentalableList()");
 
-		ArrayList<BookBean> basketList = null;
+		ArrayList<MyBasketBean> basketList = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -82,24 +83,25 @@ public class MyBasketDAO {
 					+ "b.publisher publisher, b.pubdate pubdate,"
 					+ "k.isbn isbn, b.state state "
 					+ "from mybasket as k join book as b on k.isbn = b.isbn "
-					+ "where k.id=? group by b.isbn limit ?,?;";
+					+ "where k.id=? and b.state = ? group by b.isbn limit ?,?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, limit);
+			pstmt.setInt(2, 0);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, limit);
 			System.out.println("pstmt : " +  pstmt);
 			rs = pstmt.executeQuery();
 			
 			// ArrayList 객체 생성(while문 위에서 생성 필수!)
-			basketList = new ArrayList<BookBean>();
+			basketList = new ArrayList<MyBasketBean>();
 			while(rs.next()) {
-				BookBean basket = new BookBean();
+				MyBasketBean basket = new MyBasketBean();
 				basket.setNum(rs.getInt("num"));
 				basket.setTitle(rs.getString("title"));
 				basket.setAuthor(rs.getString("author"));
 				basket.setPublisher(rs.getString("publisher"));
 //				basket.setPubdate(rs.getDate("pubdate"));
-				basket.setPubdate(rs.getString("pubdate"));
+				basket.setPubdate(rs.getDate("pubdate"));
 				basket.setState(rs.getString("state"));
 				basket.setIsbn(rs.getString("isbn")); // 필요한가이거?
 				System.out.println(basket.getState());
@@ -107,7 +109,58 @@ public class MyBasketDAO {
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("selectBasketList() 오류! - " + e.getMessage());
+			System.out.println("selectRentalableList() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return basketList;
+	}
+	
+	public ArrayList<MyBasketBean> selectUnRentalableList(int page, int limit, String id) {
+		System.out.println("MyBasketDAO - selectUnRentalableList()");
+
+		ArrayList<MyBasketBean> basketList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		// 조회를 시작할 레코드(행) 번호 계산
+		int startRow = (page - 1) * limit;
+		try {
+			String sql = "select b.num num, b.title title, b.author author, "
+					+ "b.publisher publisher, b.pubdate pubdate,"
+					+ "k.isbn isbn, b.state state "
+					+ "from mybasket as k join book as b on k.isbn = b.isbn "
+					+ "where k.id=? and b.state = ? group by b.isbn limit ?,?;";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, 1);
+			pstmt.setInt(3, startRow);
+			pstmt.setInt(4, limit);
+			System.out.println("pstmt : " +  pstmt);
+			rs = pstmt.executeQuery();
+			
+			// ArrayList 객체 생성(while문 위에서 생성 필수!)
+			basketList = new ArrayList<MyBasketBean>();
+			while(rs.next()) {
+				MyBasketBean basket = new MyBasketBean();
+				basket.setNum(rs.getInt("num"));
+				basket.setTitle(rs.getString("title"));
+				basket.setAuthor(rs.getString("author"));
+				basket.setPublisher(rs.getString("publisher"));
+//				basket.setPubdate(rs.getDate("pubdate"));
+				basket.setPubdate(rs.getDate("pubdate"));
+				basket.setState(rs.getString("state"));
+				basket.setIsbn(rs.getString("isbn")); // 필요한가이거?
+				System.out.println(basket.getState());
+				basketList.add(basket);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectRentalableList() 오류! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(rs);
@@ -185,16 +238,16 @@ public class MyBasketDAO {
 	}
 
 
-	public int basketDelete(List<Integer> inerNumList, String id) {
+	public int basketDelete(List<Integer> interNumList, String id) {
 		System.out.println("MyBasketDAO - basketDelete()");
 		
 		int isDeleteOk = 0;
 		PreparedStatement pstmt = null;
 		try {
-			for(int i=0; i< inerNumList.size(); i++) {
+			for(int i=0; i< interNumList.size(); i++) {
 				String sql = "delete from mybasket where num=? and id=?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, inerNumList.get(i));
+				pstmt.setInt(1, interNumList.get(i));
 				pstmt.setString(2,id);
 				System.out.println(pstmt);
 				isDeleteOk = pstmt.executeUpdate();
@@ -207,7 +260,38 @@ public class MyBasketDAO {
 		}
 		return isDeleteOk;
 	}
-	
+
+
+	public int overlap(String isbn, String id) {
+		int count = 0;
+		
+		  PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      
+	      try {
+	          String sql = "select isbn from mybasket where id=?";
+	          pstmt=con.prepareStatement(sql);
+	          pstmt.setString(1, id);
+	          rs = pstmt.executeQuery();
+	          if(rs.next()) {
+	             if(rs.getString("isbn").equals(isbn)) {
+	            	 count = 1;               
+	             }
+	          }
+	       } catch (Exception e) {
+	          System.out.println("count 오류!" + e.getMessage() );
+	          e.printStackTrace();
+	       }finally{
+	          close(pstmt);
+	          close(rs);
+	       }
+		
+		
+		
+		return count;
+	}
+
+
 	
 	
 	
