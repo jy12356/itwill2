@@ -25,7 +25,7 @@ int listCount = pageInfo.getListCount();
 
 			<div class="customer-contents">
 				<div class="customer-inner">
-					<table summary="내가 찜한 리스트" class="customer-table notice" id="wow">
+					<table summary="책바구니" class="customer-table notice" id="wow">
 						<caption>책바구니2ㅁ</caption>
 						<colgroup>
 							<col style="width: 5%">
@@ -76,7 +76,7 @@ int listCount = pageInfo.getListCount();
 						</tr>
 						<%
 							isbn = myBasketList.get(i).getIsbn();
-						}
+							}
 						}
 						// 대여불가 = 예약가능 리스트
 						for (int i = 0; i < myBasketList.size(); i++) {
@@ -150,12 +150,18 @@ int listCount = pageInfo.getListCount();
 
 	<script>
 	
+
 	function rental(){
 		if ($(".isRentalable").val()=="구독안함") {
-			var u = "myPage/subscribe.jsp";
-			var name = "leggo";
-			var option = "width = 500, height = 150, top = 100, left = 400, location = no"
-			window.open(u,name,option);
+			var unsubscribe = confirm("현재 구독중이 아닙니다.\n구독 하시겠습니까?")
+			
+			if(unsubscribe) {
+				location.href="Charge.dok";
+
+			} else {
+				return;
+			}
+			
 		} else if($(".isRentalable").val()=="구독중"){
 			
 		}
