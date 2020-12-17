@@ -23,6 +23,11 @@ public class ReviewLikeCountAction implements Action {
 		ActionForward forward = null;
 		// ----- 중복체크 ---------------------------------------------------------------
 		
+		String book_isbn = request.getParameter("isbn");
+		String page=request.getParameter("page");
+		System.out.println("책코드 : " + book_isbn);
+		System.out.println("페이지번호 : " + page);
+		
 		String like_id = request.getParameter("like_id");
 		int review_num = Integer.parseInt(request.getParameter("review_num"));
 		System.out.println(like_id);
@@ -68,6 +73,7 @@ public class ReviewLikeCountAction implements Action {
 				jsonArray.add(json);
 				PrintWriter out = response.getWriter();
 				out.print(json);
+				
 			}
 		}
 			return null;

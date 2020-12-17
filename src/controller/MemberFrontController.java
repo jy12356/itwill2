@@ -20,6 +20,7 @@ import action.MemberLoginProAction;
 import action.MemberModifyFormAction;
 import action.MemberModifyProAction;
 import action.member.MemListDeleteAction;
+import action.member.MemberLogoutProAction;
 import action.member.MyPageAction;
 import vo.ActionForward;
 
@@ -138,9 +139,9 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/MemberLogOut.me")) {
+		} else if(command.equals("/MemberLogoutPro.me")) {
 			System.out.println("MemberLogoutPro");
-			action = new MemberLoginProAction();
+			action = new MemberLogoutProAction();
 			try {
 				forward = action.execute(request, response);
 				forward = new ActionForward();

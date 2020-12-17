@@ -88,7 +88,7 @@ String id = (String)session.getAttribute("id");
 						<%}else{ %>
 						<ul class="my-lnb">
 							<li class="btnLogOut"><a href="MemberLogoutPro.me">로그아웃</a></li>
-							<li><a href="MyPage?id=<%=id%>">MY</a></li>
+							<li><a href="Mypage.me?id=<%=id%>">MY</a></li>
 							<li><a href="MyBasketInsert.bk">책바구니</a></li>
 							<li class="alarm on"><a href="#">알리미</a></li>
 						</ul>
@@ -122,7 +122,7 @@ String id = (String)session.getAttribute("id");
 					
 				</ul>
 				<ul class="lnb">
-					<li><a href="Charge.qna">정기권 결제</a>
+					<li><a href="Charge.dok">정기권 결제</a>
 					<li><a href="QnaList.qna">고객센터</a>
 				</ul>
 			</div>

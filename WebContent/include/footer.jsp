@@ -50,7 +50,7 @@ int listCount = PageInfo.getListCount();
 				<h4>바로가기</h4>
 				<div>
 					<p><a href="/coupon.asp">쿠폰등록</a></p>
-					<p><a href="Charge.qna">구독결제</a></p>
+					<p><a href="Charge.dok">구독결제</a></p>
 					<p><a href="MyPage?id=admin">마이페이지</a></p>
 				</div>
 			</div>

@@ -19,6 +19,11 @@ public class ReviewDeleteProAction implements Action {
 		ActionForward forward = null;
 		
 		// 게시물 삭제에 필요한 글번호(board_num) 가져오기
+		String book_isbn = request.getParameter("isbn");
+		String page=request.getParameter("page");
+		System.out.println("책코드 : " + book_isbn);
+		System.out.println("페이지번호 : " + page);
+		
 		int num = Integer.parseInt(request.getParameter("num"));
 		String id = request.getParameter("id");
 		System.out.println("글번호 :" + num);
@@ -49,8 +54,8 @@ public class ReviewDeleteProAction implements Action {
 				out.println("history.back()");
 			} else { // 삭제 성공 시
 				forward = new ActionForward();
+				forward.setPath("BookDetail.bok?isbn="+book_isbn+"&page="+page);
 				forward.setRedirect(true);
-				forward.setPath("BookDetail.bok");
 			}
 		}
 		

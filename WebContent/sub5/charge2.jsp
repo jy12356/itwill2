@@ -40,8 +40,9 @@ IMP.request_pay({
     }
 
     alert(msg);
-    window.close();
-    opener.location.href='Charge.dok';
+//     window.close();
+    location.href="ChargeList2.dok";
+    
 });
 </script>
   </body>
