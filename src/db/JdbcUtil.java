@@ -9,6 +9,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
 // DB 관련 기본 기능(연결, 자원반환, commit, rollback 등)을 담당하는 클래스
 // => 모든 메서드는 JdbcUtil 클래스의 인스턴스 생성 없이도 접근하도록 
 //    static 메서드로 정의
@@ -35,6 +37,7 @@ public class JdbcUtil {
 			con.setAutoCommit(false);
 			
 		} catch(Exception e) {
+			System.out.println("db연결실패"+e.getMessage());
 			e.printStackTrace();
 		}
 		// Connection 객체 리턴
