@@ -42,7 +42,17 @@ public class MainListService {
 		return bookList2;
 	}
 
-
+	public ArrayList<BookBean> getBookList3(int page, int limit,String catg1, String catg2) {
+		ArrayList<BookBean> bookList3 = new ArrayList<BookBean>();
+		BookDAO bookDAO = BookDAO.getInstance();
+		Connection con = getConnection();
+		bookDAO.setConnection(con);
+		bookList3 = bookDAO.selectBookList3(page,limit,catg1,catg2);
+		close(con);
+		System.out.println("servicesize" + bookList3.size());
+		System.out.println("MainListService2 끝");
+		return bookList3;
+	}
 	
 
 }
