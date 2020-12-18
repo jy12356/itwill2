@@ -3,7 +3,6 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String)session.getAttribute("id");
-		id="id";
 	RequestBean article = (RequestBean)request.getAttribute("article");
 	String nowPage = request.getParameter("page");
 %>
@@ -16,7 +15,7 @@
 		<section class="sub">
 			<div class="category-nav">
         		<div class="category-nav-inner">
-           	 		<p>HOME > 희망도서 신청 목록 > 희망도서 신청</p>
+           	 		<p>HOME > 희망도서 신청 목록 > 신청도서 수정</p>
         		</div>
 			</div>
 			<div class="contents-wrap">
@@ -48,10 +47,6 @@
 									<tr>
 										<th>출판년도 <em><font color="red">(*)</font></em></th>
 										<td><input type="text" name="pubdate" value="<%=article.getPubdate()%>" required="required"></td>
-									</tr>
-									<tr>
-										<th>ISBN</th>
-										<td><input type="text" name="isbn" value="<%=article.getIsbn()%>" maxlength="13"></td>
 									</tr>
 									<tr>
 										<th>첨부 내용 </th>
