@@ -86,7 +86,7 @@ public class BookDAO {
       }
       return insertCount;      
    }
-	//책 리스트
+	//책 리스트 - 최신순
 	public ArrayList<BookBean> selectBookList(int page, int limit,String catg1,String catg2) {
 		System.out.println("BookDAO - selectList()");
 		ArrayList<BookBean> bookList = null;
@@ -134,7 +134,7 @@ public class BookDAO {
 		}
 		return bookList;
 	}
-	//책 리스트2 - 인기순
+	//책 리스트2 - 인기순(소설)
 	public ArrayList<BookBean> selectBookList2(int page, int limit,String catg1,String catg2) {
 		
 		System.out.println("BookDAO - selectList2()");
@@ -152,7 +152,7 @@ public class BookDAO {
 //			pstmt.setString(1, "%"+catg1);
 //			pstmt.setString(2, "%"+catg2);
 			pstmt.setInt(1, 0);
-			pstmt.setInt(2, 5);
+			pstmt.setInt(2, 10);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			bookList2 = new ArrayList<BookBean>();
@@ -185,6 +185,111 @@ public class BookDAO {
 		}
 		return bookList2;
 	}
+	
+	//책 리스트3 - 인기순(인문/경제)
+		public ArrayList<BookBean> selectBookList3(int page, int limit,String catg1,String catg2) {
+			
+			System.out.println("BookDAO - selectList3()");
+			ArrayList<BookBean> bookList3 = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			//조회를 시작할 레코드 행 번호 계산
+			int startRow=(page-1)*limit;
+			catg1="인문/경제";
+			catg2=null;
+			String sql = "select * from book order by count desc limit ?,?";
+			try {
+				pstmt=con.prepareStatement(sql);
+//				pstmt.setString(1, "%"+catg1);
+//				pstmt.setString(2, "%"+catg2);
+				pstmt.setInt(1, 0);
+				pstmt.setInt(2, 10);
+				System.out.println(pstmt);
+				rs = pstmt.executeQuery();
+				bookList3 = new ArrayList<BookBean>();
+				while(rs.next()) {
+					BookBean bookBean = new BookBean();
+					bookBean.setNum(rs.getInt("num"));
+					bookBean.setTitle(rs.getString("title"));
+					bookBean.setCatg1(rs.getString("catg1"));
+					bookBean.setCatg2(rs.getString("catg2"));
+					bookBean.setAuthor(rs.getString("author"));
+					bookBean.setPublisher(rs.getString("publisher"));
+					bookBean.setPubdate(rs.getString("pubdate"));
+					bookBean.setIsbn(rs.getString("isbn"));
+					bookBean.setState(rs.getString("state"));
+					bookBean.setCount(rs.getInt("count"));
+					bookBean.setAuthor_info(rs.getString("author_info"));
+					bookBean.setIndex(rs.getString("index_info"));
+					bookBean.setImage(rs.getString("image"));
+					bookBean.setDescription(rs.getString("description"));
+					bookList3.add(bookBean);
+					System.out.println("a");
+				}
+				System.out.println("DAObookList3.size" + bookList3.size());
+			}catch (Exception e) {
+				System.out.println("selectBookList3오류!" + e.getMessage());;
+				e.printStackTrace();
+			}finally {
+				close(rs);	
+				close(pstmt);
+			}
+			return bookList3;
+		}
+		
+		//책 리스트4 - 인기순(과학)
+		public ArrayList<BookBean> selectBookList4(int page, int limit,String catg1,String catg2) {
+			
+			System.out.println("BookDAO - selectList4()");
+			ArrayList<BookBean> bookList4 = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			//조회를 시작할 레코드 행 번호 계산
+			int startRow=(page-1)*limit;
+			catg1="과학";
+			catg2="과학";
+			String sql = "select * from book order by count desc limit ?,?";
+			try {
+				pstmt=con.prepareStatement(sql);
+//				pstmt.setString(1, "%"+catg1);
+//				pstmt.setString(2, "%"+catg2);
+				pstmt.setInt(1, 0);
+				pstmt.setInt(2, 10);
+				System.out.println(pstmt);
+				rs = pstmt.executeQuery();
+				bookList4 = new ArrayList<BookBean>();
+				while(rs.next()) {
+					BookBean bookBean = new BookBean();
+					bookBean.setNum(rs.getInt("num"));
+					bookBean.setTitle(rs.getString("title"));
+					bookBean.setCatg1(rs.getString("catg1"));
+					bookBean.setCatg2(rs.getString("catg2"));
+					bookBean.setAuthor(rs.getString("author"));
+					bookBean.setPublisher(rs.getString("publisher"));
+					bookBean.setPubdate(rs.getString("pubdate"));
+					bookBean.setIsbn(rs.getString("isbn"));
+					bookBean.setState(rs.getString("state"));
+					bookBean.setCount(rs.getInt("count"));
+					bookBean.setAuthor_info(rs.getString("author_info"));
+					bookBean.setIndex(rs.getString("index_info"));
+					bookBean.setImage(rs.getString("image"));
+					bookBean.setDescription(rs.getString("description"));
+					bookList4.add(bookBean);
+					System.out.println("a");
+				}
+				System.out.println("DAObookList3.size" + bookList4.size());
+			}catch (Exception e) {
+				System.out.println("selectBookList3오류!" + e.getMessage());;
+				e.printStackTrace();
+			}finally {
+				close(rs);	
+				close(pstmt);
+			}
+			return bookList4;
+		}
+		
    //전체책 갯수
    public int selectListCount() {
       System.out.println("BookDAO - selectListCount()");

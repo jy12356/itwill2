@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.book.MainList2Action;
 import action.book.MainListAction;
 import vo.ActionForward;
 @WebServlet("*.book") 
