@@ -34,7 +34,7 @@ public class MyBasketInsertAction implements Action {
 				response.setContentType("text/html; charset=UTF-8"); 
 				PrintWriter out = response.getWriter();
 				out.println("<script>"); // 자바스크립트 시작 태그
-				out.println("alert('찜바구니에 이미 존재하는 도서입니다..')"); // 다이얼로그 메세지 출력
+				out.println("alert('책바구니에 이미 존재하는 도서입니다.')"); // 다이얼로그 메세지 출력
 				out.println("history.back()"); // 이전 페이지로 이동
 				out.println("</script>"); // 자바스크립트 끝 태그
 			}else {

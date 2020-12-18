@@ -55,6 +55,7 @@ int listCount = pageInfo.getListCount();
 							// 대여가능 리스트
 						String isbn;
 						// 							ArrayList list = new ArrayList();
+						if(rentalableList.size() != 0) {
 						for (int i = 0; i < rentalableList.size(); i++) {
 							if(rentalableList.get(i).getState().equals("0")) {
 								String a = rentalableList.get(i).getState();
@@ -73,6 +74,7 @@ int listCount = pageInfo.getListCount();
 
 						</tr>
 						<%
+						}
 						}
 						}
 						%>
@@ -104,9 +106,9 @@ int listCount = pageInfo.getListCount();
 							</tr>
 								<%
 						
-						
+								if(unRentalableList.size() != 0) {
 						for (int j = 0; j < unRentalableList.size(); j++) {
-							if(rentalableList.get(j).getState().equals("1")) {
+							if(unRentalableList.get(j).getState().equals("1")) {
 						String b = unRentalableList.get(j).getState();
 						b = "예약가능";
 						// 예약가능한 목록 리스트
@@ -126,7 +128,8 @@ int listCount = pageInfo.getListCount();
 
 						<%
 							}
-						}
+						} 
+								}
 						%>
 
 					</table>
