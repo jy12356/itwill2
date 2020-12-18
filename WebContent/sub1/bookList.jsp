@@ -155,7 +155,7 @@
 							</div>
 							<%} %>
                             <div class="paging">
-                            	<%if(nowPage > 1) {%>
+                            	<%if(nowPage > maxPage) {%>
 									<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=1" class="arr" data-page-num="1">
 										<img src="images/p-first.png"><span class="hide">처음페이지</span>
 									</a>

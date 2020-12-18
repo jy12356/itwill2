@@ -535,4 +535,29 @@ public class BookDAO {
       
       return isDibsYnCount;
    }
+	public boolean selectIsbn(String isbn) {
+		  boolean isIsbn = false;
+	      
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      try {
+	         String sql = "select * from interestinglist where isbn=?";
+	         pstmt=con.prepareStatement(sql);
+	         pstmt.setString(1, isbn);
+	         rs = pstmt.executeQuery();
+	         if(rs.next()) {
+	            if(rs.getString("isbn").equals(isbn)) {
+	            	isIsbn = true;               
+	            }
+	         }
+	      } catch (Exception e) {
+	         System.out.println("selectIsbn 오류!" + e.getMessage() );
+	         e.printStackTrace();
+	      }finally{
+	         close(pstmt);
+	         close(rs);
+	      }
+	      
+	      return isIsbn;
+	   }
 }

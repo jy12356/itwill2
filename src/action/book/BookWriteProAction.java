@@ -37,9 +37,7 @@ public class BookWriteProAction implements Action {
 		);
 		
 		//전달할 데이터를 BoardBean객체에 저장
-		
-		System.out.println("111111"+multi.getParameter("catg1"));
-		System.out.println("222222"+multi.getParameter("catg2"));
+		String isbn =multi.getParameter("isbn");
 		BookBean bookBean = new BookBean();
 		bookBean.setTitle(multi.getParameter("title"));
 		bookBean.setImage(multi.getOriginalFileName("image"));
@@ -52,22 +50,29 @@ public class BookWriteProAction implements Action {
 		bookBean.setCatg2(multi.getParameter("catg2"));
 		bookBean.setAuthor_info(multi.getParameter("author_info"));
 		bookBean.setIndex(multi.getParameter("index"));
-        
 		BookWriteService bookWriteServie = new BookWriteService();
-		boolean isWriteSuccess = bookWriteServie.insertBook(bookBean);
-	
-		if(!isWriteSuccess) {
+		boolean isIsbn = bookWriteServie.selectIsbn(isbn);
+		if(!isIsbn) {
+			boolean isWriteSuccess = bookWriteServie.insertBook(bookBean);
+			if(!isWriteSuccess) {
+				response.setContentType("text/html; charset=UTF-8"); 
+				PrintWriter out = response.getWriter();
+				out.println("<script>"); // 자바스크립트 시작 태그
+				out.println("alert('책 등록을 실패하였습니다.')"); // 다이얼로그 메세지 출력
+				out.println("history.back()"); // 이전 페이지로 이동
+				out.println("</script>"); // 자바스크립트 끝 태그
+			} else {
+				forward = new ActionForward();
+				forward.setPath("BookList.bok");
+				forward.setRedirect(true);
+			}
+		}else{
 			response.setContentType("text/html; charset=UTF-8"); 
 			PrintWriter out = response.getWriter();
 			out.println("<script>"); // 자바스크립트 시작 태그
-			out.println("alert('책 등록을 실패하였습니다.')"); // 다이얼로그 메세지 출력
+			out.println("alert('이미 등록된 책입니다.')"); // 다이얼로그 메세지 출력
 			out.println("history.back()"); // 이전 페이지로 이동
 			out.println("</script>"); // 자바스크립트 끝 태그
-		} else {
-			forward = new ActionForward();
-			forward.setPath("BookList.bok");
-			
-			forward.setRedirect(true);
 		}
 		return forward;
 	}
