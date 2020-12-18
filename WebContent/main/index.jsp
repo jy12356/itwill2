@@ -14,6 +14,8 @@
 	String id = (String) session.getAttribute("id"); 
 	ArrayList<BookBean> bookList = (ArrayList<BookBean>)request.getAttribute("bookList");
 	ArrayList<BookBean> bookList2 = (ArrayList<BookBean>)request.getAttribute("bookList2");
+	ArrayList<BookBean> bookList3 = (ArrayList<BookBean>)request.getAttribute("bookList3");
+	ArrayList<BookBean> bookList4 = (ArrayList<BookBean>)request.getAttribute("bookList4");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage = pageInfo.getPage();
 	int maxPage = pageInfo.getMaxPage();
@@ -360,7 +362,7 @@
 				</li>
 				<li>
 					<div class="figure">
-						<span class="label"><em>10% <span>할인</span></em></span> <a
+						<span class="label"><em>10%<span>할인</span></em></span> <a
 							href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">
 							<span class="rm_br"><img
 								src="https://bookimg.bookcube.com/150/2011/201100254.jpg"
@@ -375,9 +377,7 @@
 					</div>
 					<div class="hot-info">
 						<p class="hot-title">
-							<a
-								href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">주식하는
-								마음</a>
+							<a href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">주식하는 마음</a>
 						</p>
 						<p>홍진채</p>
 					</div>
@@ -392,8 +392,7 @@
 				<h3>카테고리별 베스트</h3>
 				<ul>
 					<li><a href="../sub1/list.html">소설<span class="ct-arrow"></span></a></li>
-					<li><a href="../sub1/list.html">인문/경제<span
-							class="ct-arrow"></span></a></li>
+					<li><a href="../sub1/list.html">인문/경제<span class="ct-arrow"></span></a></li>
 					<li><a href="../sub1/list.html">자기개발<span class="ct-arrow"></span></a></li>
 					<li><a href="../sub1/list.html">과학<span class="ct-arrow"></span></a></li>
 					<li><a href="../sub1/list.html">IT<span class="ct-arrow"></span></a></li>
@@ -418,25 +417,27 @@
 									<span>순위</span>
 								</p>
 								<p class="webtoon">
-									<strong class="fn-webtoon">소설</strong> <a
-										href="/webtoon/best/realtime" class="btn-type03">더보기 <span
-										class="more"></span>
+									<strong class="fn-webtoon">소설</strong> 
+									<a href="/webtoon/best/realtime" class="btn-type03">더보기 
+										<span class="more"></span>
 									</a>
 								</p>
 								<p class="comic">
-									<strong class="fn-comic">인문/경제</strong> <a
-										href="/comic/best/all/realtime" class="btn-type03">더보기 <span
-										class="more"></span></a>
+									<strong class="fn-comic">인문/경제</strong> 
+									<a href="/comic/best/all/realtime" class="btn-type03">더보기
+										<span class="more"></span>
+									</a>
 								</p>
 								<p class="fiction">
-									<strong class="fn-fiction">과학/IT</strong> <a
-										href="/novel/best/all/realtime" class="btn-type03">더보기 <span
-										class="more"></span></a>
+									<strong class="fn-fiction">과학/IT</strong> 
+									<a href="/novel/best/all/realtime" class="btn-type03">더보기 
+										<span class="more"></span>
+									</a>
 								</p>
 							</li>
 						<%
 						if(bookList2!=null){
-						for(int i = 0; i < bookList2.size(); i++) {
+						for(int i = 0; i < 1; i++) {
 						%>							
 							<li class="top-rank top-one">
 								<p class="rank">
@@ -451,7 +452,7 @@
 									<div>
 										<a title="<%=bookList2.get(1).getTitle()%>" href="/webtoon/wt_closet_wz">
 											<div>
-												<img src="https://img.mrblue.com/prod_img/comics/wt_closet_wz/thumb_sq.jpg" alt="">
+												<img src="<%=bookList2.get(1).getTitle()%>" alt="">
 											</div> 
 											<span><strong><%=bookList2.get(1).getTitle()%></strong></span>
 											<span><%=bookList2.get(1).getAuthor()%></span>
@@ -461,33 +462,90 @@
 								</div>
 								<div class="comic">
 									<p>
-										<strong><%=bookList2.get(1).getTitle()%></strong>
-										<span><%=bookList2.get(1).getAuthor()%></span>
+										<strong><%=bookList3.get(1).getTitle()%></strong>
+										<span><%=bookList3.get(1).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="<%=bookList2.get(1).getTitle()%>" href="/comic/goe">
+										<a title="<%=bookList3.get(1).getTitle()%>" href="/comic/goe">
 											<div>
-												<img src="https://img.mrblue.com/prod_img/comics/goe/main_large.jpg" alt="">
+												<img src="<%=bookList3.get(1).getImage()%>" alt="">
 											</div> 
-											<span><strong><%=bookList2.get(1).getTitle()%></strong></span>
-											<span><%=bookList2.get(1).getAuthor()%></span>
-											<span><%=bookList2.get(1).getCatg2()%></span>
+											<span><strong><%=bookList3.get(1).getTitle()%></strong></span>
+											<span><%=bookList3.get(1).getAuthor()%></span>
+											<span><%=bookList3.get(1).getCatg2()%></span>
 										</a>
 									</div>
 								</div>
 								
 								<div class="fiction">
 									<p>
-										<strong>무인이곽 (연재)</strong><span>우각</span>
+										<strong><%=bookList4.get(1).getTitle()%></strong>
+										<span><%=bookList4.get(1).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="무인이곽 (연재)" href="/novel/E000072153">
+										<a title="<%=bookList4.get(1).getTitle()%>" href="/novel/E000072153">
 											<div>
-												<img src="https://img.mrblue.com/prod_img/ebook/E000072153/main_large.jpg" alt="">
+												<img src="<%=bookList4.get(1).getTitle()%>" alt="">
 											</div> 
-											<span><strong>무인이곽 (연재)</strong></span>
-											<span>우각</span>
-											<span>무협</span>
+											<span><strong><%=bookList4.get(1).getTitle()%></strong></span>
+											<span><%=bookList4.get(1).getAuthor()%></span>
+											<span><%=bookList4.get(1).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							
+							<li class="top-rank top-one">
+								<p class="rank">
+									<span><strong>2</strong></span>
+									<span class="icon"></span>
+								</p>
+								<div class="webtoon">
+									<p>
+										<strong><%=bookList2.get(2).getTitle()%></strong>
+										<span><%=bookList2.get(2).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList2.get(2).getTitle()%>" href="/webtoon/wt_closet_wz">
+											<div>
+												<img src="<%=bookList2.get(2).getTitle()%>" alt="">
+											</div> 
+											<span><strong><%=bookList2.get(2).getTitle()%></strong></span>
+											<span><%=bookList2.get(2).getAuthor()%></span>
+											<span><%=bookList2.get(2).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+								<div class="comic">
+									<p>
+										<strong><%=bookList3.get(2).getTitle()%></strong>
+										<span><%=bookList3.get(2).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList3.get(2).getTitle()%>" href="/comic/goe">
+											<div>
+												<img src="<%=bookList3.get(2).getImage()%>" alt="">
+											</div> 
+											<span><strong><%=bookList3.get(2).getTitle()%></strong></span>
+											<span><%=bookList3.get(2).getAuthor()%></span>
+											<span><%=bookList3.get(2).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+								
+								<div class="fiction">
+									<p>
+										<strong><%=bookList4.get(2).getTitle()%></strong>
+										<span><%=bookList4.get(2).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList4.get(2).getTitle()%>" href="/novel/E000072153">
+											<div>
+												<img src="<%=bookList4.get(2).getTitle()%>" alt="">
+											</div> 
+											<span><strong><%=bookList4.get(2).getTitle()%></strong></span>
+											<span><%=bookList4.get(2).getAuthor()%></span>
+											<span><%=bookList4.get(2).getCatg2()%></span>
 										</a>
 									</div>
 								</div>
@@ -512,7 +570,7 @@
 				
 				<ul>
 					<%
-						for(int i = 0; i < bookList.size(); i++) {
+						for(int i = 0; i < 5; i++) {
 					%>
 					<li>
 						<div class="figure">

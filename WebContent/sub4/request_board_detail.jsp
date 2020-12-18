@@ -3,9 +3,8 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String) session.getAttribute("id");
-id = "id";
-RequestBean article = (RequestBean) request.getAttribute("article");
-String nowPage = request.getParameter("page");
+	RequestBean article = (RequestBean) request.getAttribute("article");
+	String nowPage = request.getParameter("page");
 %>
 <jsp:include page="../include/header.jsp" />
 <section class="sub">
@@ -40,10 +39,6 @@ String nowPage = request.getParameter("page");
 							<tr>
 								<td>출판년도</td>
 								<td><%=article.getPubdate()%></td>
-							</tr>
-							<tr>
-								<td>ISBN</td>
-								<td><%=article.getIsbn()%></td>
 							</tr>
 							<tr>
 								<td>첨부 내용</td>
