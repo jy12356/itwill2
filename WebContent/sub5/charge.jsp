@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <% String id = request.getParameter("id"); %> --%>
+<% String id = (String)session.getAttribute("id"); %>
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
 	<div class="contents-wrap">
@@ -32,7 +32,7 @@
 				<input type="hidden" name="site_cd"         value="K4282" />
 				<input type="hidden" name="site_name"       value="BookCube" />
 				<input type="hidden" name="quotaopt"        value="12"/>
-				<input type="hidden" name="id" value="B"/>
+				<input type="hidden" name="id" id="id" value="<%=id%>"/>
 				
 				
 				<!-- 필수 항목 : 결제 금액/화폐단위 -->

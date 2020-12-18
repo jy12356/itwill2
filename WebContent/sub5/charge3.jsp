@@ -40,13 +40,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <%for(int i = 0; i < articleList.size(); i++){ %>
+                        <%String id = (String)session.getAttribute("id");
+                        for(int i = 0; i < articleList.size(); i++){
+                        	if(id != null){%>
+                        		  <tr>
+                                <td><p class="autor" align="center"><%=articleList.get(i).getGnum() %></p></td>
+							<td><p class="autor"><%=id%></p></td>
+                             <td><p class="autor"><%=articleList.get(i).getGproduct()%></p></td>
+                             <td><%=articleList.get(i).getGdate()%></td>
+                            </tr>
+                        	<%}else if(id.equals("admin")){
+                      		%>
                             <tr>
                                 <td><p class="autor" align="center"><%=articleList.get(i).getGnum() %></p></td>
 							<td><p class="autor"><%=articleList.get(i).getId() %></p></td>
                              <td><p class="autor"><%=articleList.get(i).getGproduct()%></p></td>
                              <td><%=articleList.get(i).getGdate()%></td>
                             </tr>
+                        	<%}
+                        	%>
                         <%} %>
                         </tbody>
                     </table>

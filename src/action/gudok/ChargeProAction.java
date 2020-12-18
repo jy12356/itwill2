@@ -22,9 +22,9 @@ public class ChargeProAction implements Action{
 		ActionForward forward = null;
 		
 		String gproduct = request.getParameter("gproduct");
-		
+		String id = request.getParameter("id");
 		GudokBean gudokBean = new GudokBean();
-		gudokBean.setId("id");
+		gudokBean.setId(id);
 		gudokBean.setGproduct(gproduct);
 		
 		ChargeProService chargeProService = new ChargeProService();
