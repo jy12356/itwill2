@@ -14,6 +14,8 @@ int limit = ((Integer)request.getAttribute("limit")).intValue();
 System.out.println("limit :" + limit);
 	limit = limit+10;
 
+int entireCount = ((Integer)request.getAttribute("entireCount")).intValue();
+System.out.println("entireCount :" + entireCount);
 // if(limit==10){
 // 	limit = limit+10;
 // }else{
@@ -264,7 +266,7 @@ int board_num = article.getBoard_num();
 						
 						<%
 // 						if(commentList != null && listCount > 0) {
-// 							if(commentList.size() > 10) {
+							if(entireCount > limit) {
 						%>
 <!-- 						<div class="d-more reviewMore" style="display: ;"> -->
 <!-- 							<a href="javascript:;" class="moreComment">댓글 더보기</a> -->
@@ -272,15 +274,10 @@ int board_num = article.getBoard_num();
 <div class="d-more reviewMore" style="display: ;">
 	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%>
 	&board_type=<%=board_type%>&limit=<%=limit%>">댓글 더보기</a>
-<%-- 	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%> --%>
-<%-- 	&board_type=<%=board_type%>&b=<%=b%>">댓글 더보기</a> --%>
-<%-- 	<a href="#" onclick="location.href='FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%> --%>
-<%-- 	&board_type=<%=board_type%>&b=<%=b%> return false;">댓글 더보기</a> --%>
-<%-- 	<a href="#" onclick=" location.href = 'http://blog.naver.com/kyoungseop?a=<%=a%>&b=<%=b%>' + '&c=' + c; return false;">Myblog</a> --%>
 
 						</div>
 						<%
-// 							}
+							}
 // 						}
 						%>
 					</div>
