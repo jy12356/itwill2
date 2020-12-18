@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-allDay">하루종일</label>
-                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox"></label>
+                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox">
                             </div>
                         </div>
 
@@ -106,7 +106,7 @@
     <!-- /.container -->
 
     <script src="sub5/FullCalendar/vendor/js/jquery.min.js"></script>
-    <script src="sub5/FullCalendar/endor/js/bootstrap.min.js"></script>
+    <script src="sub5/FullCalendar/vendor/js/bootstrap.min.js"></script>
     <script src="sub5/FullCalendar/vendor/js/moment.min.js"></script>
     <script src="sub5/FullCalendar/vendor/js/fullcalendar.min.js"></script>
     <script src="sub5/FullCalendar/vendor/js/ko.js"></script>
@@ -117,4 +117,5 @@
     <script src="sub5/FullCalendar/js/editEvent.js"></script>
     <script src="sub5/FullCalendar/js/etcSetting.js"></script>
 </body>
+<jsp:include page="../../include/footer.jsp"/>
 </html>
