@@ -213,7 +213,7 @@ int listCount = pageInfo.getListCount();
 						data : interArr,
 						success : function() {
 							// 대여하기 성공했으면 대여리스트로 가기
-							location.href = "rentalList.bk";
+							location.href = "RentalList.bk";
 						},
 						error : function(request, status, error) {
 							alert("code:" + request.status + "\n" + "message:"

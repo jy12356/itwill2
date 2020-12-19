@@ -212,6 +212,21 @@ String id = (String)session.getAttribute("id");
 
 <!-- 네이버아디디로로그인 초기화 Script -->
 <script type="text/javascript">
+
+	function frmSearchSubmit(){		
+		
+		var objFrm = $("#searchFrm") ;
+		if ($(".search_input").val() == ''){
+			alert('검색어를 검색해주세요.');
+			$(".search_input").focus();			
+			return ;
+		}else{
+			objFrm.attr("method","get");
+			objFrm.attr("action","SearchAll.book");
+			objFrm.submit();
+		}		
+	}
+
 	var naver_id_login = new naver_id_login("tdoziaWOhdIeC0LICk28", httpsUrl +"/member/naver/naver.asp");
 
 	naver_id_login.setPopup(); //Popup형태의 인증 진행
