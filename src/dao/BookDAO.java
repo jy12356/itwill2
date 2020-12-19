@@ -124,7 +124,6 @@ public class BookDAO {
 				bookBean.setDescription(rs.getString("description"));
 				bookBean.setReviewCount(rs.getInt("review"));
 				bookBean.setStarcount(rs.getInt("starcount"));
-				
 				bookList.add(bookBean);
 			}
 			
