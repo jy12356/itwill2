@@ -180,7 +180,7 @@ a:hover {text-decoration:underline;}
 .fw_n{font-weight:normal !important;}
 
 /* 탑버튼 추가 */
-.topBtn{position:fixed;right: 301px;bottom:15px;width:40px;height:40px;background:url(../images/topBtn.png) no-repeat left center #fff;text-indent:-9999px;z-index:10000;}
+.topBtn{position:fixed;right: 4%;bottom:15px;width:40px;height:40px;background:url(../images/topBtn.png) no-repeat left center #fff;text-indent:-9999px;z-index:10000;}
 .topBtn a{display:block;width:40px;height:40px;}
 
 /* 체크박스 커스텀 */
