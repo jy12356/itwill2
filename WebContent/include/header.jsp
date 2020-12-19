@@ -117,7 +117,7 @@ String id = (String)session.getAttribute("id");
 					<li><a href="FreeBoardList.free">게시판</a></li>
 <!-- 					<li><a href="../sub5/card.jsp">카트</a></li> -->
 						<%if(id != null && id.equals("admin")){ %>
-							<li><a href="https://www.bookcube.com/toon/main.asp">관리자페이지</a></li>
+							<li><a href="Admin.book">관리자페이지</a></li>
 						<%}else{}%>
 					
 				</ul>
@@ -147,8 +147,7 @@ String id = (String)session.getAttribute("id");
 			<ul class="snb-right">
 				<li><a href="../sub1/list_best.jsp">베스트</a></li>
 				<li><a href="../sub1/list_new.jsp">신간</a></li>
-				<li><a href="../sub1/list_free.jsp">무료</a></li>
-				<li><a href="../sub1/event">이벤트</a></li>
+<!-- 				<li><a href="../sub1/event">이벤트</a></li> -->
 			</ul>
 		</div>
 		

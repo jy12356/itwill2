@@ -40,7 +40,12 @@ public class BookWriteProAction implements Action {
 		String isbn =multi.getParameter("isbn");
 		BookBean bookBean = new BookBean();
 		bookBean.setTitle(multi.getParameter("title"));
-		bookBean.setImage(multi.getOriginalFileName("image"));
+		if(multi.getOriginalFileName("image") !=null) {
+			System.out.println(multi.getOriginalFileName("image"));
+			bookBean.setImage(multi.getOriginalFileName("image"));
+		}else {
+			bookBean.setImage("noimg.jpg");
+		}
 		bookBean.setAuthor(multi.getParameter("author"));
 		bookBean.setPublisher(multi.getParameter("publisher"));
 		bookBean.setPubdate(multi.getParameter("pubdate"));

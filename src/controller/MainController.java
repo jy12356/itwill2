@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.AdminAction;
 import action.book.MainListAction;
 import vo.ActionForward;
 @WebServlet("*.book") 
@@ -26,6 +27,17 @@ public class MainController extends HttpServlet {
 			
 			action = new MainListAction();
 			System.out.println("최신순");
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("/Admin.book")) {
+			System.out.println("Admin.book 포워딩");
+			
+			action = new AdminAction();
 			
 			try {
 				forward = action.execute(request, response);
