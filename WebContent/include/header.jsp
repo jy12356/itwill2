@@ -71,13 +71,11 @@ String id = (String)session.getAttribute("id");
 				<form name="searchFrm" id="searchFrm" autocomplete="off">
 				<!--input type="hidden" name="searchOption" id="searchOption" value="" /-->
 				<input type="text" style="display: none;" />
-				<input type="hidden" name="searchpage" value="normal" />
-				<input type="hidden" name="page" value="">
 					<fieldset>
 						<legend>검색</legend>
 						<h1 class="logo"><a href="Main.book">북큐브서점</a></h1>
 						<div class="search">						
-							<input type='text' name='searchString' class="search_input" style="ime-mode:active;" />
+							<input type='text' name='search' class="search_input" style="ime-mode:active;" />
 							<input type='button' onclick="frmSearchSubmit()" />
 						</div>
 						<%if(id == null){ %>
