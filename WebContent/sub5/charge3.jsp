@@ -7,6 +7,8 @@
 	// 전달받은 request 객체로부터 데이터 가져오기
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
+	String id = (String)session.getAttribute("id");
+	String gproduct = request.getParameter("gproduct");
 	ArrayList<GudokBean> articleList = (ArrayList<GudokBean>)request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage = pageInfo.getPage();
@@ -40,23 +42,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <%String id = (String)session.getAttribute("id");
+                        <%
                         for(int i = 0; i < articleList.size(); i++){
-                        	if(id != null){%>
-                        		  <tr>
-                                <td><p class="autor" align="center"><%=articleList.get(i).getGnum() %></p></td>
-							<td><p class="autor"><%=id%></p></td>
-                             <td><p class="autor"><%=articleList.get(i).getGproduct()%></p></td>
-                             <td><%=articleList.get(i).getGdate()%></td>
-                            </tr>
-                        	<%}else if(id.equals("admin")){
+                        	if(id != null){
+                        		if(id.equals("id")){
+                        			if(gproduct != null){
+                        			%>
+                        			  <tr>
+                                		<td><p class="autor" align="center"><%=articleList.get(i).getGnum() %></p></td>
+										<td><p class="autor"><%=id%></p></td>
+                            			<td><p class="autor"><%=articleList.get(i).getGproduct()%></p></td>
+                            			<td><%=articleList.get(i).getGdate()%></td>
+                           			 </tr>
+                        			<%}else{%>
+                        			
+                        			
+                        			<%} %>	
+                        		<%}else{%>
+                        			
+                        		 
+                        		<%} %>
+                        	<%}
                       		%>
-                            <tr>
-                                <td><p class="autor" align="center"><%=articleList.get(i).getGnum() %></p></td>
-							<td><p class="autor"><%=articleList.get(i).getId() %></p></td>
-                             <td><p class="autor"><%=articleList.get(i).getGproduct()%></p></td>
-                             <td><%=articleList.get(i).getGdate()%></td>
-                            </tr>
                         	<%}
                         	%>
                         <%} %>
