@@ -18,6 +18,8 @@ public class RentalInsertService {
 		rentalDAO.setConnection(con);
 		int insertCount = rentalDAO.insertRental(rentalAddList,id);
 		
+	
+		
 		if(insertCount > 0) {
 			System.out.println("렌탈 insert넣기 성공!");
 			isInsertSuccess = true; // 리턴할 작업 수행 결과를 true 로 설정
