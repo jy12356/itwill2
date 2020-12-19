@@ -26,6 +26,7 @@ public class RentalInsertAction implements Action {
 		System.out.println(checkArr);
 		for(int i = 0; i<checkArr.length; i++) {
 			rentalAddList.add(Integer.parseInt(checkArr[i]));
+			System.out.println("5555555555"+rentalAddList.get(i));
 		}
 		RentalInsertService rentalInsertService = new RentalInsertService();
 		boolean isInsertSuccess = rentalInsertService.insertRental(rentalAddList,id);

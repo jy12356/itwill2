@@ -204,10 +204,8 @@ int listCount = pageInfo.getListCount();
 						return false;
 					};
 					// 체크한거 담아서
-					var interArr = {
-						"inter_num" : inter_num
-					};
-
+					var interArr = {"inter_num" : inter_num};
+					
 					$.ajax({
 						url : "rentalInsert.rn",
 						type : "post",
