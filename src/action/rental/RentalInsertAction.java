@@ -18,20 +18,17 @@ public class RentalInsertAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("RentalInsertAction!");
 
-		ActionForward forward = null;
+		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		List<Integer> rentalAddList = new ArrayList<Integer>();
+		List<Integer> rentalAddList = new ArrayList();
 		String[] checkArr=request.getParameterValues("inter_num[]");
-		System.out.println(checkArr);
 		for(int i = 0; i<checkArr.length; i++) {
 			rentalAddList.add(Integer.parseInt(checkArr[i]));
-			System.out.println("5555555555"+rentalAddList.get(i));
 		}
 		RentalInsertService rentalInsertService = new RentalInsertService();
 		boolean isInsertSuccess = rentalInsertService.insertRental(rentalAddList,id);
-		
-		
+			
 		if(!isInsertSuccess) {
 			response.setContentType("text/html; charset=UTF-8"); 
 			PrintWriter out = response.getWriter();
@@ -40,13 +37,14 @@ public class RentalInsertAction implements Action {
 			out.println("history.back()"); // 이전 페이지로 이동
 			out.println("</script>"); // 자바스크립트 끝 태그
 		} else {
-			forward = new ActionForward();
-			forward.setPath("RentalList.rn");
-			forward.setRedirect(true);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('책대여에 성공하였습니다.')");
+			out.println("</script>");
 		}
 		
-		
-		return forward;
+		return null;
 	}
 
 }

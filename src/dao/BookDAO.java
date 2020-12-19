@@ -77,7 +77,7 @@ public class BookDAO {
          System.out.println(pstmt);
          // INSERT 구문 실행 결과값을 int형 변수 insertCount 에 저장
          insertCount = pstmt.executeUpdate();
-      } catch (SQLException e) {
+      } catch (Exception e) {
          System.out.println("insertArticle() 오류! - " + e.getMessage());
          e.printStackTrace();
       } finally {
