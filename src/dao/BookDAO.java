@@ -96,7 +96,7 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		
-		String sql = "select * from book where catg1 like ? and catg2 like ? order by date desc limit ?,?";
+		String sql = "select b.*,r.count review, r.starcount starcount  from book b left outer join  (select isbn, count(*) count,round(10/sum(starcount),0) starcount from review  group by isbn) r on b.isbn = r.isbn where catg1 like ? and catg2 like ? order by pubdate desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, catg1+"%");
@@ -122,6 +122,9 @@ public class BookDAO {
 				bookBean.setIndex(rs.getString("index_info"));
 				bookBean.setImage(rs.getString("image"));
 				bookBean.setDescription(rs.getString("description"));
+				bookBean.setReviewCount(rs.getInt("review"));
+				bookBean.setStarcount(rs.getInt("starcount"));
+				
 				bookList.add(bookBean);
 			}
 			
@@ -317,7 +320,7 @@ public class BookDAO {
    public BookBean getBookInfo(String book_isbn) {
       PreparedStatement pstmt =  null;
       ResultSet rs = null;
-      String sql="select * from book where isbn=?";
+      String sql="select b.*,r.* from book  b left outer join (select isbn, count(*) review,round(10/sum(starcount),0) starcount from review group by isbn) r on b.isbn = r.isbn where b.isbn=?";
       BookBean bookBean = null;
       try {
          pstmt=con.prepareStatement(sql);
@@ -339,6 +342,8 @@ public class BookDAO {
             bookBean.setPubdate(rs.getString("pubdate"));
             bookBean.setPublisher(rs.getString("publisher"));
             bookBean.setState(rs.getString("state"));
+			bookBean.setReviewCount(rs.getInt("review"));
+			bookBean.setStarcount(rs.getInt("starcount"));
             
          }
       }catch (Exception e) {
@@ -640,4 +645,29 @@ public class BookDAO {
       
       return isDibsYnCount;
    }
+	public boolean selectIsbn(String isbn) {
+		  boolean isIsbn = false;
+	      
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      try {
+	         String sql = "select * from interestinglist where isbn=?";
+	         pstmt=con.prepareStatement(sql);
+	         pstmt.setString(1, isbn);
+	         rs = pstmt.executeQuery();
+	         if(rs.next()) {
+	            if(rs.getString("isbn").equals(isbn)) {
+	            	isIsbn = true;               
+	            }
+	         }
+	      } catch (Exception e) {
+	         System.out.println("selectIsbn 오류!" + e.getMessage() );
+	         e.printStackTrace();
+	      }finally{
+	         close(pstmt);
+	         close(rs);
+	      }
+	      
+	      return isIsbn;
+	   }
 }

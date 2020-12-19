@@ -25,4 +25,20 @@ public class BookWriteService {
 		return isWriteSuccess;
 	}
 
+	public boolean selectIsbn(String isbn) {
+		boolean isIsbn = false;
+		Connection con = getConnection();
+		BookDAO bookDAO = BookDAO.getInstance();
+		bookDAO.setConnection(con);
+		isIsbn = bookDAO.selectIsbn(isbn);
+		if(isIsbn) {
+			commit(con); // DB 커밋 작업 수행
+			isIsbn = true; // 리턴할 작업 수행 결과를 true 로 설정
+		} else {
+			rollback(con);
+		}
+		close(con);
+		return isIsbn;
+	}
+
 }

@@ -184,7 +184,7 @@ font-weight:600;box-shadow:0 2px #f2f2f2;border-radius:4px;float:right;}
 .header-bottom-inner:after{content:"";display:block;clear:both;}
 .header-bottom-inner .h-bottom-left{float:left;width: 71%;}
 .header-bottom-inner .h-bottom-left:after{content:"";display:block;clear:both;}
-.header-bottom-inner .h-bottom-right{float:right;width: 28%;}
+.header-bottom-inner .h-bottom-right{float:right;width: a;}
 .header-bottom-inner .all-category{float:left;}
 .header-bottom-inner .all-category a{display:block;padding-top:12px;}
 .header-bottom-inner .snb-left{float: left;width: 100%;}

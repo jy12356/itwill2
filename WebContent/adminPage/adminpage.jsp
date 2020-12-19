@@ -9,14 +9,14 @@
 <section class="sub">
 	<div class="category-nav">
 		<div class="category-nav-inner">
-			<p>HOME &gt; 마이페이지</p>
+			<p>HOME &gt; 관리자페이지</p>
 		</div>
 	</div>
 	<div class="contents-wrap">
 		<div class="mypage">
 			<div class="mypage-top">
 				<div class="detail-inner">
-					<h3>마이페이지</h3>
+					<h3>관리자페이지</h3>
 					
 					<div class="mypage-box-bottom">
 						<div>
@@ -27,20 +27,20 @@
 								<a href="MemberModifyForm.me?id=<%=id %>" class="btn">회원정보</a>
 								</li>			
 								<li>
-									<h4>구매관리</h4>
+									<h4>회원관리</h4>
 									<ul>
-										<li><a href="/mypage.asp?list=_orderbooklist" class="">나의이용권</a></li>
-										<li><a href="BookDibsList.bok" class="">찜바구니</a></li>
+										<li><a href="/mypage.asp?list=_orderbooklist" class="">회원목록</a></li>
+										<li><a href="BookDibsList.bok" class="">대출관리</a></li>
 										<li><a href="MyBasketList.bk" class="">책바구니</a></li>
 										<li><a href="/mypage.asp?list=_orderlist" class="">대여목록</a></li>
 									</ul>
 								</li>
 								<li>
-									<h4>나의 활동</h4>
+									<h4>책정보 관리 </h4>
 									<ul>
-										<li><a href="/mypage.asp?list=_review" class="">서평/댓글</a></li>
-										<li><a href="/mypage.asp?list=_prefer" class="">희망도서</a></li>
-										<li><a href="/mypage.asp?list=_prefer" class="">게시글</a></li>
+										<li><a href="BookWriteForm.bok" class="">책등록</a></li>
+										<li><a href="RequestList.rq" class="">희망도서</a></li>
+										<li><a href="NoticeBoardList.not?page=1" class="">게시글</a></li>
 										<li><a href="/mypage.asp?list=_prefer" class="">QnA</a></li>
 									</ul>
 								</li>
