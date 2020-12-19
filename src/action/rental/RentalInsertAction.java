@@ -1,5 +1,6 @@
 package action.rental;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +28,24 @@ public class RentalInsertAction implements Action {
 			rentalAddList.add(Integer.parseInt(checkArr[i]));
 		}
 		RentalInsertService rentalInsertService = new RentalInsertService();
+		boolean isInsertSuccess = rentalInsertService.insertRental(rentalAddList,id);
 		
 		
+		if(!isInsertSuccess) {
+			response.setContentType("text/html; charset=UTF-8"); 
+			PrintWriter out = response.getWriter();
+			out.println("<script>"); // 자바스크립트 시작 태그
+			out.println("alert('책대여를 실패하였습니다.')"); // 다이얼로그 메세지 출력
+			out.println("history.back()"); // 이전 페이지로 이동
+			out.println("</script>"); // 자바스크립트 끝 태그
+		} else {
+			forward = new ActionForward();
+			forward.setPath("RentalList.rn");
+			forward.setRedirect(true);
+		}
 		
 		
-		
-		return null;
+		return forward;
 	}
 
 }
