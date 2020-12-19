@@ -59,12 +59,7 @@
                                 <td><%=bookListDibsList.get(i).getPubdate()%></td>
                                 <td><%=bookListDibsList.get(i).getState()%></td>
                                 <td class="book_basketbtn">
-                                	<%if(bookListDibsList.get(i).getState().equals("대여가능")){%>
-				                    	<a href="MyBasketInsert.bk?isbn=<%=bookListDibsList.get(i).getIsbn()%>" class="btn">책바구니</a>					               
-                                	<%}else{%>
-                                		대여불가능
-                                	<%} %>
-                                	
+			                    	<a href="MyBasketInsert.bk?isbn=<%=bookListDibsList.get(i).getIsbn()%>" class="btn">책바구니</a>                               	
                                	</td>
                             </tr>
                         <%} %>

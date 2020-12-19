@@ -3071,7 +3071,7 @@ margin-left:3px;border:1px solid #fb0707;display:inline-block;box-sizing:border-
 .comment_inner .comment-vote{padding: 2px 9px 2px 0;color:#999;font-size:13px;}
 .comment_inner .comment-vote i{font-weight:bold;color:#333;font-style:normal;line-height:19px;}
 .comment_inner .comment-vote em{display:inline-block;color:#d5d5d5;margin:0 6px;font-weight:100;}
-.comment_inner .comment-vote span{display:inline-block;margin-left:5px;color:#f26532;font-weight:600;}
+.comment_inner .comment-vote span{display:inline-block;margin-left:5px;color:#049682;font-weight:600;}
 .comment_inner .comment-vote span.date{color:#999;margin-left:0;}
 .comment_inner .comment-vote.naver{background:url(../images/s-naver.png) no-repeat left center;background-size:19px 19px;}
 .comment_inner .comment-vote.bookcube{background:url(../images/s-bookcube.png) no-repeat left center;background-size:19px 19px;}
@@ -3080,6 +3080,8 @@ margin-left:3px;border:1px solid #fb0707;display:inline-block;box-sizing:border-
 .comment_inner .comment-vote.kakaotalk{background:url(../images/s-kakaotalk.png) no-repeat left center;background-size:19px 19px;}
 .comment_inner .comment-vote.payco{background:url(../images/s-payco.png) no-repeat left center;background-size:19px 19px;}
 .comment_inner .comment-content{margin:20px 0px 10px 0px;position:relative;text-align:center;}
+.comment_inner .comment-content2{min-height: 34px;}
+.comment_inner .comment-content2 span{display: block;}
 .comment_inner .comment-content .comment-more{font-size:14px;color:#666;display:inline-block;font-weight:bold;}
 .comment_inner .comment-content .comment-more span{margin-left:7px;display:inline-block;width:12px;height:7px;background:url(/book/images/m_book/arrow-down.png) no-repeat left center;background-size:12px 7px;}
 .comment_inner .comment-content .blur{display:table;position:absolute;left:0;top:0;width:100%;height:68px;background:#f3f3f3;padding:15px 0;box-sizing:border-box;}
@@ -3098,7 +3100,7 @@ margin-left:3px;border:1px solid #fb0707;display:inline-block;box-sizing:border-
 .comment_inner .comment-btn div a.comment_write_show{padding-left: 22px;background: url(../images/reply-icon.png) no-repeat 5px 8px;background-size:17px 14px;padding-left: 26px;}
 .comment_inner .comment-write.reply-write{border-top:1px solid #f4f4f4;padding:20px 10px 20px 33px;background:url(../images/replyBg.png) no-repeat 10px 50px;background-size:12px 12px;}
 .comment_inner .comment-write textarea{padding: 24px;min-height: 51px;font-size: 1.1em;color: #66667f;border: 1px solid #eee;transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, background-color ease-in-out .5s;overflow: auto;box-sizing: border-box;resize: none;background: #f4f4f4;}
-.comment_inner .comment-write textarea:focus{box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);border-color:#f26532;background:#fff;line-height:18px;font-size:13px;}
+.comment_inner .comment-write textarea:focus{box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(74 140 131 / 60%);border-color:#049682;background:#fff;line-height:18px;font-size:13px;}
 .comment_inner .comment-write p{margin-top:10px;}
 .comment_inner .comment-write p:after{content:"";display:block;clear:both;}
 .comment_inner .comment-write p span{float:left;display:inline-block;line-height:30px;font-size:14px;color:#666;}
@@ -3120,4 +3122,3 @@ margin-left:3px;border:1px solid #fb0707;display:inline-block;box-sizing:border-
 
 .cmt_rereply_inner{}
 .cmt_rereply_inner::before{content: '';background: url(images/replyBg.png) no-repeat 10px 50px;width: 24px;height: 24px;}
-
