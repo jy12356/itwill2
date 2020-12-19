@@ -189,9 +189,9 @@ a:hover {text-decoration:underline;}
 .checkbox label input[type='checkbox']{display:none;padding:0;}
 .checkbox span{position:relative;display:inline-block;border:1px solid #a9a9a9;width:20px;height:20px;cursor:pointer;box-sizing:border-box;background:#fff;}
 .checkbox span i{left:-1px;top:-2px;display:inline-block;transform:scale(3) rotateZ(-20deg);opacity:0;transition:all .3s ease-in;position:absolute;display:inline-block;}
-.checkbox span i:before{display:inline-block;content:"";box-sizing: border-box;width:20px;height:20px;background:url(../images/checkbox.png) no-repeat center center;}
+.checkbox span i:before{display:inline-block;content:"";box-sizing: border-box;width:20px;height:20px;background:url(../images/checkbox.png) no-repeat center center;filter: hue-rotate(145deg);}
 .checkbox label input[type="checkbox"]:checked + span > i{transform:scale(1) rotateZ(0deg);opacity:1;}
-.checkbox label input[type="checkbox"]:checked + span{border-color:#f26532;}
+.checkbox label input[type="checkbox"]:checked + span{border-color: #069e89;}
 .checkbox label input[type=checkbox]:disabled + span{background:#e6e6e6;border-color:#bdbdbd;cursor:default;}
 
 .checkbox01{position:relative;display:inline-flex;height:20px;}
@@ -225,7 +225,7 @@ a:hover {text-decoration:underline;}
 /* 일반 버튼 커스텀 */
 .btn_inner{margin: 15px 0 10px;text-align: right;}
 .btn_inner input[type="button"].btn,.btn_inner button.btn,.btn_inner .btn{padding: 7px 10px;}
-input[type="button"].btn,button.btn,.btn{text-align:center;color:#333;padding:0 8px;border:1px solid #c1c1c1;box-shadow:0 2px #f2f2f2;font-size:13px;line-height:23px;border-radius:4px;font-weight:600;}
+input[type="button"].btn,button.btn,.btn{text-align:center;color: #333 !important;padding:0 8px;border:1px solid #c1c1c1;box-shadow:0 2px #f2f2f2;font-size:13px;line-height:23px;border-radius:4px;font-weight: 600 !important;overflow: inherit !important;width: auto !important;}
 .default-btn-wrap{text-align:center;}
 .default-btn-wrap input[type="submit"],
 .default-btn-wrap a{display:inline-block;line-height:30px;height:32px;box-sizing:border-box;width:81px;margin:0 2px;color:#333;font-weight:bold;font-size:13px;background: #fff;vertical-align: top;}

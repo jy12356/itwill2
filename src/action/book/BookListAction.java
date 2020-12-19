@@ -46,6 +46,7 @@ public class BookListAction implements Action {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
+
 		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
 		request.setAttribute("bookList", bookList);
 		request.setAttribute("pageInfo", pageInfo);

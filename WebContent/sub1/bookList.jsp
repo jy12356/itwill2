@@ -139,7 +139,55 @@
                                         <p class="hot-title"><a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>&page=<%=nowPage%>&title=<%=bookList.get(i).getTitle() %>"><%=bookList.get(i).getTitle() %></a></p>
                                         <p class="hot-author"><%=bookList.get(i).getAuthor()%><em>|</em><%=bookList.get(i).getPublisher()%><em>|</em><%=bookList.get(i).getPubdate()%></p>
                                         <div class="hot-score">
-                                            <p><span class="list-star rank0"></span><i><em>0.0</em> (0명)</i><em>|</em>총 <%=bookList.get(i).getCount()%>권</p>
+                                            <p>
+                                            <%switch(bookList.get(i).getStarcount()){ 
+                                            	case 0 :
+                                            %>
+                                            	<span class="list-star rank0"></span>
+                                            	<%break; 
+                                            	case 1:
+                                            	%>
+                                            	<span class="list-star rank1"></span>
+                                            	<%break; 
+                                            	case 2:
+                                            	%>
+                                            	<span class="list-star rank2"></span>
+                                            	<%break; 
+                                            	case 3:
+                                            	%>
+                                            	<span class="list-star rank3"></span>
+                                            	<%break; 
+                                            	case 4:
+                                            	%>
+                                            	<span class="list-star rank4"></span>
+                                            	<%break; 
+                                            	case 5:
+                                            	%>
+                                            	<span class="list-star rank5"></span>
+                                            	<%break; 
+                                            	case 6:
+                                            	%>
+                                            	<span class="list-star rank6"></span>
+                                            	<%break; 
+                                            	case 7:
+                                            	%>
+                                            	<span class="list-star rank7"></span>
+                                            	<%break; 
+                                            	case 8:
+                                            	%>
+                                            	<span class="list-star rank8"></span>
+                                            	<%break; 
+                                            	case 9:
+                                            	%>
+                                            	<span class="list-star rank9"></span>
+                                            	<%break; 
+                                            	case 10:
+                                            	%>
+                                            	<span class="list-star rank10"></span>
+                                            	<%break; } %>
+                                            <i><em><%=bookList.get(i).getStarcount()%>.0</em> (<%=bookList.get(i).getReviewCount()%>명)</i><em>|</em>총 <%=bookList.get(i).getCount()%>권</p>
+                                            
+                                            
                                             <!--end 클래스 유무 -->
                                         </div>
                                         <div class="hot-desc">
@@ -155,7 +203,7 @@
 							</div>
 							<%} %>
                             <div class="paging">
-                            	<%if(nowPage > 1) {%>
+                            	<%if(nowPage > maxPage) {%>
 									<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=1" class="arr" data-page-num="1">
 										<img src="images/p-first.png"><span class="hide">처음페이지</span>
 									</a>

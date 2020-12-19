@@ -16,27 +16,7 @@
             <p>HOME > 책등록</p>
         </div>
     </div>
-    <script type="text/javascript">
-	    function bookSearchSubmit(){
-			var keyword = $(".search_input").val();
-			alert(keyword);
-			$.ajax({
-			    url: "BookRegiSerch.bok", // 클라이언트가 요청을 보낼 서버의 URL 주소
-			    data: { keyword: "홍길동" },                // HTTP 요청과 함께 서버로 보낼 데이터
-			    type: "GET",                             // HTTP 요청 방식(GET, POST)
-			    dataType: "json"                         // 서버에서 보내줄 데이터의 타
-			}).done(function(json) {
-			    $("<h1>").text(json.title).appendTo("body");
-			    $("<div class=\"content\">").html(json.html).appendTo("body");
-			
-			}).fail(function(xhr, status, errorThrown) {
-			    $("#text").html("오류가 발생했습니다.<br>")
-			    .append("오류명: " + errorThrown + "<br>")
-			    .append("상태: " + status);
-			})
-			
-		}
-    </script>
+   
     <div class="contents-wrap">
         <div class="customer">
             <h3 class="subTit">책정보수정</h3> 
@@ -45,18 +25,19 @@
                 	<div class="bookregiSearch-inner">
 	                	<div class="bookregiSearch mb10">
 	          				<input type="text" name="searchString"  placeholder="검색어를 입력하세요" id="search_input" class="search_input" style="ime-mode:active;">
-							<input type="button" onclick="bookSearchSubmit()">
+							<input type="button" id="btn-movies-find">
 	                	</div>
-	                	<div class="serachBookResult mb10">
-	                		<table summary="책정보수정" class="customer-table notice">
-		                        <caption>책정보수정</caption>
+	                	<div class="serachBookResult">
+	                		<table summary="책검색결과" class="customer-table notice">
+		                        <caption>게시판</caption>
 		                        <colgroup>
-		                            <col width="10%">
-		                            <col width="30%">
-		                            <col width="10%">
+		                            <col width="5%">
 		                            <col width="20%">
+		                            <col width="25%">
 		                            <col width="10%">
-		                            
+		                            <col width="10%">
+		                            <col width="10%">
+		                            <col width="10%">
 		                        </colgroup>
 		                        <thead>
 		                            <tr>
@@ -66,19 +47,15 @@
 		                                <th scope="col">저자</th>
 		                                <th scope="col">ISBN</th>
 		                                <th scope="col">출판사</th>
+		                                <th scope="col">출판일</th>
 		                            </tr>
 		                        </thead>
 		                        <tbody>
-		                            <tr>
-		                                <td class="tac"><input type="checkbox" value=""></td>
-		                                <td>2020/10/27</td>
-		                                <td>2020/10/27</td>
-		                                <td>2020/10/27</td>
-		                                <td>2020/10/27</td>
-		                                <td>2020/10/27</td>
-		                            </tr>
 		                        </tbody>
 		                    </table>	
+							<div class="btn_inner">
+							    <input type="button" class="btn srappend" value="보내기">
+							</div>
 	                	</div>
                 	</div>
                 	<form action="BookModifyPro.bok" method="post" name="bookRegForm" enctype="multipart/form-data">
@@ -102,7 +79,7 @@
 	                            <tr>
 	                                <td class="th"><span class="point">*</span>책제목</td>
 	                                <td colspan="3" class="td">
-	                                	<input type="text" name="title" value="<%=bookBean.getTitle()%>"  required="required">
+	                                	<input type="text" id="rgTitle" name="title" value="<%=bookBean.getTitle()%>"  required="required">
 	                                </td>
 	                            </tr>
 	                            <tr>
@@ -126,39 +103,39 @@
 	                            </tr>
 	                            <tr>
 	                            	<td class="th"><span class="point">*</span>저자</td>
-	                            	<td class="td"><input type="text" name="author" value="<%=bookBean.getAuthor()%>"  required="required"></td>
+	                            	<td class="td"><input type="text" id="rgAuthor" name="author" value="<%=bookBean.getAuthor()%>"  required="required"></td>
 	                            	<td class="th"><span class="point">*</span>출판사</td>
-	                            	<td class="td"><input type="text" name="publisher" value="<%=bookBean.getPublisher()%>" required="required"></td>
+	                            	<td class="td"><input type="text" id="rgPublisher" name="publisher" value="<%=bookBean.getPublisher()%>" required="required"></td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th">저자 정보</td>
 	                            	<td class="td" colspan="3">
-	                            	 	<textarea rows="" cols="" name="author_info"><%=bookBean.getAuthor_info()%></textarea>
+	                            	 	<textarea rows="" cols="" name="author_info" id="rgAuthor_info" ><%=bookBean.getAuthor_info()%></textarea>
 	                            	</td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th"><span class="point">*</span>ISBN번호</td>
-	                            	<td class="td"><input type="text" name="isbn" value="<%=bookBean.getIsbn()%>" required="required"></td>
+	                            	<td class="td"><input type="text" name="isbn" id="rgIsbn" value="<%=bookBean.getIsbn()%>" required="required"></td>
 	                            	<td class="th"><span class="point">*</span>출판날짜</td>
 	                            	<td class="td cal"><input type="text" id="pubDatePicker" name="pubdate" value="<%=bookBean.getPubdate()%>" required="required"></td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">목차</td>
 	                                <td colspan="3">
-	                                    <textarea rows="" cols="" name="index"><%=bookBean.getIndex()%></textarea>
+	                                    <textarea rows="" cols="" id="rgIndex" name="index"><%=bookBean.getIndex()%></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                                <td class="th">요약내용</td>
 	                                <td colspan="3">
-	                                    <textarea rows="" cols="" name="description" ><%=bookBean.getDescription()%></textarea>
+	                                    <textarea rows="" cols="" name="description" id="rgDescription"><%=bookBean.getDescription()%></textarea>
 	                                </td>
 	                            </tr>
 	                            <tr>
 	                            	<td class="th"><span class="point">*</span>이미지 파일</td>
 	                            	<td colspan="3">
 			                            <input type="hidden" name="oldimage" title="첨부파일1" value="<%=bookBean.getImage() %>">
-	                            		<input type="file" name="image">
+	                            		<input type="file" name="image"  id="rgImage">
 	                            	</td>
 	                            </tr>
 	                        </tbody>
@@ -178,6 +155,47 @@
     </div>
 
 </section>
+
+<script type="text/javascript">
+    $(function () { 
+		$('#btn-movies-find').click(function () {
+			var keyword = $('#search_input').val(); 
+			$.ajax({ 
+				type: 'POST', 
+				url: 'BookNaverAPISearch.bok',
+				data: {keyword : keyword},
+				dataType:"JSON",
+				success: function(result){
+					if(result.length > 0){
+						$(".serachBookResult table tbody").text("");
+						alert("총"+result.length+"개가 검색 되었습니다.");
+						$.each(result,function(index,arrjson){
+							$(".serachBookResult table tbody").append(
+									'<tr><td><input type="checkbox" onclick="oneCheckbox(this)" class="oneCheckbox" value="'+arrjson.isbn+'" name="searbookCh">'
+									+'</td><td class="hidden">'+arrjson.image
+									+'</td><td><a class="overf_width200" href="'+arrjson.link+'" target="_balnk">'
+									+arrjson.title+'</a></td><td><p class="overf_line3">'
+									+arrjson.description+'</p></td><td><p class="overf_width60">'
+									+arrjson.author+'</p></td><td>'
+									+arrjson.isbn+'</td><td><p class="overf_width100">'
+									+arrjson.publisher+'</p></td><td>'
+									+arrjson.pubdate+'</td></tr>'
+							);
+						});	
+					}else{
+						alert("검색결과가 없습니다.");
+					}
+					
+				},
+				error: function(request,status,error){
+   		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		       }
+			});
+		});
+    
+
+	});
+  </script>
 <script type="text/javascript">
 $(document).ready( function() {
     $( "#pubDatePicker" ).datepicker({});
@@ -259,5 +277,72 @@ $(document).ready( function() {
     
 });
 </script>
+
+<script type="text/javascript">
+	//다중 체크 안되게 방지
+	$(document).on('click', '.oneCheckbox', function(){
+		$(".oneCheckbox").not(this).prop("checked", false);
+	});
+	$(document).on('click','.srappend',function(){
+		var rowData = new Array();
+		var tdArr = new Array();
+		var checkbox = $('.serachBookResult table tbody input[type="checkbox"]:checked');
+		var image ="";
+		var title ="";
+		var description ="";
+		var author ="";
+		var isbn ="";
+		var publisher ="";
+		var pubdate ="";
+		$("#rgTitle").val(title);
+		$("#rgDescription").html(description);
+		$("#rgAuthor").val(author);
+		$("#rgIsbn").val(isbn);
+		$("#rgPublisher").val(publisher);
+		$("#pubDatePicker").val(pubdate);
+		$("#rgImage").val(image);
+		
+		// 체크된 체크박스 값을 가져온다
+		if(checkbox.length > 0){
+		checkbox.each(function(i) {
+
+			// checkbox.parent() : checkbox의 부모는 <td>이다.
+			// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
+			var tr = checkbox.parent().parent().eq(i);
+			var td = tr.children();
+			
+			// 체크된 row의 모든 값을 배열에 담는다.
+			rowData.push(tr.text());
+			
+			// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
+			image = td.eq(1).text();
+			title = td.eq(2).text();
+			description = td.eq(3).text();
+			author = td.eq(4).text();
+			isbn = td.eq(5).text();
+			publisher = td.eq(6).text();
+			pubdate = td.eq(7).text();
+			
+			isbn = isbn.replace(/ /gi, "");
+			var year = pubdate.substr(0,4);
+		    var month = pubdate.substr(4,2);
+		    var day = pubdate.substr(6,2);
+		    pubdate=year + "-" + month + "-" + day
+			
+		});
+			$("#rgTitle").val(title);
+			$("#rgDescription").html(description);
+			$("#rgAuthor").val(author);
+			$("#rgIsbn").val(isbn);
+			$("#rgPublisher").val(publisher);
+			$("#pubDatePicker").val(pubdate);
+			$("#rgImage").val(image);
+		}else{
+			alert("체크박스 선택을 해주시길 바랍니다.")
+		}
+		
+	});
+</script>
+
 
 <jsp:include page="../include/footer.jsp"/>

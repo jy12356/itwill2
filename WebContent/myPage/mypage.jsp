@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<jsp:include page="../include/header.jsp"/>
-
 <%
 	String id= (String)session.getAttribute("id");
 
 %>
+<jsp:include page="../include/header.jsp"/>
 <section class="sub">
 	<div class="category-nav">
 		<div class="category-nav-inner">
@@ -18,120 +17,112 @@
 			<div class="mypage-top">
 				<div class="detail-inner">
 					<h3>마이페이지</h3>
-					<div class="mypage-box-top">
-						<ul>
-							<li>
-								<span class="kakaotalk">로그인정보</span> <!-- bookcube,kakaotalk,naver,twitter,facebook,payco-->
-								<p><span><%=id %> 님</span></p>
-								<a href="MemberModifyForm.me?id=<%=id %>" class="btn">회원정보</a>
-							</li>
-							<li>
-								<p>이용권</p>
-								<p>3개월</p>
-								<div class="mysel">
-									<a href="javascript:;" class="v-btn" data-fname="bookcash">나의이용권보기 &gt;</a>
-									<a href="https://www.bookcube.com/order/bookcash.asp">정기권결제하기 &gt;</a>
-								</div>
-								<div class="my-frame bookcash">
-								<iframe src="/mypage/_bookcash_history.asp?bookcash=0" width="100%" frameborder="0" name="bookcash_history" id="bookcash_history" scrolling="no" style="height: 263px;"></iframe>
-								</div>
-							</li>
-							<li>
-								<p>적립금</p>
-								<p>0원</p>
-								<div class="mysel">
-									<a href="javascript:;" class="v-btn" data-fname="saved">내역보기 &gt;</a>
-								</div>
-								<div class="my-frame saved">
-								<iframe src="/mypage/_savemoney_history.asp?savemoney=0&amp;expire_savemoney=0" width="100%" frameborder="0" name="savemoney_history" id="savemoney_history" scrolling="no" style="height: 289px;"></iframe>
-								</div>
-							</li>
-							<li>
-								<p>쿠폰/상품권</p>
-								<p>0장</p>
-								<div class="mysel">
-									<a href="javascript:;" class="v-btn" data-fname="coupon">내역보기 &gt;</a>
-									<a href="https://www.bookcube.com/coupon.asp">등록하기 &gt;</a>
-								</div>
-								<div class="my-frame coupon">
-								<iframe src="/mypage/_coupon_history.asp" width="100%" frameborder="0" name="coupon_history" id="coupon_history" scrolling="no" style="height: 307px;"></iframe>
-								</div>
-							</li>
-							<li>
-								<p>무료이용권</p>
-								<p>0장</p>
-								<div class="mysel">
-									<a href="javascript:;" class="v-btn" data-fname="free">내역보기 &gt;</a>
-								</div>
-								<div class="my-frame free">
-									<iframe src="/mypage/_freeticket_history.asp" width="100%" frameborder="0" name="freeticket_history" id="freeticket_history" scrolling="no" style="height: 172px;"></iframe>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<script>
-						$(function(){
-							$(".v-btn").on("click",function(){
-								var fname = $(this).data("fname");
-								$(".my-frame").css("visibility","hidden");
-								$(".my-frame."+ fname).css("visibility","visible");	
-								return false;
-							});	
-							$(".mpop-close").on("click",function(){
-								$(this).parent().parent().parent().css("visibility","hidden");
-								return false;
-							});
-						});
-					</script>
+					
 					<div class="mypage-box-bottom">
 						<div>
 							<ul>
 								<li>
+									<span class="kakaotalk">로그인정보</span> <!-- bookcube,kakaotalk,naver,twitter,facebook,payco-->
+									<p><span><%=id %> 님</span></p>
+								<a href="MemberModifyForm.me?id=<%=id %>" class="btn">회원정보</a>
+								</li>			
+								<li>
 									<h4>구매관리</h4>
 									<ul>
-										<li><a href="/mypage.asp?list=_orderbooklist" class="">구매목록</a></li>
-										<li><a href="/mypage.asp?list=_cart" class="">책바구니</a></li>
-										<li><a href="/mypage.asp?list=_orderlist" class="">주문내역</a></li>
+										<li><a href="/mypage.asp?list=_orderbooklist" class="">나의이용권</a></li>
+										<li><a href="BookDibsList.bok" class="">찜바구니</a></li>
+										<li><a href="MyBasketList.bk" class="">책바구니</a></li>
+										<li><a href="/mypage.asp?list=_orderlist" class="">대여목록</a></li>
 									</ul>
 								</li>
 								<li>
 									<h4>나의 활동</h4>
 									<ul>
-										<li><a href="/mypage.asp?list=_my_serial" class="">나의작품</a></li>
 										<li><a href="/mypage.asp?list=_review" class="">서평/댓글</a></li>
-										<li><a href="/mypage.asp?list=_prefer" class="">선호작/선호작가/후속권알림</a></li>
+										<li><a href="/mypage.asp?list=_prefer" class="">희망도서</a></li>
+										<li><a href="/mypage.asp?list=_prefer" class="">게시글</a></li>
+										<li><a href="/mypage.asp?list=_prefer" class="">QnA</a></li>
 									</ul>
 								</li>
 							</ul>
 						</div>
-						<div>
-							<ul>
-								<li>
-									<p>선물함</p>
-									<div>
-										<a href="/mypage.asp?list=_gift_receive">받은 선물함 &gt;</a>
-										<a href="/mypage.asp?list=_gift_send">보낸 선물함 &gt;</a>
-									</div>
-								</li>
-								<!--li>
-									<p>장르정액권 : 29일 20시간 남음</p>
-								</li-->
-								<li>
-									<a href="https://www.bookcube.com/order/free_ticket.asp" data-mypage-list="_gift_receive"><p>장르정액권 구매하기 &gt;</p></a>
-								</li>
-								<li>
-									<a href="https://www.bookcube.com/order/free_ticket.asp" data-mypage-list="_gift_receive"><p>만화정액권 구매하기 &gt;</p></a>
-								</li>
-							</ul>
-						</div>
+						
 					</div>
 				</div>
 			</div>
 			<div class="mypage-bottom">
-				<iframe src="../sub5/wwish.jsp" width="100%" frameborder="0" name="mypageList" id="mypageList" scrolling="no" style="height: 688px;"></iframe>					
+		    	<div class="contents-wrap">
+				        <div class="customer">
+				            <h3 class="coTitle">게시판</h3>
+				            
+				            <div class="customer-contents">
+				                <div class="customer-inner">
+				                    <table summary="게시판" class="customer-table notice">
+				                        <caption>게시판</caption>
+				                      	<colgroup>
+											<col style="width: 8%;">
+											<col style="width: 50%;">
+											<col style="width: 20%;">
+											<col style="width: 15%;">
+											<col style="width: 7%;">
+										</colgroup>
+				                        <thead>
+											<tr>
+												<th scope="col" abbr="번호">번호</th>
+												<th scope="col" abbr="제목">제목</th>
+												<th scope="col" abbr="작성자">작성자</th>
+												<th scope="col" abbr="등록일">등록일</th>
+												<th scope="col" abbr="조회수">조회수</th>
+											</tr>
+										</thead>
+				                        <tbody>
+											<tr>
+												<td class="tac">28</td>
+												<td>
+													  <a href="FreeBoardDetail.free?board_num=28&amp;page=1&amp;board_type=1&amp;limit=10">
+														ㅁㅁ
+												</a>
+												</td>
+												<td align="center">kwak0131</td>
+												<td align="center">2020-12-18</td>
+												<td align="center">41</td>
+											</tr>										
+										</tbody>
+				                    </table>
+				                    <div class="btn_inner"> 
+				                    	<a href="board_write.jsp" class="btn">글쓰기</a>
+				                    </div>
+				                    <div class="paging">
+				                        <a href="/customer.asp?page=notice&pageNum=1" class="arr" data-page-num="1"><img src="images/p-first.png"><span class="hide">처음페이지</span></a>
+				                        <a href="/customer.asp?page=notice&pageNum=1" class="arr prev" data-page-num="1"><img src="images/p-prev.png"><span class="hide">이전페이지</span></a>
+				                        <a href="/customer.asp?page=notice&pageNum=1" class="on fir" data-page-num="1">1</a>
+				                        <!-- 	<a href="/customer.asp?page=notice&pageNum=2" class="" data-page-num="2">2</a><a href="/customer.asp?page=notice&pageNum=3" class="" data-page-num="3">3</a><a href="/customer.asp?page=notice&pageNum=4" class="" data-page-num="4">4</a><a href="/customer.asp?page=notice&pageNum=5" class="" data-page-num="5">5</a><a href="/customer.asp?page=notice&pageNum=6" class="" data-page-num="6">6</a><a href="/customer.asp?page=notice&pageNum=7" class="" data-page-num="7">7</a><a href="/customer.asp?page=notice&pageNum=8" class="" data-page-num="8">8</a><a href="/customer.asp?page=notice&pageNum=9" class="" data-page-num="9">9</a><a href="/customer.asp?page=notice&pageNum=10" class="" data-page-num="10">10</a> -->
+				                        <a href="/customer.asp?page=notice&pageNum=11" class="arr next" data-page-num="11">
+				                            <img src="images/p-next.png"><span class="hide">다음페이지</span>
+				                        </a>
+				                        <a href="/customer.asp?page=notice&pageNum=27" class="arr" data-page-num="27"><img src="images/p-last.png"><span class="hide">마지막페이지</span></a>
+				                    </div>
+				                </div>
+				            </div>
+				
+				        </div>
+				    </div>					
 			</div>
 		</div>				
 	</div>
-	
+	<script>
+		$(function(){
+			$(".v-btn").on("click",function(){
+				var fname = $(this).data("fname");
+				$(".my-frame").css("visibility","hidden");
+				$(".my-frame."+ fname).css("visibility","visible");	
+				return false;
+			});	
+			$(".mpop-close").on("click",function(){
+				$(this).parent().parent().parent().css("visibility","hidden");
+				return false;
+			});
+		});
+	</script>
 </section>
 <jsp:include page="../include/footer.jsp"/>
