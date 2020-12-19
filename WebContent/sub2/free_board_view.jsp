@@ -12,7 +12,7 @@ if (id == null) {
 // int b=0;
 int limit = ((Integer)request.getAttribute("limit")).intValue();
 System.out.println("limit :" + limit);
-	limit = limit+10;
+// 	limit = limit+10;
 
 int entireCount = ((Integer)request.getAttribute("entireCount")).intValue();
 System.out.println("entireCount :" + entireCount);
@@ -263,6 +263,8 @@ int board_num = article.getBoard_num();
 							}
 							%>
 						</div>
+<p>entireCount = <%=entireCount %></p>
+<p>limit = <%=limit %></p>
 						
 						<%
 // 						if(commentList != null && listCount > 0) {
@@ -273,7 +275,7 @@ int board_num = article.getBoard_num();
 <!-- 						</div> -->
 <div class="d-more reviewMore" style="display: ;">
 	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%>
-	&board_type=<%=board_type%>&limit=<%=limit%>">댓글 더보기</a>
+	&board_type=<%=board_type%>&limit=<%=limit+10%>">댓글 더보기</a>
 
 						</div>
 						<%

@@ -31,38 +31,38 @@ public class MyBasketListService {
 		return listCount;
 	}
 
-	public ArrayList<MyBasketBean> getRentalableList(int page, int limit, String id) {
-		System.out.println("MyBasketListService - getRentalableList");
+	public ArrayList<MyBasketBean> getMyBasketList(int page, int limit, String id) {
+		System.out.println("MyBasketListService - getMyBasketList");
 		
 		ArrayList<MyBasketBean> basketList = new ArrayList<MyBasketBean>();
 		
 		Connection con = getConnection();
 		MyBasketDAO myBasketDAO = MyBasketDAO.getInstance();
 		myBasketDAO.setConnection(con);
-		System.out.println("getRentalableList 1 - svc");
-		basketList = myBasketDAO.selectRentalableList(page, limit, id);
-		System.out.println("getRentalableList 2 - svc");
+		System.out.println("getMyBasketList 1 - svc");
+		basketList = myBasketDAO.selectMyBasketList(page, limit, id);
+		System.out.println("getMyBasketList 2 - svc");
 		close(con);
 		
 		return basketList;
 		
 		
 	}
-	public ArrayList<MyBasketBean> getUnRentalableList(int page, int limit, String id) {
-		System.out.println("MyBasketListService - getUnRentalableList");
-		
-		ArrayList<MyBasketBean> basketList = new ArrayList<MyBasketBean>();
-		
-		Connection con = getConnection();
-		MyBasketDAO myBasketDAO = MyBasketDAO.getInstance();
-		myBasketDAO.setConnection(con);
-		System.out.println("getUnRentalableList 1 - svc");
-		basketList = myBasketDAO.selectUnRentalableList(page, limit, id);
-		System.out.println("getUnRentalableList 2 - svc");
-		close(con);
-		
-		return basketList;
-	}
+//	public ArrayList<MyBasketBean> getUnRentalableList(int page, int limit, String id) {
+//		System.out.println("MyBasketListService - getUnRentalableList");
+//		
+//		ArrayList<MyBasketBean> basketList = new ArrayList<MyBasketBean>();
+//		
+//		Connection con = getConnection();
+//		MyBasketDAO myBasketDAO = MyBasketDAO.getInstance();
+//		myBasketDAO.setConnection(con);
+//		System.out.println("getUnRentalableList 1 - svc");
+//		basketList = myBasketDAO.selectUnRentalableList(page, limit, id);
+//		System.out.println("getUnRentalableList 2 - svc");
+//		close(con);
+//		
+//		return basketList;
+//	}
 
 	public String getMemState(String id) {
 		System.out.println("MyBasketListService - getMemState()");
