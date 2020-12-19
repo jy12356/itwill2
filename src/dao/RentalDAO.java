@@ -3,7 +3,14 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import vo.FreeBoardBean;
+import vo.MyBasketBean;
+import vo.RentalBean;
+
 import static db.JdbcUtil.*;
 
 public class RentalDAO {
@@ -71,10 +78,18 @@ public class RentalDAO {
 	    	    pstmt=con.prepareStatement(sql);
 	    	    pstmt.setString(1, isbn);
 		        isUpdate = pstmt.executeUpdate();
+		        
+		        System.out.println("insert 작업 완료했으면 mybasket에선 지워주기");
+		        sql="delete from mybasket where isbn=? and id=?";
+		        pstmt = con.prepareStatement(sql);
+		        pstmt.setString(1, isbn);
+		        pstmt.setString(2, id);
+		        pstmt.executeUpdate();
+		        
 	    	}
 	    	
 	      } catch (Exception e) {
-	         System.out.println("insertBookDibs() 오류! - " + e.getMessage());
+	         System.out.println("insertRental() 오류! - " + e.getMessage());
 	         e.printStackTrace();
 	      } finally {
 	    	  close(rs);
@@ -82,4 +97,115 @@ public class RentalDAO {
 	      }
 	      return insertCount;      
 	}
+
+	public int selectListCount(String id) {
+		System.out.println("RentalDAO - selectListCount()");
+
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT COUNT(*) FROM rental where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectListCount() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+
+	public ArrayList<RentalBean> selectRentalList(int page, int limit, String id) {
+		
+		System.out.println("RentalDAO - selectRentalList()");
+		
+		ArrayList<RentalBean> rentalList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		// 조회를 시작할 레코드(행) 번호 계산
+		int startRow = (page - 1) * limit;
+				
+		try {
+			String sql = "select * from rental where id=? order by num desc limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
+			rs = pstmt.executeQuery();
+			
+			rentalList = new ArrayList<RentalBean>();
+			
+			while(rs.next()) {
+				RentalBean rental = new RentalBean();
+				rental.setNum(rs.getInt("num"));
+				rental.setIsbn(rs.getString("isbn"));
+				rental.setId(rs.getString("id"));
+				rental.setS_date(rs.getDate("s_date"));
+				rental.setOnrental_date(rs.getDate("onrental_date"));
+				rental.setE_date(rs.getDate("e_date"));
+				
+				rentalList.add(rental);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectRentalList() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return rentalList;
+	}
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
