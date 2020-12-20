@@ -1449,7 +1449,7 @@ box-shadow:0 3px 5px 3px rgba(0,0,0,.2);box-sizing:border-box;z-index:9000;text-
 .user-modify table td span.on{color:#17897a;}
 .user-modify table td input[type='text'],.user-modify table td input[type='password']{font-weight:600;width:181px;height:32px;border:1px solid #cdced1;line-height:30px;font-size:15px;padding:0 10px;
 box-sizing:border-box;transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s, background-color ease-in-out .5s;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);}
-.user-modify table td input[type='text']:focus,.user-modify table td input[type='password']:focus{box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);border-color:#17897a;}
+.user-modify table td input[type='text']:focus,.user-modify table td input[type='password']:focus{box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(69 138 125 / 60%);border-color:#17897a;}
 .user-modify table td input[type='password']{color:#999;}
 .user-modify table td input[type='text']{color:#333;}
 .user-modify table td > div:after{content:"";display:block;clear:both;}
@@ -2318,7 +2318,7 @@ text-align:center;font-weight:600;font-size:16px;border-radius:4px;box-shadow:1p
 .user-fire table{width:100%;}
 .user-fire table input[type='password']{font-weight:600;width:181px;height:32px;border:1px solid #cdced1;line-height:30px;font-size:15px;padding:0 10px;
 box-sizing:border-box;transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s, background-color ease-in-out .5s;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);}
-.user-fire table input[type='password']:focus,.user-modify table td input[type='password']:focus{box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);border-color:#17897a;}
+.user-fire table input[type='password']:focus,.user-modify table td input[type='password']:focus{box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(69 138 125 / 60%);border-color:#17897a;}
 .user-fire table textarea{margin:10px 0;transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s, background-color ease-in-out .5s;width:98%;height:200px;box-sizing:border-box;border:1px solid #eaeaea;
 border-radius:2px;background:#f4f4f4;padding:24px;font-size:14px;color:#666;line-height:20px;overflow:auto;;}
 .user-fire table textarea:focus{box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);border-color:#17897a;background:#fff;}
