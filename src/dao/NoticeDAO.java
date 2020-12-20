@@ -119,7 +119,7 @@ public class NoticeDAO {
 		return listCount;
 	}
 
-	public ArrayList<NoticeBean> selectArticleList(int page, int limit) {
+	public ArrayList<NoticeBean> selectArticleList(int page, int limit, String search) {
 		//지정된 갯수만큼의 게시물 조회 후 ArrayList 객체에 저장한 뒤 리턴
 		ArrayList<NoticeBean> articleList = null;
 		
@@ -133,10 +133,11 @@ public class NoticeDAO {
 			//참조글 번호(board_re_ref) 번호를 기준으로 내림차순 정렬,
 			//순서번호(board_re_seq) 번호를 기준으로 오름차순 정렬
 			//조회 시작 게시물 번호(startRow)를 기준으로 limit갯수만큼 조회
-			String sql = "select * from notice "+"ORDER BY num DESC " + "LIMIT ?,? ";
+			String sql = "select * from notice where subject like ? ORDER BY num DESC " + "LIMIT ?,? ";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, limit);
+			pstmt.setString(1, "%"+search+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 			//ArrayList 객체 생성
 			articleList = new ArrayList<NoticeBean>();

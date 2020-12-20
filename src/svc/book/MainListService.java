@@ -19,12 +19,12 @@ public class MainListService {
 		return listCount; 
 	}
 
-	public ArrayList<BookBean> getBookList(int page, int limit,String catg1, String catg2) {
+	public ArrayList<BookBean> getBookList(int page, int limit,String catg1, String catg2,String search) {
 		ArrayList<BookBean> bookList = new ArrayList<BookBean>();
 		BookDAO bookDAO = BookDAO.getInstance();
 		Connection con = getConnection();
 		bookDAO.setConnection(con);
-		bookList = bookDAO.selectBookList(page,limit,catg1,catg2);
+		bookList = bookDAO.selectBookList(page,limit,catg1,catg2,search);
 		close(con);
 		System.out.println("MainListService 끝");
 		return bookList;

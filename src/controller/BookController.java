@@ -17,6 +17,7 @@ import action.book.BookDibsListAction;
 import action.book.BookDibsListInsertAction;
 import action.book.BookKindListAction;
 import action.book.BookListAction;
+import action.book.BookListAllAction;
 import action.book.BookModifyAction;
 import action.book.BookModifyProAction;
 import action.book.BookRegiSearchAction;
@@ -139,6 +140,15 @@ public class BookController extends HttpServlet {
 		}else if(command.equals("/BookNaverAPISearch.bok")) {
 			System.out.println("BookNaverAPISearch.bok 포워딩");
 			action = new BookRegiSearchAction();
+			try {				
+				forward =  action.execute(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BookAllList.bok")) {
+			System.out.println("BookAllList.bok 포워딩");
+			action = new BookListAllAction();
 			try {				
 				forward =  action.execute(request, response);
 				

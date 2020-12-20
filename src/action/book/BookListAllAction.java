@@ -11,7 +11,7 @@ import vo.ActionForward;
 import vo.BookBean;
 import vo.PageInfo;
 
-public class BookListAction implements Action {
+public class BookListAllAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -55,7 +55,8 @@ public class BookListAction implements Action {
 		request.setAttribute("bookList", bookList);
 		request.setAttribute("pageInfo", pageInfo);
 		forward = new ActionForward();
-		forward.setPath("/sub1/bookList.jsp");
+		forward.setPath("/sub1/bookAllList.jsp");
+		
 		return forward;
 		
 	}
