@@ -324,4 +324,8 @@ tbody .publisher,
 tbody .title,
 tbody .author{float: none !important;max-width: 203px !important;white-space: nowrap !important;overflow: hidden !important;text-overflow: ellipsis !important;}
 
-
+.chats{position: fixed;bottom: 111px;right: 2.8%;background: #fff;border: 1px solid #dadada;border-radius: 30px;z-index: 9999;}
+.chats > ul{padding: 20px 10px;}
+.chats > ul > li{margin-top: 7px;width: 50px;height: 50px;border: 1px solid #eee;border-radius: 8px;}
+.chats > ul > li a{display: block;text-align: center;padding: 9px 0;font-size: 14px;line-height: 1.2;}
+.chats > ul > li a > img{width: 55%;}

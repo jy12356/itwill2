@@ -1,4 +1,4 @@
-package com.hanjum.board.vo;
+package vo;
 
 import java.sql.Timestamp;
 
