@@ -77,7 +77,7 @@ public class BookDAO {
          System.out.println(pstmt);
          // INSERT 구문 실행 결과값을 int형 변수 insertCount 에 저장
          insertCount = pstmt.executeUpdate();
-      } catch (SQLException e) {
+      } catch (Exception e) {
          System.out.println("insertArticle() 오류! - " + e.getMessage());
          e.printStackTrace();
       } finally {
@@ -124,7 +124,7 @@ public class BookDAO {
 				bookBean.setDescription(rs.getString("description"));
 				bookBean.setReviewCount(rs.getInt("review"));
 				bookBean.setStarcount(rs.getInt("starcount"));
-				
+
 				bookList.add(bookBean);
 			}
 			
@@ -137,7 +137,7 @@ public class BookDAO {
 		}
 		return bookList;
 	}
-	//책 리스트2 - 인기순(소설)
+	//책 리스트2 - 인기순(소설)(psy)
 	public ArrayList<BookBean> selectBookList2(int page, int limit,String catg1,String catg2) {
 		
 		System.out.println("BookDAO - selectList2()");
@@ -189,7 +189,7 @@ public class BookDAO {
 		return bookList2;
 	}
 	
-	//책 리스트3 - 인기순(인문/경제)
+	//책 리스트3 - 인기순(인문/경제)(psy)
 		public ArrayList<BookBean> selectBookList3(int page, int limit,String catg1,String catg2) {
 			
 			System.out.println("BookDAO - selectList3()");
@@ -241,7 +241,7 @@ public class BookDAO {
 			return bookList3;
 		}
 		
-		//책 리스트4 - 인기순(과학)
+		//책 리스트4 - 인기순(과학)(psy)
 		public ArrayList<BookBean> selectBookList4(int page, int limit,String catg1,String catg2) {
 			
 			System.out.println("BookDAO - selectList4()");
@@ -352,6 +352,7 @@ public class BookDAO {
       }
       return bookBean;
    }
+   //책삭제리스트 갯수 
    public int selectListKindCount(String isbn) {
       System.out.println("BookDAO - selectListKindCount()");
       int listCount = 0; // select 작업 수행 결과를 저장할 변수
@@ -378,6 +379,7 @@ public class BookDAO {
       }      
       return listCount;   
    }
+   //책삭제리스트 
    public ArrayList<BookBean> bookKindList(String isbn,int page,int limit) {
       System.out.println("bookDAO - bookKindList");
       ArrayList<BookBean> bookList = null;
@@ -424,6 +426,7 @@ public class BookDAO {
       }
       return bookList;
    }
+   //책삭제 
    public int deleteBook(int book_num) {
       System.out.println("bookDAO - deleteBook");
       int isDeleteOk = 0;
@@ -441,6 +444,7 @@ public class BookDAO {
       }
       return isDeleteOk;
    }
+   //책 
    public int bookExis(int book_num) {
       int isBookExisCount = 0;
       
@@ -464,6 +468,7 @@ public class BookDAO {
       
       return isBookExisCount;
    }
+   //책수정 
    public int modifyBook(BookBean bookBean, String title, String isbn) {
       System.out.println("bookDAO - modifyBook");
       int modyfiySeccess =0;
@@ -499,6 +504,7 @@ public class BookDAO {
       }
       return modyfiySeccess;
    }
+   //책찜하기 
    public int insertBookDibs(String isbn, String id) {
       System.out.println("BookDAO - insertBookDibs()");
 
@@ -534,6 +540,7 @@ public class BookDAO {
       }
       return insertCount;      
    }
+   //책 찜하기카운트 
    public int selectListDibsCount(String id) {
       System.out.println("BookDAO - selectListDibsCount()");
       int listCount = 0;
@@ -554,6 +561,7 @@ public class BookDAO {
       }
       return listCount;
    }
+   //책찜리스트 
    public ArrayList<BookInterestBean> selectBookListDibsList(int page, int limit, String id) {
       System.out.println("BookDAO - selectBookListDibsList()");
       ArrayList<BookInterestBean> bookListDibsList = null;
@@ -598,6 +606,7 @@ public class BookDAO {
       }
       return bookListDibsList;
    }
+   //찜 삭제 
    public int dibsDelete(List<Integer> interNumList, String id) {
       System.out.println("bookDAO - dibsDelete");
       int isDeleteOk = 0;
@@ -619,7 +628,7 @@ public class BookDAO {
       }
       return isDeleteOk;
    }
-   
+   //찜리스트 유무 
    public int dibsYn(String isbn, String id) {
       int isDibsYnCount = 0;
       
@@ -645,6 +654,8 @@ public class BookDAO {
       
       return isDibsYnCount;
    }
+   //책 유무 
+
 	public boolean selectIsbn(String isbn) {
 		  boolean isIsbn = false;
 	      
@@ -670,4 +681,26 @@ public class BookDAO {
 	      
 	      return isIsbn;
 	   }
+		//대출 카운트 
+		public int updateCount(String isbn) {
+			int isUpdate = 0;
+	      
+		    PreparedStatement pstmt = null;
+		    ResultSet rs = null;
+		    try {
+		       String sql = "update book set count=count+1 where isbn =?";
+		       pstmt=con.prepareStatement(sql);
+		       pstmt.setString(1, isbn);
+		       isUpdate = pstmt.executeUpdate();
+		     
+		    } catch (Exception e) {
+		       System.out.println("selectIsbn 오류!" + e.getMessage() );
+		       e.printStackTrace();
+		    }finally{
+		       close(pstmt);
+		       close(rs);
+		    }
+	      
+	        return isUpdate;
+	}
 }

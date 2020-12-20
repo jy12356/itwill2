@@ -59,13 +59,17 @@ public class MyBasketDAO {
 		
 		return listCount;
 	}
-	
-
 
 	public ArrayList<MyBasketBean> selectRentalableList(int page, int limit, String id) {
 		System.out.println("MyBasketDAO - selectRentalableList()");
 
 		ArrayList<MyBasketBean> basketList = null;
+
+//	public ArrayList<MyBasketBean> selectMyBasketList(int page, int limit, String id) {
+	//	System.out.println("MyBasketDAO - selectRentalableList()");
+
+//		ArrayList<MyBasketBean> mybasketList = null;
+
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -80,9 +84,13 @@ public class MyBasketDAO {
 //					+ "from mybasket as k join book as b on k.isbn = b.isbn "
 //					+ "where k.id=? group by b.isbn limit ?,?;";
 			String sql = "select b.num num, b.title title, b.author author, "
-					+ "b.publisher publisher, b.pubdate pubdate,"
-					+ "k.isbn isbn, b.state state "
-					+ "from mybasket as k join book as b on k.isbn = b.isbn "
+
+	//		String sql = "select k.num num, k.id id, b.title title, b.author author, "
+
+//					+ "b.publisher publisher, b.pubdate pubdate,"
+//					+ "k.isbn isbn, b.state state "
+	//				+ "from mybasket as k join book as b on k.isbn = b.isbn "
+
 					+ "where k.id=? and b.state = ? group by b.isbn limit ?,?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -135,6 +143,9 @@ public class MyBasketDAO {
 					+ "k.isbn isbn, b.state state "
 					+ "from mybasket as k join book as b on k.isbn = b.isbn "
 					+ "where k.id=? and b.state = ? group by b.isbn limit ?,?;";
+
+//					+ "where k.id=? group by b.isbn limit ?,?;";
+
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setInt(2, 1);
@@ -144,31 +155,94 @@ public class MyBasketDAO {
 			rs = pstmt.executeQuery();
 			
 			// ArrayList 객체 생성(while문 위에서 생성 필수!)
+
 			basketList = new ArrayList<MyBasketBean>();
+//
+			mybasketList = new ArrayList<MyBasketBean>();
+
 			while(rs.next()) {
 				MyBasketBean basket = new MyBasketBean();
 				basket.setNum(rs.getInt("num"));
+				basket.setIsbn(rs.getString("isbn"));
+				basket.setId(rs.getString("id"));
 				basket.setTitle(rs.getString("title"));
 				basket.setAuthor(rs.getString("author"));
 				basket.setPublisher(rs.getString("publisher"));
+
 //				basket.setPubdate(rs.getDate("pubdate"));
-				basket.setPubdate(rs.getDate("pubdate"));
-				basket.setState(rs.getString("state"));
-				basket.setIsbn(rs.getString("isbn")); // 필요한가이거?
-				System.out.println(basket.getState());
-				basketList.add(basket);
-			}
+
+//				basket.setPubdate(rs.getDate("pubdate"));
+	//			basket.setState(rs.getString("state"));
+				
+//				System.out.println(basket.getState());
+//				mybasketList.add(basket);
+//			}
 			
 		} catch (SQLException e) {
+
 			System.out.println("selectRentalableList() 오류! - " + e.getMessage());
+
+//			System.out.println("selectMyBasketList() 오류! - " + e.getMessage());
+
 			e.printStackTrace();
 		} finally {
 			close(rs);
 			close(pstmt);
 		}
 		
-		return basketList;
+		return mybasketList;
 	}
+	
+//	public ArrayList<MyBasketBean> selectUnRentalableList(int page, int limit, String id) {
+//		System.out.println("MyBasketDAO - selectUnRentalableList()");
+//
+//		ArrayList<MyBasketBean> basketList = null;
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		
+//		// 조회를 시작할 레코드(행) 번호 계산
+//		int startRow = (page - 1) * limit;
+//		try {
+//			String sql = "select b.num num, b.title title, b.author author, "
+//					+ "b.publisher publisher, b.pubdate pubdate,"
+//					+ "k.isbn isbn, b.state state "
+//					+ "from mybasket as k join book as b on k.isbn = b.isbn "
+//					+ "where k.id=? and b.state = ? group by b.isbn limit ?,?;";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, id);
+//			pstmt.setInt(2, 1);
+//			pstmt.setInt(3, startRow);
+//			pstmt.setInt(4, limit);
+//			System.out.println("pstmt : " +  pstmt);
+//			rs = pstmt.executeQuery();
+//			
+//			// ArrayList 객체 생성(while문 위에서 생성 필수!)
+//			basketList = new ArrayList<MyBasketBean>();
+//			while(rs.next()) {
+//				MyBasketBean basket = new MyBasketBean();
+//				basket.setNum(rs.getInt("num"));
+//				basket.setTitle(rs.getString("title"));
+//				basket.setAuthor(rs.getString("author"));
+//				basket.setPublisher(rs.getString("publisher"));
+////				basket.setPubdate(rs.getDate("pubdate"));
+//				basket.setPubdate(rs.getDate("pubdate"));
+//				basket.setState(rs.getString("state"));
+//				basket.setIsbn(rs.getString("isbn")); // 필요한가이거?
+//				System.out.println(basket.getState());
+//				basketList.add(basket);
+//			}
+//			
+//		} catch (SQLException e) {
+//			System.out.println("selectRentalableList() 오류! - " + e.getMessage());
+//			e.printStackTrace();
+//		} finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//		
+//		return basketList;
+//	}
 	
 	
 	

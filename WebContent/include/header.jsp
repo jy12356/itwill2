@@ -71,13 +71,11 @@ String id = (String)session.getAttribute("id");
 				<form name="searchFrm" id="searchFrm" autocomplete="off">
 				<!--input type="hidden" name="searchOption" id="searchOption" value="" /-->
 				<input type="text" style="display: none;" />
-				<input type="hidden" name="searchpage" value="normal" />
-				<input type="hidden" name="page" value="">
 					<fieldset>
 						<legend>검색</legend>
 						<h1 class="logo"><a href="Main.book">북큐브서점</a></h1>
 						<div class="search">						
-							<input type='text' name='searchString' class="search_input" style="ime-mode:active;" />
+							<input type='text' name='search' class="search_input" style="ime-mode:active;" />
 							<input type='button' onclick="frmSearchSubmit()" />
 						</div>
 						<%if(id == null){ %>
@@ -212,6 +210,21 @@ String id = (String)session.getAttribute("id");
 
 <!-- 네이버아디디로로그인 초기화 Script -->
 <script type="text/javascript">
+
+	function frmSearchSubmit(){		
+		
+		var objFrm = $("#searchFrm") ;
+		if ($(".search_input").val() == ''){
+			alert('검색어를 검색해주세요.');
+			$(".search_input").focus();			
+			return ;
+		}else{
+			objFrm.attr("method","get");
+			objFrm.attr("action","SearchAll.book");
+			objFrm.submit();
+		}		
+	}
+
 	var naver_id_login = new naver_id_login("tdoziaWOhdIeC0LICk28", httpsUrl +"/member/naver/naver.asp");
 
 	naver_id_login.setPopup(); //Popup형태의 인증 진행
