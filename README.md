@@ -1,20 +1,29 @@
 # Itwil 빅데이터 활용 자바 파이썬 개발 양성 과정
 ## 빅데이터 통합 프로젝트 <2조>
 
-### 1.1. 멤버
+### 1 멤버
 조장 : 서지연 부조장: 곽동현 서기: 김수미 차준희 박신영 엄영민 서청빈
 
-### 1.2. 회의록URL
+### 2. 회의록URL
 https://docs.google.com/document/d/1RQDDsJciE-XwVYH_tseK5u28UeBb-HkSt1Xl-WKzGcM/edit#heading=h.nrnw03t7conb
 
-### 1.3. 팀 프로젝트 주제 선정
+### 3. 팀 프로젝트 주제 선정
 도서 배송 서비스
 
-### 사용 기술
-JAVA, JAVASCRIPT, MYSQL, JSP, AJAX, NAVER API, 이니시스 API, JSOUP(북큐브 크롤링)
+### 4 개발환경 
+JDK 8
+JacaScript(jQury)
+MySQL
+AJAX
+MVC Model2
+Tomcat 8.0
+HTML5 
+CSS3 
+NAVER API
+이니시스 API
+eclipse EE
 
-
-### 1.3. 주제에 따른 기능
+### 5. 주제에 따른 기능
 도서예약(시간 예약도서 알림)
 도서검색 api (도서등록)
 전체 검색
