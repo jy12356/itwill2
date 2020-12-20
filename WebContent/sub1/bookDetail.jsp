@@ -1,3 +1,4 @@
+<%@page import="vo.CommentBean"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="vo.ReviewBean"%>
 <%@page import="java.util.ArrayList"%>
@@ -325,13 +326,13 @@
 			<div class="review-score">
 				<span class="list-star rank0"></span>
 				<p class="score" >0</p>
-				<p class="rank-user">(<span>0</span>명)</p>
+				<p class="rank-user">(<span><%=bookBean.getReviewCount() %></span>명)</p>
 			</div>
 		</div>
 	<!-- 서평리스트 목차(별점 카운트)-->
 	
 	<!-- 서평리스트 내용-->
-			<div id="comment">
+		<div id="comment">
 		<!-- 서평 없을 때 -->	
 		<%
 		if(articleList == null && listCount < 0) {
@@ -355,10 +356,10 @@
 					<em>|</em>
 					<span class="list-star rank<%=articleList.get(i).getStarcount() %>"><%=articleList.get(i).getStarcount() %></span>
 					<em>|</em>좋아요<span class="likeCountInner"> <%=articleList.get(i).getLikecount() %></span>
-					<em>|</em>댓글 0
-					<%if(articleList.get(i).getSpoiler()==1){%>
+					<em>|</em>댓글<span class="listCount"></span>
+					<%if(articleList.get(i).getSpoiler()==1) {%>
 					<em>|</em>스포일러 포함
-					<%} %>
+					<% } %>
 				</p>
 				<div class="comment-content">
 					<span><%=articleList.get(i).getContent() %></span>				
@@ -376,7 +377,7 @@
 				<form action="ReviewModifyPro.re" class="comment-write reply-write" method="post" id="MyReModify">
 					<div class="checkbox">
 					<label>
-						<%if(articleList.get(i).getSpoiler()==1){%>
+						<%if(articleList.get(i).getSpoiler()==1) {%>
 						<input type="checkbox" class="spoiler" name="spoiler" checked="checked" value=<%=articleList.get(i).getSpoiler() %>>
 						<span><i></i></span>
 						<input type="hidden" class="spoiler" name="spoiler" value=0>
@@ -401,42 +402,68 @@
 					</div>
 				</form>
 			</div>
+			
 			<!-- 서평 수정-->
 		
 			<!-- 댓글 창 -->
+			<div class="cmtRly clearfix" data-review-num="" data-comment-num="" style="display: block;">
 				<!-- 댓글 등록 입력창-->
-			<div class="cmtRly clearfix" data-review-num="498631" data-comment-num="" style="display: block;">
-				<form action="ReCommentWritePro.re" class="comment-write reply-write" method="get" id="myReComment">
+				<form action="javascript:;" class="comment-write reply-write" method="get" id="myReComment">
 					<div>
 						<input type="hidden" name="isbn" value="<%=isbn%>">	
 						<input type="hidden" name="page" value="<%=nowPage%>">	
 						<input type="hidden" name="board_type" value="2">
 						<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
-						<input type="hidden" name="comment_id" value="<%=id%>">
-						<textarea name="comment_desc"></textarea>
+						<input type="hidden" name="comment_id" value="<%=id%>">	
+						<textarea name="comment_desc" placeholder="댓글을 작성해주세요"></textarea>
 					</div>
 					<p>
-						<span><em>0</em>/500자</span>
+						<span><em>0</em>/500자</span><br>
+						<span>댓글 수( <em class="listCount"></em> )명</span>
 					</p>
 					<div class="btn_inner">
-						<input type="submit" value="등록" class="btn reviewInput">
+						<input type="submit" value="등록" class="btn reviewInput ReComment_Write">
 						<input type="reset" value="취소" class="btn reviewCancele">
 					</div>
 				</form>
 				<!-- 댓글 등록 입력창-->
-			</div>
+				<!-- 댓글 리스트-->
+					<!-- 댓글 없을때 -->
+					<!-- 댓글 없을때 -->
+					<!-- 댓글 있을때 -->
+					<%
+// 					PageInfo pageInfo2 = (PageInfo)request.getAttribute("pageInfo2");
+// 					int listCount2 = pageInfo2.getListCount();
+					%>
+					<div class="comment comment_inner">
+						<input type="hidden" name="isbn" value="<%=isbn%>">	
+						<input type="hidden" name="page" value="<%=nowPage%>">	
+						<input type="hidden" name="board_type" value="2">
+						<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
+						<p class="comment-vote bookcube"id="cmt_vote">
+						<i id="c_id">댓글 작성자</i>
+						<em>|</em>
+						<span id="c_date" class="date">댓글 작성 날짜</span>
+						</p>
+						<div class="comment-content">
+							<span id="c_desc">댓글 내용</span>				
+						</div>
+						<div class="btn_inner">
+							<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
+							<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
+							<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
+						</div>
+					</div>
+					<!-- 댓글 있을때 -->
+				</div>
 			<%
 				}
 			}
 			%>
 				</div>
 			</div>
-				<!-- 댓글 리스트-->
 	
-					<!-- 댓글 없을때 -->
-					<!-- 댓글 없을때 -->
-					<!-- 댓글 있을때 -->
-					<!-- 댓글 있을때 -->
+					
 					<!-- 댓글 수정창-->
 					<!-- 댓글 수정창-->
 				<!-- 댓글 리스트-->		
@@ -453,23 +480,11 @@
 
 
 <!-- 서평 및 댓글 쓰기  -->
-<!-- -------------------------------------------------------------------------------------------------- -->
-
-			
-
-<%-- 			<i><input type="button" value="수정" onclick="location.href='ReviewModifyPro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>'"></i> --%>
-<!-- 				<a href="javascript:;" class="comment_modify_show" data-comment-count="0">수정</a> -->
-<%-- 				<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=articleList.get(i).getId()%>" class="comment_delete_show" data-comment-count="0">삭제</a> --%>
 
 <!-- ------------------------------------------------------------------------------ -->
 	<!-- 댓글수정/대댓글 -->
 
 	<!-- 댓글수정/대댓글 -->
-<!-- ------------------------------------------------------------------------------ -->
-
-<!-- ------------------------------------------------------------------------------ -->
-
-
 <!-- ------------------------------------------------------------------------------ -->
 
 	
@@ -518,11 +533,9 @@
 		</div>
 	</div>
 </div>
+</div>
 </section>
-	<script type="text/javascript">
-	
-
-		
+	<script type="text/javascript">		
 		$(document).ready(function(){
 						
 			function idYn(){
@@ -531,8 +544,7 @@
 				if(myid==null){
 					alert("로그인 해주시길 바랍니다.");
 					return false;
-				}
-				
+				}	
 			};		
 			$(".my-review").on("click",function(){
 				if ($(this).data("review-yn") == "N"){
@@ -544,7 +556,6 @@
 				}									
 			});	
 				
-			
 			//리뷰 입력창
 			$(".cmtModi").hide();
 			$(".cmtRly").hide();
@@ -574,7 +585,6 @@
 			
 			//리뷰대댓글 입력창 보이기
 			$(".comment_write_show").on("click", function() {
-				
 				var reply = $(this).parent().parent().next().next();
 			    if (reply.css("display") == "none") {
 			    	$(".cmtModi").hide();
@@ -592,6 +602,7 @@
 			            $(this).parent().parent().next().next().next().hide();
 			        }
 			    }
+			    comment_list();
 			});
 		
 			//댓글 입력창 보이기(수정)
@@ -645,7 +656,73 @@
  		   		        	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
  		   		   }
  				});
- 			});	 
+ 			});
+ 			
+ 			// 댓글 등록
+ 			$(".ReComment_Write").on("click", function() {
+//  				var page = $(this).data("page");
+ 				var page = $('input[name="page"]').val();
+ 				var isbn = $('input[name="isbn"]').val();
+ 				var board_type = $('input[name="board_type"]').val();
+ 				var board_num = $('input[name="board_num"]').val();
+ 				var comment_id = $('input[name="comment_id"]').val();
+ 				var comment_desc = $('textarea[name="comment_desc"]:visible').val();
+ 				alert(comment_id);
+ 				alert(comment_desc);
+ 				if(comment_id=="null"){
+ 					alert("로그인을 해주시길 바랍니다.");
+ 	 				 $("textarea[name=comment_desc]").val("");
+ 	 				comment_list();
+ 					return false;
+ 				}
+ 				confirm("댓글을 등록하시겠습니까?");
+ 				$.ajax({
+ 					url: "ReCommentWritePro.re",
+ 					type: "POST",
+ 					dataType: "json",
+ 					data: {
+ 						"page": page,
+ 						"isbn": isbn,
+ 						"board_type": board_type,
+ 						"board_num": board_num,
+						"comment_id": comment_id,
+						"comment_desc": comment_desc
+ 					},
+ 					success: function(data){
+ 						alert("정상적으로 등록이 되었습니다.");
+ 						comment_list();
+ 					}, error: function(error){
+ 						alert("오류발생"+error);
+ 					}
+ 				});
+ 				 $('textarea[name="comment_desc"]').val("");
+ 			});
+ 			
+ 			// 댓글 리스트
+ 			function comment_list(){
+ 				var page = $('input[name="page"]').val();
+ 				var isbn = $('input[name="isbn"]').val();
+ 				var board_type = $('input[name="board_type"]').val();
+ 				var board_num = $('input[name="board_num"]').val();
+ 				 $.ajax({
+ 					type:"GET",
+ 					url:"ReCommentList.re",
+ 					data: {
+ 						"page": page,
+ 						"isbn": isbn,
+ 						"board_type": board_type,
+ 						"board_num": board_num
+ 					},
+ 					success: function(data){
+ 						alert("성공?")
+ 						
+ 					},
+ 					error: function(error){
+ 						alert("오류 발생" + error);
+ 					}
+ 					
+ 				 });
+ 			}
 			
 	});
 	</script>

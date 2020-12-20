@@ -288,13 +288,14 @@ public class ReviewDAO {
 		
 		// 댓글 등록수 -------------------------------------------------
 		public int selectListCount(int board_num, int board_type) {
+			System.out.println("ReviewDAO - 댓글 : selectListCount()");
 			int listCount = 0;
 			
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
 			try {
-				String sql = "SELECT COUNT(board_num) FROM comment WHERE board_num=?, board_type=?";
+				String sql = "SELECT COUNT(board_num) FROM comment WHERE board_num=? and board_type=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, board_num);
 				pstmt.setInt(2, board_type);
@@ -338,7 +339,6 @@ public class ReviewDAO {
 				rs = pstmt.executeQuery();
 
 				articleList = new ArrayList<CommentBean>();
-				System.out.println(000);
 				while(rs.next()) {
 					CommentBean article = new CommentBean();
 					article.setComment_num(rs.getInt("comment_num"));
