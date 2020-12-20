@@ -2,7 +2,7 @@
 ## 빅데이터 통합 프로젝트 <2조>
 
 ### 1 멤버
-조장 : 서지연 부조장: 곽동현 서기: 김수미 차준희 박신영 엄영민 서청빈
+서지연 곽동현 김수미 차준희 박신영 엄영민 서청빈
 
 ### 2. 회의록URL
 https://docs.google.com/document/d/1RQDDsJciE-XwVYH_tseK5u28UeBb-HkSt1Xl-WKzGcM/edit#heading=h.nrnw03t7conb
