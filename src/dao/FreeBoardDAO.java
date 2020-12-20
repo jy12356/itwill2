@@ -130,7 +130,7 @@ public class FreeBoardDAO {
 	}
 
 	// 게시물 목록 조회
-	public ArrayList<FreeBoardBean> selectArticleList(int page, int limit) {
+	public ArrayList<FreeBoardBean> selectArticleList(int page, int limit, String search) {
 		// 지정된 갯수만큼의 게시물 조회 후 ArrayList 객체에 저장한 뒤 리턴
 		ArrayList<FreeBoardBean> articleList = null;
 
@@ -145,10 +145,11 @@ public class FreeBoardDAO {
 			// 참조글번호(board_re_ref) 번호를 기준으로 내림차순 정렬,
 			// 순서번호(board_re_seq) 번호를 기준으로 오름차순 정렬
 			// 조회 시작 게시물 번호(startRow)부터 limit 갯수만큼 조회
-			String sql = "SELECT * FROM freeboard " + "ORDER BY board_num desc " + "LIMIT ?,?";
+			String sql = "SELECT * FROM freeboard where board_subject like ? ORDER BY board_num desc " + "LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, limit);
+			pstmt.setString(1, "%"+search+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 
 			// ArrayList 객체 생성(while문 위에서 생성 필수!)
