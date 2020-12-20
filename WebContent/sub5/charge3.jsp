@@ -8,7 +8,6 @@
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
 	String id = (String)session.getAttribute("id");
-	String gproduct = request.getParameter("gproduct");
 	ArrayList<GudokBean> articleList = (ArrayList<GudokBean>)request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage = pageInfo.getPage();
@@ -38,34 +37,21 @@
                                 <th scope="col" abbr="아이디">아이디</th>
                                 <th scope="col" abbr="구매내역">구매내역</th>
                                 <th scope="col" abbr="구매일">구매일</th>
-                                
                             </tr>
                         </thead>
                         <tbody>
                         <%
                         for(int i = 0; i < articleList.size(); i++){
-                        	if(id != null){
-                        		if(id.equals("id")){
-                        			if(gproduct != null){
+                        	if(id.equals(articleList.get(i).getId())){
                         			%>
                         			  <tr>
                                 		<td><p class="autor" align="center"><%=articleList.get(i).getGnum() %></p></td>
-										<td><p class="autor"><%=id%></p></td>
-                            			<td><p class="autor"><%=articleList.get(i).getGproduct()%></p></td>
+										<td><p class="autor" ><%=articleList.get(i).getId() %></p></td>
+                            			<td><p class="autor" ><%=articleList.get(i).getGproduct()%></p></td>
                             			<td><%=articleList.get(i).getGdate()%></td>
                            			 </tr>
-                        			<%}else{%>
-                        			
-                        			
-                        			<%} %>	
-                        		<%}else{%>
-                        			
-                        		 
-                        		<%} %>
-                        	<%}
-                      		%>
-                        	<%}
-                        	%>
+                        			<%}
+                        			%>
                         <%} %>
                         </tbody>
                     </table>

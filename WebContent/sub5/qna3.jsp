@@ -6,6 +6,7 @@
 <%
 	// BoardBean 객체 파라미터 가져오기
 	QnaBean article = (QnaBean)request.getAttribute("article");
+	String id = (String)session.getAttribute("id");	
 	// 1. BoardDetailAction 에서 request.setAttribute() 메서드로 저장했을 경우
 	// 	String nowPage = (String)request.getAttribute("page");
 
@@ -72,16 +73,40 @@
 								<th>
 									답변내용
 								</th>
-								<td align="center"><%=article.getContent2() %></td>
+								<%if(article.getContent2() == null){%>
+									<td align="center"></td>
+								<% }else{%>
+									<td align="center"><%=article.getContent2() %></td>
+									<% }%>
 							</tr>
 							</tbody>
 							</table>
-							<div class="btn_inner">
+							<%if(article.getContent2() == null){%>
+								<%if(id.equals("admin")){ %>
+									<div class="btn_inner">
 								<input type="button" class="btn" value="수정" onclick="location.href='QnaModifyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
 								<input type="button" class="vs1Del btn" value="삭제" onclick="location.href='QnaDeletePro.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
 								<input type="button" class="btn" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
 								<input type="button" class="btn" value="답변" onclick="location.href='QnaReplyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
-							</div>
+									</div>
+								<%}else{ %>
+									<div class="btn_inner">
+								<input type="button" class="btn" value="수정" onclick="location.href='QnaModifyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" class="vs1Del btn" value="삭제" onclick="location.href='QnaDeletePro.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" class="btn" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
+									</div>
+								<%} %>
+							<%}else if(id.equals("admin")){ %>
+									<div class="btn_inner">
+								<input type="button" class="btn" value="수정" onclick="location.href='QnaModifyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" class="vs1Del btn" value="삭제" onclick="location.href='QnaDeletePro.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" class="btn" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
+									</div>
+							<%}else{ %>
+									<div class="btn_inner">
+								<input type="button" class="btn" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
+									</div>
+							<%}%>
 						</div>
 					</div>
 				</div>
