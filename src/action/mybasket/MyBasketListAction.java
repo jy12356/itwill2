@@ -56,14 +56,8 @@ public class MyBasketListAction implements Action {
 			System.out.println(memState);
 			System.out.println("MyBasketAction 3");
 
-			ArrayList<MyBasketBean> rentalableList = new ArrayList<MyBasketBean>();
-			rentalableList = myBasketListService.getRentalableList(page, limit, id);
-			
-			ArrayList<MyBasketBean> unRentalableList = new ArrayList<MyBasketBean>();
-			unRentalableList = myBasketListService.getUnRentalableList(page, limit, id);
-
-		//	ArrayList<MyBasketBean> myBasketList = new ArrayList<MyBasketBean>();
-	//		myBasketList = myBasketListService.getMyBasketList(page, limit, id);
+			ArrayList<MyBasketBean> myBasketList = new ArrayList<MyBasketBean>();
+			myBasketList = myBasketListService.getMyBasketList(page, limit, id);
 			
 			// 페이지 계산 작업 수행
 			// 1. 전체 페이지 수 계산
@@ -86,19 +80,10 @@ public class MyBasketListAction implements Action {
 			PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
 			System.out.println("MyBasketAction 5");
 			request.setAttribute("memState", memState);
-
-			request.setAttribute("rentalableList", rentalableList);
-			System.out.println("rentalableList : " + rentalableList);
+			request.setAttribute("myBasketList", myBasketList);
+			System.out.println("myBasketList : " + myBasketList);
 			System.out.println("MyBasketAction 6");
 			
-			request.setAttribute("unRentalableList", unRentalableList);
-			System.out.println("unRentalableList : " + unRentalableList);
-
-	//		request.setAttribute("myBasketList", myBasketList);
-	//		System.out.println("myBasketList : " + myBasketList);
-	//		System.out.println("MyBasketAction 6");
-			
-
 			
 			request.setAttribute("pageInfo", pageInfo);
 			System.out.println("MyBasketAction 7");
