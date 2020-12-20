@@ -385,18 +385,37 @@
 			</ul>
 		</div>
 	</div>
-
 	<div class="main-inner">
-		<div class="main_ct_best">
-			<div class="ct-best">
-				<h3>카테고리별 베스트</h3>
+		<div class="main_new_book">
+			<div class="md">
+				<div class="md-title">
+					<h3 class="coTitle">신간</h3>
+					<a href="https://www.bookcube.com/new.asp?page=nm" class="more">더보기</a>
+				</div>
+				
 				<ul>
-					<li><a href="../sub1/list.html">소설<span class="ct-arrow"></span></a></li>
-					<li><a href="../sub1/list.html">인문/경제<span class="ct-arrow"></span></a></li>
-					<li><a href="../sub1/list.html">자기개발<span class="ct-arrow"></span></a></li>
-					<li><a href="../sub1/list.html">과학<span class="ct-arrow"></span></a></li>
-					<li><a href="../sub1/list.html">IT<span class="ct-arrow"></span></a></li>
-					<li><a href="../sub1/list.html">건강<span class="ct-arrow"></span></a></li>
+					<%
+						for(int i = 0; i < 5; i++) {
+					%>
+					<li>
+						<div class="figure">
+							<a href="BookDetail.bok?isbn<%=bookList.get(i).getIsbn()%>">
+								<span class="rm_br">
+									<img src="bookUpload/aa.PNG" alt="도서 이미지 - 가족사진">
+								</span> 
+								<span class="light"></span>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title">
+								<a href="BookDetail.bok?isbn<%=bookList.get(i).getIsbn()%>"><%=bookList.get(i).getTitle() %></a>
+							</p>
+							<p><%=bookList.get(i).getAuthor() %></p>
+						</div>
+					</li>
+					<%
+						}
+					%>
 				</ul>
 			</div>
 		</div>
@@ -404,13 +423,13 @@
 	
 	<div class="rank_inner">
 		<div class="main-inner">
-			<div class="cover-section realtime-hot-box mt60">
+			<div class="cover-section realtime-hot-box">
 				<div class="cover-section-inner">
 					<div class="special-title">
 						<h3 class="coTitle coTitleL">실시간 인기작품</h3>
 						<span class="date"><%=sf.format(nowTime)%>기준</span>
 					</div>
-					<div class="realtime-hot-list mt30">
+					<div class="realtime-hot-list">
 						<ul>
 							<li class="head">
 								<p class="rank">
@@ -561,39 +580,20 @@
 		</div>
 	</div>
 	<div class="main-inner">
-		<div class="main_new_book">
-			<div class="md">
-				<div class="md-title">
-					<h3 class="coTitle">신간</h3>
-					<a href="https://www.bookcube.com/new.asp?page=nm" class="more">더보기</a>
-				</div>
-				
+		<div class="main_ct_best">
+			<div class="ct-best">
+				<h3>카테고리별 베스트</h3>
 				<ul>
-					<%
-						for(int i = 0; i < 5; i++) {
-					%>
-					<li>
-						<div class="figure">
-							<a href="BookDetail.bok?isbn<%=bookList.get(i).getIsbn()%>">
-								<span class="rm_br">
-									<img src="bookUpload/aa.PNG" alt="도서 이미지 - 가족사진">
-								</span> 
-								<span class="light"></span>
-							</a>
-						</div>
-						<div class="hot-info">
-							<p class="hot-title">
-								<a href="BookDetail.bok?isbn<%=bookList.get(i).getIsbn()%>"><%=bookList.get(i).getTitle() %></a>
-							</p>
-							<p><%=bookList.get(i).getAuthor() %></p>
-						</div>
-					</li>
-					<%
-						}
-					%>
+					<li><a href="../sub1/list.html">소설<span class="ct-arrow"></span></a></li>
+					<li><a href="../sub1/list.html">인문/경제<span class="ct-arrow"></span></a></li>
+					<li><a href="../sub1/list.html">자기개발<span class="ct-arrow"></span></a></li>
+					<li><a href="../sub1/list.html">과학<span class="ct-arrow"></span></a></li>
+					<li><a href="../sub1/list.html">IT<span class="ct-arrow"></span></a></li>
+					<li><a href="../sub1/list.html">건강<span class="ct-arrow"></span></a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
+	
 </section>
 <jsp:include page="../include/footer.jsp" />

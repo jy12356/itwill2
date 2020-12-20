@@ -25,6 +25,7 @@ ArrayList<FreeBoardBean> freeBAllList = (ArrayList<FreeBoardBean>) request.getAt
 ArrayList<BookBean> bookAllList = (ArrayList<BookBean>)request.getAttribute("bookAllList");
 ArrayList<NoticeBean> noticeAllList = (ArrayList<NoticeBean>) request.getAttribute("noticeAllList");
 ArrayList<QnaBean> qnaAllList = (ArrayList<QnaBean>)request.getAttribute("qnaAllList");
+String search=request.getParameter("search");
 
 
 %>
@@ -42,6 +43,8 @@ ArrayList<QnaBean> qnaAllList = (ArrayList<QnaBean>)request.getAttribute("qnaAll
 	<div class="contents-wrap">
 		<div class="sub_container">
 					
+					<div class="allsec">
+					<a href="BookAllList.bok?search=<%=search %>" title="더보기"><span class="more">더보기</span></a>
 					<h3 class="coTitle">책검색정보</h3>
 					<%
 						if(bookAllList.size() != 0) {
@@ -149,13 +152,19 @@ ArrayList<QnaBean> qnaAllList = (ArrayList<QnaBean>)request.getAttribute("qnaAll
 					<div class="list-page">
                         <div class="list">
                             <ul class="book-list">
-                            	<li>검색된 도서가 없습니다.</li>
+<!--                             	<li>검색된 도서가 없습니다.</li> -->
+									<li><img class="nodate" alt="" src="images/nodata.jpg"></li>
                             </ul>
                     	</div>
                     </div>
 					<%
 					}
 					%>
+					</div>
+					
+					
+					<div class="allsec">
+					<a href="FreeBoardList.free?search=<%=search%>" title="더보기"><span class="more">더보기</span></a>
 					<h3 class="coTitle">자유게시판</h3>
 					<table summary="공지사항" class="customer-table notice">
 
@@ -220,6 +229,9 @@ ArrayList<QnaBean> qnaAllList = (ArrayList<QnaBean>)request.getAttribute("qnaAll
 							%>
 						</tbody>
 					</table>
+						</div>
+						<div class="allsec">
+						<a href="QnaList.qna?search=<%=search%>" title="더보기"><span class="more">더보기</span></a>
 						
 						<h3 class="coTitle">문의 내역 검색결과</h3>
 						<table class="customer-table" summary="문의 내역 확인 표">
@@ -277,9 +289,13 @@ ArrayList<QnaBean> qnaAllList = (ArrayList<QnaBean>)request.getAttribute("qnaAll
 						%>
 						</tbody>
 						</table>
+						</div>
 						
-	
-			<h3 class="coTitle">공지사항 검색결과</h3>
+					<div class="allsec">
+					<a href="NoticeBoardList.not?search=<%=search%>" title="더보기"><span class="more">더보기</span></a>
+						
+			
+					<h3 class="coTitle">공지사항 검색결과</h3>
 					<table summary="공지사항" class="customer-table notice">
 
 						<caption>공지사항</caption>
@@ -328,7 +344,8 @@ ArrayList<QnaBean> qnaAllList = (ArrayList<QnaBean>)request.getAttribute("qnaAll
 							}
 							%>
 						</tbody>
-					</table>				
+					</table>			
+					</div>	
 			</div>
 		</div>
 		

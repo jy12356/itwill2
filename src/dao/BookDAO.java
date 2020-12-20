@@ -87,7 +87,7 @@ public class BookDAO {
       return insertCount;      
    }
 	//책 리스트 - 최신순
-	public ArrayList<BookBean> selectBookList(int page, int limit,String catg1,String catg2) {
+	public ArrayList<BookBean> selectBookList(int page, int limit,String catg1,String catg2,String search) {
 		System.out.println("BookDAO - selectList()");
 		ArrayList<BookBean> bookList = null;
 		PreparedStatement pstmt = null;
@@ -96,13 +96,14 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		
-		String sql = "select b.*,r.count review, r.starcount starcount  from book b left outer join  (select isbn, count(*) count,round(10/sum(starcount),0) starcount from review  group by isbn) r on b.isbn = r.isbn where catg1 like ? and catg2 like ? order by pubdate desc limit ?,?";
+		String sql = "select b.*,r.count review, r.starcount starcount  from book b left outer join  (select isbn, count(*) count,round(10/sum(starcount),0) starcount from review  group by isbn) r on b.isbn = r.isbn where title like ? and catg1 like ? and catg2 like ? order by pubdate desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, catg1+"%");
-			pstmt.setString(2, catg2+"%");
-			pstmt.setInt(3, startRow);
-			pstmt.setInt(4, limit);
+			pstmt.setString(1, "%"+search+"%");
+			pstmt.setString(2, catg1+"%");
+			pstmt.setString(3, catg2+"%");
+			pstmt.setInt(4, startRow);
+			pstmt.setInt(5, limit);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			bookList = new ArrayList<BookBean>();

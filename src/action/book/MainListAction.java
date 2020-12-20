@@ -27,6 +27,7 @@ public class MainListAction implements Action {
 		}
 		String catg1 = "";
 		String catg2 = "";
+		String search="";
 		if(request.getParameter("catg1") != null) {
 			catg1 = request.getParameter("catg1");
 		}
@@ -38,7 +39,7 @@ public class MainListAction implements Action {
 		System.out.println("전체 게시물 수 : " + listCount);
 		
 		ArrayList<BookBean> bookList = new ArrayList<BookBean>();
-		bookList = mainListService.getBookList(page,limit,catg1,catg2);
+		bookList = mainListService.getBookList(page,limit,catg1,catg2,search);
 		int maxPage = (int)((double)listCount/ limit+0.95);
 		int startPage = ((int)((double)page/10+0.9)-1)*10+1;
 		int endPage=startPage+10-1;

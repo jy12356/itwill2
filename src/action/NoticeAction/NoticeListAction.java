@@ -25,6 +25,10 @@ public class NoticeListAction implements action.NoticeAction.NoticeAction {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
+		String search = request.getParameter("search");
+		if(search == null) {
+			search ="";
+		}
 		
 		// BoardListService 클래스 인스턴스 생성 후 
 		// getListCount() 메서드를 호출하여 전체 게시물 수(listCount) 가져오기
@@ -38,7 +42,7 @@ public class NoticeListAction implements action.NoticeAction.NoticeAction {
 		// BoardListService 클래스의 getArticleList() 메서드를 호출하여
 		// 전체 게시물 목록 리턴받아 ArrayList 객체에 저장
 		// => 파라미터 : 현재 페이지번호(page), 페이지 당 게시물 수(limit)
-		articleList = noticeListService.getArticleList(page, limit);
+		articleList = noticeListService.getArticleList(page, limit, search);
 		
 		// 페이지 계산 작업 수행
 		// 1. 전체 페이지 수 계산
