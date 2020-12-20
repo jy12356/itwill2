@@ -11,15 +11,17 @@ https://docs.google.com/document/d/1RQDDsJciE-XwVYH_tseK5u28UeBb-HkSt1Xl-WKzGcM/
 도서 배송 서비스
 
 ### 사용 기술
-JAVA, JAVASCRIPT, MYSQL, JSP, AJAX, NAVER API, JSOUP(북큐브 크롤링)
+JAVA, JAVASCRIPT, MYSQL, JSP, AJAX, NAVER API, 이니시스 API, JSOUP(북큐브 크롤링)
 
 
 ### 1.3. 주제에 따른 기능
-도서예약(시간 예약도서 sns 알림)
-도서정보 api (도서관리)
+도서예약(시간 예약도서 알림)
+도서검색 api (도서등록)
+전체 검색
 대출 관리
 관심도서 리스트
 회원가입
+구독 결재(API)
 게시판 (공지사항, 자유게시판, FAQ게시판)
 대출 개수 제한
 책찜(즐겨찾기)
