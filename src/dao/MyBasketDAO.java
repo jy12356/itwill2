@@ -258,17 +258,20 @@ public class MyBasketDAO {
 
 
 	public int overlap(String isbn, String id) {
+		
 		int count = 0;
 		
 		  PreparedStatement pstmt = null;
 	      ResultSet rs = null;
+	      
+	      System.out.println("dao - id : " + id);
 	      
 	      try {
 	          String sql = "select isbn from mybasket where id=?";
 	          pstmt=con.prepareStatement(sql);
 	          pstmt.setString(1, id);
 	          rs = pstmt.executeQuery();
-	          if(rs.next()) {
+	          while(rs.next()) {
 	             if(rs.getString("isbn").equals(isbn)) {
 	            	 count = 1;               
 	             }
@@ -281,7 +284,7 @@ public class MyBasketDAO {
 	          close(rs);
 	       }
 		
-		
+		System.out.println("count : " + count);
 		
 		return count;
 	}

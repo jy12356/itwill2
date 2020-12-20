@@ -5,12 +5,19 @@ import java.sql.Date;
 public class RentalBean {
 
 	private int num;
+	private String title;
 	private String isbn;
 	private String id;
 	private Date s_date;
 	private Date onrental_date;
 	private Date e_date;
 	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public Date getS_date() {
 		return s_date;
 	}

@@ -29,11 +29,11 @@ int listCount = pageInfo.getListCount();
 						<caption>책바구니2222222</caption>
 						<colgroup>
 							<col style="width: 5%">
-							<col style="width: 20%">
+							<col style="width: 35%">
 							<col style="width: 15%">
 							<col style="width: 15%">
 							<col style="width: 15%">
-							<col style="width: 10%">
+							<col style="width: 15%">
 
 						</colgroup>
 						<tr>
@@ -41,8 +41,7 @@ int listCount = pageInfo.getListCount();
 						</tr>
 
 						<tr>
-							<th scope="col" abbr="책번호"><input type="checkbox"
-								name="checkAll1" id="checkAll1" class="checkAll1" /></th>
+							<th scope="col" abbr="책번호"><input type="checkbox"name="checkAll1" id="checkAll1" class="checkAll1" /></th>
 							<th scope="col" abbr="제목">제목</th>
 							<th scope="col" abbr="작가">작가</th>
 							<th scope="col" abbr="출판사">출판사</th>
@@ -70,9 +69,19 @@ int listCount = pageInfo.getListCount();
 
 						</tr>
 						<%
+								}
+							}
+						} 
+						
+// 						else {
+							
+							%>
+<!-- 							<i>책바구니에 담긴 도서가 없습니다.</i> -->
+							<%
+							
+// 						}
 							// 예약가능 리스트
-						} else if (myBasketList.get(i).getState().equals("대여불가능")) {
-						%>
+							%>
 						<tr>
 							<td colspan="6"><span>예약 가능 책 목록</span></td>
 						</tr>
@@ -85,6 +94,12 @@ int listCount = pageInfo.getListCount();
 							<th scope="col" abbr="출판일">출판일</th>
 							<th scope="col" abbr="상태">상태</th>
 						</tr>
+								<%
+						if (myBasketList.size() != 0) {
+							for (int i = 0; i < myBasketList.size(); i++) {
+								if (myBasketList.get(i).getState().equals("대여불가능")) {
+								
+						%>
 						<tr>
 							<td><input type="checkbox" id="check_box2"
 								class="check_box c2" value="<%=myBasketList.get(i).getNum()%>"
@@ -97,11 +112,16 @@ int listCount = pageInfo.getListCount();
 
 						</tr>
 						<%
-							}
-
-						}
-
-						}
+									}
+								}	
+							} 
+						
+// 						else {
+								
+								%>
+<!-- 								<i>책바구니에 담긴 도서가 없습니다.</i> -->
+								<%
+// 							}
 						%>
 					</table>
 					<div class="btn_inner">
@@ -112,9 +132,8 @@ int listCount = pageInfo.getListCount();
 								총 선택 도서 수 : <span class="totalbookcnt">0권</span>
 							</p>
 
-							<input type="button" style="display: none;" class="rentalbtn" value="대여하기" onclick="rental()"> 
-								
-							<input type="button" style="display: none;" class="reservationbtn" value="예약하기" onclick="reservation()">
+						<input type="button" style="display: none;" class="rentalbtn" value="대여하기" onclick="rental()"> 
+						<input type="button" style="display: none;" class="reservationbtn" value="예약하기"onclick="reservation()">
 						</div>
 					</div>
 					<div class="ps-box">
@@ -138,8 +157,8 @@ int listCount = pageInfo.getListCount();
 
 			if (confirm_val) {
 				var inter_num = [];
-				if ($('.check_box input[type="checkbox"]:checked').length > 0) {
-					$('.check_box input[type="checkbox"]:checked').each(
+				if ($('input:checkbox[name="inter_num"]:checked').length > 0) {
+					$('input:checkbox[name="inter_num"]:checked').each(
 							function() {
 								inter_num.push($(this).attr("value"));
 							});
@@ -169,7 +188,70 @@ int listCount = pageInfo.getListCount();
 				});
 			}
 		};
+		
+		// 예약하기 버튼 이벤트
+		function reservation() {
+			// 구독중이아닐때 결제페이지로 넘어가기
+			if ($(".isRentalable").val() == "구독안함") {
+				var unsubscribe = confirm("현재 구독중이 아닙니다.\n구독 하시겠습니까?")
 
+				if (unsubscribe) {
+					location.href = "Charge.dok";
+
+				} else {
+					return;
+				}
+
+				// 구독중일때
+			} else if ($(".isRentalable").val() == "구독중") {
+				// 창하나 먼저 띄워주고
+				var confirm_val = confirm("선택하신 도서를 예약하시겠습니까?");
+
+				//확인눌렀을때
+				if (confirm_val) {
+
+					var inter_num = [];
+					// 					if ($('.c1 input[type="checkbox"]:checked').length > 0) {
+					if ($('input:checkbox[name="inter_num"]:checked').length > 0) {
+						// 						$('.c1 input[type="checkbox"]:checked').each(
+						$('input:checkbox[name="inter_num"]:checked').each(
+								function() {
+									inter_num.push($(this).attr("value"));
+								});
+						// 아무것도 체크한게없으면
+					} else {
+						alert("예약할 도서를 선택해주시기 바랍니다.");
+						return false;
+					}
+					;
+					// 체크한거 담아서
+					var interArr = {
+						"inter_num" : inter_num
+					};
+
+					$.ajax({
+						url : "reservationInsert.rn",
+						type : "post",
+						dataType : 'text',
+						data : interArr,
+						success : function() {
+							// 대여하기 성공했으면 대여리스트로 가기
+							location.href = "reservationList.rn";
+						},
+						error : function(request, status, error) {
+							alert("code:" + request.status + "\n" + "message:"
+									+ request.responseText + "\n" + "error:"
+									+ error);
+						}
+
+					});
+				}
+
+			}
+		}
+		
+		
+		// 대여하기버튼 이벤트
 		function rental() {
 			// 구독중이아닐때 결제페이지로 넘어가기
 			if ($(".isRentalable").val() == "구독안함") {
@@ -191,9 +273,9 @@ int listCount = pageInfo.getListCount();
 				if (confirm_val) {
 
 					var inter_num = [];
-// 					if ($('.c1 input[type="checkbox"]:checked').length > 0) {
+					// 					if ($('.c1 input[type="checkbox"]:checked').length > 0) {
 					if ($('input:checkbox[name="inter_num"]:checked').length > 0) {
-// 						$('.c1 input[type="checkbox"]:checked').each(
+						// 						$('.c1 input[type="checkbox"]:checked').each(
 						$('input:checkbox[name="inter_num"]:checked').each(
 								function() {
 									inter_num.push($(this).attr("value"));
@@ -202,18 +284,27 @@ int listCount = pageInfo.getListCount();
 					} else {
 						alert("대여할 도서를 선택해주시기 바랍니다.");
 						return false;
-					};
+					}
+					;
 					// 체크한거 담아서
-					var interArr = {"inter_num" : inter_num};
-					
+					var interArr = {
+						"inter_num" : inter_num
+					};
+
 					$.ajax({
 						url : "rentalInsert.rn",
 						type : "post",
 						dataType : 'text',
 						data : interArr,
-						success : function() {
+						success : function(data) {
 							// 대여하기 성공했으면 대여리스트로 가기
-							location.href = "rentalList.bk";
+							alert(data);
+							var a = "이미 대여중인 도서가 있습니다.";
+							if(data == a.trim()) {
+								return false;								
+							} else if(data == "성공"){
+							location.href = "rentalList.rn";
+							}
 						},
 						error : function(request, status, error) {
 							alert("code:" + request.status + "\n" + "message:"
@@ -226,15 +317,17 @@ int listCount = pageInfo.getListCount();
 
 			}
 		}
+			
+			
 		// 대여가능도서 전체 선택
 		$(".checkAll1").click(function() {
-			if ($(this).is(":checked")){
-				$(".c1").prop("checked",true);	//전체선택 체크된경우
-				$(".c2").prop("checked",false);	//전체선택 체크된경우
-				$(".checkAll2").prop("checked",false);	//전체선택 체크된경우
+			if ($(this).is(":checked")) {
+				$(".c1").prop("checked", true); //전체선택 체크된경우
+				$(".c2").prop("checked", false); //전체선택 체크된경우
+				$(".checkAll2").prop("checked", false); //전체선택 체크된경우
 				$(".rentalbtn").show();
 			} else {
-				$(".c1").prop("checked",false);	//전체선택 해제된경우
+				$(".c1").prop("checked", false); //전체선택 해제된경우
 				$(".rentalbtn").hide();
 			}
 			var play = cartset();
@@ -242,19 +335,18 @@ int listCount = pageInfo.getListCount();
 
 		// 예약가능도서 전체선택
 		$(".checkAll2").click(function() {
-			if ($(this).is(":checked")){
-				$(".c2").prop("checked",true);	//전체선택 체크된경우
-				$(".c1").prop("checked",false);	//전체선택 체크된경우
-				$(".checkAll1").prop("checked",false);	//전체선택 체크된경우
+			if ($(this).is(":checked")) {
+				$(".c2").prop("checked", true); //전체선택 체크된경우
+				$(".c1").prop("checked", false); //전체선택 체크된경우
+				$(".checkAll1").prop("checked", false); //전체선택 체크된경우
 				$(".reservationbtn").show();
 			} else {
-				$(".c2").prop("checked",false);	//전체선택 해제된경우
+				$(".c2").prop("checked", false); //전체선택 해제된경우
 				$(".reservationbtn").hide();
 			}
 			var play = cartset();
 		});
 
-		
 		// 하나하나 대여가능도서 체크했을때
 		$("#check_box1").click(function() {
 			var total_cnt1 = 0;
@@ -262,14 +354,13 @@ int listCount = pageInfo.getListCount();
 				$('.check_box input[id="check_box2"]').prop('checked', false);
 				$('.checkAll2 input[id="checkAll2"]').prop('checked', false);
 				$(".rentalbtn").show();
-				
+
 			} else {
 				$('.checkAll1 input[id="checkAll1"]').prop('checked', false);
 				$(".rentalbtn").hide();
 			}
 			var play = cartset();
-		} );
-
+		});
 
 		// 하나하나 예약가능도서 체크했을때
 		$("#check_box2").click(function() {
@@ -277,7 +368,7 @@ int listCount = pageInfo.getListCount();
 				$('.check_box input[id="checkRow1"]').prop('checked', false);
 				$('.checkAll1 input[id="checkAll1"]').prop('checked', false);
 				$(".reservationbtn").show();
-				
+
 			} else {
 				$('.checkAll2 input[id="checkAll2"]').prop('checked', false);
 				$(".reservationbtn").hide();
@@ -285,18 +376,15 @@ int listCount = pageInfo.getListCount();
 			var play = cartset();
 		});
 
-
-		
-		function cartset(){
-			var total_cnt = 0 ;
+		function cartset() {
+			var total_cnt = 0;
 			$('input:checkbox[name="inter_num"]').each(function() {
-				if(this.checked){
-					total_cnt += 1 ;
+				if (this.checked) {
+					total_cnt += 1;
 				}
-			});	
-	
-			
-			$(".totalbookcnt").html(total_cnt +"권");
+			});
+
+			$(".totalbookcnt").html(total_cnt + "권");
 		}
 	</script>
 </section>
