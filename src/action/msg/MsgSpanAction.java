@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -22,12 +23,14 @@ public class MsgSpanAction implements Action {
 		ActionForward forward =null;
 		request.setCharacterEncoding("utf-8");
 		
-		//전달할 데이터를 BoardBean객체에 저장
+		HttpSession session = request.getSession();
 		MsgBean msgBean = new MsgBean();		
 		String id =request.getParameter("id");
+		String fromid =(String)session.getAttribute("id");
 		String content = request.getParameter("content");
 		msgBean.setId(id);
 		msgBean.setContent(content);
+		msgBean.setFromId(fromid);
 		MsgSpanService msgSpanService = new MsgSpanService();
 		boolean isSpan = msgSpanService.msgSpan(msgBean);
 		if(!isSpan) {

@@ -87,7 +87,7 @@
 								<input type="button" class="btn" value="수정" onclick="location.href='QnaModifyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
 								<input type="button" class="vs1Del btn" value="삭제" onclick="location.href='QnaDeletePro.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
 								<input type="button" class="btn" value="목록" onclick="location.href='QnaList.qna?page=<%=nowPage%>'">
-								<input type="button" class="btn" value="답변" onclick="location.href='QnaReplyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>'">
+								<input type="button" class="btn" value="답변" onclick="location.href='QnaReplyForm.qna?board_num=<%=article.getBoard_num()%>&page=<%=nowPage%>&id=<%=article.getId()%>'">
 									</div>
 								<%}else{ %>
 									<div class="btn_inner">

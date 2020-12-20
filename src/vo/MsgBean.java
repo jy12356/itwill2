@@ -6,6 +6,7 @@ public class MsgBean {
 	private int num;
 	private String content;
 	private String id;
+	private String fromId;
 	private String isRead;
 	private Date date;
 	public int getNum() {
@@ -37,6 +38,12 @@ public class MsgBean {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public String getFromId() {
+		return fromId;
+	}
+	public void setFromId(String fromId) {
+		this.fromId = fromId;
 	}
 	
 }

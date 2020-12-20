@@ -13,6 +13,7 @@ import action.Action;
 import action.AdminAction;
 import action.SearchAllAction;
 import action.book.MainListAction;
+import action.msg.MsgDelAction;
 import action.msg.MsgSpanAction;
 import action.msg.MyMsgListAction;
 import vo.ActionForward;
@@ -37,6 +38,15 @@ public class MsgController extends HttpServlet {
 		}else if(command.equals("/MyMsgSpan.msg")) {
 			System.out.println("MyMsgSpan.msg 포워딩");
 			action = new MsgSpanAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("/MyMsgDel.msg")) {
+			System.out.println("MyMsgDel.msg 포워딩");
+			action = new MsgDelAction();			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
