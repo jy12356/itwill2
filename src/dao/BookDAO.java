@@ -86,7 +86,7 @@ public class BookDAO {
       }
       return insertCount;      
    }
-	//책 리스트 - 최신순(psy)
+	//책 리스트 - 최신순
 	public ArrayList<BookBean> selectBookList(int page, int limit,String catg1,String catg2) {
 		System.out.println("BookDAO - selectList()");
 		ArrayList<BookBean> bookList = null;
@@ -124,6 +124,7 @@ public class BookDAO {
 				bookBean.setDescription(rs.getString("description"));
 				bookBean.setReviewCount(rs.getInt("review"));
 				bookBean.setStarcount(rs.getInt("starcount"));
+
 				bookList.add(bookBean);
 			}
 			
@@ -654,6 +655,7 @@ public class BookDAO {
       return isDibsYnCount;
    }
    //책 유무 
+
 	public boolean selectIsbn(String isbn) {
 		  boolean isIsbn = false;
 	      
