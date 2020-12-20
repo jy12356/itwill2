@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import static db.JdbcUtil.*;
 import vo.MsgBean;
@@ -110,12 +111,13 @@ public class MsgDAO {
 				num = rs.getInt(1) + 1; 
 			}
 			
-			sql = "insert into message(num, content, id, date, inRead) values(?,?,?,sysdate(),?)";
+			sql = "insert into message(num, content, id, date, isRead,fromId) values(?,?,?,sysdate(),?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			pstmt.setString(2, msgBean.getContent());
 			pstmt.setString(3, msgBean.getId());
 			pstmt.setString(4, "n");			
+			pstmt.setString(5, msgBean.getFromId());			
 			insertCount = pstmt.executeUpdate();
 			
 		}catch (Exception e) {
@@ -150,6 +152,28 @@ public class MsgDAO {
 			close(pstmt);
 		}
 		return updateStatus;
+	}
+
+	public int deleteMsg(List<Integer> msgNumList, String id) {
+		System.out.println("bookDAO - dibsDelete");
+	      int isDeleteOk = 0;
+	      PreparedStatement pstmt = null;
+	      try {
+	         for(int i=0; i< msgNumList.size(); i++) {
+	            String sql = "delete from message where num=? and id=?";
+	            pstmt = con.prepareStatement(sql);
+	            pstmt.setInt(1, msgNumList.get(i));
+	            pstmt.setString(2,id);
+	            System.out.println(pstmt);
+	            isDeleteOk = pstmt.executeUpdate();
+	         }
+	      }catch (Exception e) {
+	         System.out.println("deleteMsg 오류!" + e.getMessage());
+	         e.printStackTrace();
+	      }finally {
+	         close(pstmt);
+	      }
+	      return isDeleteOk;
 	}
 	
 			
