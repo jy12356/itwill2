@@ -15,8 +15,8 @@
 <section class="sub">
      <div class="contents-wrap">
         <div class="customer">
-            <h3 class="coTitle">주문배송조회</h3>
-            
+            <pre><h2 class="coTitle"><a href="rentalList.rn">주문배송조회</a>  |  <a href="PastRentalList.rn">과거주문내역</a>  |  <a href="ReservationList.rn">예약중인도서</a></h2></pre>
+            <h2 class="coTitle">주문배송조회</h2>
             <div class="customer-contents">
                 <div class="customer-inner">
                     <table summary="" class="customer-table notice">
