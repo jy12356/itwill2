@@ -275,11 +275,7 @@ int board_num = article.getBoard_num();
 <!-- 						</div> -->
 <div class="d-more reviewMore" style="display: ;">
 	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%>
-
-	&board_type=<%=board_type%>&limit=<%=limit%>">댓글 더보기</a>
-
-//	&board_type=<%=board_type%>&limit=<%=limit+10%>">댓글 더보기</a>
-
+	&board_type=<%=board_type%>&limit=<%=limit+10%>">댓글 더보기</a>
 
 						</div>
 						<%
