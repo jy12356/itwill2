@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+	String id = (String) session.getAttribute("id");
+if (id == null) {
+	id = "admin";
+}
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <jsp:include page="../../include/header.jsp" />
-
-
 
 <head>
     <meta charset="utf-8" />
@@ -24,12 +28,23 @@
 </head>
 <body>
     <div class="container">
-        <p class="h5 text-center">캘린더</p>
+<%if(id.equals("admin")){ %>
+        <!-- 일자 클릭시 메뉴오픈 -->
+        <div id="contextMenu" class="dropdown clearfix">
+            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
+                style="display:block;position:static;margin-bottom:5px;">
+                <li><a tabindex="-1" href="#">입고</a></li>
+                <li><a tabindex="-1" href="#">휴무</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
+            </ul>
+        </div>
+<%}else%>
+
         <div id="wrapper">
             <div id="loading"></div>
             <div id="calendar"></div>
         </div>
-
 
         <!-- 일정 추가 MODAL -->
         <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
@@ -45,7 +60,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-allDay">하루종일</label>
-                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox">
+                                <label><input class='allDayNewEvent' id="edit-allDay" type="checkbox"></label>
                             </div>
                         </div>
 
@@ -67,7 +82,16 @@
                                 <label class="col-xs-4" for="edit-end">끝</label>
                                 <input class="inputModal" type="text" name="edit-end" id="edit-end" />
                             </div>
-                        </div>                        
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-type">구분</label>
+                                <select class="inputModal" type="text" name="edit-type" id="edit-type">
+                                    <option value="입고">입고</option>
+                                    <option value="휴무">휴무</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-color">색상</label>
@@ -104,20 +128,19 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+
         <div class="panel panel-default">
 
             <div class="panel-heading">
                 <h3 class="panel-title">필터</h3>
             </div>
-
             <div class="panel-body">
-
                 <div class="col-lg-6">
                     <label for="calendar_view">구분별</label>
                     <div class="input-group">
                         <select class="filter" id="type_filter" multiple="multiple">
                             <option value="입고">입고</option>
-                            <option value="휴일">휴일</option>
+                            <option value="휴무">휴무</option>
                         </select>
                     </div>
                 </div>

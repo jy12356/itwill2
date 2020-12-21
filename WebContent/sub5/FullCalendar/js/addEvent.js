@@ -46,7 +46,7 @@ var newEvent = function (start, end, eventType) {
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
-            username: '사나',
+            username: 'admin',
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false
@@ -82,7 +82,7 @@ var newEvent = function (start, end, eventType) {
         //새로운 일정 저장
         $.ajax({
             type: "get",
-            url: "data.json",
+            url: "",
             data: {
                 //.....
             },

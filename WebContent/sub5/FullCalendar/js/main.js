@@ -57,17 +57,17 @@ var calendar = $('#calendar').fullCalendar({
                                   columnFormat : ''
                                 }
                               },
-  customButtons             : { //주말 숨기기 & 보이기 버튼
-                                viewWeekends : {
-                                  text  : '주말',
-                                  click : function () {
-                                    activeInactiveWeekends ? activeInactiveWeekends = false : activeInactiveWeekends = true;
-                                    $('#calendar').fullCalendar('option', { 
-                                      weekends: activeInactiveWeekends
-                                    });
-                                  }
-                                }
-                               },
+//  customButtons             : { //주말 숨기기 & 보이기 버튼
+//                                viewWeekends : {
+//                                  text  : '주말',
+//                                  click : function () {
+//                                    activeInactiveWeekends ? activeInactiveWeekends = false : activeInactiveWeekends = true;
+//                                    $('#calendar').fullCalendar('option', { 
+//                                      weekends: activeInactiveWeekends
+//                                    });
+//                                  }
+//                                }
+//                               },
 
 
   eventRender: function (event, element, view) {
