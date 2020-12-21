@@ -711,7 +711,7 @@ border-radius:2px;background:#f4f4f4;padding:24px;font-size:14px;color:#666;line
 
 /* 서평 */
 #comment{border-bottom:1px solid #cdced1;}
-.comment{padding:20px 10px;border-top:1px solid #f4f4f4;}
+.comment{padding:20px 10px;/*border-top:1px solid #f4f4f4;*/}
 .comment-vote{padding:2px 9px 2px 25px;color:#999;font-size:13px;}
 .comment-vote i{font-weight:bold;color:#333;font-style:normal;line-height:19px;}
 .comment-vote em{display:inline-block;color:#d5d5d5;margin:0 6px;font-weight:100;}
@@ -741,8 +741,7 @@ border-radius:2px;background:#f4f4f4;padding:24px;font-size:14px;color:#666;line
 .comment-btn div a.heart-btn.on{background:url(../images/heart_on.png) no-repeat left 10px;background-size:15px 13px;}
 .comment-btn div a.comment_write_show{padding-left:21px;background:url(../images/reply-icon.png) no-repeat left 10px;background-size:17px 14px;}
 .comment-write.reply-write{border-top:1px solid #f4f4f4;padding:20px 10px 20px 33px;background:url(../images/replyBg.png) no-repeat 10px 50px;background-size:12px 12px;}
-.comment-write textarea{padding:10px;transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s, background-color ease-in-out .5s;
-overflow:auto;box-sizing:border-box;width:100%;height:70px;border:1px solid #e5e6e7;background:#f3f3f4;resize:none;padding:5px;}
+.comment-write textarea{padding:10px;transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s, background-color ease-in-out .5s;overflow:auto;box-sizing:border-box;width:100%;height: 40px;border:1px solid #e5e6e7;background:#f3f3f4;/* resize:none; */padding:5px;}
 .comment-write textarea:focus{box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);border-color:#17897a;background:#fff;line-height:18px;font-size:13px;}
 .comment-write p{margin-top:10px;}
 .comment-write p:after{content:"";display:block;clear:both;}

@@ -72,6 +72,33 @@ public class MsgDAO {
 		}
 		return msglist;
 	}
+	public MsgBean getMyMsg(int num, String id) {
+		System.out.println("DAO - getMyMsg()");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MsgBean msgBean = new MsgBean();
+		try {			
+			String sql = "select * from message where id=? and num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, num);
+			rs= pstmt.executeQuery();		
+			while(rs.next()) {
+				msgBean.setNum(rs.getInt("num"));
+				msgBean.setContent(rs.getString("content"));
+				msgBean.setId(rs.getString("id"));
+				msgBean.setDate(rs.getDate("date"));
+				msgBean.setIsRead(rs.getString("isRead"));				
+			}
+		} catch (Exception e) {			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return msgBean;
+	}
 	public int myMsgListCount(String id) {
 		System.out.println("DAO - myMsgListCount()");
 		int listCount = 0;
@@ -96,7 +123,7 @@ public class MsgDAO {
 	// ---------------INSERT---------------
 	public int insertMsg(MsgBean msgBean) {
 
-		System.out.println("DAO - msgBean()");
+		System.out.println("DAO - insertMsg()");
 		int insertCount = 0; 
 		int num = 0;
 		PreparedStatement pstmt = null;

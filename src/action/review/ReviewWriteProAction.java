@@ -32,12 +32,16 @@ public class ReviewWriteProAction implements Action {
 
 		String book_isbn = request.getParameter("isbn");
 		String page=request.getParameter("page");
+		int startcount = 0;
 		System.out.println("책코드 : " + book_isbn);
 		System.out.println("페이지번호 : " + page);
-		
 		reviewBean.setId(request.getParameter("id"));
 		reviewBean.setContent(request.getParameter("content"));
-		reviewBean.setStarcount(Integer.parseInt(request.getParameter("starcount"))); 
+		if(request.getParameter("starcount") !=null){
+			reviewBean.setStarcount(Integer.parseInt(request.getParameter("starcount"))); 		    
+		}else {
+			reviewBean.setStarcount(startcount); 			
+		}		
 		reviewBean.setIsbn(request.getParameter("isbn"));
 		reviewBean.setSpoiler(Integer.parseInt(request.getParameter("spoiler")));
 		
