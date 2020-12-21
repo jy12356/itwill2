@@ -2,6 +2,7 @@ package action;
 
 import java.io.PrintWriter;
 
+import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,25 +21,29 @@ public class MemberLoginProAction implements Action {
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		
 		MemberLoginProService memberLoginProService = new MemberLoginProService();
-		boolean isMember = memberLoginProService.registArticle(id, password);
-		System.out.println(isMember);
-		if(!isMember) {
+		try {
+			boolean isMember = memberLoginProService.registArticle(id, password);
+			System.out.println(isMember);
+
+			if(isMember) {
+				HttpSession session = request.getSession();
+				session.setAttribute("id", id);
+				forward = new ActionForward();
+				forward.setRedirect(true);
+				forward.setPath("Main.book"); 
+			}
+		} catch (LoginException e) { 
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("alert('로그인에 실패하였습니다!");
-			out.println("history.back()"); 
-			out.println("</script>"); 
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
-			forward = new ActionForward();
-			forward.setPath("Main.book");
-			forward.setRedirect(false);	
+			out.println("<script>");
+			out.println("alert('" + e.getMessage() + "')"); // 실패 메세지 출력
+			out.println("history.back()");
+			out.println("</script>");
 		}
 		
 		return forward;
 	}
 
 }
+
