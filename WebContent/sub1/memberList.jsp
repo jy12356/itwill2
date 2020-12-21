@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberBean"%>
@@ -13,23 +14,58 @@
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
+	SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd");
 	
+ 	String name1 = "전체";
+	/* if(request.getParameter("name1")!=null){
+		name1 = request.getParameter("name1");
+	} */
+	String id1 = "전체";
+	if(request.getParameter("id")!=null){
+		id1 = request.getParameter("id");
+	} 
+	String state = "*";
+	if(request.getParameter("state")!=null){
+		state = request.getParameter("state");
+	} 
 	
 %> 
 <jsp:include page="../include/header.jsp"/>
 <style>
-.koSort_on  {padding: 3px; margin: 2px; border-bottom: 2px solid black;}
+/* .koSort_on  {padding: 3px; margin: 2px; border-bottom: 2px solid black;}
 .koSort_off  {padding: 2px; margin: 2px; color: gray;} 
 .memSort_on  {padding: 3px; margin: 2px; color:#00ab94;}
 .memSort_off  {padding: 2px; margin: 2px;color: gray;}
 .ko-array{content:"";display:block;clear:both;}
 .ko-array input[type='radio']{position:absolute;left:-9999px;width:17px;height:17px;}
 .ko-array label{display:block;margin-left:20px;line-height:50px;height:50px;float:left;text-align:center;font-weight:600;font-size:14px;cursor:pointer;}
+ */
+.mem-array{}
+.mem-array:after{content:"";display:block;clear:both;}
+.mem-array input[type='radio']{position:absolute;left:-9999px;width:17px;height:17px;}
+.mem-array label{display:block;margin-left:20px;line-height:50px;height:50px;float:left;text-align:center;font-weight:600;font-size:14px;cursor:pointer;}
+ 
+.mem-array label span {padding: 2px; margin: 2px; color: gray;}
+.mem-array label .on{padding: 3px; margin: 2px; border-bottom: 2px solid black;}
+.mem-array label span {padding: 2px; margin: 2px; color: gray;}
+.mem-array label .on{padding: 3px; margin: 2px; border-bottom: 2px solid black;}
+
+.ko-array{}
+.ko-array:after{content:"";display:block;clear:both;}
+.ko-array input[type='radio']{position:absolute;left:-9999px;width:17px;height:17px;}
+.ko-array label{display:block;margin-left:20px;line-height:50px;height:50px;float:left;text-align:center;font-weight:600;font-size:14px;cursor:pointer;}
+.ko-array label span {padding: 2px; margin: 2px; color: gray;}
+.ko-array label .on{padding: 3px; margin: 2px; border-bottom: 2px solid black;}
+.ko-array label span {padding: 2px; margin: 2px; color: gray;}
+.ko-array label .on{padding: 3px; margin: 2px; border-bottom: 2px solid black;}
+
+ 
+
 th.memSortTbody {font-size: 13px; font-weight: 500; padding: 3px;}
 
 .btn2 {
     padding: 8px !important;
-    margin-left: 670px;
+    margin-top: 15px;
     background-color: #069e89 !important;
     color: white;
     border-radius: 5px !important;
@@ -45,65 +81,136 @@ th.memSortTbody {font-size: 13px; font-weight: 500; padding: 3px;}
             <p>HOME > 고객관리</p>
         </div>
     </div>
-    <div class="contents-wrap">
-        <div class="customer" style="width:1400px; ">
-            <h3 class="coTitle">고객관리</h3>
-            <div class="customer-contents">
-                <div class="customer-inner">
-                    <table summary="공지사항" class="customer-table notice">
-                        <caption>공지사항</caption>
-                        <div class="list-sort">
-							<div class="k-array">
-							<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="전체"><span class="memSort_on">전체</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="이름순"><span class="memSort_off">이름순</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="아이디순"><span class="memSort_off">아이디순</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="상태"><span class="memSort_off">상태</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="등급"><span class="memSort_off">등급</span></label>
-								
-								</div>
-							<div class="list-sort">	
-								<div class="ko-array">
-								<input type="radio" name="" id="">
-								<label for="" class="radio1" data-sort="전체"><span class="koSort_off" onclick="memlist(this)" id="전체">전체</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio1" data-sort="ㄱ"><span class="koSort_on" onclick="memlist(this)" id="가">ㄱ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㄴ"><span class="koSort_off" onclick="memlist(this)" id="나">ㄴ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㄷ"><span class="koSort_off" onclick="memlist(this)" id="다">ㄷ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㄹ"><span class="koSort_off" onclick="memlist(this)" id="라">ㄹ</span></label>	
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㅁ"><span class="koSort_off" onclick="memlist(this)" id="마">ㅁ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㅂ"><span class="koSort_off" onclick="memlist(this)" id="바">ㅂ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㅅ"><span class="koSort_off" onclick="memlist(this)" id="사">ㅅ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㅇ"><span class="koSort_off" onclick="memlist(this)" id="아">ㅇ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㅈ"><span class="koSort_off" onclick="memlist(this)" id="자">ㅈ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㅊ"><span class="koSort_off" onclick="memlist(this)" id="차">ㅊ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㅋ"><span class="koSort_off" onclick="memlist(this)" id="카">ㅋ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㅌ"><span class="koSort_off" onclick="memlist(this)" id="타">ㅌ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㅍ"><span class="koSort_off" onclick="memlist(this)" id="파">ㅍ</span></label>
-								<input type="radio" name="" id="">
-								<label for="" class="radio" data-sort="ㅎ"><span class="koSort_off" onclick="memlist(this)" id="하">ㅎ</span></label>							
-								<label for="" class="radio" data-sort="등급">	<input type="button" name="reportChkBxRow" class="btn2" value="삭제" onclick="deleteListMem()"></label>			
-							
-								</div>
-	                        </div>
-                        </div>
-                        
+<div class="contents-wrap">
+    <div class="customer" style="width:1400px; ">
+     <h3 class="coTitle">고객관리</h3>
+     <div class="customer-contents">
+         <div class="customer-inner">
+             <table summary="공지사항" class="customer-table notice">
+                 <caption>공지사항</caption>
+                 <div class="list-sort">
+<div class="mem-array">
+<input type="radio" name="name1" id="name1" value="*">
+<label for="" class="radio" data-sort="전체" ><span>전체</span></label>
+
+<input type="radio" name="name1" id="name1" value="이름순">
+<label for="" class="radio" data-sort="이름순"><span>이름순</span></label>
+
+<input type="radio" name="name1" id="name1" value="아이디순">
+<label for="" class="radio" data-sort="아이디순"><span>아이디순</span></label>
+
+<input type="radio" name="name1" id="name1"  value="상태">
+<label for="" class="radio" data-sort="상태"><span>상태</span></label>
+
+</div>
+<!-- <div class="list-sort" id="memLiNameList"> -->	
+
+<%if(name1.equals("이름순")){ %> 
+<div class="ko-array">
+<input type="radio" name="" id="">
+<label for="" class="radio1" data-sort="전체"><span onclick="memlist(this)" id="전체">전체</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio1" data-sort="ㄱ"><span onclick="memlist(this)" id="가">ㄱ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㄴ"><span onclick="memlist(this)" id="나">ㄴ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㄷ"><span onclick="memlist(this)" id="다">ㄷ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㄹ"><span onclick="memlist(this)" id="라">ㄹ</span></label>	
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅁ"><span onclick="memlist(this)" id="마">ㅁ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅂ"><span onclick="memlist(this)" id="바">ㅂ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅅ"><span onclick="memlist(this)" id="사">ㅅ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅇ"><span onclick="memlist(this)" id="아">ㅇ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅈ"><span onclick="memlist(this)" id="자">ㅈ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅊ"><span onclick="memlist(this)" id="차">ㅊ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅋ"><span onclick="memlist(this)" id="카">ㅋ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅌ"><span onclick="memlist(this)" id="타">ㅌ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅍ"><span onclick="memlist(this)" id="파">ㅍ</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅎ"><span onclick="memlist(this)" id="하">ㅎ</span></label>							
+
+</div>
+
+<!--  </div> -->
+<%}else if(name1.equals("아이디순")){ %>
+<div class="ko-array">
+<input type="radio" name="" id="">
+<label for="" class="radio1" data-sort="전체"><span onclick="memlist(this)" id="전체">전체</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio1" data-sort="ㄱ"><span onclick="memlist(this)" id="가">a</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㄴ"><span onclick="memlist(this)" id="나">b</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㄷ"><span onclick="memlist(this)" id="다">c</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㄹ"><span onclick="memlist(this)" id="라">d</span></label>	
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅁ"><span onclick="memlist(this)" id="마">e</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅂ"><span onclick="memlist(this)" id="바">f</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅅ"><span onclick="memlist(this)" id="사">g</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅇ"><span onclick="memlist(this)" id="아">h</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅈ"><span onclick="memlist(this)" id="자">i</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅊ"><span onclick="memlist(this)" id="차">j</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅋ"><span onclick="memlist(this)" id="카">k</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅌ"><span onclick="memlist(this)" id="타">l</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅍ"><span onclick="memlist(this)" id="파">m</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅎ"><span onclick="memlist(this)" id="하">n</span></label>							
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅊ"><span onclick="memlist(this)" id="차">o</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅋ"><span onclick="memlist(this)" id="카">p</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅌ"><span onclick="memlist(this)" id="타">q</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅍ"><span onclick="memlist(this)" id="파">r</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅎ"><span onclick="memlist(this)" id="하">s</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅊ"><span onclick="memlist(this)" id="차">t</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅋ"><span onclick="memlist(this)" id="카">u</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅌ"><span onclick="memlist(this)" id="타">v</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅍ"><span onclick="memlist(this)" id="파">w</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅎ"><span onclick="memlist(this)" id="하">x</span></label>	
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅍ"><span onclick="memlist(this)" id="파">y</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio" data-sort="ㅎ"><span onclick="memlist(this)" id="하">z</span></label>	
+</div>
+<%}else if(name1.equals("상태")){ %>
+<div class="ko-array">
+<input type="radio" name="" id="">
+<label for="" class="radio1" data-sort="전체"><span onclick="memlist(this)" id="전체">전체</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio1" data-sort="전체"><span onclick="memlist(this)" id="전체">구독중</span></label>
+<input type="radio" name="" id="">
+<label for="" class="radio1" data-sort="ㄱ"><span onclick="memlist(this)" id="가">구독안함</span></label>
+<input type="radio" name="" id="">
+</div>
+                   
+<%} %>  
+</div>                      
                         <thead>
                             <tr>
                                 <th scope="col" class="memSortTbody" abbr="선택" >선택</th>
@@ -123,7 +230,7 @@ th.memSortTbody {font-size: 13px; font-weight: 500; padding: 3px;}
                         <tbody>
                         <%for(int i = 0; i < articleList.size(); i++) {%>
                             <tr>
-                                <th scope="col" class="memSortTbody" abbr="선택"><input type="checkbox" name="reportChkBxRow" id="inter_num" value=<%=articleList.get(i).getId()%> > </th>
+                                <th scope="col" class="memSortTbody" abbr="선택"><input type="checkbox" name="check_box" id="check_box" value=<%=articleList.get(i).getNum()%> > </th>
                                 <th scope="col" class="memSortTbody" abbr="회원번호" id="num"><%=articleList.get(i).getNum()%></th>
                                 <th scope="col" class="memSortTbody" abbr="아이디" id="id"><%=articleList.get(i).getId()%></th>
                                 <th scope="col" class="memSortTbody" abbr="비밀번호" id="password"><%=articleList.get(i).getPassword()%></th>
@@ -131,14 +238,16 @@ th.memSortTbody {font-size: 13px; font-weight: 500; padding: 3px;}
                                 <th scope="col" class="memSortTbody" abbr="이메일" id="email"><%=articleList.get(i).getEmail()%></th>
                                 <th scope="col" class="memSortTbody" abbr="전화번호" id="phone"><%=articleList.get(i).getPhone()%></th>
                                 <th scope="col" class="memSortTbody" abbr="생년월일" id="age"><%=articleList.get(i).getAge()%></th>
-                                <th scope="col" class="memSortTbody" abbr="가입일" id="date"><%=articleList.get(i).getDate()%></th>
+                                <th scope="col" class="memSortTbody" abbr="가입일" id="date"><%=sdf.format(articleList.get(i).getDate())%></th>
                                 <th scope="col" class="memSortTbody" abbr="주소" id="address"><%=articleList.get(i).getAddress()%></th>
                                 <th scope="col" class="memSortTbody" abbr="선호장르" id="catg"><%=articleList.get(i).getCatg()%></th>
                                 <th scope="col" class="memSortTbody" abbr="상태" id="state"><%=articleList.get(i).getState()%></th>
                            <%} %>
                             </tr>
+								 </table>
                         </tbody>
-                    </table>
+                    <label for="" class="radio" data-sort="등급">	
+<input type="button" name="reportChkBxRow" class="btn2" value="삭제" onclick="deleteListMem()"></label>
                     <div class="paging">
                         <a href="/customer.asp?page=notice&pageNum=1" class="arr" data-page-num="1"><img src="images/p-first.png"><span class="hide">처음페이지</span></a>
                         <a href="/customer.asp?page=notice&pageNum=1" class="arr prev" data-page-num="1"><img src="images/p-prev.png"><span class="hide">이전페이지</span></a>
@@ -149,6 +258,7 @@ th.memSortTbody {font-size: 13px; font-weight: 500; padding: 3px;}
                         <a href="/customer.asp?page=notice&pageNum=27" class="arr" data-page-num="27"><img src="images/p-last.png"><span class="hide">마지막페이지</span></a>
                     </div>
                 </div>
+
             </div>
 
         </div>
@@ -226,10 +336,35 @@ function memlist(nameForm) {
 						location.href = "BookDibsList.bok";
 					},error:function(request,status,error){
 				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				       }
+				       }`
 
 				});
 			} 
 	    };
+	    
+$(document).ready(function(){
+	 
+    // 라디오버튼 클릭시 이벤트 발생
+    
+    $("input:radio[name=memLiName]").click(function(){
+ 
+        if($("input[name=memLiName]:checked").val() == "1"){
+            $("div[id=memLiNameList]").attr("disabled",true);
+            // radio 버튼의 value 값이 1이라면 활성화 div class="list-sort" id="memLiNameList"
+ 
+        }else if($("input[name=radio]:checked").val() == "0"){
+              $("div[id=memLiNameList]").attr("disabled",false);
+            // radio 버튼의 value 값이 0이라면 비활성화
+        }
+    });
+});
+	    
+$(document).ready(function(){
+	$("input:radio[id=memLiName]").click(function(){
+		$("div[id=memLiNameList]").attr("disabled",true);
+		
+	})
+})    
+	    
 </script>
 <jsp:include page="../include/footer.jsp"/>

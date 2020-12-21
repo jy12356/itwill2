@@ -140,7 +140,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/MemberLogOut.me")) {
 			System.out.println("MemberLogoutPro");
-			action = new MemberLogoutProAction();
+//			action = new MemberLogoutProAction();
 			try {
 				forward = action.execute(request, response);
 				forward = new ActionForward();
