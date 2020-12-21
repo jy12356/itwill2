@@ -14,7 +14,7 @@ import action.alarm.AlarmDeleteProAction;
 import action.alarm.AlarmListAction;
 import vo.ActionForward;
 
-@WebServlet("*.rq")
+@WebServlet("*.al")
 public class AlarmController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
