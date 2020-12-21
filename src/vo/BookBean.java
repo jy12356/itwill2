@@ -19,7 +19,7 @@ public class BookBean {
 	    private String author_info;
 	    private String index;
 	    private int reviewCount;
-	    private int starcount;
+	    private double starcount;
 	    
 	    public int getNum() {
 			return num;
@@ -118,10 +118,10 @@ public class BookBean {
 		public void setReviewCount(int reviewCount) {
 			this.reviewCount = reviewCount;
 		}
-		public int getStarcount() {
+		public double getStarcount() {
 			return starcount;
 		}
-		public void setStarcount(int starcount) {
+		public void setStarcount(double starcount) {
 			this.starcount = starcount;
 		}
 }
