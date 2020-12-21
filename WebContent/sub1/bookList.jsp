@@ -149,54 +149,33 @@
                                         
                                         <div class="hot-score">
                                             <p>
-                                            <%switch(bookList.get(i).getStarcount()){ 
-                                            	case 0 :
-                                            %>
+                                            <%if(bookList.get(i).getStarcount() < 1){ %>
                                             	<span class="list-star rank0"></span>
-                                            	<%break; 
-                                            	case 1:
-                                            	%>
+                                            	
+                                            <% }else if(bookList.get(i).getStarcount() < 2){%>
                                             	<span class="list-star rank1"></span>
-                                            	<%break; 
-                                            	case 2:
-                                            	%>
+                                            <%}else if(bookList.get(i).getStarcount() < 3){%>
                                             	<span class="list-star rank2"></span>
-                                            	<%break; 
-                                            	case 3:
-                                            	%>
+                                            <%}else if(bookList.get(i).getStarcount() < 4){%>
                                             	<span class="list-star rank3"></span>
-                                            	<%break; 
-                                            	case 4:
-                                            	%>
+                                         	<%}else if(bookList.get(i).getStarcount() < 5){%>
                                             	<span class="list-star rank4"></span>
-                                            	<%break; 
-                                            	case 5:
-                                            	%>
+                                            <%}else if(bookList.get(i).getStarcount() < 6){%>
                                             	<span class="list-star rank5"></span>
-                                            	<%break; 
-                                            	case 6:
-                                            	%>
+                                           	<%}else if(bookList.get(i).getStarcount() < 7){%>
                                             	<span class="list-star rank6"></span>
-                                            	<%break; 
-                                            	case 7:
-                                            	%>
+                                          	<%}else if(bookList.get(i).getStarcount() < 8){%>
                                             	<span class="list-star rank7"></span>
-                                            	<%break; 
-                                            	case 8:
-                                            	%>
+                                           	<%}else if(bookList.get(i).getStarcount() < 9){%>
                                             	<span class="list-star rank8"></span>
-                                            	<%break; 
-                                            	case 9:
-                                            	%>
+                                            <%}else if(bookList.get(i).getStarcount() < 10){%>
                                             	<span class="list-star rank9"></span>
-                                            	<%break; 
-                                            	case 10:
-                                            	%>
+                                           	<%}else if(bookList.get(i).getStarcount() < 11){%>
                                             	<span class="list-star rank10"></span>
-                                            	<%break; } %>
+                                            <%} %>
                                             <i>
                                             	<em>
-                                            		<%=bookList.get(i).getStarcount()%>.0
+                                            		<%=bookList.get(i).getStarcount()%>
                                            		</em> 
                                            		(<%=bookList.get(i).getReviewCount()%>명)
                                            		
