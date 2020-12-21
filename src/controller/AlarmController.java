@@ -28,13 +28,13 @@ public class AlarmController extends HttpServlet {
 		Action action = null;
 		ActionForward forward = null;
 
-		if (command.equals("/AlarmWriteForm.rq")) {
-			System.out.println("AlarmWriteForm.rq");
+		if (command.equals("/AlarmWriteForm.al")) {
+			System.out.println("AlarmWriteForm.al");
 			forward = new ActionForward();
 			forward.setPath("/sub4/Alarm_board_write.jsp");
 			System.out.println(forward.getPath());
 
-		} else if (command.equals("/AlarmWritePro.rq")) {
+		} else if (command.equals("/AlarmWritePro.al")) {
 			action = new AlarmWriteProAction();
 
 			try {
@@ -43,7 +43,7 @@ public class AlarmController extends HttpServlet {
 				e.printStackTrace();
 			}
 
-		} else if (command.equals("/AlarmList.rq")) {
+		} else if (command.equals("/AlarmList.al")) {
 			action = new AlarmListAction();
 
 			try {
@@ -52,11 +52,11 @@ public class AlarmController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		} else if(command.equals("/AlarmDeleteForm.rq")) {
+		} else if(command.equals("/AlarmDeleteForm.al")) {
 			forward = new ActionForward();
 			forward.setPath("/sub4/alarm_board_delete.jsp");
 			
-		} else if(command.equals("/AlarmDeletePro.rq")) {
+		} else if(command.equals("/AlarmDeletePro.al")) {
 			action = new AlarmDeleteProAction();
 			
 			try {
