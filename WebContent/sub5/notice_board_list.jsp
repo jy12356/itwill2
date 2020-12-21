@@ -152,4 +152,4 @@ int listCount = PageInfo.getListCount();
 	</div>
 
 </section>
-<jsp:include page="../include/footer.jsp" />
+<footer><jsp:include page="../include/footer.jsp" /></footer>
