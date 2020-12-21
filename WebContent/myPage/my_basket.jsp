@@ -275,12 +275,17 @@ int listCount = pageInfo.getListCount();
 					var inter_num = [];
 					// 					if ($('.c1 input[type="checkbox"]:checked').length > 0) {
 					if ($('input:checkbox[name="inter_num"]:checked').length > 0) {
+						if($('input:checkbox[name="inter_num"]:checked').length <6) {						
 						// 						$('.c1 input[type="checkbox"]:checked').each(
 						$('input:checkbox[name="inter_num"]:checked').each(
 								function() {
 									inter_num.push($(this).attr("value"));
 								});
 						// 아무것도 체크한게없으면
+						} else {
+							alert("최대 5권까지 대여가능합니다. ");
+							return false;
+						}
 					} else {
 						alert("대여할 도서를 선택해주시기 바랍니다.");
 						return false;
