@@ -4,33 +4,35 @@ import java.sql.Date;
 
 public class GudokBean {
 	private int gnum;
-	private int gproduct;
-	private int gprice;
-	private Date date;
+	private String gproduct;
+	private Date gdate;
+	private String id;
+	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getGnum() {
 		return gnum;
 	}
 	public void setGnum(int gnum) {
 		this.gnum = gnum;
 	}
-	public int getGproduct() {
+	public String getGproduct() {
 		return gproduct;
 	}
-	public void setGproduct(int gproduct) {
+	public void setGproduct(String gproduct) {
 		this.gproduct = gproduct;
 	}
-	public int getGprice() {
-		return gprice;
+	public Date getGdate() {
+		return gdate;
 	}
-	public void setGprice(int gprice) {
-		this.gprice = gprice;
+	public void setGdate(Date gdate) {
+		this.gdate = gdate;
 	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
-	
 	
 }
+	

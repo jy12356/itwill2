@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.MemberJoinProService;
+import action.mybasket.BasketDeleteAction;
 import action.mybasket.MyBasketInsertAction;
 import action.mybasket.MyBasketListAction;
 import vo.ActionForward;
@@ -45,6 +46,15 @@ public class MyBasketController extends HttpServlet {
 			
 		} else if (command.equals("/MyBasketList.bk")) {
 			action = new MyBasketListAction();
+			try {
+				forward = action.execute(request, response);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/BasketDelete.bk")) {
+			System.out.println("controller - BasketDelete");
+			action = new BasketDeleteAction();
 			try {
 				forward = action.execute(request, response);
 

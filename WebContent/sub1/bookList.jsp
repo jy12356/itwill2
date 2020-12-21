@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../include/header.jsp"/>
 <%@page import="vo.PageInfo"%>
-<%@page import="vo.BookBean"%>ß
+<%@page import="vo.BookBean"%>
 <%
 	// 전달받은 request 객체로부터 데이터 가져오기
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
@@ -79,7 +79,7 @@
                     </ul>
 				<%}else if(catg1.equals("만화/웹소설")){  %>
 					<ul class="field-list">
-                        <li><a href="BookList.bokcatg1=만화/웹소설" <%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
+                        <li><a href="BookList.bok?catg1=만화/웹소설" <%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
                         <li><a href="BookList.bok?catg1=만화/웹소설&catg2=만화" <%if(catg2.equals("만화")){%>class="on"<%}%>>만화</a></li>	
 						<li><a href="BookList.bok?catg1=만화/웹소설&catg2=웹소설" <%if(catg2.equals("웹소설")){%>class="on"<%}%>>웹소설</a></li>	
                     </ul>
@@ -91,7 +91,6 @@
                         <li><a href="../sub1/list.html" class="on">전체</a></li>
                         <li><a href="../sub1/list_best.html" class="">베스트</a></li>
                         <li><a href="../sub1/list_new.html" class="">신간</a></li>
-                        <li><a href="../sub1/list_free.html" class="">무료</a></li>
                     </ul>
                     <div class="list-sort">
                         <div class="k-array">
@@ -101,8 +100,6 @@
                             <label for="" class="radio" data-sort="인기순"><span class="radio_off"><em>인기순</em></span></label>
                             <input type="radio" name="" id="">
                             <label for="" class="radio" data-sort="서평순"><span class="radio_off"><em>서평순</em></span></label>
-                            <input type="radio" name="" id="">
-                            <label for="" class="radio" data-sort="가격순"><span class="radio_off"><em>낮은가격순</em></span></label>
                         </div>
                         <div class="view-array">
                             <div class="arrayBox">
@@ -152,30 +149,32 @@
                                 </li>
                                 <%} %>
                             </ul>
+                    		<%if(id != null && id.equals("admin")){ %>
                             <div class="btn_inner">
 								<a href="BookWriteForm.bok" class="btn">글쓰기</a>
 							</div>
+							<%} %>
                             <div class="paging">
-                            	<%if(nowPage <= 1) {%>
-									<a href="BoardList.bok?page=1" class="arr" data-page-num="1">
+                            	<%if(nowPage > 1) {%>
+									<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=1" class="arr" data-page-num="1">
 										<img src="images/p-first.png"><span class="hide">처음페이지</span>
 									</a>
-                            		<a href="BoardList.bok?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
+                            		<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
 										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
 									</a>
 								<%}%>
 								<%for(int i = startPage; i <= endPage; i++) { 
 										if(i == nowPage) { %>
-											<a href="BoardList.bok?page=<%=i%>" class="on fir" data-page-num="<%=i%>"><%=i%></a>
+											<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=i%>" class="on fir" data-page-num="<%=i%>"><%=i%></a>
 										<%} else { %>
-											<a href="BoardList.bok?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
+											<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
 										<%} %>
 								<%} %>
-                            	<%if(nowPage >= maxPage) { %>
-									<a href="BoardList.bok?page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
+                            	<%if(nowPage > maxPage) { %>
+									<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
 	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
 	                            	</a>
-	                            	<a href="BoardList.bok?page=<%=maxPage%>" class="arr" data-page-num="781">
+	                            	<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=maxPage%>" class="arr" data-page-num="781">
                                 		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
                                		</a>
 								<%}%>                                

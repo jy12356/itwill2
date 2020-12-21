@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.gudok.ChargeListAction;
+import action.gudok.ChargeListAction2;
 import action.gudok.ChargeProAction;
-import action.qna.QnaWriteProAction;
+import action.qna.QnaDetailAction;
 import vo.ActionForward;
 
 @WebServlet("*.dok")
@@ -28,17 +30,36 @@ public class GudokController extends HttpServlet{
 			
 			forward = new ActionForward();
 			forward.setPath("/sub5/charge.jsp");
-		}else if(command.equals("/ChargePro.qna")) {
+		}else if(command.equals("/ChargePro.dok")) {
 			
-			System.out.println("ChargePro.qna 포워딩!!");
-			action = new QnaWriteProAction();
+			System.out.println("ChargePro.dok 포워딩!!");
+			action = new ChargeProAction();
 			
 			try {
 				forward =  action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/ChargeList.dok")) {
+			action = new ChargeListAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}	
+		}else if(command.equals("/ChargeList2.dok")) {
+			action = new ChargeListAction2();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+		
+		
+		
 		
 		if(forward != null) {
 			if(forward.isRedirect()) {

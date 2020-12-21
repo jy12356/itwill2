@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import vo.BookBean;
 
@@ -93,7 +94,8 @@ public class MyBasketDAO {
 				basket.setTitle(rs.getString("title"));
 				basket.setAuthor(rs.getString("author"));
 				basket.setPublisher(rs.getString("publisher"));
-				basket.setPubdate(rs.getDate("pubdate"));
+//				basket.setPubdate(rs.getDate("pubdate"));
+				basket.setPubdate(rs.getString("pubdate"));
 				basket.setState(rs.getString("state"));
 				basket.setIsbn(rs.getString("isbn")); // 필요한가이거?
 				System.out.println(basket.getState());
@@ -176,6 +178,30 @@ public class MyBasketDAO {
 		
 		
 		return state;
+	}
+
+
+	public int basketDelete(List<Integer> inerNumList, String id) {
+		System.out.println("MyBasketDAO - basketDelete()");
+		
+		int isDeleteOk = 0;
+		PreparedStatement pstmt = null;
+		try {
+			for(int i=0; i< inerNumList.size(); i++) {
+				String sql = "delete from mybasket where num=? and id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, inerNumList.get(i));
+				pstmt.setString(2,id);
+				System.out.println(pstmt);
+				isDeleteOk = pstmt.executeUpdate();
+			}
+		}catch (Exception e) {
+			System.out.println("basketDelete 오류!" + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return isDeleteOk;
 	}
 	
 	

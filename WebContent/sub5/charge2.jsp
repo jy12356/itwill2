@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html lang="ko">
   <head>
   </head>
   <body>
@@ -32,17 +30,19 @@ IMP.request_pay({
         msg += '결제 금액 : ' + rsp.paid_amount;
         msg += '카드 승인번호 : ' + rsp.apply_num;
         
-        alert(msg);
-        opener.location.href = ''
+//         alert(msg);
+//         opener.location.href = 'QnaList.qna'
     } else {
         var msg = '결제에 실패하였습니다.';
         msg += '에러내용 : ' + rsp.error_msg;
+//         alert(msg);
+//         opener.location.href = 'Charge.dok'
     }
 
     alert(msg);
-//     opener.location.href='QnaList.qna';
-    window.close();
+//     window.close();
+    location.href="ChargeList2.dok";
+    
 });
 </script>
   </body>
-</html>

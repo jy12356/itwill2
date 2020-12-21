@@ -2,10 +2,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <jsp:include page="../../include/header.jsp" />
+
+
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>생산일정관리</title>
+    <title>Calendar</title>
     <link rel=" shortcut icon" href="sub5/FullCalendar/image/favicon.ico">
 
     <link rel="stylesheet" href="sub5/FullCalendar/vendor/css/fullcalendar.min.css" />
@@ -19,7 +22,6 @@
     <link rel="stylesheet" href="sub5/FullCalendar/css/main.css">
 
 </head>
-
 <body>
     <div class="container">
         <p class="h5 text-center">캘린더</p>
@@ -102,8 +104,38 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h3 class="panel-title">필터</h3>
+            </div>
+
+            <div class="panel-body">
+
+                <div class="col-lg-6">
+                    <label for="calendar_view">구분별</label>
+                    <div class="input-group">
+                        <select class="filter" id="type_filter" multiple="multiple">
+                            <option value="입고">입고</option>
+                            <option value="휴일">휴일</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <label for="calendar_view">등록자별</label>
+                    <div class="input-group">
+                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="admin"
+                                checked>Admin</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /.filter panel -->
     </div>
     <!-- /.container -->
+
 
     <script src="sub5/FullCalendar/vendor/js/jquery.min.js"></script>
     <script src="sub5/FullCalendar/vendor/js/bootstrap.min.js"></script>
@@ -116,6 +148,7 @@
     <script src="sub5/FullCalendar/js/addEvent.js"></script>
     <script src="sub5/FullCalendar/js/editEvent.js"></script>
     <script src="sub5/FullCalendar/js/etcSetting.js"></script>
+
 </body>
 <jsp:include page="../../include/footer.jsp"/>
 </html>

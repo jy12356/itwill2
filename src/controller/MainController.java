@@ -10,14 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.book.BookDeleteProAction;
-import action.book.BookDetailAction;
-import action.book.BookKindListAction;
-import action.book.BookListAction;
-import action.book.BookModifyAction;
-import action.book.BookModifyProAction;
-import action.book.BookRegiSerchAction;
-import action.book.BookWriteProAction;
+import action.book.MainListAction;
 import vo.ActionForward;
 @WebServlet("*.book") 
 public class MainController extends HttpServlet {
@@ -30,10 +23,17 @@ public class MainController extends HttpServlet {
 		ActionForward forward = null;
 		if(command.equals("/Main.book")) {
 			System.out.println("main.bo 포워딩");
-			forward = new ActionForward();
-			forward.setPath("/main/index.jsp");
+			
+			action = new MainListAction();
+			System.out.println("최신순");
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
-		
 		//1.ActionForward객체 존재 여부 확인(객체가 존재할때 포워딩 수행)
 		if(forward != null) {
 			//2.ActionForward객체 내의 포워딩 방식에 따라 각각의 포워딩 수행
@@ -67,4 +67,5 @@ public class MainController extends HttpServlet {
 		doProcess(request,response);
 	}
 
+	
 }

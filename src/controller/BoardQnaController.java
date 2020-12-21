@@ -100,11 +100,6 @@ public class BoardQnaController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/Charge.qna")) {
-			System.out.println("Charge.qna 포워딩!!");
-			
-			forward = new ActionForward();
-			forward.setPath("/sub5/charge.jsp");
 		}
 		
 		

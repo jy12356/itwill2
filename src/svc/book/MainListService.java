@@ -1,0 +1,58 @@
+package svc.book;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+import dao.BookDAO;
+import vo.BookBean;
+import static db.JdbcUtil.*;
+
+public class MainListService {
+
+	public int getListCount() {
+		System.out.println("getListCount");
+		int listCount=0;
+		Connection con= getConnection();
+		BookDAO bookDAO = BookDAO.getInstance();
+		bookDAO.setConnection(con);
+		listCount = bookDAO.selectListCount();
+		close(con);
+		return listCount; 
+	}
+
+	public ArrayList<BookBean> getBookList(int page, int limit,String catg1, String catg2) {
+		ArrayList<BookBean> bookList = new ArrayList<BookBean>();
+		BookDAO bookDAO = BookDAO.getInstance();
+		Connection con = getConnection();
+		bookDAO.setConnection(con);
+		bookList = bookDAO.selectBookList(page,limit,catg1,catg2);
+		close(con);
+		System.out.println("MainListService 끝");
+		return bookList;
+	}
+	
+	public ArrayList<BookBean> getBookList2(int page, int limit,String catg1, String catg2) {
+		ArrayList<BookBean> bookList2 = new ArrayList<BookBean>();
+		BookDAO bookDAO = BookDAO.getInstance();
+		Connection con = getConnection();
+		bookDAO.setConnection(con);
+		bookList2 = bookDAO.selectBookList2(page,limit,catg1,catg2);
+		close(con);
+		System.out.println("servicesize" + bookList2.size());
+		System.out.println("MainListService2 끝");
+		return bookList2;
+	}
+
+	public ArrayList<BookBean> getBookList3(int page, int limit,String catg1, String catg2) {
+		ArrayList<BookBean> bookList3 = new ArrayList<BookBean>();
+		BookDAO bookDAO = BookDAO.getInstance();
+		Connection con = getConnection();
+		bookDAO.setConnection(con);
+		bookList3 = bookDAO.selectBookList3(page,limit,catg1,catg2);
+		close(con);
+		System.out.println("servicesize" + bookList3.size());
+		System.out.println("MainListService2 끝");
+		return bookList3;
+	}
+	
+
+}
