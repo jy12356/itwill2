@@ -42,4 +42,16 @@
     "backgroundColor": "#f06595",
     "textColor": "#ffffff",
     "allDay": true
+  }
+  , {
+    "_id": 5,
+    "title": "수정중",
+    "description": "제발 되면 좋겠어요....",
+    "start": "2020-12-20",
+    "end": "2020-12-20",
+    "type": "입고",
+    "username": "admin",
+    "backgroundColor": "#74c0fc",
+    "textColor": "#ffffff",
+    "allDay": true
   }]
