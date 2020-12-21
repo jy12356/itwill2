@@ -14,6 +14,7 @@ public class ReCommentListService {
 
 	// 서평 게시물 확인
 	public int getListCount(int board_num, int board_type) {
+		System.out.println("ReviewListService - 2. ReCommentListService");	
 		
 		int listCount = 0;
 		

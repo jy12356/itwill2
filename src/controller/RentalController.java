@@ -16,6 +16,8 @@ import action.mybasket.MyBasketInsertAction;
 import action.mybasket.MyBasketListAction;
 import action.rental.RentalInsertAction;
 import action.rental.RentalListAction;
+import action.rental.rentalDeleteAction;
+import action.rental.reservationInsertAction;
 import vo.ActionForward;
 
 @WebServlet("*.rn")
@@ -45,8 +47,24 @@ public class RentalController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		} else if (command.equals("/rentalList.bk")) {
+		} else if (command.equals("/rentalList.rn")) {
 			action = new RentalListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if (command.equals("/reservationInsert.rn")) {
+			action = new reservationInsertAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if (command.equals("/rentalDelete.rn")) {
+			action = new rentalDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

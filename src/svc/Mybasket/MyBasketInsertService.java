@@ -32,7 +32,7 @@ public class MyBasketInsertService {
 		return isInsertSuccess;
 	}
 
-	public boolean checkOverlap(String isbn, String id) {
+	public static boolean checkOverlap(String isbn, String id) {
 		System.out.println("MyBasketInsertService - checkOverlap()");
 		boolean isOverlap = false; 
 		
@@ -40,7 +40,8 @@ public class MyBasketInsertService {
 		MyBasketDAO myBasketDAO = MyBasketDAO.getInstance();
 		myBasketDAO.setConnection(con);
 		int count = myBasketDAO.overlap(isbn, id);
-		
+		System.out.println("service - id :" + id);
+		System.out.println("count 결과 : " + count);
 		if (count > 0) {
 			commit(con);
 			isOverlap = true; 
