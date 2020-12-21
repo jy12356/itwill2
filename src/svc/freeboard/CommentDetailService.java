@@ -33,4 +33,28 @@ public class CommentDetailService {
 		return cb;
 	}
 
+	public int getCount(int board_type, int board_num) {
+		System.out.println("CommentDetailService - getCount");
+		
+		Connection con = getConnection();
+
+		CommentDAO commentDAO = CommentDAO.getInstance();
+
+		commentDAO.setConnection(con);
+
+		int count = commentDAO.entireCount(board_type, board_num);
+
+		System.out.println("comment getCount 가져온값 : " + count);
+
+		if (count != 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+
+		close(con);
+
+		return count;
+	}
+
 }

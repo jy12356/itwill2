@@ -116,9 +116,54 @@
 					</div>
 					<div class="book-side">
 						<div>
-							<span class="list-star rank0"></span>
+						
+							 <%switch(bookBean.getStarcount()){ 
+	                           	case 0 :
+	                           %>
+	                           	<span class="list-star rank0"></span>
+	                           	<%break; 
+	                           	case 1:
+	                           	%>
+	                           	<span class="list-star rank1"></span>
+	                           	<%break; 
+	                           	case 2:
+	                           	%>
+	                           	<span class="list-star rank2"></span>
+	                           	<%break; 
+	                           	case 3:
+	                           	%>
+	                           	<span class="list-star rank3"></span>
+	                           	<%break; 
+	                           	case 4:
+	                           	%>
+	                           	<span class="list-star rank4"></span>
+	                           	<%break; 
+	                           	case 5:
+	                           	%>
+	                           	<span class="list-star rank5"></span>
+	                           	<%break; 
+	                           	case 6:
+	                           	%>
+	                           	<span class="list-star rank6"></span>
+	                           	<%break; 
+	                           	case 7:
+	                           	%>
+	                           	<span class="list-star rank7"></span>
+	                           	<%break; 
+	                           	case 8:
+	                           	%>
+	                           	<span class="list-star rank8"></span>
+	                           	<%break; 
+	                           	case 9:
+	                           	%>
+	                           	<span class="list-star rank9"></span>
+	                           	<%break; 
+	                           	case 10:
+	                           	%>
+	                           	<span class="list-star rank10"></span>
+	                           	<%break; } %>
 							<p class="rank-user">
-								<span>0.0</span>(0명)
+								<span><%=bookBean.getStarcount() %>.0</span>(<%=bookBean.getReviewCount() %>명)
 							</p>
 							<p class="review-user">
 								서평(<span><%=listCount %></span>)

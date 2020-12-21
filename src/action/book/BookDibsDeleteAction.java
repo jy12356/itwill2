@@ -18,7 +18,6 @@ public class BookDibsDeleteAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BookDibsDeleteAction");
-		ActionForward forward = null;
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		List<Integer> inerNumList = new ArrayList();

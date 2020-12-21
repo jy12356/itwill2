@@ -101,6 +101,12 @@ int listCount = PageInfo.getListCount();
 <div class="topBtn">
 	<a href="javascript:;">TOP</a>
 </div>
+<div class="chats">
+	<ul>
+		<li><a href=""><img src="images/mal.png"></a></li>
+		<li><a href=""></a></li>		
+	</ul>
+</div>
 
 <script>
 $(function(){

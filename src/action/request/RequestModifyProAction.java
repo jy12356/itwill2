@@ -28,7 +28,7 @@ public class RequestModifyProAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('글 수정 실패!')");
+			out.println("alert('글 수정에 실패했어요')");
 			out.println("history.back()");
 			out.println("</script>");
 		} else {
@@ -48,7 +48,7 @@ public class RequestModifyProAction implements Action {
 				response.setContentType("text/html;charset=UTF-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
-				out.println("alert('글 수정 실패!')");
+				out.println("alert('글 수정 실패했어요')");
 				out.println("history.back()");
 				out.println("</script>");
 			} else {

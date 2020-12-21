@@ -237,11 +237,18 @@ $(document).ready( function() {
 		var checkbox = $('.serachBookResult table tbody input[type="checkbox"]:checked');
 		var image ="";
 		var title ="";
-		var desc ="";
+		var description ="";
 		var author ="";
 		var isbn ="";
 		var publisher ="";
 		var pubdate ="";
+		$("#rgTitle").val(title);
+		$("#rgDescription").html(description);
+		$("#rgAuthor").val(author);
+		$("#rgIsbn").val(isbn);
+		$("#rgPublisher").val(publisher);
+		$("#pubDatePicker").val(pubdate);
+		$("#rgImage").val(image);
 		// 체크된 체크박스 값을 가져온다
 		if(checkbox.length > 0){
 		checkbox.each(function(i) {

@@ -25,11 +25,15 @@ public class BookListAction implements Action {
 		}
 		String catg1 = "";
 		String catg2 = "";
+		String search="";
 		if(request.getParameter("catg1") != null) {
 			catg1 = request.getParameter("catg1");
 		}
 		if(request.getParameter("catg2") != null) {
 			catg2 = request.getParameter("catg2");
+		}
+		if(request.getParameter("search") != null) {
+			search = request.getParameter("search");
 		}
 		BookListService bookListService = new BookListService();
 		int listCount = bookListService.getListCount();
@@ -38,7 +42,7 @@ public class BookListAction implements Action {
 		
 		
 		ArrayList<BookBean> bookList = new ArrayList<BookBean>();
-		bookList = bookListService.getBookList(page,limit,catg1,catg2);
+		bookList = bookListService.getBookList(page,limit,catg1,catg2,search);
 
 		int maxPage = (int)((double)listCount/ limit+0.95);
 		int startPage = ((int)((double)page/10+0.9)-1)*10+1;
@@ -46,6 +50,7 @@ public class BookListAction implements Action {
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
+
 		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
 		request.setAttribute("bookList", bookList);
 		request.setAttribute("pageInfo", pageInfo);

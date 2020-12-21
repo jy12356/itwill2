@@ -29,10 +29,10 @@
 								<li>
 									<h4>구매관리</h4>
 									<ul>
-										<li><a href="/mypage.asp?list=_orderbooklist" class="">나의이용권</a></li>
-										<li><a href="BookDibsList.bok" class="">찜바구니</a></li>
+										<li><a href="ChargeList2.dok" class="">나의이용권</a></li>
+										<li><a href="rentalList.rn" class="">대여목록</a></li>
 										<li><a href="MyBasketList.bk" class="">책바구니</a></li>
-										<li><a href="/mypage.asp?list=_orderlist" class="">대여목록</a></li>
+										<li><a href="BookDibsList.bok" class="">찜바구니</a></li>
 									</ul>
 								</li>
 								<li>
@@ -49,9 +49,6 @@
 						
 					</div>
 				</div>
-			</div>
-			<div class="mypage-bottom">
-				<iframe src="BookList.bok" width="100%" frameborder="0" name="mypageList" id="mypageList" scrolling="no" style="height: 688px;"></iframe>					
 			</div>
 		</div>				
 	</div>

@@ -21,14 +21,14 @@ public class QnaListService {
 		return listCount;
 	}
 
-public ArrayList<QnaBean> getArticleList(int page, int limit) throws Exception{
+public ArrayList<QnaBean> getArticleList(int page, int limit, String search) throws Exception{
 	ArrayList<QnaBean> articleList = null;
 	
 	Connection con = getConnection();
 	QnaDAO qnaDAO = QnaDAO.getInstance();
 	qnaDAO.setConnection(con);
 	
-	articleList = qnaDAO.selectArticleList(page, limit);
+	articleList = qnaDAO.selectArticleList(page, limit,search);
 	
 	close(con);
 	

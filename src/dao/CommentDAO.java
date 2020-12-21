@@ -27,6 +27,33 @@ public class CommentDAO {
 	}
 	
 	
+	public int entireCount(int board_type, int board_num) {
+		System.out.println("selectComment");
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select count(*) from comment where board_type=? and board_num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_type);
+			pstmt.setInt(2, board_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("DAO - entireCount() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return count;
+	}
 	
 	
 	public int selectListCount() {
@@ -272,6 +299,10 @@ public class CommentDAO {
 		
 		return deleteCount;
 	}
+
+
+
+
 
 }
 

@@ -36,7 +36,7 @@ public class RequestReplyProAction implements Action {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('답글 등록 실패!')");
+			out.println("alert('답글 등록에 실패했어요')");
 			out.println("history.back()");
 			out.println("</script>");
 		} else {

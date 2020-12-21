@@ -28,7 +28,7 @@ public class MemberLoginProService {
 		memberDAO.setConnection(con);
 		
 		isLoginSuccess = memberDAO.isMember(id, password);
-		
+		System.out.println("isLoginSuccess "+isLoginSuccess);
 		close(con);
 
 		return isLoginSuccess;
