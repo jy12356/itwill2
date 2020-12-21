@@ -19,8 +19,10 @@ public class MyBasketInsertAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String isbn = request.getParameter("isbn");
-		
+		System.out.println("순서 1");
 		if(id == null) {
+			System.out.println("순서 2");
+
 			response.setContentType("text/html; charset=UTF-8"); 
 			PrintWriter out = response.getWriter();
 			out.println("<script>"); // 자바스크립트 시작 태그
@@ -28,9 +30,13 @@ public class MyBasketInsertAction implements Action {
 			out.println("history.back()"); // 이전 페이지로 이동
 			out.println("</script>"); // 자바스크립트 끝 태그
 		}else {
-			MyBasketInsertService myBaksetInsertService = new MyBasketInsertService();
-			boolean isOverlap = myBaksetInsertService.checkOverlap(isbn,id);
+			System.out.println("순서 3");
+
+//			MyBasketInsertService myBaksetInsertService = new MyBasketInsertService();
+			boolean isOverlap = MyBasketInsertService.checkOverlap(isbn,id);
 			if(isOverlap == true) {
+				System.out.println("순서 4");
+
 				response.setContentType("text/html; charset=UTF-8"); 
 				PrintWriter out = response.getWriter();
 				out.println("<script>"); // 자바스크립트 시작 태그
@@ -38,9 +44,15 @@ public class MyBasketInsertAction implements Action {
 				out.println("history.back()"); // 이전 페이지로 이동
 				out.println("</script>"); // 자바스크립트 끝 태그
 			}else {
+				System.out.println("순서 5");
+
+				MyBasketInsertService myBaksetInsertService = new MyBasketInsertService();
+
 				boolean isInsertSuccess = myBaksetInsertService.insertBasket(isbn,id);
 				
 				if(!isInsertSuccess) {
+					System.out.println("순서 6");
+
 					response.setContentType("text/html; charset=UTF-8"); 
 					PrintWriter out = response.getWriter();
 					out.println("<script>"); // 자바스크립트 시작 태그
@@ -48,6 +60,8 @@ public class MyBasketInsertAction implements Action {
 					out.println("history.back()"); // 이전 페이지로 이동
 					out.println("</script>"); // 자바스크립트 끝 태그
 				} else {
+					System.out.println("순서 7");
+
 					forward = new ActionForward();
 					forward.setPath("MyBasketList.bk");
 					forward.setRedirect(true);
@@ -55,6 +69,8 @@ public class MyBasketInsertAction implements Action {
 			}
 			
 		}
+		System.out.println("순서 8");
+
 		return forward;
 	}
 
