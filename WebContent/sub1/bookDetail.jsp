@@ -118,51 +118,30 @@
 					<div class="book-side">
 						<div>
 						
-							 <%switch(bookBean.getStarcount()){ 
-	                           	case 0 :
-	                           %>
-	                           	<span class="list-star rank0"></span>
-	                           	<%break; 
-	                           	case 1:
-	                           	%>
-	                           	<span class="list-star rank1"></span>
-	                           	<%break; 
-	                           	case 2:
-	                           	%>
-	                           	<span class="list-star rank2"></span>
-	                           	<%break; 
-	                           	case 3:
-	                           	%>
-	                           	<span class="list-star rank3"></span>
-	                           	<%break; 
-	                           	case 4:
-	                           	%>
-	                           	<span class="list-star rank4"></span>
-	                           	<%break; 
-	                           	case 5:
-	                           	%>
-	                           	<span class="list-star rank5"></span>
-	                           	<%break; 
-	                           	case 6:
-	                           	%>
-	                           	<span class="list-star rank6"></span>
-	                           	<%break; 
-	                           	case 7:
-	                           	%>
-	                           	<span class="list-star rank7"></span>
-	                           	<%break; 
-	                           	case 8:
-	                           	%>
-	                           	<span class="list-star rank8"></span>
-	                           	<%break; 
-	                           	case 9:
-	                           	%>
-	                           	<span class="list-star rank9"></span>
-	                           	<%break; 
-	                           	case 10:
-	                           	%>
-	                           	<span class="list-star rank10"></span>
-	                           	<%break; } %>
+                                   <%if(bookBean.getStarcount() < 1){ %>
+                                   	<span class="list-star rank0"></span>
+                                   	
+                                   <% }else if(bookBean.getStarcount() < 2){%>
+                                   	<span class="list-star rank1"></span>
+                                   <%}else if(bookBean.getStarcount() < 3){%>
+                                   	<span class="list-star rank2"></span>
+                                   <%}else if(bookBean.getStarcount() < 4){%>
+                                   	<span class="list-star rank3"></span>
+                                	<%}else if(bookBean.getStarcount() < 5){%>
+                                   	<span class="list-star rank4"></span>
+                                   <%}else if(bookBean.getStarcount() < 6){%>
+                                   	<span class="list-star rank5"></span>
+                                  	<%}else if(bookBean.getStarcount() < 7){%>
+                                   	<span class="list-star rank6"></span>
+                                 	<%}else if(bookBean.getStarcount() < 8){%>
+                                   	<span class="list-star rank7"></span>
+                                  	<%}else if(bookBean.getStarcount() < 9){%>
+                                   	<span class="list-star rank8"></span>
+                                   <%}else if(bookBean.getStarcount() < 10){%>
+                                   	<span class="list-star rank9"></span>
+                                  	<%}else if(bookBean.getStarcount() < 11){%>
+                                   	<span class="list-star rank10"></span>
+                                   <%} %>
 							<p class="rank-user">
 								<span><%=bookBean.getStarcount() %>.0</span>(<%=bookBean.getReviewCount() %>명)
 							</p>
