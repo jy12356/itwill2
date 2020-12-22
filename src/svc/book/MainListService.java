@@ -66,5 +66,17 @@ public class MainListService {
 		return bookList4;
 	}
 	
+	public ArrayList<BookBean> getBookList5(int page, int limit) {
+		ArrayList<BookBean> bookList5 = new ArrayList<BookBean>();
+		BookDAO bookDAO = BookDAO.getInstance();
+		Connection con = getConnection();
+		bookDAO.setConnection(con);
+		bookList5 = bookDAO.selectBookList5(page,limit);
+		close(con);
+		System.out.println("servicesize" + bookList5.size());
+		System.out.println("MainListService5 끝");
+		return bookList5;
+	}
+	
 
 }
