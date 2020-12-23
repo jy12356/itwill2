@@ -37,7 +37,7 @@ public class MainListService {
 		bookDAO.setConnection(con);
 		bookList2 = bookDAO.selectBookList2(page,limit,catg1,catg2);
 		close(con);
-		System.out.println("servicesize" + bookList2.size());
+		System.out.println("servicesize2  " + bookList2.size());
 		System.out.println("MainListService2 끝");
 		return bookList2;
 	}
@@ -49,7 +49,7 @@ public class MainListService {
 		bookDAO.setConnection(con);
 		bookList3 = bookDAO.selectBookList3(page,limit,catg1,catg2);
 		close(con);
-		System.out.println("servicesize" + bookList3.size());
+		System.out.println("servicesize3  " + bookList3.size());
 		System.out.println("MainListService2 끝");
 		return bookList3;
 	}
@@ -61,7 +61,7 @@ public class MainListService {
 		bookDAO.setConnection(con);
 		bookList4 = bookDAO.selectBookList4(page,limit,catg1,catg2);
 		close(con);
-		System.out.println("servicesize" + bookList4.size());
+		System.out.println("servicesize4  " + bookList4.size());
 		System.out.println("MainListService4 끝");
 		return bookList4;
 	}
@@ -73,7 +73,7 @@ public class MainListService {
 		bookDAO.setConnection(con);
 		bookList5 = bookDAO.selectBookList5(page,limit);
 		close(con);
-		System.out.println("servicesize" + bookList5.size());
+		System.out.println("servicesize5  " + bookList5.size());
 		System.out.println("MainListService5 끝");
 		return bookList5;
 	}

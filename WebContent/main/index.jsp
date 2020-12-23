@@ -48,230 +48,54 @@
 		</div>
 		<div class="slider">
 			<ul>
-			
 				<%
 					if(bookList5!=null){
-					for(int i = 0; i < 10; i++) {
+					for(int i = 0; i < 5; i++) {
 				%>
-				
 				<li>
 					<div class="figure">
 						<span class="label"><em>10%<span>할인</span></em></span> 
 						<a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">
 							<span class="rm_br">
-							<img src="https://bookimg.bookcube.com/150/2011/201100243.jpg" alt="도서 이미지 - 어떻게 말해줘야 할까" /></span>
+							<img src="<%=bookList5.get(i).getImage() %>" alt="<%=bookList5.get(i).getImage() %>" /></span>
 							<span class="light"></span>
 							<div class="caption">
 								<div class="about">
-									<p><%=bookList.get(i).getDate() %></p>
+									<p><%=bookList5.get(i).getDate() %></p>
 								</div>
 							</div>
 						</a>
 					</div>
 					<div class="hot-info">
 						<p class="hot-title">
-							<a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy"><%=bookList.get(i).getTitle() %></a>
+							<a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy"><%=bookList5.get(i).getTitle() %></a>
 						</p>
 						<p><%=bookList5.get(i).getAuthor() %></p>
 					</div>
 				</li>
-				
 				<%
 					}}
 				%>
-				
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10% <span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100243.jpg" -->
-<!-- 								alt="도서 이미지 - 어떻게 말해줘야 할까" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>채널A 〈요즘 육아 금쪽같은 내 새끼〉 SBS 〈우리 아이가 달라졌어요〉국민 육아멘토 오은영 박사가 -->
-<!-- 										알려주는 ‘부모의 말’육아 현실을 200퍼센트 반영한 130가지 한마디...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">어떻게 -->
-<!-- 								말해줘야 할까</a> -->
-<!-- 						</p> -->
-<!-- 						<p>오은영 글, 차상미 그림</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10% <span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100243.jpg" -->
-<!-- 								alt="도서 이미지 - 어떻게 말해줘야 할까" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>채널A 〈요즘 육아 금쪽같은 내 새끼〉 SBS 〈우리 아이가 달라졌어요〉국민 육아멘토 오은영 박사가 -->
-<!-- 										알려주는 ‘부모의 말’육아 현실을 200퍼센트 반영한 130가지 한마디...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">어떻게 -->
-<!-- 								말해줘야 할까</a> -->
-<!-- 						</p> -->
-<!-- 						<p>오은영 글, 차상미 그림</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10% <span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100243.jpg" -->
-<!-- 								alt="도서 이미지 - 어떻게 말해줘야 할까" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>채널A 〈요즘 육아 금쪽같은 내 새끼〉 SBS 〈우리 아이가 달라졌어요〉국민 육아멘토 오은영 박사가 -->
-<!-- 										알려주는 ‘부모의 말’육아 현실을 200퍼센트 반영한 130가지 한마디...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">어떻게 -->
-<!-- 								말해줘야 할까</a> -->
-<!-- 						</p> -->
-<!-- 						<p>오은영 글, 차상미 그림</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10% <span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100243.jpg" -->
-<!-- 								alt="도서 이미지 - 어떻게 말해줘야 할까" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>채널A 〈요즘 육아 금쪽같은 내 새끼〉 SBS 〈우리 아이가 달라졌어요〉국민 육아멘토 오은영 박사가 -->
-<!-- 										알려주는 ‘부모의 말’육아 현실을 200퍼센트 반영한 130가지 한마디...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">어떻게 -->
-<!-- 								말해줘야 할까</a> -->
-<!-- 						</p> -->
-<!-- 						<p>오은영 글, 차상미 그림</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10% <span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100243.jpg" -->
-<!-- 								alt="도서 이미지 - 어떻게 말해줘야 할까" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>채널A 〈요즘 육아 금쪽같은 내 새끼〉 SBS 〈우리 아이가 달라졌어요〉국민 육아멘토 오은영 박사가 -->
-<!-- 										알려주는 ‘부모의 말’육아 현실을 200퍼센트 반영한 130가지 한마디...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">어떻게 -->
-<!-- 								말해줘야 할까</a> -->
-<!-- 						</p> -->
-<!-- 						<p>오은영 글, 차상미 그림</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10% <span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100243.jpg" -->
-<!-- 								alt="도서 이미지 - 어떻게 말해줘야 할까" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>채널A 〈요즘 육아 금쪽같은 내 새끼〉 SBS 〈우리 아이가 달라졌어요〉국민 육아멘토 오은영 박사가 -->
-<!-- 										알려주는 ‘부모의 말’육아 현실을 200퍼센트 반영한 130가지 한마디...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">어떻게 -->
-<!-- 								말해줘야 할까</a> -->
-<!-- 						</p> -->
-<!-- 						<p>오은영 글, 차상미 그림</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10% <span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100243.jpg" -->
-<!-- 								alt="도서 이미지 - 어떻게 말해줘야 할까" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>채널A 〈요즘 육아 금쪽같은 내 새끼〉 SBS 〈우리 아이가 달라졌어요〉국민 육아멘토 오은영 박사가 -->
-<!-- 										알려주는 ‘부모의 말’육아 현실을 200퍼센트 반영한 130가지 한마디...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">어떻게 -->
-<!-- 								말해줘야 할까</a> -->
-<!-- 						</p> -->
-<!-- 						<p>오은영 글, 차상미 그림</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920020151&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2007/200707030.jpg" -->
-<!-- 								alt="도서 이미지 - 달러구트 꿈 백화점" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>여기는 잠들어야만 입장할 수 있는 ‘달러구트 꿈 백화점’입니다 잠들어야만 입장할 수 있는 독특한 -->
-<!-- 										마을. 그곳에 들어온 잠든 손님들에게 가장 인기 있는 곳은, 온갖 꿈을 한데...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920020151&page=buy">달러구트 -->
-<!-- 								꿈 백화점</a> -->
-<!-- 						</p> -->
-<!-- 						<p>이미예</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
+				<li>
+					<div class="figure">
+						<span class="label"><em>10% <span>할인</span></em></span> 
+						<a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">
+							<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100243.jpg" alt="도서 이미지 - 어떻게 말해줘야 할까" /></span> 
+							<span class="light"></span>
+							<div class="caption">
+								<div class="about">
+									<p>채널A 〈요즘 육아 금쪽같은 내 새끼〉 SBS 〈우리 아이가 달라졌어요〉국민 육아멘토 오은영 박사가 알려주는 ‘부모의 말’육아 현실을 200퍼센트 반영한 130가지 한마디...</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="hot-info">
+						<p class="hot-title">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">어떻게 말해줘야 할까</a>
+						</p>
+						<p>오은영 글, 차상미 그림</p>
+					</div>
+				</li>
 <!-- 				<li> -->
 <!-- 					<div class="figure"> -->
 <!-- 						<a -->
@@ -370,6 +194,72 @@
 <!-- 					</div> -->
 <!-- 				</li> -->
 <!-- 				<li> -->
+<!-- 					<div class="figure"> -->
+<!-- 						<span class="label"><em>10%<span>할인</span></em></span> <a -->
+<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy"> -->
+<!-- 							<span class="rm_br"><img -->
+<!-- 								src="https://bookimg.bookcube.com/150/2011/201100254.jpg" -->
+<!-- 								alt="도서 이미지 - 주식하는 마음" /></span> <span class="light"></span> -->
+<!-- 							<div class="caption"> -->
+<!-- 								<div class="about"> -->
+<!-- 									<p>“당신이 주식투자로 부자가 되면 좋겠습니다.” 출연만으로 유튜브 누적 조회수 100만 회 기록! -->
+<!-- 										트레바리에서 가장 빨리 마감되는 클럽의 주인공! 투자 고수 홍진채가 전하는 ‘주...</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					<div class="hot-info"> -->
+<!-- 						<p class="hot-title"> -->
+<!-- 							<a href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">주식하는 마음</a> -->
+<!-- 						</p> -->
+<!-- 						<p>홍진채</p> -->
+<!-- 					</div> -->
+<!-- 				</li> -->
+<!-- 								<li> -->
+<!-- 					<div class="figure"> -->
+<!-- 						<span class="label"><em>10%<span>할인</span></em></span> <a -->
+<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy"> -->
+<!-- 							<span class="rm_br"><img -->
+<!-- 								src="https://bookimg.bookcube.com/150/2011/201100254.jpg" -->
+<!-- 								alt="도서 이미지 - 주식하는 마음" /></span> <span class="light"></span> -->
+<!-- 							<div class="caption"> -->
+<!-- 								<div class="about"> -->
+<!-- 									<p>“당신이 주식투자로 부자가 되면 좋겠습니다.” 출연만으로 유튜브 누적 조회수 100만 회 기록! -->
+<!-- 										트레바리에서 가장 빨리 마감되는 클럽의 주인공! 투자 고수 홍진채가 전하는 ‘주...</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					<div class="hot-info"> -->
+<!-- 						<p class="hot-title"> -->
+<!-- 							<a href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">주식하는 마음</a> -->
+<!-- 						</p> -->
+<!-- 						<p>홍진채</p> -->
+<!-- 					</div> -->
+<!-- 				</li> -->
+<!-- 								<li> -->
+<!-- 					<div class="figure"> -->
+<!-- 						<span class="label"><em>10%<span>할인</span></em></span> <a -->
+<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy"> -->
+<!-- 							<span class="rm_br"><img -->
+<!-- 								src="https://bookimg.bookcube.com/150/2011/201100254.jpg" -->
+<!-- 								alt="도서 이미지 - 주식하는 마음" /></span> <span class="light"></span> -->
+<!-- 							<div class="caption"> -->
+<!-- 								<div class="about"> -->
+<!-- 									<p>“당신이 주식투자로 부자가 되면 좋겠습니다.” 출연만으로 유튜브 누적 조회수 100만 회 기록! -->
+<!-- 										트레바리에서 가장 빨리 마감되는 클럽의 주인공! 투자 고수 홍진채가 전하는 ‘주...</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 					</div> -->
+<!-- 					<div class="hot-info"> -->
+<!-- 						<p class="hot-title"> -->
+<!-- 							<a href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">주식하는 마음</a> -->
+<!-- 						</p> -->
+<!-- 						<p>홍진채</p> -->
+<!-- 					</div> -->
+<!-- 				</li> -->
+<!-- 								<li> -->
 <!-- 					<div class="figure"> -->
 <!-- 						<span class="label"><em>10%<span>할인</span></em></span> <a -->
 <!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy"> -->

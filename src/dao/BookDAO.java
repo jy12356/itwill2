@@ -179,7 +179,7 @@ public class BookDAO {
 				bookList2.add(bookBean);
 //				System.out.println("a");
 			}
-			System.out.println("DAObookList2.size" + bookList2.size());
+			System.out.println("DAObookList2.size = " + bookList2.size());
 		}catch (Exception e) {
 			System.out.println("selectBookList2오류!" + e.getMessage());;
 			e.printStackTrace();
@@ -231,7 +231,7 @@ public class BookDAO {
 					bookList3.add(bookBean);
 //					System.out.println("a");
 				}
-				System.out.println("DAObookList3.size" + bookList3.size());
+				System.out.println("DAObookList3.size = " + bookList3.size());
 			}catch (Exception e) {
 				System.out.println("selectBookList3오류!" + e.getMessage());;
 				e.printStackTrace();
@@ -283,9 +283,9 @@ public class BookDAO {
 					bookList4.add(bookBean);
 //					System.out.println("a");
 				}
-				System.out.println("DAObookList3.size" + bookList4.size());
+				System.out.println("DAObookList4.size = " + bookList4.size());
 			}catch (Exception e) {
-				System.out.println("selectBookList3오류!" + e.getMessage());;
+				System.out.println("selectBookList4오류!" + e.getMessage());;
 				e.printStackTrace();
 			}finally {
 				close(rs);	
@@ -308,7 +308,7 @@ public class BookDAO {
 			try {
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, 0);
-				pstmt.setInt(2, 10);
+				pstmt.setInt(2, 5);
 				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				bookList5 = new ArrayList<BookBean>();
@@ -331,9 +331,9 @@ public class BookDAO {
 					bookList5.add(bookBean);
 //					System.out.println("a");
 				}
-				System.out.println("DAObookList3.size" + bookList5.size());
+				System.out.println("DAObookList5.size = " + bookList5.size());
 			}catch (Exception e) {
-				System.out.println("selectBookList3오류!" + e.getMessage());;
+				System.out.println("selectBookList5오류!" + e.getMessage());;
 				e.printStackTrace();
 			}finally {
 				close(rs);	
