@@ -35,7 +35,8 @@ int listCount = pageInfo.getListCount();
 							<col style="width: 15%">
 							<col style="width: 15%">
 
-						</colgroup>
+						</colgroup><%
+							%>
 						<tr>
 							<td colspan="6"><span>대여 가능 책 목록</span></td>
 						</tr>
@@ -51,9 +52,9 @@ int listCount = pageInfo.getListCount();
 
 						<%
 							// 대여가능 리스트
+						if (myBasketList.size() != 0) {
 						String isbn;
 						// 							ArrayList list = new ArrayList();
-						if (myBasketList.size() != 0) {
 							for (int i = 0; i < myBasketList.size(); i++) {
 								if (myBasketList.get(i).getState().equals("대여가능")) {
 						%>
@@ -202,7 +203,7 @@ int listCount = pageInfo.getListCount();
 					return;
 				}
 
-				// 구독중일때
+				// 구독중일때 예약하기
 			} else if ($(".isRentalable").val() == "구독중") {
 				// 창하나 먼저 띄워주고
 				var confirm_val = confirm("선택하신 도서를 예약하시겠습니까?");
@@ -236,7 +237,7 @@ int listCount = pageInfo.getListCount();
 						data : interArr,
 						success : function() {
 							// 대여하기 성공했으면 대여리스트로 가기
-							location.href = "reservationList.rn";
+							location.href = "ReservationList.rn";
 						},
 						error : function(request, status, error) {
 							alert("code:" + request.status + "\n" + "message:"
@@ -356,13 +357,13 @@ int listCount = pageInfo.getListCount();
 		$("#check_box1").click(function() {
 			var total_cnt1 = 0;
 			if ($(this).is(":checked")) {
+				$(".rentalbtn").show();
 				$('.check_box input[id="check_box2"]').prop('checked', false);
 				$('.checkAll2 input[id="checkAll2"]').prop('checked', false);
-				$(".rentalbtn").show();
 
 			} else {
-				$('.checkAll1 input[id="checkAll1"]').prop('checked', false);
 				$(".rentalbtn").hide();
+				$('.checkAll1 input[id="checkAll1"]').prop('checked', false);
 			}
 			var play = cartset();
 		});
@@ -370,13 +371,13 @@ int listCount = pageInfo.getListCount();
 		// 하나하나 예약가능도서 체크했을때
 		$("#check_box2").click(function() {
 			if ($(this).is(":checked")) {
+				$(".reservationbtn").show();
 				$('.check_box input[id="checkRow1"]').prop('checked', false);
 				$('.checkAll1 input[id="checkAll1"]').prop('checked', false);
-				$(".reservationbtn").show();
 
 			} else {
-				$('.checkAll2 input[id="checkAll2"]').prop('checked', false);
 				$(".reservationbtn").hide();
+				$('.checkAll2 input[id="checkAll2"]').prop('checked', false);
 			}
 			var play = cartset();
 		});

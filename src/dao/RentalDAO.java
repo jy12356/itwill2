@@ -46,8 +46,6 @@ public class RentalDAO {
 			for (int i = 0; i < rentalAddList.size(); i++) {
 				int a = rentalAddList.get(i);
 				String sql = "select isbn from mybasket where num= ? and id=?";
-//				System.out.println("515151515151 : " + rentalAddList.get(i));
-//				System.out.println("ididididididi: " + id);
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, a);
 				pstmt.setString(2, id);
@@ -304,10 +302,79 @@ public class RentalDAO {
 	public int insertReservation(List<Integer> reservationAddList, String id) {
 
 		System.out.println("RentalDAO - insertReservation()");
-
-		return 0;
+		
+		int insertCount = 0;
+		int num = 1;
+		int seq = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String isbn = null;
+		
+		try {
+			for (int i = 0; i < reservationAddList.size(); i++) {
+				
+				String sql = "select isbn from mybasket where num= ? and id=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, reservationAddList.get(i));
+				pstmt.setString(2, id);
+				System.out.println(pstmt);
+				
+				rs = pstmt.executeQuery();
+				
+				if (rs.next()) {
+					isbn = rs.getString(1);
+				}
+				
+				sql = "select max(num) from reservation";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					num = rs.getInt(1) + 1; // 새 글 번호 만들기
+					
+				}
+				
+				sql = "select max(seq) from reservation";
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					seq = rs.getInt(1) + 1; // 새 글 번호 만들기
+					
+				}
+				
+				sql = "insert into reservation values(?,?,?,?,now())";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				pstmt.setString(2, isbn);
+				pstmt.setString(3, id);
+				pstmt.setInt(4, seq);
+				
+				insertCount = pstmt.executeUpdate();
+				
+				
+				
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("insertReservation() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		
+		
+		
+		
+		return insertCount;
+		
 	}
 
+	
+	
+	
 	public int rentalDelete(List<Integer> inerNumList, String id) {
 		 System.out.println("rentalDAO - rentalDelete");
 	      int isDeleteOk = 0;
@@ -345,7 +412,7 @@ public class RentalDAO {
 	            isDeleteOk = pstmt.executeUpdate();
 	         }
 	      }catch (Exception e) {
-	         System.out.println("dibsDelete 오류!" + e.getMessage());
+	         System.out.println("rentalDelete 오류!" + e.getMessage());
 	         e.printStackTrace();
 	      }finally {
 	         close(pstmt);
