@@ -61,7 +61,7 @@
 							<span class="light"></span>
 							<div class="caption">
 								<div class="about">
-									<p><%=bookList5.get(i).getDate() %></p>
+									<p><%=bookList5.get(i).getDescription() %></p>
 								</div>
 							</div>
 						</a>
