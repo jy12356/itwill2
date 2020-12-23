@@ -96,7 +96,10 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		
-		String sql = "select b.*,r.count review, r.starcount starcount  from book b left outer join  (select isbn, count(*) count,round(10/sum(starcount),1) starcount from review  group by isbn) r on b.isbn = r.isbn where title like ? and catg1 like ? and catg2 like ? order by pubdate desc limit ?,?";
+		String sql = "select b.*,r.count review, r.starcount starcount  from book b left outer join "
+				+ "(select isbn, count(*) count,round(10/sum(starcount),1) starcount from review  group by isbn) r "
+				+ "on b.isbn = r.isbn where title like ? and catg1 like ? and catg2 like ? "
+				+ "order by pubdate desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, "%"+search+"%");
@@ -366,7 +369,9 @@ public class BookDAO {
    public BookBean getBookInfo(String book_isbn) {
       PreparedStatement pstmt =  null;
       ResultSet rs = null;
-      String sql="select b.*,r.* from book  b left outer join (select isbn, count(*) review,round(10/sum(starcount),1) starcount from review group by isbn) r on b.isbn = r.isbn where b.isbn=?";
+      String sql="select b.*,r.* from book  b left outer join (select isbn, count(*) review,"
+      		+ "round(10/sum(starcount),1) starcount from review group by isbn) r "
+      		+ "on b.isbn = r.isbn where b.isbn=?";
       BookBean bookBean = null;
       try {
          pstmt=con.prepareStatement(sql);
@@ -523,7 +528,7 @@ public class BookDAO {
          String sql = "update book set "
                + "title=?, isbn=?, author=?,author_info=?,catg1=?,catg2=?," 
                + "description=?,index_info=?,pubdate=?,publisher=?,image=? "
-               + "where title=? and isbn=?";
+               + "where isbn=?";
          pstmt = con.prepareStatement(sql);
          pstmt.setString(1, bookBean.getTitle());
          pstmt.setString(2, bookBean.getIsbn());
@@ -536,8 +541,7 @@ public class BookDAO {
          pstmt.setString(9, bookBean.getPubdate());
          pstmt.setString(10, bookBean.getPublisher());
          pstmt.setString(11, bookBean.getImage());
-         pstmt.setString(12, title);
-         pstmt.setString(13, isbn);
+         pstmt.setString(12, isbn);
          System.out.println(pstmt);
          modyfiySeccess = pstmt.executeUpdate();
          
