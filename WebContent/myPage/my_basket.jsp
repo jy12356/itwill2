@@ -383,7 +383,6 @@ int listCount = pageInfo.getListCount();
 				var play = cartset();
 			});
 
-			function cartset(){
 			var total_cnt = $(".totalbookcnt").val();
 			$(".c2").click(function() {
 				alert( total_cnt);			
@@ -393,8 +392,7 @@ int listCount = pageInfo.getListCount();
 					total_cnt -=1;
 				}
 				$(".totalbookcnt").html(total_cnt);
-			});				
-			}
+			});	
 	
 	
 		});		
