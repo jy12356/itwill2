@@ -120,167 +120,6 @@
 <!-- 						<p>김승호</p> -->
 <!-- 					</div> -->
 <!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920025243&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2009/200902682.jpg" -->
-<!-- 								alt="도서 이미지 - 규칙 없음" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>“통제와 규정은, 무능력한 직원에게나 필요한 것!” | 넷플릭스 CEO 리드 헤이스팅스의 첫 책 | -->
-
-<!-- 										1997년 설립 당시, 넷플릭스는 우편으로 DVD를 대여해 주는 회사에 불과했다. ...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920025243&page=buy">규칙 -->
-<!-- 								없음</a> -->
-<!-- 						</p> -->
-<!-- 						<p>리드 헤이스팅스, 에린 마이어</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10% <span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920028916&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2010/201003746.jpg" -->
-<!-- 								alt="도서 이미지 - 워터 댄서" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>* 뉴욕타임스 베스트셀러 1위 * 아마존 베스트셀러 1위 * 오프라 윈프리 북클럽 선정도서 * -->
-<!-- 										[타임] 외 13개 매체가 뽑은 올해의 책 * 전미도서상 수상작가 신작 소설 전미도서상 ...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920028916&page=buy">워터 -->
-<!-- 								댄서</a> -->
-<!-- 						</p> -->
-<!-- 						<p>타네히시 코츠</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029916&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100423.jpg" -->
-<!-- 								alt="도서 이미지 - 이만하면 괜찮은 죽음" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>‘괜찮은 죽음’을 말하는 슬프고도 유쾌한 문장들 이만하면 괜찮은 죽음이란 게 과연 존재할까? 모든 -->
-<!-- 										죽음은 무너지는 아픔과 깊은 슬픔이 뒤따른다. 검은색으로 가득한 장례식장...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920029916&page=buy">이만하면 -->
-<!-- 								괜찮은 죽음</a> -->
-<!-- 						</p> -->
-<!-- 						<p>데이비드 재럿</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10%<span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100254.jpg" -->
-<!-- 								alt="도서 이미지 - 주식하는 마음" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>“당신이 주식투자로 부자가 되면 좋겠습니다.” 출연만으로 유튜브 누적 조회수 100만 회 기록! -->
-<!-- 										트레바리에서 가장 빨리 마감되는 클럽의 주인공! 투자 고수 홍진채가 전하는 ‘주...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">주식하는 마음</a> -->
-<!-- 						</p> -->
-<!-- 						<p>홍진채</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 								<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10%<span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100254.jpg" -->
-<!-- 								alt="도서 이미지 - 주식하는 마음" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>“당신이 주식투자로 부자가 되면 좋겠습니다.” 출연만으로 유튜브 누적 조회수 100만 회 기록! -->
-<!-- 										트레바리에서 가장 빨리 마감되는 클럽의 주인공! 투자 고수 홍진채가 전하는 ‘주...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">주식하는 마음</a> -->
-<!-- 						</p> -->
-<!-- 						<p>홍진채</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 								<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10%<span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100254.jpg" -->
-<!-- 								alt="도서 이미지 - 주식하는 마음" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>“당신이 주식투자로 부자가 되면 좋겠습니다.” 출연만으로 유튜브 누적 조회수 100만 회 기록! -->
-<!-- 										트레바리에서 가장 빨리 마감되는 클럽의 주인공! 투자 고수 홍진채가 전하는 ‘주...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">주식하는 마음</a> -->
-<!-- 						</p> -->
-<!-- 						<p>홍진채</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
-<!-- 								<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<span class="label"><em>10%<span>할인</span></em></span> <a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2011/201100254.jpg" -->
-<!-- 								alt="도서 이미지 - 주식하는 마음" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>“당신이 주식투자로 부자가 되면 좋겠습니다.” 출연만으로 유튜브 누적 조회수 100만 회 기록! -->
-<!-- 										트레바리에서 가장 빨리 마감되는 클럽의 주인공! 투자 고수 홍진채가 전하는 ‘주...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">주식하는 마음</a> -->
-<!-- 						</p> -->
-<!-- 						<p>홍진채</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
 			</ul>
 		</div>
 	</div>
@@ -464,6 +303,174 @@
 											<span><strong><%=bookList4.get(2).getTitle()%></strong></span>
 											<span><%=bookList4.get(2).getAuthor()%></span>
 											<span><%=bookList4.get(2).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							
+							<li class="top-rank top-one">
+								<p class="rank">
+									<span><strong>3</strong></span>
+									<span class="icon"></span>
+								</p>
+								<div class="webtoon">
+									<p>
+										<strong><%=bookList2.get(3).getTitle()%></strong>
+										<span><%=bookList2.get(3).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList2.get(3).getTitle()%>" href="/webtoon/wt_closet_wz">
+											<div>
+												<img src="<%=bookList2.get(3).getTitle()%>" alt="">
+											</div> 
+											<span><strong><%=bookList2.get(3).getTitle()%></strong></span>
+											<span><%=bookList2.get(3).getAuthor()%></span>
+											<span><%=bookList2.get(3).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+								<div class="comic">
+									<p>
+										<strong><%=bookList3.get(3).getTitle()%></strong>
+										<span><%=bookList3.get(3).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList3.get(3).getTitle()%>" href="/comic/goe">
+											<div>
+												<img src="<%=bookList3.get(3).getImage()%>" alt="">
+											</div> 
+											<span><strong><%=bookList3.get(3).getTitle()%></strong></span>
+											<span><%=bookList3.get(3).getAuthor()%></span>
+											<span><%=bookList3.get(3).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+								
+								<div class="fiction">
+									<p>
+										<strong><%=bookList4.get(3).getTitle()%></strong>
+										<span><%=bookList4.get(3).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList4.get(3).getTitle()%>" href="/novel/E000072153">
+											<div>
+												<img src="<%=bookList4.get(3).getTitle()%>" alt="">
+											</div> 
+											<span><strong><%=bookList4.get(3).getTitle()%></strong></span>
+											<span><%=bookList4.get(3).getAuthor()%></span>
+											<span><%=bookList4.get(3).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							
+							<li class="top-rank top-one">
+								<p class="rank">
+									<span><strong>4</strong></span>
+									<span class="icon"></span>
+								</p>
+								<div class="webtoon">
+									<p>
+										<strong><%=bookList2.get(4).getTitle()%></strong>
+										<span><%=bookList2.get(4).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList2.get(4).getTitle()%>" href="/webtoon/wt_closet_wz">
+											<div>
+												<img src="<%=bookList2.get(4).getTitle()%>" alt="">
+											</div> 
+											<span><strong><%=bookList2.get(4).getTitle()%></strong></span>
+											<span><%=bookList2.get(4).getAuthor()%></span>
+											<span><%=bookList2.get(4).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+								<div class="comic">
+									<p>
+										<strong><%=bookList3.get(4).getTitle()%></strong>
+										<span><%=bookList3.get(4).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList3.get(4).getTitle()%>" href="/comic/goe">
+											<div>
+												<img src="<%=bookList3.get(4).getImage()%>" alt="">
+											</div> 
+											<span><strong><%=bookList3.get(4).getTitle()%></strong></span>
+											<span><%=bookList3.get(4).getAuthor()%></span>
+											<span><%=bookList3.get(4).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+								
+								<div class="fiction">
+									<p>
+										<strong><%=bookList4.get(4).getTitle()%></strong>
+										<span><%=bookList4.get(4).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList4.get(4).getTitle()%>" href="/novel/E000072153">
+											<div>
+												<img src="<%=bookList4.get(4).getTitle()%>" alt="">
+											</div> 
+											<span><strong><%=bookList4.get(4).getTitle()%></strong></span>
+											<span><%=bookList4.get(4).getAuthor()%></span>
+											<span><%=bookList4.get(4).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+							</li>
+							
+							<li class="top-rank top-one">
+								<p class="rank">
+									<span><strong>5</strong></span>
+									<span class="icon"></span>
+								</p>
+								<div class="webtoon">
+									<p>
+										<strong><%=bookList2.get(5).getTitle()%></strong>
+										<span><%=bookList2.get(5).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList2.get(5).getTitle()%>" href="/webtoon/wt_closet_wz">
+											<div>
+												<img src="<%=bookList2.get(5).getTitle()%>" alt="">
+											</div> 
+											<span><strong><%=bookList2.get(5).getTitle()%></strong></span>
+											<span><%=bookList2.get(5).getAuthor()%></span>
+											<span><%=bookList2.get(5).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+								<div class="comic">
+									<p>
+										<strong><%=bookList3.get(5).getTitle()%></strong>
+										<span><%=bookList3.get(5).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList3.get(5).getTitle()%>" href="/comic/goe">
+											<div>
+												<img src="<%=bookList3.get(5).getImage()%>" alt="">
+											</div> 
+											<span><strong><%=bookList3.get(5).getTitle()%></strong></span>
+											<span><%=bookList3.get(5).getAuthor()%></span>
+											<span><%=bookList3.get(5).getCatg2()%></span>
+										</a>
+									</div>
+								</div>
+								
+								<div class="fiction">
+									<p>
+										<strong><%=bookList4.get(5).getTitle()%></strong>
+										<span><%=bookList4.get(5).getAuthor()%></span>
+									</p>
+									<div>
+										<a title="<%=bookList4.get(5).getTitle()%>" href="/novel/E000072153">
+											<div>
+												<img src="<%=bookList4.get(5).getTitle()%>" alt="">
+											</div> 
+											<span><strong><%=bookList4.get(5).getTitle()%></strong></span>
+											<span><%=bookList4.get(5).getAuthor()%></span>
+											<span><%=bookList4.get(5).getCatg2()%></span>
 										</a>
 									</div>
 								</div>
