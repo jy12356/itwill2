@@ -46,15 +46,15 @@
                                 <input type="checkbox" id="checkbox_num" class="check_num" value="<%=rentalList.get(i).getNum()%>" name="inter_num"></td>
                                 <td><%=rentalList.get(i).getTitle()%></td>
                                 <td><%=rentalList.get(i).getS_date()%></td>
-                                <td><%=rentalList.get(i).getOnrental_date()%></td>
-                                <td><%=rentalList.get(i).getOnrental_date()%></td>
+                                <td><%=rentalList.get(i).getS_date()%> ~ <%=rentalList.get(i).getOnrental_date()%></td>
+                                <td><%=rentalList.get(i).getE_date()%></td>
                             </tr>
                         <%} %>
                         </tbody>
                     </table>
                    <div class="btn_inner">
-						<a href="javascript:void(0);"
-							onclick="deleteBook(); return false;" class="btn">대여신청취소</a>
+<!-- 						<a href="javascript:void(0);" -->
+<!-- 							onclick="deleteBook(); return false;" class="btn">대여신청취소</a> -->
 					</div>
                     </div>
                     

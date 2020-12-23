@@ -4,7 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import vo.FreeBoardBean;
@@ -64,11 +69,88 @@ public class RentalDAO {
 				// 여기에서 s_date , onrental_date, e_date 집어넣어주기 해야함
 
 				System.out.println("insertRental - isbn 여기엔 무엇이..?" + isbn);
-				sql = "insert into rental (num,isbn,id) values(?,?,?)";
+				
+				
+				Date d = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				System.out.println("String타입 현재 날짜 : " +sdf.format(d));
+				
+				String nowdate = sdf.format(d);
+				System.out.println("String타입 현재 날짜 " + nowdate);
+
+				Date date1 = new Date();
+				SimpleDateFormat format15 = new SimpleDateFormat("yyyy-MM-15");
+				System.out.println("String타입 이달의 15일 : " +format15.format(date1)); // 이달의 15일
+				
+				String from = format15.format(date1);
+
+				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+				Date to = transFormat.parse(from);
+
+				System.out.println("String 15일 =>Date 타입 to : " +to); // 15일 String to date 크기비교를위해서
+
+				
+		        if (d.after(to) || d.equals(to)) { // 현재날짜가 15일보다 더크거나 같으면 다음달 1일이 도착일자
+		             // 다음달 1일
+		        	Calendar cal4 = Calendar.getInstance ( );//오늘 날짜를 기준으루..
+					cal4.add (cal4.MONTH, +1); // 다음달
+		        	SimpleDateFormat nextmonth1day = new SimpleDateFormat("yyyy-MM-01");
+					String nextmonth1 = nextmonth1day.format(cal4.getTime());
+					System.out.println("String 타입 다음달 의 1일 : " + nextmonth1);
+					
+					Calendar cal3 = Calendar.getInstance ( );
+					cal3.add (cal3.MONTH, +1); // 다음달
+					SimpleDateFormat nextmonth14day = new SimpleDateFormat("yyyy-MM-14");
+					String nextmonth14 = nextmonth14day.format(cal3.getTime());
+					System.out.println("String 타입 다음달 의 14일 : " + nextmonth14);
+					
+					Calendar cal2 = Calendar.getInstance ( );
+					cal2.add (cal2.MONTH, +1); // 다음달
+					SimpleDateFormat nextmonth15day = new SimpleDateFormat("yyyy-MM-15");
+					String nextmonth15 = nextmonth15day.format(cal2.getTime());
+					System.out.println("String 타입 다음달 의 15일 : " + nextmonth15);
+				
+				
+				
+				sql = "insert into rental (num,isbn,id,s_date,onrental_date,e_date) values(?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, num);
 				pstmt.setString(2, isbn);
 				pstmt.setString(3, id);
+				pstmt.setString(4, nextmonth1);
+				pstmt.setString(5, nextmonth14);
+				pstmt.setString(6, nextmonth15);
+				
+		        } else { // 현재날짜가 15일보다 작을경우
+		        	
+		        	 Calendar today = new GregorianCalendar();
+		             int year = today.get(Calendar.YEAR);
+		             int month = today.get(Calendar.MONTH);
+		             month += 1;
+		             int maxday = today.getActualMaximum ( ( today.DAY_OF_MONTH ) );
+		             System.out.println ( maxday );
+
+		             String lastday = year+"-"+month+"-"+maxday;
+		             System.out.println("마지막날은 : " + lastday);
+		        	
+		             Calendar cal4 = Calendar.getInstance ( );//오늘 날짜를 기준으루..
+						cal4.add (cal4.MONTH, +1); // 다음달
+			        	SimpleDateFormat nextmonth1day = new SimpleDateFormat("yyyy-MM-01");
+						String nextmonth1 = nextmonth1day.format(cal4.getTime());
+						System.out.println("String 타입 다음달 의 1일 : " + nextmonth1);
+						
+		        	sql = "insert into rental (num,isbn,id,s_date,onrental_date,e_date) values(?,?,?,?,?,?)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, num);
+					pstmt.setString(2, isbn);
+					pstmt.setString(3, id);
+					pstmt.setString(4, from);
+					pstmt.setString(5, lastday);
+					pstmt.setString(6, nextmonth1);
+		        	
+		        	
+		        }
 
 				System.out.println(pstmt);
 				insertCount = pstmt.executeUpdate();
@@ -231,6 +313,29 @@ public class RentalDAO {
 	      int isDeleteOk = 0;
 	      PreparedStatement pstmt = null;
 	      try {
+	    	  
+//	    	  GregorianCalendar today = new GregorianCalendar();
+//	          int Year = today.get(Calendar.YEAR);
+//	          int Month = today.get(Calendar.MONTH);
+//	          int Date = today.get(Calendar.DATE);
+//	          int Hour = today.get(Calendar.HOUR_OF_DAY);
+//	          today.add(Calendar.DAY_OF_MONTH, -3);
+//	          System.out.println(today);
+//	          SimpleDateFormat threedaysago = new SimpleDateFormat("yyyy-MM-dd");
+//	          String daysago = threedaysago.format(today.getTime());
+//	          System.out.println("3일전 : " + daysago);
+//	    	  
+//
+//	          SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//
+//	          Date to = transFormat.parse(daysago); //
+
+
+
+	    	  
+	    	  
+	    	  
+	    	  
 	         for(int i=0; i< inerNumList.size(); i++) {
 	            String sql = "delete from rental where num=? and id=?";
 	            pstmt = con.prepareStatement(sql);
