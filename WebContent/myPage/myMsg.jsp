@@ -87,7 +87,7 @@
 		              			  <tr>
 		                      		<td><input type="checkbox" value="<%=myMsgList.get(i).getNum() %>" name="num" class="checkbox"></td>
 									<td>
-										<p class="content"><%=myMsgList.get(i).getContent() %></p>
+										<a class="content" href=MyMsgDetail.msg?num=<%=myMsgList.get(i).getNum()%>"><%=myMsgList.get(i).getContent() %></a>
 								    </td>
 		                  			<td>
 		                  			<%if(myMsgList.get(i).getIsRead().equals("y")){ %>

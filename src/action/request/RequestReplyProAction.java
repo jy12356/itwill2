@@ -46,7 +46,7 @@ public class RequestReplyProAction implements Action {
 				MsgBean msgBean = new MsgBean();		
 				String id =request.getParameter("id");
 				String fromid = (String)session.getAttribute("id");
-				String content = "답변이 등록되었습니다. ";
+				String content = "신청하신 도서가 등록되었습니다. ";
 				msgBean.setId(id);
 				msgBean.setFromId(fromid);
 				msgBean.setContent(content);

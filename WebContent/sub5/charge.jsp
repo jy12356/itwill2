@@ -171,7 +171,16 @@
 						<div class="payment-result">
 							<p>구매할 구독권 : <span class="total_pay_amount">1개월</span></p>
 							<p class="deduction-result">소득공제 <span>불가</span></p>
+							<%if(id == null){ %>
+							<input type="submit"value="결제하기"onclick='ccCheck()'>
+							<script>
+							function ccCheck(){
+								var u = alert("로그인해 주시기 바랍니다");
+								history.back();
+							}</script>
+							<%}else{ %>
 							<input type="submit"value="결제하기">
+							<%} %>
 							<script>
 							
 							</script>
