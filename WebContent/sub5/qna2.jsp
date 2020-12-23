@@ -36,7 +36,15 @@ int listCount = pageInfo.getListCount();
 					<div class="customer-use-wrap">
 						<ul class="customer-s-menu one">
 							<li>
+							<%if(id == null){ %>
+							<a href="QnaList.qna" class="" onclick='cCheck()'>1:1 문의하기</a>
+							<script>
+							function cCheck(){
+								var u = alert("로그인해 주시기 바랍니다");
+							}</script>
+							<%}else{ %>
 							<a href="QnaWriteForm.qna" class="">1:1 문의하기</a>
+							<%} %>
 							</li>
 							<li>
 							<a href="QnaList.qna" class="on">문의 내역 확인</a>
@@ -72,8 +80,11 @@ int listCount = pageInfo.getListCount();
 						</tr>
 						<%
 						for(int i = 0; i < articleList.size(); i++) {
-							if(id.equals(articleList.get(i).getId())){%>
-						<tr>
+						if(id == null){ %>
+							<tr>
+							</tr>
+						<%}else if(id.equals(articleList.get(i).getId())){%>
+							<tr>
 							<td align="center">
 							
 							<%if(articleList.get(i).getRe_lev() != 0) { %>
@@ -91,8 +102,8 @@ int listCount = pageInfo.getListCount();
 							<td align="center"><%=articleList.get(i).getQna_genre() %></td>
 							<td align="center"><%=articleList.get(i).getDate() %></td>
 						</tr>
-							<%}else if(id.equals("admin")) { %>
-						<tr>
+						<%}else if(id.equals("admin")){ %>
+							<tr>
 							<td align="center">
 							
 							<%if(articleList.get(i).getRe_lev() != 0) { %>
@@ -110,7 +121,7 @@ int listCount = pageInfo.getListCount();
 							<td align="center"><%=articleList.get(i).getQna_genre() %></td>
 							<td align="center"><%=articleList.get(i).getDate() %></td>
 						</tr>
-							<%} %>
+						<%} %>
 						<%}%>
 						
 						</tbody>

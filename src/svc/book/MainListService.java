@@ -30,36 +30,36 @@ public class MainListService {
 		return bookList;
 	}
 	
-	public ArrayList<BookBean> getBookList2(int page, int limit,String catg1, String catg2) {
+	public ArrayList<BookBean> getBookList2(int page, int limit,String catg1) {
 		ArrayList<BookBean> bookList2 = new ArrayList<BookBean>();
 		BookDAO bookDAO = BookDAO.getInstance();
 		Connection con = getConnection();
 		bookDAO.setConnection(con);
-		bookList2 = bookDAO.selectBookList2(page,limit,catg1,catg2);
+		bookList2 = bookDAO.selectBookList2(page,limit,catg1);
 		close(con);
 		System.out.println("servicesize2  " + bookList2.size());
 		System.out.println("MainListService2 끝");
 		return bookList2;
 	}
 
-	public ArrayList<BookBean> getBookList3(int page, int limit,String catg1, String catg2) {
+	public ArrayList<BookBean> getBookList3(int page, int limit,String catg1) {
 		ArrayList<BookBean> bookList3 = new ArrayList<BookBean>();
 		BookDAO bookDAO = BookDAO.getInstance();
 		Connection con = getConnection();
 		bookDAO.setConnection(con);
-		bookList3 = bookDAO.selectBookList3(page,limit,catg1,catg2);
+		bookList3 = bookDAO.selectBookList3(page,limit,catg1);
 		close(con);
 		System.out.println("servicesize3  " + bookList3.size());
 		System.out.println("MainListService2 끝");
 		return bookList3;
 	}
 	
-	public ArrayList<BookBean> getBookList4(int page, int limit,String catg1, String catg2) {
+	public ArrayList<BookBean> getBookList4(int page, int limit,String catg1) {
 		ArrayList<BookBean> bookList4 = new ArrayList<BookBean>();
 		BookDAO bookDAO = BookDAO.getInstance();
 		Connection con = getConnection();
 		bookDAO.setConnection(con);
-		bookList4 = bookDAO.selectBookList4(page,limit,catg1,catg2);
+		bookList4 = bookDAO.selectBookList4(page,limit,catg1);
 		close(con);
 		System.out.println("servicesize4  " + bookList4.size());
 		System.out.println("MainListService4 끝");

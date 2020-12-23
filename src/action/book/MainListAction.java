@@ -46,7 +46,7 @@ public class MainListAction implements Action {
 		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
 		
 		ArrayList<BookBean> bookList2 = new ArrayList<BookBean>();
-		bookList2 = mainListService.getBookList2(page,limit,catg1,catg2);
+		bookList2 = mainListService.getBookList2(page,limit,catg1);
 		int maxPage2 = (int)((double)listCount/ limit+0.95);
 		int startPage2 = ((int)((double)page/10+0.9)-1)*10+1;
 		int endPage2 = startPage+10-1;
@@ -54,7 +54,7 @@ public class MainListAction implements Action {
 		System.out.println("bookList2.size - " + bookList2.size());
 		
 		ArrayList<BookBean> bookList3 = new ArrayList<BookBean>();
-		bookList3 = mainListService.getBookList3(page,limit,catg1,catg2);
+		bookList3 = mainListService.getBookList3(page,limit,catg1);
 		int maxPage3 = (int)((double)listCount/ limit+0.95);
 		int startPage3 = ((int)((double)page/10+0.9)-1)*10+1;
 		int endPage3 = startPage+10-1;
@@ -62,7 +62,7 @@ public class MainListAction implements Action {
 		System.out.println("bookList3.size - " + bookList3.size());
 		
 		ArrayList<BookBean> bookList4 = new ArrayList<BookBean>();
-		bookList4 = mainListService.getBookList4(page,limit,catg1,catg2);
+		bookList4 = mainListService.getBookList4(page,limit,catg1);
 		int maxPage4 = (int)((double)listCount/ limit+0.95);
 		int startPage4 = ((int)((double)page/10+0.9)-1)*10+1;
 		int endPage4 = startPage+10-1;

@@ -142,7 +142,7 @@ public class BookDAO {
 		return bookList;
 	}
 	//책 리스트2 - 인기순(소설)(psy)
-	public ArrayList<BookBean> selectBookList2(int page, int limit,String catg1,String catg2) {
+	public ArrayList<BookBean> selectBookList2(int page, int limit,String catg1) {
 		
 		System.out.println("BookDAO - selectList2()");
 		ArrayList<BookBean> bookList2 = null;
@@ -152,14 +152,13 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		catg1="소설";
-		catg2="소설";
-		String sql = "select * from book order by count desc limit ?,?";
+		String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
-//			pstmt.setString(1, "%"+catg1);
+			pstmt.setString(1, "소설");
 //			pstmt.setString(2, "%"+catg2);
-			pstmt.setInt(1, 0);
-			pstmt.setInt(2, 10);
+			pstmt.setInt(2, 0);
+			pstmt.setInt(3, 2);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			bookList2 = new ArrayList<BookBean>();
@@ -194,7 +193,7 @@ public class BookDAO {
 	}
 	
 	//책 리스트3 - 인기순(인문/경제)(psy)
-		public ArrayList<BookBean> selectBookList3(int page, int limit,String catg1,String catg2) {
+		public ArrayList<BookBean> selectBookList3(int page, int limit,String catg1) {
 			
 			System.out.println("BookDAO - selectList3()");
 			ArrayList<BookBean> bookList3 = null;
@@ -204,14 +203,13 @@ public class BookDAO {
 			//조회를 시작할 레코드 행 번호 계산
 			int startRow=(page-1)*limit;
 			catg1="인문/경제";
-			catg2=null;
-			String sql = "select * from book order by count desc limit ?,?";
+			String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 			try {
 				pstmt=con.prepareStatement(sql);
-//				pstmt.setString(1, "%"+catg1);
+				pstmt.setString(1, catg1);
 //				pstmt.setString(2, "%"+catg2);
-				pstmt.setInt(1, 0);
-				pstmt.setInt(2, 10);
+				pstmt.setInt(2, 0);
+				pstmt.setInt(3, 2);
 				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				bookList3 = new ArrayList<BookBean>();
@@ -246,7 +244,7 @@ public class BookDAO {
 		}
 		
 		//책 리스트4 - 인기순(과학)(psy)
-		public ArrayList<BookBean> selectBookList4(int page, int limit,String catg1,String catg2) {
+		public ArrayList<BookBean> selectBookList4(int page, int limit,String catg1) {
 			
 			System.out.println("BookDAO - selectList4()");
 			ArrayList<BookBean> bookList4 = null;
@@ -256,7 +254,6 @@ public class BookDAO {
 			//조회를 시작할 레코드 행 번호 계산
 			int startRow=(page-1)*limit;
 			catg1="과학";
-			catg2="과학";
 			String sql = "select * from book order by count desc limit ?,?";
 			try {
 				pstmt=con.prepareStatement(sql);
