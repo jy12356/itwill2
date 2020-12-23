@@ -102,9 +102,7 @@ int listCount = pageInfo.getListCount();
 								
 						%>
 						<tr>
-							<td><input type="checkbox" id="check_box2"
-								class="check_box c2" value="<%=myBasketList.get(i).getNum()%>"
-								name="inter_num"></td>
+							<td><input type="checkbox" id="check_box2" class="check_box c2" value="<%=myBasketList.get(i).getNum()%>" name="inter_num"></td>
 							<td><%=myBasketList.get(i).getTitle()%></td>
 							<td><%=myBasketList.get(i).getAuthor()%></td>
 							<td><%=myBasketList.get(i).getPublisher()%></td>
@@ -130,7 +128,7 @@ int listCount = pageInfo.getListCount();
 							onclick="deleteBook(); return false;" class="btn">삭제하기</a>
 						<div class="payment-result basket">
 							<p>
-								총 선택 도서 수 : <span class="totalbookcnt">0권</span>
+								총 선택 도서 수 : <span class="totalbookcnt">0</span>권 
 							</p>
 
 						<input type="button" style="display: none;" class="rentalbtn" value="대여하기" onclick="rental()"> 
@@ -323,74 +321,94 @@ int listCount = pageInfo.getListCount();
 
 			}
 		}
+
 			
-			
-		// 대여가능도서 전체 선택
-		$(".checkAll1").click(function() {
-			if ($(this).is(":checked")) {
-				$(".c1").prop("checked", true); //전체선택 체크된경우
-				$(".c2").prop("checked", false); //전체선택 체크된경우
-				$(".checkAll2").prop("checked", false); //전체선택 체크된경우
-				$(".rentalbtn").show();
-			} else {
-				$(".c1").prop("checked", false); //전체선택 해제된경우
-				$(".rentalbtn").hide();
-			}
-			var play = cartset();
-		});
-
-		// 예약가능도서 전체선택
-		$(".checkAll2").click(function() {
-			if ($(this).is(":checked")) {
-				$(".c2").prop("checked", true); //전체선택 체크된경우
-				$(".c1").prop("checked", false); //전체선택 체크된경우
-				$(".checkAll1").prop("checked", false); //전체선택 체크된경우
-				$(".reservationbtn").show();
-			} else {
-				$(".c2").prop("checked", false); //전체선택 해제된경우
-				$(".reservationbtn").hide();
-			}
-			var play = cartset();
-		});
-
-		// 하나하나 대여가능도서 체크했을때
-		$("#check_box1").click(function() {
-			var total_cnt1 = 0;
-			if ($(this).is(":checked")) {
-				$(".rentalbtn").show();
-				$('.check_box input[id="check_box2"]').prop('checked', false);
-				$('.checkAll2 input[id="checkAll2"]').prop('checked', false);
-
-			} else {
-				$(".rentalbtn").hide();
-				$('.checkAll1 input[id="checkAll1"]').prop('checked', false);
-			}
-			var play = cartset();
-		});
-
-		// 하나하나 예약가능도서 체크했을때
-		$("#check_box2").click(function() {
-			if ($(this).is(":checked")) {
-				$(".reservationbtn").show();
-				$('.check_box input[id="checkRow1"]').prop('checked', false);
-				$('.checkAll1 input[id="checkAll1"]').prop('checked', false);
-
-			} else {
-				$(".reservationbtn").hide();
-				$('.checkAll2 input[id="checkAll2"]').prop('checked', false);
-			}
-			var play = cartset();
-		});
-
-		function cartset() {
-			var total_cnt = 0;
-			$('input:checkbox[name="inter_num"]').each(function() {
-				if (this.checked) {
-					total_cnt += 1;
+		$(document).ready(function(){
+		
+				
+			// 대여가능도서 전체 선택
+			$(".checkAll1").click(function() {
+				if ($(this).is(":checked")) {
+					$(".c1").prop("checked", true); //전체선택 체크된경우
+					$(".c2").prop("checked", false); //전체선택 체크된경우
+					$(".checkAll2").prop("checked", false); //전체선택 체크된경우
+					$(".rentalbtn").show();
+				} else {
+					$(".c1").prop("checked", false); //전체선택 해제된경우
+					$(".rentalbtn").hide();
 				}
+				var play = cartset();
+			});
+	
+			// 예약가능도서 전체선택
+			$(".checkAll2").click(function() {
+				if ($(this).is(":checked")) {
+					$(".c2").prop("checked", true); //전체선택 체크된경우
+					$(".c1").prop("checked", false); //전체선택 체크된경우
+					$(".checkAll1").prop("checked", false); //전체선택 체크된경우
+					$(".reservationbtn").show();
+				} else {
+					$(".c2").prop("checked", false); //전체선택 해제된경우
+					$(".reservationbtn").hide();
+				}
+				var play = cartset();
+			});
+	
+			// 하나하나 대여가능도서 체크했을때
+			$("#check_box1").click(function() {
+				var total_cnt1 = 0;
+				if ($(this).is(":checked")) {
+					$(".rentalbtn").show();
+					$('.check_box input[id="check_box2"]').prop('checked', false);
+					$('.checkAll2 input[id="checkAll2"]').prop('checked', false);
+	
+				} else {
+					$(".rentalbtn").hide();
+					$('.checkAll1 input[id="checkAll1"]').prop('checked', false);
+				}
+				var play = cartset();
+			});
+	
+			// 하나하나 예약가능도서 체크했을때
+			$("#check_box2").click(function() {
+				if ($(this).is(":checked")) {
+					$(".reservationbtn").show();
+					$('.check_box input[id="checkRow1"]').prop('checked', false);
+					$('.checkAll1 input[id="checkAll1"]').prop('checked', false);
+	
+				} else {
+					$(".reservationbtn").hide();
+					$('.checkAll2 input[id="checkAll2"]').prop('checked', false);
+				}
+				var play = cartset();
 			});
 
-			$(".totalbookcnt").html(total_cnt + "권");
+			function cartset(){
+			var total_cnt = $(".totalbookcnt").val();
+			$(".c2").click(function() {
+				alert( total_cnt);			
+				if ($(this).is(":checked")) {
+					total_cnt=$('input:checkbox[id="check_box2"]:checked').length;
+				}else{
+					total_cnt -=1;
+				}
+				$(".totalbookcnt").html(total_cnt);
+			});				
+			}
+	
+	
+		});		
+
+		var total_cnt = $(".totalbookcnt").val();
+		function cartset() {
+// 			$('input:checkbox[name="inter_num"]').each(function() {
+// 				if ($(this).is(":checked")) {
+// 					total_cnt=$('input:checkbox[id="check_box2"]:checked').length;
+// 				}else{
+// 					total_cnt=0;
+// 				}
+// 			});
+// 			$(".totalbookcnt").html(total_cnt);
 		}
 	</script>
 </section>
