@@ -13,6 +13,7 @@ import action.Action;
 import action.AdminAction;
 import action.SearchAllAction;
 import action.book.MainListAction;
+import action.msg.GetMyMsgAction;
 import action.msg.MsgDelAction;
 import action.msg.MsgSpanAction;
 import action.msg.MyMsgListAction;
@@ -53,7 +54,17 @@ public class MsgController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		}else if(command.equals("/MyMsgDetail.msg")) {
+			System.out.println("getMyMsg.msg 포워딩");
+			action = new GetMyMsgAction();			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
+		
 		//1.ActionForward객체 존재 여부 확인(객체가 존재할때 포워딩 수행)
 		if(forward != null) {
 			//2.ActionForward객체 내의 포워딩 방식에 따라 각각의 포워딩 수행
