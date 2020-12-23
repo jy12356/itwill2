@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import dao.RentalDAO;
+import dao.ReservationDAO;
 
 public class reservationInsertService {
 
@@ -15,13 +16,13 @@ public class reservationInsertService {
 
 		Connection con = getConnection();
 
-		RentalDAO rentalDAO = RentalDAO.getInstance();
+		ReservationDAO reservationDAO = ReservationDAO.getInstance();
 
 		System.out.println("insertReservation 서비스");
 
-		rentalDAO.setConnection(con);
+		reservationDAO.setConnection(con);
 
-		int insertCount = rentalDAO.insertReservation(reservationAddList, id);
+		int insertCount = reservationDAO.insertReservation(reservationAddList, id);
 
 		if (insertCount > 0) {
 			System.out.println("예약 insert작업 성공!");
@@ -34,4 +35,42 @@ public class reservationInsertService {
 		return isInsertSuccess;
 	}
 
+	public boolean checkOverlap(List<Integer> reservationAddList, String id) {
+		System.out.println("reservationInsertService - checkOverlap()");
+		boolean isOverlap = false; 
+		
+		Connection con = getConnection();
+		ReservationDAO reservationDAO = ReservationDAO.getInstance();
+		reservationDAO.setConnection(con);
+		
+		int count = reservationDAO.overlap(reservationAddList, id);
+		
+		if (count > 0) {
+			commit(con);
+			isOverlap = true; 
+		} else {
+			rollback(con);
+		}
+		close(con);
+		
+		
+		
+		
+		return isOverlap;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
