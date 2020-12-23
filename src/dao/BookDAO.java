@@ -149,13 +149,13 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		catg1="소설";
-		String sql = "select * from book order by count asc limit ?,?";
+		String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
-//			pstmt.setString(1, "%"+catg1);
+			pstmt.setString(1, "소설");
 //			pstmt.setString(2, "%"+catg2);
-			pstmt.setInt(1, 0);
-			pstmt.setInt(2, 10);
+			pstmt.setInt(2, 0);
+			pstmt.setInt(3, 2);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			bookList2 = new ArrayList<BookBean>();
@@ -200,13 +200,13 @@ public class BookDAO {
 			//조회를 시작할 레코드 행 번호 계산
 			int startRow=(page-1)*limit;
 			catg1="인문/경제";
-			String sql = "select * from book order by count desc limit ?,?";
+			String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 			try {
 				pstmt=con.prepareStatement(sql);
-//				pstmt.setString(1, "%"+catg1);
+				pstmt.setString(1, catg1);
 //				pstmt.setString(2, "%"+catg2);
-				pstmt.setInt(1, 0);
-				pstmt.setInt(2, 10);
+				pstmt.setInt(2, 0);
+				pstmt.setInt(3, 2);
 				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				bookList3 = new ArrayList<BookBean>();
@@ -301,8 +301,7 @@ public class BookDAO {
 
 			//조회를 시작할 레코드 행 번호 계산
 			int startRow=(page-1)*limit;
-			String sql = "select * from book order by count desc limit ?,?";
-//			String sql = "select * from book order by RAND() desc limit ?,?";
+			String sql = "select * from book order by RAND() desc limit ?,?";
 			try {
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, 0);

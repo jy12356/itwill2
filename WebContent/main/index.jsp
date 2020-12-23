@@ -194,288 +194,63 @@
 							</li>
 						<%
 						if(bookList2!=null){
-						for(int i = 0; i < 1; i++) {
+						for(int i = 0; i < 2; i++) {
 						%>							
 							<li class="top-rank top-one">
 								<p class="rank">
-									<span><strong>1</strong></span>
+									<span><strong><%=i+1%></strong></span>
 									<span class="icon"></span>
 								</p>
 								<div class="webtoon">
 									<p>
-										<strong><%=bookList2.get(1).getTitle()%></strong>
-										<span><%=bookList2.get(1).getAuthor()%></span>
+										<strong><%=bookList2.get(i).getTitle()%></strong>
+										<span><%=bookList2.get(i).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="<%=bookList2.get(1).getTitle()%>" href="/webtoon/wt_closet_wz">
+										<a title="<%=bookList2.get(i).getTitle()%>" href="/webtoon/wt_closet_wz">
 											<div>
-												<img src="<%=bookList2.get(1).getTitle()%>" alt="">
+												<img src="<%=bookList2.get(i).getTitle()%>" alt="">
 											</div> 
-											<span><strong><%=bookList2.get(1).getTitle()%></strong></span>
-											<span><%=bookList2.get(1).getAuthor()%></span>
-											<span><%=bookList2.get(1).getCatg2()%></span>
+											<span><strong><%=bookList2.get(i).getTitle()%></strong></span>
+											<span><%=bookList2.get(i).getAuthor()%></span>
+											<span><%=bookList2.get(i).getCatg2()%></span>
 										</a>
 									</div>
 								</div>
 								<div class="comic">
 									<p>
-										<strong><%=bookList3.get(1).getTitle()%></strong>
-										<span><%=bookList3.get(1).getAuthor()%></span>
+										<strong><%=bookList3.get(i).getTitle()%></strong>
+										<span><%=bookList3.get(i).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="<%=bookList3.get(1).getTitle()%>" href="/comic/goe">
+										<a title="<%=bookList3.get(i).getTitle()%>" href="/comic/goe">
 											<div>
-												<img src="<%=bookList3.get(1).getImage()%>" alt="">
+												<img src="<%=bookList3.get(i).getImage()%>" alt="">
 											</div> 
-											<span><strong><%=bookList3.get(1).getTitle()%></strong></span>
-											<span><%=bookList3.get(1).getAuthor()%></span>
-											<span><%=bookList3.get(1).getCatg2()%></span>
+											<span><strong><%=bookList3.get(i).getTitle()%></strong></span>
+											<span><%=bookList3.get(i).getAuthor()%></span>
+											<span><%=bookList3.get(i).getCatg2()%></span>
 										</a>
 									</div>
 								</div>
 								
 								<div class="fiction">
 									<p>
-										<strong><%=bookList4.get(1).getTitle()%></strong>
-										<span><%=bookList4.get(1).getAuthor()%></span>
+										<strong><%=bookList4.get(i).getTitle()%></strong>
+										<span><%=bookList4.get(i).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="<%=bookList4.get(1).getTitle()%>" href="/novel/E000072153">
+										<a title="<%=bookList4.get(i).getTitle()%>" href="/novel/E000072153">
 											<div>
-												<img src="<%=bookList4.get(1).getTitle()%>" alt="">
+												<img src="<%=bookList4.get(i).getTitle()%>" alt="">
 											</div> 
-											<span><strong><%=bookList4.get(1).getTitle()%></strong></span>
-											<span><%=bookList4.get(1).getAuthor()%></span>
-											<span><%=bookList4.get(1).getCatg2()%></span>
+											<span><strong><%=bookList4.get(i).getTitle()%></strong></span>
+											<span><%=bookList4.get(i).getAuthor()%></span>
+											<span><%=bookList4.get(i).getCatg2()%></span>
 										</a>
 									</div>
 								</div>
-							</li>
-							
-							<li class="top-rank top-one">
-								<p class="rank">
-									<span><strong>2</strong></span>
-									<span class="icon"></span>
-								</p>
-								<div class="webtoon">
-									<p>
-										<strong><%=bookList2.get(2).getTitle()%></strong>
-										<span><%=bookList2.get(2).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList2.get(2).getTitle()%>" href="/webtoon/wt_closet_wz">
-											<div>
-												<img src="<%=bookList2.get(2).getTitle()%>" alt="">
-											</div> 
-											<span><strong><%=bookList2.get(2).getTitle()%></strong></span>
-											<span><%=bookList2.get(2).getAuthor()%></span>
-											<span><%=bookList2.get(2).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-								<div class="comic">
-									<p>
-										<strong><%=bookList3.get(2).getTitle()%></strong>
-										<span><%=bookList3.get(2).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList3.get(2).getTitle()%>" href="/comic/goe">
-											<div>
-												<img src="<%=bookList3.get(2).getImage()%>" alt="">
-											</div> 
-											<span><strong><%=bookList3.get(2).getTitle()%></strong></span>
-											<span><%=bookList3.get(2).getAuthor()%></span>
-											<span><%=bookList3.get(2).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-								
-								<div class="fiction">
-									<p>
-										<strong><%=bookList4.get(2).getTitle()%></strong>
-										<span><%=bookList4.get(2).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList4.get(2).getTitle()%>" href="/novel/E000072153">
-											<div>
-												<img src="<%=bookList4.get(2).getTitle()%>" alt="">
-											</div> 
-											<span><strong><%=bookList4.get(2).getTitle()%></strong></span>
-											<span><%=bookList4.get(2).getAuthor()%></span>
-											<span><%=bookList4.get(2).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-							</li>
-							
-							<li class="top-rank top-one">
-								<p class="rank">
-									<span><strong>3</strong></span>
-									<span class="icon"></span>
-								</p>
-								<div class="webtoon">
-									<p>
-										<strong><%=bookList2.get(3).getTitle()%></strong>
-										<span><%=bookList2.get(3).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList2.get(3).getTitle()%>" href="/webtoon/wt_closet_wz">
-											<div>
-												<img src="<%=bookList2.get(3).getTitle()%>" alt="">
-											</div> 
-											<span><strong><%=bookList2.get(3).getTitle()%></strong></span>
-											<span><%=bookList2.get(3).getAuthor()%></span>
-											<span><%=bookList2.get(3).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-								<div class="comic">
-									<p>
-										<strong><%=bookList3.get(3).getTitle()%></strong>
-										<span><%=bookList3.get(3).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList3.get(3).getTitle()%>" href="/comic/goe">
-											<div>
-												<img src="<%=bookList3.get(3).getImage()%>" alt="">
-											</div> 
-											<span><strong><%=bookList3.get(3).getTitle()%></strong></span>
-											<span><%=bookList3.get(3).getAuthor()%></span>
-											<span><%=bookList3.get(3).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-								
-								<div class="fiction">
-									<p>
-										<strong><%=bookList4.get(3).getTitle()%></strong>
-										<span><%=bookList4.get(3).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList4.get(3).getTitle()%>" href="/novel/E000072153">
-											<div>
-												<img src="<%=bookList4.get(3).getTitle()%>" alt="">
-											</div> 
-											<span><strong><%=bookList4.get(3).getTitle()%></strong></span>
-											<span><%=bookList4.get(3).getAuthor()%></span>
-											<span><%=bookList4.get(3).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-							</li>
-							
-							<li class="top-rank top-one">
-								<p class="rank">
-									<span><strong>4</strong></span>
-									<span class="icon"></span>
-								</p>
-								<div class="webtoon">
-									<p>
-										<strong><%=bookList2.get(4).getTitle()%></strong>
-										<span><%=bookList2.get(4).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList2.get(4).getTitle()%>" href="/webtoon/wt_closet_wz">
-											<div>
-												<img src="<%=bookList2.get(4).getTitle()%>" alt="">
-											</div> 
-											<span><strong><%=bookList2.get(4).getTitle()%></strong></span>
-											<span><%=bookList2.get(4).getAuthor()%></span>
-											<span><%=bookList2.get(4).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-								<div class="comic">
-									<p>
-										<strong><%=bookList3.get(4).getTitle()%></strong>
-										<span><%=bookList3.get(4).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList3.get(4).getTitle()%>" href="/comic/goe">
-											<div>
-												<img src="<%=bookList3.get(4).getImage()%>" alt="">
-											</div> 
-											<span><strong><%=bookList3.get(4).getTitle()%></strong></span>
-											<span><%=bookList3.get(4).getAuthor()%></span>
-											<span><%=bookList3.get(4).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-								
-								<div class="fiction">
-									<p>
-										<strong><%=bookList4.get(4).getTitle()%></strong>
-										<span><%=bookList4.get(4).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList4.get(4).getTitle()%>" href="/novel/E000072153">
-											<div>
-												<img src="<%=bookList4.get(4).getTitle()%>" alt="">
-											</div> 
-											<span><strong><%=bookList4.get(4).getTitle()%></strong></span>
-											<span><%=bookList4.get(4).getAuthor()%></span>
-											<span><%=bookList4.get(4).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-							</li>
-							
-							<li class="top-rank top-one">
-								<p class="rank">
-									<span><strong>5</strong></span>
-									<span class="icon"></span>
-								</p>
-								<div class="webtoon">
-									<p>
-										<strong><%=bookList2.get(5).getTitle()%></strong>
-										<span><%=bookList2.get(5).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList2.get(5).getTitle()%>" href="/webtoon/wt_closet_wz">
-											<div>
-												<img src="<%=bookList2.get(5).getTitle()%>" alt="">
-											</div> 
-											<span><strong><%=bookList2.get(5).getTitle()%></strong></span>
-											<span><%=bookList2.get(5).getAuthor()%></span>
-											<span><%=bookList2.get(5).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-								<div class="comic">
-									<p>
-										<strong><%=bookList3.get(5).getTitle()%></strong>
-										<span><%=bookList3.get(5).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList3.get(5).getTitle()%>" href="/comic/goe">
-											<div>
-												<img src="<%=bookList3.get(5).getImage()%>" alt="">
-											</div> 
-											<span><strong><%=bookList3.get(5).getTitle()%></strong></span>
-											<span><%=bookList3.get(5).getAuthor()%></span>
-											<span><%=bookList3.get(5).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-								
-								<div class="fiction">
-									<p>
-										<strong><%=bookList4.get(5).getTitle()%></strong>
-										<span><%=bookList4.get(5).getAuthor()%></span>
-									</p>
-									<div>
-										<a title="<%=bookList4.get(5).getTitle()%>" href="/novel/E000072153">
-											<div>
-												<img src="<%=bookList4.get(5).getTitle()%>" alt="">
-											</div> 
-											<span><strong><%=bookList4.get(5).getTitle()%></strong></span>
-											<span><%=bookList4.get(5).getAuthor()%></span>
-											<span><%=bookList4.get(5).getCatg2()%></span>
-										</a>
-									</div>
-								</div>
-							</li>
-							
+							</li>							
 							<%
 								}}
 							%>
