@@ -143,7 +143,7 @@
                                    	<span class="list-star rank10"></span>
                                    <%} %>
 							<p class="rank-user">
-								<span><%=bookBean.getStarcount() %>.0</span>(<%=bookBean.getReviewCount() %>명)
+								<span><%=bookBean.getStarcount() %></span>(<%=bookBean.getReviewCount() %>명)
 							</p>
 							<p class="review-user">
 								서평(<span><%=listCount %></span>)
@@ -396,10 +396,10 @@
 						<input type="hidden" name="comment_id" value="<%=id%>">	
 						<textarea name="comment_desc" placeholder="댓글을 작성해주세요"></textarea>
 					</div>
-					<p>
-						<span><em>0</em>/500자</span><br>
-						<span>댓글 수( <em class="listCount"></em> )명</span>
-					</p>
+<!-- 					<p> -->
+<!-- 						<span><em>0</em>/500자</span><br> -->
+<!-- 						<span>댓글 수( <em class="listCount"></em> )명</span> -->
+<!-- 					</p> -->
 					<div class="btn_inner">
 						<input type="submit" value="등록" class="btn reviewInput ReComment_Write">
 						<input type="reset" value="취소" class="btn reviewCancele">
@@ -411,28 +411,33 @@
 					<!-- 댓글 없을때 -->
 					<!-- 댓글 있을때 -->
 					<%
+					 ArrayList<CommentBean> commentList = (ArrayList<CommentBean>)request.getAttribute("commentList");
+					
 // 					PageInfo pageInfo2 = (PageInfo)request.getAttribute("pageInfo2");
 // 					int listCount2 = pageInfo2.getListCount();
+					for(int a=0; a< commentList.size(); a++){
 					%>
-					<div class="comment comment_inner">
-						<input type="hidden" name="isbn" value="<%=isbn%>">	
-						<input type="hidden" name="page" value="<%=nowPage%>">	
-						<input type="hidden" name="board_type" value="2">
-						<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
-						<p class="comment-vote bookcube"id="cmt_vote">
-						<i id="c_id">댓글 작성자</i>
-						<em>|</em>
-						<span id="c_date" class="date">댓글 작성 날짜</span>
-						</p>
-						<div class="comment-content">
-							<span id="c_desc">댓글 내용</span>				
+						<div class="comment comment_inner reIcon">
+							
+							<input type="hidden" name="isbn" value="<%=isbn%>">	
+							<input type="hidden" name="page" value="<%=nowPage%>">	
+							<input type="hidden" name="board_type" value="2">
+							<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
+							<p class="comment-vote bookcube"id="cmt_vote">
+							<i id="c_id"><%=commentList.get(i).getComment_id()%></i>
+							<em>|</em>
+							<span id="c_date" class="date"><%=commentList.get(i).getDate() %></span>
+							</p>
+							<div class="comment-content">
+								<span id="c_desc"><%=commentList.get(i).getComment_desc() %></span>				
+							</div>
+							<div class="btn_inner">
+								<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
+								<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
+								<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
+							</div>
 						</div>
-						<div class="btn_inner">
-							<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
-							<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
-							<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
-						</div>
-					</div>
+					<%} %>
 					<!-- 댓글 있을때 -->
 				</div>
 			<%
@@ -514,17 +519,18 @@
 </div>
 </div>
 </section>
-	<script type="text/javascript">		
-		$(document).ready(function(){
-						
-			function idYn(){
-				var myid = document.getElementById('myId').value;
-				alert(myid);
-				if(myid==null){
-					alert("로그인 해주시길 바랍니다.");
-					return false;
-				}	
-			};		
+	<script type="text/javascript">
+	
+		
+		function idYn(){
+			var myid = document.getElementById('myId').value;
+			alert(myid);
+			if(myid == "null"){
+				alert("로그인 해주시길 바랍니다.");
+				return false;
+			}
+		};		
+		$(document).ready(function(){		
 			$(".my-review").on("click",function(){
 				if ($(this).data("review-yn") == "N"){
 					$(".review-text:not(:animated)").animate({
@@ -581,7 +587,6 @@
 			            $(this).parent().parent().next().next().next().hide();
 			        }
 			    }
-			    comment_list();
 			});
 		
 			//댓글 입력창 보이기(수정)
@@ -685,6 +690,7 @@
  				var board_num = $('input[name="board_num"]').val();
  				 $.ajax({
  					type:"GET",
+ 					data:"json",
  					url:"ReCommentList.re",
  					data: {
  						"page": page,
@@ -693,7 +699,8 @@
  						"board_num": board_num
  					},
  					success: function(data){
- 						alert("성공?")
+ 						alert(data);
+ 						alert("성공111111?")
  						
  					},
  					error: function(error){

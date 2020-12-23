@@ -89,7 +89,7 @@ public class ReCommentListAction implements Action {
 		json.put("articleList", articleList);
 		jsonArray.add(json);
 		PrintWriter out = response.getWriter();
-		out.print(json);
+		out.print(jsonArray);
 		
 
 //		forward = new ActionForward();
