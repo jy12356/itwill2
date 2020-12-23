@@ -1,9 +1,10 @@
+<%@page import="vo.MsgBean"%>
 <%@page import="vo.RequestBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String) session.getAttribute("id");
-	RequestBean article = (RequestBean) request.getAttribute("article");
+	MsgBean msgBean = (MsgBean) request.getAttribute("msgBean");
 	String nowPage = request.getParameter("page");
 %>
 <jsp:include page="../include/header.jsp" />
@@ -26,24 +27,22 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<td>저자</td>
-								<td><%=article.getAuthor()%></td>
+								<td>보낸이</td>
+								<td><%=msgBean.getFromId()%></td>
 							</tr>
 							<tr>
-								<td colspan="2"><%= %></td>
+								<td colspan="2"><%=msgBean.getContent() %></td>
 								
 							</tr>
 						</tbody>
 					</table>
 					<div class="btn_inner">
-						<input type="button" class="btn" value="수정"
-							onclick="location.href='RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+						
 						<input type="button" class="btn" value="삭제"
-							onclick="location.href='RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+							onclick="location.href='RequestDeletePro.rq?num=<%=msgBean.getNum()%>&page=<%=nowPage%>'">
 						<input type="button" class="btn" value="목록"
-							onclick="location.href='RequestList.rq?page=<%=nowPage%>'">
-						<input type="button" class="btn" value="답변"
-							onclick="location.href='RequestReplyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+							onclick="location.href='MyMsgDetail.msg?num=<%=msgBean.getNum()%>">
+						
 					</div>
 				</div>
 			</div>
