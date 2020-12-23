@@ -180,9 +180,9 @@ public class BookDAO {
 				bookBean.setImage(rs.getString("image"));
 				bookBean.setDescription(rs.getString("description"));
 				bookList2.add(bookBean);
-				System.out.println("a");
+//				System.out.println("a");
 			}
-			System.out.println("DAObookList2.size" + bookList2.size());
+			System.out.println("DAObookList2.size = " + bookList2.size());
 		}catch (Exception e) {
 			System.out.println("selectBookList2오류!" + e.getMessage());;
 			e.printStackTrace();
@@ -232,9 +232,9 @@ public class BookDAO {
 					bookBean.setImage(rs.getString("image"));
 					bookBean.setDescription(rs.getString("description"));
 					bookList3.add(bookBean);
-					System.out.println("a");
+//					System.out.println("a");
 				}
-				System.out.println("DAObookList3.size" + bookList3.size());
+				System.out.println("DAObookList3.size = " + bookList3.size());
 			}catch (Exception e) {
 				System.out.println("selectBookList3오류!" + e.getMessage());;
 				e.printStackTrace();
@@ -284,17 +284,65 @@ public class BookDAO {
 					bookBean.setImage(rs.getString("image"));
 					bookBean.setDescription(rs.getString("description"));
 					bookList4.add(bookBean);
-					System.out.println("a");
+//					System.out.println("a");
 				}
-				System.out.println("DAObookList3.size" + bookList4.size());
+				System.out.println("DAObookList4.size = " + bookList4.size());
 			}catch (Exception e) {
-				System.out.println("selectBookList3오류!" + e.getMessage());;
+				System.out.println("selectBookList4오류!" + e.getMessage());;
 				e.printStackTrace();
 			}finally {
 				close(rs);	
 				close(pstmt);
 			}
 			return bookList4;
+		}
+		
+		//책 리스트4 - 랜덤순(psy)
+		public ArrayList<BookBean> selectBookList5(int page, int limit) {
+			
+			System.out.println("BookDAO - selectList5()");
+			ArrayList<BookBean> bookList5 = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			//조회를 시작할 레코드 행 번호 계산
+			int startRow=(page-1)*limit;
+			String sql = "select * from book order by RAND() desc limit ?,?";
+			try {
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, 0);
+				pstmt.setInt(2, 5);
+				System.out.println(pstmt);
+				rs = pstmt.executeQuery();
+				bookList5 = new ArrayList<BookBean>();
+				while(rs.next()) {
+					BookBean bookBean = new BookBean();
+					bookBean.setNum(rs.getInt("num"));
+					bookBean.setTitle(rs.getString("title"));
+					bookBean.setCatg1(rs.getString("catg1"));
+					bookBean.setCatg2(rs.getString("catg2"));
+					bookBean.setAuthor(rs.getString("author"));
+					bookBean.setPublisher(rs.getString("publisher"));
+					bookBean.setPubdate(rs.getString("pubdate"));
+					bookBean.setIsbn(rs.getString("isbn"));
+					bookBean.setState(rs.getString("state"));
+					bookBean.setCount(rs.getInt("count"));
+					bookBean.setAuthor_info(rs.getString("author_info"));
+					bookBean.setIndex(rs.getString("index_info"));
+					bookBean.setImage(rs.getString("image"));
+					bookBean.setDescription(rs.getString("description"));
+					bookList5.add(bookBean);
+//					System.out.println("a");
+				}
+				System.out.println("DAObookList5.size = " + bookList5.size());
+			}catch (Exception e) {
+				System.out.println("selectBookList5오류!" + e.getMessage());;
+				e.printStackTrace();
+			}finally {
+				close(rs);	
+				close(pstmt);
+			}
+			return bookList5;
 		}
 		
    //전체책 갯수
