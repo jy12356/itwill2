@@ -325,7 +325,44 @@ int listCount = pageInfo.getListCount();
 			
 		$(document).ready(function(){
 		
+			var total_cnt = $(".totalbookcnt").val();
+			$(".c2").click(function() {
+// 				alert( total_cnt);			
+				if ($(this).is(":checked")) {
+// 					$(".reservationbtn").show();
+					total_cnt=$('input:checkbox[id="check_box2"]:checked').length;
+					
+				}else{
+					total_cnt -=1;
+				}
 				
+				
+				$(".totalbookcnt").html(total_cnt);
+				
+// 				if(toal_cnt > 0) {
+// 					$(".reservationbtn").show();
+// 				} else if(total_cnt == 0){
+// 					$(".reservationbtn").hide();
+// 				}
+				
+			});	
+			
+			// 예약가능도서 전체선택
+			$(".checkAll2").click(function() {
+				if ($(this).is(":checked")) {
+					$(".c2").prop("checked", true); //전체선택 체크된경우
+					$(".c1").prop("checked", false); //전체선택 체크된경우
+					$(".checkAll1").prop("checked", false); //전체선택 체크된경우
+					$(".reservationbtn").show();
+					total_cnt=$('input:checkbox[id="check_box2"]:checked').length;
+				} else {
+					$(".c2").prop("checked", false); //전체선택 해제된경우
+					$(".reservationbtn").hide();
+					total_cnt -=total_cnt;
+				}
+				$(".totalbookcnt").html(total_cnt);
+			});
+			
 			// 대여가능도서 전체 선택
 			$(".checkAll1").click(function() {
 				if ($(this).is(":checked")) {
@@ -336,23 +373,11 @@ int listCount = pageInfo.getListCount();
 				} else {
 					$(".c1").prop("checked", false); //전체선택 해제된경우
 					$(".rentalbtn").hide();
+					
 				}
 				var play = cartset();
 			});
 	
-			// 예약가능도서 전체선택
-			$(".checkAll2").click(function() {
-				if ($(this).is(":checked")) {
-					$(".c2").prop("checked", true); //전체선택 체크된경우
-					$(".c1").prop("checked", false); //전체선택 체크된경우
-					$(".checkAll1").prop("checked", false); //전체선택 체크된경우
-					$(".reservationbtn").show();
-				} else {
-					$(".c2").prop("checked", false); //전체선택 해제된경우
-					$(".reservationbtn").hide();
-				}
-				var play = cartset();
-			});
 	
 			// 하나하나 대여가능도서 체크했을때
 			$("#check_box1").click(function() {
@@ -372,7 +397,7 @@ int listCount = pageInfo.getListCount();
 			// 하나하나 예약가능도서 체크했을때
 			$("#check_box2").click(function() {
 				if ($(this).is(":checked")) {
-					$(".reservationbtn").show();
+// 					$(".reservationbtn").show();
 					$('.check_box input[id="checkRow1"]').prop('checked', false);
 					$('.checkAll1 input[id="checkAll1"]').prop('checked', false);
 	
@@ -383,16 +408,9 @@ int listCount = pageInfo.getListCount();
 				var play = cartset();
 			});
 
-			var total_cnt = $(".totalbookcnt").val();
-			$(".c2").click(function() {
-				alert( total_cnt);			
-				if ($(this).is(":checked")) {
-					total_cnt=$('input:checkbox[id="check_box2"]:checked').length;
-				}else{
-					total_cnt -=1;
-				}
-				$(".totalbookcnt").html(total_cnt);
-			});	
+			
+			
+			
 	
 	
 		});		
