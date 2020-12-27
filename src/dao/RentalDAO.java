@@ -41,6 +41,8 @@ public class RentalDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String isbn = null; 
+		String state = null;
+	
 
 		try {
 			for (int i = 0; i < rentalAddList.size(); i++) {
@@ -113,7 +115,7 @@ public class RentalDAO {
 				
 				
 				
-				sql = "insert into rental (num,isbn,id,s_date,onrental_date,e_date) values(?,?,?,?,?,?)";
+				sql = "insert into rental (num,isbn,id,s_date,onrental_date,e_date,state) values(?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, num);
 				pstmt.setString(2, isbn);
@@ -121,6 +123,7 @@ public class RentalDAO {
 				pstmt.setString(4, nextmonth1);
 				pstmt.setString(5, nextmonth14);
 				pstmt.setString(6, nextmonth15);
+				pstmt.setString(7, state);
 				
 		        } else { // 현재날짜가 15일보다 작을경우
 		        	
@@ -140,7 +143,7 @@ public class RentalDAO {
 						String nextmonth1 = nextmonth1day.format(cal4.getTime());
 						System.out.println("String 타입 다음달 의 1일 : " + nextmonth1);
 						
-		        	sql = "insert into rental (num,isbn,id,s_date,onrental_date,e_date) values(?,?,?,?,?,?)";
+		        	sql = "insert into rental (num,isbn,id,s_date,onrental_date,e_date,state) values(?,?,?,?,?,?,?)";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, num);
 					pstmt.setString(2, isbn);
@@ -148,6 +151,7 @@ public class RentalDAO {
 					pstmt.setString(4, from);
 					pstmt.setString(5, lastday);
 					pstmt.setString(6, nextmonth1);
+					pstmt.setString(7, state);
 		        	
 		        	
 		        }
@@ -225,7 +229,7 @@ public class RentalDAO {
 
 		try {
 			String sql = "select r.num num, b.title title, r.isbn isbn, "
-					+ "r.id id, r.s_date s_date, r.onrental_date onrental_date, " + "r.e_date e_date "
+					+ "r.id id, r.s_date s_date, r.onrental_date onrental_date, " + "r.e_date e_date, r.state state "
 					+ "from rental as r join book as b on r.isbn = b.isbn "
 					+ "where r.id=? order by r.num desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
@@ -245,6 +249,7 @@ public class RentalDAO {
 				rental.setS_date(rs.getDate("s_date"));
 				rental.setOnrental_date(rs.getDate("onrental_date"));
 				rental.setE_date(rs.getDate("e_date"));
+				rental.setState(rs.getString("state"));
 
 				rentalList.add(rental);
 			}
@@ -352,6 +357,116 @@ public class RentalDAO {
 	      }
 	      return isDeleteOk;
 	}
+	// 반납용
+	public int insertArticle(RentalBean rentalBean) {
+		System.out.println("RentalDAO - insertArticle");
+		int insertCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null; 
+		
+		int num = 1;
+		String sql = "Select Max(gnum) from rental";
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				num = rs.getInt(1) + 1;
+			}
+			sql = "Insert into rental values(?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, rentalBean.getState());
+			insertCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("insertArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return insertCount;
+	}
+	
+	// 반납용
+	public int selectListCountt() {
+		System.out.println("RentalDAO - selectListCount()");
+
+		int listCount = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			String sql = "SELECT COUNT(*) FROM rental";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				listCount = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("selectListCount() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return listCount;
+	}
+
+	public ArrayList<RentalBean> selectRentalListt(int page, int limit) {
+		System.out.println("RentalDAO - selectRentalList()");
+
+		ArrayList<RentalBean> rentalList = null;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		// 조회를 시작할 레코드(행) 번호 계산
+		int startRow = (page - 1) * limit;
+
+		try {
+			String sql = "select r.num num, b.title title, r.isbn isbn, "
+					+ "r.id id, r.s_date s_date, r.onrental_date onrental_date, " + "r.e_date e_date, r.state state "
+					+ "from rental as r join book as b on r.isbn = b.isbn "
+					+ "order by r.num desc limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
+			rs = pstmt.executeQuery();
+
+			rentalList = new ArrayList<RentalBean>();
+
+			while (rs.next()) {
+				RentalBean rental = new RentalBean();
+				rental.setNum(rs.getInt("num"));
+				rental.setTitle(rs.getString("title"));
+				rental.setIsbn(rs.getString("isbn"));
+				rental.setId(rs.getString("id"));
+				rental.setS_date(rs.getDate("s_date"));
+				rental.setOnrental_date(rs.getDate("onrental_date"));
+				rental.setE_date(rs.getDate("e_date"));
+				rental.setState(rs.getString("state"));
+
+				rentalList.add(rental);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("selectRentalList() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return rentalList;
+	}
+
+
 
 }
 
