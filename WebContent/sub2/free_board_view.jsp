@@ -90,8 +90,8 @@ int board_num = article.getBoard_num();
 					<div class="btn_inner">
 						<a href="FreeBoardList.free" class="btn">목록</a>
 						<%
-// 							                        if(id != null) {
-// 						                        	if(id.equals(article.getBoard_id())) {
+							                        if(id != null) {
+						                        	if(id.equals(article.getBoard_id()) || id.equals("admin")) {
 						%>
 
 						<a
@@ -101,8 +101,8 @@ int board_num = article.getBoard_num();
 							class="btn">삭제</a>
 					</div>
 					<%
-// 						                        	}
-// 					                        }
+						                        	}
+					                        }
 					%>
 
 				</div>
@@ -182,8 +182,8 @@ int board_num = article.getBoard_num();
 <!-- 										<a href="javascript:;" class="comment_modify_show" data-comment-count="0">수정</a>  -->
 						<!-- 댓글수정, 삭제 -->
 						<%
-// 						 if(id != null) {
-// 		                        if(id.equals(commentList.get(i).getComment_id())) {
+						 if(id != null) {
+		                        if(id.equals(commentList.get(i).getComment_id()) || id.equals("admin")) {
 						%>
 						
 						<div class="btn_inner">
@@ -195,8 +195,8 @@ int board_num = article.getBoard_num();
 						</div>
 						
 						<% 
-// 		                        }
-// 						 }
+		                        }
+						 }
 						%>
 										
 									</div>
@@ -263,8 +263,8 @@ int board_num = article.getBoard_num();
 							}
 							%>
 						</div>
-<p>entireCount = <%=entireCount %></p>
-<p>limit = <%=limit %></p>
+<%-- <p>entireCount = <%=entireCount %></p> --%>
+<%-- <p>limit = <%=limit %></p> --%>
 						
 						<%
 // 						if(commentList != null && listCount > 0) {
