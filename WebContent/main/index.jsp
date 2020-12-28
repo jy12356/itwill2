@@ -18,6 +18,7 @@
 	ArrayList<BookBean> bookList4 = (ArrayList<BookBean>)request.getAttribute("bookList4");
 	ArrayList<BookBean> bookList5 = (ArrayList<BookBean>)request.getAttribute("bookList5");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	ArrayList<BookBean> articleList = (ArrayList<BookBean>)request.getAttribute("BookBean");
 	int nowPage = pageInfo.getPage();
 	int maxPage = pageInfo.getMaxPage();
 	int startPage = pageInfo.getStartPage();
@@ -55,9 +56,9 @@
 				<li>
 					<div class="figure">
 						<span class="label"><em>10%<span>할인</span></em></span> 
-						<a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">
+						<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%> ">
 							<span class="rm_br">
-							<img src="<%=bookList5.get(i).getImage() %>" alt="<%=bookList5.get(i).getImage() %>" /></span>
+							<img src="<%=bookList5.get(i).getImage() %>" alt="<%=bookList5.get(i).getImage()%>" /></span>
 							<span class="light"></span>
 							<div class="caption">
 								<div class="about">
@@ -68,7 +69,7 @@
 					</div>
 					<div class="hot-info">
 						<p class="hot-title">
-							<a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy"><%=bookList5.get(i).getTitle() %></a>
+							<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>"><%=bookList5.get(i).getTitle() %></a>
 						</p>
 						<p><%=bookList5.get(i).getAuthor() %></p>
 					</div>
@@ -96,30 +97,6 @@
 						<p>오은영 글, 차상미 그림</p>
 					</div>
 				</li>
-<!-- 				<li> -->
-<!-- 					<div class="figure"> -->
-<!-- 						<a -->
-<!-- 							href="https://www.bookcube.com/detail.asp?series_num=920017326&page=buy"> -->
-<!-- 							<span class="rm_br"><img -->
-<!-- 								src="https://bookimg.bookcube.com/150/2007/200701496.jpg" -->
-<!-- 								alt="도서 이미지 - 돈의 속성" /></span> <span class="light"></span> -->
-<!-- 							<div class="caption"> -->
-<!-- 								<div class="about"> -->
-<!-- 									<p>유튜브 1,100만 명이 시청한 〈돈의 속성〉 완결판 최상위 부자 김승호 회장이 직접 밝히는 돈에 -->
-<!-- 										통찰과 철학 맨손에서 종잣돈을 만들고 돈을 불리는 75가지 방법 이 책 『돈...</p> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 					<div class="hot-info"> -->
-<!-- 						<p class="hot-title"> -->
-<!-- 							<a -->
-<!-- 								href="https://www.bookcube.com/detail.asp?series_num=920017326&page=buy">돈의 -->
-<!-- 								속성</a> -->
-<!-- 						</p> -->
-<!-- 						<p>김승호</p> -->
-<!-- 					</div> -->
-<!-- 				</li> -->
 			</ul>
 		</div>
 	</div>
@@ -128,9 +105,8 @@
 			<div class="md">
 				<div class="md-title">
 					<h3 class="coTitle">신간</h3>
-					<a href="https://www.bookcube.com/new.asp?page=nm" class="more">더보기</a>
+<!-- 					<a href="https://www.bookcube.com/new.asp?page=nm" class="more">더보기</a> -->
 				</div>
-				
 				<ul>
 					<%
 						for(int i = 0; i < 5; i++) {
@@ -146,7 +122,7 @@
 						</div>
 						<div class="hot-info">
 							<p class="hot-title">
-								<a href="BookDetail.bok?isbn<%=bookList.get(i).getIsbn()%>"><%=bookList.get(i).getTitle() %></a>
+								<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>"><%=bookList.get(i).getTitle() %></a>
 							</p>
 							<p><%=bookList.get(i).getAuthor() %></p>
 						</div>
@@ -158,7 +134,6 @@
 			</div>
 		</div>
 	</div>
-	
 	<div class="rank_inner">
 		<div class="main-inner">
 			<div class="cover-section realtime-hot-box">
@@ -175,19 +150,19 @@
 								</p>
 								<p class="webtoon">
 									<strong class="fn-webtoon">소설</strong> 
-									<a href="/webtoon/best/realtime" class="btn-type03">더보기 
+									<a href="/webtoon/best/realtime" class="BookList.bok?catg1=소설">더보기 
 										<span class="more"></span>
 									</a>
 								</p>
 								<p class="comic">
 									<strong class="fn-comic">인문/경제</strong> 
-									<a href="/comic/best/all/realtime" class="btn-type03">더보기
+									<a href="/comic/best/all/realtime" class="BookList.bok?catg1=인문/경제">더보기
 										<span class="more"></span>
 									</a>
 								</p>
 								<p class="fiction">
 									<strong class="fn-fiction">과학/IT</strong> 
-									<a href="/novel/best/all/realtime" class="btn-type03">더보기 
+									<a href="/novel/best/all/realtime" class="BookList.bok?catg1=과학">더보기 
 										<span class="more"></span>
 									</a>
 								</p>
@@ -207,7 +182,7 @@
 										<span><%=bookList2.get(i).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="<%=bookList2.get(i).getTitle()%>" href="/webtoon/wt_closet_wz">
+										<a title="<%=bookList2.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>">
 											<div>
 												<img src="<%=bookList2.get(i).getTitle()%>" alt="">
 											</div> 
@@ -223,7 +198,7 @@
 										<span><%=bookList3.get(i).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="<%=bookList3.get(i).getTitle()%>" href="/comic/goe">
+										<a title="<%=bookList3.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>">
 											<div>
 												<img src="<%=bookList3.get(i).getImage()%>" alt="">
 											</div> 
@@ -240,7 +215,7 @@
 										<span><%=bookList4.get(i).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="<%=bookList4.get(i).getTitle()%>" href="/novel/E000072153">
+										<a title="<%=bookList4.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>">
 											<div>
 												<img src="<%=bookList4.get(i).getTitle()%>" alt="">
 											</div> 
@@ -265,12 +240,11 @@
 			<div class="ct-best">
 				<h3>카테고리별 베스트</h3>
 				<ul>
-					<li><a href="../sub1/list.html">소설<span class="ct-arrow"></span></a></li>
-					<li><a href="../sub1/list.html">인문/경제<span class="ct-arrow"></span></a></li>
-					<li><a href="../sub1/list.html">자기개발<span class="ct-arrow"></span></a></li>
-					<li><a href="../sub1/list.html">과학<span class="ct-arrow"></span></a></li>
-					<li><a href="../sub1/list.html">IT<span class="ct-arrow"></span></a></li>
-					<li><a href="../sub1/list.html">건강<span class="ct-arrow"></span></a></li>
+					<li><a href="BookList.bok?catg1=소설">소설<span class="ct-arrow"></span></a></li>
+					<li><a href="BookList.bok?catg1=인문/경제">인문/경제<span class="ct-arrow"></span></a></li>
+					<li><a href="BookList.bok?catg1=과학">과학/IT<span class="ct-arrow"></span></a></li>
+					<li><a href="BookList.bok?catg1=취미">취미<span class="ct-arrow"></span></a></li>
+					<li><a href="BookList.bok?catg1=만화/웹소설">만화/웹소설<span class="ct-arrow"></span></a></li>
 				</ul>
 			</div>
 		</div>
