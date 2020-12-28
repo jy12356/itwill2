@@ -12,23 +12,24 @@ import vo.RentalBean;
 
 public class ReturnInsertService {
 
-	public boolean registArticle(RentalBean rentalBean) {
+	public boolean registArticle(RentalBean article) {
 System.out.println("ReturnInsertService-registArticle!");
-		
-		boolean isWriteSuccess = false;
+		boolean isModifySuccess = true;
 		Connection con = getConnection();
 		RentalDAO rentalDAO = RentalDAO.getInstance();
 		rentalDAO.setConnection(con);
 		
-		int insertCount = rentalDAO.insertArticle(rentalBean);
-		if(insertCount > 0) {
+		int updateCount = rentalDAO.updateArticle(article);
+		
+		if(updateCount > 0) {
 			commit(con);
-			isWriteSuccess = true;
-		}else {
+			isModifySuccess = true;
+		} else {
 			rollback(con);
 		}
+		
 		close(con);
-		return isWriteSuccess;
+		return isModifySuccess;
 	}
 		
 

@@ -22,19 +22,16 @@ public class returnInsertAction implements Action {
 		System.out.println("returnInsertAction!");
 		ActionForward forward = null;
 		
+		int num = Integer.parseInt(request.getParameter("num"));
 		String state = request.getParameter("state");
-		String isbn = request.getParameter("isbn");
-		String id = request.getParameter("id");
-		RentalBean rentalBean = new RentalBean();
-		rentalBean.setIsbn(isbn);
-		rentalBean.setId(id);
-		rentalBean.setState(state);
-		System.out.println("isbn" + isbn);
+		RentalBean article = new RentalBean();
+		article.setState(state);
+		article.setNum(num);
 		
 		ReturnInsertService returnInsertService = new ReturnInsertService();
-		boolean isWriteSuccess = returnInsertService.registArticle(rentalBean);
+		boolean isModifySuccess = returnInsertService.registArticle(article);
 		
-		if(!isWriteSuccess) {
+		if(!isModifySuccess) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -43,10 +40,11 @@ public class returnInsertAction implements Action {
 			out.println("</script>");
 		}else {
 			forward = new ActionForward();
-			forward.setPath("Return2.rn");
+			forward.setPath("Return.rn");
 			forward.setRedirect(true);
 		}
 		return forward;
+		
 	}
 
 }

@@ -3,7 +3,7 @@
 <jsp:include page="../include/header.jsp"/>
 <%@page import="vo.PageInfo"%>
 <%@page import="java.util.ArrayList"%>
-<%
+<%	String id = (String)session.getAttribute("id");
 	ArrayList<RentalBean> rentalList = (ArrayList<RentalBean>)request.getAttribute("rentalList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage = pageInfo.getPage();
@@ -23,9 +23,9 @@
                         <caption></caption>
                         <colgroup>
                          	<col style="width:5%">
-                            <col style="width:35%">
+                            <col style="width:40%">
                             <col style="width:25%">
-                            <col style="width:25%">
+                            <col style="width:20%">
                             <col style="width:10%">
                             
                         </colgroup>
@@ -40,7 +40,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <%for(int i=0; i < rentalList.size(); i++ ){ %>
+                        <%for(int i=0; i < rentalList.size(); i++ ){ 
+                        	if(id.equals(rentalList.get(i).getId())){
+                        		if(rentalList.get(i).getState() == null){
+                        %>
+                        <%}else{ %>
                             <tr>
                                 <td class="tac check_box">
                                 <input type="checkbox" id="checkbox_num" class="check_num" value="<%=rentalList.get(i).getNum()%>" name="inter_num"></td>
@@ -49,6 +53,8 @@
                                 <td><%=rentalList.get(i).getE_date()%></td>
                                <td><%=rentalList.get(i).getState()%></td>
                             </tr>
+                        <%} %>
+                        <%} %>
                         <%} %>
                         </tbody>
                     </table>
