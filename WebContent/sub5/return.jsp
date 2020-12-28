@@ -6,8 +6,6 @@
 <%@page import="vo.PageInfo"%>
 <%@page import="java.util.ArrayList"%>
 <%
-	String id = (String)session.getAttribute("id");
-	
 ArrayList<RentalBean> rentalList = (ArrayList<RentalBean>)request.getAttribute("rentalList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
 	int nowPage = pageInfo.getPage();
@@ -45,7 +43,8 @@ ArrayList<RentalBean> rentalList = (ArrayList<RentalBean>)request.getAttribute("
                             </tr>
                         </thead>
                         <tbody>
-                        <%for(int i=0; i < rentalList.size(); i++ ){ %>
+                        <%for(int i=0; i < rentalList.size(); i++ ){
+                        	%>
                             <tr>
                                 <td class="tac check_box">
                                 <input type="checkbox" id="checkbox_num" class="check_num" value="<%=rentalList.get(i).getNum()%>" name="inter_num"></td>
@@ -54,15 +53,18 @@ ArrayList<RentalBean> rentalList = (ArrayList<RentalBean>)request.getAttribute("
                                 <td><%=rentalList.get(i).getS_date()%> ~ <%=rentalList.get(i).getOnrental_date()%></td>
                                 <td><%=rentalList.get(i).getE_date()%></td>
                                 <td class="book_basketbtn">
-                                <form method="post" action="ReturnInsert.rn?isbn=<%=rentalList.get(i).getIsbn()%>">
+                                <form method="post" action="ReturnInsert.rn">
+                                <%if(rentalList.get(i).getState() == null) {%>
                                 <input type="hidden" value="반납" id="state" name="state">
-                                <input type="hidden" value="<%=rentalList.get(i).getIsbn()%>" id="isbn" name="isbn">
-                                <input type="hidden" value="<%=rentalList.get(i).getId()%>" id="id" name="id">
-			                    <input type="submit" onclick='ccCheck()'class="btn">
+<%--                                 <input type="hidden" value="<%=rentalList.get(i).getIsbn()%>" id="isbn" name="isbn"> --%>
+                                <input type="hidden" value="<%=rentalList.get(i).getNum()%>" id="num" name="num">
+			                    <input type="submit" onclick="ccCheck()" class="btn" value="반납하기">
+                                <%}else{ %>
+                                <%=rentalList.get(i).getState()%>
+                                <%} %>
 							<script>
 							function ccCheck(){
 								var u = alert("반납하시겠습니까?");
-								history.back();
 							}</script>
 			                    </form>                             	
                                	</td>

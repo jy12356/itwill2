@@ -420,59 +420,46 @@ public class RentalDAO {
 	      }
 	      return isDeleteOk;
 	}
+	
+	
 	// 반납용
-	public int insertArticle(RentalBean rentalBean) {
-		System.out.println("RentalDAO - insertArticle");
-		int insertCount = 0;
-		System.out.println("isbn : " + rentalBean.getIsbn());
-		
+	public int updateArticle(RentalBean article) {
+		int updateCount = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null; 
 		
-		int num = 1;
-		String sql = "Select Max(num) from rental";
 		try {
+			String sql = "update rental set state=? where num=?";
 			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				num = rs.getInt(1) + 1;
-			}
-			sql = "insert into rental(num,isbn,id,state) values(?,?,?,?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			pstmt.setString(2, rentalBean.getIsbn());
-			pstmt.setString(3, rentalBean.getId());
-			pstmt.setString(4, rentalBean.getState());
-			insertCount = pstmt.executeUpdate();
-		} catch (Exception e) {
-			System.out.println("insertArticle() 오류! - " + e.getMessage());
+			pstmt.setString(1, article.getState());
+			pstmt.setInt(2, article.getNum());
+			updateCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("updateArticle() 오류! - " + e.getMessage());
 			e.printStackTrace();
 		}finally {
-			close(rs);
 			close(pstmt);
 		}
-		return insertCount;
+		return updateCount;
 	}
-	
+
 	// 반납용
 	public int selectListCountt() {
 		System.out.println("RentalDAO - selectListCount()");
-
+		
 		int listCount = 0;
-
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
 		try {
 			String sql = "SELECT COUNT(*) FROM rental";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-
+			
 			if (rs.next()) {
 				listCount = rs.getInt(1);
 			}
-
+			
 		} catch (SQLException e) {
 			System.out.println("selectListCount() 오류! - " + e.getMessage());
 			e.printStackTrace();
@@ -480,10 +467,11 @@ public class RentalDAO {
 			close(rs);
 			close(pstmt);
 		}
-
+		
 		return listCount;
 	}
 
+	// 반납용
 	public ArrayList<RentalBean> selectRentalListt(int page, int limit) {
 		System.out.println("RentalDAO - selectRentalList()");
 
@@ -531,6 +519,9 @@ public class RentalDAO {
 
 		return rentalList;
 	}
+
+
+	
 
 
 
