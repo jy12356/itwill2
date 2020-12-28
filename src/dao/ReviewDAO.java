@@ -124,6 +124,7 @@ public class ReviewDAO {
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
+			System.out.println(pstmt);
 			
 			// ArrayList 객체 생성
 			articleList = new ArrayList<ReviewBean>();

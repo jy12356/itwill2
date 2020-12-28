@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="vo.CommentBean" %>
+<%-- <%@page import="vo.CommentBean" %> --%>
+
+<%@page import="vo.BookBean" %>
 <%@page import="vo.PageInfo" %>
 <%@page import="vo.ReviewBean" %>
 <%@page import="java.util.ArrayList" %>
-<%@page import="vo.BookBean" %>
 <jsp:include page="../include/header.jsp"/>
 <!-- 카카오 공유하기 20201125 서지연 추가 시작-->
 <script type='text/javascript'>
@@ -61,7 +62,7 @@
 <!-- 카카오 공유하기 20201125 서지연 추가 끝-->
 <% 
 request.setCharacterEncoding("utf-8"); 
-BookBean bookBean=(BookBean) request.getAttribute("bookbean"); 
+BookBean bookBean=(BookBean) request.getAttribute("bookBean"); 
 String nowPage=request.getParameter("page"); 
 String id=(String) session.getAttribute("id"); 
 String isbn=request.getParameter("isbn"); 
@@ -284,7 +285,7 @@ int listCount = pageInfo.getListCount(); %>
 					<!-- 서평리스트 내용-->
 					<div id="comment">
 						<!-- 서평 없을 때 -->
-						<% if (articleList==null && listCount < 0) { %>
+						<% if (articleList == null && listCount < 0) { %>
 						<div class="comment_list">
 							<p class="no">
 								회원님께서 첫 서평의 주인공이 되어주세요.
@@ -292,12 +293,14 @@ int listCount = pageInfo.getListCount(); %>
 						</div>
 						<!-- 서평 없을 때 -->
 						<!-- 서평 있을 때 -->
-						<% }else if (articleList !=null && listCount> 0) { 
+						<% }else{ 
 							for (int i = 0; i < articleList.size(); i++) { %>
 						<div>
 							<div class="comment comment_inner ">
 								<p class="comment-vote bookcube" id="cmt_vote">
-									<i><%=articleList.get(i).getId()%></i><em>|</em><span class="date"><%=articleList.get(i).getDate()%></span><em>|</em><span class="list-star rank<%=articleList.get(i).getStarcount()%>"><%=articleList.get(i).getStarcount()%></span>
+									<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
+									<span class="date"><%=articleList.get(i).getDate()%></span><em>|</em>
+									<span class="list-star rank<%=articleList.get(i).getStarcount()%>"><%=articleList.get(i).getStarcount()%></span>
 									<em>|</em>좋아요<span class="likeCountInner"><%=articleList.get(i).getLikecount()%></span><em>|</em>댓글<span class="listCount"></span>
 									<% if (articleList.get(i).getSpoiler()==1) { %>
 									<em>|</em>스포일러 포함 <% } %>
@@ -306,7 +309,10 @@ int listCount = pageInfo.getListCount(); %>
 									<span><%=articleList.get(i).getContent()%></span>
 								</div>
 								<div class="btn_inner">
-									<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a><a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a><a href="javascript:;" class="heart-btn btn" data-review-num="<%=articleList.get(i).getNum()%>" data-like-id="<%=id%>" data-isbn="<%=isbn%>">좋아요</a><a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
+									<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
+									<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
+									<a href="javascript:;" class="heart-btn btn" data-review-num="<%=articleList.get(i).getNum()%>" data-like-id="<%=id%>" data-isbn="<%=isbn%>">좋아요</a>
+									<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
 								</div>
 							</div>
 							<!-- 서평 수정-->
@@ -360,24 +366,26 @@ int listCount = pageInfo.getListCount(); %>
 								<!-- 댓글 리스트-->
 								<!-- 댓글 없을때 -->
 								<!-- 댓글 없을때 -->
-								<!-- 댓글 있을때 --><%-- 
-								<div class="comment comment_inner reIcon">
-									<input type="hidden" name="isbn" value="<%=isbn%>"> 
-									<input type="hidden" name="page" value="<%=nowPage%>"> 
-									<input type="hidden" name="board_type" value="2">
-									<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
-									<p class="comment-vote bookcube" id="cmt_vote">
-										<i id="c_id"><%=commentList2.get(b).getComment_id()%></i><em>|</em><span id="c_date" class="date"><%=commentList2.get(b).getDate()%></span>
-									</p>
-									<div class="comment-content">
-										<span id="c_desc"><%=commentList2.get(b).getComment_desc()%></span>
-									</div>
-									<div class="btn_inner">
-										<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
-										<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
-										<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
-									</div>
-								</div> --%>
+								<!-- 댓글 있을때 -->
+								<div class="reply">
+<!-- 									<div class="comment comment_inner reIcon "> -->
+<%-- 										<input type="hidden" name="isbn" value="<%=isbn%>">  --%>
+<%-- 										<input type="hidden" name="page" value="<%=nowPage%>">  --%>
+<!-- 										<input type="hidden" name="board_type" value="2"> -->
+<%-- 										<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>"> --%>
+<!-- 										<p class="comment-vote bookcube" id="cmt_vote"> -->
+<%-- 											<i id="c_id"><%=commentList2.get(b).getComment_id()%></i><em>|</em><span id="c_date" class="date"><%=commentList2.get(b).getDate()%></span> --%>
+<!-- 										</p> -->
+<!-- 										<div class="comment-content"> -->
+<%-- 											<span id="c_desc"><%=commentList2.get(b).getComment_desc()%></span> --%>
+<!-- 										</div> -->
+<!-- 										<div class="btn_inner"> -->
+<!-- 											<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a> -->
+<%-- 											<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a> --%>
+<!-- 											<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+								</div>
 								<!-- 댓글 있을때 -->
 							</div>
 							
@@ -491,126 +499,171 @@ int listCount = pageInfo.getListCount(); %>
 					} else {
 						$(this).parent().parent().next().next().css("display", "none");
 					}
+					reply_write();
 				});
+				function reply_write(){
+					var id = '<%=(String)session.getAttribute("id")%>';
+					var page = $('input[name="page"]').val();
+					var isbn = $('input[name="isbn"]').val();
+					var board_type = $('input[name="board_type"]').val();
+					var board_num = $('input[name="board_num"]').val();
+					alert(board_num);
+					$.ajax({
+						type : "GET",
+						data : "json",
+						url : "ReCommentList.re",
+						data : {
+							"page" : page,
+							"isbn" : isbn,
+							"board_type" : board_type,
+							"board_num" : board_num
+						},
+						success : function(json) {
+							alert(json);
+// 							json = json.replace(/\n/gi,"\\r\\n"); // 개행문자 대체
+// 							$(".reply").text("");  // 댓글리스트 영역 초기화
+// 							var obj = JSON.parse(json); // service 클래스로 부터 전달된 문자열 파싱
+// 							alert(obj.replyList);
+
+// 							alert(json);
+// 		                	var replyList = obj.replyList; // replyList는 전달된 json의 키값을 의미
+// 		                	var output = ""; // 댓글 목록을 누적하여 보여주기 위한 변수
+		                	for (i in json) { // 반복문을 통해 output에 누적
+		                		alert(json[i].comment_num);
+		                		$(".reply").append(
+	                				'<input type="hidden" name="board_type" value="2">'+
+	                				'<input type="hidden" name="board_num" value="'+replyList.board_num+'">'+
+	                				'<p class="comment-vote bookcube" id="cmt_vote">'+
+	                				'<i id="c_id">'+replyList.comment_id+'</i><em>|</em><span id="c_date" class="date">'+replyList.date+'</span>'+
+	                				'</p>'+
+	                				'<div class="comment-content">'+
+	                				'<span id="c_desc">'+replyList.comment_desc+'</span>'+
+	                				'</div>'+
+	                				'<div class="btn_inner">'+
+	                				'<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>'+
+	                				'<a href="ReCommentDeletePro.re?num='+replyList.board_num+'&board_type=2&id='+id+'" class="delete-btn btn">삭제</a>'+
+	                				'</div>'
+                				);
+		    	           
+		    	        	};
+						},
+						error : function(error) {
+							alert("오류 발생" + error);
+						}
+					});
+				}
 				//댓글 입력창 보이기(수정)
-				$(".comment_modify").on(
-						"click",
-						function() {
-							if ($.cookie("user_num")) {
-								$(this).parent().parent().parent().parent()
-										.hide();
-								$(this).parent().parent().parent().parent()
-										.next().show();
-							} else {
-								goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
-								//							alert('로그인 후 이용가능합니다.');
-								return;
-							}
-						});
+				$(".comment_modify").on("click",function() {
+					if ($.cookie("user_num")) {
+						$(this).parent().parent().parent().parent().hide();
+						$(this).parent().parent().parent().parent().next().show();
+					} else {
+						goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
+						//alert('로그인 후 이용가능합니다.');
+						return;
+					}
+				});
 				// 리뷰수정/댓글 입력창 닫기
 				$(".reviewCancele").on("click", function() {
 					$(".cmtModi").hide();
 					$(".cmtRly").hide();
 				});
 				// 좋아요
-				$(".heart-btn").on(
-						"click",
-						function() {
-							var num = $(this).data("review-num");
-							var review_num = $(this).data("review-num");
-							var like_id = $(this).data("like-id");
-							var book_isbn = $(this).data("isbn");
-							if (like_id == null) {
-								alert("로그인을 해주시길 바랍니다.");
-								return false;
+				$(".heart-btn").on("click",function() {
+					var num = $(this).data("review-num");
+					var review_num = $(this).data("review-num");
+					var like_id = $(this).data("like-id");
+					var book_isbn = $(this).data("isbn");
+					if (like_id == null) {
+						alert("로그인을 해주시길 바랍니다.");
+						return false;
+					}
+					var btnPar = $(this).parent().siblings("#cmt_vote").children('span.likeCountInner');
+					$.ajax({
+						url : 'ReviewlikeCount.re',
+						type : "POST",
+						dataType : 'json',
+						data : {
+							"num" : num,
+							"review_num" : review_num,
+							"like_id" : like_id,
+							"book_isbn" : book_isbn
+						},
+						success : function(data) {
+							var text = data.text;
+							var likeCount = data.likeCount;
+							alert(text);
+							if (likeCount > 0) {
+								btnPar.text(likeCount);
 							}
-							var btnPar = $(this).parent().siblings("#cmt_vote")
-									.children('span.likeCountInner');
-							$.ajax({
-								url : 'ReviewlikeCount.re',
-								type : "POST",
-								dataType : 'json',
-								data : {
-									"num" : num,
-									"review_num" : review_num,
-									"like_id" : like_id,
-									"book_isbn" : book_isbn
-								},
-								success : function(data) {
-									var text = data.text;
-									var likeCount = data.likeCount;
-									alert(text);
-									if (likeCount > 0) {
-										btnPar.text(likeCount);
-									}
-								},
-								error : function(request, status, error) {
-									alert("code:" + request.status + "\n"
-											+ "message:" + request.responseText
-											+ "\n" + "error:" + error);
-								}
-							});
-						});
+						},
+						error : function(request, status, error) {
+							alert("code:" + request.status + "\n"
+									+ "message:" + request.responseText
+									+ "\n" + "error:" + error);
+						}
+					});
+				});
 				// 댓글 등록
 				$(".ReComment_Write").on("click",function() {
-							var page = $('input[name="page"]').val();
-							var isbn = $('input[name="isbn"]').val();
-							var board_type = $('input[name="board_type"]').val();
-							var board_num = $('input[name="board_num"]').val();
-							var comment_id = $('input[name="comment_id"]').val();
-							var comment_desc = $('textarea[name="comment_desc"]:visible').val();
-							alert(comment_id);
-							alert(comment_desc);
-							if (comment_id == "null") {
-								alert("로그인을 해주시길 바랍니다.");
-								$("textarea[name=comment_desc]").val("");
-								comment_list();
-								return false;
-							}
-							confirm("댓글을 등록하시겠습니까?");
-							$.ajax({
-								url : "ReCommentWritePro.re",
-								type : "POST",
-								dataType : "json",
-								data : {
-									"page" : page,
-									"isbn" : isbn,
-									"board_type" : board_type,
-									"board_num" : board_num,
-									"comment_id" : comment_id,
-									"comment_desc" : comment_desc
-								},
-								success : function(data) {
-									alert("정상적으로 등록이 되었습니다.");
-									
+					var page = $('input[name="page"]').val();
+					var isbn = $('input[name="isbn"]').val();
+					var board_type = $('input[name="board_type"]').val();
+					var board_num = $('input[name="board_num"]').val();
+					var comment_id = $('input[name="comment_id"]').val();
+					var comment_desc = $('textarea[name="comment_desc"]:visible').val();
+					alert(comment_id);
+					alert(comment_desc);
+					if (comment_id == "null") {
+						alert("로그인을 해주시길 바랍니다.");
+						$("textarea[name=comment_desc]").val("");
+						comment_list();
+						return false;
+					}
+					confirm("댓글을 등록하시겠습니까?");
+					$.ajax({
+						url : "ReCommentWritePro.re",
+						type : "POST",
+						dataType : "json",
+						data : {
+							"page" : page,
+							"isbn" : isbn,
+							"board_type" : board_type,
+							"board_num" : board_num,
+							"comment_id" : comment_id,
+							"comment_desc" : comment_desc
+						},
+						success : function(data) {
+							alert("정상적으로 등록이 되었습니다.");
+							
 
-									<%-- <div class="comment comment_inner reIcon">
-										<input type="hidden" name="isbn" value="<%=isbn%>"> 
-										<input type="hidden" name="page" value="<%=nowPage%>"> 
-										<input type="hidden" name="board_type" value="2">
-										<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
-										<p class="comment-vote bookcube" id="cmt_vote">
-											<i id="c_id"><%=commentList2.get(b).getComment_id()%></i><em>|</em><span id="c_date" class="date"><%=commentList2.get(b).getDate()%></span>
-										</p>
-										<div class="comment-content">
-											<span id="c_desc"><%=commentList2.get(b).getComment_desc()%></span>
-										</div>
-										<div class="btn_inner">
-											<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
-											<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
-											<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
-										</div>
-									</div> --%>
-									
-									
-									comment_list();
-								},
-								error : function(error) {
-									alert("오류발생" + error);
-								}
-							});
-							$('textarea[name="comment_desc"]').val("");
-						});
+							<%-- <div class="comment comment_inner reIcon">
+								<input type="hidden" name="isbn" value="<%=isbn%>"> 
+								<input type="hidden" name="page" value="<%=nowPage%>"> 
+								<input type="hidden" name="board_type" value="2">
+								<input type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">
+								<p class="comment-vote bookcube" id="cmt_vote">
+									<i id="c_id"><%=commentList2.get(b).getComment_id()%></i><em>|</em><span id="c_date" class="date"><%=commentList2.get(b).getDate()%></span>
+								</p>
+								<div class="comment-content">
+									<span id="c_desc"><%=commentList2.get(b).getComment_desc()%></span>
+								</div>
+								<div class="btn_inner">
+									<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
+									<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
+									<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
+								</div>
+							</div> --%>
+							
+							
+							comment_list();
+						},
+						error : function(error) {
+							alert("오류발생" + error);
+						}
+					});
+					$('textarea[name="comment_desc"]').val("");
+				});
 				// 댓글 리스트
 				/* function comment_list() {
 					var page = $('input[name="page"]').val();
@@ -653,65 +706,40 @@ int listCount = pageInfo.getListCount(); %>
 			$(this).parent().find("li").show();
 			return false;
 		});
-		$(".sequel_btn")
-				.on(
-						"click",
-						function() {
-							if ($.cookie("user_num")) {
-								var state = $(this).data("state");
-								$
-										.post(
-												"/data/_addSequel.asp",
-												{
-													series_chk : series_num,
-													state : state
-												},
-												function(data) {
-													if (data.success) {
-														if (state == 0) {
-															$(".sequel_btn")
-																	.data(
-																			"state",
-																			1);
-															$(".sequel_btn")
-																	.addClass(
-																			'on');
-															$(".sequel_btn")
-																	.html(
-																			"후속권 출간 알림 해제");
-															alert('후속권 출간 알림 추가 완료되었습니다.\n신규 권호 업데이트 시 알리미/앱푸시를 통해 알려드립니다.');
-														} else {
-															$(".sequel_btn")
-																	.data(
-																			"state",
-																			0);
-															$(".sequel_btn")
-																	.removeClass(
-																			'on');
-															$(".sequel_btn")
-																	.html(
-																			"후속권 출간 알림 추가");
-															alert('후속권 출간 알림 해제되었습니다.');
-														}
-													} else {
-														alert(data.message);
-													}
-												}, "json");
+		$(".sequel_btn").on("click",function() {
+		if ($.cookie("user_num")) {
+			var state = $(this).data("state");
+			$.post("/data/_addSequel.asp",
+					{series_chk : series_num,state : state},
+					function(data) {
+						if (data.success) {
+							if (state == 0) {
+								$(".sequel_btn").data("state",1);
+								$(".sequel_btn").addClass('on');
+								$(".sequel_btn").html("후속권 출간 알림 해제");
+								alert('후속권 출간 알림 추가 완료되었습니다.\n신규 권호 업데이트 시 알리미/앱푸시를 통해 알려드립니다.');
 							} else {
-								goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
+								$(".sequel_btn").data("state",0);
+								$(".sequel_btn").removeClass('on');
+								$(".sequel_btn").html("후속권 출간 알림 추가");
+								alert('후속권 출간 알림 해제되었습니다.');
 							}
-						});
+						} else {
+							alert(data.message);
+						}
+					}, "json");
+				} else {
+					goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
+				}
+			});
 		//작가의 출간작. 인기순, 최신순
-		$('.radio.sAuthor').click(
-				function() {
-					$(".aPrefer").data("a-sort", $(this).data("sort"));
-					$(this).parent().find('span').removeClass('radio_on')
-							.addClass('radio_off');
-					$(this).find('span').removeClass('radio_off').addClass(
-							'radio_on');
-					$('#' + $(this).attr('for')).attr('checked', 'checked');
-					var play = alist(); // 작가시리즈리스트 출력
-				});
+		$('.radio.sAuthor').click(function() {
+			$(".aPrefer").data("a-sort", $(this).data("sort"));
+			$(this).parent().find('span').removeClass('radio_on').addClass('radio_off');
+			$(this).find('span').removeClass('radio_off').addClass('radio_on');
+			$('#' + $(this).attr('for')).attr('checked', 'checked');
+			var play = alist(); // 작가시리즈리스트 출력
+		});
 		//작가시리즈 도서리스트
 		function alist() {
 			var author_num = $(".aPrefer").data("author-num");
