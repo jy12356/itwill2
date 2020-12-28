@@ -54,8 +54,11 @@ ArrayList<RentalBean> rentalList = (ArrayList<RentalBean>)request.getAttribute("
                                 <td><%=rentalList.get(i).getS_date()%> ~ <%=rentalList.get(i).getOnrental_date()%></td>
                                 <td><%=rentalList.get(i).getE_date()%></td>
                                 <td class="book_basketbtn">
-                                <form method="post" action="ReturnInsert.rn">
-			                    <input type="button" value="반납" onclick='ccCheck()'class="btn" name="state" id="state">반납
+                                <form method="post" action="ReturnInsert.rn?isbn=<%=rentalList.get(i).getIsbn()%>">
+                                <input type="hidden" value="반납" id="state" name="state">
+                                <input type="hidden" value="<%=rentalList.get(i).getIsbn()%>" id="isbn" name="isbn">
+                                <input type="hidden" value="<%=rentalList.get(i).getId()%>" id="id" name="id">
+			                    <input type="submit" onclick='ccCheck()'class="btn">
 							<script>
 							function ccCheck(){
 								var u = alert("반납하시겠습니까?");

@@ -13,7 +13,7 @@ import vo.RentalBean;
 public class ReturnInsertService {
 
 	public boolean registArticle(RentalBean rentalBean) {
-System.out.println("ChargeProService-registArticle!");
+System.out.println("ReturnInsertService-registArticle!");
 		
 		boolean isWriteSuccess = false;
 		Connection con = getConnection();

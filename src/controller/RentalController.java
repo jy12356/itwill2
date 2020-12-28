@@ -82,8 +82,9 @@ public class RentalController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 //	 과거주문내역	
-		}else if (command.equals("/ReturnInsert.rn")) {
+	}else if (command.equals("/ReturnInsert.rn")) {
 			action = new returnInsertAction();
 			try {
 				forward = action.execute(request, response);

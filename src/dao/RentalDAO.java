@@ -41,7 +41,6 @@ public class RentalDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String isbn = null; 
-		String state = null;
 	
 
 		try {
@@ -115,7 +114,7 @@ public class RentalDAO {
 				
 				
 				
-				sql = "insert into rental (num,isbn,id,s_date,onrental_date,e_date,state) values(?,?,?,?,?,?,?)";
+				sql = "insert into rental (num,isbn,id,s_date,onrental_date,e_date) values(?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, num);
 				pstmt.setString(2, isbn);
@@ -123,7 +122,6 @@ public class RentalDAO {
 				pstmt.setString(4, nextmonth1);
 				pstmt.setString(5, nextmonth14);
 				pstmt.setString(6, nextmonth15);
-				pstmt.setString(7, state);
 				
 		        } else { // 현재날짜가 15일보다 작을경우
 		        	
@@ -143,7 +141,7 @@ public class RentalDAO {
 						String nextmonth1 = nextmonth1day.format(cal4.getTime());
 						System.out.println("String 타입 다음달 의 1일 : " + nextmonth1);
 						
-		        	sql = "insert into rental (num,isbn,id,s_date,onrental_date,e_date,state) values(?,?,?,?,?,?,?)";
+		        	sql = "insert into rental (num,isbn,id,s_date,onrental_date,e_date) values(?,?,?,?,?,?)";
 					pstmt = con.prepareStatement(sql);
 					pstmt.setInt(1, num);
 					pstmt.setString(2, isbn);
@@ -151,7 +149,6 @@ public class RentalDAO {
 					pstmt.setString(4, from);
 					pstmt.setString(5, lastday);
 					pstmt.setString(6, nextmonth1);
-					pstmt.setString(7, state);
 		        	
 		        	
 		        }
@@ -249,7 +246,6 @@ public class RentalDAO {
 				rental.setS_date(rs.getDate("s_date"));
 				rental.setOnrental_date(rs.getDate("onrental_date"));
 				rental.setE_date(rs.getDate("e_date"));
-				rental.setState(rs.getString("state"));
 
 				rentalList.add(rental);
 			}
@@ -361,12 +357,13 @@ public class RentalDAO {
 	public int insertArticle(RentalBean rentalBean) {
 		System.out.println("RentalDAO - insertArticle");
 		int insertCount = 0;
+		System.out.println("isbn : " + rentalBean.getIsbn());
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null; 
 		
 		int num = 1;
-		String sql = "Select Max(gnum) from rental";
+		String sql = "Select Max(num) from rental";
 		try {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
@@ -374,10 +371,12 @@ public class RentalDAO {
 			if(rs.next()) {
 				num = rs.getInt(1) + 1;
 			}
-			sql = "Insert into rental values(?,?)";
+			sql = "insert into rental(num,isbn,id,state) values(?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			pstmt.setString(2, rentalBean.getState());
+			pstmt.setString(2, rentalBean.getIsbn());
+			pstmt.setString(3, rentalBean.getId());
+			pstmt.setString(4, rentalBean.getState());
 			insertCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("insertArticle() 오류! - " + e.getMessage());

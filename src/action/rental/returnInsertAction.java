@@ -23,8 +23,13 @@ public class returnInsertAction implements Action {
 		ActionForward forward = null;
 		
 		String state = request.getParameter("state");
+		String isbn = request.getParameter("isbn");
+		String id = request.getParameter("id");
 		RentalBean rentalBean = new RentalBean();
+		rentalBean.setIsbn(isbn);
+		rentalBean.setId(id);
 		rentalBean.setState(state);
+		System.out.println("isbn" + isbn);
 		
 		ReturnInsertService returnInsertService = new ReturnInsertService();
 		boolean isWriteSuccess = returnInsertService.registArticle(rentalBean);
