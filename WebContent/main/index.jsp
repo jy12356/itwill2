@@ -56,7 +56,7 @@
 				<li>
 					<div class="figure">
 						<span class="label"><em>10%<span>할인</span></em></span> 
-						<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%> ">
+						<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList5.get(i).getIsbn()%>&title=<%=bookList5.get(i).getTitle()%> ">
 							<span class="rm_br">
 							<img src="<%=bookList5.get(i).getImage() %>" alt="<%=bookList5.get(i).getImage()%>" /></span>
 							<span class="light"></span>
@@ -69,7 +69,7 @@
 					</div>
 					<div class="hot-info">
 						<p class="hot-title">
-							<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>"><%=bookList5.get(i).getTitle() %></a>
+							<a href="BookDetail.bok?booknum=<%=bookList5.get(i).getNum()%>&isbn=<%=bookList5.get(i).getIsbn()%>&title=<%=bookList5.get(i).getTitle()%>"><%=bookList5.get(i).getTitle() %></a>
 						</p>
 						<p><%=bookList5.get(i).getAuthor() %></p>
 					</div>
@@ -90,12 +90,14 @@
 							</div>
 						</a>
 					</div>
+					
 					<div class="hot-info">
 						<p class="hot-title">
 							<a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">어떻게 말해줘야 할까</a>
 						</p>
 						<p>오은영 글, 차상미 그림</p>
 					</div>
+					
 				</li>
 			</ul>
 		</div>
@@ -113,7 +115,7 @@
 					%>
 					<li>
 						<div class="figure">
-							<a href="BookDetail.bok?isbn<%=bookList.get(i).getIsbn()%>">
+							<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>">
 								<span class="rm_br">
 									<img src="bookUpload/aa.PNG" alt="도서 이미지 - 가족사진">
 								</span> 
@@ -150,21 +152,21 @@
 								</p>
 								<p class="webtoon">
 									<strong class="fn-webtoon">소설</strong> 
-									<a href="/webtoon/best/realtime" class="BookList.bok?catg1=소설">더보기 
+<!-- 									<a href="/webtoon/best/realtime" class="BookList.bok?catg1=소설">더보기  -->
 										<span class="more"></span>
-									</a>
+<!-- 									</a> -->
 								</p>
 								<p class="comic">
 									<strong class="fn-comic">인문/경제</strong> 
-									<a href="/comic/best/all/realtime" class="BookList.bok?catg1=인문/경제">더보기
+<!-- 									<a href="/comic/best/all/realtime" class="BookList.bok?catg1=인문/경제">더보기 -->
 										<span class="more"></span>
-									</a>
+<!-- 									</a> -->
 								</p>
 								<p class="fiction">
 									<strong class="fn-fiction">과학/IT</strong> 
-									<a href="/novel/best/all/realtime" class="BookList.bok?catg1=과학">더보기 
+<!-- 									<a href="/novel/best/all/realtime" class="BookList.bok?catg1=과학">더보기  -->
 										<span class="more"></span>
-									</a>
+<!-- 									</a> -->
 								</p>
 							</li>
 						<%
@@ -182,7 +184,7 @@
 										<span><%=bookList2.get(i).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="<%=bookList2.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>">
+										<a title="<%=bookList2.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList2.get(i).getNum()%>&isbn=<%=bookList2.get(i).getIsbn()%>&title=<%=bookList2.get(i).getTitle()%>">
 											<div>
 												<img src="<%=bookList2.get(i).getTitle()%>" alt="">
 											</div> 
@@ -198,7 +200,7 @@
 										<span><%=bookList3.get(i).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="<%=bookList3.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>">
+										<a title="<%=bookList3.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList3.get(i).getNum()%>&isbn=<%=bookList3.get(i).getIsbn()%>&title=<%=bookList3.get(i).getTitle()%>">
 											<div>
 												<img src="<%=bookList3.get(i).getImage()%>" alt="">
 											</div> 
@@ -215,7 +217,7 @@
 										<span><%=bookList4.get(i).getAuthor()%></span>
 									</p>
 									<div>
-										<a title="<%=bookList4.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>">
+										<a title="<%=bookList4.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList4.get(i).getNum()%>&isbn=<%=bookList4.get(i).getIsbn()%>&title=<%=bookList4.get(i).getTitle()%>">
 											<div>
 												<img src="<%=bookList4.get(i).getTitle()%>" alt="">
 											</div> 
