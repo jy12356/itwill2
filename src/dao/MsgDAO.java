@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static db.JdbcUtil.*;
+
+import vo.BookBean;
 import vo.MsgBean;
 
 public class MsgDAO {
@@ -47,12 +49,13 @@ public class MsgDAO {
 		ResultSet rs = null;
 		
 		try {
-			
+			msglist = new ArrayList<MsgBean>();
 			String sql = "select * from message where id=? order by date desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setInt(2, page);
 			pstmt.setInt(3, limit);
+			System.out.println(pstmt);
 			rs= pstmt.executeQuery();		
 			while(rs.next()) {
 				MsgBean msgBean = new MsgBean();
@@ -61,6 +64,7 @@ public class MsgDAO {
 				msgBean.setId(rs.getString("id"));
 				msgBean.setDate(rs.getDate("date"));
 				msgBean.setIsRead(rs.getString("isRead"));
+				msgBean.setFromId(rs.getString("fromId"));
 				msglist.add(msgBean);
 				
 			}

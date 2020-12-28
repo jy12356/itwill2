@@ -16,6 +16,8 @@ import action.mybasket.MyBasketInsertAction;
 import action.mybasket.MyBasketListAction;
 import action.rental.RentalInsertAction;
 import action.rental.RentalListAction;
+import action.rental.ReservationDeleteAction;
+import action.rental.ReservationListAction;
 import action.rental.rentalDeleteAction;
 import action.rental.reservationInsertAction;
 import action.rental.returnAction;
@@ -77,15 +79,24 @@ public class RentalController extends HttpServlet {
 	// 반납용
 		} else if (command.equals("/Return.rn")) {
 			action = new returnAction();
+//=======
+//		} else if (command.equals("/ReservationList.rn")) {
+	//		action = new ReservationListAction();
+//>>>>>>> master
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
+
 //	 과거주문내역	
 	}else if (command.equals("/ReturnInsert.rn")) {
 			action = new returnInsertAction();
+//=======
+//		} else if (command.equals("/reservationDelete.rn")) {
+//			action = new ReservationDeleteAction();
+//>>>>>>> master
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

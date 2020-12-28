@@ -55,7 +55,7 @@ public class MsgController extends HttpServlet {
 			}
 			
 		}else if(command.equals("/MyMsgDetail.msg")) {
-			System.out.println("getMyMsg.msg 포워딩");
+			System.out.println("MyMsgDetail.msg 포워딩");
 			action = new GetMyMsgAction();			
 			try {
 				forward = action.execute(request, response);
