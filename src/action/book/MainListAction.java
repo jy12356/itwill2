@@ -46,28 +46,36 @@ public class MainListAction implements Action {
 		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
 		
 		ArrayList<BookBean> bookList2 = new ArrayList<BookBean>();
-		bookList2 = mainListService.getBookList2(page,limit,catg1,catg2);
+		bookList2 = mainListService.getBookList2(page,limit,catg1);
 		int maxPage2 = (int)((double)listCount/ limit+0.95);
 		int startPage2 = ((int)((double)page/10+0.9)-1)*10+1;
 		int endPage2 = startPage+10-1;
 		PageInfo pageInfo2 = new PageInfo(page, maxPage, startPage, endPage, listCount);
-		System.out.println("bookList2.size" + bookList2.size());
+		System.out.println("bookList2.size - " + bookList2.size());
 		
 		ArrayList<BookBean> bookList3 = new ArrayList<BookBean>();
-		bookList3 = mainListService.getBookList3(page,limit,catg1,catg2);
+		bookList3 = mainListService.getBookList3(page,limit,catg1);
 		int maxPage3 = (int)((double)listCount/ limit+0.95);
 		int startPage3 = ((int)((double)page/10+0.9)-1)*10+1;
 		int endPage3 = startPage+10-1;
 		PageInfo pageInfo3 = new PageInfo(page, maxPage, startPage, endPage, listCount);
-		System.out.println("bookList3.size" + bookList3.size());
+		System.out.println("bookList3.size - " + bookList3.size());
 		
 		ArrayList<BookBean> bookList4 = new ArrayList<BookBean>();
-		bookList4 = mainListService.getBookList4(page,limit,catg1,catg2);
+		bookList4 = mainListService.getBookList4(page,limit,catg1);
 		int maxPage4 = (int)((double)listCount/ limit+0.95);
 		int startPage4 = ((int)((double)page/10+0.9)-1)*10+1;
 		int endPage4 = startPage+10-1;
 		PageInfo pageInfo4 = new PageInfo(page, maxPage, startPage, endPage, listCount);
-		System.out.println("bookList4.size" + bookList4.size());
+		System.out.println("bookList4.size - " + bookList4.size());
+		
+		ArrayList<BookBean> bookList5 = new ArrayList<BookBean>();
+		bookList5 = mainListService.getBookList5(page,limit);
+		int maxPage5 = (int)((double)listCount/ limit+0.95);
+		int startPage5 = ((int)((double)page/10+0.9)-1)*10+1;
+		int endPage5 = startPage+10-1;
+		PageInfo pageInfo5 = new PageInfo(page, maxPage, startPage, endPage, listCount);
+		System.out.println("bookList5.size - " + bookList5.size());
 		
 		request.setAttribute("bookList", bookList);
 		request.setAttribute("pageInfo", pageInfo);
@@ -80,6 +88,9 @@ public class MainListAction implements Action {
 		
 		request.setAttribute("bookList4", bookList4);
 		request.setAttribute("pageInfo4", pageInfo4);
+		
+		request.setAttribute("bookList5", bookList5);
+		request.setAttribute("pageInfo5", pageInfo5);
 		
 		forward = new ActionForward();
 		forward.setPath("/main/index.jsp");

@@ -35,6 +35,7 @@ public class BookModifyProAction implements Action{
 		String title= multi.getParameter("title1");
 		String isbn= multi.getParameter("isbn1");
 		System.out.println(title);
+		
 		BookBean bookBean = new BookBean();
 		bookBean.setTitle(multi.getParameter("title"));
 		bookBean.setIsbn(multi.getParameter("isbn"));
@@ -66,7 +67,7 @@ public class BookModifyProAction implements Action{
 			out.println("</script>");// 자바스크립트끝태그
 		}else {
 			forward = new ActionForward();
-			forward.setPath("BookDetail.bok?isbn="+bookBean.getIsbn()+"&page="+page);
+			forward.setPath("BookDetail.bok?isbn="+bookBean.getIsbn()+"&page="+page+"&booknum="+bookBean.getNum());
 			forward.setRedirect(true);			
 		}
 		return forward;

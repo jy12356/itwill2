@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static db.JdbcUtil.*;
+
+import vo.BookBean;
 import vo.MsgBean;
 
 public class MsgDAO {
@@ -47,12 +49,13 @@ public class MsgDAO {
 		ResultSet rs = null;
 		
 		try {
-			
+			msglist = new ArrayList<MsgBean>();
 			String sql = "select * from message where id=? order by date desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setInt(2, page);
 			pstmt.setInt(3, limit);
+			System.out.println(pstmt);
 			rs= pstmt.executeQuery();		
 			while(rs.next()) {
 				MsgBean msgBean = new MsgBean();
@@ -61,6 +64,7 @@ public class MsgDAO {
 				msgBean.setId(rs.getString("id"));
 				msgBean.setDate(rs.getDate("date"));
 				msgBean.setIsRead(rs.getString("isRead"));
+				msgBean.setFromId(rs.getString("fromId"));
 				msglist.add(msgBean);
 				
 			}
@@ -71,6 +75,33 @@ public class MsgDAO {
 			close(rs);
 		}
 		return msglist;
+	}
+	public MsgBean getMyMsg(int num, String id) {
+		System.out.println("DAO - getMyMsg()");
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MsgBean msgBean = new MsgBean();
+		try {			
+			String sql = "select * from message where id=? and num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, num);
+			rs= pstmt.executeQuery();		
+			while(rs.next()) {
+				msgBean.setNum(rs.getInt("num"));
+				msgBean.setContent(rs.getString("content"));
+				msgBean.setId(rs.getString("id"));
+				msgBean.setDate(rs.getDate("date"));
+				msgBean.setIsRead(rs.getString("isRead"));				
+			}
+		} catch (Exception e) {			
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return msgBean;
 	}
 	public int myMsgListCount(String id) {
 		System.out.println("DAO - myMsgListCount()");
@@ -96,7 +127,7 @@ public class MsgDAO {
 	// ---------------INSERT---------------
 	public int insertMsg(MsgBean msgBean) {
 
-		System.out.println("DAO - msgBean()");
+		System.out.println("DAO - insertMsg()");
 		int insertCount = 0; 
 		int num = 0;
 		PreparedStatement pstmt = null;

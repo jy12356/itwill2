@@ -96,7 +96,10 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		
-		String sql = "select b.*,r.count review, r.starcount starcount  from book b left outer join  (select isbn, count(*) count,round(10/sum(starcount),1) starcount from review  group by isbn) r on b.isbn = r.isbn where title like ? and catg1 like ? and catg2 like ? order by pubdate desc limit ?,?";
+		String sql = "select b.*,r.count review, r.starcount starcount  from book b left outer join "
+				+ "(select isbn, count(*) count,round(10/sum(starcount),1) starcount from review  group by isbn) r "
+				+ "on b.isbn = r.isbn where title like ? and catg1 like ? and catg2 like ? "
+				+ "order by pubdate desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, "%"+search+"%");
@@ -139,7 +142,7 @@ public class BookDAO {
 		return bookList;
 	}
 	//책 리스트2 - 인기순(소설)(psy)
-	public ArrayList<BookBean> selectBookList2(int page, int limit,String catg1,String catg2) {
+	public ArrayList<BookBean> selectBookList2(int page, int limit,String catg1) {
 		
 		System.out.println("BookDAO - selectList2()");
 		ArrayList<BookBean> bookList2 = null;
@@ -149,14 +152,13 @@ public class BookDAO {
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
 		catg1="소설";
-		catg2="소설";
-		String sql = "select * from book order by count desc limit ?,?";
+		String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
-//			pstmt.setString(1, "%"+catg1);
+			pstmt.setString(1, "소설");
 //			pstmt.setString(2, "%"+catg2);
-			pstmt.setInt(1, 0);
-			pstmt.setInt(2, 10);
+			pstmt.setInt(2, 0);
+			pstmt.setInt(3, 2);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			bookList2 = new ArrayList<BookBean>();
@@ -177,9 +179,9 @@ public class BookDAO {
 				bookBean.setImage(rs.getString("image"));
 				bookBean.setDescription(rs.getString("description"));
 				bookList2.add(bookBean);
-				System.out.println("a");
+//				System.out.println("a");
 			}
-			System.out.println("DAObookList2.size" + bookList2.size());
+			System.out.println("DAObookList2.size = " + bookList2.size());
 		}catch (Exception e) {
 			System.out.println("selectBookList2오류!" + e.getMessage());;
 			e.printStackTrace();
@@ -191,7 +193,7 @@ public class BookDAO {
 	}
 	
 	//책 리스트3 - 인기순(인문/경제)(psy)
-		public ArrayList<BookBean> selectBookList3(int page, int limit,String catg1,String catg2) {
+		public ArrayList<BookBean> selectBookList3(int page, int limit,String catg1) {
 			
 			System.out.println("BookDAO - selectList3()");
 			ArrayList<BookBean> bookList3 = null;
@@ -201,14 +203,13 @@ public class BookDAO {
 			//조회를 시작할 레코드 행 번호 계산
 			int startRow=(page-1)*limit;
 			catg1="인문/경제";
-			catg2=null;
-			String sql = "select * from book order by count desc limit ?,?";
+			String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 			try {
 				pstmt=con.prepareStatement(sql);
-//				pstmt.setString(1, "%"+catg1);
+				pstmt.setString(1, catg1);
 //				pstmt.setString(2, "%"+catg2);
-				pstmt.setInt(1, 0);
-				pstmt.setInt(2, 10);
+				pstmt.setInt(2, 0);
+				pstmt.setInt(3, 2);
 				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				bookList3 = new ArrayList<BookBean>();
@@ -229,9 +230,9 @@ public class BookDAO {
 					bookBean.setImage(rs.getString("image"));
 					bookBean.setDescription(rs.getString("description"));
 					bookList3.add(bookBean);
-					System.out.println("a");
+//					System.out.println("a");
 				}
-				System.out.println("DAObookList3.size" + bookList3.size());
+				System.out.println("DAObookList3.size = " + bookList3.size());
 			}catch (Exception e) {
 				System.out.println("selectBookList3오류!" + e.getMessage());;
 				e.printStackTrace();
@@ -243,7 +244,7 @@ public class BookDAO {
 		}
 		
 		//책 리스트4 - 인기순(과학)(psy)
-		public ArrayList<BookBean> selectBookList4(int page, int limit,String catg1,String catg2) {
+		public ArrayList<BookBean> selectBookList4(int page, int limit,String catg1) {
 			
 			System.out.println("BookDAO - selectList4()");
 			ArrayList<BookBean> bookList4 = null;
@@ -253,7 +254,6 @@ public class BookDAO {
 			//조회를 시작할 레코드 행 번호 계산
 			int startRow=(page-1)*limit;
 			catg1="과학";
-			catg2="과학";
 			String sql = "select * from book order by count desc limit ?,?";
 			try {
 				pstmt=con.prepareStatement(sql);
@@ -281,17 +281,65 @@ public class BookDAO {
 					bookBean.setImage(rs.getString("image"));
 					bookBean.setDescription(rs.getString("description"));
 					bookList4.add(bookBean);
-					System.out.println("a");
+//					System.out.println("a");
 				}
-				System.out.println("DAObookList3.size" + bookList4.size());
+				System.out.println("DAObookList4.size = " + bookList4.size());
 			}catch (Exception e) {
-				System.out.println("selectBookList3오류!" + e.getMessage());;
+				System.out.println("selectBookList4오류!" + e.getMessage());;
 				e.printStackTrace();
 			}finally {
 				close(rs);	
 				close(pstmt);
 			}
 			return bookList4;
+		}
+		
+		//책 리스트4 - 랜덤순(psy)
+		public ArrayList<BookBean> selectBookList5(int page, int limit) {
+			
+			System.out.println("BookDAO - selectList5()");
+			ArrayList<BookBean> bookList5 = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			//조회를 시작할 레코드 행 번호 계산
+			int startRow=(page-1)*limit;
+			String sql = "select * from book order by RAND() desc limit ?,?";
+			try {
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, 0);
+				pstmt.setInt(2, 5);
+				System.out.println(pstmt);
+				rs = pstmt.executeQuery();
+				bookList5 = new ArrayList<BookBean>();
+				while(rs.next()) {
+					BookBean bookBean = new BookBean();
+					bookBean.setNum(rs.getInt("num"));
+					bookBean.setTitle(rs.getString("title"));
+					bookBean.setCatg1(rs.getString("catg1"));
+					bookBean.setCatg2(rs.getString("catg2"));
+					bookBean.setAuthor(rs.getString("author"));
+					bookBean.setPublisher(rs.getString("publisher"));
+					bookBean.setPubdate(rs.getString("pubdate"));
+					bookBean.setIsbn(rs.getString("isbn"));
+					bookBean.setState(rs.getString("state"));
+					bookBean.setCount(rs.getInt("count"));
+					bookBean.setAuthor_info(rs.getString("author_info"));
+					bookBean.setIndex(rs.getString("index_info"));
+					bookBean.setImage(rs.getString("image"));
+					bookBean.setDescription(rs.getString("description"));
+					bookList5.add(bookBean);
+//					System.out.println("a");
+				}
+				System.out.println("DAObookList5.size = " + bookList5.size());
+			}catch (Exception e) {
+				System.out.println("selectBookList5오류!" + e.getMessage());;
+				e.printStackTrace();
+			}finally {
+				close(rs);	
+				close(pstmt);
+			}
+			return bookList5;
 		}
 		
    //전체책 갯수
@@ -321,7 +369,9 @@ public class BookDAO {
    public BookBean getBookInfo(String book_isbn) {
       PreparedStatement pstmt =  null;
       ResultSet rs = null;
-      String sql="select b.*,r.* from book  b left outer join (select isbn, count(*) review,round(10/sum(starcount),1) starcount from review group by isbn) r on b.isbn = r.isbn where b.isbn=?";
+      String sql="select b.*,r.* from book  b left outer join (select isbn, count(*) review,"
+      		+ "round(10/sum(starcount),1) starcount from review group by isbn) r "
+      		+ "on b.isbn = r.isbn where b.isbn=?";
       BookBean bookBean = null;
       try {
          pstmt=con.prepareStatement(sql);
@@ -478,7 +528,7 @@ public class BookDAO {
          String sql = "update book set "
                + "title=?, isbn=?, author=?,author_info=?,catg1=?,catg2=?," 
                + "description=?,index_info=?,pubdate=?,publisher=?,image=? "
-               + "where title=? and isbn=?";
+               + "where isbn=?";
          pstmt = con.prepareStatement(sql);
          pstmt.setString(1, bookBean.getTitle());
          pstmt.setString(2, bookBean.getIsbn());
@@ -491,8 +541,7 @@ public class BookDAO {
          pstmt.setString(9, bookBean.getPubdate());
          pstmt.setString(10, bookBean.getPublisher());
          pstmt.setString(11, bookBean.getImage());
-         pstmt.setString(12, title);
-         pstmt.setString(13, isbn);
+         pstmt.setString(12, isbn);
          System.out.println(pstmt);
          modyfiySeccess = pstmt.executeUpdate();
          

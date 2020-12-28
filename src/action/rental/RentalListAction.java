@@ -46,7 +46,6 @@ public class RentalListAction implements Action {
 		System.out.println("page : " + page);
 		
 		rentalListService rentalListService = new rentalListService();
-		
 		int listCount = rentalListService.getListCount(id);
 		System.out.println("listCount : " + listCount);
 
