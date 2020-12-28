@@ -82,7 +82,7 @@ public class NoticeDAO {
 			pstmt.setString(3, noticeBean.getId());
 			pstmt.setString(4, noticeBean.getContent());
 			pstmt.setString(5, noticeBean.getFile());
-			pstmt.setString(6, "종류 없음");
+			pstmt.setString(6, "NULL");
 			// INSERT 구문 실행 결과값을 int형 변수 insertCount 에 저장
 			insertCount = pstmt.executeUpdate();
 			

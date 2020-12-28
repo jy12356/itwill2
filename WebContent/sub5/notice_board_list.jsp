@@ -6,7 +6,7 @@
 <%
 	String id = (String) session.getAttribute("id");
 if (id == null) {
-	id = "ㅇㅇ";
+	id = "admin";
 }
 
 // 전달받은 request 객체로부터 데이터 가져오기
@@ -71,7 +71,7 @@ int listCount = PageInfo.getListCount();
 								for (int i = 0; i < articleList.size(); i++) {
 							%>
 							<tr>
-								<td align="center"><%=articleList.get(i).getNum()%></td>
+								<td align="center" class = "tac"><%=articleList.get(i).getNum()%></td>
 								<td>
 								<a href="NoticeBoardDetail.not?num=<%=articleList.get(i).getNum()%>">
 										<%=articleList.get(i).getSubject()%></a>
@@ -84,7 +84,7 @@ int listCount = PageInfo.getListCount();
 							%>
 							<%
 							} else {
-							%><tr id="emptyArea"><td colspan="4" class="tac">검색된 글이 없습니다</td></tr>
+							%><tr id="emptyArea"><td colspan="4" class="tac">작성된 글이 없습니다</td></tr>
 							<%
 							}
 							%>
@@ -96,7 +96,7 @@ int listCount = PageInfo.getListCount();
 
 					<div class="paging">
 						<a href="NoticeBoardList.not?pageNum=1" class="arr" data-page-num="1"><img
-							src="../images/p-first.png"><span class="hide">처음페이지</span></a>
+							src="images/p-first.png"><span class="hide">처음페이지</span></a>
 
 						<!-- 이전페이지 -->
 						<%
