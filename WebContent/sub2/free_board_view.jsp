@@ -15,6 +15,7 @@ System.out.println("limit :" + limit);
 // 	limit = limit+10;
 
 int entireCount = ((Integer)request.getAttribute("entireCount")).intValue();
+// int maxSeq = ((Integer)request.getAttribute("maxSeq")).intValue();
 System.out.println("entireCount :" + entireCount);
 // if(limit==10){
 // 	limit = limit+10;
@@ -161,7 +162,7 @@ int board_num = article.getBoard_num();
 										<p class="comment-vote">
 											<i><%=commentList.get(i).getComment_id()%></i><em>|</em> <span class="date"><%=commentList.get(i).getDate()%></span>
 <!-- 											<em>|</em> -->
-<%-- 											댓글 <%=//commentList.get(i).getRe_lev()%> --%>
+<%-- 											댓글 <%=maxSeq%> --%>
 										</p>
 										<div class="comment-content">
 											<span><%=commentList.get(i).getComment_desc()%></span>

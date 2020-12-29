@@ -46,8 +46,7 @@ public class CommentReplyAction implements Action {
 		CommentReplyService commentReplyService = new CommentReplyService();
 		boolean isReplySuccess = CommentReplyService.replyComment(cb);
 		
-		int maxSeq = commentReplyService.getMaxSeq(board_num,board_type,comment_num);
-//		request.setAttribute("maxSeq", maxSeq);
+//		int maxSeq = commentReplyService.getMaxSeq(board_num,board_type,comment_num);
 		
 		if(!isReplySuccess) {
 			response.setContentType("text/html;charset=UTF-8");
@@ -59,7 +58,7 @@ public class CommentReplyAction implements Action {
 		} else {
 			forward = new ActionForward();
 			forward.setPath("FreeBoardDetail.free?board_num="+board_num+ 
-					"&page="+page+"&board_type="+board_type+"&max_seq="+maxSeq);
+					"&page="+page+"&board_type="+board_type);
 //			forward.setPath("FreeBoardDetail.free?board_num=" + board_num + 
 //					"&page=" + request.getParameter("page")+"&board_type="+board_type);
 			forward.setRedirect(true);
