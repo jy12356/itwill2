@@ -312,7 +312,7 @@ int listCount = pageInfo.getListCount(); %>
 									<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
 									<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
 									<a href="javascript:;" class="heart-btn btn" data-review-num="<%=articleList.get(i).getNum()%>" data-like-id="<%=id%>" data-isbn="<%=isbn%>">좋아요</a>
-									<a href="javascript:;" class="comment_write_show btn" data-comment-count="0">댓글</a>
+									<a href="javascript:;" class="comment_write_show btn" data-comment-count="<%=articleList.get(i).getNum()%>">댓글</a>
 								</div>
 							</div>
 							<!-- 서평 수정-->
@@ -491,23 +491,23 @@ int listCount = pageInfo.getListCount(); %>
 				});
 				//리뷰댓글 입력창 보이기
 				$(".comment_write_show").on("click",function() {
+					var board_num = $(this).data("comment-count");
 					var reply_display =$(this).parent().parent().next().next().css("display");
 					if (reply_display == "none") {
 						$(".cmtModi").hide();
 						$(".cmtRly").hide();
 						$(this).parent().parent().next().next().css("display", "block");
+						reply_write(board_num);
 					} else {
 						$(this).parent().parent().next().next().css("display", "none");
 					}
-					reply_write();
 				});
-				function reply_write(){
+				function reply_write(board_num){
 					var id = '<%=(String)session.getAttribute("id")%>';
 					var page = $('input[name="page"]').val();
 					var isbn = $('input[name="isbn"]').val();
 					var board_type = $('input[name="board_type"]').val();
-					var board_num = $('input[name="board_num"]').val();
-					alert(board_num);
+					var board_num = board_num;
 					$.ajax({
 						type : "GET",
 						data : "json",
@@ -519,33 +519,27 @@ int listCount = pageInfo.getListCount(); %>
 							"board_num" : board_num
 						},
 						success : function(json) {
-							alert(json);
-// 							json = json.replace(/\n/gi,"\\r\\n"); // 개행문자 대체
-// 							$(".reply").text("");  // 댓글리스트 영역 초기화
-// 							var obj = JSON.parse(json); // service 클래스로 부터 전달된 문자열 파싱
-// 							alert(obj.replyList);
-
 // 							alert(json);
-// 		                	var replyList = obj.replyList; // replyList는 전달된 json의 키값을 의미
-// 		                	var output = ""; // 댓글 목록을 누적하여 보여주기 위한 변수
-		                	for (i in json) { // 반복문을 통해 output에 누적
-		                		alert(json[i].comment_num);
-		                		$(".reply").append(
+
+							$(".reply").text("");
+							$.each(JSON.parse(json), function(index, entry) {
+								entry["comment_id"]
+								$(".reply").append(
 	                				'<input type="hidden" name="board_type" value="2">'+
-	                				'<input type="hidden" name="board_num" value="'+replyList.board_num+'">'+
+	                				'<input type="hidden" name="board_num" value="'+entry["board_num"]+'">'+
 	                				'<p class="comment-vote bookcube" id="cmt_vote">'+
-	                				'<i id="c_id">'+replyList.comment_id+'</i><em>|</em><span id="c_date" class="date">'+replyList.date+'</span>'+
+	                				'<i id="c_id">'+entry["comment_id"]+'</i><em>|</em><span id="c_date" class="date">'+entry["date"]+'</span>'+
 	                				'</p>'+
 	                				'<div class="comment-content">'+
-	                				'<span id="c_desc">'+replyList.comment_desc+'</span>'+
+	                				'<span id="c_desc">'+entry["comment_desc"]+'</span>'+
 	                				'</div>'+
 	                				'<div class="btn_inner">'+
 	                				'<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>'+
-	                				'<a href="ReCommentDeletePro.re?num='+replyList.board_num+'&board_type=2&id='+id+'" class="delete-btn btn">삭제</a>'+
+	                				'<a href="ReCommentDeletePro.re?num='+entry["board_num"]+'&board_type=2&id='+id+'" class="delete-btn btn">삭제</a>'+
 	                				'</div>'
                 				);
-		    	           
-		    	        	};
+
+							});
 						},
 						error : function(error) {
 							alert("오류 발생" + error);
