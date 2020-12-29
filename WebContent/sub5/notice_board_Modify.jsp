@@ -35,23 +35,23 @@
 	                            <col width="35%">
 	                        </colgroup>
 	                        <tbody>
-	                        <div class="select-wrap">
-											<div class="one-sel">
-												<p class="one-select">
-													분류 선택
-												</p>
-												<ul class="one-list sel1" >
-												<li data-num="1"><input type="hidden" name="kind" id="kind" value="공지">공지</li>
-												<li data-num="2"><input type="hidden" name="kind" id="kind" value="공지2">공지2</li>
-												<li data-num="3"><input type="hidden" name="kind" id="kind" value="공지3">공지3</li>
-												<li data-num="4"><input type="hidden" name="kind" id="kind" value="공지4">공지4</li>
+<!-- 	                        <div class="select-wrap"> -->
+<!-- 											<div class="one-sel"> -->
+<!-- 												<p class="one-select"> -->
+<!-- 													분류 선택 -->
+<!-- 												</p> -->
+<!-- 												<ul class="one-list sel1" > -->
+<!-- 												<li data-num="1"><input type="hidden" name="kind" id="kind" value="공지">공지</li> -->
+<!-- 												<li data-num="2"><input type="hidden" name="kind" id="kind" value="공지2">공지2</li> -->
+<!-- 												<li data-num="3"><input type="hidden" name="kind" id="kind" value="공지3">공지3</li> -->
+<!-- 												<li data-num="4"><input type="hidden" name="kind" id="kind" value="공지4">공지4</li> -->
 <!-- 													<li data-num="1" value="">오류문의</li> -->
 <!-- 													<li data-num="2" value="">작품관련 문의</li> -->
 <!-- 													<li data-num="3" value="">취소/환불/현금영수증 발급</li> -->
 <!-- 													<li data-num="4" value="">이용관련 문의</li> -->
-												</ul>
-											</div>
-											</div>
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<!-- 											</div> -->
 								<tr>
 	                            <td>글 번호</td>
 	                            <td colspan="3">

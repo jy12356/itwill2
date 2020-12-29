@@ -377,6 +377,8 @@ public class BookDAO {
          pstmt=con.prepareStatement(sql);
          pstmt.setNString(1, book_isbn);
          rs = pstmt.executeQuery();
+
+			System.out.println(pstmt);
          if(rs.next()) {
             bookBean = new BookBean();
             bookBean.setTitle(rs.getString("title"));
@@ -384,6 +386,7 @@ public class BookDAO {
             bookBean.setAuthor_info(rs.getString("author_info"));
             bookBean.setCatg1(rs.getString("catg1"));
             bookBean.setCatg2(rs.getString("catg2"));
+            
             bookBean.setCount(rs.getInt("count"));
             bookBean.setDescription(rs.getString("description"));
             bookBean.setImage(rs.getString("image"));
@@ -395,7 +398,7 @@ public class BookDAO {
             bookBean.setState(rs.getString("state"));
 			bookBean.setReviewCount(rs.getInt("review"));
 			bookBean.setStarcount(rs.getDouble("starcount"));
-            
+			
          }
       }catch (Exception e) {
          System.out.println("getBookInfo : " + e.getMessage());

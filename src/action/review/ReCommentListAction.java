@@ -1,6 +1,7 @@
 package action.review;
 
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -82,14 +83,35 @@ public class ReCommentListAction implements Action {
 		// 게시물 목록 정보(ArrayList)와 페이지 정보(PageInfo) 객체를 저장
 		request.setAttribute("articleList2", articleList);
 		request.setAttribute("pageInfo2", pageInfo);
-		
-		JSONArray jsonArray=new JSONArray();
-		JSONObject json = new JSONObject();
-		json.put("listCount", listCount);
-		json.put("articleList", articleList);
-		jsonArray.add(json);
+		String json = "[";
+		for(int i = 0; i< articleList.size(); i++) {
+			int comment_num = articleList.get(i).getComment_num();
+			board_type = articleList.get(i).getBoard_type();
+			board_num = articleList.get(i).getBoard_num();
+			String comment_id =articleList.get(i).getComment_id();
+			String comment_desc = articleList.get(i).getComment_desc();
+			int re_ref =  articleList.get(i).getRe_ref();
+			int re_lev =  articleList.get(i).getRe_lev();
+			int re_seq =   articleList.get(i).getRe_seq();
+			Date date =   articleList.get(i).getDate();
+			json += "{\"comment_num\":\"" + comment_num + "\",";
+			json += "\"board_type\":\"" + board_type + "\",";
+			json += "\"board_num\":\"" + board_num + "\",";
+			json += "\"comment_id\":\"" + comment_id + "\"";
+			json += "\"comment_desc\":\"" + comment_desc + "\"";
+			json += "\"re_ref\":\"" + re_ref + "\"";
+			json += "\"re_lev\":\"" + re_lev + "\"";
+			json += "\"re_seq\":\"" + re_seq + "\"";
+			json += "\"date\":\"" + date + "\"}";
+			
+			if (i != articleList.size() - 1) {
+				json += ",";
+			}
+			
+		}
+		json += "]";
 		PrintWriter out = response.getWriter();
-		out.print(jsonArray);
+		out.print(json);
 		
 
 //		forward = new ActionForward();

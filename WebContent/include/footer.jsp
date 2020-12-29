@@ -24,12 +24,13 @@ int listCount = PageInfo.getListCount();
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
 						<!-- Null오류로 인한 푸터 공지사항 수정중 -->
+						<a href="NoticeBoardDetail.not?num=2&page=1">동서남Book OPEN<span>2020-12-28</span></a>
 <!-- 							<a href="NoticeBoardDetail.not?num=1&page=1"> -->
 <%-- 										<span><%=articleList.get(i).getSubject()%></span></a> --%>
 						</div>
-<!-- 						<div class="swiper-slide"> -->
-<!-- 							<a href="/customer.asp?page=notice&num=112679&page2=view&pageNum=1">메리 미 (Marry Me)〉 적립금 지급 안내<span>2020-10-27</span></a> -->
-<!-- 						</div>						 -->
+						<div class="swiper-slide">
+							<a href="NoticeBoardDetail.not?num=1&page=1">test<span>2020-12-21</span></a>
+						</div>						
 					</div>
 				</div>
 				<div class="notice-control">
