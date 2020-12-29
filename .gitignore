@@ -3,17 +3,17 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse,windows,macos
 
 ### Eclipse ###
-.metadata
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
-.recommenders
+# .metadata
+# bin/
+# tmp/
+# *.tmp
+# *.bak
+# *.swp
+# *~.nib
+# local.properties
+# .settings/
+# .loadpath
+# .recommenders
 
 # External tool builders
 .externalToolBuilders/
