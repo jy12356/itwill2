@@ -135,7 +135,7 @@
                                 	<input type="hidden" class="bookstate" value="<%=bookList.get(i).getState()%>">
                                 	
                                     <div class="figure">
-                                        <a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&page=<%=nowPage%>&title=<%=bookList.get(i).getTitle() %>">
+                                        <a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>&page=<%=nowPage%>">
                                             <span class="rm_br"><img src="bookUpload/<%=bookList.get(i).getImage()%>" alt="도서 이미지" /></span>
                                             <span class="light"></span>
                                         </a>
