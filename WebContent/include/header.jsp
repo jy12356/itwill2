@@ -152,13 +152,13 @@ String id = (String)session.getAttribute("id");
 				
 			</ul>
 		</div>
-		<div class="h-bottom-right">
-			<ul class="snb-right">
-				<li><a href="../sub1/list_best.jsp">베스트</a></li>
-				<li><a href="../sub1/list_new.jsp">신간</a></li>
-<!-- 				<li><a href="../sub1/event">이벤트</a></li> -->
-			</ul>
-		</div>
+<!-- 		<div class="h-bottom-right"> -->
+<!-- 			<ul class="snb-right"> -->
+<!-- 				<li><a href="../sub1/list_best.jsp">베스트</a></li> -->
+<!-- 				<li><a href="../sub1/list_new.jsp">신간</a></li> -->
+<!-- <!-- 				<li><a href="../sub1/event">이벤트</a></li> --> 
+<!-- 			</ul> -->
+<!-- 		</div> -->
 		
 	</div>
 	<div class="m-category">
