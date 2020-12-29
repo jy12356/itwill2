@@ -236,7 +236,7 @@ public class ReservationDAO {
 	      try {
 	         for(int i=0; i< inerNumList.size(); i++) {
 	        	 
-//	        	String sql = "update 관리자쪽db set seq=seq-1 where seq > ? AND id-? ";
+//	        	String sql = "update reservation set seq=seq-1 where seq > ? AND id-? ";
 	        	 
 	            String sql = "delete from reservation where num=? and id=?";
 	            pstmt = con.prepareStatement(sql);
