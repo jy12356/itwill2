@@ -170,6 +170,4 @@ if (id == null) {
     <script src="sub5/FullCalendar/js/editEvent.js"></script>
     <script src="sub5/FullCalendar/js/etcSetting.js"></script>
 
-</body>
 <jsp:include page="../../include/footer.jsp"/>
-</html>
