@@ -25,7 +25,7 @@ public class MemberCheckAction implements Action {
 		JSONObject resultObj = new JSONObject();
 
 		if (isIdCheckSuccess) {
-			 resultObj = new JSONObject();
+			resultObj = new JSONObject();
 	        response.setContentType("text/html; charset=UTF-8");
 	        PrintWriter out = response.getWriter();
 	        String str =  "이미 사용중이거나 탈퇴한 회원의 아이디 입니다.";

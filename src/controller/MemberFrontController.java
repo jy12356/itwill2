@@ -16,6 +16,7 @@ import action.MemberDeleteFormAction;
 import action.MemberDeleteProAction;
 import action.MemberJoinProService;
 import action.MemberListAction;
+import action.MemberListCalAction;
 import action.MemberLoginProAction;
 import action.MemberModifyFormAction;
 import action.MemberModifyProAction;
@@ -144,7 +145,16 @@ public class MemberFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} else if(command.equals("/MemberListCal.me")) {
+			System.out.println("MemberListCal");
+			action = new MemberListCalAction();
+			try {
+				forward = action.execute(request, response);
+				/* forward = new ActionForward(); */
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
 		
 		//1.ActionForward객체 존재 여부 확인(객체가 존재할때 포워딩 수행)
 		if(forward != null) {

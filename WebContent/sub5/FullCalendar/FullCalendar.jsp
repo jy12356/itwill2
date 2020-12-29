@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<jsp:include page="../../include/header.jsp" />
 <%
 	String id = (String) session.getAttribute("id");
 if (id == null) {
@@ -7,7 +8,6 @@ if (id == null) {
 %>
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../../include/header.jsp" />
 
 <head>
     <meta charset="utf-8" />
@@ -25,16 +25,14 @@ if (id == null) {
 
     <link rel="stylesheet" href="sub5/FullCalendar/css/main.css">
 
-</head>
-<body>
     <div class="container">
 <%if(id.equals("admin")){ %>
         <!-- 일자 클릭시 메뉴오픈 -->
         <div id="contextMenu" class="dropdown clearfix">
             <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
                 style="display:block;position:static;margin-bottom:5px;">
-                <li><a tabindex="-1" href="#">입고</a></li>
-                <li><a tabindex="-1" href="#">휴무</a></li>
+                <li><a tabindex="-1" href="#">신간입고안내</a></li>
+                <li><a tabindex="-1" href="#">휴무안내</a></li>
                 <li class="divider"></li>
                 <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
             </ul>
@@ -87,8 +85,8 @@ if (id == null) {
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-type">구분</label>
                                 <select class="inputModal" type="text" name="edit-type" id="edit-type">
-                                    <option value="입고">입고</option>
-                                    <option value="휴무">휴무</option>
+                                    <option value="신간입고안내">신간입고안내</option>
+                                    <option value="휴무안내">휴무안내</option>
                                 </select>
                             </div>
                         </div>
@@ -172,6 +170,4 @@ if (id == null) {
     <script src="sub5/FullCalendar/js/editEvent.js"></script>
     <script src="sub5/FullCalendar/js/etcSetting.js"></script>
 
-</body>
 <jsp:include page="../../include/footer.jsp"/>
-</html>
