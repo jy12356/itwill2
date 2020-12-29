@@ -15,7 +15,7 @@
 <section class="sub">
      <div class="contents-wrap">
         <div class="customer">
-            <pre><h2 class="coTitle"><a href="rentalList.rn">주문배송조회</a>  |  <a href="Return2.rn">과거주문내역</a>  |  <a href="ReservationList.rn">예약중인도서</a></h2></pre>
+            <pre><h2 class="coTitle"><a href="rentalList.rn">대여내역</a>  |  <a href="Return2.rn">과거대여내역</a>  |  <a href="ReservationList.rn">예약중인도서</a></h2></pre>
             <h2 class="coTitle">주문배송조회</h2>
             <div class="customer-contents">
                 <div class="customer-inner">
@@ -44,7 +44,7 @@
                             <tr>
                                 <td class="tac check_box">
                                 <input type="checkbox" id="checkbox_num" class="check_num" value="<%=rentalList.get(i).getNum()%>" name="inter_num"></td>
-                                <td><%=rentalList.get(i).getTitle()%></td>
+                                <td><a href="BookDetail.bok?isbn=<%=rentalList.get(i).getIsbn()%>"><%=rentalList.get(i).getTitle()%></td>
                                 <td><%=rentalList.get(i).getS_date()%></td>
                                 <td><%=rentalList.get(i).getS_date()%> ~ <%=rentalList.get(i).getOnrental_date()%></td>
                                 <td><%=rentalList.get(i).getE_date()%></td>
@@ -52,10 +52,10 @@
                         <%} %>
                         </tbody>
                     </table>
-                   <div class="btn_inner">
-						<a href="javascript:void(0);"
-							onclick="deleteBook(); return false;" class="btn">대여신청취소</a>
-					</div>
+<!--                    <div class="btn_inner"> -->
+<!-- 						<a href="javascript:void(0);" -->
+<!-- 							onclick="deleteBook(); return false;" class="btn">대여신청취소</a> -->
+<!-- 					</div> -->
                     </div>
                     
                     <div class="paging">

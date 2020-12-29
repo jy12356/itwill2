@@ -63,9 +63,10 @@ public class reservationInsertAction implements Action {
 				} else {
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter out = response.getWriter();
-					out.println("<script>");
-					out.println("alert('도서예약을 성공하였습니다.')");
-					out.println("</script>");
+//					out.println("<script>");
+//					out.println("alert('도서예약을 성공하였습니다.')");
+//					out.println("</script>");
+					out.print("성공");
 				}
 
 			}

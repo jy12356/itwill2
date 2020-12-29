@@ -49,4 +49,23 @@ public class FBCommentListService {
 		return commentList;
 	}
 
+//	public int getMaxSeq() {
+//		
+//		System.out.println("FBCommentListService - getMaxSeq()");
+//
+//		int maxSeq = 0;
+//		
+//		Connection con = getConnection();
+//
+//		CommentDAO commentDAO = CommentDAO.getInstance();
+//
+//		commentDAO.setConnection(con);
+//		
+//		maxSeq = commentDAO.selectMaxSeq();
+//		
+//		close(con);
+//
+//		return maxSeq;
+//	}
+
 }

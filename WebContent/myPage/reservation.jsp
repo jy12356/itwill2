@@ -16,7 +16,7 @@
 <section class="sub">
      <div class="contents-wrap">
         <div class="customer">
-            <pre><h2 class="coTitle"><a href="rentalList.rn">주문배송조회</a>  |  <a href="PastRentalList.rn">과거주문내역</a>  |  <a href="ReservationList.rn">예약중인도서</a></h2></pre>
+             <pre><h2 class="coTitle"><a href="rentalList.rn">대여내역</a>  |  <a href="Return2.rn">과거대여내역</a>  |  <a href="ReservationList.rn">예약중인도서</a></h2></pre>
             <h2 class="coTitle">예약중인도서</h2>
             <div class="customer-contents">
                 <div class="customer-inner">
@@ -41,7 +41,7 @@
                             <tr>
                                 <td class="tac check_box">
                                 <input type="checkbox" id="checkbox_num" class="check_num" value="<%=reservationList.get(i).getNum()%>" name="inter_num"></td>
-                                <td><%=reservationList.get(i).getTitle()%></td>
+                                <td><a href="BookDetail.bok?isbn=<%=reservationList.get(i).getIsbn()%>"><%=reservationList.get(i).getTitle()%></td>
                                 <td><%=reservationList.get(i).getSeq()%></td>
                                 <td><%=reservationList.get(i).getDate()%></td>
                             </tr>

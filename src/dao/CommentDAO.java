@@ -88,6 +88,44 @@ public class CommentDAO {
 		return listCount;
 	}
 
+//	public int selectMaxSeq() {
+//		
+//		int maxSeq = 0;
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		
+//		try {
+//			
+//			String sql2 = "select comment_num from " 
+//			
+//			
+//			String sql = "SELECT max(seq) FROM comment where comment_num = ?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, comment_num);
+//			
+//			
+//			
+//			rs = pstmt.executeQuery();
+//			if(rs.next()) {
+//				listCount = rs.getInt(1);
+//			}
+//			
+//			
+//			
+//			
+//		} catch (Exception e) {
+//			System.out.println("DAO - selectListCount() 오류! - " + e.getMessage());
+//			e.printStackTrace();
+//		} finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//		
+//		
+//		
+//		return maxSeq;
+//	}
 
 
 
@@ -127,6 +165,7 @@ public class CommentDAO {
 				
 				commentList.add(commentBean);
 			}
+			
 			
 		} catch (SQLException e) {
 			System.out.println("selectCommentList() 오류! - " + e.getMessage());
@@ -299,6 +338,38 @@ public class CommentDAO {
 		
 		return deleteCount;
 	}
+
+
+//	public int getMaxSeq(int board_num, int board_type, int comment_num) {
+//		System.out.println("getMaxSeq");
+//		int maxSeq = 0;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		
+//		try {
+//			String sql = "select max(re_seq) from comment where board_type=? and board_num=? and comment_num=?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, board_type);
+//			pstmt.setInt(2, board_num);
+//			pstmt.setInt(3, comment_num);
+//			
+//			rs = pstmt.executeQuery();
+//			if(rs.next()) {
+//				maxSeq = rs.getInt(1);
+//			}
+//			
+//		} catch (Exception e) {
+//			System.out.println("DAO - entireCount() 오류! - " + e.getMessage());
+//			e.printStackTrace();
+//		}finally {
+//			close(rs);
+//			close(pstmt);
+//		}
+//		
+//		return maxSeq;
+//	}
+
+
 
 
 

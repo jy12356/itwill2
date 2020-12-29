@@ -62,7 +62,7 @@ int listCount = pageInfo.getListCount();
 							<td><input type="checkbox" id="check_box1"
 								class="check_box c1" value="<%=myBasketList.get(i).getNum()%>"
 								name="inter_num"></td>
-							<td><%=myBasketList.get(i).getTitle()%></td>
+							<td><a href="BookDetail.bok?isbn=<%=myBasketList.get(i).getIsbn()%>"><%=myBasketList.get(i).getTitle()%></td>
 							<td><%=myBasketList.get(i).getAuthor()%></td>
 							<td><%=myBasketList.get(i).getPublisher()%></td>
 							<td><%=myBasketList.get(i).getPubdate()%></td>
@@ -103,7 +103,7 @@ int listCount = pageInfo.getListCount();
 						%>
 						<tr>
 							<td><input type="checkbox" id="check_box2" class="check_box c2" value="<%=myBasketList.get(i).getNum()%>" name="inter_num"></td>
-							<td><%=myBasketList.get(i).getTitle()%></td>
+							<td><a href="BookDetail.bok?isbn=<%=myBasketList.get(i).getIsbn()%>"><%=myBasketList.get(i).getTitle()%></td>
 							<td><%=myBasketList.get(i).getAuthor()%></td>
 							<td><%=myBasketList.get(i).getPublisher()%></td>
 							<td><%=myBasketList.get(i).getPubdate()%></td>
@@ -112,7 +112,9 @@ int listCount = pageInfo.getListCount();
 						</tr>
 						<%
 									}
-								}	
+								}	 
+							
+							
 							} 
 						
 // 						else {
@@ -233,9 +235,14 @@ int listCount = pageInfo.getListCount();
 						type : "post",
 						dataType : 'text',
 						data : interArr,
-						success : function() {
-							// 대여하기 성공했으면 대여리스트로 가기
+						success : function(data) {
+							var a = "이미 예약중인 도서가 있습니다.";
+							alert(a);
+							if(data == a.trim()) {
+								return false;								
+							} else if(data == "성공"){
 							location.href = "ReservationList.rn";
+							}
 						},
 						error : function(request, status, error) {
 							alert("code:" + request.status + "\n" + "message:"
@@ -302,8 +309,9 @@ int listCount = pageInfo.getListCount();
 						data : interArr,
 						success : function(data) {
 							// 대여하기 성공했으면 대여리스트로 가기
-							alert(data);
+// 							alert(data);
 							var a = "이미 대여중인 도서가 있습니다.";
+							alert(a);
 							if(data == a.trim()) {
 								return false;								
 							} else if(data == "성공"){
