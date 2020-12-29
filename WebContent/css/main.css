@@ -263,10 +263,28 @@ background: linear-gradient(to right,rgba(0,0,0,.3) 0,rgba(0,0,0,0) 4%,rgba(0,0,
 .slider ul li:hover .caption:before{transform:scale(1,1);}
 .caption:after{content:"";position:absolute;top:0;left:0;width:98%;height:100%;border-left:1px solid #fff;border-right:1px solid #fff;box-sizing:border-box;transform:scale(1,0);transition:.5s;}
 .slider ul li:hover .caption:after{transform:scale(1,1);}
-.about{padding:10px;padding-top:40px;color:#fff;text-align:center;display:none;font-weight:600;}
+.about{padding:10px;/* padding-top:40px; */color:#fff;text-align:center;display:none;height: auto;font-weight:600;}
 .slider ul li:hover .about{display:block;}
 .about h2{font-size:14px;margin-bottom:10px;}
-.about p{font-size:13px;}
+.about p{
+
+display: block;
+
+font-size:13px;
+
+height: auto;
+
+text-overflow: ellipsis;
+
+display: -webkit-box;
+
+-webkit-line-clamp: 3;
+
+-webkit-box-orient: vertical;
+
+overflow-wrap: break-word;
+
+}
 .hot-info{width:150px;margin:0 auto;padding:15px 0;text-align:left;}
 .hot-info p.hot-title{margin-bottom:4px;font-size:16px;color:#333;line-height:20px;font-weight:600;}
 .hot-info p{padding:0 6px;font-size:12px;color:#999;}
