@@ -22,7 +22,7 @@ public class BookDetailAction implements Action {
 		System.out.println("BookDetailAction");
 		ActionForward forward = null;
 		String book_isbn=request.getParameter("isbn");
-		String title=request.getParameter("title");
+//		String title=request.getParameter("title");
 		String page=request.getParameter("page");
 		
 		//책정보
