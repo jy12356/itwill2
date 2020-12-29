@@ -1,51 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@page import="dao.MemberDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberBean"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%
-/* MemberDAO memberDao = MemberDAO.getInstance();
-
-JSONArray jsonArray = memberDao.memberListCal(); */
-	// String id = (String)session.getAttribute("id");
-// 	MemberBean article = (MemberBean)request.getAttribute("article");
-
-ArrayList<MemberBean> articleList = (ArrayList<MemberBean>) request.getAttribute("articleList");
-/* PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
-int nowPage = pageInfo.getPage();
-int maxPage = pageInfo.getMaxPage();
-int startPage = pageInfo.getStartPage();
-int endPage = pageInfo.getEndPage();
-int listCount = pageInfo.getListCount(); */
-SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd");
-	String id= (String)session.getAttribute("id");
-	ArrayList<MemberBean> articleList = (ArrayList<MemberBean>)request.getAttribute("articleList");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	int nowPage = pageInfo.getPage();
-	int maxPage = pageInfo.getMaxPage();
-	int startPage = pageInfo.getStartPage();
-	int endPage = pageInfo.getEndPage();
-	int listCount = pageInfo.getListCount();
-	SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd");
-	
- 	String name1 = "전체";
-	/* if(request.getParameter("name1")!=null){
-		name1 = request.getParameter("name1");
-	} */
-	String id1 = "전체";
-	if(request.getParameter("id")!=null){
-		id1 = request.getParameter("id");
-	} 
-	String state = "*";
-	if(request.getParameter("state")!=null){
-		state = request.getParameter("state");
-	} 
-	
-%> 
 <jsp:include page="../include/header.jsp" />
 <style type="text/css">
 li>#pieCatg {
@@ -179,6 +139,44 @@ th.memSortTbody {
 	border: 1px solid #72ada5 !important;
 }
 </style>
+
+<%
+/* MemberDAO memberDao = MemberDAO.getInstance();
+
+JSONArray jsonArray = memberDao.memberListCal(); */
+	// String id = (String)session.getAttribute("id");
+// 	MemberBean article = (MemberBean)request.getAttribute("article");
+
+ArrayList<MemberBean> articleList = (ArrayList<MemberBean>) request.getAttribute("articleList");
+/* PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+int nowPage = pageInfo.getPage();
+int maxPage = pageInfo.getMaxPage();
+int startPage = pageInfo.getStartPage();
+int endPage = pageInfo.getEndPage();
+int listCount = pageInfo.getListCount(); */
+SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd");
+String id= (String)session.getAttribute("id");
+PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+int nowPage = pageInfo.getPage();
+int maxPage = pageInfo.getMaxPage();
+int startPage = pageInfo.getStartPage();
+int endPage = pageInfo.getEndPage();
+int listCount = pageInfo.getListCount();
+
+ 	String name1 = "전체";
+	/* if(request.getParameter("name1")!=null){
+		name1 = request.getParameter("name1");
+	} */
+	String id1 = "전체";
+	if(request.getParameter("id")!=null){
+		id1 = request.getParameter("id");
+	} 
+	String state = "*";
+	if(request.getParameter("state")!=null){
+		state = request.getParameter("state");
+	} 
+	
+%> 
 <section class="sub">
 	<div class="category-nav">
 		<div class="category-nav-inner">
@@ -222,8 +220,6 @@ th.memSortTbody {
 					</div>
 				</div>
 			</div>
-	<section class="sub">
-		<div class="contents-wrap">
 			<div class="customer" style="width: 1400px;">
 				<h3 class="coTitle">고객관리</h3>
 				<div class="customer-contents">
@@ -318,10 +314,8 @@ th.memSortTbody {
 				</div>
 
 			</div>
-		</div>
 	</section>
     
-	</section>
 	<script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>

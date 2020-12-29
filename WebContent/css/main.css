@@ -2691,7 +2691,7 @@ footer .footer-top .notice-wrap .notice-inner .notice-control .notice-prev {widt
 footer .footer-top .notice-wrap .notice-inner .notice-control .notice-next {width: 10px;height: 14px;display: inline-block;background: url(../images/notice-next.png) no-repeat left center;}
 footer .footer-top .cs-wrap {width: 900px;margin: 0 auto;padding: 31px 0 33px 0;box-sizing: border-box;}
 footer .footer-top .cs-wrap:after{content:"";display:Block;clear:both;}
-footer .footer-top .cs-wrap .cs {float: left;width: 455px;}
+footer .footer-top .cs-wrap .cs {float: left;width: 60%;}
 footer .footer-top .cs-wrap .cs h4 {font-size: 16px;color: #555;font-weight: 700;margin-bottom: 18px;}
 footer .footer-top .cs-wrap .cs div p {letter-spacing: -0.5px;}
 footer .footer-top .cs-wrap .cs div p span {
@@ -2706,14 +2706,14 @@ footer .footer-top .cs-wrap .service div p:first-child {margin-right: 20px;}
 footer .footer-top .cs-wrap .service div p a {padding-top: 36px;display: block;}
 footer .footer-top .cs-wrap .service div p:nth-child(1) a {background: url(../images/f-library.svg) no-repeat center top;}
 footer .footer-top .cs-wrap .service div p:nth-child(2) a {background: url(../images/f-download.svg) no-repeat center top;}
-footer .footer-top .cs-wrap .short-cut {float: left;width: 270px;}
+footer .footer-top .cs-wrap .short-cut {float: right;width: 40%;}
 footer .footer-top .cs-wrap .short-cut h4 {font-size: 16px;color: #555;font-weight: 700;margin-bottom: 11px;}
 footer .footer-top .cs-wrap .short-cut div:after{content:"";display:block;clear:both;}
 footer .footer-top .cs-wrap .short-cut div p {float: left;margin-right: 20px;text-align: center;letter-spacing: -0.5px;}
 footer .footer-top .cs-wrap .short-cut div p a {padding-top: 43px;display: block;}
-footer .footer-top .cs-wrap .short-cut div p:nth-child(1) a {width: 48px;background: url(../images/f-coupon.svg) no-repeat center top;}
-footer .footer-top .cs-wrap .short-cut div p:nth-child(2) a {width: 48px;background: url(../images/f-remote.svg) no-repeat center 5px;}
-footer .footer-top .cs-wrap .short-cut div p:nth-child(3) a {width: 57px;background: url(../images/f-bookcash.svg) no-repeat center 3px;}
+footer .footer-top .cs-wrap .short-cut div p:nth-child(1) a {/* width: 48px; */background: url(../images/f-coupon.svg) no-repeat center top;}
+footer .footer-top .cs-wrap .short-cut div p:nth-child(2) a {background: url(../images/f-remote.svg) no-repeat center 5px;}
+footer .footer-top .cs-wrap .short-cut div p:nth-child(3) a {background: url(../images/f-bookcash.svg) no-repeat center 3px;}
 footer .footer-top .cs-wrap .short-cut div p:nth-child(4) a {width: 57px;background: url(../images/f-mypage.svg) no-repeat center 1px;}
 footer .footer-top .cs-wrap .short-cut div p:last-child {margin-right: 0;}
 footer .footer-inner {width: 900px;margin: 0 auto;padding-top: 40px;}
