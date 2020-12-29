@@ -33,8 +33,8 @@ if (id == null) {
         <div id="contextMenu" class="dropdown clearfix">
             <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
                 style="display:block;position:static;margin-bottom:5px;">
-                <li><a tabindex="-1" href="#">입고</a></li>
-                <li><a tabindex="-1" href="#">휴무</a></li>
+                <li><a tabindex="-1" href="#">신간입고안내</a></li>
+                <li><a tabindex="-1" href="#">휴무안내</a></li>
                 <li class="divider"></li>
                 <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
             </ul>
@@ -87,8 +87,8 @@ if (id == null) {
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-type">구분</label>
                                 <select class="inputModal" type="text" name="edit-type" id="edit-type">
-                                    <option value="입고">입고</option>
-                                    <option value="휴무">휴무</option>
+                                    <option value="신간입고안내">신간입고안내</option>
+                                    <option value="휴무안내">휴무안내</option>
                                 </select>
                             </div>
                         </div>
