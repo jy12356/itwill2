@@ -18,6 +18,7 @@ int startPage = pageInfo.getStartPage();
 int endPage = pageInfo.getEndPage();
 int listCount = pageInfo.getListCount();
 %>
+
 <section class="sub">
 	<div class="contents-wrap">
 		<div class="customer">
