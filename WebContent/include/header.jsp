@@ -50,15 +50,15 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="sub5/FullCalendar/vendor/css/fullcalendar.min.css" />
-<link rel="stylesheet" href="sub5/FullCalendar/vendor/css/bootstrap.min.css">
-<link rel="stylesheet" href='sub5/FullCalendar/vendor/css/select2.min.css' />
-<link rel="stylesheet" href='sub5/FullCalendar/vendor/css/bootstrap-datetimepicker.min.css' />
+<!-- <link rel="stylesheet" href="sub5/FullCalendar/vendor/css/fullcalendar.min.css" /> -->
+<!-- <link rel="stylesheet" href="sub5/FullCalendar/vendor/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href='sub5/FullCalendar/vendor/css/select2.min.css' /> -->
+<!-- <link rel="stylesheet" href='sub5/FullCalendar/vendor/css/bootstrap-datetimepicker.min.css' /> -->
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600"> -->
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
 
-<link rel="stylesheet" href="sub5/FullCalendar/css/main.css">
+<!-- <link rel="stylesheet" href="sub5/FullCalendar/css/main.css"> -->
 <!-- naver-->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 	<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
