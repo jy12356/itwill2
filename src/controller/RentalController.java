@@ -20,6 +20,9 @@ import action.rental.ReservationDeleteAction;
 import action.rental.ReservationListAction;
 import action.rental.rentalDeleteAction;
 import action.rental.reservationInsertAction;
+import action.rental.returnAction;
+import action.rental.returnAction2;
+import action.rental.returnInsertAction;
 import vo.ActionForward;
 
 @WebServlet("*.rn")
@@ -73,23 +76,41 @@ public class RentalController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-		} else if (command.equals("/ReservationList.rn")) {
-			action = new ReservationListAction();
+	// 반납용
+		} else if (command.equals("/Return.rn")) {
+			action = new returnAction();
+//=======
+//		} else if (command.equals("/ReservationList.rn")) {
+	//		action = new ReservationListAction();
+//>>>>>>> master
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-		} else if (command.equals("/reservationDelete.rn")) {
-			action = new ReservationDeleteAction();
+
+//	 과거주문내역	
+	}else if (command.equals("/ReturnInsert.rn")) {
+			action = new returnInsertAction();
+//=======
+//		} else if (command.equals("/reservationDelete.rn")) {
+//			action = new ReservationDeleteAction();
+//>>>>>>> master
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		} 
+		
+	}else if (command.equals("/Return2.rn")) {
+		action = new returnAction2();
+		try {
+			forward = action.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 		
 		
 		

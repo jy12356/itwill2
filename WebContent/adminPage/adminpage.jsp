@@ -29,10 +29,9 @@
 								<li>
 									<h4>회원관리</h4>
 									<ul>
-										<li><a href="/mypage.asp?list=_orderbooklist" class="">회원목록</a></li>
+										<li><a href="http://localhost:8080/itwill2th/MemberList.me" class="">회원목록</a></li>
 										<li><a href="BookDibsList.bok" class="">대출관리</a></li>
-										<li><a href="MyBasketList.bk" class="">책바구니</a></li>
-										<li><a href="/mypage.asp?list=_orderlist" class="">대여목록</a></li>
+										<li><a href="Return.rn" class="">대출관리</a></li>
 									</ul>
 								</li>
 								<li>
@@ -41,7 +40,7 @@
 										<li><a href="BookWriteForm.bok" class="">책등록</a></li>
 										<li><a href="RequestList.rq" class="">희망도서</a></li>
 										<li><a href="NoticeBoardList.not?page=1" class="">게시글</a></li>
-										<li><a href="/mypage.asp?list=_prefer" class="">QnA</a></li>
+										<li><a href="QnaList.qna" class="">QnA</a></li>
 									</ul>
 								</li>
 							</ul>

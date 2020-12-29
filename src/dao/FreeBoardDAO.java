@@ -359,20 +359,20 @@ public class FreeBoardDAO {
 	public int insertComment(CommentBean cb) {
 		System.out.println("DAO - insertComment");
 		int insertCount = 0;
-		
+		System.out.println("오류잡자 1");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int num = 1;
-		
+		System.out.println("오류잡자 2");
 		try {
 			String sql = "SELECT MAX(comment_num) FROM comment";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+			System.out.println("오류잡자 3");
 			if(rs.next()) { // 등록된 게시물이 하나라도 존재할 경우
 				num = rs.getInt(1) + 1; // 새 글 번호 = 현재 가장 큰 번호 + 1
 			}
-			
+			System.out.println("오류잡자 4");
 			sql = "INSERT INTO comment VALUES (?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -383,7 +383,7 @@ public class FreeBoardDAO {
 			pstmt.setInt(6, num);
 			pstmt.setInt(7, cb.getRe_lev());
 			pstmt.setInt(8, cb.getRe_seq());
-			
+			System.out.println("오류잡자 5");
 			
 			
 			

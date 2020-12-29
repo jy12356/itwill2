@@ -48,6 +48,46 @@ public class rentalListService {
 		
 		return rentalList;
 	}
+	
+	// 반납용
+
+	public int getListCountt() {
+System.out.println("rentalListService - getListCount()");
+		
+		int listCount = 0;
+
+		Connection con = getConnection();
+
+		RentalDAO rentalDAO = RentalDAO.getInstance();
+
+		rentalDAO.setConnection(con);
+		
+		listCount = rentalDAO.selectListCountt();
+		
+		close(con);
+		
+
+		return listCount;
+	}
+
+	public ArrayList<RentalBean> getRentalListt(int page, int limit) {
+System.out.println("rentalListService - getRentalList");
+		
+		ArrayList<RentalBean> rentalList = new ArrayList<RentalBean>();
+		
+		Connection con = getConnection();
+		
+		RentalDAO rentalDAO = RentalDAO.getInstance();
+		rentalDAO.setConnection(con);
+		
+		System.out.println("getRentalList 1 - svc");
+		rentalList = rentalDAO.selectRentalListt(page, limit);
+		System.out.println("getRentalList 2 - svc");
+		close(con);
+		
+		return rentalList;
+	}
+
 
 }
 

@@ -22,7 +22,7 @@ public class BookDetailAction implements Action {
 		System.out.println("BookDetailAction");
 		ActionForward forward = null;
 		String book_isbn=request.getParameter("isbn");
-		String title=request.getParameter("title");
+//		String title=request.getParameter("title");
 		String page=request.getParameter("page");
 		
 		//책정보
@@ -47,12 +47,12 @@ public class BookDetailAction implements Action {
 		articleList = reviewListService.getArticleList(page1, limit, book_isbn);
 
 		// 댓글 리스트 출력 -----
-		int board_num =Integer.parseInt(request.getParameter("booknum"));
-		int board_type = 2;		
-		ReCommentListService reCommentListService = new ReCommentListService();
-		ArrayList<CommentBean> commentList = new ArrayList<CommentBean>();
-		System.out.println("Action 댓글리스트 출력 시작!");
-		commentList = reCommentListService.getArticleList(page1, limit, board_num, board_type);
+//		int board_num =Integer.parseInt(request.getParameter("booknum"));
+//		int board_type = 2;		
+//		ReCommentListService reCommentListService = new ReCommentListService();
+//		ArrayList<CommentBean> commentList = new ArrayList<CommentBean>();
+//		System.out.println("Action 댓글리스트 출력 시작!");
+//		commentList = reCommentListService.getArticleList(page1, limit, board_num, board_type);
 		// 페이지 계산 작업 수행
 		// 1. 전체 페이지 수 계산
 		// 	  (총 게시물 수 / 페이지 당 게시물 수 + 0.95) -> 정수로 변화
@@ -74,7 +74,7 @@ public class BookDetailAction implements Action {
 		
 		request.setAttribute("articleList", articleList);		
 
-		request.setAttribute("commentList", commentList);
+	//	request.setAttribute("commentList", commentList);
 		request.setAttribute("pageInfo", pageInfo);
 		
 		forward = new ActionForward();

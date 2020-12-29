@@ -41,6 +41,7 @@ public class RentalDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String isbn = null; 
+	
 
 		try {
 			for (int i = 0; i < rentalAddList.size(); i++) {
@@ -223,7 +224,7 @@ public class RentalDAO {
 
 		try {
 			String sql = "select r.num num, b.title title, r.isbn isbn, "
-					+ "r.id id, r.s_date s_date, r.onrental_date onrental_date, " + "r.e_date e_date "
+					+ "r.id id, r.s_date s_date, r.onrental_date onrental_date, " + "r.e_date e_date, r.state state "
 					+ "from rental as r join book as b on r.isbn = b.isbn "
 					+ "where r.id=? order by r.num desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
@@ -419,6 +420,110 @@ public class RentalDAO {
 	      }
 	      return isDeleteOk;
 	}
+	
+	
+	// 반납용
+	public int updateArticle(RentalBean article) {
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "update rental set state=? where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, article.getState());
+			pstmt.setInt(2, article.getNum());
+			updateCount = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("updateArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return updateCount;
+	}
+
+	// 반납용
+	public int selectListCountt() {
+		System.out.println("RentalDAO - selectListCount()");
+		
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT COUNT(*) FROM rental";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				listCount = rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("selectListCount() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+
+	// 반납용
+	public ArrayList<RentalBean> selectRentalListt(int page, int limit) {
+		System.out.println("RentalDAO - selectRentalList()");
+
+		ArrayList<RentalBean> rentalList = null;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		// 조회를 시작할 레코드(행) 번호 계산
+		int startRow = (page - 1) * limit;
+
+		try {
+			String sql = "select r.num num, b.title title, r.isbn isbn, "
+					+ "r.id id, r.s_date s_date, r.onrental_date onrental_date, " + "r.e_date e_date, r.state state "
+					+ "from rental as r join book as b on r.isbn = b.isbn "
+					+ "order by r.num desc limit ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
+			rs = pstmt.executeQuery();
+
+			rentalList = new ArrayList<RentalBean>();
+
+			while (rs.next()) {
+				RentalBean rental = new RentalBean();
+				rental.setNum(rs.getInt("num"));
+				rental.setTitle(rs.getString("title"));
+				rental.setIsbn(rs.getString("isbn"));
+				rental.setId(rs.getString("id"));
+				rental.setS_date(rs.getDate("s_date"));
+				rental.setOnrental_date(rs.getDate("onrental_date"));
+				rental.setE_date(rs.getDate("e_date"));
+				rental.setState(rs.getString("state"));
+
+				rentalList.add(rental);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("selectRentalList() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+
+		return rentalList;
+	}
+
+
+	
+
+
 
 }
 
