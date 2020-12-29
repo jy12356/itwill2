@@ -38,6 +38,26 @@ public class CommentReplyService {
 		return isReplySuccess;
 	}
 
+//	public int getMaxSeq(int board_num, int board_type, int comment_num) {
+//		System.out.println("CommentReplyService - getMaxSeq");
+//		
+//		Connection con = getConnection();
+//
+//		CommentDAO commentDAO = CommentDAO.getInstance();
+//
+//		commentDAO.setConnection(con);
+//
+//		int maxSeq = commentDAO.getMaxSeq(board_num, board_type, comment_num);
+//
+//		System.out.println("comment getMaxSeq 가져온값 : " + getMaxSeq);
+//
+//	
+//
+//		close(con);
+//
+//		return maxSeq;
+//	}
+
 }
 
 

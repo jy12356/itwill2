@@ -31,7 +31,7 @@ public class CommentReplyAction implements Action {
 		int page = Integer.parseInt(request.getParameter("page"));
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		int board_type = Integer.parseInt(request.getParameter("board_type"));
-		
+		int comment_num = Integer.parseInt(request.getParameter("comment_num"));
 		
 		CommentBean cb = new CommentBean();
 		cb.setComment_num(Integer.parseInt(request.getParameter("comment_num")));
@@ -46,6 +46,9 @@ public class CommentReplyAction implements Action {
 		CommentReplyService commentReplyService = new CommentReplyService();
 		boolean isReplySuccess = CommentReplyService.replyComment(cb);
 		
+		int maxSeq = commentReplyService.getMaxSeq(board_num,board_type,comment_num);
+//		request.setAttribute("maxSeq", maxSeq);
+		
 		if(!isReplySuccess) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -56,7 +59,7 @@ public class CommentReplyAction implements Action {
 		} else {
 			forward = new ActionForward();
 			forward.setPath("FreeBoardDetail.free?board_num="+board_num+ 
-					"&page="+page+"&board_type="+board_type);
+					"&page="+page+"&board_type="+board_type+"&max_seq="+maxSeq);
 //			forward.setPath("FreeBoardDetail.free?board_num=" + board_num + 
 //					"&page=" + request.getParameter("page")+"&board_type="+board_type);
 			forward.setRedirect(true);

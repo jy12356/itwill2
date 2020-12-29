@@ -74,15 +74,21 @@ public class RentalController extends HttpServlet {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
+			}  
+			
+		} else if (command.equals("/ReservationList.rn")) {
+			action = new ReservationListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+			
 			
 	// 반납용
 		} else if (command.equals("/Return.rn")) {
 			action = new returnAction();
-//=======
-//		} else if (command.equals("/ReservationList.rn")) {
-	//		action = new ReservationListAction();
-//>>>>>>> master
+
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -110,7 +116,7 @@ public class RentalController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 		
 		
 		

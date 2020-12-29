@@ -159,8 +159,9 @@ int board_num = article.getBoard_num();
 								<%if(commentList.get(i).getRe_lev() > 0) {%>
 									<div class="pl20 cmt_rereply_inner">
 										<p class="comment-vote">
-											<i><%=commentList.get(i).getComment_id()%></i><em>|</em> <span class="date"><%=commentList.get(i).getDate()%></span><em>|</em>
-											댓글 <%=commentList.get(i).getRe_lev()%>
+											<i><%=commentList.get(i).getComment_id()%></i><em>|</em> <span class="date"><%=commentList.get(i).getDate()%></span>
+<!-- 											<em>|</em> -->
+<%-- 											댓글 <%=//commentList.get(i).getRe_lev()%> --%>
 										</p>
 										<div class="comment-content">
 											<span><%=commentList.get(i).getComment_desc()%></span>
@@ -170,8 +171,9 @@ int board_num = article.getBoard_num();
 									</div>
 									<%}else{%>
 									<p class="comment-vote">
-										<i><%=commentList.get(i).getComment_id()%></i><em>|</em> <span class="date"><%=commentList.get(i).getDate()%></span><em>|</em>
-										댓글 <%=commentList.get(i).getRe_lev()%>
+										<i><%=commentList.get(i).getComment_id()%></i><em>|</em> <span class="date"><%=commentList.get(i).getDate()%></span>
+<!-- 										<em>|</em> -->
+<%-- 										댓글 <%=//commentList.get(i).getRe_lev()%> --%>
 									</p>
 									<div class="comment-content">
 										<span><%=commentList.get(i).getComment_desc()%></span>
@@ -265,7 +267,7 @@ int board_num = article.getBoard_num();
 						</div>
 <%-- <p>entireCount = <%=entireCount %></p> --%>
 <%-- <p>limit = <%=limit %></p> --%>
-						
+<!-- 						<input type="hidden" value="여기로오렴" id="CC"> -->
 						<%
 // 						if(commentList != null && listCount > 0) {
 							if(entireCount > limit) {

@@ -29,6 +29,7 @@ public class FreeBoardDetailAction implements Action {
 		// 파라미터로 전달받은 게시물 번호(board_num) 가져오기
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		int board_type = Integer.parseInt(request.getParameter("board_type"));
+//		int maxSeq = Integer.parseInt(request.getParameter("max_seq"));
 //		int b = Integer.parseInt(request.getParameter("b"));
 		
 		System.out.println("게시물 번호 : " + board_num);
@@ -67,6 +68,8 @@ System.out.println("2");
 
 		ArrayList<CommentBean> commentList = new ArrayList<CommentBean>();
 		commentList = fbCommentListService.getCommentList(page, limit, board_type, board_num);
+		
+//		int maxSeq = fbCommentListService.getMaxSeq();
 		System.out.println("5");
 
 		int maxPage = (int) ((double) listCount / limit + 0.95);
@@ -106,7 +109,7 @@ System.out.println("2");
 			request.setAttribute("comment", cb);
 			request.setAttribute("entireCount", entireCount);
 			System.out.println("2");
-
+//			request.setAttribute("maxSeq", maxSeq);
 			request.setAttribute("commentList", commentList);
 			request.setAttribute("limit", limit);
 			System.out.println("3");
