@@ -1,12 +1,27 @@
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="dao.MemberDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+
 <%
-// String id = (String)session.getAttribute("id");
+/* MemberDAO memberDao = MemberDAO.getInstance();
+
+JSONArray jsonArray = memberDao.memberListCal(); */
+	// String id = (String)session.getAttribute("id");
 // 	MemberBean article = (MemberBean)request.getAttribute("article");
+
+ArrayList<MemberBean> articleList = (ArrayList<MemberBean>) request.getAttribute("articleList");
+/* PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+int nowPage = pageInfo.getPage();
+int maxPage = pageInfo.getMaxPage();
+int startPage = pageInfo.getStartPage();
+int endPage = pageInfo.getEndPage();
+int listCount = pageInfo.getListCount(); */
+SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd");
 	String id= (String)session.getAttribute("id");
 	ArrayList<MemberBean> articleList = (ArrayList<MemberBean>)request.getAttribute("articleList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
@@ -31,50 +46,138 @@
 	} 
 	
 %> 
-<jsp:include page="../include/header.jsp"/>
-<style>
-/* .koSort_on  {padding: 3px; margin: 2px; border-bottom: 2px solid black;}
-.koSort_off  {padding: 2px; margin: 2px; color: gray;} 
-.memSort_on  {padding: 3px; margin: 2px; color:#00ab94;}
-.memSort_off  {padding: 2px; margin: 2px;color: gray;}
-.ko-array{content:"";display:block;clear:both;}
-.ko-array input[type='radio']{position:absolute;left:-9999px;width:17px;height:17px;}
-.ko-array label{display:block;margin-left:20px;line-height:50px;height:50px;float:left;text-align:center;font-weight:600;font-size:14px;cursor:pointer;}
- */
-.mem-array{}
-.mem-array:after{content:"";display:block;clear:both;}
-.mem-array input[type='radio']{position:absolute;left:-9999px;width:17px;height:17px;}
-.mem-array label{display:block;margin-left:20px;line-height:50px;height:50px;float:left;text-align:center;font-weight:600;font-size:14px;cursor:pointer;}
- 
-.mem-array label span {padding: 2px; margin: 2px; color: gray;}
-.mem-array label .on{padding: 3px; margin: 2px; border-bottom: 2px solid black;}
-.mem-array label span {padding: 2px; margin: 2px; color: gray;}
-.mem-array label .on{padding: 3px; margin: 2px; border-bottom: 2px solid black;}
-
-.ko-array{}
-.ko-array:after{content:"";display:block;clear:both;}
-.ko-array input[type='radio']{position:absolute;left:-9999px;width:17px;height:17px;}
-.ko-array label{display:block;margin-left:20px;line-height:50px;height:50px;float:left;text-align:center;font-weight:600;font-size:14px;cursor:pointer;}
-.ko-array label span {padding: 2px; margin: 2px; color: gray;}
-.ko-array label .on{padding: 3px; margin: 2px; border-bottom: 2px solid black;}
-.ko-array label span {padding: 2px; margin: 2px; color: gray;}
-.ko-array label .on{padding: 3px; margin: 2px; border-bottom: 2px solid black;}
-
- 
-
-th.memSortTbody {font-size: 13px; font-weight: 500; padding: 3px;}
-
-.btn2 {
-    padding: 8px !important;
-    margin-top: 15px;
-    background-color: #069e89 !important;
-    color: white;
-    border-radius: 5px !important;
-    font-weight: 500;
-    font-size: 14px;
-    border: 1px solid #72ada5 !important;
+<jsp:include page="../include/header.jsp" />
+<style type="text/css">
+li>#pieCatg {
+	float: left;
 }
 
+li>#bar {
+	float: right;
+}
+
+.mem-array {
+	
+}
+
+.mem-array:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.mem-array input[type='radio'] {
+	position: absolute;
+	left: -9999px;
+	width: 17px;
+	height: 17px;
+}
+
+.mem-array label {
+	display: block;
+	margin-left: 20px;
+	line-height: 50px;
+	height: 50px;
+	float: left;
+	text-align: center;
+	font-weight: 600;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.mem-array label span {
+	padding: 2px;
+	margin: 2px;
+	color: gray;
+}
+
+.mem-array label .on {
+	padding: 3px;
+	margin: 2px;
+	border-bottom: 2px solid black;
+}
+
+.mem-array label span {
+	padding: 2px;
+	margin: 2px;
+	color: gray;
+}
+
+.mem-array label .on {
+	padding: 3px;
+	margin: 2px;
+	border-bottom: 2px solid black;
+}
+
+.ko-array {
+	
+}
+
+.ko-array:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.ko-array input[type='radio'] {
+	position: absolute;
+	left: -9999px;
+	width: 17px;
+	height: 17px;
+}
+
+.ko-array label {
+	display: block;
+	margin-left: 20px;
+	line-height: 50px;
+	height: 50px;
+	float: left;
+	text-align: center;
+	font-weight: 600;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+.ko-array label span {
+	padding: 2px;
+	margin: 2px;
+	color: gray;
+}
+
+.ko-array label .on {
+	padding: 3px;
+	margin: 2px;
+	border-bottom: 2px solid black;
+}
+
+.ko-array label span {
+	padding: 2px;
+	margin: 2px;
+	color: gray;
+}
+
+.ko-array label .on {
+	padding: 3px;
+	margin: 2px;
+	border-bottom: 2px solid black;
+}
+
+th.memSortTbody {
+	font-size: 13px;
+	font-weight: 500;
+	padding: 3px;
+}
+
+.btn2 {
+	padding: 8px !important;
+	margin-top: 15px;
+	background-color: #069e89 !important;
+	color: white;
+	border-radius: 5px !important;
+	font-weight: 500;
+	font-size: 14px;
+	border: 1px solid #72ada5 !important;
+}
 </style>
 <section class="sub">
 	<div class="category-nav">
@@ -119,245 +222,227 @@ th.memSortTbody {font-size: 13px; font-weight: 500; padding: 3px;}
 					</div>
 				</div>
 			</div>
-<section class="sub">
-<div class="contents-wrap">
-    <div class="customer" style="width:1400px; ">
-     <h3 class="coTitle">고객관리</h3>
-     <div class="customer-contents">
-         <div class="customer-inner">
-             <table summary="공지사항" class="customer-table notice">
-                 <caption>공지사항</caption>
-                 <div class="list-sort">
-					<div class="mem-array">
-					<input type="radio" name="name1" id="name1" value="*">
-					<label for="" class="radio" data-sort="전체" ><span>전체</span></label>
-					
-					<input type="radio" name="name1" id="name1" value="이름순">
-					<label for="" class="radio" data-sort="이름순"><span>이름순</span></label>
-					
-					<input type="radio" name="name1" id="name1" value="아이디순">
-					<label for="" class="radio" data-sort="아이디순"><span>아이디순</span></label>
-					
-					<input type="radio" name="name1" id="name1"  value="상태">
-					<label for="" class="radio" data-sort="상태"><span>상태</span></label>
-					
+	<section class="sub">
+		<div class="contents-wrap">
+			<div class="customer" style="width: 1400px;">
+				<h3 class="coTitle">고객관리</h3>
+				<div class="customer-contents">
+					<div class="customer-inner">
+						<table summary="공지사항" class="customer-table notice">
+							<!-- <table class="columns"> -->
+							<tr>
+								<td><div id="chart1" style="background-color :blue;"></div></td>
+							</tr>
+							<tr>
+								<td><div id="chart2" style="background-color :orange;"></div></td>
+							</tr>
+							<tr>
+								<td><div id="chart3" style="background-color :blue;"></div></td>
+							</tr>
+							<tr>
+								<td><div id="chart4" style="background-color :orange;"></div></td>
+							</tr> 
+							
+							<!--  </table> -->
+
+						</table>
+
+
+
+
+						<table summary="공지사항" class="customer-table notice">
+							<caption>공지사항</caption>
+							<thead>
+								<tr>
+									<th scope="col" class="memSortTbody" abbr="선택">선택</th>
+									<th scope="col" class="memSortTbody" abbr="회원번호">회원번호</th>
+									<th scope="col" class="memSortTbody" abbr="아이디">아이디</th>
+									<th scope="col" class="memSortTbody" abbr="비밀번호">비밀번호</th>
+									<th scope="col" class="memSortTbody" abbr="이름">이름</th>
+									<th scope="col" class="memSortTbody" abbr="이메일">이메일</th>
+									<th scope="col" class="memSortTbody" abbr="전화번호">전화번호</th>
+									<th scope="col" class="memSortTbody" abbr="생년월일">생년월일</th>
+									<th scope="col" class="memSortTbody" abbr="가입일">가입일</th>
+									<th scope="col" class="memSortTbody" abbr="주소">주소</th>
+									<th scope="col" class="memSortTbody" abbr="선호장르">선호장르</th>
+									<th scope="col" class="memSortTbody" abbr="상태">상태</th>
+								</tr>
+							</thead>
+							<tbody>
+								<%
+									for (int i = 0; i < articleList.size(); i++) {
+								%>
+								<tr>
+									<th scope="col" class="memSortTbody" abbr="선택"><input
+										type="checkbox" name="check_box" id="check_box"
+										value=<%=articleList.get(i).getNum()%>></th>
+									<th scope="col" class="memSortTbody" abbr="회원번호" id="num"><%=articleList.get(i).getNum()%></th>
+									<th scope="col" class="memSortTbody" abbr="아이디" id="id"><%=articleList.get(i).getId()%></th>
+									<th scope="col" class="memSortTbody" abbr="비밀번호" id="password"><%=articleList.get(i).getPassword()%></th>
+									<th scope="col" class="memSortTbody" abbr="이름" id="name"><%=articleList.get(i).getName()%></th>
+									<th scope="col" class="memSortTbody" abbr="이메일" id="email"><%=articleList.get(i).getEmail()%></th>
+									<th scope="col" class="memSortTbody" abbr="전화번호" id="phone"><%=articleList.get(i).getPhone()%></th>
+									<th scope="col" class="memSortTbody" abbr="생년월일" id="age"><%=articleList.get(i).getAge()%></th>
+									<th scope="col" class="memSortTbody" abbr="가입일" id="date"><%=sdf.format(articleList.get(i).getDate())%></th>
+									<th scope="col" class="memSortTbody" abbr="주소" id="address"><%=articleList.get(i).getAddress()%></th>
+									<th scope="col" class="memSortTbody" abbr="선호장르" id="catg"><%=articleList.get(i).getCatg()%></th>
+									<th scope="col" class="memSortTbody" abbr="상태" id="state"><%=articleList.get(i).getState()%></th>
+									<%
+										}
+									%>
+								</tr>
+						</table>
+						</tbody>
+						<label for="" class="radio" data-sort="등급"> <input
+							type="button" name="reportChkBxRow" class="btn2" value="삭제"
+							onclick="deleteListMem()"></label>
+						<div class="paging">
+							<a href="/customer.asp?page=notice&pageNum=1" class="arr"
+								data-page-num="1"><img src="images/p-first.png"><span
+								class="hide">처음페이지</span></a> <a
+								href="/customer.asp?page=notice&pageNum=1" class="arr prev"
+								data-page-num="1"><img src="images/p-prev.png"><span
+								class="hide">이전페이지</span></a> <a
+								href="/customer.asp?page=notice&pageNum=1" class="on fir"
+								data-page-num="1">1</a>
+							<!-- 	<a href="/customer.asp?page=notice&pageNum=2" class="" data-page-num="2">2</a><a href="/customer.asp?page=notice&pageNum=3" class="" data-page-num="3">3</a><a href="/customer.asp?page=notice&pageNum=4" class="" data-page-num="4">4</a><a href="/customer.asp?page=notice&pageNum=5" class="" data-page-num="5">5</a><a href="/customer.asp?page=notice&pageNum=6" class="" data-page-num="6">6</a><a href="/customer.asp?page=notice&pageNum=7" class="" data-page-num="7">7</a><a href="/customer.asp?page=notice&pageNum=8" class="" data-page-num="8">8</a><a href="/customer.asp?page=notice&pageNum=9" class="" data-page-num="9">9</a><a href="/customer.asp?page=notice&pageNum=10" class="" data-page-num="10">10</a> -->
+							<a href="/customer.asp?page=notice&pageNum=11" class="arr next"
+								data-page-num="11"> <img src="images/p-next.png"><span
+								class="hide">다음페이지</span></a> <a
+								href="/customer.asp?page=notice&pageNum=27" class="arr"
+								data-page-num="27"><img src="images/p-last.png"><span
+								class="hide">마지막페이지</span></a>
+						</div>
+					</div>
+
 				</div>
-				<!-- <div class="list-sort" id="memLiNameList"> -->	
+
+			</div>
+		</div>
+	</section>
+    
+	</section>
+	<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+	google.load("visualization", "1.0", {
+	     callback: function () {
+	       var queryObject="";
+	       var queryObjectLen="";
+	      
+	       $.ajax({
+			url : "MemberListCal.me",
+			dataType : "json",
+			success : function(resultObj) {
+				queryObject = eval("(" + JSON.stringify(data) + ")");  
+				queryObject =JSON.stringify(queryObject) ;
+				queryObjectLen = queryObject.opdetails.length;
 				
-				<%if(name1.equals("이름순")){ %> 
-				<div class="ko-array">
-					<input type="radio" name="" id="">
-					<label for="" class="radio1" data-sort="전체"><span onclick="memlist(this)" id="전체">전체</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio1" data-sort="ㄱ"><span onclick="memlist(this)" id="가">ㄱ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㄴ"><span onclick="memlist(this)" id="나">ㄴ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㄷ"><span onclick="memlist(this)" id="다">ㄷ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㄹ"><span onclick="memlist(this)" id="라">ㄹ</span></label>	
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㅁ"><span onclick="memlist(this)" id="마">ㅁ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㅂ"><span onclick="memlist(this)" id="바">ㅂ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㅅ"><span onclick="memlist(this)" id="사">ㅅ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㅇ"><span onclick="memlist(this)" id="아">ㅇ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㅈ"><span onclick="memlist(this)" id="자">ㅈ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㅊ"><span onclick="memlist(this)" id="차">ㅊ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㅋ"><span onclick="memlist(this)" id="카">ㅋ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㅌ"><span onclick="memlist(this)" id="타">ㅌ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㅍ"><span onclick="memlist(this)" id="파">ㅍ</span></label>
-					<input type="radio" name="" id="">
-					<label for="" class="radio" data-sort="ㅎ"><span onclick="memlist(this)" id="하">ㅎ</span></label>							
-				
-				</div>
 
-							<!--  </div> -->
-							<%}else if(name1.equals("아이디순")){ %>
-							<div class="ko-array">
-							<input type="radio" name="" id="">
-							<label for="" class="radio1" data-sort="전체"><span onclick="memlist(this)" id="전체">전체</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio1" data-sort="ㄱ"><span onclick="memlist(this)" id="가">a</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㄴ"><span onclick="memlist(this)" id="나">b</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㄷ"><span onclick="memlist(this)" id="다">c</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㄹ"><span onclick="memlist(this)" id="라">d</span></label>	
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅁ"><span onclick="memlist(this)" id="마">e</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅂ"><span onclick="memlist(this)" id="바">f</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅅ"><span onclick="memlist(this)" id="사">g</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅇ"><span onclick="memlist(this)" id="아">h</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅈ"><span onclick="memlist(this)" id="자">i</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅊ"><span onclick="memlist(this)" id="차">j</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅋ"><span onclick="memlist(this)" id="카">k</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅌ"><span onclick="memlist(this)" id="타">l</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅍ"><span onclick="memlist(this)" id="파">m</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅎ"><span onclick="memlist(this)" id="하">n</span></label>							
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅊ"><span onclick="memlist(this)" id="차">o</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅋ"><span onclick="memlist(this)" id="카">p</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅌ"><span onclick="memlist(this)" id="타">q</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅍ"><span onclick="memlist(this)" id="파">r</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅎ"><span onclick="memlist(this)" id="하">s</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅊ"><span onclick="memlist(this)" id="차">t</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅋ"><span onclick="memlist(this)" id="카">u</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅌ"><span onclick="memlist(this)" id="타">v</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅍ"><span onclick="memlist(this)" id="파">w</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅎ"><span onclick="memlist(this)" id="하">x</span></label>	
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅍ"><span onclick="memlist(this)" id="파">y</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio" data-sort="ㅎ"><span onclick="memlist(this)" id="하">z</span></label>	
-							</div>
-							<%}else if(name1.equals("상태")){ %>
-							<div class="ko-array">
-							<input type="radio" name="" id="">
-							<label for="" class="radio1" data-sort="전체"><span onclick="memlist(this)" id="전체">전체</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio1" data-sort="전체"><span onclick="memlist(this)" id="전체">구독중</span></label>
-							<input type="radio" name="" id="">
-							<label for="" class="radio1" data-sort="ㄱ"><span onclick="memlist(this)" id="가">구독안함</span></label>
-							<input type="radio" name="" id="">
-							</div>
-							                   
-						<%} %>  
-						</div>                      
-                        <thead>
-                            <tr>
-                                <th scope="col" class="memSortTbody" abbr="선택" >선택</th>
-                                <th scope="col" class="memSortTbody" abbr="회원번호">회원번호</th>
-                                <th scope="col" class="memSortTbody" abbr="아이디">아이디</th>
-                                <th scope="col" class="memSortTbody" abbr="비밀번호">비밀번호</th>
-                                <th scope="col" class="memSortTbody" abbr="이름">이름</th>
-                                <th scope="col" class="memSortTbody" abbr="이메일">이메일</th>
-                                <th scope="col" class="memSortTbody" abbr="전화번호">전화번호</th>
-                                <th scope="col" class="memSortTbody" abbr="생년월일">생년월일</th>
-                                <th scope="col" class="memSortTbody" abbr="가입일">가입일</th>
-                                <th scope="col" class="memSortTbody" abbr="주소">주소</th>
-                                <th scope="col" class="memSortTbody" abbr="선호장르">선호장르</th>
-                                <th scope="col" class="memSortTbody" abbr="상태">상태</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <%for(int i = 0; i < articleList.size(); i++) {%>
-                            <tr>
-                                <th scope="col" class="memSortTbody" abbr="선택"><input type="checkbox" name="check_box" id="check_box" value=<%=articleList.get(i).getNum()%> > </th>
-                                <th scope="col" class="memSortTbody" abbr="회원번호" id="num"><%=articleList.get(i).getNum()%></th>
-                                <th scope="col" class="memSortTbody" abbr="아이디" id="id"><%=articleList.get(i).getId()%></th>
-                                <th scope="col" class="memSortTbody" abbr="비밀번호" id="password"><%=articleList.get(i).getPassword()%></th>
-                                <th scope="col" class="memSortTbody" abbr="이름" id="name"><%=articleList.get(i).getName()%></th>
-                                <th scope="col" class="memSortTbody" abbr="이메일" id="email"><%=articleList.get(i).getEmail()%></th>
-                                <th scope="col" class="memSortTbody" abbr="전화번호" id="phone"><%=articleList.get(i).getPhone()%></th>
-                                <th scope="col" class="memSortTbody" abbr="생년월일" id="age"><%=articleList.get(i).getAge()%></th>
-                                <th scope="col" class="memSortTbody" abbr="가입일" id="date"><%=sdf.format(articleList.get(i).getDate())%></th>
-                                <th scope="col" class="memSortTbody" abbr="주소" id="address"><%=articleList.get(i).getAddress()%></th>
-                                <th scope="col" class="memSortTbody" abbr="선호장르" id="catg"><%=articleList.get(i).getCatg()%></th>
-                                <th scope="col" class="memSortTbody" abbr="상태" id="state"><%=articleList.get(i).getState()%></th>
-                           <%} %>
-                            </tr>
-								 </table>
-                        </tbody>
-                    <label for="" class="radio" data-sort="등급">	
-					<input type="button" name="reportChkBxRow" class="btn2" value="삭제" onclick="deleteListMem()"></label>
-                    <div class="paging">
-                        <a href="/customer.asp?page=notice&pageNum=1" class="arr" data-page-num="1"><img src="images/p-first.png"><span class="hide">처음페이지</span></a>
-                        <a href="/customer.asp?page=notice&pageNum=1" class="arr prev" data-page-num="1"><img src="images/p-prev.png"><span class="hide">이전페이지</span></a>
-                        <a href="/customer.asp?page=notice&pageNum=1" class="on fir" data-page-num="1">1</a>
-                        <!-- 	<a href="/customer.asp?page=notice&pageNum=2" class="" data-page-num="2">2</a><a href="/customer.asp?page=notice&pageNum=3" class="" data-page-num="3">3</a><a href="/customer.asp?page=notice&pageNum=4" class="" data-page-num="4">4</a><a href="/customer.asp?page=notice&pageNum=5" class="" data-page-num="5">5</a><a href="/customer.asp?page=notice&pageNum=6" class="" data-page-num="6">6</a><a href="/customer.asp?page=notice&pageNum=7" class="" data-page-num="7">7</a><a href="/customer.asp?page=notice&pageNum=8" class="" data-page-num="8">8</a><a href="/customer.asp?page=notice&pageNum=9" class="" data-page-num="9">9</a><a href="/customer.asp?page=notice&pageNum=10" class="" data-page-num="10">10</a> -->
-                        <a href="/customer.asp?page=notice&pageNum=11" class="arr next" data-page-num="11">
-                            <img src="images/p-next.png"><span class="hide">다음페이지</span></a>
-                        <a href="/customer.asp?page=notice&pageNum=27" class="arr" data-page-num="27"><img src="images/p-last.png"><span class="hide">마지막페이지</span></a>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</section>
-	</div>				
-</div>
-<script type="text/javascript">
-function memlist(nameForm) {
-	var name = nameForm.value
-	var num = document.getElementById('num');
-	var id = document.getElementById('id');
-	var name = document.getElementById('name');
-	var password = document.getElementById('password');
-	var email = document.getElementById('email');
-	var phone = document.getElementById('phone');
-	var catg = document.getElementById('catg');
-	var age = document.getElementById('age');
-	var address = document.getElementById('address');
-	var date = document.getElementById('date');
-	var state = document.getElementById('state');
-	
-	
-/* 	$.ajax({
-	       type:"POST",
-	       url:"MemNameList.me",
-	       async: false, 
-	       data : {
-	              id : id
-	          }, 
-
-	       success : function(resultObj) { */
-	    	   $(document).ready(function(){
-	    	   $('.전체').click(function(){
-	   			$.getJSON('json2.jsp',function(rdata){
-	   				$.each(rdata,function(index,item){
-	   					$('table').append("<tr><td>"+item.num+"</td><td>"+item.id+"</td><td>"+item.name+"</td><td>"+item.password
-	   							         +"</td></tr>"+item.email+"</td></tr>"+item.phone+"</td></tr>"+item.catg+"</td></tr>"
-	   							      +item.age+"</td></tr>"+item.address+"</td></tr>"+item.date+"</td></tr>"+item.status+"</td></tr>");
-	   					
-					});
-				});
-			});
-		});
-/* 	   				});
-	   			});
-	   		});
-		    },
-	        /* error: function(request,status,error,resultObj){
-	              alert("code:"+request.status+"\n"+"error:"+error+"message:"+request.responseText+"\n"+"error:"+error);
-	        } 
-	 })
-	
-	 */
-	
-}
-	 function deleteListMem(){
-			var confirm_val = confirm("정말 삭제하시겠습니까?");
+			var data = new google.visualization.DataTable();
+			data.addColumn("string", "catg");
+			data.addColumn("number", "catg_count");
+			for (var i = 0; i < queryObjectLen; i++) {
+				var catg = queryObject.opdetails[i].catg;
+				var catg_count = queryObject.opdetails[i].catg_count;
+				data.addRows([ [ catg, parseInt(catg_count) ] ]);
+			}
 			
-			if(confirm_val) {
+			var data2 = new google.visualization.DataTable();
+			data2.addColumn("string", "date");
+			data2.addColumn("number", "id_count");
+			for (var i = 0; i < queryObjectLen; i++) {
+				var date = queryObject.opdetails[i].date;
+				var id_count = queryObject.opdetails[i].id_count;
+				data2.addRows([ [ date, parseInt(id_count) ] ]);
+			}
+			
+			var data3 = new google.visualization.DataTable();
+			data3.addColumn("string", "qna_genre");
+			data3.addColumn("number", "qna_count");
+			for (var i = 0; i < queryObjectLen; i++) {
+				var qna_genre = queryObject.opdetails[i].qna_genre;
+				var qna_count = queryObject.opdetails[i].qna_count;
+				data3.addRows([ [ qna_genre, parseInt(qna_count) ] ]);
+			}
+			
+			var data4 = new google.visualization.DataTable();
+			data4.addColumn("string", "s_date");
+			data4.addColumn("number", "retal_count");
+			for (var i = 0; i < queryObjectLen; i++) {
+				var s_date = queryObject.opdetails[i].s_date;
+				var retal_count = queryObject.opdetails[i].retal_count;
+				data4.addRows([ [ s_date, parseInt(retal_count) ] ]);
+			}
+			
+			var options = {
+				title : "1번 그래프_선호장르",
+				colors : [ "green", "yellow" ],
+				hAxis : {
+					title : "Location11"
+				},
+				vAxis : {
+					title : "No. of Posts11"
+				}
+			};
+			
+			var options2 = {
+				title : "2번 그래프_가입자수증가",
+				   curveType: "function", 
+				colors : [ "green", "yellow" ],
+				hAxis : {
+					title : "Location22"
+				},
+				vAxis : {
+					title : "No. of Posts22"
+				} 
+			};
+			
+			var options3 = {
+				title : "3번 그래프_불만사항 접수",
+				colors : [ "green", "yellow" ],
+				hAxis : {
+					title : "Location33"
+				},
+				vAxis : {
+					title : "No. of Posts33"
+				}
+			};
+			
+			var options4 = {
+				title : "4번 그래프_대출 그래프",
+				colors : [ "green", "yellow" ],
+				hAxis : {
+					title : "Location44"
+				},
+				vAxis : {
+					title : "No. of Posts44"
+				}
+			};
+			
+			var chart1 =  new google.visualization.PieChart(document.getElementById("chart1"));
+	           chart1.draw(data,options);
+
+			var chart2 =  new google.visualization.LineChart(document.getElementById("chart2"));
+			chart2.draw(data2,options2);
+
+			var chart3 =  new google.visualization.PieChart(document.getElementById("chart3"));
+			chart3.draw(data3,options3);
+
+			var chart4 =  new google.visualization.PieChart(document.getElementById("chart4"));
+			chart4.draw(data4,options4);
+			
+		},
+		error: function (xhr, type,data,queryObject) {
+	           alert(data+"~~~"+queryObject)
+	         }
+	       });
+	     },
+	     packages:["corechart"]
+	});
+    
+    	if(confirm_val) {
 				var inter_num = [];
 				if ($('.check_box input[type="checkbox"]:checked').length > 0) {
 					$('.check_box input[type="checkbox"]:checked').each(function(){
@@ -383,29 +468,30 @@ function memlist(nameForm) {
 			} 
 	    };
 	    
-$(document).ready(function(){
+//$(document).ready(function(){
 	 
     // 라디오버튼 클릭시 이벤트 발생
     
-    $("input:radio[name=memLiName]").click(function(){
- 
-        if($("input[name=memLiName]:checked").val() == "1"){
-            $("div[id=memLiNameList]").attr("disabled",true);
+ //   $("input:radio[name=memLiName]").click(function(){
+ //
+ //       if($("input[name=memLiName]:checked").val() == "1"){
+ //           $("div[id=memLiNameList]").attr("disabled",true);
             // radio 버튼의 value 값이 1이라면 활성화 div class="list-sort" id="memLiNameList"
  
-        }else if($("input[name=radio]:checked").val() == "0"){
-              $("div[id=memLiNameList]").attr("disabled",false);
+//        }else if($("input[name=radio]:checked").val() == "0"){
+//              $("div[id=memLiNameList]").attr("disabled",false);
             // radio 버튼의 value 값이 0이라면 비활성화
-        }
-    });
-});
+//        }
+//    });
+//});
 	    
-$(document).ready(function(){
-	$("input:radio[id=memLiName]").click(function(){
-		$("div[id=memLiNameList]").attr("disabled",true);
+//$(document).ready(function(){
+//	$("input:radio[id=memLiName]").click(function(){
+//		$("div[id=memLiNameList]").attr("disabled",true);
 		
-	})
-})    
+//	})
+//})    
 	    
-</script>
-<jsp:include page="../include/footer.jsp"/>
+	</script>
+</html>
+<jsp:include page="../include/footer.jsp" />

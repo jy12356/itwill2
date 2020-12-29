@@ -5,9 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.security.auth.login.LoginException;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import vo.MemberBean;
@@ -15,10 +19,10 @@ import vo.MemberBean;
 //import db.JdbcUtil;
 import static db.JdbcUtil.*;
 
-
 public class MemberDAO {
-	private MemberDAO() {}
-	
+	private MemberDAO() {
+	}
+
 	private static MemberDAO instance = new MemberDAO();
 
 	public static MemberDAO getInstance() {
@@ -26,34 +30,33 @@ public class MemberDAO {
 	}
 	// ========================================================================
 
-	Connection con; 
+	Connection con;
 
 	public void setConnection(Connection con) {
 		this.con = con;
 	}
+
 	// MemberJoinPro.me
 	public int insertMember(MemberBean memberBean) {
 		System.out.println("MemberDAO - insertMember()");
-		int insertCount = 0; 
-		
+		int insertCount = 0;
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		int num = 1; 
-		
+
+		int num = 1;
+
 		try {
 			String sql = "SELECT MAX(num) FROM member";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				num = rs.getInt(1) + 1; 
-			} 
-			
+			if (rs.next()) {
+				num = rs.getInt(1) + 1;
+			}
+
 			sql = "INSERT INTO member (num,id,password,email,phone,catg,age,address,name,date) VALUES (?,?,?,?,?,?,?,?,?,now())";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num); 
-			pstmt.setString(2,memberBean.getId());
+			pstmt.setInt(1, num);
+			pstmt.setString(2, memberBean.getId());
 			pstmt.setString(3, memberBean.getPassword());
 			pstmt.setString(4, memberBean.getEmail());
 			pstmt.setString(5, memberBean.getPhone());
@@ -63,7 +66,7 @@ public class MemberDAO {
 			pstmt.setString(9, memberBean.getName());
 
 			insertCount = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			System.out.println("insertMember() ERROR! - " + e.getMessage());
 			e.printStackTrace();
@@ -72,25 +75,25 @@ public class MemberDAO {
 			close(rs);
 			close(pstmt);
 		}
-		
+
 		return insertCount;
 	}
+
 	// MemberLoginePro.me
-	public boolean isMember(String id, String password) throws LoginException  {
+	public boolean isMember(String id, String password) throws LoginException {
 		boolean isMember = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			String sql = "SELECT password,id FROM member WHERE id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			
-			
-			if(rs.next()) {
-				if(password.equals(rs.getString("password"))) {
-					
+
+			if (rs.next()) {
+				if (password.equals(rs.getString("password"))) {
+
 					isMember = true;
 				} else {
 					throw new LoginException();
@@ -98,36 +101,37 @@ public class MemberDAO {
 			} else {
 				throw new LoginException();
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("isMember() ERROR! - " + e.getMessage());
-			
+
 			e.printStackTrace();
 		} finally {
-			
+
 			close(rs);
 			close(pstmt);
 		}
-		
+
 		return isMember;
 	}
+
 	// MemberList.me
 	public int selectListCount() {
 		int listCount = 0;
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 
 			String sql = "SELECT count(num) FROM member";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
-			if(rs.next()) {
+			if (rs.next()) {
 				listCount = rs.getInt(1);
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("selectListCount() ERROR! - " + e.getMessage());
 			e.printStackTrace();
@@ -136,29 +140,28 @@ public class MemberDAO {
 			close(rs);
 			close(pstmt);
 		}
-		
+
 		return listCount;
 	}
 
 	// MemberList.me
 	public ArrayList<MemberBean> selectArticleList(int page, int limit) {
-		ArrayList<MemberBean> articleList = null;		
+		ArrayList<MemberBean> articleList = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 
 		int startRow = (page - 1) * limit;
-		
+
 		try {
 			String sql = "SELECT * FROM member ORDER BY num LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, limit);
 			rs = pstmt.executeQuery();
-			
+
 			articleList = new ArrayList<MemberBean>();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				MemberBean article = new MemberBean();
 				article.setNum(rs.getInt("num"));
 				article.setId(rs.getString("id"));
@@ -173,7 +176,7 @@ public class MemberDAO {
 				article.setState(rs.getString("state"));
 				articleList.add(article);
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("selectArticleList() ERROR! - " + e.getMessage());
 			e.printStackTrace();
@@ -181,13 +184,14 @@ public class MemberDAO {
 			close(rs);
 			close(pstmt);
 		}
-		
+
 		return articleList;
 	}
+
 	// MemberModifyPro
 	public int updateArticle(MemberBean article) {
 		int updateCount = 0;
-		
+
 		PreparedStatement pstmt = null;
 		try {
 			String sql = "UPDATE member SET name=?, email=?, phone=?, catg=?, age=?, address=?, password=? WHERE id=?";
@@ -201,52 +205,54 @@ public class MemberDAO {
 			pstmt.setString(7, article.getPassword());
 			pstmt.setString(8, article.getId());
 			updateCount = pstmt.executeUpdate();
-			System.out.println("updateArticle() 성공! updateCount : "+updateCount);
+			System.out.println("updateArticle() 성공! updateCount : " + updateCount);
 		} catch (SQLException e) {
 			System.out.println("updateArticle() ERROR! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return updateCount;
 	}
+
 	// MemberDeletePro.me
 	public int deleteArticle(MemberBean article) {
 		int deleteCount = 0;
-		
+
 		PreparedStatement pstmt = null;
 		try {
 			String sql = "delete from member WHERE id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, article.getId());
 			deleteCount = pstmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			System.out.println("deleteArticle() ERROR! " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
-	return deleteCount;
-}
+
+		return deleteCount;
+	}
+
 	// MemberModifyForm.me // MemberDeleteForm.me
 	public MemberBean selectMember(String id) {
 		MemberBean article = null;
-		
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			String sql = "SELECT * FROM member WHERE id=?;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			
+
 			System.out.println(id);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				article = new MemberBean();
 				article.setId(rs.getString("id"));
 				article.setName(rs.getString("name"));
@@ -258,7 +264,7 @@ public class MemberDAO {
 				article.setNum(rs.getInt("num"));
 				article.setPhone(rs.getString("phone"));
 			}
-			
+
 		} catch (SQLException e) {
 			System.out.println("selectArticle() ERROR! - " + e.getMessage());
 			e.printStackTrace();
@@ -266,12 +272,12 @@ public class MemberDAO {
 			close(rs);
 			close(pstmt);
 		}
-		
-		
+
 		return article;
 	}
+
 	// MemberModifyPro // MemberCheck.me
-	public boolean isIdCheck(String id) throws LoginException  {
+	public boolean isIdCheck(String id) throws LoginException {
 		boolean isIdCheckSuccess = false;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -280,11 +286,11 @@ public class MemberDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				isIdCheckSuccess=true;
+
+			if (rs.next()) {
+				isIdCheckSuccess = true;
 			} else {
-				
+
 			}
 		} catch (SQLException e) {
 			System.out.println("isIdCheck() ERROR! - " + e.getMessage());
@@ -295,25 +301,99 @@ public class MemberDAO {
 		}
 		return isIdCheckSuccess;
 	}
+
 	public int dibsDelete(List<Integer> interNumList, String id) {
 		System.out.println("bookDAO - dibsDelete");
 		int isDeleteOk = 0;
 		PreparedStatement pstmt = null;
 		try {
-			for(int i=0; i< interNumList.size(); i++) {
+			for (int i = 0; i < interNumList.size(); i++) {
 				String sql = "delete from interestinglist where num=? and id=?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, interNumList.get(i));
-				pstmt.setString(2,id);
+				pstmt.setString(2, id);
 				System.out.println(pstmt);
 				isDeleteOk = pstmt.executeUpdate();
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("dibsDelete 오류!" + e.getMessage());
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 		}
 		return isDeleteOk;
+	}
+
+	// ========================================================================
+	// MemberList calculating..
+	// ========================================================================
+
+	public JSONArray memberListCal() {
+		boolean isMemberListCalSuccess = false;
+		System.out.println("MemberDAO - memberListCal");
+		PreparedStatement pstmt = null;
+		JSONArray responseObj = new JSONArray();
+		try {
+			ResultSet rs1 = null;
+			ResultSet rs2 = null;
+			ResultSet rs3 = null;
+			ResultSet rs4 = null;
+
+			List opdetails = new LinkedList();
+			JSONObject opObj = new JSONObject();
+			JSONObject opObj1 = new JSONObject();
+
+			String query1 = "select catg, count(*) as catg_count from member group by catg;";
+			PreparedStatement pstm1 = con.prepareStatement(query1);
+			System.out.println("pstm1 : " + pstm1);
+			String query2 = "select date, count(*) as id_count from member group by date;";
+			PreparedStatement pstm2 = con.prepareStatement(query2);
+			System.out.println("pstm2 : " + pstm2);
+			String query3 = "select qna_genre, count(*) as qna_count from qna group by qna_genre;";
+			PreparedStatement pstm3 = con.prepareStatement(query3);
+			System.out.println("pstm3 : " + pstm3);
+			String query4 = "select s_date, count(*) as retal_count from rental group by s_date;";
+			PreparedStatement pstm4 = con.prepareStatement(query4);
+			System.out.println("pstm4 : " + pstm4);
+			
+			rs1 = pstm1.executeQuery();
+			rs2 = pstm2.executeQuery();
+			rs3 = pstm3.executeQuery();
+			rs4 = pstm4.executeQuery();
+
+
+			while(rs1.next()) {
+				String catg = rs1.getString("catg");
+				int catg_count = rs1.getInt("catg_count");
+				opObj.put(catg, catg_count);
+			}
+
+			while(rs2.next()) {
+				String date = rs2.getString("date");
+				int id_count = rs2.getInt("id_count");
+				opObj.put(date, id_count);
+			}
+			while(rs3.next()) {
+				String qna_genre = rs3.getString("qna_genre");
+				int qna_count = rs3.getInt("qna_count");
+				opObj.put(qna_genre, qna_count);
+			}
+			while(rs4.next()) {
+				String s_date = rs4.getString("s_date");
+				int retal_count = rs4.getInt("retal_count");
+				opObj.put(s_date, retal_count);
+				
+			}
+			opdetails.add(opObj);
+			responseObj.add(opdetails); 
+			System.out.println("11111"+responseObj.toString());
+			isMemberListCalSuccess = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con);
+		}
+		System.out.println("MemberDAO - memberListCal 종료");
+		return responseObj;
 	}
 }
