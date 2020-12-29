@@ -92,6 +92,7 @@ public class BoardQnaController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 		}else if(command.equals("/QnaReplyPro.qna")) {
 			action = new QnaReplyProAction();
 			

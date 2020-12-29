@@ -34,7 +34,7 @@ public class BookRegiSearchAction implements Action {
 		JSONObject json = new JSONObject();
 		
 		String apiURL = "https://openapi.naver.com/v1/search/book?query=="+ title; 
-        URL url = new URL(apiURL); //API 기본정보의 요청 url을 복사해오고 필수인 query를 적어줍니당! 
+        URL url = new URL(apiURL); //API 기본정보의 요청 url을 복사해오고 필수인 query를 적어줍니다 
         
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
@@ -63,22 +63,7 @@ public class BookRegiSearchAction implements Action {
         //JSONObject에서 PersonsArray를 get하여 JSONArray에 저장한다. 
        
         JSONObject personObject =null;
-        JSONArray bookArray = (JSONArray) jsonObj.get("items");
-//        for(int i=0; i < bookArray.size(); i++) { 
-//        	System.out.println("======== book : " + i + " ========"); 
-//        	personObject = (JSONObject) bookArray.get(i); 
-//        	System.out.println(personObject.get("title")); 
-//        	System.out.println(personObject.get("link")); 
-//        	System.out.println(personObject.get("image")); 
-//        	System.out.println(personObject.get("author")); 
-//        	System.out.println(personObject.get("price")); 
-//        	System.out.println(personObject.get("discount")); 
-//        	System.out.println(personObject.get("publisher")); 
-//        	System.out.println(personObject.get("pubdate")); 
-//        	System.out.println(personObject.get("isbn")); 
-//        	System.out.println(personObject.get("description")); 
-//    	} 
-	        
+        JSONArray bookArray = (JSONArray) jsonObj.get("items");	        
 		out.print(bookArray);
 		return null;
 	}

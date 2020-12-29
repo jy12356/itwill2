@@ -50,6 +50,15 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Open+Sans&family=Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sub5/FullCalendar/vendor/css/fullcalendar.min.css" />
+<link rel="stylesheet" href="sub5/FullCalendar/vendor/css/bootstrap.min.css">
+<link rel="stylesheet" href='sub5/FullCalendar/vendor/css/select2.min.css' />
+<link rel="stylesheet" href='sub5/FullCalendar/vendor/css/bootstrap-datetimepicker.min.css' />
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="sub5/FullCalendar/css/main.css">
 <!-- naver-->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 	<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
@@ -71,13 +80,11 @@ String id = (String)session.getAttribute("id");
 				<form name="searchFrm" id="searchFrm" autocomplete="off">
 				<!--input type="hidden" name="searchOption" id="searchOption" value="" /-->
 				<input type="text" style="display: none;" />
-				<input type="hidden" name="searchpage" value="normal" />
-				<input type="hidden" name="page" value="">
 					<fieldset>
 						<legend>검색</legend>
 						<h1 class="logo"><a href="Main.book">북큐브서점</a></h1>
 						<div class="search">						
-							<input type='text' name='searchString' class="search_input" style="ime-mode:active;" />
+							<input type='text' name='search' class="search_input" style="ime-mode:active;" />
 							<input type='button' onclick="frmSearchSubmit()" />
 						</div>
 						<%if(id == null){ %>
@@ -88,9 +95,14 @@ String id = (String)session.getAttribute("id");
 						<%}else{ %>
 						<ul class="my-lnb">
 							<li class="btnLogOut"><a href="MemberLogoutPro.me">로그아웃</a></li>
-							<li><a href="MyPage?id=<%=id%>">MY</a></li>
+							<%if(id == "admin"){ %>
+								<li><a href="Admin.book">admin</a></li>
+							<%}else{
+								%>
+								<li><a href="Mypage.me?id=<%=id%>">MY</a></li>
+							<%} %>
 							<li><a href="MyBasketInsert.bk">책바구니</a></li>
-							<li class="alarm on"><a href="#">알리미</a></li>
+							<li class="alarm on"><a href="MyMsg.msg">알리미</a></li>
 						</ul>
 						<%} %>
 					</fieldset>
@@ -115,14 +127,11 @@ String id = (String)session.getAttribute("id");
 				<ul class="gnb">
 					<li><a href="Main.book" class="on">홈</a></li>
 					<li><a href="FreeBoardList.free">게시판</a></li>
-<!-- 					<li><a href="../sub5/card.jsp">카트</a></li> -->
-						<%if(id != null && id.equals("admin")){ %>
-							<li><a href="https://www.bookcube.com/toon/main.asp">관리자페이지</a></li>
-						<%}else{}%>
-					
+					<li><a href="FullCalendar.ca">이달의 책(행사)</a></li>
+						
 				</ul>
 				<ul class="lnb">
-					<li><a href="Charge.qna">정기권 결제</a>
+					<li><a href="Charge.dok">정기권 결제</a>
 					<li><a href="QnaList.qna">고객센터</a>
 				</ul>
 			</div>
@@ -147,8 +156,7 @@ String id = (String)session.getAttribute("id");
 			<ul class="snb-right">
 				<li><a href="../sub1/list_best.jsp">베스트</a></li>
 				<li><a href="../sub1/list_new.jsp">신간</a></li>
-				<li><a href="../sub1/list_free.jsp">무료</a></li>
-				<li><a href="../sub1/event">이벤트</a></li>
+<!-- 				<li><a href="../sub1/event">이벤트</a></li> -->
 			</ul>
 		</div>
 		
@@ -213,15 +221,28 @@ String id = (String)session.getAttribute("id");
 
 <!-- 네이버아디디로로그인 초기화 Script -->
 <script type="text/javascript">
-	var naver_id_login = new naver_id_login("tdoziaWOhdIeC0LICk28", httpsUrl +"/member/naver/naver.asp");
 
-	naver_id_login.setPopup(); //Popup형태의 인증 진행
-	naver_id_login.init_naver_id_login();
+	function frmSearchSubmit(){		
+		
+		var objFrm = $("#searchFrm") ;
+		if ($(".search_input").val() == ''){
+			alert('검색어를 검색해주세요.');
+			$(".search_input").focus();			
+			return ;
+		}else{
+			objFrm.attr("method","get");
+			objFrm.attr("action","SearchAll.book");
+			objFrm.submit();
+		}		
+	}
 
-	var naver_url = $("#naver_id_login_anchor").attr("href");
+// 	var naver_id_login = new naver_id_login("tdoziaWOhdIeC0LICk28", httpsUrl +"/member/naver/naver.asp");
 
-	$("#login .naver a").attr("href", naver_url);
+// 	naver_id_login.setPopup(); //Popup형태의 인증 진행
+// 	naver_id_login.init_naver_id_login();
+
+// 	var naver_url = $("#naver_id_login_anchor").attr("href");
+
+// 	$("#login .naver a").attr("href", naver_url);
 </script>
-<!-- // 네이버아이디로로그인 초기화 Script -->
-
 

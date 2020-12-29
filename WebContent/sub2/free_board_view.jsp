@@ -12,8 +12,10 @@ if (id == null) {
 // int b=0;
 int limit = ((Integer)request.getAttribute("limit")).intValue();
 System.out.println("limit :" + limit);
-	limit = limit+10;
+// 	limit = limit+10;
 
+int entireCount = ((Integer)request.getAttribute("entireCount")).intValue();
+System.out.println("entireCount :" + entireCount);
 // if(limit==10){
 // 	limit = limit+10;
 // }else{
@@ -88,8 +90,8 @@ int board_num = article.getBoard_num();
 					<div class="btn_inner">
 						<a href="FreeBoardList.free" class="btn">목록</a>
 						<%
-// 							                        if(id != null) {
-// 						                        	if(id.equals(article.getBoard_id())) {
+							                        if(id != null) {
+						                        	if(id.equals(article.getBoard_id()) || id.equals("admin")) {
 						%>
 
 						<a
@@ -99,8 +101,8 @@ int board_num = article.getBoard_num();
 							class="btn">삭제</a>
 					</div>
 					<%
-// 						                        	}
-// 					                        }
+						                        	}
+					                        }
 					%>
 
 				</div>
@@ -180,8 +182,8 @@ int board_num = article.getBoard_num();
 <!-- 										<a href="javascript:;" class="comment_modify_show" data-comment-count="0">수정</a>  -->
 						<!-- 댓글수정, 삭제 -->
 						<%
-// 						 if(id != null) {
-// 		                        if(id.equals(commentList.get(i).getComment_id())) {
+						 if(id != null) {
+		                        if(id.equals(commentList.get(i).getComment_id()) || id.equals("admin")) {
 						%>
 						
 						<div class="btn_inner">
@@ -193,8 +195,8 @@ int board_num = article.getBoard_num();
 						</div>
 						
 						<% 
-// 		                        }
-// 						 }
+		                        }
+						 }
 						%>
 										
 									</div>
@@ -261,26 +263,23 @@ int board_num = article.getBoard_num();
 							}
 							%>
 						</div>
+<%-- <p>entireCount = <%=entireCount %></p> --%>
+<%-- <p>limit = <%=limit %></p> --%>
 						
 						<%
 // 						if(commentList != null && listCount > 0) {
-// 							if(commentList.size() > 10) {
+							if(entireCount > limit) {
 						%>
 <!-- 						<div class="d-more reviewMore" style="display: ;"> -->
 <!-- 							<a href="javascript:;" class="moreComment">댓글 더보기</a> -->
 <!-- 						</div> -->
 <div class="d-more reviewMore" style="display: ;">
 	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%>
-	&board_type=<%=board_type%>&limit=<%=limit%>">댓글 더보기</a>
-<%-- 	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%> --%>
-<%-- 	&board_type=<%=board_type%>&b=<%=b%>">댓글 더보기</a> --%>
-<%-- 	<a href="#" onclick="location.href='FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%> --%>
-<%-- 	&board_type=<%=board_type%>&b=<%=b%> return false;">댓글 더보기</a> --%>
-<%-- 	<a href="#" onclick=" location.href = 'http://blog.naver.com/kyoungseop?a=<%=a%>&b=<%=b%>' + '&c=' + c; return false;">Myblog</a> --%>
+	&board_type=<%=board_type%>&limit=<%=limit+10%>">댓글 더보기</a>
 
 						</div>
 						<%
-// 							}
+							}
 // 						}
 						%>
 					</div>

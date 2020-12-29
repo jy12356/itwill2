@@ -1,6 +1,13 @@
+<%@page import="vo.RequestBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	String id = (String)session.getAttribute("id");
+	RequestBean article = (RequestBean)request.getAttribute("article");
+%>
 
 <jsp:include page="../include/header.jsp"/>
+<body>
+<input type="hidden" name="id" value="id" />
 <section class="sub">
     <div class="category-nav">
         <div class="category-nav-inner">
@@ -62,6 +69,6 @@
 
         </div>
     </div>
-
 </section>
+</body>
 <jsp:include page="../include/footer.jsp"/>

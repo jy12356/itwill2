@@ -9,119 +9,89 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import action.NoticeAction.NoticeAction;
-import action.NoticeAction.NoticeDeleteProAction;
-import action.NoticeAction.NoticeDetailAction;
-import action.NoticeAction.NoticeListAction;
-import action.NoticeAction.NoticeModifyFormAction;
-import action.NoticeAction.NoticeModifyProAction;
-import action.NoticeAction.NoticeWriteProAction;
-import vo.NoticeActionForward;
+import action.Action;
+import action.alarm.AlarmDeleteProAction;
+import action.alarm.AlarmListAction;
+import vo.ActionForward;
 
-
-
-@WebServlet("*.nt")
+@WebServlet("*.al")
 public class AlarmController extends HttpServlet {
-	 // get/post 방식에 맞게 처리하는 메서드. doGet(), doPost()로부터 호출됨
-       
-	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("utf-8"); // POST 방식 요청
-		
-		// 서블릿 주소 가져옴
+
+	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
+
 		String command = request.getServletPath();
-		System.out.println("Servlet Path : " + command);		
+		System.out.println("요청 서블릿 주소 : " + command);
 		
 		Action action = null;
 		ActionForward forward = null;
-		
-		if(command.equals("/getNewNotice.nt")) { 
-			// 새로운 알람 불러오기
-			System.out.println("getNewNotice.nt");
+
+		if (command.equals("/AlarmWriteForm.al")) {
+			System.out.println("AlarmWriteForm.al");
+			forward = new ActionForward();
+			forward.setPath("/sub4/Alarm_board_write.jsp");
+			System.out.println(forward.getPath());
+
+		} else if (command.equals("/AlarmWritePro.al")) {
+			action = new AlarmWriteProAction();
+
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} else if (command.equals("/AlarmList.al")) {
+			action = new AlarmListAction();
+
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
-			action = new NoticeNewAlarmAction();
+		} else if(command.equals("/AlarmDeleteForm.al")) {
+			forward = new ActionForward();
+			forward.setPath("/sub4/alarm_board_delete.jsp");
+			
+		} else if(command.equals("/AlarmDeletePro.al")) {
+			action = new AlarmDeleteProAction();
 			
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/getNoticeList.nt")) {
-			// 알람 전체
-			System.out.println("getNoticeList.nt");
 			
-			action = new NoticeListAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-				e.printStackTrace();
-			}
-		}else if(command.equals("/getOldNotice.nt")) {
-			// 확인된 알람
-			System.out.println("getOldNotice.nt");
-			
-			action = new NoticeOldAlarmAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if(command.equals("/setNotice.nt")) {
-			// 알람 값들 입력 
-			System.out.println("setNotice.nt");
-			
-			action = new NoticeSetAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if(command.equals("/updateStatus.nt")) {
-			// 안읽은알람 -> 읽은알람상태로 바꿔줌
-			System.out.println("updateStatus.nt");
-			
-			action = new NoticeUpdateStatusAction();
-			
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} 
-//		else if(command.equals("/")){
-//			
-//		}
-		
-		
-		
-		
-		// forward 존재여부판별해서 : dispatcher or redirect
-		if(forward != null) {
-			if(forward.isRedirect()) {
-				// redirect - true
-				response.sendRedirect(forward.getPath());			
-			}else {
-				// dispatcher - false
+		}
+		// ----------------------------------------------------------------
+
+		if (forward != null) {
+			if (forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			} else {
 				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
 				dispatcher.forward(request, response);
-				
 			}
-			
-		} // forward 객체 있는지?
-		
-		
+			// ----------------------------------------------------------------
+
+		}
+
 	}
-	
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// 서블릿 요청 시 GET 방식 요청이 들어오면 자동으로 호출되는 메서드
+		// => 파라미터로 request 객체와 response 객체를 전달받음
 		doProcess(request, response);
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// 서블릿 요청 시 POST 방식 요청이 들어오면 자동으로 호출되는 메서드
+		// => 파라미터로 request 객체와 response 객체를 전달받음
 		doProcess(request, response);
 	}
 

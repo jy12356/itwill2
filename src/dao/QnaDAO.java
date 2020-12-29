@@ -93,7 +93,7 @@ public class QnaDAO {
 	}
 	
 	// 게시물 목록 조회
-	public ArrayList<QnaBean> selectArticleList(int page, int limit) {
+	public ArrayList<QnaBean> selectArticleList(int page, int limit,String search) {
 
 		ArrayList<QnaBean> articleList = null;
 		
@@ -103,12 +103,13 @@ public class QnaDAO {
 		int startRow = (page - 1) * limit;
 		
 		try {
-			String sql = "SELECT * FROM qna "
+			String sql = "SELECT * FROM qna where title like ?"
 					+ "ORDER BY re_ref DESC,re_seq ASC "
 					+ "LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, limit);
+			pstmt.setString(1, "%"+search+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 			
 			// ArrayList 객체 생성(while문 위에서 생성 필수!)

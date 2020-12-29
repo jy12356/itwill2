@@ -6,7 +6,7 @@
 <%
 	String id = (String) session.getAttribute("id");
 if (id == null) {
-	id = "ㅇㅇ";
+	id = "admin";
 }
 
 // 전달받은 request 객체로부터 데이터 가져오기
@@ -35,17 +35,18 @@ int listCount = PageInfo.getListCount();
 	<div class="contents-wrap">
 		<div class="customer">
 			<h3 class="coTitle">공지사항</h3>
-			<div class="customer-top-menu">
+				<div class="boxmenu1-top-menu">
 				<ul>
-					<li><a href="../sub2/free_board.jsp" class=""><em>자유게시판</em></a></li>
-					<li><a href="NoticeBoardList.not" class=""><em>공지사항</em></a></li>
+					<li><a href="QnaList.qna"><em>1:1문의</em></a></li>
+					<li><a href="../customer.asp?page=faq"><em>FAQ</em></a></li>
+					<li class="on"><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li>
 				</ul>
 			</div>
 			<div class="customer-contents">
 				<div class="customer-inner">
 					<table summary="공지사항" class="customer-table notice">
 
-						<caption>자유게시판</caption>
+						<caption>공지사항</caption>
 						<colgroup>
 							<col style="width: 10%;">
 							<col style="width: 50%;">
@@ -53,9 +54,6 @@ int listCount = PageInfo.getListCount();
 							<col style="width: 15%;">
 							<col style="width: 7%;">
 						</colgroup>
-						<%
-							if (articleList != null && listCount > 0) {
-						%>
 						<thead>
 							<tr>
 								<th scope="col" abbr="번호">번호</th>
@@ -65,13 +63,17 @@ int listCount = PageInfo.getListCount();
 							</tr>
 						</thead>
 						<tbody>
+						<%
+							if (articleList.size() != 0) {
+						%>
 							<%
+						
 								for (int i = 0; i < articleList.size(); i++) {
 							%>
 							<tr>
-								<td align="center"><%=articleList.get(i).getNum()%></td>
+								<td align="center" class = "tac"><%=articleList.get(i).getNum()%></td>
 								<td>
-								<a href="NoticeBoardDetail.not?num=<%=articleList.get(i).getNum()%>&page=<%=nowPage%>">
+								<a href="NoticeBoardDetail.not?num=<%=articleList.get(i).getNum()%>">
 										<%=articleList.get(i).getSubject()%></a>
 								</td>
 								<td align="center"><%=articleList.get(i).getId()%></td>
@@ -79,6 +81,12 @@ int listCount = PageInfo.getListCount();
 							</tr>
 							<%
 								}
+							%>
+							<%
+							} else {
+							%><tr id="emptyArea"><td colspan="4" class="tac">작성된 글이 없습니다</td></tr>
+							<%
+							}
 							%>
 						</tbody>
 					</table>
@@ -88,7 +96,7 @@ int listCount = PageInfo.getListCount();
 
 					<div class="paging">
 						<a href="NoticeBoardList.not?pageNum=1" class="arr" data-page-num="1"><img
-							src="../images/p-first.png"><span class="hide">처음페이지</span></a>
+							src="images/p-first.png"><span class="hide">처음페이지</span></a>
 
 						<!-- 이전페이지 -->
 						<%
@@ -134,13 +142,6 @@ int listCount = PageInfo.getListCount();
 						<%
 							}
 						%>
-						<%
-							} else {
-						%>
-						<section id="emptyArea">등록된 글이 없습니다</section>
-						<%
-							}
-						%>
 						<!-- 						<a href="board.jsp?pageNum=27" class="arr" data-page-num="27"><img -->
 						<!-- 							src="../images/p-last.png"><span class="hide">마지막페이지</span></a> -->
 					</div>
@@ -151,4 +152,4 @@ int listCount = PageInfo.getListCount();
 	</div>
 
 </section>
-<jsp:include page="../include/footer.jsp" />
+<footer><jsp:include page="../include/footer.jsp" /></footer>

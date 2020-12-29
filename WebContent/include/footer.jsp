@@ -24,12 +24,13 @@ int listCount = PageInfo.getListCount();
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
 						<!-- Null오류로 인한 푸터 공지사항 수정중 -->
+						<a href="NoticeBoardDetail.not?num=2&page=1">동서남Book OPEN<span>2020-12-28</span></a>
 <!-- 							<a href="NoticeBoardDetail.not?num=1&page=1"> -->
 <%-- 										<span><%=articleList.get(i).getSubject()%></span></a> --%>
 						</div>
-<!-- 						<div class="swiper-slide"> -->
-<!-- 							<a href="/customer.asp?page=notice&num=112679&page2=view&pageNum=1">메리 미 (Marry Me)〉 적립금 지급 안내<span>2020-10-27</span></a> -->
-<!-- 						</div>						 -->
+						<div class="swiper-slide">
+							<a href="NoticeBoardDetail.not?num=1&page=1">test<span>2020-12-21</span></a>
+						</div>						
 					</div>
 				</div>
 				<div class="notice-control">
@@ -50,7 +51,7 @@ int listCount = PageInfo.getListCount();
 				<h4>바로가기</h4>
 				<div>
 					<p><a href="/coupon.asp">쿠폰등록</a></p>
-					<p><a href="Charge.qna">구독결제</a></p>
+					<p><a href="Charge.dok">구독결제</a></p>
 					<p><a href="MyPage?id=admin">마이페이지</a></p>
 				</div>
 			</div>
@@ -101,6 +102,12 @@ int listCount = PageInfo.getListCount();
 <div class="topBtn">
 	<a href="javascript:;">TOP</a>
 </div>
+<div class="chats">
+	<ul>
+		<li><a href=""><img src="images/mal.png"></a></li>
+		<li><a href=""></a></li>		
+	</ul>
+</div>
 
 <script>
 $(function(){
@@ -140,7 +147,22 @@ var pop = {
 }
 </script>
 	
+	
 		
 </div>	
+
+		<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5fdf5765df060f156a8ec405/1eq06qpof';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>

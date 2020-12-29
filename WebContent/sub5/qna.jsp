@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="../include/header.jsp"/>
+<% String id = (String)session.getAttribute("id");%>
 <section class="sub">
 <div class="category-nav">
 	<div class="category-nav-inner">
@@ -40,7 +41,7 @@
 							<input type="hidden" name="num" value=""/>
 							<input type="hidden" name="mainclass_num" class="mainclass_num" value="1"/>
 							<input type="hidden" name="subclass_num" class="subclass_num" value=""/>
-							<input type="hidden" name="id" value="B"/>
+							<input type="hidden" name="id" id="id" value="<%=id%>"/>
 							<input type="hidden" name="pass"  value=""/>
 							<fieldset>
 								<legend>1:1 문의하기</legend>

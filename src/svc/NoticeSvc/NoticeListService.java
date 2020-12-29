@@ -36,7 +36,7 @@ public class NoticeListService {
 		}
 
 		// 게시물 목록 가져오기 작업 요청 수행
-		public ArrayList<NoticeBean> getArticleList(int page, int limit) throws Exception {
+		public ArrayList<NoticeBean> getArticleList(int page, int limit, String search) throws Exception {
 			System.out.println("NoticeListService - getArticleList()");
 			
 			ArrayList<NoticeBean> articleList = null;
@@ -53,7 +53,7 @@ public class NoticeListService {
 			// 4. BoardDAO 객체의 selectArticleList() 메서드를 호출하여
 			//    게시물 목록 조회 결과를 ArrayList 객체로 리턴받기
 			//    => 파라미터 : page, limit
-			articleList = noticeDAO.selectArticleList(page, limit);
+			articleList = noticeDAO.selectArticleList(page, limit,search);
 			
 			// 5(공통). Connection 객체 반환하기
 			close(con);

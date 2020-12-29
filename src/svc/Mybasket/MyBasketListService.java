@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import dao.MyBasketDAO;
 import vo.BookBean;
 import vo.BookInterestBean;
+import vo.MyBasketBean;
 
 public class MyBasketListService {
 
@@ -30,23 +31,38 @@ public class MyBasketListService {
 		return listCount;
 	}
 
-	public ArrayList<BookBean> getBasketList(int page, int limit, String id) {
-		System.out.println("MyBasketListService - getBasketList");
+	public ArrayList<MyBasketBean> getMyBasketList(int page, int limit, String id) {
+		System.out.println("MyBasketListService - getMyBasketList");
 		
-		ArrayList<BookBean> basketList = new ArrayList<BookBean>();
+		ArrayList<MyBasketBean> basketList = new ArrayList<MyBasketBean>();
 		
 		Connection con = getConnection();
 		MyBasketDAO myBasketDAO = MyBasketDAO.getInstance();
 		myBasketDAO.setConnection(con);
-		System.out.println("123");
-		basketList = myBasketDAO.selectBasketList(page, limit, id);
-		System.out.println("456");
+		System.out.println("getMyBasketList 1 - svc");
+		basketList = myBasketDAO.selectMyBasketList(page, limit, id);
+		System.out.println("getMyBasketList 2 - svc");
 		close(con);
 		
 		return basketList;
 		
 		
 	}
+//	public ArrayList<MyBasketBean> getUnRentalableList(int page, int limit, String id) {
+//		System.out.println("MyBasketListService - getUnRentalableList");
+//		
+//		ArrayList<MyBasketBean> basketList = new ArrayList<MyBasketBean>();
+//		
+//		Connection con = getConnection();
+//		MyBasketDAO myBasketDAO = MyBasketDAO.getInstance();
+//		myBasketDAO.setConnection(con);
+//		System.out.println("getUnRentalableList 1 - svc");
+//		basketList = myBasketDAO.selectUnRentalableList(page, limit, id);
+//		System.out.println("getUnRentalableList 2 - svc");
+//		close(con);
+//		
+//		return basketList;
+//	}
 
 	public String getMemState(String id) {
 		System.out.println("MyBasketListService - getMemState()");
@@ -63,5 +79,6 @@ public class MyBasketListService {
 		
 		return state;
 	}
+
 
 }

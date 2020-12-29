@@ -26,13 +26,17 @@ public class FreeBoardListAction implements Action {
 		// 페이징 처리를 위한 변수 선언
 		int page = 1; // 현재 페이지 번호 저장할 변수
 		int limit = 10; // 페이지 당 표시할 게시물 수를 결정하는 변수
-		
+
+		String search="";
 		// request 객체로부터 "page" 파라미터가 전달됐을 경우(null 이 아닐 경우)
 		// 해당 파라미터 값을 page 변수에 저장(String -> int 변환 필요)
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		
+
+		if(request.getParameter("search") != null) {
+			search = request.getParameter("search");
+		}
 		// BoardListService 클래스 인스턴스 생성 후 
 		// getListCount() 메서드를 호출하여 전체 게시물 수(listCount) 가져오기
 		FreeBoardListService boardListService = new FreeBoardListService();
@@ -45,7 +49,7 @@ public class FreeBoardListAction implements Action {
 		// BoardListService 클래스의 getArticleList() 메서드를 호출하여
 		// 전체 게시물 목록 리턴받아 ArrayList 객체에 저장
 		// => 파라미터 : 현재 페이지번호(page), 페이지 당 게시물 수(limit)
-		articleList = boardListService.getArticleList(page, limit);
+		articleList = boardListService.getArticleList(page, limit,search);
 		
 		// 페이지 계산 작업 수행
 		// 1. 전체 페이지 수 계산

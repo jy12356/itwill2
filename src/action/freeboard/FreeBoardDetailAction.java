@@ -98,10 +98,13 @@ System.out.println("2");
 //		if() {
 			
 			CommentBean cb = commentDetailService.getComment(board_type, board_num);
+			
+			int entireCount = commentDetailService.getCount(board_type, board_num);
 			System.out.println("1");
 			// request에 comment정보 CommentBean 저장
 			// ====================== 댓글리스트1 ========================
 			request.setAttribute("comment", cb);
+			request.setAttribute("entireCount", entireCount);
 			System.out.println("2");
 
 			request.setAttribute("commentList", commentList);

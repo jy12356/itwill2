@@ -5,7 +5,7 @@ import java.sql.Date;
 public class GudokBean {
 	private int gnum;
 	private String gproduct;
-	private Date date;
+	private Date gdate;
 	private String id;
 	
 	
@@ -27,11 +27,12 @@ public class GudokBean {
 	public void setGproduct(String gproduct) {
 		this.gproduct = gproduct;
 	}
-	public Date getDate() {
-		return date;
+	public Date getGdate() {
+		return gdate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setGdate(Date gdate) {
+		this.gdate = gdate;
 	}
+	
 }
 	

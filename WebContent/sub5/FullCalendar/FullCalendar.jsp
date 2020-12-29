@@ -1,33 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<jsp:include page="../../include/header.jsp" />
+<%
+	String id = (String) session.getAttribute("id");
+if (id == null) {
+	id = "admin";
+}
+%>
 <!DOCTYPE html>
 <html lang="ko">
-<jsp:include page="../../include/header.jsp" />
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>생산일정관리</title>
-    <link rel=" shortcut icon" href="sub5/FullCalendar/image/favicon.ico">
+<!--     <meta charset="utf-8" /> -->
+<!--     <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+<!--     <title>Calendar</title> -->
+<!--     <link rel=" shortcut icon" href="sub5/FullCalendar/image/favicon.ico"> -->
 
-    <link rel="stylesheet" href="sub5/FullCalendar/vendor/css/fullcalendar.min.css" />
-    <link rel="stylesheet" href="sub5/FullCalendar/vendor/css/bootstrap.min.css">
-    <link rel="stylesheet" href='sub5/FullCalendar/vendor/css/select2.min.css' />
-    <link rel="stylesheet" href='sub5/FullCalendar/vendor/css/bootstrap-datetimepicker.min.css' />
+<!--     <link rel="stylesheet" href="sub5/FullCalendar/vendor/css/fullcalendar.min.css" /> -->
+<!--     <link rel="stylesheet" href="sub5/FullCalendar/vendor/css/bootstrap.min.css"> -->
+<!--     <link rel="stylesheet" href='sub5/FullCalendar/vendor/css/select2.min.css' /> -->
+<!--     <link rel="stylesheet" href='sub5/FullCalendar/vendor/css/bootstrap-datetimepicker.min.css' /> -->
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!--     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600"> -->
+<!--     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
 
-    <link rel="stylesheet" href="sub5/FullCalendar/css/main.css">
+<!--     <link rel="stylesheet" href="sub5/FullCalendar/css/main.css"> -->
 
-</head>
-
-<body>
     <div class="container">
-        <p class="h5 text-center">캘린더</p>
+<%if(id.equals("admin")){ %>
+        <!-- 일자 클릭시 메뉴오픈 -->
+        <div id="contextMenu" class="dropdown clearfix">
+            <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
+                style="display:block;position:static;margin-bottom:5px;">
+                <li><a tabindex="-1" href="#">신간입고안내</a></li>
+                <li><a tabindex="-1" href="#">휴무안내</a></li>
+                <li class="divider"></li>
+                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
+            </ul>
+        </div>
+<%}else%>
+
         <div id="wrapper">
             <div id="loading"></div>
             <div id="calendar"></div>
         </div>
-
 
         <!-- 일정 추가 MODAL -->
         <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
@@ -43,7 +58,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-allDay">하루종일</label>
-                                <input class='allDayNewEvent' id="edit-allDay" type="checkbox"></label>
+                                <label><input class='allDayNewEvent' id="edit-allDay" type="checkbox"></label>
                             </div>
                         </div>
 
@@ -65,7 +80,16 @@
                                 <label class="col-xs-4" for="edit-end">끝</label>
                                 <input class="inputModal" type="text" name="edit-end" id="edit-end" />
                             </div>
-                        </div>                        
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label class="col-xs-4" for="edit-type">구분</label>
+                                <select class="inputModal" type="text" name="edit-type" id="edit-type">
+                                    <option value="신간입고안내">신간입고안내</option>
+                                    <option value="휴무안내">휴무안내</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-color">색상</label>
@@ -102,11 +126,40 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <h3 class="panel-title">필터</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-lg-6">
+                    <label for="calendar_view">구분별</label>
+                    <div class="input-group">
+                        <select class="filter" id="type_filter" multiple="multiple">
+                            <option value="입고">입고</option>
+                            <option value="휴무">휴무</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <label for="calendar_view">등록자별</label>
+                    <div class="input-group">
+                        <label class="checkbox-inline"><input class='filter' type="checkbox" value="admin"
+                                checked>Admin</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /.filter panel -->
     </div>
     <!-- /.container -->
 
+
     <script src="sub5/FullCalendar/vendor/js/jquery.min.js"></script>
-    <script src="sub5/FullCalendar/endor/js/bootstrap.min.js"></script>
+    <script src="sub5/FullCalendar/vendor/js/bootstrap.min.js"></script>
     <script src="sub5/FullCalendar/vendor/js/moment.min.js"></script>
     <script src="sub5/FullCalendar/vendor/js/fullcalendar.min.js"></script>
     <script src="sub5/FullCalendar/vendor/js/ko.js"></script>
@@ -116,5 +169,7 @@
     <script src="sub5/FullCalendar/js/addEvent.js"></script>
     <script src="sub5/FullCalendar/js/editEvent.js"></script>
     <script src="sub5/FullCalendar/js/etcSetting.js"></script>
+
 </body>
+<jsp:include page="../../include/footer.jsp"/>
 </html>

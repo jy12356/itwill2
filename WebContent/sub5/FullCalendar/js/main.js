@@ -36,7 +36,8 @@ var calendar = $('#calendar').fullCalendar({
   eventLongPressDelay       : 0,
   selectLongPressDelay      : 0,  
   header                    : {
-                                left   : 'today, prevYear, nextYear, viewWeekends',
+//                                left   : 'today, prevYear, nextYear, viewWeekends',
+								  left : 'prevYear, nextYear',
                                 center : 'prev, title, next',
                                 right  : 'month, agendaWeek, agendaDay, listWeek'
                               },
@@ -57,17 +58,17 @@ var calendar = $('#calendar').fullCalendar({
                                   columnFormat : ''
                                 }
                               },
-  customButtons             : { //주말 숨기기 & 보이기 버튼
-                                viewWeekends : {
-                                  text  : '주말',
-                                  click : function () {
-                                    activeInactiveWeekends ? activeInactiveWeekends = false : activeInactiveWeekends = true;
-                                    $('#calendar').fullCalendar('option', { 
-                                      weekends: activeInactiveWeekends
-                                    });
-                                  }
-                                }
-                               },
+//  customButtons             : { //주말 숨기기 & 보이기 버튼
+//                                viewWeekends : {
+//                                  text  : '주말',
+//                                  click : function () {
+//                                    activeInactiveWeekends ? activeInactiveWeekends = false : activeInactiveWeekends = true;
+//                                    $('#calendar').fullCalendar('option', { 
+//                                      weekends: activeInactiveWeekends
+//                                    });
+//                                  }
+//                                }
+//                               },
 
 
   eventRender: function (event, element, view) {

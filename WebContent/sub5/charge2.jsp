@@ -30,18 +30,19 @@ IMP.request_pay({
         msg += '결제 금액 : ' + rsp.paid_amount;
         msg += '카드 승인번호 : ' + rsp.apply_num;
         
-//         alert(msg);
-//         opener.location.href = 'QnaList.qna'
+        alert(msg);
+//         opener.location.href = 'ChargeList2.dok'
     } else {
         var msg = '결제에 실패하였습니다.';
         msg += '에러내용 : ' + rsp.error_msg;
-//         alert(msg);
+        alert(msg);
 //         opener.location.href = 'Charge.dok'
     }
 
     alert(msg);
-    window.close();
-    opener.location.href='Charge.dok';
+//     window.close();
+    location.href="ChargeList2.dok";
+    
 });
 </script>
   </body>

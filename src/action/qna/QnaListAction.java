@@ -25,12 +25,16 @@ public class QnaListAction implements Action {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		
+
+		String search="";
+		if(request.getParameter("search") != null) {
+			search = request.getParameter("search");
+		}
 		QnaListService qnaListService = new QnaListService();
 		int listCount = qnaListService.getListCount();
 		
 		ArrayList<QnaBean> articleList = new ArrayList<QnaBean>();
-		articleList = qnaListService.getArticleList(page, limit);
+		articleList = qnaListService.getArticleList(page, limit,search);
 		
 		int maxPage = (int)((double)listCount / limit + 0.95);
 		int startPage = ((int)((double)page / 10 + 0.9) - 1) * 10 + 1;

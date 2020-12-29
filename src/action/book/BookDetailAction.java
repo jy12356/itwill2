@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import svc.book.BookDetailService;
+import svc.review.ReCommentListService;
 import svc.review.ReviewListService;
 import vo.ActionForward;
 import vo.BookBean;
+import vo.CommentBean;
 import vo.PageInfo;
 import vo.ReviewBean;
 
@@ -20,7 +22,7 @@ public class BookDetailAction implements Action {
 		System.out.println("BookDetailAction");
 		ActionForward forward = null;
 		String book_isbn=request.getParameter("isbn");
-		String title=request.getParameter("title");
+//		String title=request.getParameter("title");
 		String page=request.getParameter("page");
 		
 		//책정보
@@ -43,7 +45,14 @@ public class BookDetailAction implements Action {
 		// 서평 리스트 출력 ----------
 		ArrayList<ReviewBean> articleList = new ArrayList<ReviewBean>();
 		articleList = reviewListService.getArticleList(page1, limit, book_isbn);
-		
+
+		// 댓글 리스트 출력 -----
+//		int board_num =Integer.parseInt(request.getParameter("booknum"));
+//		int board_type = 2;		
+//		ReCommentListService reCommentListService = new ReCommentListService();
+//		ArrayList<CommentBean> commentList = new ArrayList<CommentBean>();
+//		System.out.println("Action 댓글리스트 출력 시작!");
+//		commentList = reCommentListService.getArticleList(page1, limit, board_num, board_type);
 		// 페이지 계산 작업 수행
 		// 1. 전체 페이지 수 계산
 		// 	  (총 게시물 수 / 페이지 당 게시물 수 + 0.95) -> 정수로 변화
@@ -63,7 +72,9 @@ public class BookDetailAction implements Action {
 		// request 객체의 setAtribute() 메서드를 호출하여
 		// 게시물 목록 정보(ArrayList)와 페이지 정보(PageInfo) 객체를 저장
 		
-		request.setAttribute("articleList", articleList);			
+		request.setAttribute("articleList", articleList);		
+
+	//	request.setAttribute("commentList", commentList);
 		request.setAttribute("pageInfo", pageInfo);
 		
 		forward = new ActionForward();

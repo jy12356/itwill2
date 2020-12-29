@@ -1,0 +1,57 @@
+[{
+    "_id": 1,
+    "title": "되나? 됐으면 좋겟다...",
+    "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
+    "start": "2020-12-07T09:30",
+    "end": "2020-12-07T15:00",
+    "type": "입고",
+    "username": "admin",
+    "backgroundColor": "#D25565",
+    "textColor": "#ffffff",
+    "allDay": true
+  }, {
+    "_id": 2,
+    "title": "되는거 같기는 한데",
+    "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
+    "start": "2020-12-01T12:30",
+    "end": "2020-12-01T15:30",
+    "type": "입고",
+    "username": "admin",
+    "backgroundColor": "#9775fa",
+    "textColor": "#ffffff",
+    "allDay": false
+  }, {
+    "_id": 3,
+    "title": "청빈이 생일 ^^",
+    "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
+    "start": "2020-12-03",
+    "end": "2020-12-03",
+    "type": "입고",
+    "username": "admin",
+    "backgroundColor": "#ffa94d",
+    "textColor": "#ffffff",
+    "allDay": true
+  }, {
+    "_id": 4,
+    "title": "크리스마스",
+    "description": "선물 받는날",
+    "start": "2020-12-25",
+    "end": "2020-12-25",
+    "type": "휴일",
+    "username": "admin",
+    "backgroundColor": "#f06595",
+    "textColor": "#ffffff",
+    "allDay": true
+  }
+  , {
+    "_id": 5,
+    "title": "수정중",
+    "description": "제발 되면 좋겠어요....",
+    "start": "2020-12-20",
+    "end": "2020-12-20",
+    "type": "입고",
+    "username": "admin",
+    "backgroundColor": "#74c0fc",
+    "textColor": "#ffffff",
+    "allDay": true
+  }]

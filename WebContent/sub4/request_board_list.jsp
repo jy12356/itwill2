@@ -52,8 +52,8 @@ int listCount = pageInfo.getListCount();
 						<tr>
 							<th>유형</th>
 							<th>신청 도서명</th>
-							<th>신청자명</th>
-							<th>도서 신청일</th>
+							<th>작성자명</th>
+							<th>등록일</th>
 						</tr>
 						<%
 						
@@ -61,7 +61,6 @@ int listCount = pageInfo.getListCount();
 						%>
 						<tr>
 							<td align="center">
-<%-- 							<%=articleList.get(i).getNum() %> --%>
 								<%if(articleList.get(i).getRe_lev() != 0){%>
 									<font color="purple">답변</font>
 								<%} else {%>
@@ -91,7 +90,6 @@ int listCount = pageInfo.getListCount();
 	<%} else {%>
 			<a href="RequestList.rq?page=<%=startPage%>"><img src="sub4/boardimg/first.png"></a>
 			<a href="RequestList.rq?page=<%=nowPage - 1 %>"><img src="sub4/boardimg/prev.png"></a>
-<%-- 			<input type="button" value=" 이전" onclick="location.href='RequestList.rq?page=<%=nowPage - 1 %>'" class = "on fir"> --%>
 	<%} %>
 	
 	<%for(int i = startPage; i <= endPage; i++) { 
@@ -103,11 +101,9 @@ int listCount = pageInfo.getListCount();
 	<%} %>
 	
 	<%if(nowPage >= maxPage) { %>
-<!-- 			<input type="button" value="다음" class = "on fir"> -->
 	<%} else { %>
 			<a href="RequestList.rq?page=<%=nowPage + 1 %>"><img src="sub4/boardimg/next.png"></a>
 			<a href="RequestList.rq?page=<%=endPage%>"><img src="sub4/boardimg/last.png"></a>
-<%-- 			<input type="button" value="다음  → " onclick="location.href='RequestList.rq?page=<%=nowPage + 1 %>'" class = "on fir"> --%>
 	<%} %>
 	</section>
 	</div>

@@ -130,7 +130,7 @@ public class FreeBoardDAO {
 	}
 
 	// 게시물 목록 조회
-	public ArrayList<FreeBoardBean> selectArticleList(int page, int limit) {
+	public ArrayList<FreeBoardBean> selectArticleList(int page, int limit, String search) {
 		// 지정된 갯수만큼의 게시물 조회 후 ArrayList 객체에 저장한 뒤 리턴
 		ArrayList<FreeBoardBean> articleList = null;
 
@@ -145,10 +145,11 @@ public class FreeBoardDAO {
 			// 참조글번호(board_re_ref) 번호를 기준으로 내림차순 정렬,
 			// 순서번호(board_re_seq) 번호를 기준으로 오름차순 정렬
 			// 조회 시작 게시물 번호(startRow)부터 limit 갯수만큼 조회
-			String sql = "SELECT * FROM freeboard " + "ORDER BY board_num desc " + "LIMIT ?,?";
+			String sql = "SELECT * FROM freeboard where board_subject like ? ORDER BY board_num desc " + "LIMIT ?,?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, limit);
+			pstmt.setString(1, "%"+search+"%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, limit);
 			rs = pstmt.executeQuery();
 
 			// ArrayList 객체 생성(while문 위에서 생성 필수!)
@@ -358,20 +359,20 @@ public class FreeBoardDAO {
 	public int insertComment(CommentBean cb) {
 		System.out.println("DAO - insertComment");
 		int insertCount = 0;
-		
+		System.out.println("오류잡자 1");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int num = 1;
-		
+		System.out.println("오류잡자 2");
 		try {
 			String sql = "SELECT MAX(comment_num) FROM comment";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			
+			System.out.println("오류잡자 3");
 			if(rs.next()) { // 등록된 게시물이 하나라도 존재할 경우
 				num = rs.getInt(1) + 1; // 새 글 번호 = 현재 가장 큰 번호 + 1
 			}
-			
+			System.out.println("오류잡자 4");
 			sql = "INSERT INTO comment VALUES (?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
@@ -382,7 +383,7 @@ public class FreeBoardDAO {
 			pstmt.setInt(6, num);
 			pstmt.setInt(7, cb.getRe_lev());
 			pstmt.setInt(8, cb.getRe_seq());
-			
+			System.out.println("오류잡자 5");
 			
 			
 			

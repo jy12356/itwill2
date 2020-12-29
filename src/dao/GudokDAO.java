@@ -3,10 +3,11 @@ import static db.JdbcUtil.*;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-
+import java.util.ArrayList;
 import java.sql.PreparedStatement;
 
 import vo.GudokBean;
+import vo.QnaBean;
 
 
 public class GudokDAO {
@@ -55,4 +56,64 @@ public GudokDAO() {}
 		}
 		return insertCount;
 	}
+
+	public int selectListCount() {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "select count(gnum) from gudok";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println("selectListCount() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return listCount;
+	}
+
+	public ArrayList<GudokBean> selectArticleList(int page, int limit) {
+		ArrayList<GudokBean> articleList = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int startRow = (page - 1) * limit;
+		
+		try {
+			String sql = "select * from gudok LIMIT ?,?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, limit);
+			rs = pstmt.executeQuery();
+			
+			articleList = new ArrayList<GudokBean>();
+			while(rs.next()) {
+				GudokBean article = new GudokBean();
+				article.setGnum(rs.getInt("gnum"));
+				article.setGproduct(rs.getString("gproduct"));
+				article.setGdate(rs.getDate("gdate"));
+				article.setId(rs.getString("id"));
+				articleList.add(article);
+			}
+		} catch (Exception e) {
+			System.out.println("selectArticleList() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return articleList;
+	}
+	
+	
+	
 }

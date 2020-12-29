@@ -13,6 +13,7 @@
 JSONArray jsonArray = memberDao.memberListCal(); */
 	// String id = (String)session.getAttribute("id");
 // 	MemberBean article = (MemberBean)request.getAttribute("article");
+
 ArrayList<MemberBean> articleList = (ArrayList<MemberBean>) request.getAttribute("articleList");
 /* PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 int nowPage = pageInfo.getPage();
@@ -21,8 +22,30 @@ int startPage = pageInfo.getStartPage();
 int endPage = pageInfo.getEndPage();
 int listCount = pageInfo.getListCount(); */
 SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd");
-%>
-
+	String id= (String)session.getAttribute("id");
+	ArrayList<MemberBean> articleList = (ArrayList<MemberBean>)request.getAttribute("articleList");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	int nowPage = pageInfo.getPage();
+	int maxPage = pageInfo.getMaxPage();
+	int startPage = pageInfo.getStartPage();
+	int endPage = pageInfo.getEndPage();
+	int listCount = pageInfo.getListCount();
+	SimpleDateFormat sdf = new SimpleDateFormat("yy.MM.dd");
+	
+ 	String name1 = "전체";
+	/* if(request.getParameter("name1")!=null){
+		name1 = request.getParameter("name1");
+	} */
+	String id1 = "전체";
+	if(request.getParameter("id")!=null){
+		id1 = request.getParameter("id");
+	} 
+	String state = "*";
+	if(request.getParameter("state")!=null){
+		state = request.getParameter("state");
+	} 
+	
+%> 
 <jsp:include page="../include/header.jsp" />
 <style type="text/css">
 li>#pieCatg {
@@ -156,9 +179,49 @@ th.memSortTbody {
 	border: 1px solid #72ada5 !important;
 }
 </style>
-<html>
-<head>
-<body>
+<section class="sub">
+	<div class="category-nav">
+		<div class="category-nav-inner">
+			<p>HOME &gt; 관리자페이지 &gt; 고객관리</p>
+		</div>
+	</div>
+	<div class="contents-wrap">
+		<div class="mypage">
+			<div class="mypage-top">
+				<div class="detail-inner">
+					<h3>관리자페이지</h3>
+					
+					<div class="mypage-box-bottom">
+						<div>
+							<ul>
+								<li>
+									<span class="kakaotalk">로그인정보</span> <!-- bookcube,kakaotalk,naver,twitter,facebook,payco-->
+									<p><span><%=id %> 님</span></p>
+								<a href="MemberModifyForm.me?id=<%=id %>" class="btn">회원정보</a>
+								</li>			
+								<li>
+									<h4>회원관리</h4>
+									<ul>
+										<li><a href="http://localhost:8080/itwill2th/MemberList.me" class="">회원목록</a></li>
+										<li><a href="BookDibsList.bok" class="">대출관리</a></li>
+										<li><a href="Return.rn" class="">대출관리</a></li>
+									</ul>
+								</li>
+								<li>
+									<h4>책정보 관리 </h4>
+									<ul>
+										<li><a href="BookWriteForm.bok" class="">책등록</a></li>
+										<li><a href="RequestList.rq" class="">희망도서</a></li>
+										<li><a href="NoticeBoardList.not?page=1" class="">게시글</a></li>
+										<li><a href="QnaList.qna" class="">QnA</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						
+					</div>
+				</div>
+			</div>
 	<section class="sub">
 		<div class="contents-wrap">
 			<div class="customer" style="width: 1400px;">
@@ -256,6 +319,8 @@ th.memSortTbody {
 
 			</div>
 		</div>
+	</section>
+    
 	</section>
 	<script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -376,6 +441,57 @@ th.memSortTbody {
 	     },
 	     packages:["corechart"]
 	});
+    
+    	if(confirm_val) {
+				var inter_num = [];
+				if ($('.check_box input[type="checkbox"]:checked').length > 0) {
+					$('.check_box input[type="checkbox"]:checked').each(function(){
+						inter_num.push($(this).attr("value"));  
+					});
+				}else{
+					alert("게시물을 선택해주시길 바랍니다.");
+					return false;	            	
+				};	
+				var interArr = {"inter_num" :inter_num};
+				$.ajax({
+					url : "MemListDelete.me",
+					type : "post",
+					dataType: 'text',
+					data : interArr,
+					success : function(){
+						location.href = "BookDibsList.bok";
+					},error:function(request,status,error){
+				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				       }`
+
+				});
+			} 
+	    };
+	    
+//$(document).ready(function(){
+	 
+    // 라디오버튼 클릭시 이벤트 발생
+    
+ //   $("input:radio[name=memLiName]").click(function(){
+ //
+ //       if($("input[name=memLiName]:checked").val() == "1"){
+ //           $("div[id=memLiNameList]").attr("disabled",true);
+            // radio 버튼의 value 값이 1이라면 활성화 div class="list-sort" id="memLiNameList"
+ 
+//        }else if($("input[name=radio]:checked").val() == "0"){
+//              $("div[id=memLiNameList]").attr("disabled",false);
+            // radio 버튼의 value 값이 0이라면 비활성화
+//        }
+//    });
+//});
+	    
+//$(document).ready(function(){
+//	$("input:radio[id=memLiName]").click(function(){
+//		$("div[id=memLiNameList]").attr("disabled",true);
+		
+//	})
+//})    
+	    
 	</script>
 </html>
 <jsp:include page="../include/footer.jsp" />

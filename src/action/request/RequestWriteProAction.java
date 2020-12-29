@@ -58,7 +58,7 @@ public class RequestWriteProAction implements Action {
 			PrintWriter out = response.getWriter();
 
 			out.println("<script>");
-			out.println("alert('글 등록 실패!')");
+			out.println("alert('글 등록에 실패했어요')");
 			out.println("history.back()");
 			out.println("</script>");
 		} else {

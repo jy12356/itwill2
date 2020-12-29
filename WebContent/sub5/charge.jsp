@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <% String id = request.getParameter("id"); %> --%>
+<% String id = (String)session.getAttribute("id"); %>
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
 	<div class="contents-wrap">
@@ -32,7 +32,7 @@
 				<input type="hidden" name="site_cd"         value="K4282" />
 				<input type="hidden" name="site_name"       value="BookCube" />
 				<input type="hidden" name="quotaopt"        value="12"/>
-				<input type="hidden" name="id" value="B"/>
+				<input type="hidden" name="id" id="id" value="<%=id%>"/>
 				
 				
 				<!-- 필수 항목 : 결제 금액/화폐단위 -->
@@ -171,7 +171,16 @@
 						<div class="payment-result">
 							<p>구매할 구독권 : <span class="total_pay_amount">1개월</span></p>
 							<p class="deduction-result">소득공제 <span>불가</span></p>
+							<%if(id == null){ %>
+							<input type="submit"value="결제하기"onclick='ccCheck()'>
+							<script>
+							function ccCheck(){
+								var u = alert("로그인해 주시기 바랍니다");
+								history.back();
+							}</script>
+							<%}else{ %>
 							<input type="submit"value="결제하기">
+							<%} %>
 							<script>
 							
 							</script>
