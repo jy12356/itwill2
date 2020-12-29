@@ -10,20 +10,20 @@ if (id == null) {
 <html lang="ko">
 
 <head>
-<!--     <meta charset="utf-8" /> -->
-<!--     <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
-<!--     <title>Calendar</title> -->
-<!--     <link rel=" shortcut icon" href="sub5/FullCalendar/image/favicon.ico"> -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Calendar</title>
+    <link rel=" shortcut icon" href="sub5/FullCalendar/image/favicon.ico">
 
-<!--     <link rel="stylesheet" href="sub5/FullCalendar/vendor/css/fullcalendar.min.css" /> -->
-<!--     <link rel="stylesheet" href="sub5/FullCalendar/vendor/css/bootstrap.min.css"> -->
-<!--     <link rel="stylesheet" href='sub5/FullCalendar/vendor/css/select2.min.css' /> -->
-<!--     <link rel="stylesheet" href='sub5/FullCalendar/vendor/css/bootstrap-datetimepicker.min.css' /> -->
+    <link rel="stylesheet" href="sub5/FullCalendar/vendor/css/fullcalendar.min.css" />
+    <link rel="stylesheet" href="sub5/FullCalendar/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href='sub5/FullCalendar/vendor/css/select2.min.css' />
+    <link rel="stylesheet" href='sub5/FullCalendar/vendor/css/bootstrap-datetimepicker.min.css' />
 
-<!--     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600"> -->
-<!--     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<!--     <link rel="stylesheet" href="sub5/FullCalendar/css/main.css"> -->
+    <link rel="stylesheet" href="sub5/FullCalendar/css/main.css">
 
     <div class="container">
 <%if(id.equals("admin")){ %>
