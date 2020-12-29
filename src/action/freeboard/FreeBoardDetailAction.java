@@ -29,7 +29,7 @@ public class FreeBoardDetailAction implements Action {
 		// 파라미터로 전달받은 게시물 번호(board_num) 가져오기
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		int board_type = Integer.parseInt(request.getParameter("board_type"));
-//		int maxSeq = Integer.parseInt(request.getParameter("max_seq"));
+//		int maxSeq = Integer.parseInt(request.getParameter("maxSeq"));
 //		int b = Integer.parseInt(request.getParameter("b"));
 		
 		System.out.println("게시물 번호 : " + board_num);
