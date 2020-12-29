@@ -166,10 +166,10 @@ font-weight:600;box-shadow:0 2px #f2f2f2;border-radius:4px;float:right;}
 .h-top-bottom .gnb{float:left;}
 .h-top-bottom .gnb:after{content:"";display:block;clear:both;}
 .h-top-bottom .gnb li{float:left;}
-.h-top-bottom .gnb li a{display:inline-block;padding:0 18px;height:27px;height:25px \0/IE9;font-size: 17px;font-weight: bold;}
-.h-top-bottom .gnb li:nth-child(1) a{padding:0 25px;width:34px;}
-.h-top-bottom .gnb li:nth-child(1) a.on{width:34px;/* background:url(../images/gnb-book-on.png) no-repeat center top; *//* border-bottom:4px solid #17897a; */}
-.h-top-bottom .gnb li:nth-child(2) a{width:53px;padding:0 16px;}
+.h-top-bottom .gnb li a{display:inline-block;padding:0 18px;height:27px;height: 25px;font-size: 17px;font-weight: bold;}
+.h-top-bottom .gnb li:nth-child(1) a{padding:0 25px;}
+.h-top-bottom .gnb li:nth-child(1) a.on{/* background:url(../images/gnb-book-on.png) no-repeat center top; *//* border-bottom:4px solid #17897a; */}
+.h-top-bottom .gnb li:nth-child(2) a{padding:0 16px;}
 .h-top-bottom .gnb li:nth-child(3) a{padding:0 25px;}
 .h-top-bottom .lnb{float:right;}
 .h-top-bottom .lnb:after{content:"";display:block;clear:both;}

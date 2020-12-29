@@ -25,8 +25,6 @@ if (id == null) {
 
 <!--     <link rel="stylesheet" href="sub5/FullCalendar/css/main.css"> -->
 
-</head>
-<body>
     <div class="container">
 <%if(id.equals("admin")){ %>
         <!-- 일자 클릭시 메뉴오픈 -->
