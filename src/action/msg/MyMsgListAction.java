@@ -37,9 +37,10 @@ public class MyMsgListAction implements Action {
 		
 		ArrayList<MsgBean> msgList = new ArrayList<MsgBean>();
 		msgList = msgListService.myMsgList(page,limit,id);
-		int maxPage = (int)((double)listCount/ limit+0.95);
-		int startPage = ((int)((double)page/10+0.9)-1)*10+1;
-		int endPage=startPage+10-1;
+		int maxPage = (int)((double)listCount / limit + 0.95);
+		int startPage = ((int)((double)page / 10 + 0.9) - 1) * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}

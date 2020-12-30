@@ -286,6 +286,7 @@ box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);}
 .customer-notice tbody td.cal{position:relative}
 .customer-notice tbody td.cal .datepicker{top: -92px !important;left: 13.727px !important;}
 .customer-notice tbody td:nth-child(1){text-align:center;font-weight:600;background:#f4f4f4;color:#333;}
+.customer-notice tbody td.td{background: #fff !important;}
 .customer-notice tbody td:nth-child(2),
 .customer-notice tbody td.td {border-left: 1px solid #d4d5d6; padding-left: 13px;}
 .customer-notice tbody td:nth-child(2) p{padding:33px 0;line-height:22px;font-weight:normal;font-size:15px;color:#666;}

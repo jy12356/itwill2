@@ -9,10 +9,10 @@
 // 	id = "홍길동";
 // }
 
-//String id = (String) session.getAttribute("id"); //
-//if(id==null) { // 로긴안한상태면 로그인화면으로
-//	response.sendRedirect("../member.login.jsp");
-//}
+// String id = (String) session.getAttribute("id"); //
+// if(id==null) { 
+// // 	response.sendRedirect("../member.login.jsp");
+// }
 
 // 전달받은 request 객체로부터 데이터 가져오기
 // "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
@@ -103,9 +103,18 @@ int listCount = pageInfo.getListCount();
 							%>
 						</tbody>
 					</table>
-					<div class="btn_inner">
+					<% 
+					String id = (String) session.getAttribute("id"); //
+					
+					if(id!=null) { 
+						%>
+						<div class="btn_inner">
 						<a href="FreeBoardWriteForm.free" class="btn">글쓰기</a>
 					</div>
+						<%
+					}
+					%>
+					
 
 					<div class="paging">
 <!-- 						<a href="free_board.jsp?pageNum=1" class="arr" data-page-num="1"><img -->
