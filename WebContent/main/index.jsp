@@ -51,12 +51,12 @@
 			<ul>
 				<%
 					if(bookList5!=null){
-					for(int i = 0; i < 5; i++) {
+					for(int i = 0; i < 12; i++) {
 				%>
 				<li>
 					<div class="figure">
 						<span class="label"><em>10%<span>할인</span></em></span> 
-						<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList5.get(i).getIsbn()%>">
+						<a href="BookDetail.bok?booknum=<%=bookList5.get(i).getNum()%>&isbn=<%=bookList5.get(i).getIsbn()%>">
 							<span class="rm_br">
 							<img src="bookUpload/<%=bookList5.get(i).getImage() %>" alt="<%=bookList5.get(i).getImage()%>" /></span>
 							<span class="light"></span>
