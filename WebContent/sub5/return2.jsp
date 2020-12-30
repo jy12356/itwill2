@@ -48,7 +48,7 @@
                             <tr>
                                 <td class="tac check_box">
                                 <input type="checkbox" id="checkbox_num" class="check_num" value="<%=rentalList.get(i).getNum()%>" name="inter_num"></td>
-                                <td><%=rentalList.get(i).getTitle()%></td>
+                                <td><p class="title"><a href="BookDetail.bok?isbn=<%=rentalList.get(i).getIsbn()%>"><%=rentalList.get(i).getTitle()%></a></p></td>
                                 <td><%=rentalList.get(i).getS_date()%> ~ <%=rentalList.get(i).getOnrental_date()%></td>
                                 <td><%=rentalList.get(i).getE_date()%></td>
                                <td><%=rentalList.get(i).getState()%></td>
