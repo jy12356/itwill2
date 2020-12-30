@@ -3,12 +3,12 @@
 <% 
 // 글쓰기 폼
 String id = (String) session.getAttribute("id"); // 아이디가져오기
-	if(id==null) {
-		id = "gang";
-	}
-// if(id==null) { // 로긴안한상태면 로그인화면으로
-// 	response.sendRedirect("../member.login.jsp");
-// }
+// 	if(id==null) {
+// 		id = "gang";
+// 	}
+if(id==null) { // 로긴안한상태면 로그인화면으로
+	response.sendRedirect("../member.login.jsp");
+}
 %>
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">

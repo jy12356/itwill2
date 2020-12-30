@@ -6,22 +6,12 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String) session.getAttribute("id");
-if (id == null) {
-	id = "gang";
-}
-// int b=0;
 int limit = ((Integer)request.getAttribute("limit")).intValue();
 System.out.println("limit :" + limit);
-// 	limit = limit+10;
 
 int entireCount = ((Integer)request.getAttribute("entireCount")).intValue();
 // int maxSeq = ((Integer)request.getAttribute("maxSeq")).intValue();
 System.out.println("entireCount :" + entireCount);
-// if(limit==10){
-// 	limit = limit+10;
-// }else{
-// 	limit = limit+10;
-// }
 FreeBoardBean article = (FreeBoardBean) request.getAttribute("article");
 String nowPage = request.getParameter("page");
 int board_type = 1;
@@ -207,10 +197,9 @@ int board_num = article.getBoard_num();
 									</div>
 								</div>
 							</div>
-							<!-- 댓글수정 -->
 							<%
-// 							 if(id != null) {
-// 		                        if(id.equals(commentList.get(i).getComment_id())) {
+							 if(id != null) {
+		                        if(id.equals(commentList.get(i).getComment_id()) || id.equals("admin")) {
 							%>
 							<div class="cmtModi"  style="display: none;">
 								<form action="CommentModify.free" method="post" class="comment-write reply-write">
@@ -230,8 +219,8 @@ int board_num = article.getBoard_num();
 								</form>
 							</div>
 							<%
-// 		                        }
-// 							 }
+		                        }
+							 }
 							%>
 							
 				<!-- 대댓글작성 ------------------------------------------->
@@ -261,23 +250,16 @@ int board_num = article.getBoard_num();
 								</form>
 							</div>
 				<!-- 대댓글작성 ------------------------------------------->
-				<!-- 일반 댓글리스트 뿌려주기 ㄲ -->
+				<!-- 일반 댓글리스트 뿌려주기 끝 -->
 							<%
 // 									}
 								}
 							}
 							%>
 						</div>
-<%-- <p>entireCount = <%=entireCount %></p> --%>
-<%-- <p>limit = <%=limit %></p> --%>
-<!-- 						<input type="hidden" value="여기로오렴" id="CC"> -->
 						<%
-// 						if(commentList != null && listCount > 0) {
 							if(entireCount > limit) {
 						%>
-<!-- 						<div class="d-more reviewMore" style="display: ;"> -->
-<!-- 							<a href="javascript:;" class="moreComment">댓글 더보기</a> -->
-<!-- 						</div> -->
 <div class="d-more reviewMore" style="display: ;">
 	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%>
 	&board_type=<%=board_type%>&limit=<%=limit+10%>">댓글 더보기</a>
@@ -290,6 +272,9 @@ int board_num = article.getBoard_num();
 					</div>
 				</div>
 				<!------------------------------ 댓글쓰기 ---------------------------------------------------->
+				<%
+// 							 if(id != null) {
+							%>
 				<div class="comment-text-area">
 					<form action="CommentWritePro.free" method="post">
 						<div class="comment-text" style="display: block;">
@@ -307,6 +292,10 @@ int board_num = article.getBoard_num();
 						</div>
 					</form>
 				</div>
+				<%
+// 							 }
+				%>
+				
 			</div>
 		</div>
 
