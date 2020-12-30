@@ -191,17 +191,19 @@ int board_num = article.getBoard_num();
 						
 						<div class="btn_inner">
 						<a href="javascript:;" class="comment_modi_show btn" data-comment-count="0">수정</a> 
-						<a href="javascript:;" class="comment_write_show btn" data-comment-count="0" class="btn">댓글</a>
 						<a href="CommentDelete.free?board_num=<%=cb.getBoard_num()%>
 						&comment_num=<%=commentList.get(i).getComment_num()%>
 						&board_type=<%=cb.getBoard_type()%>&page=<%=nowPage%>" class="btn">삭제</a>
-						</div>
+						
 						
 						<% 
 		                        }
 						 }
 						%>
+						<div>
+							<a href="javascript:;" class="comment_write_show btn" data-comment-count="0" class="btn" style="float: right;">댓글</a>
 										
+										</div>
 									</div>
 								</div>
 							</div>
