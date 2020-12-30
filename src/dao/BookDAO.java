@@ -308,7 +308,7 @@ public class BookDAO {
 			try {
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, 0);
-				pstmt.setInt(2, 5);
+				pstmt.setInt(2, 12);
 				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				bookList5 = new ArrayList<BookBean>();
