@@ -369,8 +369,8 @@ public class BookDAO {
    public BookBean getBookInfo(String book_isbn) {
       PreparedStatement pstmt =  null;
       ResultSet rs = null;
-      String sql="select b.*,r.* from book  b left outer join (select isbn, count(*) review,"
-      		+ "round(10/sum(starcount),1) starcount from review group by isbn) r "
+      String sql="select b.*,r.* from book b left outer join (select isbn, count(*) review,"
+      		+ "round(AVG(starcount),1) starcount from review group by isbn) r "
       		+ "on b.isbn = r.isbn where b.isbn=?";
       BookBean bookBean = null;
       try {

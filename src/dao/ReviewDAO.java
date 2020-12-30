@@ -365,11 +365,86 @@ public class ReviewDAO {
 			return articleList;
 		}
 
-		// 댓글 수정 -------------------------------------------------
-
+		// 댓글 수정 ----------------------------------------------------
+		public int updateComment(CommentBean commentBean) {
+			System.out.println("ReviewDAO - 댓글 : updateComment()");
+			
+			int updateCount = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql = "UPDATE comment SET commet_desc=? WHERE comment_num=?" ;
+				
+			}catch(Exception e) {
+				System.out.println("updateArticle() 오류! - " + e.getMessage());
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return updateCount;
+		}
 
 		
-		// 리뷰 댓글 삭제 -------------------------------------------------
+		// 댓글 삭제 -------------------------------------------------
+		public int deleteComment(int comment_num) {
+			System.out.println("ReviewDAO - 댓글 : deleteComment()");
+			int deleteCount = 0;
+			
+			PreparedStatement pstmt = null;
+			
+			try {
+				String sql = "DELETE FROM comment WHERE comment_num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, comment_num);
+				System.out.println("4.댓글번호 :" + comment_num);
+				
+				deleteCount = pstmt.executeUpdate();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("deleteArticle() 오류! - " + e.getMessage());
+			} finally {
+				close(pstmt);
+			}
+			return deleteCount;
+		}
+		
+		// 댓글 작성자 본인 확인 ---------------------------------------------
+		public boolean isArticleCommentWriter(int comment_num, int board_num, int board_type, String comment_id) {
+			System.out.println("ReviewDAO - 댓글 : isArticleCommentWriter()");
+			boolean isCommentWriter = false;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT comment_id FROM comment WHERE comment_num=? and board_num=? and board_type=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, comment_num);
+				pstmt.setInt(2, board_num);
+				pstmt.setInt(3, board_type);
+				rs = pstmt.executeQuery();
+				System.out.println("댓글번호 :" + comment_num);
+				System.out.println("댓글타입 :" + board_type);
+				System.out.println("리뷰번호 :" + board_num);
+				System.out.println("댓글작성자 :" + comment_id);
+				
+				if(rs.next()) {
+					if(comment_id.equals(rs.getString("comment_id"))) {
+						isCommentWriter = true;
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("isArticleReviewWriter() 오류! - " + e.getMessage());
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return isCommentWriter;
+		}
 		
 		// 좋아요 등록 ---------------------------------------------------
 		public int insertLikeCount(LikeBean likeBean) {
@@ -508,6 +583,5 @@ public class ReviewDAO {
 				close(rs);
 			}
 			return isLikeWriter;
-		}
-		
+		}		
 	}
