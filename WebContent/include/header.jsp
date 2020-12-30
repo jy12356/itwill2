@@ -89,20 +89,20 @@ String id = (String)session.getAttribute("id");
 						</div>
 						<%if(id == null){ %>
 						<ul class="my-lnb">
-							<li class="btnLogin"><a href="MemberLoginForm.me">로그인</a></li>
-							<li><a href="MemberJoinForm.me">회원가입</a></li>
+							<li class="btnLogin logoutIcon"><a href="MemberLoginForm.me">로그인</a></li>
+							<li class="mypageIcon"><a href="MemberJoinForm.me">회원가입</a></li>
 						</ul>
 						<%}else{ %>
 						<ul class="my-lnb">
-							<li class="btnLogOut"><a href="MemberLogoutPro.me">로그아웃</a></li>
-							<%if(id == "admin"){ %>
-								<li><a href="Admin.book">admin</a></li>
+							<li class="btnLogOut logoutIcon"><a href="MemberLogoutPro.me">로그아웃</a></li>
+							<%if(id.equals("admin")){ %>
+								<li class="mypageIcon"><a href="Admin.book">admin</a></li>
 							<%}else{
 								%>
-								<li><a href="Mypage.me?id=<%=id%>">MY</a></li>
+								<li class="mypageIcon"><a href="Mypage.me?id=<%=id%>">MY</a></li>								
+								<li class="basketIcon"><a href="MyBasketInsert.bk">책바구니</a></li>
 							<%} %>
-							<li><a href="MyBasketInsert.bk">책바구니</a></li>
-							<li class="alarm on"><a href="MyMsg.msg">알리미</a></li>
+							<li class="alarm on alarmIcon"><a href="MyMsg.msg">알리미</a></li>
 						</ul>
 						<%} %>
 					</fieldset>
