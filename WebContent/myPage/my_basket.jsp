@@ -237,11 +237,12 @@ int listCount = pageInfo.getListCount();
 						dataType : 'text',
 						data : interArr,
 						success : function(data) {
+							alert(data);
 							var a = "이미 예약중인 도서가 있습니다.";
-							if(data == a.trim()) {
-							alert(a);
+							var b = "예약신청이 완료되었습니다.";
+							if(data == a) {
 								return false;								
-							} else if(data == "성공"){
+							} else if(data == b){
 							location.href = "ReservationList.rn";
 							}
 						},
@@ -319,7 +320,7 @@ int listCount = pageInfo.getListCount();
 							if(data == a) {
 // 								alert(a);
 								return false;								
-							} else if(data == "성공"){
+							} else if(data == "대여신청이 완료되었습니다."){
 							location.href = "rentalList.rn";
 							}
 						},
