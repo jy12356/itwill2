@@ -67,7 +67,9 @@
 								<th>
 									문의내용
 								</th>
-								<td align="center"><%=article.getContent() %></td>
+								<td><textarea cols="50" rows="8"><%=article.getContent() %></textarea>
+
+								</td>
 							</tr>
 							<tr>
 								<th>
