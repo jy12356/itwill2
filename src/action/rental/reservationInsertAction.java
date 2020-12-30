@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+import svc.msg.MsgSpanService;
 import svc.rental.RentalInsertService;
 import svc.rental.reservationInsertService;
 import vo.ActionForward;
+import vo.MsgBean;
 
 public class reservationInsertAction implements Action {
 
@@ -61,6 +63,17 @@ public class reservationInsertAction implements Action {
 					out.println("history.back()"); // 이전 페이지로 이동
 					out.println("</script>"); // 자바스크립트 끝 태그
 				} else {
+					
+					// 예약신청시 메시지 보내기
+					MsgBean msgBean = new MsgBean();		
+					String fromid = "admin";
+					String content = "도서예약신청이 완료되었습니다.";
+					msgBean.setId(id);
+					msgBean.setFromId(fromid);
+					msgBean.setContent(content);
+					MsgSpanService msgSpanService = new MsgSpanService();
+					boolean isSpan = msgSpanService.msgSpan(msgBean);
+					
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter out = response.getWriter();
 //					out.println("<script>");

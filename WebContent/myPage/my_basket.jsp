@@ -238,8 +238,8 @@ int listCount = pageInfo.getListCount();
 						data : interArr,
 						success : function(data) {
 							var a = "이미 예약중인 도서가 있습니다.";
-							alert(a);
 							if(data == a.trim()) {
+							alert(a);
 								return false;								
 							} else if(data == "성공"){
 							location.href = "ReservationList.rn";
@@ -310,10 +310,14 @@ int listCount = pageInfo.getListCount();
 						data : interArr,
 						success : function(data) {
 							// 대여하기 성공했으면 대여리스트로 가기
-// 							alert(data);
+							alert(data);
 							var a = "이미 대여중인 도서가 있습니다.";
-							alert(a);
-							if(data == a.trim()) {
+							var b = "도서는 최대 5권 까지 대여 가능합니다.";
+							if(data == b) {
+								return false;
+							}
+							if(data == a) {
+// 								alert(a);
 								return false;								
 							} else if(data == "성공"){
 							location.href = "rentalList.rn";
