@@ -349,7 +349,7 @@ int listCount = pageInfo.getListCount();
 							</div>
 							<!-- 서평 수정-->
 							<!-- 댓글 창 -->
-							<div class="cmtRly clearfix" data-review-num="" data-comment-num="" style="">
+							<div class="cmtRly clearfix" data-review-num="" data-comment-num="" style="none">
 								<!-- 댓글 등록 입력창-->
 								<form action="javascript:;" class="comment-write reply-write" method="get" id="myReComment">
 									<div>
@@ -359,10 +359,6 @@ int listCount = pageInfo.getListCount();
 										<input type="hidden" name="comment_id" value="<%=id%>"> 
 										<textarea name="comment_desc" placeholder="댓글을 작성해주세요"></textarea>
 									</div>
-									<!-- 					<p> -->
-									<!-- 						<span><em>0</em>/500자</span><br> -->
-									<!-- 						<span>댓글 수( <em class="listCount"></em> )명</span> -->
-									<!-- 					</p> -->
 									<div class="btn_inner">
 										<input type="submit" value="등록" class="btn reviewInput ReComment_Write">
 										<input type="reset" value="취소" class="btn reviewCancele">
@@ -405,10 +401,7 @@ int listCount = pageInfo.getListCount();
 				<!-- 서평 리스트 더보기 -->
 				<!-- 서평리스트 내용-->
 				<!-- 서평 및 댓글 쓰기  -->
-				<!-- ------------------------------------------------------------------------------ -->
-				<!-- 댓글수정/대댓글 -->
-				<!-- 댓글수정/대댓글 -->
-				<!-- ------------------------------------------------------------------------------ -->
+
 				<div class="detail_class_best_book">
 				</div>
 				<div class="md">
@@ -472,14 +465,16 @@ int listCount = pageInfo.getListCount();
 		} 
 	}
 	
-	// 댓글 수정
-	function commet_Modi() {
-		if(confirm("댓글을 수정하시겠습니까?")==true){
+	// 댓글 수정창 열기
+	function comment_Modi() {
+		alert("comment_num");
+		if($(".comment-text").css("display")=="none"){
+			$(".comment-text").show();
 		} else {
-			return false;
-		} 
-	}
-	
+			$(".comment-text").hide();
+			}
+		}
+
 	$(document).ready(
 			function() {
 				$(".my-review").on("click", function() {
@@ -490,10 +485,8 @@ int listCount = pageInfo.getListCount();
 					} else {
 						location.href = "/mypage.asp?list=_review";
 					}
-				});
-				//리뷰 입력창
-				$(".cmtModi").hide();
-				$(".cmtRly").hide();
+				});		
+				
 				//리뷰댓글 수정입력창 보이기
 				$(".rview_modi_show").on("click",function() {
 					var modi = $(this).parent().parent().next().css("display");
@@ -505,6 +498,7 @@ int listCount = pageInfo.getListCount();
 						$(this).parent().parent().next().css("display", "none");
 					}
 				});
+				
 				//리뷰댓글 입력창 보이기
 				$(".comment_write_show").on("click",function() {
 					var board_num = $(this).data("comment-count");
@@ -543,6 +537,7 @@ int listCount = pageInfo.getListCount();
 							$.each(JSON.parse(json), function(index, entry) {
 								entry["comment_id"]
 								$(".reply").append(
+									'<input type="hidden" name="book_isbn" value='+isbn+'>'+
 	                				'<input type="hidden" name="board_type" value="2">'+
 	                				'<input type="hidden" name="board_num" value="'+entry["board_num"]+'">'+
 	                				'<p class="comment-vote bookcube" id="cmt_vote">'+
@@ -553,13 +548,27 @@ int listCount = pageInfo.getListCount();
 	                				'</div>'+
 	                				'<div class="btn_inner">'+
 // 	                				'<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>'+
-	                				'<a href="javascript:;" onclick="commet_Modi();" class="comment_modi_show btn rview_modi_show">수정</a>'+
+	                				'<a href="javascript:;" onclick="comment_Modi();" class="comment_modi_show btn rview_modi_show" data-comment_num="'+entry["comment_num"]+'">수정</a>'+
 	                				'<a href="ReCommentDeletePro.re?comment_num='+entry["comment_num"]+'&board_num='+entry["board_num"]+'&board_type=2&id='+id+'&page='+page+'&isbn='+isbn+'" class="delete-btn btn"  onclick="return delchk();">삭제</a>'+
 	                				'</div>'+
-	                				'<div class="c_m">'+
-	                				'<input type="text" namd="comment_desc">'+
-	                				'</div>'
 
+	                				'<div class="comment-text" style="display: none;">'+
+	                				'<form action="ReCommentModifyPro.re" class="comment-write reply-write" method="post" id="MyReModify">'+
+	                				'<div>'+
+	                				'<input type="hidden" name="isbn" value="'+isbn+'">'+
+	                				'<input type="hidden" name="page" value='+page+'>'+
+	                				'<input type="hidden" name="comment_num" value="'+entry["comment_num"]+'">'+
+	                				'<input type="hidden" name="board_num" value="'+entry["board_num"]+'">'+
+	                				'<input type="hidden" name="board_type" value="2">'+
+	                				'<input type="hidden" name="id" value="'+id+'">'+
+	                				'<textarea name="comment_desc">'+entry["comment_desc"]+'</textarea>'+
+	                				'</div>'+
+	                				'<div class="btn_inner">'+
+	                				'<input type="submit" value="수정" class="btn reviewInput ReComment_Modify">'+
+	                				'<input type="reset" value="취소" onclick="modi_close();" class="btn reviewCancele">'+
+	                				'</div>'+
+	                				'</form>'+
+	                				'</div>'
                 				);
 
 							});

@@ -374,8 +374,12 @@ public class ReviewDAO {
 			PreparedStatement pstmt = null;
 			
 			try {
-				String sql = "UPDATE comment SET commet_desc=? WHERE comment_num=?" ;
-				
+				String sql = "UPDATE comment SET comment_desc=? WHERE comment_num=?" ;
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, commentBean.getComment_desc());
+				pstmt.setInt(2, commentBean.getComment_num());
+				updateCount = pstmt.executeUpdate();
+
 			}catch(Exception e) {
 				System.out.println("updateArticle() 오류! - " + e.getMessage());
 				e.printStackTrace();
@@ -385,7 +389,6 @@ public class ReviewDAO {
 			
 			return updateCount;
 		}
-
 		
 		// 댓글 삭제 -------------------------------------------------
 		public int deleteComment(int comment_num) {
