@@ -131,21 +131,21 @@
 								</p>
 								<p class="webtoon">
 									<strong class="fn-webtoon">소설</strong> 
-<!-- 									<a href="/webtoon/best/realtime" class="BookList.bok?catg1=소설">더보기  -->
+									<a href="BookList.bok?catg1=소설" class="BookList.bok?catg1=소설">더보기 
 										<span class="more"></span>
-<!-- 									</a> -->
+									</a>
 								</p>
 								<p class="comic">
 									<strong class="fn-comic">인문/경제</strong> 
-<!-- 									<a href="/comic/best/all/realtime" class="BookList.bok?catg1=인문/경제">더보기 -->
+									<a href="BookList.bok?ccatg1=인문/경제" class="BookList.bok?ccatg1=인문/경제">더보기
 										<span class="more"></span>
-<!-- 									</a> -->
+									</a>
 								</p>
 								<p class="fiction">
 									<strong class="fn-fiction">과학/IT</strong> 
-<!-- 									<a href="/novel/best/all/realtime" class="BookList.bok?catg1=과학">더보기  -->
+									<a href="BookList.bok?catg1=과학" class="BookList.bok?catg1=과학">더보기 
 										<span class="more"></span>
-<!-- 									</a> -->
+									</a>
 								</p>
 							</li>
 						<%
@@ -219,11 +219,11 @@
 	<div class="main-inner">
 		<div class="main_ct_best">
 			<div class="ct-best">
-				<h3>카테고리별 베스트</h3>
+				<h3>카테고리</h3>
 				<ul>
 					<li><a href="BookList.bok?catg1=소설">소설<span class="ct-arrow"></span></a></li>
 					<li><a href="BookList.bok?catg1=인문/경제">인문/경제<span class="ct-arrow"></span></a></li>
-					<li><a href="BookList.bok?catg1=과학">과학/IT<span class="ct-arrow"></span></a></li>
+					<li><a href="BookList.bok?catg1=과학">과학<span class="ct-arrow"></span></a></li>
 					<li><a href="BookList.bok?catg1=취미">취미<span class="ct-arrow"></span></a></li>
 					<li><a href="BookList.bok?catg1=만화/웹소설">만화/웹소설<span class="ct-arrow"></span></a></li>
 				</ul>
