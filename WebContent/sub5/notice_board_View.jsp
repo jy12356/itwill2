@@ -7,10 +7,8 @@
     %>
 <% 
 // 글쓰기 폼
-// String id = (String) session.getAttribute("id"); // 아이디가져오기
-// if(id==null) { // 로긴안한상태면 로그인화면으로
-// 	response.sendRedirect("../member.login.jsp");
-// }
+String id = (String) session.getAttribute("id"); // 아이디가져오기
+
 %>
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
@@ -78,9 +76,18 @@
 	                        </tbody>
 	                    </table>
 	                    <div class="default-btn-wrap">	
-	                    	<input type="button" value="수정" class="btn" onclick="location.href='NoticeBoardModifyForm.not?num=<%=article.getNum()%>&page=<%=nowPage%>'">
-	                        <input type="button" value="삭제" class="btn" onclick="location.href='NoticeBoardDelete.not?num=<%=article.getNum()%>&page=<%=nowPage%>'">
 	                        <input type="button" value="목록" class="btn" onclick="location.href='NoticeBoardList.not?page=1'">
+	                   <%
+							                        if(id != null) {
+						                        	if(id.equals(article.getId()) || id.equals("admin")){
+						%> 
+	                    	<input type="button" value="수정" class="btn" onclick="location.href='NoticeBoardModifyForm.not?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+	                       <input type="button" value="삭제" class="btn" onclick="location.href='NoticeBoardDelete.not?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+	                       	<%
+						                        	}
+					                        }
+					%>
+	                       
 	                    </div>
                     </form>
                 </div>

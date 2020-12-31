@@ -5,9 +5,7 @@
     int num = Integer.parseInt(request.getParameter("num"));
     String nowPage = request.getParameter("page");
 	String id = (String) session.getAttribute("id");
-	if (id == null) {
-	id = "ㅇㅇ";
-	}
+	
     %>
 <% 
 // 글쓰기 폼
