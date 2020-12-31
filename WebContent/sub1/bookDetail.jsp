@@ -7,60 +7,6 @@
 <%@page import="vo.ReviewBean" %>
 <%@page import="java.util.ArrayList" %>
 <jsp:include page="../include/header.jsp"/>
-<!-- 카카오 공유하기 20201125 서지연 추가 시작-->
-<script type='text/javascript'>
-	var firstImg = $(".thum-box img");
-	var contents = "";
-	if (firstImg.attr("src")) {
-		var firstImgSrc = firstImg.attr("src");
-		var firstImgRatio = parseInt(firstImg.css("height"))
-				/ parseInt(firstImg.css("width"));
-		if (firstImgRatio <= 0.27)
-			var firstImgRatio = 0.27;
-	} else {
-		// 	var firstImgSrc=location.origin+"/favicon.ico";
-		var firstImgRatio = 1
-	}
-	// 사용할 앱의 JavaScript 키를 설정해 주세요. 
-	//<![CDATA[
-	Kakao.init('b528aa836fabfb8e8ebeb7dde7277a0f');
-	// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-	Kakao.Link.createDefaultButton({
-		container : '#kakao-link-btn',
-		objectType : 'feed',
-		content : {
-			title : $('meta[property="og:title"]').attr('content'),
-			description : $('meta[property="og:description"]').attr('content'),
-			imageUrl : $('meta[property="og:image"]').attr('content'),
-			link : {
-				mobileWebUrl : window.location.href,
-				webUrl : window.location.href
-			}
-		},
-		social : {
-			likeCount : 286,
-			commentCount : 45,
-			sharedCount : 845
-		},
-		buttons : [ {
-			title : '웹으로 보기',
-			link : {
-				webUrl : window.location.href
-			}
-		} ]
-	});
-	//]]>
-	//링크복
-	function shareUrl() {
-		var urlLink = window.location.href;
-		urlLink.value = window.location.href;
-		alert(urlLink);
-		urlLink.select();
-		document.execCommand("copy"); // 클립보드에 복사합니다. 
-		alert('복사되었습니다, 감사합니다.');
-	}
-</script>
-<!-- 카카오 공유하기 20201125 서지연 추가 끝-->
 <% 
 request.setCharacterEncoding("utf-8"); 
 BookBean bookBean=(BookBean) request.getAttribute("bookBean"); 
@@ -100,7 +46,7 @@ int listCount = pageInfo.getListCount();
 				<div class="book-thum">
 					<div class="figure">
 						<div class="thum-box">
-							<span class="rm_br"><img src="bookUpload/<%=bookBean.getImage()%>" /> </span><span class="light"></span>
+							<span class="rm_br"><img id="bookImg" src="bookUpload/<%=bookBean.getImage()%>" /> </span><span class="light"></span>
 						</div>
 					</div>
 					<div class="early-btn">
@@ -110,7 +56,7 @@ int listCount = pageInfo.getListCount();
 					<div class="all-volume">
 						<h3 class="bookTitle"><%=bookBean.getTitle()%></h3>
 						<p>
-							<span><%=bookBean.getAuthor()%></span> 저
+							<span class="bookAuthor"><%=bookBean.getAuthor()%></span> 저
 						</p>
 						<p>
 							<strong><%=bookBean.getPublisher()%></strong>출판<em>|</em><%=bookBean.getPubdate()%>
@@ -142,7 +88,7 @@ int listCount = pageInfo.getListCount();
 							<span class="list-star rank10"></span>
 							<% } %>
 							<p class="rank-user">
-								<span><%=bookBean.getStarcount()%></span>(<%=bookBean.getReviewCount()%>명)
+								<span class="bstarCount"><%=bookBean.getStarcount()%></span>(<span class="breviewCount"><%=bookBean.getReviewCount()%></span>명)
 							</p>
 							<p class="review-user">
 								 서평(<span><%=listCount%></span>)
@@ -155,7 +101,9 @@ int listCount = pageInfo.getListCount();
 										<h3>공유하기</h3>
 										<div class="share-btn">
 											<div class="sns" data-options="">
-												<a class="share-facebook" data-sns="facebook" onclick="javascript:facebook('http://itwillbs6.cafe24.com/MODEL2/BookDetail.bok?isbn=<%=bookBean.getIsbn()%>&page=<%=nowPage%>&title=<%=bookBean.getTitle()%>');">페이스북</a><a class="share-kakao" data-sns="kakao" id="kakao-link-btn" href="javascript:sendLink();">카카오</a><a class="share-url" onclick="javascript:shareUrl();">URL</a>
+												<a class="share-facebook" data-sns="facebook" href="javascript:facebook('<%= request.getRequestURL()%>');">페이스북</a>
+												<a class="share-kakao" data-sns="kakao" id="kakao-link-btn" href="javascript:sendLink('<%= request.getRequestURL()%>');">카카오</a>
+												<a class="share-url" href="javascript:shareUrl('<%= request.getRequestURL()%>');">URL</a>
 											</div>
 										</div>
 										<button class="share-cancel">닫기</button>
@@ -183,6 +131,73 @@ int listCount = pageInfo.getListCount();
 										e.stopPropagation();
 									})
 								</script>
+									<!-- 카카오 공유하기 20201125 서지연 추가 시작-->
+									<script type='text/javascript'>
+										$(document).ready(function(){
+											var firstImg = $(".thum-box img");
+											var contents = "";
+											if (firstImg.attr("src")) {
+												var firstImgSrc = firstImg.attr("src");
+												var firstImgRatio = parseInt(firstImg.css("height"))
+														/ parseInt(firstImg.css("width"));
+												if (firstImgRatio <= 0.27)
+													var firstImgRatio = 0.27;
+											} else {
+												// 	var firstImgSrc=location.origin+"/favicon.ico";
+												var firstImgRatio = 1
+											}
+											// 사용할 앱의 JavaScript 키를 설정해 주세요. 
+											//<![CDATA[
+											Kakao.init('b528aa836fabfb8e8ebeb7dde7277a0f');
+											// // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+											Kakao.Link.createDefaultButton({
+												container : '#kakao-link-btn',
+												objectType : 'feed',
+												content : {
+													title : $('.bookTitle').html(),
+													description : $('.bookAuthor').html(),
+													imageUrl : $('#bookImg').attr('src'),
+													link : {
+														mobileWebUrl : window.location.href,
+														webUrl : window.location.href
+													}
+												},
+												social : {
+													likeCount: 286,
+											        commentCount: 45,
+											        sharedCount: 845
+												},
+												buttons : [ {
+													title : '웹으로 보기',
+													link : {
+														mobileWebUrl : window.location.href,
+														webUrl : window.location.href
+													}
+												} ]
+											});
+											//]]>
+											//링크복
+											//페이스북 공유하기
+											function facebook(url){
+												window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url),
+														"facebook","width=600,height=500,scrollbars=no,toolbar=no,resizable=yes");
+											}
+											
+											function shareUrl(url){ 
+												var IE=(document.all)?true:false;
+												if (IE) {
+													if(confirm("이 글의 트랙백 주소를 클립보드에 복사하시겠습니까?"))
+													window.clipboardData.setData("Text", url);
+													} else {
+														temp = prompt("이 글의 트랙백 주소입니다. Ctrl+C를 눌러 클립보드로 복사하세요", url);
+													}
+												}
+											}
+										});
+									
+										
+									</script>
+									<!-- 카카오 공유하기 20201125 서지연 추가 끝-->
 						</div>
 					</div>
 					<!-- 					<div class="deduction-check"> -->

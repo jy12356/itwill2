@@ -92,44 +92,6 @@ function goUrl(url){
 	location.href = url ;
 }
 
-function book_down(series_num, book_num, split_num, file_type){
-	window.open(httpUrl + '/download/book_down.asp?series_num='+series_num +'&book_num='+ book_num +'&split_num='+ split_num +'&file_type='+ file_type ,'download','width=550,height=670,scrollbars=yes,toolbar=no');
-}
-
-function book_down_preview(sku, page){
-	var url = '/data/_preview_info_add.asp';
-	$.ajax({
-		url : url,
-		type : 'post',
-		dataType : 'json',
-		data : {
-			book_num : sku
-		},
-		headers : {'cache-control' : "no-cache"},
-		cache : false,
-		success : function(data){
-			window.open('https://pre.bookcube.com/preview_epub.php?book_num='+sku+"&page="+ page);	
-		},
-		error: function(){}
-	});
-}
-
-function serial_down_contractor(serialcheck){
-	window.open(httpUrl + '/download/book_down_serial.asp?serialCheck='+serialcheck+'&mode=contractor','download','width=300,height=200,scrollbars=no,toolbar=no');
-}
-
-function serial_down(serialcheck){
-	window.open(httpUrl + '/download/book_down_serial.asp?serialCheck='+serialcheck,'download','width=300,height=200,scrollbars=no,toolbar=no');
-}
-
-function serial_down_order(order_num, serial_num){
-	window.open(httpUrl + '/download/book_down_serial.asp?order_num='+order_num+'&serial_num='+serial_num,'download','width=300,height=200,scrollbars=no,toolbar=no');
-}
-
-function streaming(book_num){
-	window.open('/mypage/pop_mp3Down_list.asp?book_num='+book_num, 'streaming', 'width=467,height=432,scrollbars=yes,toolbar=no');
-}
-
 function parent_replace(url){
 	parent.location.href = url;
 }
@@ -161,38 +123,6 @@ function instant_view(series_num, buyType, book_num){
 
 }
 
-function facebook(url){
-	window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url),"facebook","width=600,height=500,scrollbars=no,toolbar=no,resizable=yes");
-}
-
-function twitter(url, text){
-	objShortUrl = makeShortUrl(url);
-	if(objShortUrl){
-		shortUrl = objShortUrl.data.url;
-	}else{
-		shortUrl = '';
-	}
-	window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(shortUrl) + '&text=' + encodeURIComponent(text),"twitter","width=600,height=433,scrollbars=no,toolbar=no");
-}
-
-function shareUrl(url){
-	objShortUrl = makeShortUrl(url);
-	if(objShortUrl){
-		shortUrl = objShortUrl.data.url;
-	}else{
-		shortUrl = '';
-	}
-	$(".link-area").val(shortUrl);
-	$(".link-area").attr("type","text");
-	$(".link-area").select();
-	var success = document.execCommand("copy");
-	$(".link-area").attr("type","hidden");
-	if(success){
-		alert("URL이 복사되었습니다.\n공유를 원하시는 곳에 붙여넣기(Ctrl+V) 하세요."); 
-	}else{
-		alert('이 브라우저는 지원하지 않습니다.'); 
-	}
-}
 
 function makeShortUrl(longUrl){
 	/*
