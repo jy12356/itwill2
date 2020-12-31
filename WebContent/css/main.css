@@ -2518,7 +2518,7 @@ border-radius:4px;line-height:32px;font-size:13px;font-weight:600;padding:0 15px
 .comment_write .reply{float:left;margin-top:40px;width:115px;text-align:center;color:#333;font-size:16px;font-weight:600;}
 .comment_write .reply span{color:#17897a;}
 .comment_write textarea{float:left;width:630px;height:98px;border:1px solid #cdced1;resize:none;padding:10px;}
-.comment textarea{float:left;width:630px;height:93px;border:1px solid #cdced1;resize:none;}
+.comment textarea{float:left;width: 714px;height:93px;border:1px solid #cdced1;resize:none;}
 #comment{}
 .comment{border-bottom:1px solid #cdced1;padding:24px 17px 24px 12px;}
 .comment span.rep{display:block;width:715px;font-size:13px;word-break:break-all;}
@@ -3143,11 +3143,12 @@ margin-left:3px;border:1px solid #fb0707;display:inline-block;box-sizing:border-
 .comment_inner .comment-write button{font-size:14px;margin:0 2px;float:right;border:1px solid #c1c1c1;width:50px;padding:6px 0 5px 0;color:#333;text-align:center;box-shadow:0 2px #f2f2f2;border-radius:3px;background:#fff;font-weight:bold;}
 .comment_inner .reply-comment{padding-left:25px;background:url(../images/replyBg.png) no-repeat 0px 3px;background-size:12px 12px;}
 .comment_inner .comment-text-area{margin-bottom:30px;margin-top:15px;border:1px solid #eaeaea;border-radius:4px;padding:17px;text-align:center;box-shadow:0 3px #fbfbfb;}
-.comment_inner .cmtRly .comment-write.reply-write{padding: 20px 10px 0 33px;}
+.cmtRly .comment_inner .comment-write textarea{padding: 20px 10px 0 33px;}
+.cmtRly .comment-write.reply-write{padding: 20px 0;}
 .cmtRly .comment-write p{float: left;margin-top: 8px;}
 .cmtRly .comment-write.reply-write .btn_inner{margin: 10px 0 10px;float: right;}
 .cmtRly .comment-write.reply-write .btn_inner .btn{background: #fff;padding: 2px 10px;}
-.cmtModi .comment-write.reply-write{padding: 20px 10px 0 33px;}
+.cmtModi .comment-write.reply-write{padding: 20px 0;}
 .cmtModi .comment-write.reply-write .btn_inner{margin: 10px 0 10px;}
 .cmtModi .comment-write.reply-write .btn_inner .btn{background: #fff;padding: 2px 10px;}
 .comment_inner .comment-text{}
