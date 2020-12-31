@@ -273,7 +273,7 @@ int board_num = article.getBoard_num();
 				</div>
 				<!------------------------------ 댓글쓰기 ---------------------------------------------------->
 				<%
-// 							 if(id != null) {
+							 if(id != null) {
 							%>
 				<div class="comment-text-area">
 					<form action="CommentWritePro.free" method="post">
@@ -293,9 +293,31 @@ int board_num = article.getBoard_num();
 					</form>
 				</div>
 				<%
-// 							 }
+							 }
 				%>
-				
+				<%
+							 if(id == null) {
+							%>
+				<div class="comment-text-area">
+					<form action="" method="post">
+						<div class="comment-text" style="display: block;">
+							<h3 class="coTitle tal">댓글쓰기</h3>
+							<input type="hidden" name="board_type" value="1"> 
+							<input type="hidden" name="page" value="<%=nowPage%>">
+							<input type="hidden" name="board_num" value="<%=article.getBoard_num()%>"> 
+							<input type="hidden" name="comment_id" value="<%=id%>">
+							<textarea readonly name="comment_desc" placeholder="로그인이 필요합니다."></textarea>
+							<div class="btn_inner">
+								<input type="submit" class="btn reviewInput" value="등록">
+								<a href="javascript:;" class="btn reviewCancel">취소</a>
+							</div>
+
+						</div>
+					</form>
+				</div>
+				<%
+							 }
+				%>
 			</div>
 		</div>
 
