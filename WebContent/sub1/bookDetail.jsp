@@ -46,7 +46,7 @@ int listCount = pageInfo.getListCount();
 				<div class="book-thum">
 					<div class="figure">
 						<div class="thum-box">
-							<span class="rm_br"><img src="bookUpload/<%=bookBean.getImage()%>" /> </span><span class="light"></span>
+							<span class="rm_br"><img class="bookImg" src="bookUpload/<%=bookBean.getImage()%>" /> </span><span class="light"></span>
 						</div>
 					</div>
 					<div class="early-btn">
@@ -56,7 +56,7 @@ int listCount = pageInfo.getListCount();
 					<div class="all-volume">
 						<h3 class="bookTitle"><%=bookBean.getTitle()%></h3>
 						<p>
-							<span><%=bookBean.getAuthor()%></span> 저
+							<span class="bookAuthor"><%=bookBean.getAuthor()%></span> 저
 						</p>
 						<p>
 							<strong><%=bookBean.getPublisher()%></strong>출판<em>|</em><%=bookBean.getPubdate()%>
@@ -156,7 +156,7 @@ int listCount = pageInfo.getListCount();
 												content : {
 													title : $('.bookTitle').html(),
 													description : $('.bookAuthor').html(),
-													imageUrl : $('#bookImg').attr('src'),
+													imageUrl : $('.bookImg').attr('src'),
 													link : {
 														mobileWebUrl : window.location.href,
 														webUrl : window.location.href
@@ -177,23 +177,26 @@ int listCount = pageInfo.getListCount();
 											});
 											//]]>
 											//링크복
-											//페이스북 공유하기
-											function facebook(url){
-												window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url),
-														"facebook","width=600,height=500,scrollbars=no,toolbar=no,resizable=yes");
-											}
-											
-											function shareUrl(url){ 
-												var IE=(document.all)?true:false;
-												if (IE) {
-													if(confirm("이 글의 트랙백 주소를 클립보드에 복사하시겠습니까?"))
-													window.clipboardData.setData("Text", url);
-													} else {
-														temp = prompt("이 글의 트랙백 주소입니다. Ctrl+C를 눌러 클립보드로 복사하세요", url);
-													}
-												}
-											}
+
 										});
+										function shareUrl(url){ 
+											var IE=(document.all)?true:false;
+											if (IE) {
+											if(confirm("이 글의 트랙백 주소를 클립보드에 복사하시겠습니까?"))
+												window.clipboardData.setData("Text", url);
+											} else {
+												temp = prompt("이 글의 트랙백 주소입니다. Ctrl+C를 눌러 클립보드로 복사하세요", url);
+											}
+
+
+										}
+										//페이스북 공유하기
+										function facebook(url){
+											window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url),
+													"facebook","width=600,height=500,scrollbars=no,toolbar=no,resizable=yes");
+										}
+											
+											
 									
 										
 									</script>
