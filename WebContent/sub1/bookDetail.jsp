@@ -11,7 +11,7 @@
 request.setCharacterEncoding("utf-8"); 
 BookBean bookBean=(BookBean) request.getAttribute("bookBean"); 
 String nowPage=request.getParameter("page"); 
-String id=(String) session.getAttribute("id"); 
+String id=(String) session.getAttribute("id");
 String isbn=request.getParameter("isbn");
 int limit=(Integer)request.getAttribute("limit");
 
@@ -129,11 +129,12 @@ int listCount = pageInfo.getListCount();
 											});
 									$(".js-share-box").on("click", function(e) {
 										e.stopPropagation();
-									})
+									});
 								</script>
 									<!-- 카카오 공유하기 20201125 서지연 추가 시작-->
 									<script type='text/javascript'>
 										$(document).ready(function(){
+											
 											var firstImg = $(".thum-box img");
 											var contents = "";
 											if (firstImg.attr("src")) {
@@ -194,8 +195,7 @@ int listCount = pageInfo.getListCount();
 												}
 											}
 										});
-									
-										
+	
 									</script>
 									<!-- 카카오 공유하기 20201125 서지연 추가 끝-->
 						</div>
@@ -329,9 +329,17 @@ int listCount = pageInfo.getListCount();
 								<div class="comment-content">
 									<span><%=articleList.get(i).getContent()%></span>
 								</div>
+									<% 
+									if(id != null) {
+										if(id.equals(articleList.get(i).getId()) || id.equals("admin")) {
+									%>
 								<div class="btn_inner">
 									<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
 									<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
+									<%
+										}
+									}
+									%>
 									<a href="javascript:;" class="heart-btn btn" data-review-num="<%=articleList.get(i).getNum()%>" data-like-id="<%=id%>" data-isbn="<%=isbn%>">좋아요</a>
 									<a href="javascript:;" class="comment_write_show btn" data-comment-count="<%=articleList.get(i).getNum()%>">댓글</a>
 								</div>
