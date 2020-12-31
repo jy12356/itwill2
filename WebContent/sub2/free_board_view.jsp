@@ -200,7 +200,7 @@ int board_num = article.getBoard_num();
 		                        if(id.equals(commentList.get(i).getComment_id()) || id.equals("admin")) {
 							%>
 							<div class="cmtModi"  style="display: none;">
-								<form action="CommentModify.free" method="post" class="comment-write reply-write">
+								<form action="CommentModify.free" method="post" class="comment-write reply-write clearfix">
 									<input type="hidden" name="comment_num" value="<%=commentList.get(i).getComment_num()%>" /> 
 									<input type="hidden" name="board_type" value="<%=cb.getBoard_type()%>" /> 
 									<input type="hidden" name="page" value="<%=nowPage%>" />
@@ -209,8 +209,8 @@ int board_num = article.getBoard_num();
 									<input type="hidden" name="re_ref" value="<%=commentList.get(i).getRe_ref()%>" />
 									<input type="hidden" name="re_lev" value="<%=commentList.get(i).getRe_lev()%>" />
 									<input type="hidden" name="re_seq" value="<%=commentList.get(i).getRe_seq()%>" />
-									<textarea name="comment_desc"><%=commentList.get(i).getComment_desc()%></textarea>
-									<div class="btn_inner">
+									<textarea name="comment_desc" class="fl ml30"><%=commentList.get(i).getComment_desc()%></textarea>
+									<div class="btn_inner" class="fr">
 										<input type="submit" value="수정하기" class="btn">
 										<input type="reset" value="취소" class="btn">
 									</div>
@@ -335,17 +335,17 @@ int board_num = article.getBoard_num();
 			alert("11111111");
 			$(".cmtModi").hide();
 			$(".cmtRly").hide();
-			var modi = $(this).parent().parent().parent().parent().next();
+			var modi = $(this).parent().parent().parent().next();
 		    if (modi.css("display") == "none") {
-		        $(this).parent().parent().parent().parent().next().show();
+		        $(this).parent().parent().parent().next().show();
 		    } else {
-		        $(this).parent().parent().parent().parent().next().hide();
+		        $(this).parent().parent().parent().next().hide();
 		    }
 		    if ($(this).data("comment-count") > 0) {
 		        if (modi.css("display") == "none") {
-		            $(this).parent().parent().parent().parent().next().next().next().show();
+		            $(this).parent().parent().parent().next().next().next().show();
 		        } else {
-		            $(this).parent().parent().parent().parent().next().next().next().hide();
+		            $(this).parent().parent().parent().next().next().next().hide();
 		        }
 		
 		    }
