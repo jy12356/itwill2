@@ -339,9 +339,11 @@ public class MemberDAO {
 			ResultSet rs3 = null;
 			ResultSet rs4 = null;
 
-			List opdetails = new LinkedList();
-			JSONObject opObj = new JSONObject();
-			JSONObject opObj1 = new JSONObject();
+//			List opdetails = new LinkedList();
+			JSONObject opObjJoin = new JSONObject();
+			JSONObject opObjCatg = new JSONObject();
+			JSONObject opObjQna = new JSONObject();
+			JSONObject opObjRental = new JSONObject();
 
 			String query1 = "select catg, count(*) as catg_count from member group by catg;";
 			PreparedStatement pstm1 = con.prepareStatement(query1);
@@ -365,28 +367,35 @@ public class MemberDAO {
 			while(rs1.next()) {
 				String catg = rs1.getString("catg");
 				int catg_count = rs1.getInt("catg_count");
-				opObj.put(catg, catg_count);
+				opObjCatg.put(catg, catg_count);
 			}
 
 			while(rs2.next()) {
 				String date = rs2.getString("date");
 				int id_count = rs2.getInt("id_count");
-				opObj.put(date, id_count);
+				opObjJoin.put(date, id_count);
 			}
 			while(rs3.next()) {
 				String qna_genre = rs3.getString("qna_genre");
 				int qna_count = rs3.getInt("qna_count");
-				opObj.put(qna_genre, qna_count);
+				opObjQna.put(qna_genre, qna_count);
 			}
 			while(rs4.next()) {
 				String s_date = rs4.getString("s_date");
 				int retal_count = rs4.getInt("retal_count");
-				opObj.put(s_date, retal_count);
+				opObjRental.put(s_date, retal_count);
 				
 			}
-			opdetails.add(opObj);
-			responseObj.add(opdetails); 
-			System.out.println("11111"+responseObj.toString());
+			responseObj.add(opObjCatg);
+			responseObj.add(opObjJoin);
+			responseObj.add(opObjQna);
+			responseObj.add(opObjRental);
+//			responseObj.add(opdetails); 
+			System.out.println("opdetails.opObjCatg : "+opObjCatg.toString());
+			System.out.println("opdetails.opObjJoin : "+opObjJoin.toString());
+			System.out.println("opdetails.opObjQna : "+opObjQna.toString());
+			System.out.println("opdetails.opObjRental : "+opObjRental.toString());
+			System.out.println("responseObj : "+responseObj.toString());
 			isMemberListCalSuccess = true;
 		} catch (Exception e) {
 			e.printStackTrace();

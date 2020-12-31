@@ -326,29 +326,36 @@ int listCount = pageInfo.getListCount();
 	       var queryObjectLen="";
 	      
 	       $.ajax({
+    	   type: "POST",
+           contentType: "application/json",
 			url : "MemberListCal.me",
 			dataType : "json",
-			success : function(resultObj) {
-				queryObject = eval("(" + JSON.stringify(data) + ")");  
-				queryObject =JSON.stringify(queryObject) ;
-				queryObjectLen = queryObject.opdetails.length;
-				
+			success : function(data) {
+				queryObject =JSON.stringify(data) ;
+				/* queryObject = eval("(" + JSON.stringify(data) + ")");  
+				queryObject =JSON.stringify(queryObject) ; */
+				queryObjectLen = queryObject.length;
+				console.log("111opdetails.opObjCatg : "+opObjCatg.toString());
+				console.log("111opdetails.opObjJoin : "+opObjJoin.toString());
+				console.log("111opdetails.opObjQna : "+opObjQna.toString());
+				console.log("111opdetails.opObjRental : "+opObjRental.toString());
+				console.log("111responseObj : "+responseObj.toString());
 
 			var data = new google.visualization.DataTable();
 			data.addColumn("string", "catg");
 			data.addColumn("number", "catg_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var catg = queryObject.opdetails[i].catg;
-				var catg_count = queryObject.opdetails[i].catg_count;
-				data.addRows([ [ catg, parseInt(catg_count) ] ]);
+				var catg = queryObject.opObjCatg.getKey();
+				var catg_count =  queryObject.opObjCatg.getValue();
+				data.addRows([ catg, parseInt(catg_count) ]);
 			}
 			
 			var data2 = new google.visualization.DataTable();
 			data2.addColumn("string", "date");
 			data2.addColumn("number", "id_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var date = queryObject.opdetails[i].date;
-				var id_count = queryObject.opdetails[i].id_count;
+				var date = queryObject.opObjJoin.getKey();
+				var id_count = queryObject.opObjJoin.getValue();
 				data2.addRows([ [ date, parseInt(id_count) ] ]);
 			}
 			
@@ -356,8 +363,8 @@ int listCount = pageInfo.getListCount();
 			data3.addColumn("string", "qna_genre");
 			data3.addColumn("number", "qna_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var qna_genre = queryObject.opdetails[i].qna_genre;
-				var qna_count = queryObject.opdetails[i].qna_count;
+				var qna_genre = queryObject.opObjQna.getKey();
+				var qna_count = queryObject.opObjQna.getValue();
 				data3.addRows([ [ qna_genre, parseInt(qna_count) ] ]);
 			}
 			
@@ -365,8 +372,8 @@ int listCount = pageInfo.getListCount();
 			data4.addColumn("string", "s_date");
 			data4.addColumn("number", "retal_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var s_date = queryObject.opdetails[i].s_date;
-				var retal_count = queryObject.opdetails[i].retal_count;
+				var s_date = queryObject.opObjRental.getKey();
+				var retal_count = opObjRental.getValue();
 				data4.addRows([ [ s_date, parseInt(retal_count) ] ]);
 			}
 			
@@ -383,7 +390,7 @@ int listCount = pageInfo.getListCount();
 			
 			var options2 = {
 				title : "2번 그래프_가입자수증가",
-				   curveType: "function", 
+				 /*   curveType: "function",  */
 				colors : [ "green", "yellow" ],
 				hAxis : {
 					title : "Location22"
@@ -430,13 +437,14 @@ int listCount = pageInfo.getListCount();
 		},
 		error: function (xhr, type,data,queryObject) {
 	           alert(data+"~~~"+queryObject)
+s
 	         }
 	       });
 	     },
 	     packages:["corechart"]
 	});
     
-    	if(confirm_val) {
+    	/* if(confirm_val) {
 				var inter_num = [];
 				if ($('.check_box input[type="checkbox"]:checked').length > 0) {
 					$('.check_box input[type="checkbox"]:checked').each(function(){
@@ -460,7 +468,7 @@ int listCount = pageInfo.getListCount();
 
 				});
 			} 
-	    };
+	    }; */
 	    
 //$(document).ready(function(){
 	 
