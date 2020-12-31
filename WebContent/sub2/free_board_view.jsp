@@ -6,12 +6,22 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String) session.getAttribute("id");
+if (id == null) {
+	id = "gang";
+}
+// int b=0;
 int limit = ((Integer)request.getAttribute("limit")).intValue();
 System.out.println("limit :" + limit);
+// 	limit = limit+10;
 
 int entireCount = ((Integer)request.getAttribute("entireCount")).intValue();
 // int maxSeq = ((Integer)request.getAttribute("maxSeq")).intValue();
 System.out.println("entireCount :" + entireCount);
+// if(limit==10){
+// 	limit = limit+10;
+// }else{
+// 	limit = limit+10;
+// }
 FreeBoardBean article = (FreeBoardBean) request.getAttribute("article");
 String nowPage = request.getParameter("page");
 int board_type = 1;
@@ -184,23 +194,25 @@ int board_num = article.getBoard_num();
 						<a href="CommentDelete.free?board_num=<%=cb.getBoard_num()%>
 						&comment_num=<%=commentList.get(i).getComment_num()%>
 						&board_type=<%=cb.getBoard_type()%>&page=<%=nowPage%>" class="btn">삭제</a>
-						
+						</div>
 						
 						<% 
 		                        }
 						 }
 						%>
-							<a href="javascript:;" class="comment_write_show btn" data-comment-count="0" class="btn" style="float: right;">댓글</a>
-										
+							<div class="btn_inner">
+						<a href="javascript:;" class="comment_write_show btn" data-comment-count="0" class="btn" style="float: right;">댓글</a>
+										</div>
 									</div>
 								</div>
 							</div>
+							<!-- 댓글수정 -->
 							<%
-							 if(id != null) {
-		                        if(id.equals(commentList.get(i).getComment_id()) || id.equals("admin")) {
+// 							 if(id != null) {
+// 		                        if(id.equals(commentList.get(i).getComment_id())) {
 							%>
 							<div class="cmtModi"  style="display: none;">
-								<form action="CommentModify.free" method="post" class="comment-write reply-write clearfix">
+								<form action="CommentModify.free" method="post" class="comment-write reply-write">
 									<input type="hidden" name="comment_num" value="<%=commentList.get(i).getComment_num()%>" /> 
 									<input type="hidden" name="board_type" value="<%=cb.getBoard_type()%>" /> 
 									<input type="hidden" name="page" value="<%=nowPage%>" />
@@ -209,16 +221,16 @@ int board_num = article.getBoard_num();
 									<input type="hidden" name="re_ref" value="<%=commentList.get(i).getRe_ref()%>" />
 									<input type="hidden" name="re_lev" value="<%=commentList.get(i).getRe_lev()%>" />
 									<input type="hidden" name="re_seq" value="<%=commentList.get(i).getRe_seq()%>" />
-									<textarea name="comment_desc" class="fl ml30"><%=commentList.get(i).getComment_desc()%></textarea>
-									<div class="btn_inner" class="fr">
+									<textarea name="comment_desc"><%=commentList.get(i).getComment_desc()%></textarea>
+									<div class="btn_inner">
 										<input type="submit" value="수정하기" class="btn">
 										<input type="reset" value="취소" class="btn">
 									</div>
 								</form>
 							</div>
 							<%
-		                        }
-							 }
+// 		                        }
+// 							 }
 							%>
 							
 				<!-- 대댓글작성 ------------------------------------------->
@@ -236,7 +248,7 @@ int board_num = article.getBoard_num();
 								<input type="hidden" name="re_seq" value="<%=commentList.get(i).getRe_seq()%>" />
 								<textarea name="comment_desc" value="<%%>"></textarea>
 									<p>
-										<span><em>0</em>/500자</span>
+<!-- 										<span><em>0</em>/500자</span> -->
 	<!-- 									<button name="" class="cancel">취소</button> -->
 	<!-- 									<button name="" class="commit">등록</button> -->
 									</p>
@@ -248,16 +260,23 @@ int board_num = article.getBoard_num();
 								</form>
 							</div>
 				<!-- 대댓글작성 ------------------------------------------->
-				<!-- 일반 댓글리스트 뿌려주기 끝 -->
+				<!-- 일반 댓글리스트 뿌려주기 ㄲ -->
 							<%
 // 									}
 								}
 							}
 							%>
 						</div>
+<%-- <p>entireCount = <%=entireCount %></p> --%>
+<%-- <p>limit = <%=limit %></p> --%>
+<!-- 						<input type="hidden" value="여기로오렴" id="CC"> -->
 						<%
+// 						if(commentList != null && listCount > 0) {
 							if(entireCount > limit) {
 						%>
+<!-- 						<div class="d-more reviewMore" style="display: ;"> -->
+<!-- 							<a href="javascript:;" class="moreComment">댓글 더보기</a> -->
+<!-- 						</div> -->
 <div class="d-more reviewMore" style="display: ;">
 	<a href="FreeBoardDetail.free?board_num=<%=board_num%>&page=<%=nowPage%>
 	&board_type=<%=board_type%>&limit=<%=limit+10%>">댓글 더보기</a>
@@ -270,9 +289,6 @@ int board_num = article.getBoard_num();
 					</div>
 				</div>
 				<!------------------------------ 댓글쓰기 ---------------------------------------------------->
-				<%
-							 if(id != null) {
-							%>
 				<div class="comment-text-area">
 					<form action="CommentWritePro.free" method="post">
 						<div class="comment-text" style="display: block;">
@@ -290,32 +306,6 @@ int board_num = article.getBoard_num();
 						</div>
 					</form>
 				</div>
-				<%
-							 }
-				%>
-				<%
-							 if(id == null) {
-							%>
-				<div class="comment-text-area">
-					<form action="" method="post">
-						<div class="comment-text" style="display: block;">
-							<h3 class="coTitle tal">댓글쓰기</h3>
-							<input type="hidden" name="board_type" value="1"> 
-							<input type="hidden" name="page" value="<%=nowPage%>">
-							<input type="hidden" name="board_num" value="<%=article.getBoard_num()%>"> 
-							<input type="hidden" name="comment_id" value="<%=id%>">
-							<textarea readonly name="comment_desc" placeholder="로그인이 필요합니다."></textarea>
-							<div class="btn_inner">
-								<input type="submit" class="btn reviewInput" value="등록">
-								<a href="javascript:;" class="btn reviewCancel">취소</a>
-							</div>
-
-						</div>
-					</form>
-				</div>
-				<%
-							 }
-				%>
 			</div>
 		</div>
 
