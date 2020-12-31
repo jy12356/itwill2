@@ -33,7 +33,7 @@ public class ReviewLikeCountAction implements Action {
 		int num = Integer.parseInt(request.getParameter("num"));
 
 		JSONObject json = new JSONObject();
-		if(isLikeWriter) {
+		if(isLikeWriter==true) {
 			json.put("text", "이미 좋아요를 누르셨습니다.");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -69,7 +69,7 @@ public class ReviewLikeCountAction implements Action {
 				
 			}
 		}
-			return null;
+			return forward;
 	}
 
 }

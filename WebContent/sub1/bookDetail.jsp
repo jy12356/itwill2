@@ -11,7 +11,7 @@
 request.setCharacterEncoding("utf-8"); 
 BookBean bookBean=(BookBean) request.getAttribute("bookBean"); 
 String nowPage=request.getParameter("page"); 
-String id=(String) session.getAttribute("id"); 
+String id=(String) session.getAttribute("id");
 String isbn=request.getParameter("isbn");
 int limit=(Integer)request.getAttribute("limit");
 
@@ -129,11 +129,12 @@ int listCount = pageInfo.getListCount();
 											});
 									$(".js-share-box").on("click", function(e) {
 										e.stopPropagation();
-									})
+									});
 								</script>
 									<!-- 카카오 공유하기 20201125 서지연 추가 시작-->
 									<script type='text/javascript'>
 										$(document).ready(function(){
+											
 											var firstImg = $(".thum-box img");
 											var contents = "";
 											if (firstImg.attr("src")) {
@@ -196,9 +197,6 @@ int listCount = pageInfo.getListCount();
 													"facebook","width=600,height=500,scrollbars=no,toolbar=no,resizable=yes");
 										}
 											
-											
-									
-										
 									</script>
 									<!-- 카카오 공유하기 20201125 서지연 추가 끝-->
 						</div>
@@ -295,13 +293,31 @@ int listCount = pageInfo.getListCount();
 							<label for="" class="radio reviewSort" data-sort="최신순"><span class="radio_on"><em>최신순</em></span></label>
 						</div>
 						<div class="review-score">
+							<% if (bookBean.getStarcount() < 1) { %>
 							<span class="list-star rank0"></span>
-							<p class="score">
-								0
-							</p>
-							<p class="rank-user">
-								 (<span><%=bookBean.getReviewCount()%></span>명)
-							</p>
+							<% } else if (bookBean.getStarcount() < 2) { %>
+							<span class="list-star rank1"></span>
+							<% } else if (bookBean.getStarcount() < 3) { %>
+							<span class="list-star rank2"></span>
+							<% } else if (bookBean.getStarcount() < 4) { %>
+							<span class="list-star rank3"></span>
+							<% } else if (bookBean.getStarcount() < 5) { %>
+							<span class="list-star rank4"></span>
+							<% } else if (bookBean.getStarcount() < 6) { %>
+							<span class="list-star rank5"></span>
+							<% } else if (bookBean.getStarcount() < 7) { %>
+							<span class="list-star rank6"></span>
+							<% } else if (bookBean.getStarcount() < 8) { %>
+							<span class="list-star rank7"></span>
+							<% } else if (bookBean.getStarcount() < 9) { %>
+							<span class="list-star rank8"></span>
+							<% } else if (bookBean.getStarcount() < 10) { %>
+							<span class="list-star rank9"></span>
+							<% } else if (bookBean.getStarcount() < 11) { %>
+							<span class="list-star rank10"></span>
+							<% } %>
+							<p class="score"><%=bookBean.getStarcount()%></p>
+							<p class="rank-user">(<span><%=bookBean.getReviewCount()%></span>명)</p>
 						</div>
 					</div>
 					<!-- 서평리스트 목차(별점 카운트)-->
@@ -333,10 +349,20 @@ int listCount = pageInfo.getListCount();
 									<span><%=articleList.get(i).getContent()%></span>
 								</div>
 								<div class="btn_inner">
+									<% 
+									if(id != null) {
+										if(id.equals(articleList.get(i).getId()) || id.equals("admin")) {
+									%>
 									<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
 									<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
+									<%
+										}
+									%>
 									<a href="javascript:;" class="heart-btn btn" data-review-num="<%=articleList.get(i).getNum()%>" data-like-id="<%=id%>" data-isbn="<%=isbn%>">좋아요</a>
 									<a href="javascript:;" class="comment_write_show btn" data-comment-count="<%=articleList.get(i).getNum()%>">댓글</a>
+									<%
+									}
+									%>
 								</div>
 							</div>
 							<!-- 서평 수정-->
@@ -414,7 +440,7 @@ int listCount = pageInfo.getListCount();
 				<!-- 서평 있을 때 -->
 				<!-- 서평 리스트 더보기 -->
 				<div class="d-more reviewMore">
-				<a href="BookDetail.bok?isbn=<%=isbn%>&page=<%=nowPage%>">10개 더보기</a>
+				<a href="BookDetail.bok?isbn=<%=isbn%>&page=<%=nowPage%>&limit=<%=limit+10%>">10개 더보기</a>
 				</div>
 				<!-- 서평 리스트 더보기 -->
 				<!-- 서평리스트 내용-->
