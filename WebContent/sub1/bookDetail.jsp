@@ -14,6 +14,7 @@ String nowPage=request.getParameter("page");
 String id=(String) session.getAttribute("id");
 String isbn=request.getParameter("isbn");
 int limit=(Integer)request.getAttribute("limit");
+System.out.println("limit :" + limit);
 
 ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>) request.getAttribute("articleList");
 PageInfo pageInfo=(PageInfo)request.getAttribute("pageInfo"); 
@@ -399,12 +400,12 @@ int listCount = pageInfo.getListCount();
 									<div>
 										<input type="hidden" name="page" value="<%=nowPage%>"> 
 										<input type="hidden" name="board_type" value="2">
-										<input	type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>"> 
-										<input type="hidden" name="comment_id" value="<%=id%>"> 
+<%-- 										<input	type="hidden" name="board_num" value="<%=articleList.get(i).getNum()%>">  --%>
+<%-- 										<input type="hidden" name="comment_id" value="<%=id%>">  --%>
 										<textarea name="comment_desc" placeholder="댓글을 작성해주세요"></textarea>
 									</div>
 									<div class="btn_inner">
-										<input type="submit" value="등록" class="btn reviewInput ReComment_Write">
+										<input type="submit" value="등록" class="btn reviewInput ReComment_Write" data-comment_id="<%=id %>" data-board_num="<%=articleList.get(i).getNum()%>">
 										<input type="reset" value="취소" class="btn reviewCancele">
 									</div>
 								</form>
@@ -439,8 +440,8 @@ int listCount = pageInfo.getListCount();
 				<!-- 댓글 창 -->
 				<!-- 서평 있을 때 -->
 				<!-- 서평 리스트 더보기 -->
-				<div class="d-more reviewMore">
-				<a href="BookDetail.bok?isbn=<%=isbn%>&page=<%=nowPage%>&limit=<%=limit+10%>">10개 더보기</a>
+				<div class="d-more reviewMore" style="display: ;">
+				 <a href="BookDetail.bok?isbn=<%=isbn%>&limit=<%=limit+10%>">10개 더보기</a>
 				</div>
 				<!-- 서평 리스트 더보기 -->
 				<!-- 서평리스트 내용-->
@@ -560,7 +561,7 @@ int listCount = pageInfo.getListCount();
 				// 댓글리스트
 				function reply_write(board_num){
 					var id = '<%=(String)session.getAttribute("id")%>';
-					var page = $('input[name="page"]').val();
+// 					var page = $('input[name="page"]').val();
 					var isbn = $('input[name="isbn"]').val();
 					var board_type = $('input[name="board_type"]').val();
 					var board_num = board_num;
@@ -569,7 +570,7 @@ int listCount = pageInfo.getListCount();
 						data : "json",
 						url : "ReCommentList.re",
 						data : {
-							"page" : page,
+// 							"page" : page,
 							"isbn" : isbn,
 							"board_type" : board_type,
 							"board_num" : board_num
@@ -593,14 +594,14 @@ int listCount = pageInfo.getListCount();
 	                				'<div class="btn_inner">'+
 // 	                				'<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>'+
 	                				'<a href="javascript:;" onclick="comment_Modi();" class="comment_modi_show btn rview_modi_show" data-comment_num="'+entry["comment_num"]+'">수정</a>'+
-	                				'<a href="ReCommentDeletePro.re?comment_num='+entry["comment_num"]+'&board_num='+entry["board_num"]+'&board_type=2&id='+id+'&page='+page+'&isbn='+isbn+'" class="delete-btn btn"  onclick="return delchk();">삭제</a>'+
+	                				'<a href="ReCommentDeletePro.re?comment_num='+entry["comment_num"]+'&board_num='+entry["board_num"]+'&board_type=2&id='+id+'&isbn='+isbn+'" class="delete-btn btn"  onclick="return delchk();">삭제</a>'+
 	                				'</div>'+
 
 	                				'<div class="comment-text" style="display: none;">'+
 	                				'<form action="ReCommentModifyPro.re" class="comment-write reply-write" method="post" id="MyReModify">'+
 	                				'<div>'+
 	                				'<input type="hidden" name="isbn" value="'+isbn+'">'+
-	                				'<input type="hidden" name="page" value='+page+'>'+
+// 	                				'<input type="hidden" name="page" value='+page+'>'+
 	                				'<input type="hidden" name="comment_num" value="'+entry["comment_num"]+'">'+
 	                				'<input type="hidden" name="board_num" value="'+entry["board_num"]+'">'+
 	                				'<input type="hidden" name="board_type" value="2">'+
@@ -683,9 +684,12 @@ int listCount = pageInfo.getListCount();
 					var page = $('input[name="page"]').val();
 					var isbn = $('input[name="isbn"]').val();
 					var board_type = $('input[name="board_type"]').val();
-					var board_num = $('input[name="board_num"]').val();
-					var comment_id = $('input[name="comment_id"]').val();
+// 					var board_num = $('input[name="board_num"]').val();
+// 					var comment_id = $('input[name="comment_id"]').val();
+					var board_num = $(this).data("board_num");
+					var comment_id = $(this).data("comment_id");
 					var comment_desc = $('textarea[name="comment_desc"]:visible').val();
+					alert(board_num);
 					if (comment_id == "null") {
 						alert("로그인을 해주시길 바랍니다.");
 						$("textarea[name=comment_desc]").val("");
@@ -697,7 +701,7 @@ int listCount = pageInfo.getListCount();
 							type : "POST",
 							dataType : "json",
 							data : {
-								"page" : page,
+// 								"page" : page,
 								"isbn" : isbn,
 								"board_type" : board_type,
 								"board_num" : board_num,
@@ -730,6 +734,7 @@ int listCount = pageInfo.getListCount();
 							}
 						});
 					$('textarea[name="comment_desc"]').val("");
+					reply_write(board_num);
 					} else {
 						return false;
 					}
