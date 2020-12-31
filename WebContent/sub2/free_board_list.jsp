@@ -91,15 +91,25 @@ int listCount = pageInfo.getListCount();
 					<%
 						String id = (String) session.getAttribute("id"); //
 
-					if (id != null) {
+// 					if (id != null) {
 					%>
 					<div class="btn_inner">
 						<a href="FreeBoardWriteForm.free" class="btn">글쓰기</a>
 					</div>
 					<%
-						}
+// 						}
 					%>
+					<input type="hidden" name="id" id="myId" value="<%=id%>">
+<script type="text/javascript">
+$(".btn").on("click", function() {
+	var myid = document.getElementById('myId').value;
+	if (myid == "null") {
+		alert("로그인 해주시길 바랍니다.");
+		return false;
+	}
+});
 
+</script>
 
 					<div class="paging">
 
