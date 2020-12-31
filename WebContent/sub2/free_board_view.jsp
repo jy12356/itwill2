@@ -356,11 +356,11 @@ int board_num = article.getBoard_num();
 			alert("11111111");
 			$(".cmtModi").hide();
 			$(".cmtRly").hide();
-			var reply = $(this).parent().parent().parent().next();
+			var reply = $(this).parent().parent().parent().next().next();
 		    if (reply.css("display") == "none") {
-		        $(this).parent().parent().parent().next().show();
+		        $(this).parent().parent().parent().next().next().show();
 		    } else {
-		        $(this).parent().parent().parent().next().hide();
+		        $(this).parent().parent().parent().next().next().hide();
 		    }
 		    if ($(this).data("comment-count") > 0) {
 		        if (reply.css("display") == "none") {
