@@ -190,10 +190,8 @@ int board_num = article.getBoard_num();
 		                        }
 						 }
 						%>
-						<div>
 							<a href="javascript:;" class="comment_write_show btn" data-comment-count="0" class="btn" style="float: right;">댓글</a>
 										
-										</div>
 									</div>
 								</div>
 							</div>
@@ -325,7 +323,68 @@ int board_num = article.getBoard_num();
 
 </section>
 
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		
+		//댓글 입력창
+		$(".cmtModi").hide();
+		$(".cmtRly").hide();
+		//댓글 수정입력창 보이기
+		$(".comment_modi_show").on("click", function() {
+			alert("11111111");
+			$(".cmtModi").hide();
+			$(".cmtRly").hide();
+			var modi = $(this).parent().parent().parent().parent().next();
+		    if (modi.css("display") == "none") {
+		        $(this).parent().parent().parent().parent().next().show();
+		    } else {
+		        $(this).parent().parent().parent().parent().next().hide();
+		    }
+		    if ($(this).data("comment-count") > 0) {
+		        if (modi.css("display") == "none") {
+		            $(this).parent().parent().parent().parent().next().next().next().show();
+		        } else {
+		            $(this).parent().parent().parent().parent().next().next().next().hide();
+		        }
+		
+		    }
+		});
+		
+		//대댓글 입력창 보이기
+		$(".comment_write_show").on("click", function() {
+			alert("11111111");
+			$(".cmtModi").hide();
+			$(".cmtRly").hide();
+			var reply = $(this).parent().parent().parent().next();
+		    if (reply.css("display") == "none") {
+		        $(this).parent().parent().parent().next().show();
+		    } else {
+		        $(this).parent().parent().parent().next().hide();
+		    }
+		    if ($(this).data("comment-count") > 0) {
+		        if (reply.css("display") == "none") {
+		            $(this).parent().parent().parent().parent().next().next().next().show();
+		        } else {
+		            $(this).parent().parent().parent().parent().next().next().next().hide();
+		        }
+		
+		    }
+		});
+		//댓글 입력창 보이기(수정)
+		$(".comment_modify").on("click", function() {
+		    if ($.cookie("user_num")) {
+		        $(this).parent().parent().parent().parent().hide();
+		        $(this).parent().parent().parent().parent().next().show();
+		    } else {
+		        goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
+		        //							alert('로그인 후 이용가능합니다.');
+		        return;
+		    }
+		});
+	});
 
+</script>
 
 
 <jsp:include page="../include/footer.jsp" />
