@@ -55,7 +55,7 @@
 				%>
 				<li>
 					<div class="figure">
-						<span class="label"><em>10%<span>할인</span></em></span> 
+<!-- 						<span class="label"><em>10%<span>할인</span></em></span> -->
 						<a href="BookDetail.bok?booknum=<%=bookList5.get(i).getNum()%>&isbn=<%=bookList5.get(i).getIsbn()%>">
 							<span class="rm_br">
 							<img src="bookUpload/<%=bookList5.get(i).getImage() %>" alt="<%=bookList5.get(i).getImage()%>" /></span>
@@ -142,7 +142,7 @@
 									</a>
 								</p>
 								<p class="fiction">
-									<strong class="fn-fiction">과학/IT</strong> 
+									<strong class="fn-fiction">과학</strong> 
 									<a href="BookList.bok?catg1=과학" class="BookList.bok?catg1=과학">더보기 
 										<span class="more"></span>
 									</a>

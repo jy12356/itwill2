@@ -94,7 +94,7 @@
 		                  				읽음
 		                  			<%}else{ %>
 		                  				읽지않음
-		                  			<%} %>	
+		                  			<%} %>
 		                  			</td>
 		                  			<td><%=myMsgList.get(i).getDate()%></td>
 		                 		</tr>

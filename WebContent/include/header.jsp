@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="vo.PageInfo"%>
+<%@page import="vo.MsgBean"%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -68,6 +70,8 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <%
 String id = (String)session.getAttribute("id");
+ArrayList<MsgBean> myMsgList = (ArrayList<MsgBean>) request.getAttribute("msgList");
+PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 %>
 </head>
 <body>
@@ -102,7 +106,25 @@ String id = (String)session.getAttribute("id");
 								<li class="mypageIcon"><a href="Mypage.me?id=<%=id%>">MY</a></li>								
 								<li class="basketIcon"><a href="MyBasketInsert.bk">책바구니</a></li>
 							<%} %>
-							<li class="alarm on alarmIcon"><a href="MyMsg.msg">알리미</a></li>
+							<%if(myMsgList == null) { %>
+							<li class="alarm on alarmIcon">
+								<a href="MyMsg.msg">
+									<span class="alarmdot">
+<!-- 										50 -->
+									</span>
+									알리미
+								</a>
+							</li>
+							<% } else { %>
+							<li class="alarm on alarmIcon2">
+								<a href="MyMsg.msg">
+									<span class="alarmdot">
+<%-- 										<%=myMsgList.size() %> --%>
+									</span>
+									알리미
+								</a>
+							</li>
+							<% } %>
 						</ul>
 						<%} %>
 					</fieldset>
