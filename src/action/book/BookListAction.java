@@ -23,6 +23,7 @@ public class BookListAction implements Action {
 		if(request.getParameter("page")!=null) {
 			page = Integer.parseInt(request.getParameter("page"));			
 		}
+		System.out.println(page);
 		String catg1 = "";
 		String catg2 = "";
 		String search="";
