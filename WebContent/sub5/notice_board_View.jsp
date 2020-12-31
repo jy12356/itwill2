@@ -78,6 +78,7 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 	                    <div class="default-btn-wrap">	
 	                        <input type="button" value="목록" class="btn" onclick="location.href='NoticeBoardList.not?page=1'">
 	                   <%
+	                   
 							                        if(id != null) {
 						                        	if(id.equals(article.getId()) || id.equals("admin")){
 						%> 
