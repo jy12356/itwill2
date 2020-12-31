@@ -368,13 +368,13 @@ int listCount = pageInfo.getListCount();
 							<!-- 서평 수정-->
 							<div class="cmtModi" style="display: none;">
 								<form action="ReviewModifyPro.re" class="comment-write reply-write" method="post" id="MyReModify">
-									<div class="checkbox">
-										<label>
+									<div class="checkbox clearfix mb05">
+										<label class="fl">
 										<%	if (articleList.get(i).getSpoiler()==1) { %>
 										<input type="checkbox" class="spoiler" name="spoiler" checked="checked" value=<%=articleList.get(i).getSpoiler()%>> <span><i></i></span><input type="hidden" class="spoiler" name="spoiler" value=0><%} else {%><input type="checkbox" class="spoiler" name="spoiler" value=<%=articleList.get(i).getSpoiler()%>> <span><i></i></span><input type="hidden" class="spoiler" name="spoiler" value=1>
 										<% } %>
 										</label>
-										<p>
+										<p class="fl mt05 ml5">
 											스포일러가 포함되어 있습니다.
 										</p>
 									</div>
