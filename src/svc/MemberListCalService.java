@@ -13,15 +13,13 @@ import db.JdbcUtil;
 public class MemberListCalService {
 	public JSONArray  MemberListcheck() {
 		System.out.println("MemberListCalService - MemberListcheck()시작");
-		boolean isMemberListCalSuccess = false; 
 		Connection con = JdbcUtil.getConnection();
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		System.out.println("MemberListCalService - MemberDAO.getInstance()222");
 		memberDAO.setConnection(con);
 		System.out.println("MemberListCalService - MemberListcheck()333");
-		
 		JSONArray responseObj = new JSONArray();
-		responseObj.add(memberDAO.memberListCal());
+		responseObj = memberDAO.memberListCal();
 		close(con);
 		System.out.println("MemberListCalService - MemberListcheck() 종료");
 		return responseObj;
