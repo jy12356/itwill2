@@ -3,6 +3,9 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String)session.getAttribute("id");
+	if(id==null) {
+		id = "비회원";
+	}
 	RequestBean article = (RequestBean)request.getAttribute("article");
 	String nowPage = request.getParameter("page");
 %>
@@ -35,6 +38,12 @@
 		                            <col width="35%">
 								</colgroup>
 								<tbody>
+									<tr>
+			                            <td>신청자</td>
+			                            <td colspan="3">
+			                            	<input type="text" name="id" value="관리자" readonly="readonly">
+			                            </td>
+			                        </tr>
 	                            	<tr>
 										<td>제목</td>
 										<td colspan="3"><input type="text" name="subject" value="Re : <%=article.getSubject()%>" required="required" readonly></td>
