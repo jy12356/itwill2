@@ -47,13 +47,13 @@ public class MsgDAO {
 		ArrayList<MsgBean> msglist = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+		int startRow = (page - 1) * limit;
 		try {
 			msglist = new ArrayList<MsgBean>();
 			String sql = "select * from message where id=? order by date desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setInt(2, page);
+			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, limit);
 			System.out.println(pstmt);
 			rs= pstmt.executeQuery();		
@@ -93,7 +93,8 @@ public class MsgDAO {
 				msgBean.setContent(rs.getString("content"));
 				msgBean.setId(rs.getString("id"));
 				msgBean.setDate(rs.getDate("date"));
-				msgBean.setIsRead(rs.getString("isRead"));				
+				msgBean.setIsRead(rs.getString("isRead"));		
+				msgBean.setFromId(rs.getString("fromId"));	
 			}
 		} catch (Exception e) {			
 			e.printStackTrace();
@@ -162,19 +163,17 @@ public class MsgDAO {
 			
 	// ---------------UPDATE---------------
 	
-	public int updateStatus(String id, int num) {
+	public int updateStatus(int num) {
 		System.out.println("DAO - updateStatus()");
-
 		PreparedStatement pstmt = null;
 		int updateStatus = 0;
 		String sql = null;
 		
 		try {
 			
-			sql = "update notice set isRead=y where id=? and num=?";
+			sql = "update message set isRead='y' where num=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1,  id);
-			pstmt.setInt(2,  num);
+			pstmt.setInt(1,  num);
 			updateStatus = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -206,7 +205,6 @@ public class MsgDAO {
 	      }
 	      return isDeleteOk;
 	}
-	
 			
 }
 

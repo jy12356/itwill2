@@ -22,7 +22,6 @@ public class FreeBoardWriteProAction implements Action {
 		
 		ActionForward forward = null; //왜가져왔니? path랑 redirect정할거?
 		
-		
 		// 현재 컨텍스트(객체) 정보 가져오기 위해 
 		// request 객체의 getServletContext() 메서드를 호출
 		ServletContext context = request.getServletContext();
@@ -38,7 +37,7 @@ public class FreeBoardWriteProAction implements Action {
 		System.out.println("실제 업로드 폴더 : " + realFolder); // 경로 확인
 		// 실제 업로드 폴더 구조 : 워크스페이스\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\프로젝트명\업로드폴더명
 		// 실제 업로드 폴더 : D:\Shared\JSP_Model2\workspace_jsp_model2\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\MVC_Board\boardUpload
-		
+//		System.out.println(uploadfilepath);
 		// 업로드 할 최대 파일 크기 지정(Byte 단위)
 		// ex) 1MByte = 1,024KByte = 1,048,576Byte  
 //		int fileSize = 1048576; // 직접적인 크기를 명시하지 않도록 한다!

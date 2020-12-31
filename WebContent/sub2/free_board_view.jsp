@@ -15,6 +15,7 @@ System.out.println("limit :" + limit);
 // 	limit = limit+10;
 
 int entireCount = ((Integer)request.getAttribute("entireCount")).intValue();
+// int maxSeq = ((Integer)request.getAttribute("maxSeq")).intValue();
 System.out.println("entireCount :" + entireCount);
 // if(limit==10){
 // 	limit = limit+10;
@@ -161,7 +162,7 @@ int board_num = article.getBoard_num();
 										<p class="comment-vote">
 											<i><%=commentList.get(i).getComment_id()%></i><em>|</em> <span class="date"><%=commentList.get(i).getDate()%></span>
 <!-- 											<em>|</em> -->
-<%-- 											댓글 <%=//commentList.get(i).getRe_lev()%> --%>
+<%-- 											댓글 <%=maxSeq%> --%>
 										</p>
 										<div class="comment-content">
 											<span><%=commentList.get(i).getComment_desc()%></span>
@@ -190,7 +191,6 @@ int board_num = article.getBoard_num();
 						
 						<div class="btn_inner">
 						<a href="javascript:;" class="comment_modi_show btn" data-comment-count="0">수정</a> 
-						<a href="javascript:;" class="comment_write_show btn" data-comment-count="0" class="btn">댓글</a>
 						<a href="CommentDelete.free?board_num=<%=cb.getBoard_num()%>
 						&comment_num=<%=commentList.get(i).getComment_num()%>
 						&board_type=<%=cb.getBoard_type()%>&page=<%=nowPage%>" class="btn">삭제</a>
@@ -200,7 +200,9 @@ int board_num = article.getBoard_num();
 		                        }
 						 }
 						%>
-										
+							<div class="btn_inner">
+						<a href="javascript:;" class="comment_write_show btn" data-comment-count="0" class="btn" style="float: right;">댓글</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -246,7 +248,7 @@ int board_num = article.getBoard_num();
 								<input type="hidden" name="re_seq" value="<%=commentList.get(i).getRe_seq()%>" />
 								<textarea name="comment_desc" value="<%%>"></textarea>
 									<p>
-										<span><em>0</em>/500자</span>
+<!-- 										<span><em>0</em>/500자</span> -->
 	<!-- 									<button name="" class="cancel">취소</button> -->
 	<!-- 									<button name="" class="commit">등록</button> -->
 									</p>
@@ -311,7 +313,68 @@ int board_num = article.getBoard_num();
 
 </section>
 
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		
+		//댓글 입력창
+		$(".cmtModi").hide();
+		$(".cmtRly").hide();
+		//댓글 수정입력창 보이기
+		$(".comment_modi_show").on("click", function() {
+			alert("11111111");
+			$(".cmtModi").hide();
+			$(".cmtRly").hide();
+			var modi = $(this).parent().parent().parent().next();
+		    if (modi.css("display") == "none") {
+		        $(this).parent().parent().parent().next().show();
+		    } else {
+		        $(this).parent().parent().parent().next().hide();
+		    }
+		    if ($(this).data("comment-count") > 0) {
+		        if (modi.css("display") == "none") {
+		            $(this).parent().parent().parent().next().next().next().show();
+		        } else {
+		            $(this).parent().parent().parent().next().next().next().hide();
+		        }
+		
+		    }
+		});
+		
+		//대댓글 입력창 보이기
+		$(".comment_write_show").on("click", function() {
+			alert("11111111");
+			$(".cmtModi").hide();
+			$(".cmtRly").hide();
+			var reply = $(this).parent().parent().parent().next().next();
+		    if (reply.css("display") == "none") {
+		        $(this).parent().parent().parent().next().next().show();
+		    } else {
+		        $(this).parent().parent().parent().next().next().hide();
+		    }
+		    if ($(this).data("comment-count") > 0) {
+		        if (reply.css("display") == "none") {
+		            $(this).parent().parent().parent().parent().next().next().next().show();
+		        } else {
+		            $(this).parent().parent().parent().parent().next().next().next().hide();
+		        }
+		
+		    }
+		});
+		//댓글 입력창 보이기(수정)
+		$(".comment_modify").on("click", function() {
+		    if ($.cookie("user_num")) {
+		        $(this).parent().parent().parent().parent().hide();
+		        $(this).parent().parent().parent().parent().next().show();
+		    } else {
+		        goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
+		        //							alert('로그인 후 이용가능합니다.');
+		        return;
+		    }
+		});
+	});
 
+</script>
 
 
 <jsp:include page="../include/footer.jsp" />

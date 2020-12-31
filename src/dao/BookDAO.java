@@ -308,7 +308,7 @@ public class BookDAO {
 			try {
 				pstmt=con.prepareStatement(sql);
 				pstmt.setInt(1, 0);
-				pstmt.setInt(2, 5);
+				pstmt.setInt(2, 12);
 				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				bookList5 = new ArrayList<BookBean>();
@@ -369,8 +369,8 @@ public class BookDAO {
    public BookBean getBookInfo(String book_isbn) {
       PreparedStatement pstmt =  null;
       ResultSet rs = null;
-      String sql="select b.*,r.* from book  b left outer join (select isbn, count(*) review,"
-      		+ "round(10/sum(starcount),1) starcount from review group by isbn) r "
+      String sql="select b.*,r.* from book b left outer join (select isbn, count(*) review,"
+      		+ "round(AVG(starcount),1) starcount from review group by isbn) r "
       		+ "on b.isbn = r.isbn where b.isbn=?";
       BookBean bookBean = null;
       try {

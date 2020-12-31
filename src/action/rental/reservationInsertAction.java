@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+import svc.msg.MsgSpanService;
 import svc.rental.RentalInsertService;
 import svc.rental.reservationInsertService;
 import vo.ActionForward;
+import vo.MsgBean;
 
 public class reservationInsertAction implements Action {
 
@@ -47,9 +49,9 @@ public class reservationInsertAction implements Action {
 				PrintWriter out = response.getWriter();
 				out.println("이미 예약중인 도서가 있습니다."); // 다이얼로그 메세지 출력
 
-				System.out.println("도서가 중복됨");
+				System.out.println("예약 도서가 중복됨");
 			} else {
-				System.out.println("도서가 중복되지않아");
+				System.out.println("예약 도서가 중복되지않아");
 
 				boolean isInsertSuccess = InsertService.insertReservation(reservationAddList, id);
 
@@ -61,12 +63,23 @@ public class reservationInsertAction implements Action {
 					out.println("history.back()"); // 이전 페이지로 이동
 					out.println("</script>"); // 자바스크립트 끝 태그
 				} else {
+					
+					// 예약신청시 메시지 보내기
+					MsgBean msgBean = new MsgBean();		
+					String fromid = "admin";
+					String content = "도서예약신청이 완료되었습니다.";
+					msgBean.setId(id);
+					msgBean.setFromId(fromid);
+					msgBean.setContent(content);
+					MsgSpanService msgSpanService = new MsgSpanService();
+					boolean isSpan = msgSpanService.msgSpan(msgBean);
+					
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter out = response.getWriter();
 //					out.println("<script>");
 //					out.println("alert('도서예약을 성공하였습니다.')");
 //					out.println("</script>");
-					out.print("성공");
+					out.print("예약신청이 완료되었습니다.");
 				}
 
 			}

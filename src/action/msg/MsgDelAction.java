@@ -24,12 +24,13 @@ public class MsgDelAction implements Action {
 		String id = (String)session.getAttribute("id");
 		List<Integer> msgNumList = new ArrayList();
 		String[] checkArr=request.getParameterValues("msgNum[]");
+		System.out.println(checkArr.length);
 		for(int i = 0; i<checkArr.length; i++) {
 			msgNumList.add(Integer.parseInt(checkArr[i]));
 		}				
 		MsgDeleteService msgDeleteService = new MsgDeleteService(); 
 		boolean isMsgDel =  msgDeleteService.msgDelete(msgNumList,id);
-
+		System.out.println(isMsgDel);
 		if(!isMsgDel) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();

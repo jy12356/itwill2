@@ -18,6 +18,7 @@ int startPage = pageInfo.getStartPage();
 int endPage = pageInfo.getEndPage();
 int listCount = pageInfo.getListCount();
 %>
+
 <section class="sub">
 	<div class="contents-wrap">
 		<div class="customer">
@@ -133,8 +134,8 @@ int listCount = pageInfo.getListCount();
 								총 선택 도서 수 : <span class="totalbookcnt">0</span>권 
 							</p>
 
-						<input type="button" style="display: none;" class="rentalbtn" value="대여하기" onclick="rental()"> 
-						<input type="button" style="display: none;" class="reservationbtn" value="예약하기"onclick="reservation()">
+						<input type="button" style="display: none;" class="rentalbtn btn" value="대여하기" onclick="rental()"> 
+						<input type="button" style="display: none;" class="reservationbtn btn" value="예약하기"onclick="reservation()">
 						</div>
 					</div>
 					<div class="ps-box">
@@ -236,11 +237,12 @@ int listCount = pageInfo.getListCount();
 						dataType : 'text',
 						data : interArr,
 						success : function(data) {
+							alert(data);
 							var a = "이미 예약중인 도서가 있습니다.";
-							alert(a);
-							if(data == a.trim()) {
+							var b = "예약신청이 완료되었습니다.";
+							if(data == a) {
 								return false;								
-							} else if(data == "성공"){
+							} else if(data == b){
 							location.href = "ReservationList.rn";
 							}
 						},
@@ -309,12 +311,16 @@ int listCount = pageInfo.getListCount();
 						data : interArr,
 						success : function(data) {
 							// 대여하기 성공했으면 대여리스트로 가기
-// 							alert(data);
+							alert(data);
 							var a = "이미 대여중인 도서가 있습니다.";
-							alert(a);
-							if(data == a.trim()) {
+							var b = "도서는 최대 5권 까지 대여 가능합니다.";
+							if(data == b) {
+								return false;
+							}
+							if(data == a) {
+// 								alert(a);
 								return false;								
-							} else if(data == "성공"){
+							} else if(data == "대여신청이 완료되었습니다."){
 							location.href = "rentalList.rn";
 							}
 						},

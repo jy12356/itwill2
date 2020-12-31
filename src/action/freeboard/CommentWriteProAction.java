@@ -54,7 +54,7 @@ public class CommentWriteProAction implements Action {
 			out.println("</script>"); // 자바스크립트 끝 태그
 			
 		} else {
-			
+			System.out.println("순서찾기 일반 댓글 작성시 writeProAction으로오고 ");
 			forward = new ActionForward();
 			forward.setPath("FreeBoardDetail.free?board_num=" + board_num + 
 									"&page=" + request.getParameter("page")+"&board_type="+board_type);

@@ -10,8 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import action.Action;
 import svc.Mybasket.MyBasketInsertService;
+import svc.msg.MsgSpanService;
 import svc.rental.RentalInsertService;
 import vo.ActionForward;
+import vo.MsgBean;
 
 public class RentalInsertAction implements Action {
 
@@ -52,7 +54,7 @@ public class RentalInsertAction implements Action {
 //				out.println("history.back()"); // 이전 페이지로 이동
 //				out.println("</script>"); // 자바스크립트 끝 태그
 				
-				System.out.println("도서가 중복됨");
+				System.out.println("대여 도서가 중복됨");
 			} else {
 				System.out.println("순서 5");
 
@@ -70,13 +72,24 @@ public class RentalInsertAction implements Action {
 //					out.println("</script>"); // 자바스크립트 끝 태그
 				} else {
 					System.out.println("순서 7");
+					
+					// 대출신청시 메시지 보내기
+					MsgBean msgBean = new MsgBean();		
+					String fromid = "admin";
+					String content = "대여신청이 완료되었습니다.";
+					msgBean.setId(id);
+					msgBean.setFromId(fromid);
+					msgBean.setContent(content);
+					MsgSpanService msgSpanService = new MsgSpanService();
+					boolean isSpan = msgSpanService.msgSpan(msgBean);
+					
 
 					response.setContentType("text/html; charset=UTF-8");
 					PrintWriter out = response.getWriter();
 //					out.println("<script>");
 //					out.println("alert('도서대여 신청을 성공하였습니다.')");
 //					out.println("</script>");
-					out.print("성공");
+					out.print("대여신청이 완료되었습니다.");
 				}
 
 			}

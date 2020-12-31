@@ -85,16 +85,16 @@
 				              	<%if(myMsgList !=null && listCount >0){ %>
 				              	<%for(int i=0; i < myMsgList.size(); i++){ %>
 		              			  <tr>
-		                      		<td><input type="checkbox" value="<%=myMsgList.get(i).getNum() %>" name="num" class="checkbox"></td>
+		                      		<td class="tac check_box"><input type="checkbox" value="<%=myMsgList.get(i).getNum()%>" name="num"></td>
 									<td>
-										<a class="content" href=MyMsgDetail.msg?num=<%=myMsgList.get(i).getNum()%>"><%=myMsgList.get(i).getContent() %></a>
+										<a class="content" href=MyMsgDetail.msg?num=<%=myMsgList.get(i).getNum()%>><%=myMsgList.get(i).getContent() %></a>
 								    </td>
 		                  			<td>
 		                  			<%if(myMsgList.get(i).getIsRead().equals("y")){ %>
 		                  				읽음
 		                  			<%}else{ %>
 		                  				읽지않음
-		                  			<%} %>	
+		                  			<%} %>
 		                  			</td>
 		                  			<td><%=myMsgList.get(i).getDate()%></td>
 		                 		</tr>
@@ -171,7 +171,7 @@
 					alert("게시물을 선택해주시길 바랍니다.");
 					return false;	            	
 				};	
-				var msgNumArr = {"inter_num" :msgNum};
+				var msgNumArr = {"msgNum" :msgNum};
 				$.ajax({
 					url : "MyMsgDel.msg",
 					type : "post",

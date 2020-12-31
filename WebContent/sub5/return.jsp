@@ -58,6 +58,7 @@ ArrayList<RentalBean> rentalList = (ArrayList<RentalBean>)request.getAttribute("
                                 <input type="hidden" value="반납" id="state" name="state">
 <%--                                 <input type="hidden" value="<%=rentalList.get(i).getIsbn()%>" id="isbn" name="isbn"> --%>
                                 <input type="hidden" value="<%=rentalList.get(i).getNum()%>" id="num" name="num">
+                                <input type="hidden" value="<%=rentalList.get(i).getId()%>" id="id" name="id">
 			                    <input type="submit" onclick="ccCheck()" class="btn" value="반납하기">
                                 <%}else{ %>
                                 <%=rentalList.get(i).getState()%>

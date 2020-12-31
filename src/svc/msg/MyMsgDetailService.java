@@ -23,4 +23,22 @@ public class MyMsgDetailService {
 		return msgBean;
 	}
 
+	public boolean updateIsRead(int num) {
+		boolean isRead =false;
+		System.out.println("MyMsgDetailService-updateIsRead");
+		Connection con = getConnection();
+		MsgDAO msgDAO = MsgDAO.getInstance();
+		msgDAO.setConnection(con);
+		int updateIsReadCount = msgDAO.updateStatus(num);
+		if(updateIsReadCount >0) {
+			commit(con);
+			isRead = true;
+		}else {
+			rollback(con);
+		}
+		// 6(공통). Connection 객체 반환하기
+		close(con);
+		return isRead;
+	}	
+
 }

@@ -519,10 +519,26 @@ public class RentalDAO {
 
 		return rentalList;
 	}
-
-
 	
-
+	// 반납용
+	public int deleteArticle(int num) {
+		int deleteCount = 0;
+		PreparedStatement pstmt = null;
+		System.out.println("num = " + num);
+		
+		try {
+			String sql = "delete from rental where num=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			deleteCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("deleteArticle() 오류! - " + e.getMessage());
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return deleteCount;
+	}
 
 
 }

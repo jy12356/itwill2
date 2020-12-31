@@ -51,14 +51,14 @@
 			<ul>
 				<%
 					if(bookList5!=null){
-					for(int i = 0; i < 5; i++) {
+					for(int i = 0; i < 12; i++) {
 				%>
 				<li>
 					<div class="figure">
-						<span class="label"><em>10%<span>할인</span></em></span> 
-						<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList5.get(i).getIsbn()%>&title=<%=bookList5.get(i).getTitle()%> ">
+<!-- 						<span class="label"><em>10%<span>할인</span></em></span> -->
+						<a href="BookDetail.bok?booknum=<%=bookList5.get(i).getNum()%>&isbn=<%=bookList5.get(i).getIsbn()%>">
 							<span class="rm_br">
-							<img src="<%=bookList5.get(i).getImage() %>" alt="<%=bookList5.get(i).getImage()%>" /></span>
+							<img src="bookUpload/<%=bookList5.get(i).getImage() %>" alt="<%=bookList5.get(i).getImage()%>" /></span>
 							<span class="light"></span>
 							<div class="caption">
 								<div class="about">
@@ -75,30 +75,9 @@
 					</div>
 				</li>
 				<%
-					}}
+					}
+				}
 				%>
-				<li>
-					<div class="figure">
-						<span class="label"><em>10% <span>할인</span></em></span> 
-						<a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">
-							<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100243.jpg" alt="도서 이미지 - 어떻게 말해줘야 할까" /></span> 
-							<span class="light"></span>
-							<div class="caption">
-								<div class="about">
-									<p>채널A 〈요즘 육아 금쪽같은 내 새끼〉 SBS 〈우리 아이가 달라졌어요〉국민 육아멘토 오은영 박사가 알려주는 ‘부모의 말’육아 현실을 200퍼센트 반영한 130가지 한마디...</p>
-								</div>
-							</div>
-						</a>
-					</div>
-					
-					<div class="hot-info">
-						<p class="hot-title">
-							<a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">어떻게 말해줘야 할까</a>
-						</p>
-						<p>오은영 글, 차상미 그림</p>
-					</div>
-					
-				</li>
 			</ul>
 		</div>
 	</div>
@@ -117,7 +96,7 @@
 						<div class="figure">
 							<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>">
 								<span class="rm_br">
-									<img src="bookUpload/aa.PNG" alt="도서 이미지 - 가족사진">
+									<img src="bookUpload/<%=bookList5.get(i).getImage() %>" >
 								</span> 
 								<span class="light"></span>
 							</a>
@@ -152,21 +131,21 @@
 								</p>
 								<p class="webtoon">
 									<strong class="fn-webtoon">소설</strong> 
-<!-- 									<a href="/webtoon/best/realtime" class="BookList.bok?catg1=소설">더보기  -->
+									<a href="BookList.bok?catg1=소설" class="BookList.bok?catg1=소설">더보기 
 										<span class="more"></span>
-<!-- 									</a> -->
+									</a>
 								</p>
 								<p class="comic">
 									<strong class="fn-comic">인문/경제</strong> 
-<!-- 									<a href="/comic/best/all/realtime" class="BookList.bok?catg1=인문/경제">더보기 -->
+									<a href="BookList.bok?ccatg1=인문/경제" class="BookList.bok?ccatg1=인문/경제">더보기
 										<span class="more"></span>
-<!-- 									</a> -->
+									</a>
 								</p>
 								<p class="fiction">
-									<strong class="fn-fiction">과학/IT</strong> 
-<!-- 									<a href="/novel/best/all/realtime" class="BookList.bok?catg1=과학">더보기  -->
+									<strong class="fn-fiction">과학</strong> 
+									<a href="BookList.bok?catg1=과학" class="BookList.bok?catg1=과학">더보기 
 										<span class="more"></span>
-<!-- 									</a> -->
+									</a>
 								</p>
 							</li>
 						<%
@@ -186,7 +165,7 @@
 									<div>
 										<a title="<%=bookList2.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList2.get(i).getNum()%>&isbn=<%=bookList2.get(i).getIsbn()%>&title=<%=bookList2.get(i).getTitle()%>">
 											<div>
-												<img src="<%=bookList2.get(i).getTitle()%>" alt="">
+												<img src="bookUpload/<%=bookList2.get(i).getImage()%>" alt="">
 											</div> 
 											<span><strong><%=bookList2.get(i).getTitle()%></strong></span>
 											<span><%=bookList2.get(i).getAuthor()%></span>
@@ -202,7 +181,7 @@
 									<div>
 										<a title="<%=bookList3.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList3.get(i).getNum()%>&isbn=<%=bookList3.get(i).getIsbn()%>&title=<%=bookList3.get(i).getTitle()%>">
 											<div>
-												<img src="<%=bookList3.get(i).getImage()%>" alt="">
+												<img src="bookUpload/<%=bookList3.get(i).getImage()%>" alt="">
 											</div> 
 											<span><strong><%=bookList3.get(i).getTitle()%></strong></span>
 											<span><%=bookList3.get(i).getAuthor()%></span>
@@ -219,7 +198,7 @@
 									<div>
 										<a title="<%=bookList4.get(i).getTitle()%>" href="BookDetail.bok?booknum=<%=bookList4.get(i).getNum()%>&isbn=<%=bookList4.get(i).getIsbn()%>&title=<%=bookList4.get(i).getTitle()%>">
 											<div>
-												<img src="<%=bookList4.get(i).getTitle()%>" alt="">
+												<img src="bookUpload/<%=bookList4.get(i).getImage()%>" alt="">
 											</div> 
 											<span><strong><%=bookList4.get(i).getTitle()%></strong></span>
 											<span><%=bookList4.get(i).getAuthor()%></span>
@@ -240,11 +219,11 @@
 	<div class="main-inner">
 		<div class="main_ct_best">
 			<div class="ct-best">
-				<h3>카테고리별 베스트</h3>
+				<h3>카테고리</h3>
 				<ul>
 					<li><a href="BookList.bok?catg1=소설">소설<span class="ct-arrow"></span></a></li>
 					<li><a href="BookList.bok?catg1=인문/경제">인문/경제<span class="ct-arrow"></span></a></li>
-					<li><a href="BookList.bok?catg1=과학">과학/IT<span class="ct-arrow"></span></a></li>
+					<li><a href="BookList.bok?catg1=과학">과학<span class="ct-arrow"></span></a></li>
 					<li><a href="BookList.bok?catg1=취미">취미<span class="ct-arrow"></span></a></li>
 					<li><a href="BookList.bok?catg1=만화/웹소설">만화/웹소설<span class="ct-arrow"></span></a></li>
 				</ul>

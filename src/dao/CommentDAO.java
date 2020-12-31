@@ -340,6 +340,8 @@ public class CommentDAO {
 	}
 
 
+
+
 //	public int getMaxSeq(int board_num, int board_type, int comment_num) {
 //		System.out.println("getMaxSeq");
 //		int maxSeq = 0;
