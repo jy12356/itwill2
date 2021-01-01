@@ -6,22 +6,15 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String) session.getAttribute("id");
-if (id == null) {
-	id = "gang";
-}
-// int b=0;
+// if (id == null) {
+// 	id = "gang";
+// }
 int limit = ((Integer)request.getAttribute("limit")).intValue();
 System.out.println("limit :" + limit);
-// 	limit = limit+10;
 
 int entireCount = ((Integer)request.getAttribute("entireCount")).intValue();
-// int maxSeq = ((Integer)request.getAttribute("maxSeq")).intValue();
 System.out.println("entireCount :" + entireCount);
-// if(limit==10){
-// 	limit = limit+10;
-// }else{
-// 	limit = limit+10;
-// }
+
 FreeBoardBean article = (FreeBoardBean) request.getAttribute("article");
 String nowPage = request.getParameter("page");
 int board_type = 1;
@@ -29,8 +22,6 @@ int board_num = article.getBoard_num();
 
 
 %>
-
-<!-- <script src="../js/swipe/jquery-3.5.1.min.js"></script> -->
 <jsp:include page="../include/header.jsp" />
 <section class="sub">
 	<div class="category-nav">
@@ -145,14 +136,8 @@ int board_num = article.getBoard_num();
 						<!-- 댓글리스트 뿌려주기 시작 -->
 						<div class="comment_list">
 							<%
-							
 							for(int i=0; i < commentList.size(); i++){
-// 								count += 1;
-									
-// 								if(count <= b) { // 댓글 11개까지보여주기
-									
-								
-								
+ 								//if(count <= b) { // 댓글 11개까지보여주기
 								%>
 							<div class="comment">
 <%-- 							<p><%=c %></p> --%>
@@ -289,6 +274,9 @@ int board_num = article.getBoard_num();
 					</div>
 				</div>
 				<!------------------------------ 댓글쓰기 ---------------------------------------------------->
+				<%
+							 if(id != null) {
+							%>
 				<div class="comment-text-area">
 					<form action="CommentWritePro.free" method="post">
 						<div class="comment-text" style="display: block;">
@@ -306,6 +294,34 @@ int board_num = article.getBoard_num();
 						</div>
 					</form>
 				</div>
+				<%
+							 }
+				%>
+				<%
+				 if(id == null) {
+						%>
+			<div class="comment-text-area">
+				<form action="" method="post">
+					<div class="comment-text" style="display: block;">
+						<h3 class="coTitle tal">댓글쓰기</h3>
+						<input type="hidden" name="board_type" value="1"> 
+						<input type="hidden" name="page" value="<%=nowPage%>">
+						<input type="hidden" name="board_num" value="<%=article.getBoard_num()%>"> 
+						<input type="hidden" name="comment_id" value="<%=id%>">
+						<textarea readonly name="comment_desc" placeholder="로그인이 필요합니다."></textarea>
+						<div class="btn_inner">
+<!-- 							<input type="submit" class="btn reviewInput" value="등록"> -->
+<!-- 							<a href="javascript:;" class="btn reviewCancel">취소</a> -->
+						</div>
+
+					</div>
+				</form>
+			</div>
+			<%
+						 }
+			%>
+				
+				
 			</div>
 		</div>
 
