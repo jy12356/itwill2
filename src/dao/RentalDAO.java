@@ -224,7 +224,7 @@ public class RentalDAO {
 
 		try {
 			String sql = "select r.num num, b.title title, r.isbn isbn, "
-					+ "r.id id, r.s_date s_date, r.onrental_date onrental_date, " + "r.e_date e_date, r.state state "
+					+ "r.id id, r.s_date s_date, r.onrental_date onrental_date, " + "r.e_date e_date "
 					+ "from rental as r join book as b on r.isbn = b.isbn "
 					+ "where r.id=? order by r.num desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
@@ -423,24 +423,24 @@ public class RentalDAO {
 	
 	
 	// 반납용
-	public int updateArticle(RentalBean article) {
-		int updateCount = 0;
-		PreparedStatement pstmt = null;
-		
-		try {
-			String sql = "update rental set state=? where num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, article.getState());
-			pstmt.setInt(2, article.getNum());
-			updateCount = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("updateArticle() 오류! - " + e.getMessage());
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return updateCount;
-	}
+//	public int updateArticle(RentalBean article) {
+//		int updateCount = 0;
+//		PreparedStatement pstmt = null;
+//		
+//		try {
+//			String sql = "update rental set state=? where num=?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, article.getState());
+//			pstmt.setInt(2, article.getNum());
+//			updateCount = pstmt.executeUpdate();
+//		} catch (SQLException e) {
+//			System.out.println("updateArticle() 오류! - " + e.getMessage());
+//			e.printStackTrace();
+//		}finally {
+//			close(pstmt);
+//		}
+//		return updateCount;
+//	}
 
 	// 반납용
 	public int selectListCountt() {
@@ -485,7 +485,7 @@ public class RentalDAO {
 
 		try {
 			String sql = "select r.num num, b.title title, r.isbn isbn, "
-					+ "r.id id, r.s_date s_date, r.onrental_date onrental_date, " + "r.e_date e_date, r.state state "
+					+ "r.id id, r.s_date s_date, r.onrental_date onrental_date, " + "r.e_date e_date "
 					+ "from rental as r join book as b on r.isbn = b.isbn "
 					+ "order by r.num desc limit ?,?";
 			pstmt = con.prepareStatement(sql);
@@ -504,7 +504,6 @@ public class RentalDAO {
 				rental.setS_date(rs.getDate("s_date"));
 				rental.setOnrental_date(rs.getDate("onrental_date"));
 				rental.setE_date(rs.getDate("e_date"));
-				rental.setState(rs.getString("state"));
 
 				rentalList.add(rental);
 			}

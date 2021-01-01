@@ -53,16 +53,16 @@ ArrayList<RentalBean> rentalList = (ArrayList<RentalBean>)request.getAttribute("
                                 <td><%=rentalList.get(i).getS_date()%> ~ <%=rentalList.get(i).getOnrental_date()%></td>
                                 <td><%=rentalList.get(i).getE_date()%></td>
                                 <td class="book_basketbtn">
-                                <form method="post" action="ReturnInsert.rn">
-                                <%if(rentalList.get(i).getState() == null) {%>
+                                <form method="post" action="ReturnedInsert.rt">
                                 <input type="hidden" value="반납" id="state" name="state">
-<%--                                 <input type="hidden" value="<%=rentalList.get(i).getIsbn()%>" id="isbn" name="isbn"> --%>
+                                <input type="hidden" value="<%=rentalList.get(i).getIsbn()%>" id="isbn" name="isbn">
                                 <input type="hidden" value="<%=rentalList.get(i).getNum()%>" id="num" name="num">
                                 <input type="hidden" value="<%=rentalList.get(i).getId()%>" id="id" name="id">
+                                <input type="hidden" value="<%=rentalList.get(i).getTitle()%>" id="title" name="title">
+                                <input type="hidden" value="<%=rentalList.get(i).getS_date()%>" id="s_date" name="s_date">
+                                <input type="hidden" value="<%=rentalList.get(i).getOnrental_date()%>" id="onrental_date" name="onrental_date">
+                                <input type="hidden" value="<%=rentalList.get(i).getE_date()%>" id="e_date" name="e_date">
 			                    <input type="submit" onclick="ccCheck()" class="btn" value="반납하기">
-                                <%}else{ %>
-                                <%=rentalList.get(i).getState()%>
-                                <%} %>
 							<script>
 							function ccCheck(){
 								var u = alert("반납하시겠습니까?");

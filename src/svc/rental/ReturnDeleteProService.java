@@ -12,7 +12,7 @@ import dao.RentalDAO;
 public class ReturnDeleteProService {
 
 	public boolean removeArticle(int num) {
-		System.out.println("QnaDeleteProService");
+		System.out.println("ReturnDeleteProService");
 		boolean isDeleteSuccess = false;
 		
 		Connection con = getConnection();

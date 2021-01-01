@@ -21,7 +21,6 @@ import action.rental.ReservationListAction;
 import action.rental.rentalDeleteAction;
 import action.rental.reservationInsertAction;
 import action.rental.returnAction;
-import action.rental.returnAction2;
 import action.rental.returnInsertAction;
 import vo.ActionForward;
 
@@ -108,14 +107,6 @@ public class RentalController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
-	}else if (command.equals("/Return2.rn")) {
-		action = new returnAction2();
-		try {
-			forward = action.execute(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	} 
 		
 		

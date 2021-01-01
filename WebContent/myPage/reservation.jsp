@@ -16,7 +16,7 @@
 <section class="sub">
      <div class="contents-wrap">
         <div class="customer">
-             <pre><h2 class="coTitle"><a href="rentalList.rn">대여내역</a>  |  <a href="Return2.rn">과거대여내역</a>  |  <a href="ReservationList.rn">예약중인도서</a></h2></pre>
+             <pre><h2 class="coTitle"><a href="rentalList.rn">대여내역</a>  |  <a href="ReturnedList.rt">과거대여내역</a>  |  <a href="ReservationList.rn">예약중인도서</a></h2></pre>
             <h2 class="coTitle">예약중인도서</h2>
             <div class="customer-contents">
                 <div class="customer-inner">
