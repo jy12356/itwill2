@@ -184,10 +184,16 @@ int board_num = article.getBoard_num();
 						<% 
 		                        }
 						 }
+						
+						if(id != null) {
 						%>
 							<div class="btn_inner">
 						<a href="javascript:;" class="comment_write_show btn" data-comment-count="0" class="btn" style="float: right;">댓글</a>
 										</div>
+										
+										<%
+						}
+										%>
 									</div>
 								</div>
 							</div>
