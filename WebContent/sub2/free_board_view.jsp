@@ -6,22 +6,15 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String) session.getAttribute("id");
-if (id == null) {
-	id = "gang";
-}
-// int b=0;
+// if (id == null) {
+// 	id = "gang";
+// }
 int limit = ((Integer)request.getAttribute("limit")).intValue();
 System.out.println("limit :" + limit);
-// 	limit = limit+10;
 
 int entireCount = ((Integer)request.getAttribute("entireCount")).intValue();
-// int maxSeq = ((Integer)request.getAttribute("maxSeq")).intValue();
 System.out.println("entireCount :" + entireCount);
-// if(limit==10){
-// 	limit = limit+10;
-// }else{
-// 	limit = limit+10;
-// }
+
 FreeBoardBean article = (FreeBoardBean) request.getAttribute("article");
 String nowPage = request.getParameter("page");
 int board_type = 1;
@@ -29,8 +22,6 @@ int board_num = article.getBoard_num();
 
 
 %>
-
-<!-- <script src="../js/swipe/jquery-3.5.1.min.js"></script> -->
 <jsp:include page="../include/header.jsp" />
 <section class="sub">
 	<div class="category-nav">
@@ -145,14 +136,8 @@ int board_num = article.getBoard_num();
 						<!-- 댓글리스트 뿌려주기 시작 -->
 						<div class="comment_list">
 							<%
-							
 							for(int i=0; i < commentList.size(); i++){
-// 								count += 1;
-									
-// 								if(count <= b) { // 댓글 11개까지보여주기
-									
-								
-								
+ 								//if(count <= b) { // 댓글 11개까지보여주기
 								%>
 							<div class="comment">
 <%-- 							<p><%=c %></p> --%>
@@ -199,10 +184,16 @@ int board_num = article.getBoard_num();
 						<% 
 		                        }
 						 }
+						
+						if(id != null) {
 						%>
 							<div class="btn_inner">
 						<a href="javascript:;" class="comment_write_show btn" data-comment-count="0" class="btn" style="float: right;">댓글</a>
 										</div>
+										
+										<%
+						}
+										%>
 									</div>
 								</div>
 							</div>
@@ -289,6 +280,9 @@ int board_num = article.getBoard_num();
 					</div>
 				</div>
 				<!------------------------------ 댓글쓰기 ---------------------------------------------------->
+				<%
+							 if(id != null) {
+							%>
 				<div class="comment-text-area">
 					<form action="CommentWritePro.free" method="post">
 						<div class="comment-text" style="display: block;">
@@ -300,12 +294,41 @@ int board_num = article.getBoard_num();
 							<textarea name="comment_desc" placeholder="작품과 무관한 광고, 욕설 및 비방, 청소년보호정책에 위배되는 내용은 사전 동의 없이 비공개 처리될 수 있습니다."></textarea>
 							<div class="btn_inner">
 								<input type="submit" class="btn reviewInput" value="등록">
-								<a href="javascript:;" class="btn reviewCancel">취소</a>
+								<input type="reset" class="btn reviewCancel" value="취소">
+<!-- 								<a href="javascript:;" class="btn reviewCancel">취소</a> -->
 							</div>
 
 						</div>
 					</form>
 				</div>
+				<%
+							 }
+				%>
+				<%
+				 if(id == null) {
+						%>
+			<div class="comment-text-area">
+				<form action="" method="post">
+					<div class="comment-text" style="display: block;">
+						<h3 class="coTitle tal">댓글쓰기</h3>
+						<input type="hidden" name="board_type" value="1"> 
+						<input type="hidden" name="page" value="<%=nowPage%>">
+						<input type="hidden" name="board_num" value="<%=article.getBoard_num()%>"> 
+						<input type="hidden" name="comment_id" value="<%=id%>">
+						<textarea readonly name="comment_desc" placeholder="로그인이 필요합니다."></textarea>
+						<div class="btn_inner">
+<!-- 							<input type="submit" class="btn reviewInput" value="등록"> -->
+<!-- 							<a href="javascript:;" class="btn reviewCancel">취소</a> -->
+						</div>
+
+					</div>
+				</form>
+			</div>
+			<%
+						 }
+			%>
+				
+				
 			</div>
 		</div>
 
@@ -313,68 +336,7 @@ int board_num = article.getBoard_num();
 
 </section>
 
-<script type="text/javascript">
-	
-	$(document).ready(function(){
-		
-		//댓글 입력창
-		$(".cmtModi").hide();
-		$(".cmtRly").hide();
-		//댓글 수정입력창 보이기
-		$(".comment_modi_show").on("click", function() {
-			alert("11111111");
-			$(".cmtModi").hide();
-			$(".cmtRly").hide();
-			var modi = $(this).parent().parent().parent().next();
-		    if (modi.css("display") == "none") {
-		        $(this).parent().parent().parent().next().show();
-		    } else {
-		        $(this).parent().parent().parent().next().hide();
-		    }
-		    if ($(this).data("comment-count") > 0) {
-		        if (modi.css("display") == "none") {
-		            $(this).parent().parent().parent().next().next().next().show();
-		        } else {
-		            $(this).parent().parent().parent().next().next().next().hide();
-		        }
-		
-		    }
-		});
-		
-		//대댓글 입력창 보이기
-		$(".comment_write_show").on("click", function() {
-			alert("11111111");
-			$(".cmtModi").hide();
-			$(".cmtRly").hide();
-			var reply = $(this).parent().parent().parent().next().next();
-		    if (reply.css("display") == "none") {
-		        $(this).parent().parent().parent().next().next().show();
-		    } else {
-		        $(this).parent().parent().parent().next().next().hide();
-		    }
-		    if ($(this).data("comment-count") > 0) {
-		        if (reply.css("display") == "none") {
-		            $(this).parent().parent().parent().parent().next().next().next().show();
-		        } else {
-		            $(this).parent().parent().parent().parent().next().next().next().hide();
-		        }
-		
-		    }
-		});
-		//댓글 입력창 보이기(수정)
-		$(".comment_modify").on("click", function() {
-		    if ($.cookie("user_num")) {
-		        $(this).parent().parent().parent().parent().hide();
-		        $(this).parent().parent().parent().parent().next().show();
-		    } else {
-		        goLogin("", "로그인 후 이용가능합니다.\n로그인 하시겠습니까?");
-		        //							alert('로그인 후 이용가능합니다.');
-		        return;
-		    }
-		});
-	});
 
-</script>
 
 
 <jsp:include page="../include/footer.jsp" />
