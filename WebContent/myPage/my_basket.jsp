@@ -18,7 +18,7 @@ int startPage = pageInfo.getStartPage();
 int endPage = pageInfo.getEndPage();
 int listCount = pageInfo.getListCount();
 %>
-<<style>
+<style>
 .h3Tit{font-size: 15px; color: #069e89;}
 </style>
 
@@ -75,7 +75,7 @@ int listCount = pageInfo.getListCount();
 									}
 								}
 							}else {%>
-								<tr><td>책바구니가 비었습니다.</td></tr>
+								<tr><td rowspan="6">책바구니가 비었습니다.</td></tr>
 							<%}	%>
 							</tbody>
 						</table>
@@ -124,7 +124,7 @@ int listCount = pageInfo.getListCount();
 								
 								
 								} else {%>
-								<tr><td>책바구니가 비었습니다.</td></tr>
+								<tr><td rowspan="6">책바구니가 비었습니다.</td></tr>
 								<%}%>
 						</tbody>
 					</table>
@@ -355,8 +355,8 @@ int listCount = pageInfo.getListCount();
 				}else{
 // 					$(".reservationbtn").hide();
 					total_cnt2 -=1;
-					if(total_cnt2 < 0) {
-						total_ctn2 == 0;
+					if(total_cnt2 <= 0) {
+						total_ctn2 = 0;
 						$(".reservationbtn").hide();
 					}
 				}
@@ -380,9 +380,9 @@ int listCount = pageInfo.getListCount();
 					$(".reservationbtn").hide();
 				}else{
 					total_cnt1 -=1;
-					if(total_cnt1 < 0) {
-						total_ctn1 == 0;
+					if(total_cnt1 <= 0) {
 						$(".rentalbtn").hide();
+						total_ctn1 = 0;
 					}
 				}
 				
