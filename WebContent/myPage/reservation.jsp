@@ -20,7 +20,7 @@ int listCount = pageInfo.getListCount();
 			  <div class="boxmenu1-top-menu">
 				<ul>
 					<li><a href="rentalList.rn"><em>대여내역</em></a></li>
-					<li><a href="ReturnedList.rn"><em>과거대여내역</em></a></li>
+					<li><a href="ReturnedList.rt"><em>과거대여내역</em></a></li>
 					<li class="on"><a href="ReservationList.rn"><em>예약중인도서</em></a></li>
 				</ul>
 			</div>
