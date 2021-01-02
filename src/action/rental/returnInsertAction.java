@@ -18,6 +18,7 @@ import svc.rental.ReturnInsertService;
 import vo.ActionForward;
 import vo.MsgBean;
 import vo.RentalBean;
+import vo.ReturnedBean;
 
 public class returnInsertAction implements Action {
 
@@ -36,7 +37,7 @@ public class returnInsertAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('구매 실패!')");
+			out.println("alert('반납 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
 		}else {
@@ -59,6 +60,8 @@ public class returnInsertAction implements Action {
 				out.println("</script>"); // 자바스크립트 끝 태그
 			}else {
 				forward = new ActionForward();
+				ReturnedBean returnedBean = new ReturnedBean();
+				returnedBean.setNum(num);
 				forward.setPath("Return.rn");
 				forward.setRedirect(true);
 			}

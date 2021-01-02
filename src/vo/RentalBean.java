@@ -11,16 +11,8 @@ public class RentalBean {
 	private Date s_date;
 	private Date onrental_date;
 	private Date e_date;
-	private String state;
 	
 	
-	
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
 	public String getTitle() {
 		return title;
 	}

@@ -1,21 +1,24 @@
-<%@page import="vo.RentalBean"%>
+<%@page import="vo.ReturnedBean"%>
+<%@page import="vo.BookBean"%>
+<%@page import="vo.BookInterestBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../include/header.jsp"/>
 <%@page import="vo.PageInfo"%>
 <%@page import="java.util.ArrayList"%>
-<%	String id = (String)session.getAttribute("id");
-	ArrayList<RentalBean> rentalList = (ArrayList<RentalBean>)request.getAttribute("rentalList");
-	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
-	int nowPage = pageInfo.getPage();
-	int maxPage = pageInfo.getMaxPage();
-	int startPage = pageInfo.getStartPage();
-	int endPage = pageInfo.getEndPage();
-	int listCount = pageInfo.getListCount();
+<%	
+	String id = (String)session.getAttribute("id");
+ArrayList<ReturnedBean> articleList = (ArrayList<ReturnedBean>)request.getAttribute("articleList");
+PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+int nowPage = pageInfo.getPage();
+int maxPage = pageInfo.getMaxPage();
+int startPage = pageInfo.getStartPage();
+int endPage = pageInfo.getEndPage();
+int listCount = pageInfo.getListCount();
 %>    
 <section class="sub">
      <div class="contents-wrap">
         <div class="customer">
-            <pre><h2 class="coTitle"><a href="rentalList.rn">주문배송조회</a>  |  <a href="PastRentalList.rn">과거주문내역</a>  |  <a href="ReservationList.rn">예약중인도서</a></h2></pre>
+            <pre><h2 class="coTitle"><a href="rentalList.rn">주문배송조회</a>  |  <a href="ReturnedList.rt">과거주문내역</a>  |  <a href="ReservationList.rn">예약중인도서</a></h2></pre>
             <h2 class="coTitle">과거주문내역</h2>
             <div class="customer-contents">
                 <div class="customer-inner">
@@ -40,18 +43,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <%for(int i=0; i < rentalList.size(); i++ ){ 
-                        	if(id.equals(rentalList.get(i).getId())){
-                        		if(rentalList.get(i).getState() == null){
-                        %>
+                        <%for(int i=0; i < articleList.size(); i++ ){ 
+                         	if(id.equals(articleList.get(i).getId())){
+                      		if(articleList.get(i).getState() == null){
+                       %> 
                         <%}else{ %>
                             <tr>
                                 <td class="tac check_box">
-                                <input type="checkbox" id="checkbox_num" class="check_num" value="<%=rentalList.get(i).getNum()%>" name="inter_num"></td>
-                                <td><p class="title"><a href="BookDetail.bok?isbn=<%=rentalList.get(i).getIsbn()%>"><%=rentalList.get(i).getTitle()%></a></p></td>
-                                <td><%=rentalList.get(i).getS_date()%> ~ <%=rentalList.get(i).getOnrental_date()%></td>
-                                <td><%=rentalList.get(i).getE_date()%></td>
-                               <td><%=rentalList.get(i).getState()%></td>
+                                <input type="checkbox" id="checkbox_num" class="check_num" value="<%=articleList.get(i).getNum()%>" name="inter_num"></td>
+                                <td><p class="title"><a href="BookDetail.bok?isbn=<%=articleList.get(i).getIsbn()%>"><%=articleList.get(i).getTitle()%></a></p></td>
+                                <td><%=articleList.get(i).getS_date()%> ~ <%=articleList.get(i).getOnrental_date()%></td>
+                                <td><%=articleList.get(i).getE_date()%></td>
+                               <td><%=articleList.get(i).getState()%></td>
                             </tr>
                         <%} %>
                         <%} %>
@@ -59,6 +62,7 @@
                         </tbody>
                     </table>
                     <div class="btn_inner"> 
+                    
                     	<a href="javascript:void(0);" onclick="deleteBook(); return false;"class="btn">삭제하기</a>
 					</div>
                     </div>
@@ -73,7 +77,7 @@
 						</a>
 					<%}%>
 					<%for(int i = startPage; i <= endPage; i++) { 
-							if(i == nowPage) { %>
+							if(i == nowPage) { %> 
 								<a href="rentalList.bk?page=<%=i %>" class="on fir" data-page-num="<%=i %>"><%=i %></a>
 							<%} else { %>
 								<a href="rentalList.bk?page=<%=i %>" class="" data-page-num="<%=i %>"><%=i %></a>
@@ -118,12 +122,12 @@
 				};	
 				var interArr = {"inter_num" :inter_num};
 				$.ajax({
-					url : "rentalDelete.rn",
+					url : "ReturnedDelete.rt",
 					type : "post",
 					dataType: 'text',
 					data : interArr,
 					success : function(){
-						location.href = "PastRentalList.rn";
+						location.href = "ReturnedList.rt";
 					},error:function(request,status,error){
 				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				       }
