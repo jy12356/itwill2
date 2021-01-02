@@ -199,6 +199,9 @@
 							<%} %>
 							
                             <div class="paging">
+                            	<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=1" class="arr" data-page-num="1">
+										<img src="images/p-first.png"><span class="hide">처음페이지</span>
+								</a>
                             	<%if(nowPage <=1) {%>
 									
                             		<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage%>" class="arr prev" data-page-num="1">
@@ -210,9 +213,7 @@
 									</a>
 								
 								<%} %>
-								<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=1" class="arr" data-page-num="1">
-										<img src="images/p-first.png"><span class="hide">처음페이지</span>
-								</a>
+								
 								<%for(int i = startPage; i <= endPage; i++) { 
 										if(i == nowPage) { %>
 											<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>

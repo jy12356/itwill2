@@ -27,6 +27,7 @@ public class MsgController extends HttpServlet {
 		System.out.println("요청서블릿 주소: " + command);
 		Action action = null;
 		ActionForward forward = null;
+		
 		if(command.equals("/MyMsg.msg")) {
 			System.out.println("MyMsg.msg 포워딩");
 			action = new MyMsgListAction();			

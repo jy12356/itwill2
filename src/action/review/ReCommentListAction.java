@@ -43,13 +43,13 @@ public class ReCommentListAction implements Action {
 		ReCommentListService reCommentListService = new ReCommentListService();
 		
 		int listCount = reCommentListService.getListCount(board_num, board_type);
-		System.out.println("전체게시물 수 : " + listCount);
+		System.out.println("댓글수 : " + listCount);
 		System.out.println("Action 댓글수 확인!");
 		
 		
 		// 페이지 계산 작업 수행 ------------------------------------------
 		int page2 = 1; // 현재 페이지 번호 저장할 변수
-		int limit = 10; // 페이지 당 표시할 게시물 수를 결정하는 변수
+		int limit = 100; // 페이지 당 표시할 게시물 수를 결정하는 변수
 		
 		// request 객체로부터 "page" 파라미터가 전달됐을 경우(null 이 아닐 경우)
 		// 해당 파라미터 값을 page 변수에 저장

@@ -6,8 +6,6 @@
 
 int board_num = Integer.parseInt(request.getParameter("board_num"));
 FreeBoardBean article = (FreeBoardBean) request.getAttribute("article");
-// 	String gang = article.getBoard_id();
-// 	gang = "gang";
 String nowPage = request.getParameter("page");
 %>
 <jsp:include page="../include/header.jsp" />

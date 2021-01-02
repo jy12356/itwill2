@@ -1,8 +1,11 @@
 <%@page import="vo.RequestBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	String id = (String)session.getAttribute("id");
 	RequestBean article = (RequestBean)request.getAttribute("article");
+	String id = (String)session.getAttribute("id");
+	if(id==null) {
+		id = "비회원";
+	}
 %>
 
 <jsp:include page="../include/header.jsp"/>
@@ -30,6 +33,12 @@
                             <col width="35%">
                         </colgroup>
                         <tbody>
+                        	<tr>
+	                            <td>신청자</td>
+	                            <td colspan="3">
+	                            	<input type="text" name="id" value="<%=id%>" readonly="readonly">
+	                            </td>
+	                        </tr>
                        		<tr>
 								<td>도서명 <font color="red">(*)</font></td>
 								<td colspan="3"><input type="text" name="subject" id="booktitle" required="required"></td>

@@ -27,6 +27,7 @@ public class RequestWriteProAction implements Action {
 		String saveFolder = "/requestUpload";
 
 		String realFolder = context.getRealPath(saveFolder);
+		System.out.println("실제 업로드 폴더 : " + realFolder);
 
 		int fileSize = 1024 * 1024 * 10;
 
