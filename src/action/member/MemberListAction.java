@@ -54,7 +54,7 @@ public class MemberListAction implements Action {
 		
 		forward = new ActionForward();
 		forward.setPath("/sub1/memberList.jsp");
-		
+		System.out.println("MemberListAction 종료");
 		return forward;
 	}
 

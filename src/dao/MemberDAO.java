@@ -329,17 +329,16 @@ public class MemberDAO {
 	// ========================================================================
 
 	public JSONArray memberListCal() {
-		boolean isMemberListCalSuccess = false;
 		System.out.println("MemberDAO - memberListCal");
 		PreparedStatement pstmt = null;
-		JSONArray responseObj = new JSONArray();
+		JSONArray opdetails = new JSONArray();
 		try {
 			ResultSet rs1 = null;
 			ResultSet rs2 = null;
 			ResultSet rs3 = null;
 			ResultSet rs4 = null;
 
-//			List opdetails = new LinkedList();
+			
 			JSONObject opObjJoin = new JSONObject();
 			JSONObject opObjCatg = new JSONObject();
 			JSONObject opObjQna = new JSONObject();
@@ -365,44 +364,49 @@ public class MemberDAO {
 
 
 			while(rs1.next()) {
+				opObjCatg = new JSONObject();
 				String catg = rs1.getString("catg");
 				int catg_count = rs1.getInt("catg_count");
-				opObjCatg.put(catg, catg_count);
+				opObjCatg.put("catg", catg);
+				opObjCatg.put("catg_count", catg_count);
+				opdetails.add(opObjCatg);
 			}
-
 			while(rs2.next()) {
+				opObjJoin = new JSONObject();
 				String date = rs2.getString("date");
 				int id_count = rs2.getInt("id_count");
-				opObjJoin.put(date, id_count);
+				opObjJoin.put("date", date);
+				opObjJoin.put("id_count", id_count);
+				opdetails.add(opObjJoin);
 			}
 			while(rs3.next()) {
+				opObjQna = new JSONObject();
 				String qna_genre = rs3.getString("qna_genre");
 				int qna_count = rs3.getInt("qna_count");
-				opObjQna.put(qna_genre, qna_count);
-			}
-			while(rs4.next()) {
-				String s_date = rs4.getString("s_date");
-				int retal_count = rs4.getInt("retal_count");
-				opObjRental.put(s_date, retal_count);
+				opObjQna.put("qna_genre", qna_genre);
+				opObjQna.put("qna_count", qna_count);
+				opdetails.add(opObjQna);
 				
 			}
-			responseObj.add(opObjCatg);
-			responseObj.add(opObjJoin);
-			responseObj.add(opObjQna);
-			responseObj.add(opObjRental);
-//			responseObj.add(opdetails); 
-			System.out.println("opdetails.opObjCatg : "+opObjCatg.toString());
+			while(rs4.next()) {
+				opObjRental = new JSONObject();
+				String s_date = rs4.getString("s_date");
+				int retal_count = rs4.getInt("retal_count");
+				opObjRental.put("s_date", s_date);
+				opObjRental.put("retal_count", retal_count);
+				opdetails.add(opObjRental);
+			}
+			System.out.println("opdetails.opObjCatg : "+opdetails.toString());
 			System.out.println("opdetails.opObjJoin : "+opObjJoin.toString());
 			System.out.println("opdetails.opObjQna : "+opObjQna.toString());
 			System.out.println("opdetails.opObjRental : "+opObjRental.toString());
-			System.out.println("responseObj : "+responseObj.toString());
-			isMemberListCalSuccess = true;
+			System.out.println("responseObj : "+opdetails.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(con);
 		}
 		System.out.println("MemberDAO - memberListCal 종료");
-		return responseObj;
+		return opdetails;
 	}
 }
