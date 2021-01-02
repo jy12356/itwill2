@@ -149,7 +149,6 @@ var pop = {
 	
 	
 		
-</div>	
 
 		<!--Start of Tawk.to Script-->
 <script type="text/javascript">

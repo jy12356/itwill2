@@ -104,7 +104,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 							<%}else{
 								%>
 								<li class="mypageIcon"><a href="Mypage.me?id=<%=id%>">MY</a></li>								
-								<li class="basketIcon"><a href="MyBasketInsert.bk">책바구니</a></li>
+								<li class="basketIcon"><a href="MyBasketList.bk">책바구니</a></li>
 							<%} %>
 							<%if(myMsgList == null) { %>
 							<li class="alarm on alarmIcon">
