@@ -177,7 +177,7 @@ a:hover {text-decoration:underline;}
 .fw_n{font-weight:normal !important;}
 
 
-.topBtn{position:fixed;right: 4%;bottom:15px;width:40px;height:40px;background:url(../images/topBtn.png) no-repeat left center #fff;text-indent:-9999px;z-index:10000;}
+.topBtn{position:fixed;right: 1.7%;bottom: 99px;width:40px;height:40px;background:url(../images/topBtn.png) no-repeat left center #fff;text-indent:-9999px;z-index:10000;}
 .topBtn a{display:block;width:40px;height:40px;}
 
 
