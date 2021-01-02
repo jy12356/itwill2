@@ -330,19 +330,21 @@ int listCount = pageInfo.getListCount();
     	    type: "POST", 
             contentType: "charset=UTF-8", 
 			url : "MemberListCal.me",
-			dataType : "json",
+			dataType : "text",
 			success : function(data) {
-				 queryObject =JSON.stringify(data).parse;
-				 /* queryObject = eval("(" + JSON.stringify(data) + ")");  */
-				queryObjectLen = queryObject.length;
-				alert("성공!! queryObject : "+queryObject+", queryObjectLen : "+queryObjectLen)
+				queryObjectLen = data.length;
+				$.each(JSON.parse(data), function( key, value ){ console.log( 'key:' + key + ' / ' + 'value:' + value ); alert("성공~"); });
+
+				/* queryObject = JSON.stringify(data); */
+				
+				/* alert("성공!! queryObject : "+catg+", queryObjectLen : "+queryObjectLen) */
 				
 			var data = new google.visualization.DataTable();
 			data.addColumn("string", "catg");
 			data.addColumn("number", "catg_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var catg = queryObject[1][i].getKey();
-				var catg_count =  queryObject[1][i].getValue();
+				var catg = catg[i];
+				var catg_count = catg_count[i];
 				data.addRows([ catg, parseInt(catg_count) ]);
 			}
 			
@@ -350,8 +352,8 @@ int listCount = pageInfo.getListCount();
 			data2.addColumn("string", "date");
 			data2.addColumn("number", "id_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var date = queryObject[2][i].getKey();
-				var id_count = queryObject[2][i].getValue();
+				var date = date[i];
+				var id_count = id_count[i];
 				data2.addRows([ [ date, parseInt(id_count) ] ]);
 			}
 			
@@ -359,8 +361,8 @@ int listCount = pageInfo.getListCount();
 			data3.addColumn("string", "qna_genre");
 			data3.addColumn("number", "qna_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var qna_genre = queryObject[3][i].getKey();
-				var qna_count = queryObject[3][i].getValue();
+				var qna_genre = qna_genre[i];
+				var qna_count = qna_count[i];
 				data3.addRows([ [ qna_genre, parseInt(qna_count) ] ]);
 			}
 			
@@ -368,8 +370,8 @@ int listCount = pageInfo.getListCount();
 			data4.addColumn("string", "s_date");
 			data4.addColumn("number", "retal_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var s_date = queryObject[4][i].getKey();
-				var retal_count = queryObject[4][i].getValue();
+				var s_date = s_date[i];
+				var retal_count = retal_count[i];
 				data4.addRows([ [ s_date, parseInt(retal_count) ] ]);
 			}
 			

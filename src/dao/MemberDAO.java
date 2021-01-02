@@ -331,6 +331,7 @@ public class MemberDAO {
 	public JSONArray memberListCal() {
 		System.out.println("MemberDAO - memberListCal");
 		PreparedStatement pstmt = null;
+		
 		JSONArray opdetails = new JSONArray();
 		try {
 			ResultSet rs1 = null;
