@@ -55,7 +55,7 @@ public class ReviewModifyProAction implements Action {
 				out.println("</script>");
 			} else {
 				forward = new ActionForward();
-				forward.setPath("BookDetail.bok?isbn="+book_isbn+"&page="+page);				
+				forward.setPath("BookDetail.bok?isbn="+book_isbn);				
 				forward.setRedirect(true);
 			}
 		}	
