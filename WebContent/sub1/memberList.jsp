@@ -324,16 +324,71 @@ int listCount = pageInfo.getListCount();
 	     callback: function () {
 	       var queryObject="";
 	       var queryObjectLen="";
-	      
+	       // 리스트 생성
+	       var arr1 = new Array() ;
+	       var arr2 = new Array() ;
+
+	       var arr3 = new Array() ;
+
+	       var arr4 = new Array() ;
+	       
 	       $.ajax({
 	    	   
     	    type: "POST", 
             contentType: "charset=UTF-8", 
 			url : "MemberListCal.me",
-			dataType : "text",
+			dataType : "json",
 			success : function(data) {
-				queryObjectLen = data.length;
-				$.each(JSON.parse(data), function( key, value ){ console.log( 'key:' + key + ' / ' + 'value:' + value ); alert("성공~"); });
+ 				queryObjectLen = data.length;
+ 				alert(queryObjectLen);
+ 				
+				$.each(data, function( index, responseObj){ 
+
+				    // 객체 생성
+			        var obj1 = new Object() ;
+					obj1.catg_count = responseObj.catg_count;
+					obj1.catg = responseObj.catg;
+
+		            // 리스트에 생성된 객체 삽입
+					if(obj1.catg_count !=  undefined || obj1.catg != undefined){
+		            	arr1.push(obj1) ;
+					}
+
+		 	        var obj2 = new Object() ;
+		            obj2.date = responseObj.date;
+					obj2.id_count = responseObj.id_count;
+					if(obj2.date !=  undefined || obj2.id_count != undefined){
+		            	arr2.push(obj2) ;
+					}
+					
+
+			        var obj3 = new Object() ;	
+		            obj3.qna_genre = responseObj.qna_genre;
+					obj3.qna_count = responseObj.qna_count;
+					if(obj3.qna_genre !=  undefined || obj2.qna_count != undefined){
+						arr3.push(obj3) ;
+					}
+					
+
+				    var obj4 = new Object() ;
+		            obj4.retal_count = responseObj.retal_count;
+					obj4.s_date = responseObj.s_date;
+					if(obj4.retal_count !=  undefined || obj4.s_date != undefined){
+						arr4.push(obj4) ;
+					}
+		            
+		            					
+				});
+				 // String 형태로 변환
+		        var jsonData1 = JSON.stringify(arr1) ;
+		        var jsonData2 = JSON.stringify(arr2) ;
+		        var jsonData3 = JSON.stringify(arr3) ;
+		        var jsonData4 = JSON.stringify(arr4) ;
+		         
+		        alert(jsonData1) ;
+		        alert(jsonData2) ;
+		        alert(jsonData3) ;
+		        alert(jsonData4) ;
 
 				/* queryObject = JSON.stringify(data); */
 				
