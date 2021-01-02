@@ -17,7 +17,7 @@ public class BookListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BookListAction");
 		ActionForward forward = null;
-		
+		request.setCharacterEncoding("utf-8");
 		int page = 1;//현재 페이지 번호 저장할 변수
 		int limit = 10; //페이지당 표시할 게시물 수를 결정하는 변수
 		if(request.getParameter("page")!=null) {
@@ -36,6 +36,8 @@ public class BookListAction implements Action {
 		if(request.getParameter("search") != null) {
 			search = request.getParameter("search");
 		}
+		System.out.println("12121221121222"+catg1);
+		System.out.println("1212121"+catg2);
 		BookListService bookListService = new BookListService();
 		int listCount = bookListService.getListCount();
 		System.out.println("전체 게시물 수 : " + listCount);

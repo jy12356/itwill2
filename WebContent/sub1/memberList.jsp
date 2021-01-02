@@ -200,9 +200,8 @@ int listCount = pageInfo.getListCount();
 								<li>
 									<h4>회원관리</h4>
 									<ul>
-										<li><a href="http://localhost:8080/itwill2th/MemberList.me" class="">회원목록</a></li>
-										<li><a href="BookDibsList.bok" class="">대출관리</a></li>
-										<li><a href="Return.rn" class="">대출관리</a></li>
+										<li><a href="MemberList.me" class="on">회원목록</a></li>
+										<li><a href="Return.rn" class="">대출반납관리</a></li>
 									</ul>
 								</li>
 								<li>
@@ -310,9 +309,9 @@ int listCount = pageInfo.getListCount();
 								class="hide">마지막페이지</span></a>
 						</div>
 					</div>
-
+					</div>
 				</div>
-
+				</div>
 			</div>
 	</section>
     
