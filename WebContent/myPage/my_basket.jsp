@@ -18,6 +18,9 @@ int startPage = pageInfo.getStartPage();
 int endPage = pageInfo.getEndPage();
 int listCount = pageInfo.getListCount();
 %>
+<<style>
+.h3Tit{font-size: 15px; color: #069e89;}
+</style>
 
 <section class="sub">
 	<div class="contents-wrap">
@@ -26,6 +29,7 @@ int listCount = pageInfo.getListCount();
 
 			<div class="customer-contents">
 				<div class="customer-inner">
+					<h3 class="h3Tit mt30 mb10">대여 가능 책 목록</h3>
 					<table summary="책바구니" class="customer-table notice">
 						<caption>책바구니2222222</caption>
 						<colgroup>
@@ -36,95 +40,93 @@ int listCount = pageInfo.getListCount();
 							<col style="width: 15%">
 							<col style="width: 15%">
 
-						</colgroup><%
-							%>
-						<tr>
-							<td colspan="6"><span>대여 가능 책 목록</span></td>
-						</tr>
-
-						<tr>
-							<th scope="col" abbr="책번호"><input type="checkbox"name="checkAll1" id="checkAll1" class="checkAll1" /></th>
-							<th scope="col" abbr="제목">제목</th>
-							<th scope="col" abbr="작가">작가</th>
-							<th scope="col" abbr="출판사">출판사</th>
-							<th scope="col" abbr="출판일">출판일</th>
-							<th scope="col" abbr="상태">상태</th>
-						</tr>
-
-						<%
-							// 대여가능 리스트
-						if (myBasketList.size() != 0) {
-						String isbn;
-						// 							ArrayList list = new ArrayList();
-							for (int i = 0; i < myBasketList.size(); i++) {
-								if (myBasketList.get(i).getState().equals("대여가능")) {
-						%>
-						<tr>
-							<td><input type="checkbox" id="check_box1"
-								class="check_box c1" value="<%=myBasketList.get(i).getNum()%>"
-								name="inter_num"></td>
-							<td><a href="BookDetail.bok?isbn=<%=myBasketList.get(i).getIsbn()%>"><%=myBasketList.get(i).getTitle()%></td>
-							<td><%=myBasketList.get(i).getAuthor()%></td>
-							<td><%=myBasketList.get(i).getPublisher()%></td>
-							<td><%=myBasketList.get(i).getPubdate()%></td>
-							<td><%=myBasketList.get(i).getState()%></td>
-
-						</tr>
-						<%
-								}
-							}
-						} 
-						
-// 						else {
-							
-							%>
-<!-- 							<i>책바구니에 담긴 도서가 없습니다.</i> -->
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col" abbr="책번호"><input type="checkbox"name="checkAll1" id="checkAll1" class="checkAll1" /></th>
+								<th scope="col" abbr="제목">제목</th>
+								<th scope="col" abbr="작가">작가</th>
+								<th scope="col" abbr="출판사">출판사</th>
+								<th scope="col" abbr="출판일">출판일</th>
+								<th scope="col" abbr="상태">상태</th>
+							</tr>
+						</thead>
+						<tbody>
 							<%
-							
-// 						}
-							// 예약가능 리스트
+								// 대여가능 리스트
+							if (myBasketList.size() != 0) {
+							String isbn;
+							// 							ArrayList list = new ArrayList();
+								for (int i = 0; i < myBasketList.size(); i++) {
+									if (myBasketList.get(i).getState().equals("대여가능")) {
 							%>
-						<tr>
-							<td colspan="6"><span>예약 가능 책 목록</span></td>
-						</tr>
-						<tr>
-							<th scope="col" abbr="책번호"><input type="checkbox"
-								name="checkAll2" id="checkAll2" class="checkAll2" /></th>
-							<th scope="col" abbr="제목">제목</th>
-							<th scope="col" abbr="작가">작가</th>
-							<th scope="col" abbr="출판사">출판사</th>
-							<th scope="col" abbr="출판일">출판일</th>
-							<th scope="col" abbr="상태">상태</th>
-						</tr>
-								<%
-						if (myBasketList.size() != 0) {
-							for (int i = 0; i < myBasketList.size(); i++) {
-								if (myBasketList.get(i).getState().equals("대여불가능")) {
-								
-						%>
-						<tr>
-							<td><input type="checkbox" id="check_box2" class="check_box c2" value="<%=myBasketList.get(i).getNum()%>" name="inter_num"></td>
-							<td><a href="BookDetail.bok?isbn=<%=myBasketList.get(i).getIsbn()%>"><%=myBasketList.get(i).getTitle()%></td>
-							<td><%=myBasketList.get(i).getAuthor()%></td>
-							<td><%=myBasketList.get(i).getPublisher()%></td>
-							<td><%=myBasketList.get(i).getPubdate()%></td>
-							<td><%=myBasketList.get(i).getState()%></td>
-
-						</tr>
-						<%
+							<tr>
+								<td class="tac"><input type="checkbox" id="check_box1"
+									class="check_box c1" value="<%=myBasketList.get(i).getNum()%>"
+									name="inter_num"></td>
+								<td><a href="BookDetail.bok?isbn=<%=myBasketList.get(i).getIsbn()%>"><%=myBasketList.get(i).getTitle()%></td>
+								<td><%=myBasketList.get(i).getAuthor()%></td>
+								<td><%=myBasketList.get(i).getPublisher()%></td>
+								<td><%=myBasketList.get(i).getPubdate()%></td>
+								<td><%=myBasketList.get(i).getState()%></td>
+	
+							</tr>
+							<%
 									}
-								}	 
-							
-							
-							} 
-						
-// 						else {
+								}
+							}else {%>
+								<tr><td>책바구니가 비었습니다.</td></tr>
+							<%}	%>
+							</tbody>
+						</table>
+						<h3 class="h3Tit mt30 mb10">예약 가능 책 목록</h3>
+					<table summary="책바구니" class="customer-table notice">
+						<caption>책바구니2222222</caption>
+						<colgroup>
+							<col style="width: 5%">
+							<col style="width: 35%">
+							<col style="width: 15%">
+							<col style="width: 15%">
+							<col style="width: 15%">
+							<col style="width: 15%">
+
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col" abbr="책번호"><input type="checkbox"
+									name="checkAll2" id="checkAll2" class="checkAll2" /></th>
+								<th scope="col" abbr="제목">제목</th>
+								<th scope="col" abbr="작가">작가</th>
+								<th scope="col" abbr="출판사">출판사</th>
+								<th scope="col" abbr="출판일">출판일</th>
+								<th scope="col" abbr="상태">상태</th>
+							</tr>
+						</thead>
+						<tbody>
+									<%
+							if (myBasketList.size() != 0) {
+								for (int i = 0; i < myBasketList.size(); i++) {
+									if (myBasketList.get(i).getState().equals("대여불가능")) {
+									
+							%>
+							<tr>
+								<td class="tac"><input type="checkbox" id="check_box2" class="check_box c2" value="<%=myBasketList.get(i).getNum()%>" name="inter_num"></td>
+								<td><a href="BookDetail.bok?isbn=<%=myBasketList.get(i).getIsbn()%>"><%=myBasketList.get(i).getTitle()%></td>
+								<td><%=myBasketList.get(i).getAuthor()%></td>
+								<td><%=myBasketList.get(i).getPublisher()%></td>
+								<td><%=myBasketList.get(i).getPubdate()%></td>
+								<td><%=myBasketList.get(i).getState()%></td>
+	
+							</tr>
+							<%
+										}
+									}	 
 								
-								%>
-<!-- 								<i>책바구니에 담긴 도서가 없습니다.</i> -->
-								<%
-// 							}
-						%>
+								
+								} else {%>
+								<tr><td>책바구니가 비었습니다.</td></tr>
+								<%}%>
+						</tbody>
 					</table>
 					<div class="btn_inner">
 						<a href="javascript:void(0);"
