@@ -67,6 +67,12 @@ public class RentalDAO {
 				}
 				// 여기에서 s_date , onrental_date, e_date 집어넣어주기 해야함
 
+				sql = "update book set state=? where isbn=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "1");
+				pstmt.setString(2, isbn);
+				pstmt.executeUpdate();
+				
 				System.out.println("insertRental - isbn 여기엔 무엇이..?" + isbn);
 				
 				

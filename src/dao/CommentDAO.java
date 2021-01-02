@@ -313,32 +313,56 @@ public class CommentDAO {
 
 
 
-
+// 일반삭제
+//	public int removeComment(int comment_num, int board_type, int board_num) {
+//		
+//		int deleteCount = 0;
+//		
+//		PreparedStatement pstmt = null;
+//		
+//		try {
+//			String sql = "DELETE FROM comment WHERE comment_num=? AND board_type=? AND board_num=?";
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, comment_num);
+//			pstmt.setInt(2, board_type);
+//			pstmt.setInt(3, board_num);
+//			deleteCount = pstmt.executeUpdate();
+//
+//			
+//		} catch (SQLException e) {
+//			System.out.println("removeComment() 오류!  - " +  e.getMessage());
+//			e.printStackTrace();
+//		} finally {
+//			close(pstmt);
+//		}
+//		
+//		return deleteCount;
+//	}
+	// 흔적남기기
 	public int removeComment(int comment_num, int board_type, int board_num) {
-		
-		int deleteCount = 0;
-		
-		PreparedStatement pstmt = null;
-		
-		try {
-			String sql = "DELETE FROM comment WHERE comment_num=? AND board_type=? AND board_num=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, comment_num);
-			pstmt.setInt(2, board_type);
-			pstmt.setInt(3, board_num);
-			deleteCount = pstmt.executeUpdate();
+	
+	int deleteCount = 0;
+	
+	PreparedStatement pstmt = null;
+	
+	try {
+		String sql = "update comment set comment_id='', comment_desc='삭제된 댓글입니다.' WHERE comment_num=? AND board_type=? AND board_num=?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, comment_num);
+		pstmt.setInt(2, board_type);
+		pstmt.setInt(3, board_num);
+		deleteCount = pstmt.executeUpdate();
 
-			
-		} catch (SQLException e) {
-			System.out.println("removeComment() 오류!  - " +  e.getMessage());
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
 		
-		return deleteCount;
+	} catch (SQLException e) {
+		System.out.println("removeComment() 오류!  - " +  e.getMessage());
+		e.printStackTrace();
+	} finally {
+		close(pstmt);
 	}
-
+	
+	return deleteCount;
+}
 
 
 
