@@ -1,4 +1,4 @@
-package action;
+package action.member;
 
 import java.io.PrintWriter;
 
@@ -11,7 +11,7 @@ import svc.MemberWriteProService;
 import vo.ActionForward;
 import vo.MemberBean;
 
-public class MemberJoinProService implements Action {
+public class MemberJoinProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -34,17 +34,18 @@ public class MemberJoinProService implements Action {
 		MemberWriteProService memberWriteProService = new MemberWriteProService();
 		boolean isWriteSuccess = memberWriteProService.registArticle(memberBean);
 		
+		
 		if(!isWriteSuccess) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>"); 
-			out.println("alert('다시 확인해주세요!')");
+			out.println("alert('fail!')");
 			out.println("history.back()");
 			out.println("</script>"); 
 		} else {
 			forward = new ActionForward();
+			forward.setPath("Main.book");
 			forward.setRedirect(true);
-			forward.setPath("MemberLoginForm.me");
 		}
 		
 		return forward;

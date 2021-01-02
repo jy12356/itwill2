@@ -1,15 +1,17 @@
-package action;
-import org.json.simple.*;
+package action.member;
+
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+
+import action.Action;
 import svc.MemberCheckService;
 import vo.ActionForward;
 
-public class MemberCheckAction implements Action {
+public class MemNameListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -17,7 +19,7 @@ public class MemberCheckAction implements Action {
 
 		ActionForward forward = null;
 		String id = request.getParameter("id");
-		System.out.println("MemberCheckAction id : "+id);
+		System.out.println("MemNameListAction id : "+id);
 		MemberCheckService memberCheckService = new MemberCheckService();
 //		String data = null; 
 		boolean isIdCheckSuccess = memberCheckService.registArticle(id);
@@ -25,7 +27,7 @@ public class MemberCheckAction implements Action {
 		JSONObject resultObj = new JSONObject();
 
 		if (isIdCheckSuccess) {
-			resultObj = new JSONObject();
+			 resultObj = new JSONObject();
 	        response.setContentType("text/html; charset=UTF-8");
 	        PrintWriter out = response.getWriter();
 	        String str =  "이미 사용중이거나 탈퇴한 회원의 아이디 입니다.";

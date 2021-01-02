@@ -10,17 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.MemNameListAction;
-import action.MemberCheckAction;
-import action.MemberDeleteFormAction;
-import action.MemberDeleteProAction;
-import action.MemberJoinProService;
-import action.MemberListAction;
-import action.MemberListCalAction;
-import action.MemberLoginProAction;
-import action.MemberModifyFormAction;
-import action.MemberModifyProAction;
 import action.member.MemListDeleteAction;
+import action.member.MemberJoinProAction;
 import action.member.MemberLogoutProAction;
 import action.member.MyPageAction;
 import vo.ActionForward;
@@ -40,7 +31,7 @@ public class MemberFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("/sub1/join.jsp");
 		} else if(command.equals("/MemberJoinPro.me")) {  
-			action = new MemberJoinProService();
+			action = new MemberJoinProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -55,7 +46,7 @@ public class MemberFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if(command.equals("/MemberLoginPro.me")) {  
-			action = new MemberLoginProAction();
+			action = new action.member.MemberLoginProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -63,7 +54,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}else if(command.equals("/MemberModifyForm.me")) {
 			System.out.println("MemberModifyForm");
-			action = new MemberModifyFormAction();
+			action = new action.member.MemberModifyFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -71,7 +62,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/MemberModifyPro.me")) {  
 			System.out.println("MemberModifyPro");
-			action = new MemberModifyProAction();
+			action = new action.member.MemberModifyProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -79,7 +70,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}else if(command.equals("/MemberList.me")) {
 			System.out.println("MemberList.me!");
-			action = new MemberListAction();
+			action = new action.member.MemberListAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -87,7 +78,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		}  else if(command.equals("/MemberDeleteForm.me")) {
 			System.out.println("MemberDeleteForm");
-			action = new MemberDeleteFormAction();
+			action = new action.member.MemberDeleteFormAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -95,7 +86,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/MemberDeletePro.me")) {
 			System.out.println("MemberDeletePro");
-			action = new MemberDeleteProAction();
+			action = new action.member.MemberDeleteProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -103,7 +94,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/MemberCheck.me")) {
 			System.out.println("MemberCheck");
-			action = new MemberCheckAction();
+			action = new action.member.MemberCheckAction();
 			try {
 				forward = action.execute(request, response);
 				forward = new ActionForward();
@@ -122,7 +113,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/MemNameList.me")) {
 			System.out.println("MemNameList");
-			action = new MemNameListAction();
+			action = new action.member.MemNameListAction();
 			try {
 				forward = action.execute(request, response);
 				forward = new ActionForward();
@@ -147,7 +138,7 @@ public class MemberFrontController extends HttpServlet {
 			}
 		} else if(command.equals("/MemberListCal.me")) {
 			System.out.println("MemberListCal");
-			action = new MemberListCalAction();
+			action = new action.member.MemberListCalAction();
 			try {
 				forward = action.execute(request, response);
 				/* forward = new ActionForward(); */

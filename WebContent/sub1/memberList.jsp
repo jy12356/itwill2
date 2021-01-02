@@ -316,9 +316,9 @@ int listCount = pageInfo.getListCount();
 			</div>
 	</section>
     
-	<script type="text/javascript"
+	<!-- <script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	 --><script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript">
 	google.load("visualization", "1.0", {
 	     callback: function () {
@@ -326,27 +326,23 @@ int listCount = pageInfo.getListCount();
 	       var queryObjectLen="";
 	      
 	       $.ajax({
-    	   type: "POST",
-           contentType: "application/json",
+	    	   
+    	    type: "POST", 
+            contentType: "charset=UTF-8", 
 			url : "MemberListCal.me",
 			dataType : "json",
 			success : function(data) {
-				queryObject =JSON.stringify(data) ;
-				/* queryObject = eval("(" + JSON.stringify(data) + ")");  
-				queryObject =JSON.stringify(queryObject) ; */
+				 queryObject =JSON.stringify(data).parse;
+				 /* queryObject = eval("(" + JSON.stringify(data) + ")");  */
 				queryObjectLen = queryObject.length;
-				console.log("111opdetails.opObjCatg : "+opObjCatg.toString());
-				console.log("111opdetails.opObjJoin : "+opObjJoin.toString());
-				console.log("111opdetails.opObjQna : "+opObjQna.toString());
-				console.log("111opdetails.opObjRental : "+opObjRental.toString());
-				console.log("111responseObj : "+responseObj.toString());
-
+				alert("성공!! queryObject : "+queryObject+", queryObjectLen : "+queryObjectLen)
+				
 			var data = new google.visualization.DataTable();
 			data.addColumn("string", "catg");
 			data.addColumn("number", "catg_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var catg = queryObject.opObjCatg.getKey();
-				var catg_count =  queryObject.opObjCatg.getValue();
+				var catg = queryObject[1][i].getKey();
+				var catg_count =  queryObject[1][i].getValue();
 				data.addRows([ catg, parseInt(catg_count) ]);
 			}
 			
@@ -354,8 +350,8 @@ int listCount = pageInfo.getListCount();
 			data2.addColumn("string", "date");
 			data2.addColumn("number", "id_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var date = queryObject.opObjJoin.getKey();
-				var id_count = queryObject.opObjJoin.getValue();
+				var date = queryObject[2][i].getKey();
+				var id_count = queryObject[2][i].getValue();
 				data2.addRows([ [ date, parseInt(id_count) ] ]);
 			}
 			
@@ -363,8 +359,8 @@ int listCount = pageInfo.getListCount();
 			data3.addColumn("string", "qna_genre");
 			data3.addColumn("number", "qna_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var qna_genre = queryObject.opObjQna.getKey();
-				var qna_count = queryObject.opObjQna.getValue();
+				var qna_genre = queryObject[3][i].getKey();
+				var qna_count = queryObject[3][i].getValue();
 				data3.addRows([ [ qna_genre, parseInt(qna_count) ] ]);
 			}
 			
@@ -372,8 +368,8 @@ int listCount = pageInfo.getListCount();
 			data4.addColumn("string", "s_date");
 			data4.addColumn("number", "retal_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var s_date = queryObject.opObjRental.getKey();
-				var retal_count = opObjRental.getValue();
+				var s_date = queryObject[4][i].getKey();
+				var retal_count = queryObject[4][i].getValue();
 				data4.addRows([ [ s_date, parseInt(retal_count) ] ]);
 			}
 			

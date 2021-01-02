@@ -2,6 +2,7 @@ package action.member;
 
 import java.io.PrintWriter;
 
+import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,26 +22,29 @@ public class MemberLoginProAction implements Action {
 		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		
 		MemberLoginProService memberLoginProService = new MemberLoginProService();
-		boolean isMember = memberLoginProService.registArticle(id, password);
-		System.out.println(isMember);
-		if(!isMember) {
+		try {
+			boolean isMember = memberLoginProService.registArticle(id, password);
+			System.out.println(isMember);
+
+			if(isMember) {
+				HttpSession session = request.getSession();
+				session.setAttribute("id", id);
+				forward = new ActionForward();
+				forward.setRedirect(true);
+				forward.setPath("Main.book"); 
+			}
+		} catch (LoginException e) { 
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>"); // ÀÚ¹Ù½ºÅ©¸³Æ® ½ÃÀÛ ÅÂ±×
-			out.println("alert('·Î±×ÀÎ¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.')"); // ´ÙÀÌ¾ó·Î±× ¸Þ¼¼Áö Ãâ·Â
-			out.println("history.back()"); // ÀÌÀü ÆäÀÌÁö·Î ÀÌµ¿
-			out.println("</script>"); // ÀÚ¹Ù½ºÅ©¸³Æ® ³¡ ÅÂ±×
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
-			forward = new ActionForward();
-			forward.setPath("MemberModifyForm.me");
-			forward.setRedirect(false);	
+			out.println("<script>");
+			out.println("alert('" + e.getMessage() + "')"); // ì‹¤íŒ¨ ë©”ì„¸ì§€ ì¶œë ¥
+			out.println("history.back()");
+			out.println("</script>");
 		}
 		
 		return forward;
 	}
 
 }
+

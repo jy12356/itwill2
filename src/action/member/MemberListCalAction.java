@@ -1,4 +1,4 @@
-package action;
+package action.member;
 
 import java.io.PrintWriter;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import action.Action;
 import svc.MemberCheckService;
 import svc.MemberListCalService;
 import vo.ActionForward;
@@ -22,9 +23,13 @@ public class MemberListCalAction implements Action {
 		System.out.println("MemberListCalAction!222");
 		JSONArray responseObj = memberListCalService.MemberListcheck();
 		System.out.println("MemberListCalAction!333");
-		request.setAttribute("responseObj", responseObj);
+		/* request.setAttribute("responseObj", responseObj); */
 		System.out.println("MemberListCalAction!555 responseObj : " + responseObj);
-		return null;
+		
+		response.setContentType("text/html;charset=UTF-8"); 
+		PrintWriter out = response.getWriter();
+		out.print(responseObj);
+		return forward;
 	}
 
 }
