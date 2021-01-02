@@ -3,7 +3,7 @@
 <%
 	String id = (String) session.getAttribute("id");
 if (id == null) {
-	id = "admin";
+	id = "null";
 }
 %>
 <!DOCTYPE html>
@@ -33,6 +33,7 @@ if (id == null) {
                 style="display:block;position:static;margin-bottom:5px;">
                 <li><a tabindex="-1" href="#">신간입고안내</a></li>
                 <li><a tabindex="-1" href="#">휴무안내</a></li>
+                <li><a tabindex="-1" href="#">기타</a></li>
                 <li class="divider"></li>
                 <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
             </ul>
@@ -87,6 +88,7 @@ if (id == null) {
                                 <select class="inputModal" type="text" name="edit-type" id="edit-type">
                                     <option value="신간입고안내">신간입고안내</option>
                                     <option value="휴무안내">휴무안내</option>
+                                    <option value="기타">기타</option>
                                 </select>
                             </div>
                         </div>
@@ -139,12 +141,13 @@ if (id == null) {
                         <select class="filter" id="type_filter" multiple="multiple">
                             <option value="입고">입고</option>
                             <option value="휴무">휴무</option>
+                            <option value="기타">기타</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="col-lg-6">
-                    <label for="calendar_view">등록자별</label>
+                    <label for="calendar_view">작성자</label>
                     <div class="input-group">
                         <label class="checkbox-inline"><input class='filter' type="checkbox" value="admin"
                                 checked>Admin</label>

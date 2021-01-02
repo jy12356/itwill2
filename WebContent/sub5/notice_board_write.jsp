@@ -5,7 +5,7 @@
 // 글쓰기 폼
 String id = (String) session.getAttribute("id"); // 아이디가져오기
 if(id==null) { // 로긴안한상태면 로그인화면으로
-	response.sendRedirect("../member.login.jsp");
+	response.sendRedirect("MemberLoginForm.me");
 }
 NoticeBean article = (NoticeBean)request.getAttribute("article");
     String nowPage = request.getParameter("page");

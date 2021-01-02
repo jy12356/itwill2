@@ -1,0 +1,2167 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<!-- Google Tag Manager -->
+<script>
+	(function(w,d,s,l,i){
+		w[l]=w[l]||[];w[l].push({
+			'gtm.start': new Date().getTime(),event:'gtm.js'});
+			var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+			j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-KP248RV');
+</script>
+<!-- End Google Tag Manager -->
+
+<meta charset="UTF-8">
+<meta name="title" content="e북포털 북큐브">
+<meta name="description" content="새로운 독서의 시작, 전자책 서점,웹소설,웹툰을 지금 바로 만나보세요.">
+<meta name="title" content="">
+<meta property="og:type" content="book">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="e북포털 북큐브">
+<meta property="og:image" content="">
+<meta property="og:url" content="">
+<meta property="fb:app_id" content="159693857557581">
+<meta property="og:locale" content="ko_KR">
+
+<title>e북포털 북큐브</title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/icon/bookcube_ci.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+<link type="text/css" rel="stylesheet" href="../css/reset.css" />
+<link type="text/css" rel="stylesheet" href="../css/common.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css?v=20200917" />
+<link type="text/css" rel="stylesheet" href="../css/slick.css" />
+<link type="text/css" rel="stylesheet"  href="../js/lib/swipe/swiper.css" />
+<script type="text/javascript" src="../js/bookcube.js?200519"></script>
+<script type="text/javascript" src="../js/lib/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/lib/slick.min.js"></script>
+<script type="text/javascript" src="../js/slimScroll.js"></script>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/placeholders.min.js"></script>
+<script type="text/javascript" src="../js/lib/swipe/swiper-4.3.min.js"></script>
+<!-- naver-->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+	<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript"> if(!wcs_add) var wcs_add = {}; wcs_add["wa"] = "75bf1248432b84"; wcs_do(); </script>
+<!-- naver-->
+<!-- kakao 로그인-->
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+</head>
+<body>
+	<div class="wrap" data-page="nm" data-web-class="일반">
+<header class="header">
+	
+	<div class="header-top">
+		<div class="header-top-inner">
+			<div class="h-top">
+				<form name="searchFrm" id="searchFrm" autocomplete="off">
+				<!--input type="hidden" name="searchOption" id="searchOption" value="" /-->
+				<input type="text" style="display: none;" />
+				<input type="hidden" name="searchpage" value="normal" />
+				<input type="hidden" name="page" value="">
+					<fieldset>
+						<legend>검색</legend>
+						<h1 class="logo"><a href="https://www.bookcube.com/main.asp">북큐브서점</a></h1>
+						<div class="search">						
+							<input type='text' name='searchString' class="search_input" style="ime-mode:active;" />
+							<input type='button' onclick="frmSearchSubmit()" />
+						</div>
+						<ul class="my-lnb">
+							<li class="btnLogin"><a href="javascript:;">로그인</a></li>
+							<li><a href="https://www.bookcube.com/member/register.asp">회원가입</a></li>
+						</ul>
+					</fieldset>
+				</form>
+				<div class="my_layer_box">
+					<div class="my-wrap">
+						<span class="my-dot"></span>
+						<div class="my-inner">
+							<div class="my-top">
+								<h3>마이페이지</h3>
+								<a href="javascript:;" class="btn btnLogOut">로그아웃</a>
+							</div>
+							<ul>
+								<li>
+									<p>북캐시</p>
+									<p>0원</p>
+								</li>
+								<li>
+									<p>적립금</p>
+									<p>0원</p>
+								</li>
+								<li>
+									<p>쿠폰/상품권</p>
+									<p>0장</p>
+								</li>
+								<li>
+									<p>무료이용권</p>
+									<p>0장</p>
+								</li>
+							</ul>
+							<div class="my-bottom">
+								<a href="https://www.bookcube.com/mypage.asp?list=_main" class="effect-btn">마이페이지 바로가기</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="alarm_layer_box" style="display:none;">
+					<iframe src="" width="430" height="510" frameborder="0"  name="alarm_view" id="alarm_view" scrolling="no"></iframe>
+				</div>
+				<div class="fastSearch">
+					<div class="fastRight">
+						<ul class="fastUl">
+							
+						</ul>
+					</div>
+					<div class="auto-complete">
+						<p style="display: none;">자동완성 기능이 꺼져 있습니다.</p>
+						<p><a href="javascript:;" class="">자동완성 끄기</a></p>
+					</div>
+				</div>
+				<script>
+					$(function(){
+						// 총알검색창 display 조정
+						$('.search_input').keyup(function(event){
+							var key = window.event ? event.keyCode : event.which;    
+							if (key  != 13 && key  != 38 && key  != 37 && key  != 39 && key  != 40 ) {// not enter							
+								sniperSearch(); 
+							}
+						});
+
+						// 검색창 닫기	
+						$("body").click(function(){
+							$(".fastSearch").fadeOut(100);
+						});
+						$(".fastSearch").on("click",function(event){
+							event.stopPropagation();
+						});
+
+						//키보드 기능 추가
+						
+						function keyup(e){
+							var i = 0;
+							var frsFlag = true;
+							var ie11Flag = false;
+							
+							$(".search input").on("keyup",function(e){
+								var a  = $(".fastUl li a");
+								var aLen = $(".fastUl li a").length -1;
+								var address = $(".fastUl li a.on").attr("href");
+								var valText = $(a).find(".fsTitle").text();
+								var agent = navigator.userAgent.toLowerCase();
+								if(navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1){
+									ie11Flag = true;
+								}
+								if(e.keyCode == 40){
+									if(i>aLen){
+										i = 0;	
+									}
+									if(ie11Flag){
+										if( e.keyCode == 40 && frsFlag){
+											var ev = jQuery.Event( "keyup", { keyCode: 39 } );
+											jQuery(this).trigger(ev);
+											frsFlag = false;
+											return;
+										}
+									}
+									i++;
+									$(a).removeClass("on");
+									$(a).eq(i-1).addClass("on");
+				
+								//	$(this).val($(a).eq(i-1).find(".fsTitle").text());
+									
+								}else if(e.keyCode == 38){
+									i--;
+									if(i<1){
+										i=aLen+1;
+									}
+									if(ie11Flag){
+										if( e.keyCode == 38 && frsFlag){
+											var ev = jQuery.Event( "keyup", { keyCode: 40 } );
+											jQuery(this).trigger(ev);
+											frsFlag = false;
+											return;
+										}
+									}
+									$(a).removeClass("on");
+									$(a).eq(i-1).addClass("on");
+								//	$(this).val($(a).eq(i-1).find(".fsTitle").text());
+										
+								}else if(e.keyCode == 13){
+									if($(a).hasClass("on")){
+										location.href=address;
+									}else{
+										frmSearchSubmit();
+									}		
+								}else if(e.keyCode == 39){
+									return
+								}else{
+									$(a).removeClass("on");
+									i=0;
+								}		
+							});	
+						}
+						
+						setTimeout(keyup,0);
+
+						$(".auto-complete a").on("click",function(){
+							if($(this).hasClass("off")){
+								$(this).removeClass("off");
+								$(this).text("자동완성 끄기");
+								$(".fastRight").show();
+								$(".auto-complete p:first").hide();
+								$.cookie('sniperYN', 'Y', { path : '/', expires : 100});
+							}else{
+								$(this).addClass("off");
+								$(this).text("자동완성 켜기");
+								$(".fastRight").hide();
+								$(".auto-complete p").show();
+								$.cookie('sniperYN', 'N', { path : '/', expires : 100});
+							}								
+						});
+					});
+
+					/* enter 제거 */
+					function getEnterRemove(val){
+						var value = val;
+						try{
+							value = value.replace(/\r/g, " ");//엔터제거
+							value = value.replace(/\n/g, " ");//행바꿈제거
+						}catch(e){
+							alert(e);
+						}	
+						return value; 
+					}
+
+					function frmSearchSubmit(){		
+							
+						var objFrm = $("#searchFrm") ;
+						if ($(".search_input").val() == ''){
+							alert('검색어를 검색해주세요.');
+							$(".search_input").focus();			
+							return ;
+						}else{
+							objFrm.attr("method","get");
+							objFrm.attr("action","/search.asp");
+							objFrm.submit();
+						}		
+					}
+
+					function sniperSearch() {
+						//$(".fastRight .fastUl li").remove(); 
+						//$(".fastSearch").css("display","none");
+
+						var searchVal = getEnterRemove($(".search_input").val());
+						var table = $(".fastRight .fastUl").get(0);
+						var detail_url = "";
+						var img_url = "";
+						var img_cls = "";
+/*
+						$(".fastRight ul").remove(); 
+						$(".fastRight p").remove(); 
+						$(".fastRight").append("<p>청소년 유해어가 포함된 단어로는<br />검색 하실 수 없습니다.<br />로그인 및 성인인증 후 재검색 해주세요.</p>");
+						$(".fastSearch").css("display","block");
+*/
+						$.ajax({
+							url : '/data/_ebook_search.asp',
+							data : {search : searchVal},
+							type : 'post',
+							dataType : 'json',
+							headers : {'cache-control' : "no-cache"},
+							cache : false,
+							success : function(data){
+								$(".fastRight .fastUl li").remove(); 
+								if (data.result.length > 0){	
+									if (data.result[0].filter_yn == "Y"){
+										newTr = "<li class='harmful'>청소년 유해어가 포함된 단어로는<br />검색 하실 수 없습니다.<br />로그인 및 성인인증 후 재검색 해주세요.</li>";
+										$(table).append(newTr);
+										$(".fastSearch").css("display","block");
+									}else{
+										var newTr = "" ;
+											for(var i in data.result){
+												detail_url = "<a href='"+ httpUrl +"/detail.asp?series_num="+ data.result[i].series_num +"&page="+ data.result[i].order_type +"'>";
+												if (data.result[i].cover_display_yn == "0" && $.cookie("adult_yn") != "Y"){
+													img_url = "	<img src='/images/contents/adult_19_94.jpg' alt='19금 표지 이미지' />";
+													//img_cls = "<span class='s19'>성인물</span>";
+												}else{
+													img_url = "	<img src='https://bookimg.bookcube.com/91/"+ data.result[i].book_num.substring(0, 4)+"/"+ data.result[i].book_num +".jpg' alt='"+ data.result[i].title +"' />";
+													img_cls = "";
+												}
+
+												newTr =
+												"<li>" + detail_url +
+												"		<div class='fsThum'>" +
+												"			<span class='im_br'>" + img_url + 
+												"			</span>" + img_cls +
+												"		</div>" +
+												"		<div class='fsInfo'>" +
+												"			<p class='fsTitle'>"+ data.result[i].title +"</p>" +
+												"			<p class='fsAuthor'>"+ data.result[i].author +" 저<em>|</em>"+ data.result[i].publisher +"</p>" +
+												"		</div>" +
+												"	</a>" +							
+												"</li>";									
+												$(table).append(newTr);
+												$(".fastSearch").css("display","block");
+											}	
+									}
+								}
+							},
+							error: function() {}
+						});
+					}
+				</script>
+			</div> 
+			<div class="h-top-bottom">
+				<h2 class="hide">메인메뉴</h2>
+				<ul class="gnb">
+					<li><a href="https://www.bookcube.com/main.asp" class="on">서점</a></li>
+					<li><a href="https://www.bookcube.com/novel/main.asp">웹소설</a></li>
+					<li><a href="https://www.bookcube.com/toon/main.asp">웹툰</a></li>
+				</ul>
+				<ul class="lnb">
+					<li><a href="../join/login.html">캐시충전</a>
+					<li><a href="https://www.bookcube.com/customer.asp">고객센터</a>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="header-bottom">
+		<div class="header-bottom-inner">
+			<div class="h-bottom-left">
+				<p class="all-category"><a href="#"><img src="../images/all-category.png" alt='전체카테고리' /></a></p>
+				<ul class="snb-left">
+					<li><a href="https://www.bookcube.com/main.asp?page=nm" class="on">일반도서</a></li>
+					<li><a href="https://www.bookcube.com/main.asp?page=rm" class="">로맨스</a></li>
+					<li><a href="https://www.bookcube.com/main.asp?page=bl" class="">BL</a></li>
+					<li><a href="https://www.bookcube.com/main.asp?page=mf" class="">무협/판타지</a></li>
+					<li><a href="https://www.bookcube.com/main.asp?page=cm" class="">만화</a></li>
+				</ul>
+			</div>
+			<div class="h-bottom-right">
+				<ul class="snb-right">
+					<li><a href="https://www.bookcube.com/best.asp?page=nm">베스트</a></li>
+					<li><a href="https://www.bookcube.com/new.asp?page=nm">신간</a></li>
+					<li><a href="https://www.bookcube.com/free.asp?page=nm">무료</a></li>
+					<li><a href="https://www.bookcube.com/event.asp?page=nm">이벤트</a></li>
+				</ul>
+			</div>
+			
+		</div>
+		<div class="m-category">
+			<div class="category-inner">
+				<div>
+					<p>장르도서</p>
+					<ul class="">
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=28">로맨스</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=30">BL</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=29">무협/판타지</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=19">만화</a></li>	
+					</ul>
+				</div>
+				<div>
+					<p>일반도서</p>
+					<ul class="">
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=27">오디오북</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=00">문학</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=07">자기계발</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=06">경제/경영</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=09">외국어/언어</a></li>
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=04">역사/문화</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=03">인문</a></li>	
+						<!--li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=02">인물</a></li-->	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=05">사회</a></li>								
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=08">컴퓨터/인터넷</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=15">자연과 과학</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=16">건강/스포츠/취미</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=13">종교</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=18">여행</a></li>
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=17">가정/생활/요리</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=10">유아</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=11">어린이</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=12">청소년</a></li>	
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=14">예술/대중문화</a></li>
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=21">교재</a></li>
+						<!--li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=31">개인출판물</a></li-->
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=32">해외원서</a></li>
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=20">잡지</a></li>
+						<li><a href="https://www.bookcube.com/categorylist.asp?mainclass_num=99">성인</a></li>							
+					</ul>
+				</div>
+				<div>
+					<p>테마관</p>
+					<ul class="">
+						<li><a href="https://www.bookcube.com/monopoly.asp?page=nm">독점선출간관</a></li>	
+						<li><a href="https://www.bookcube.com/rent.asp?page=rm">장르대여관</a></li>	
+						<li><a href="https://www.bookcube.com/rent.asp?page=cm">만화대여관</a></li>	
+						<li><a href="https://www.bookcube.com/free_center.asp?page=rm">장르정액관</a></li>	
+						<li><a href="https://www.bookcube.com/free_center.asp?page=cm">만화정액관</a></li>		
+					</ul>
+				</div>
+				<a href="javascript:;" class="category-close">close</a>
+			</div>
+		</div>
+	</div>
+</header>
+<script>
+$(function(){	
+	//카테고리		
+	$(".all-category a").on("click",function(){
+		
+		$(".m-category").slideDown();	
+	});
+	$(".category-close").on("click",function(){
+		$(".m-category").slideUp();		
+	});
+	 
+	//알리미
+	$("#alarm_view").attr("src", "/main/_alarm.asp");
+	var timer = 0;
+	$(".alarm").on("mouseenter",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			$("#alarm_view").attr("src", "/main/_alarm.asp");
+			if($(".my-wrap").css("display")== "block"){
+				$(".my-wrap").fadeOut();
+			}
+			$(".alarm_layer_box").fadeIn();
+		}
+	});
+	$(".alarm_layer_box").on("mouseleave",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			$(this).fadeOut();
+		}
+	});
+
+	//마이페이지 레이어팝업
+	var timer = 0;
+	$(".mypop.on").on("mouseenter",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			if($(".alarm_layer_box").css("display")== "block"){
+				$(".alarm_layer_box").fadeOut();
+			}
+			$(".my-wrap").fadeIn();
+		}
+	});
+	$(".my-wrap").on("mouseleave",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			$(this).fadeOut();
+		}
+	});
+
+	$(".btnLogOut").on("click",function(){
+		$.post("/data/_logout.asp",{} , function(data){					
+			if(data.success){
+				window.location.href = httpUrl+"/main.asp";
+			}else{
+				alert(data.message);
+			}
+		}, "json");
+	});
+});
+</script>
+<form name="sns_input_data">
+<input type="hidden" class="sns_input_site_id" value="">
+<input type="hidden" class="sns_input_id" value="">
+<input type="hidden" class="sns_input_email" value="">
+<input type="hidden" class="sns_input_title" value="">
+</form>
+<div id="login" class="login-pop">
+<form onsubmit="return login_submit();">
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<div class="join-wrap">
+			<div class="join-info">
+				<div class="js-join">
+					<input type="text" name="" placeholder="아이디" maxlength="20" class="strId" />
+					<p class="check"></p>
+				</div>
+				<div class="js-join">
+					<input type="password" name="" placeholder="비밀번호" class="strPass" />
+					<p class="check"></p>
+				</div>
+			</div>
+			<div class="m-login">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" class="loginsave">
+						<span><i></i></span>
+					</label>
+					<p>로그인유지</p>
+				</div>
+				<p><a href="javascript:;" class="find-id">아이디 찾기</a><em>|</em><a href="javascript:;" class="find-pwd">비밀번호 찾기</a></p>
+			</div>
+			<div class="simple-login-btn">
+				<p class="now-start"><span>지금 시작하세요!</span><a href="https://www.bookcube.com/member/register.asp">북큐브 간편가입 〉</a></p>
+				<input type="submit" value="로그인" />
+			</div>
+			<div class="login-or"><p class="or">또는</p></div>
+			<div class="simple-login-btn or">
+				<div class="login-btn kakaotalk"><a href="javascript:loginWithKakao()"><p><span class="kakaotalk">카카오톡</span>카카오로 로그인</p></a></div>
+				<div class="login-btn naver"><a href="" onClick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false"><p><span class="naver">네이버</span>네이버로 로그인</p></a></div>
+				<div class="login-btn facebook"><a href="javascript:;"><p><span class="facebook">페이스북</span>페이스북으로 로그인</p></a></div>
+				<div class="login-btn payco"><a href="javascript:;"><p><span class="payco">페이코</span>페이코로 로그인</p></a></div>
+			</div>
+		</div>	
+	</div>
+</form>
+</div>
+
+
+<div id="login-success" class="login-pop">
+<form>
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<div class="join-connect">
+			<!-- naver,twitter,kakao,facebook,payco  -->
+			<p class="sns-logo">네이버</p>
+			<p class="sns-confirm"><span class="sns-name">네이버</span> 인증이 완료되었습니다.</p>
+			<div class="id-connect-wrap">
+				<p>이미 북큐브 회원인 경우<span>북큐브 ID로 로그인하시면, SNS계정이 자동으로 연결됩니다.</span></p>
+				<div class="bookcube-connect">
+					<p><a href="javascript:;">북큐브 ID 연결하기</a></p>
+					<div class="bookcube-input">
+						<div class="js-join">
+							<input type="text" name="strid" class="strLoginId" placeholder="아이디">
+						</div>
+						<div class="js-join">
+							<input type="password" name="strpwd" class="strLoginPass" placeholder="비밀번호">
+						</div>
+						<div class="connect-join">
+							<p><a href="#" class="find-id">아이디찾기</a><em>|</em><a href="#" class="find-pwd">비밀번호 찾기</a></p>
+						</div>
+						<a href="#" class="bookcube-login">로그인</a>
+					</div>
+				</div>
+				<script>
+					$(function(){
+						$(".bookcube-connect > p").on("click",function(){
+							if($(this).hasClass("on")){
+								$(this).removeClass("on");
+								$(".bookcube-input").hide();
+							}else{
+								$(this).addClass("on");
+								$(".bookcube-input").show();
+							}
+						});
+					});
+					
+				</script>
+				<div class="sns-connect">
+					<p>SNS 계정으로 신규 가입하기<span>SNS계정으로 로그인 시 해당 SNS 계정으로 북큐브에 자동 가입되며 간편하게 로그인이 가능합니다.</span></p>
+					<a href="javascript:;" class="sns_login_btn">SNS 계정으로 가입하기</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+</div>
+
+<div id="find-pwd" class="login-pop">
+<form onsubmit="return pw_search();">
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="login-prev">prev</a>
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<p class="title">비밀번호 찾기</p>
+		<div class="join-wrap">
+			<div class="join-info">
+				<div class="js-join">
+					<input type="text" name="" placeholder="아이디" class="strId">
+					<p class="check"></p>
+				</div>
+				<div class="js-join">
+					<input type="text" name="" placeholder="이메일" class="strMail">
+					<p class="check"></p>
+				</div>
+			</div>
+			<div class="login-btn">
+				<input type="submit" value="확인">
+			</div>
+			<p class="info">북큐브 고객센터 : 1588-1925</p>
+		</div>
+	</div>
+</form>
+</div>
+
+<div id="find-id" class="login-pop">
+<form onsubmit="return id_search();">
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="login-prev">prev</a>
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<p class="title">아이디 찾기</p>
+		<div class="join-wrap">
+			<div class="join-info">
+				<div class="js-join">
+					<input type="text" name="" placeholder="이메일" class="strMail">
+					<p class="check"></p>
+				</div>
+			</div>
+			<div class="login-btn">
+				<input type="submit" value="확인">
+			</div>
+			<p class="info">북큐브 고객센터 : 1588-1925</p>
+		</div>
+	</div>
+</form>
+</div>
+
+<div id="id-result" class="login-pop">
+<form>
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="login-prev">prev</a>
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<p class="title">아이디 조회 결과</p>
+		<div class="find-result">
+			<p></p>
+		</div>
+		<div class="login-btn">
+			<input type="submit" class="member-login" value="로그인">
+			<a href="javascript:;" class="find-pwd">비밀번호 찾기</a>
+		</div>		
+	</div>
+</form>
+</div>
+
+
+
+<div id="pwd-result" class="login-pop">
+	<div class="login-bg"></div>
+	<div class="pop">
+		<div class="pop-top">
+			<a href="javascript:;" class="login-prev">prev</a>
+			<a href="javascript:;" class="close">close</a>
+		</div>
+		<p class="title">비밀번호 조회 결과</p>
+		<div class="find-result">
+			<p><span></span>으로<br>비밀번호를 발송했습니다.</p>
+		</div>
+		<div class="login-btn">
+			<a href="#" class="go-main">메인으로</a>
+		</div>		
+	</div>
+</div>
+
+<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+<div id="naver_id_login" style="display:none"></div>
+<!-- //네이버아이디로로그인 버튼 노출 영역 -->
+
+<!-- 네이버아디디로로그인 초기화 Script -->
+<script type="text/javascript">
+	var naver_id_login = new naver_id_login("tdoziaWOhdIeC0LICk28", httpsUrl +"/member/naver/naver.asp");
+
+	naver_id_login.setPopup(); //Popup형태의 인증 진행
+	naver_id_login.init_naver_id_login();
+
+	var naver_url = $("#naver_id_login_anchor").attr("href");
+
+	$("#login .naver a").attr("href", naver_url);
+</script>
+<!-- // 네이버아이디로로그인 초기화 Script -->
+
+<!-- 페이코 로그인 Script -->
+<script type="text/javascript">
+	var payco_client_id = "3RDL_pOgssXrawcbA2AG" ;
+	var return_url = httpUrl +"/member/payco/payco_https.asp";
+	var login_url = "https://id.payco.com/oauth2.0/authorize?response_type=code&client_id="+ payco_client_id +"&redirect_uri="+ escape(return_url) +"&serviceProviderCode=FRIENDS&userLocale=ko_KR"
+	var sOption = "width=630, height=547, top=300, left=300,scrollbars=yes"
+
+	 $(".login-btn.payco").on("click", function(e){
+		var win = window.open(login_url, "payco", sOption);
+	 });
+</script>
+<!--//페이코 로그인 Script -->
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1676308606031166',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+   $(".login-btn.facebook").on("click", function(e){
+	   e.preventDefault();
+		//FB.getLoginStatus(function(res){
+			
+		//});
+		FB.login(function(res){
+			if(res.status == "connected"){
+				FB.api("/me?fields=email,name", function(res){
+					//console.log(res.email);
+					//console.log(res.name);
+					//console.log(res.id);
+
+					$.post("/data/_outside_join_yn.asp", {site_num : "51",ID : res.id}, function(data){						
+						if (data.join_able_yn){
+							sns_data_input("51", res.id, res.email, "페이스북");
+						}else{
+							sns_login('51',res.id,res.email);							
+						}					
+					}, "json");	
+
+					//alert(res); 
+				});
+			}
+		},{scope:"email"});
+   });
+</script>
+
+<script>
+	//<![CDATA[
+	// 사용할 앱의 JavaScript 키를 설정해 주세요.
+	Kakao.init('27b43a5f358f3c1f77e6002d11090c07');
+	function loginWithKakao() {
+	  // 로그인 창을 띄웁니다.
+	  Kakao.Auth.login({
+		success: function(authObj) {
+		  Kakao.API.request({
+			  url: '/v2/user/me',
+			  success: function(res) {
+				//alert(JSON.stringify(res.id));
+				$.post("/data/_outside_join_yn.asp", {site_num : "21",ID : res.id}, function(data){						
+					if (data.join_able_yn){
+						sns_data_input("21", res.id, "", "카카오");
+					}else{
+						sns_login('21',res.id,'');						
+					}					
+				}, "json");	
+			  },
+			  fail: function(error) {
+				//alert(JSON.stringify(error));
+			  }
+			});
+		},
+		fail: function(err) {
+		  //alert(JSON.stringify(err));
+		}
+	  });
+	};
+  //]]>
+
+function sns_data_input(site_num, res_id, res_email, site_name){
+	$(".sns_input_site_id").val(site_num);
+	$(".sns_input_id").val(res_id);
+	var logo_name = "kakao";
+	if (site_name == "네이버"){ logo_name = "naver";}
+	if (site_name == "페이스북"){ logo_name = "facebook";}
+	if (site_name == "페이코"){ logo_name = "payco";}
+	$(".sns-logo").addClass(logo_name);
+	$(".sns_input_email").val(res_email);
+	$(".sns_input_title").val(site_name);	
+	$(".sns-name").html(site_name);
+	$("#login").hide();
+	$("#login-success").show();
+}
+
+function sns_login(site_num, res_id, res_email){
+	$.post("/data/_outside_login_process.asp", {site_num : site_num,ID : res_id, EMAIL : res_email}, function(data){						
+	if(data.success){
+		location.reload();
+	}else{
+		alert(data.message);
+	}
+	}, "json");
+}
+
+function login_submit(){
+	var user_id = $("#login .strId").val();
+	var user_pwd = $("#login .strPass").val();
+	var user_login_save = $(".loginsave").val();
+	var sns_input_site_id = $(".sns_input_site_id").val();
+	var sns_input_id = $(".sns_input_id").val();
+	var sns_sns_input_email = $(".sns_input_email").val();
+	var loginsave = $(".loginsave").val();
+
+	$.post("/data/_login.asp", {uid : user_id, upwd : user_pwd, loginsave : user_login_save, sns_site_id : sns_input_site_id, sns_id : sns_input_id, sns_email : sns_sns_input_email}, function(data){					
+		if(data.success){
+			window.location.reload();
+		}else{
+			alert(data.message);			
+			$("#login .strPass").val('');								
+		}
+	}, "json");
+	return false ;
+}
+
+function id_search(){
+	var user_mail = $("#find-id .strMail").val();
+	var user_type = "id_search";
+
+	$.post("/data/_id_pwd_search.asp", {id_email : user_mail, search_type : user_type}, function(data){					
+		if(data.success){
+			txt = "<p>"+ data.name +"님의 아이디는<br /><span>"+ data.id +"</span>입니다.</p>";
+			$("#id-result .find-result").html(txt);
+			$("#find-id").hide();
+			$("#id-result").show();
+		}else{
+			alert(data.message);
+			$("#find-id .strMail").val("");				
+		}
+	}, "json");
+	return false ; 
+}
+
+
+function pw_search(){
+	var user_id = $("#find-pwd .strId").val();
+	var user_mail = $("#find-pwd .strMail").val();
+	var user_type = "pw_search";
+
+	$.post("/data/_id_pwd_search.asp", {pw_id : user_id , pw_email : user_mail, search_type : user_type}, function(data){					
+		if(data.success){
+			txt = data.email_id +'@'+ data.email_domain;
+			$("#pwd-result .find-result span").html(txt);
+			$(".login-pop").hide();
+			if($(".sns_input_site_id").val() == ""){
+				$(".go-main").html('메인으로');
+			}else{
+				$(".go-main").html('로그인');
+			}
+			$("#pwd-result").show();
+		}else{
+			alert(data.message);
+			$("#find-pwd .strId").val('');
+			$("#find-pwd .strMail").val('');
+			$("#find-pwd .strId").focus();
+		}
+	}, "json");
+	return false;
+}	
+
+	$(function(){
+		//로그인 팝업
+		$(".pop-top .close").on("click",function(){
+			$(this).parents().find(".login-pop").hide();	
+		});
+		$(".login-bg").on("click",function(){
+			$(".login-pop").fadeOut(100);
+		});				
+		
+		$(".js-join input").on("focus",function(){
+			$(".js-join p.check").hide();
+		});
+
+		$(".pop-top .login-prev").on("click",function(){
+			$(".login-pop").hide();
+			$("#login").show();
+			
+		});
+		
+		$(".btnLogin").on("click",function(){
+			$(".sns_input_site_id").val("");
+			$(".sns_input_id").val("");
+			$(".sns_input_email").val("");
+			$(".sns_input_title").val("");
+			$("#login").show();
+			$("#login .strId").focus();
+		});
+		// 닫기
+		$(".pop-top .close").on("click",function(){
+			$(this).parents().find(".login-pop").hide();	
+		});
+		$(".login-bg").on("click",function(){
+			$(".login-pop").fadeOut(100);
+		});				
+		$(".join-info input[type='text']:first").focus().css("border","1px solid #dc4510");
+		
+		$(".js-join input").on("focus",function(){
+			$(".js-join p.check").hide();
+			$(this).css("border","1px solid #dc4510");
+		});
+		$(".js-join input").on("blur",function(){
+			$(this).css("border","1px solid #ccc");
+		});
+
+		$(".pop-top .prev").on("click",function(){
+			$(".login-pop").hide();
+			$("#login").show();
+			
+		});
+		$(".find-id").on("click",function(){
+			$(".login-pop").hide();
+			$("#find-id").show();
+			//$("#find-id .strMail").focus();
+		});
+		$(".find-pwd").on("click",function(){
+			$(".login-pop").hide();
+			$("#find-pwd").show();
+			//$("#find-pwd .strId").focus();			
+		});
+		$(".member-login").on("click",function(){
+			$(".login-pop").hide();
+			if($(".sns_input_site_id").val() == ""){
+				$("#login").show();
+			}else{
+				$("#login-success").show();
+			}			
+			
+			//$("#login .strId").focus();
+		});
+
+		$(".go-main").on("click",function(){			
+			if($(".sns_input_site_id").val() == ""){
+				window.location.href = httpUrl ;
+			}else{
+				$(".login-pop").hide();
+				$("#login-success").show();
+			}			
+		});		
+
+		//sns 회원가입처리
+		$(".sns_login_btn").on("click",function(){
+			sns_login($(".sns_input_site_id").val(), $(".sns_input_id").val(), $(".sns_input_email").val());
+		});		
+
+		$(".bookcube-login").on("click",function(){
+			var snsTitle = $(".sns_input_title").val();
+
+			if(confirm("북큐브 ID와 " + snsTitle+ "계정을 연결하시겠습니까?" )){
+
+				var user_id = $("#login-success .strLoginId").val();
+				var user_pwd = $("#login-success .strLoginPass").val();
+				var user_login_save = $("#login-success #strLoginSave").val();
+				var sns_input_site_id = $(".sns_input_site_id").val();
+				var sns_input_id = $(".sns_input_id").val();
+				var sns_input_email = $(".sns_input_email").val();
+
+				$.post("/data/_login.asp", {uid : user_id, upwd : user_pwd, loginsave : user_login_save, sns_site_id : sns_input_site_id, sns_id : sns_input_id, sns_email : sns_input_email}, function(data){		
+					if(data.success){
+						window.location.reload();
+					}else{
+						alert(data.message);
+						//$("#login .strId").val('');
+						$("#login-success .strPass").val('');					
+						//$("#login .strId").focus();
+					}
+				}, "json");
+			}
+		});
+	});	
+</script>
+	
+		<!-- 
+			장르에 따라 section에 클래스가 달라집니다.
+			로맨스 <section class="romance">
+			BL <section class="bl">
+			무협/판타지 <section class="fanmu">
+			만화 <section class="manhwa">
+		-->
+		<section class="" id="contents">
+			
+<div class="today-hot">
+	<h3 class="hot-title">오늘의 추천</h3>
+	<div class="hot-inner">
+		<p class="prev"><a href="javascript:;"><span>prev</span></a></p>
+		<p class="next"><a href="javascript:;"><span>next</span></a></p>
+	</div>
+	<div class="slider">
+		<ul>
+					<li>
+						<div class="figure">
+							<span class="label"><em>10%
+								<span>할인</span></em></span>
+							<a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100243.jpg" alt="도서 이미지 - 어떻게 말해줘야 할까" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>채널A 〈요즘 육아 금쪽같은 내 새끼〉 SBS 〈우리 아이가 달라졌어요〉
+
+국민 육아멘토 오은영 박사가 알려주는 ‘부모의 말’
+
+육아 현실을 200퍼센트 반영한 130가지 한마디
+...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920029866&page=buy">어떻게 말해줘야 할까</a></p>
+							<p>오은영 글, 차상미 그림</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920020151&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2007/200707030.jpg" alt="도서 이미지 - 달러구트 꿈 백화점" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>여기는 잠들어야만 입장할 수 있는 ‘달러구트 꿈 백화점’입니다
+
+잠들어야만 입장할 수 있는 독특한 마을. 그곳에 들어온 잠든 손님들에게 가장 인기 있는 곳은, 온갖 꿈을 한데...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920020151&page=buy">달러구트 꿈 백화점</a></p>
+							<p>이미예</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920017326&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2007/200701496.jpg" alt="도서 이미지 - 돈의 속성" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>유튜브 1,100만 명이 시청한 〈돈의 속성〉 완결판
+최상위 부자 김승호 회장이 직접 밝히는 돈에 통찰과 철학
+맨손에서 종잣돈을 만들고 돈을 불리는 75가지 방법
+
+이 책 『돈...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920017326&page=buy">돈의 속성</a></p>
+							<p>김승호</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920025243&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2009/200902682.jpg" alt="도서 이미지 - 규칙 없음" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>“통제와 규정은, 무능력한 직원에게나 필요한 것!”
+| 넷플릭스 CEO 리드 헤이스팅스의 첫 책 |
+ 
+ 1997년 설립 당시, 넷플릭스는 우편으로 DVD를 대여해 주는 회사에 불과했다. ...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920025243&page=buy">규칙 없음</a></p>
+							<p>리드 헤이스팅스, 에린 마이어</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<span class="label"><em>10%
+								<span>할인</span></em></span>
+							<a href="https://www.bookcube.com/detail.asp?series_num=920028916&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201003746.jpg" alt="도서 이미지 - 워터 댄서" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>* 뉴욕타임스 베스트셀러 1위
+* 아마존 베스트셀러 1위
+* 오프라 윈프리 북클럽 선정도서
+* [타임] 외 13개 매체가 뽑은 올해의 책
+* 전미도서상 수상작가 신작 소설
+
+전미도서상 ...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920028916&page=buy">워터 댄서</a></p>
+							<p>타네히시 코츠</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920029916&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100423.jpg" alt="도서 이미지 - 이만하면 괜찮은 죽음" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>‘괜찮은 죽음’을 말하는 슬프고도 유쾌한 문장들
+이만하면 괜찮은 죽음이란 게 과연 존재할까? 모든 죽음은 무너지는 아픔과 깊은 슬픔이 뒤따른다. 검은색으로 가득한 장례식장...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920029916&page=buy">이만하면 괜찮은 죽음</a></p>
+							<p>데이비드 재럿</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<span class="label"><em>10%
+								<span>할인</span></em></span>
+							<a href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100254.jpg" alt="도서 이미지 - 주식하는 마음" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>“당신이 주식투자로 부자가 되면 좋겠습니다.”
+출연만으로 유튜브 누적 조회수 100만 회 기록! 트레바리에서 가장 빨리 마감되는 클럽의 주인공!
+투자 고수 홍진채가 전하는 ‘주...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920029909&page=buy">주식하는 마음</a></p>
+							<p>홍진채</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920029915&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100422.jpg" alt="도서 이미지 - 인스타 브레인" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>“하루에 2600번 스마트폰을 만지는 동안, 
+우리 뇌의 회로가 변하고 있다!”
+
+누적 75만 부 세계적 작가,
+‘운동과 뇌의 관계’에 대한 어젠다를 촉발시킨 안데르스 한센의 최신작
+★2...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920029915&page=buy">인스타 브레인</a></p>
+							<p>안데르스 한센</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920029862&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100238.jpg" alt="도서 이미지 - 아무것도 하지 않는 하루 15분의 기적" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>유발 하라리, 레이 달리오, 오프라 윈프리, 아리아나 허핑턴, 휴 잭맨, 엠마 왓슨…
+세계 최고의 CEO와 셀럽들은 왜 바쁜 와중에도 반드시 명상을 하는가?!
+
+조용한 방도, 촛불도...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920029862&page=buy">아무것도 하지 않는 하루 15분의 기적</a></p>
+							<p>에밀리 플레처</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920029933&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2011/201100455.jpg" alt="도서 이미지 - 샤인(shine)" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>★★ 제시카 소설 데뷔작 ★★
+케이 팝 스타의
+놀라운 이야기가 지금 시작된다!
+솔로 가수이자 패션 디자이너 및 사업가, 세계적인 인플루언서 등으로 활동 영역을 넓히며 끊임
+없이 ...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920029933&page=buy">샤인(shine)</a></p>
+							<p>JESSICA JUNG</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920012069&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2005/200501898.jpg" alt="도서 이미지 - 1cm 다이빙" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>
+텀블벅 펀딩 프로젝트 1,000% 달성! 출간 전부터 난리가 난 책!
+
+우리 사회에는 행복해지기 위해 필요한 것이 참 많습니다. 좋은 대학, 이름난 회사, 괜찮은 연봉, 안정적인 가정. ...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920012069&page=buy">1cm 다이빙</a></p>
+							<p>태수, 문정</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920028831&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201003610.jpg" alt="도서 이미지 - 조의 아이들" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>우리가 읽은 『작은 아씨들』은 전부가 아니다. 『작은 아씨들』은 원래 4부작 시리즈로, 발표 당시 전권 모두 베스트셀러였다. 이번에 출간된 『조의 아이들』은 3부 《Little Men》...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920028831&page=buy">조의 아이들</a></p>
+							<p>루이자 메이 올콧</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920020159&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2007/200707038.jpg" alt="도서 이미지 - 이토록 공부가 재미있어지는 순간(리커버)" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>민사고 학생들이 ‘성경’처럼 반복해서 읽은 바로 그 책!
+“내 공부의 심장이 미친 듯 뛰기 시작했습니다!”
+
+그 흔한 학원 하나 없는 깡촌 시골마을에서
+내가 서울대 법대, 연세대 ...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920020159&page=buy">이토록 공부가 재미있어지는 순간(...</a></p>
+							<p>박성혁</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<span class="label"><em>10%
+								<span>할인</span></em></span>
+							<a href="https://www.bookcube.com/detail.asp?series_num=920028718&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201003150.jpg" alt="도서 이미지 - 고양이를 버리다" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>처음으로 털어놓는 무라카미 하루키의 시간들
+
+아버지의 시간에서부터 조심스럽게 쌓아올린 단 하나의 서사
+
+“우리는 광활한 대지를 향해 내리는 방대한 빗방울의, 이름 없는 ...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920028718&page=buy">고양이를 버리다</a></p>
+							<p>무라카미 하루키 저, 가오 옌 그림</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<a href="https://www.bookcube.com/detail.asp?series_num=920029230&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2010/201004482.jpg" alt="도서 이미지 - 말장난 (유병재 삼행시집)" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>베스트셀러 《블랙코미디》 이후 3년
+유병재, 농담이 아닌 시(詩)로 돌아오다! 
+
+유치한 말장난인 줄 알았는데 처절한 자기 고백이 읽힌다.
+병맛을 가장한 고결한 인간의 나지막한...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920029230&page=buy">말장난 (유병재 삼행시집)</a></p>
+							<p>유병재</p>
+						</div>
+					</li>
+					<li>
+						<div class="figure">
+							<span class="label"><em>10%
+								<span>할인</span></em></span>
+							<a href="https://www.bookcube.com/detail.asp?series_num=920014635&page=buy">
+								<span class="rm_br"><img src="https://bookimg.bookcube.com/150/2006/200600694.jpg" alt="도서 이미지 - 죽은 자의 집 청소" /></span>
+								<span class="light"></span>
+								<div class="caption">
+									<div class="about">
+										<p>“누군가 홀로 죽으면 나의 일이 시작된다”
+
+죽음 언저리에서 행하는 특별한 서비스에 대하여
+
+수많은 언론이 집중 조명한 어느 특수청소부의 에세이
+
+누군가 홀로 죽은 집, ...</p>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="hot-info">
+							<p class="hot-title"><a href="https://www.bookcube.com/detail.asp?series_num=920014635&page=buy">죽은 자의 집 청소</a></p>
+							<p>김완</p>
+						</div>
+					</li>							
+		</ul>
+	</div>
+</div>
+			<div class="main-inner">
+				<div class="quick">
+					<ul>
+						<li><a href="/event_detail.asp?event_num=5060">최대 50%</a></li>
+						<li><a href="/event_detail.asp?page=nm&mode=theme&event_num=12142">전문서적관</a></li>
+						<li><a href="/categorylist.asp?page=&mainclass_num=27&subclass_num=&sort=%EC%9D%B8%EA%B8%B0%EC%88%9C&list_type=">오디오북</a></li>
+						<li><a href="/event.asp?page=nm&now_yn=1">이벤트</a></li>
+					</ul>
+				</div>
+				
+				<div class="main_event"></div>
+				
+				<div class="main_real_time"></div>
+				
+				<div class="main_ct_best"></div>				
+				
+				<div class="main_best_book"></div>
+				
+				<div class="main_new_book"></div>
+				
+				<div class="main_banner"></div>				
+				
+				<div class="main_recommend_book"></div>
+				
+				<div class="main_free_book"></div>
+				
+				<div class="main_best_novel"></div>
+				
+				<div class="main_gidamu_novel"></div>
+				
+				<div class="main_season_novel"></div>
+				
+				<div class="main_best_toon"></div>				
+				
+				<div class="main_only_toon"></div>
+<div class="cover-section realtime-hot-box mt60">
+	<div class="cover-section-inner">
+		<div class="special-title">
+			<h3 class="coTitle">실시간 인기작품</h3>
+			<span class="date">2020.11.04 19:22 기준</span>
+		</div>
+		<div class="realtime-hot-list mt30">
+			<ul>
+				<li class="head">
+				<p class="rank blue">
+					<span>순위</span>
+				</p>
+				<p class="webtoon">
+					<strong class="fn-webtoon">웹툰</strong><a href="/webtoon/best/realtime" class="btn-type03">더보기<span class="bg-ico ico-arrow01 blet"></span></a>
+				</p>
+				<p class="comic">
+					<strong class="fn-comic">만화</strong><a href="/comic/best/all/realtime" class="btn-type03">더보기<span class="bg-ico ico-arrow01 blet"></span></a>
+				</p>
+				<p class="fiction">
+					<strong class="fn-fiction">소설</strong><a href="/novel/best/all/realtime" class="btn-type03">더보기<span class="bg-ico ico-arrow01 blet"></span></a>
+				</p>
+				</li>
+				<li class="top-rank top-one">
+				<p class="rank">
+					<span><strong>1</strong></span><span class="bg-ico ico-arrow11 blet"></span>
+				</p>
+				<div class="webtoon">
+					<p>
+						<strong>인 마이 클로젯</strong><span>RISA LISA</span>
+					</p>
+					<div>
+						<a title="인 마이 클로젯" href="/webtoon/wt_closet_wz">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/wt_closet_wz/thumb_sq.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-up">UP</span>
+						</p>
+						<span><strong>인 마이 클로젯</strong></span><span>RISA LISA</span><span>BL</span></a>
+					</div>
+				</div>
+				<div class="comic">
+					<p>
+						<strong>괴 (연재)</strong><span>야설록</span>
+					</p>
+					<div>
+						<a title="괴 (연재)" href="/comic/goe">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/goe/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-up">UP</span>
+						</p>
+						<span><strong>괴 (연재)</strong></span><span>야설록</span><span>무협</span></a>
+					</div>
+				</div>
+				<div class="fiction">
+					<p>
+						<strong>무인이곽 (연재)</strong><span>우각</span>
+					</p>
+					<div>
+						<a title="무인이곽 (연재)" href="/novel/E000072153">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/ebook/E000072153/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-new">NEW</span>
+						</p>
+						<span><strong>무인이곽 (연재)</strong></span><span>우각</span><span>무협</span></a>
+					</div>
+				</div>
+				</li>
+				<li class="top-rank">
+				<p class="rank">
+					<span><strong>2</strong></span><span class="bg-ico ico-arrow11 blet"></span>
+				</p>
+				<div class="webtoon">
+					<p>
+						<strong>겨울 지나 벚꽃</strong><span>밤우</span>
+					</p>
+					<div>
+						<a title="겨울 지나 벚꽃" href="/webtoon/wt_blossom_wz">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/wt_blossom_wz/thumb_sq.jpg" alt="">
+						</div>
+						<p class="label label03">
+						</p>
+						<span><strong>겨울 지나 벚꽃</strong></span><span>밤우</span><span>BL</span></a>
+					</div>
+				</div>
+				<div class="comic">
+					<p>
+						<strong>일대검호</strong><span>황성</span>
+					</p>
+					<div>
+						<a title="일대검호" href="/comic/C000045625">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/C000045625/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-new">NEW</span>
+						</p>
+						<span><strong>일대검호</strong></span><span>황성</span><span>무협</span></a>
+					</div>
+				</div>
+				<div class="fiction">
+					<p>
+						<strong>재벌가 망나니 (연재)</strong><span>한유림</span>
+					</p>
+					<div>
+						<a title="재벌가 망나니 (연재)" href="/novel/munpia0949">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/ebook/munpia0949/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-final">완결</span>
+						</p>
+						<span><strong>재벌가 망나니 (연재)</strong></span><span>한유림</span><span>판타지</span></a>
+					</div>
+				</div>
+				</li>
+				<li class="top-rank">
+				<p class="rank">
+					<span><strong>3</strong></span><span class="bg-ico ico-arrow11 blet"></span>
+				</p>
+				<div class="webtoon">
+					<p>
+						<strong>어는점</strong><span>MEL</span>
+					</p>
+					<div>
+						<a title="어는점" href="/webtoon/wt_freezing_wz">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/wt_freezing_wz/thumb_sq.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-final">완결</span>
+						</p>
+						<span><strong>어는점</strong></span><span>MEL</span><span>BL</span></a>
+					</div>
+				</div>
+				<div class="comic">
+					<p>
+						<strong>일검진천 [개정판]</strong><span>묵검향</span>
+					</p>
+					<div>
+						<a title="일검진천 [개정판]" href="/comic/kocncm_0525">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/kocncm_0525/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-up">UP</span>
+						</p>
+						<span><strong>일검진천 [개정판]</strong></span><span>묵검향</span><span>무협</span></a>
+					</div>
+				</div>
+				<div class="fiction">
+					<p>
+						<strong>의술 펼치는 왕자님 (연재)</strong><span>목직</span>
+					</p>
+					<div>
+						<a title="의술 펼치는 왕자님 (연재)" href="/novel/E000072283">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/ebook/E000072283/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-new">NEW</span>
+						</p>
+						<span><strong>의술 펼치는 왕자님 (연재)</strong></span><span>목직</span><span>판타지</span></a>
+					</div>
+				</div>
+				</li>
+				<li>
+				<p class="rank">
+					<span><strong>4</strong></span><span class="bg-ico ico-arrow11 blet"></span>
+				</p>
+				<div class="webtoon">
+					<p>
+						<strong>살벌한 동거</strong><span>하엘 / 백하나</span>
+					</p>
+					<div>
+						<a title="살벌한 동거" href="/webtoon/wt_scary_wz">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/wt_scary_wz/thumb_sq.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-final">완결</span>
+						</p>
+						<span><strong>살벌한 동거</strong></span><span>하엘 / 백하나</span><span>로맨스</span></a>
+					</div>
+				</div>
+				<div class="comic">
+					<p>
+						<strong>사류무사 (연재)</strong><span>황성</span>
+					</p>
+					<div>
+						<a title="사류무사 (연재)" href="/comic/4ryumusa">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/4ryumusa/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-up">UP</span>
+						</p>
+						<span><strong>사류무사 (연재)</strong></span><span>황성</span><span>무협</span></a>
+					</div>
+				</div>
+				<div class="fiction">
+					<p>
+						<strong>음악천재 재벌3세 (연재)</strong><span>성불예정</span>
+					</p>
+					<div>
+						<a title="음악천재 재벌3세 (연재)" href="/novel/E000072188">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/ebook/E000072188/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-new">NEW</span>
+						</p>
+						<span><strong>음악천재 재벌3세 (연재)</strong></span><span>성불예정</span><span>판타지</span></a>
+					</div>
+				</div>
+				</li>
+				<li class="">
+				<p class="rank">
+					<span><strong>5</strong></span><span class="bg-ico ico-arrow11 blet"></span>
+				</p>
+				<div class="webtoon">
+					<p>
+						<strong>화룡기</strong><span>명월당</span>
+					</p>
+					<div>
+						<a title="화룡기" href="/webtoon/wt_hwalyong_wz">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/wt_hwalyong_wz/thumb_sq.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-up">UP</span>
+						</p>
+						<span><strong>화룡기</strong></span><span>명월당</span><span>BL</span></a>
+					</div>
+				</div>
+				<div class="comic">
+					<p>
+						<strong>제왕의 꽃 [스크롤]</strong><span>토연 / 이승희</span>
+					</p>
+					<div>
+						<a title="제왕의 꽃 [스크롤]" href="/comic/C000045734">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/C000045734/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-new">NEW</span>
+						</p>
+						<span><strong>제왕의 꽃 [스크롤]</strong></span><span>토연 / 이승희</span><span>순정</span></a>
+					</div>
+				</div>
+				<div class="fiction">
+					<p>
+						<strong>슬러거 포수 강건후 (연재)</strong><span>온필수</span>
+					</p>
+					<div>
+						<a title="슬러거 포수 강건후 (연재)" href="/novel/E000072243">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/ebook/E000072243/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-new">NEW</span>
+						</p>
+						<span><strong>슬러거 포수 강건후 (연재)</strong></span><span>온필수</span><span>판타지</span></a>
+					</div>
+				</div>
+				</li>
+				<li>
+				<p class="rank">
+					<span><strong>6</strong></span><span class="bg-ico ico-arrow11 blet"></span>
+				</p>
+				<div class="webtoon">
+					<p>
+						<strong>괴 [스크롤]</strong><span>야설록</span>
+					</p>
+					<div>
+						<a title="괴 [스크롤]" href="/webtoon/wt_goe_wz">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/wt_goe_wz/thumb_sq.jpg" alt="">
+						</div>
+						<p class="label label03">
+						</p>
+						<span><strong>괴 [스크롤]</strong></span><span>야설록</span><span>액션</span></a>
+					</div>
+				</div>
+				<div class="comic">
+					<p>
+						<strong>일상다정사</strong><span>김세영</span>
+					</p>
+					<div>
+						<a title="일상다정사" href="/comic/wbeast_0005">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/wbeast_0005/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-up">UP</span>
+						</p>
+						<span><strong>일상다정사</strong></span><span>김세영</span><span>BL</span></a>
+					</div>
+				</div>
+				<div class="fiction">
+					<p>
+						<strong>칼끝에 천하를 묻다</strong><span>오채지</span>
+					</p>
+					<div>
+						<a title="칼끝에 천하를 묻다" href="/novel/baro689111">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/ebook/baro689111/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-final">완결</span>
+						</p>
+						<span><strong>칼끝에 천하를 묻다</strong></span><span>오채지</span><span>신무협</span></a>
+					</div>
+				</div>
+				</li>
+				<li>
+				<p class="rank">
+					<span><strong>7</strong></span><span class="bg-ico ico-arrow11 blet"></span>
+				</p>
+				<div class="webtoon">
+					<p>
+						<strong>나만의 스폰서</strong><span>최경아</span>
+					</p>
+					<div>
+						<a title="나만의 스폰서" href="/webtoon/wt_sponsor_wz">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/wt_sponsor_wz/thumb_sq.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-final">완결</span>
+						</p>
+						<span><strong>나만의 스폰서</strong></span><span>최경아</span><span>로맨스</span></a>
+					</div>
+				</div>
+				<div class="comic">
+					<p>
+						<strong>군주의 여인(컬러연재)</strong><span>박다연 / 원작 독연</span>
+					</p>
+					<div>
+						<a title="군주의 여인(컬러연재)" href="/comic/monarchlady_wz">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/monarchlady_wz/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-final">완결</span>
+						</p>
+						<span><strong>군주의 여인(컬러연재)</strong></span><span>박다연 / 원작 독연</span><span>순정</span></a>
+					</div>
+				</div>
+				<div class="fiction">
+					<p>
+						<strong>신투, 천하를 훔치다 (연재)</strong><span>윤하준</span>
+					</p>
+					<div>
+						<a title="신투, 천하를 훔치다 (연재)" href="/novel/E000072285">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/ebook/E000072285/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-new">NEW</span>
+						</p>
+						<span><strong>신투, 천하를 훔치다 (연재)</strong></span><span>윤하준</span><span>판타지</span></a>
+					</div>
+				</div>
+				</li>
+				<li>
+				<p class="rank">
+					<span><strong>8</strong></span><span class="bg-ico ico-arrow11 blet"></span>
+				</p>
+				<div class="webtoon">
+					<p>
+						<strong>스머프 월드 [일반판]</strong><span>오태 / 제이제이</span>
+					</p>
+					<div>
+						<a title="스머프 월드 [일반판]" href="/webtoon/wt_smurf15_wz">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/wt_smurf15_wz/thumb_sq.jpg" alt="">
+						</div>
+						<p class="label label03">
+						</p>
+						<span><strong>스머프 월드 [일반판]</strong></span><span>오태 / 제이제이</span><span>BL</span></a>
+					</div>
+				</div>
+				<div class="comic">
+					<p>
+						<strong>견자전설</strong><span>황성</span>
+					</p>
+					<div>
+						<a title="견자전설" href="/comic/gjjs_hs">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/gjjs_hs/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-final">완결</span>
+						</p>
+						<span><strong>견자전설</strong></span><span>황성</span><span>무협</span></a>
+					</div>
+				</div>
+				<div class="fiction">
+					<p>
+						<strong>아빠가 너무 강함 (연재)</strong><span>개벽s</span>
+					</p>
+					<div>
+						<a title="아빠가 너무 강함 (연재)" href="/novel/jplus0185">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/ebook/jplus0185/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-up">UP</span>
+						</p>
+						<span><strong>아빠가 너무 강함 (연재)</strong></span><span>개벽s</span><span>판타지</span></a>
+					</div>
+				</div>
+				</li>
+				<li>
+				<p class="rank">
+					<span><strong>9</strong></span><span class="bg-ico ico-arrow11 blet"></span>
+				</p>
+				<div class="webtoon">
+					<p>
+						<strong>쉿, 아기가 자고 있어요</strong><span>몽글</span>
+					</p>
+					<div>
+						<a title="쉿, 아기가 자고 있어요" href="/webtoon/wt_sleeping_wz">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/wt_sleeping_wz/thumb_sq.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-final">완결</span>
+						</p>
+						<span><strong>쉿, 아기가 자고 있어요</strong></span><span>몽글</span><span>BL</span></a>
+					</div>
+				</div>
+				<div class="comic">
+					<p>
+						<strong>도편수 [개정판]</strong><span>묵검향</span>
+					</p>
+					<div>
+						<a title="도편수 [개정판]" href="/comic/kocncm_0268">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/kocncm_0268/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-final">완결</span>
+						</p>
+						<span><strong>도편수 [개정판]</strong></span><span>묵검향</span><span>무협</span></a>
+					</div>
+				</div>
+				<div class="fiction">
+					<p>
+						<strong>재벌집 서자, 그레이트 어게인 (연재)</strong><span>굿라이버</span>
+					</p>
+					<div>
+						<a title="재벌집 서자, 그레이트 어게인 (연재)" href="/novel/jplus0309">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/ebook/jplus0309/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-up">UP</span>
+						</p>
+						<span><strong>재벌집 서자, 그레이트 어게인 (연재)</strong></span><span>굿라이버</span><span>판타지</span></a>
+					</div>
+				</div>
+				</li>
+				<li class="last">
+				<p class="rank">
+					<span><strong>10</strong></span><span class="bg-ico ico-arrow11 blet"></span>
+				</p>
+				<div class="webtoon">
+					<p>
+						<strong>최강의 냄새</strong><span>이만세</span>
+					</p>
+					<div>
+						<a title="최강의 냄새" href="/webtoon/wt_strongest_wz">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/wt_strongest_wz/thumb_sq.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-final">완결</span>
+						</p>
+						<span><strong>최강의 냄새</strong></span><span>이만세</span><span>BL</span></a>
+					</div>
+				</div>
+				<div class="comic">
+					<p>
+						<strong>천년왕</strong><span>황성</span>
+					</p>
+					<div>
+						<a title="천년왕" href="/comic/chunnwang">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/comics/chunnwang/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-final">완결</span>
+						</p>
+						<span><strong>천년왕</strong></span><span>황성</span><span>무협</span></a>
+					</div>
+				</div>
+				<div class="fiction">
+					<p>
+						<strong>템빨 (연재)</strong><span>박새날</span>
+					</p>
+					<div>
+						<a title="템빨 (연재)" href="/novel/se1610">
+						<div>
+							<img src="https://img.mrblue.com/prod_img/ebook/se1610/main_large.jpg" alt="">
+						</div>
+						<p class="label label03">
+							<span class="label-up">UP</span>
+						</p>
+						<span><strong>템빨 (연재)</strong></span><span>박새날</span><span>판타지</span></a>
+					</div>
+				</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="main-special">
+	<div class="special-title">
+		<h3 class="coTitle">테마관</h3>
+		<a href="/theme.asp?page=nm" class="more">더보기</a>
+	</div>
+	<ul>
+				<li><a href="/event_detail.asp?page=nm&mode=theme&event_num=12754"><img src="https://up.bookcube.com/bookcube/upload/event/12754/e12754_pc_banner.jpg" alt="내 손안의 매거진" /></a></li>
+				<li><a href="/event_detail.asp?page=nm&mode=theme&event_num=12142"><img src="https://up.bookcube.com/bookcube/upload/event/12142/e12142_pc_banner.jpg" alt="전문서적 테마관" /></a></li>
+				<li><a href="https://www.bookcube.com/event_detail.asp?event_num=5060&event_type=nm&page=nm&pageNum=1"><img src="https://up.bookcube.com/bookcube/upload/event/4728/e4728_pc_banner.jpg" alt="초특가 추천 대여관" /></a></li>		
+	</ul>
+	<div class="special-title">
+		<h3 class="coTitle">브랜드관</h3>
+		<a href="/brand.asp?page=nm" class="more">더보기</a>
+	</div>
+	<ul class="brand">
+				<li><a href="https://www.bookcube.com/search.asp?searchOption=publisher&searchpage=normal&page=&SearchString=비즈니스북스"><img src="https://up.bookcube.com/bookcube/upload/event/9772/e9772_pc_banner.jpg" alt="비즈니스북스" /></a></li>
+		
+				<li><a href="https://www.bookcube.com/search.asp?searchOption=publisher&searchpage=normal&page=&SearchString=21%EC%84%B8%EA%B8%B0%EB%B6%81%EC%8A%A4"><img src="https://up.bookcube.com/bookcube/upload/event/7937/e7937_pc_banner.jpg" alt="21세기북스" /></a></li>
+		
+				<li><a href="https://www.bookcube.com/search.asp?searchstring=%EC%B1%85%EC%84%B8%EC%83%81&searchOption=publisher&page=book&manclass_num=&mainclass=&list_type="><img src="https://up.bookcube.com/bookcube/upload/event/12842/e12842_pc_banner.jpg" alt="책세상" /></a></li>
+		
+	</ul>
+</div>
+				<div class="main_bl_toon"></div>
+			</div>
+		</section>
+		
+<footer>
+	<div class="footer-top">
+		<div class="notice-wrap">
+			<div class="notice-inner">
+				<p><a href="/customer.asp?page=notice">공지사항</a></p>
+				<div class="swiper-container notice">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<a href="/customer.asp?page=notice&num=112688&page2=view&pageNum=1">장르/만화 정액권 판매 종료 예정 안내<span>2020-10-27</span></a>
+						</div>
+						<div class="swiper-slide">
+							<a href="/customer.asp?page=notice&num=112679&page2=view&pageNum=1">메리 미 (Marry Me)〉 적립금 지급 안내<span>2020-10-27</span></a>
+						</div>						
+					</div>
+				</div>
+				<div class="notice-control">
+					<div class="notice-prev"></div>
+					<div class="notice-next"></div>
+				</div>
+			</div>
+		</div>
+		<div class="cs-wrap">
+			<div class="cs">
+				<h4>고객센터</h4>
+				<div>
+					<p><span>대표번호</span>1588-1925</p>
+					<p><span>운영시간</span>월~금 09:00 - 18:00 (점심시간 12:00 - 13:00) / 주말 및 공휴일 휴무</p>
+				</div>
+			</div>
+			<div class="service">
+				<h4>서비스</h4>
+				<div>
+					<p><a href="/b2b.asp">전자도서관</a></p>
+					<p><a href="/customer.asp?page=viewer">앱 다운로드</a></p>
+				</div>
+			</div>
+			<div class="short-cut">
+				<h4>바로가기</h4>
+				<div>
+					<p><a href="/coupon.asp">쿠폰등록</a></p>
+					<p><a href="https://www.898.tv/bookcube">원격 연결</a></p>
+					<p><a href="/order/bookcash.asp">북캐시 충전</a></p>
+					<p><a href="/mypage.asp?list=_main">마이페이지</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-inner">
+		<ul class="f-lnb">
+			<li><a href="http://www.bookcubenetworks.co.kr">회사소개</a></li>
+			<li><a href="/customer.asp?page=notice&num=24007&page2=view&pageNum=15">이용약관</a></li>
+			<li><a href="/customer.asp?page=notice&num=24264&page2=view&pageNum=15">개인정보보호정책</a></li>
+			<li><a href="/customer.asp?page=notice&num=104583&page2=view&pageNum=1">청소년보호정책</a></li>
+			<li><a href="javascript:;" onclick="window.open('http://www.ftc.go.kr/bizCommPop.do?wrkr_no=1138624199', 'bizCommPop', 'scrollbars=yes, width=750,height=700;')">사업자정보확인</a></li>
+			<li><a href="/partner.asp">제휴문의</a></li>
+			<li><a href="http://scm.bookcubenetworks.com">작가/출판사 전용메뉴</a></li>
+		</ul>
+		<div class="f-banner">
+			<ul>
+				<li><a href="https://play.google.com/store/apps/details?id=com.bookcube.bookplayer">구글플레이</a></li>
+				<li><a href="https://itunes.apple.com/kr/app/bugkyubeu-naeseojae/id576288015?mt=8">앱스토어</a></li>
+				<li><a href="javascript:;" onclick="pop.open('#so')">도서.공연비 소득공제 사업자</a></li>
+				<li><a href="mailto:webmaster@bookcube.com"><span></span>이메일문의</a></li>
+			</ul>
+			<div class="so-pop blind" id="so">
+				<div class="login-bg"></div>
+				<div class="so">
+					<img src="../images/so-img.png" alt="도서.공연비 소득공제 사업자 관련 이미지">
+					<p>소득공제 대상 사업자 인증번호<br><span>312018060044</span></p>
+					<button onclick="pop.close('#so')">닫기</button>
+				</div>
+			</div>
+		</div>
+		<address>
+			<ul>
+				<li>상호 : 주식회사 북큐브네트웍스</li>
+				<li>대표이사 : 유철종</li>
+				<li>주소 : 우)80380 서울 구로구 디지털로 33길 27, 삼성IT밸리 514호</li>
+				<li>사업자 등록번호 : 113-86-24199</li>
+				<li>통신판매업 신고번호 : 제 2008-서울구로-0747호</li>
+				<li>개인정보 관리 책임자 : 남지원</li>
+				<li>도서비 소득공제 대상 사업자 인증번호 : 312018060044</li>
+				<li>E-mail : <a href="mailto:webmaster@bookcube.com">webmaster@bookcube.com</a></li>
+				<li>전화 1588-1925</li>
+			</ul>
+		</address>
+		<div class="copy-text">
+			<p>Copyright © BOOKCUBENETWORKS Co.,Ltd. All Rights Reserved.</p>
+			<img src="../images/site.png" alt='클린사이트' usemap="#cleanSite" />
+			<map name="cleanSite">
+				<area shape="RECT" coords="1,1,47,43" href="https://www.copyrightok.kr/" target="_blank" />
+			</map>
+		</div>
+	</div>
+</footer>
+<div class="topBtn">
+	<a href="javascript:;">TOP</a>
+</div>
+<script>
+$(function(){
+//탑버튼
+	var top_left = $(".footer-inner").offset().left + $(".footer-inner").width();
+	$(".topBtn").css({
+		"left" : top_left + 20
+	});
+	$(".topBtn").on("click",function(){
+		$("html,body").animate({
+			scrollTop : 0
+		},100); 
+	});	
+	var noticeSwiper = new Swiper('.notice',{
+		direction: 'vertical',
+		autoplay: {
+			delay: 3000,
+			disableOnInteraction: false
+		},
+		navigation: {
+			nextEl: '.notice-next',
+			prevEl: '.notice-prev'
+		}
+	});
+});
+//팝업
+var $pop = null;
+var pop = {
+	open : function(item){
+		$pop = $(item);
+		$pop.removeClass("blind");
+	},
+	close :function(item){
+		$pop = $(item);
+		$pop.addClass("blind");
+	}
+}
+</script>
+		<script>
+			$(function(){
+				var page = $(".wrap").data("page");
+				var web_class = $(".wrap").data("web-class");
+
+				$.post('/data/_teaser_banner.asp', {page : page, site : 'book'}, function(data){
+
+					var item = '';
+					
+					if(data && $.cookie("ts"+ data.teaser_num) != "done"){
+						item = '<div class="head_banner">'+
+							'<div class="h_banner_inner">'+
+								'<img src="https://up.bookcube.com/bookcube/upload/event/'+ data.teaser_num + '/' + data.banner_file_name +'" usemap="#teaser_'+ data.teaser_num +'" />'+
+								'<img src="../images/bannerClose.png" alt="배너닫기" class="bannerClose" />'+
+							'</div>'+
+							'<map name="teaser_'+ data.teaser_num +'"><area shape="rect" coords="0,0,450,80" href="'+ data.left_url +'" /><area shape="rect" coords="450,0,900,80" href="'+ data.right_url +'" /></map>'+
+						'</div>';
+
+						$('.header').prepend(item);
+
+						$('.head_banner').css('background-color', '#'+data.background_color);
+
+						$('.h_banner_inner .bannerClose').on('click', function(){
+							$.cookie('ts'+data.teaser_num, 'done', { path : '/', expires : 1});
+							$(".head_banner").slideUp(200);
+							$('.head_banner').remove();
+						});
+					}
+				}, "json");
+				
+				//메인 이벤트
+				$.post("/main/_main_event.asp", {main_yn : "Y", under_yn : "0", web_class : web_class, page : page}, function(data){					
+					$(".main_event").html(data);
+					$(".main_event .mds-banner").css({
+						"height":"153px","overflow":"hidden"
+					});
+					$(".main_event .mds-banner").slick({slidesToShow: 3,slidesToScroll: 1,infinite: true});
+					$(".main_event .mds-banner").css({
+						"height":"auto","overflow":"visible"
+					});
+				}, "html");	
+
+				$.post("/main/_main_real_time.asp", {product : "book", page : page}, function(data){					
+					$(".main_real_time").html(data);
+				}, "html");
+
+				$.post("/main/_ct_best.asp", {page : page}, function(data){					
+					$(".main_ct_best").html(data);
+				}, "html");				
+
+				//전자책 Best5
+				$.post("/main/_best_book.asp", {page : page}, function(data){					
+					$(".main_best_book").html(data);					
+				}, "html");	
+				//신간 전자책
+				$.post("/main/_new_book.asp", {page : page}, function(data){					
+					$(".main_new_book").html(data);					
+				}, "html");	
+				//매인 배너
+				$.post("/main/_main_event.asp", {main_yn : "Y", under_yn : "1", web_class : web_class, page : page}, function(data){								
+					$(".main_banner").html(data);
+					$(".main_banner .mds-banner").css({
+						"height":"153px","overflow":"hidden"
+					});
+					$(".main_banner .mds-banner").slick({slidesToShow: 3,slidesToScroll: 1,infinite: true});
+					$(".main_banner .mds-banner").css({
+						"height":"auto","overflow":"visible"
+					});				
+				}, "html");	
+				//추천 전자책
+				$.post("/main/_recommend_book.asp", {page : page}, function(data){					
+					$(".main_recommend_book").html(data);
+					$(".main_recommend_book").find(".mds").each(function(){
+						$(this).slick({slidesToShow: 5,slidesToScroll: 1,	infinite: true});
+					});
+				}, "html");	
+				
+				//무료 전자책
+				$.post("/main/_free_book.asp", {page : page}, function(data){					
+					$(".main_free_book").html(data);						
+				}, "html");			
+
+				//웹소설 베스트
+				$.post("/main/_best_novel.asp", {page : page}, function(data){					
+					$(".main_best_novel").html(data);						
+				}, "html");	
+
+				//웹소설 기다무
+				$.post("/main/_gidamu_novel.asp", {page : page}, function(data){					
+					$(".main_gidamu_novel").html(data);						
+				}, "html");
+
+				//웹소설 시즌제
+				$.post("/main/_season_novel.asp", {page : page}, function(data){					
+					$(".main_season_novel").html(data);						
+				}, "html");
+
+				//웹툰 베스트50
+				$.post("/main/_best_toon.asp", {page : page}, function(data){					
+					$(".main_best_toon").html(data);						
+				}, "html");							
+			});
+
+			$(function(){
+				for(var l=0,e=($(window).outerWidth(),$(".slider ul li").width()),i=$(".slider ul li").length,s=$(".slider ul li").width()*i,t=0,r="",f=i/2,n=0,a=0,d=$(".hot-inner").offset().left,c=0;c<i;c++){var o=$(".slider ul li").eq(c).index();if(i%2==1){var u;o<(u=Math.ceil(f))?(n+=e,$(".slider ul li").eq(o).css("left",n+(s/2-e/2)-e)):o>=u&&(a+=e,$(".slider ul li").eq(o).css("left",a-e))}else o<f?(n+=e,$(".slider ul li").eq(o).css("left",n+s/2-e)):(a+=e,$(".slider ul li").eq(o).css("left",a-e))}i%2==1?$(".slider ul").css({width:s,left:-s/2+e/2+d}):$(".slider ul").css({width:s,left:-s/2+d});for(c=1;c<=i;c++)r+="<a href='javascript:;'>"+c+"</a>",$(".paging").html(r);var h=$(".paging a").length;$(".paging a:first").addClass("on"),$(".next").on("click",function(i){Math.abs(t-$.now())>300&&(t=$.now(),l++,$(".slider ul li").each(function(){var l=$(this).css("left");l<="0px"?$(this).stop().animate({left:s-e},0):$(this).stop().animate({left:"-="+e+"px"},300)}),l>h-1&&(l=0))}),$(".prev").on("click",function(i){Math.abs(t-$.now())>300&&(t=$.now(),l--,$(".slider ul li").each(function(){var l=$(this).css("left");l==s-e+"px"?$(this).stop().animate({left:0},0):$(this).stop().animate({left:"+="+e+"px"},300)}),l<0&&(l=h-1))}),$(window).resize(function(){for(var l=$(".hot-inner").offset().left,t=0,r=0,n=0;n<i;n++){var a=$(".slider ul li").eq(n).index();if(i%2==1){var d;a<(d=Math.ceil(f))?(t+=e,$(".slider ul li").eq(a).css("left",t+(s/2-e/2)-e)):a>=d&&(r+=e,$(".slider ul li").eq(a).css("left",r-e))}else a<f?(t+=e,$(".slider ul li").eq(a).css("left",t+s/2-e)):(r+=e,$(".slider ul li").eq(a).css("left",r-e))}i%2==1?$(".slider ul").css({width:s,left:-s/2+e/2+l}):$(".slider ul").css({width:s,left:-s/2+l})})});
+		</script>
+
+		
+	</div>	
+</body>
+</html>

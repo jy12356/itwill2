@@ -1,0 +1,699 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KP248RV');</script>
+<!-- End Google Tag Manager -->
+
+<meta charset="UTF-8">
+<meta name="title" content="e북포털 북큐브">
+<meta name="description" content="새로운 독서의 시작, 전자책 서점,웹소설,웹툰을 지금 바로 만나보세요.">
+<meta name="title" content="">
+<meta property="og:type" content="book">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:site_name" content="e북포털 북큐브">
+<meta property="og:image" content="">
+<meta property="og:url" content="">
+<meta property="fb:app_id" content="159693857557581">
+<meta property="og:locale" content="ko_KR">
+
+<title>e북포털 북큐브</title>
+<link rel="shortcut icon" type="image/x-icon" href="/images/icon/bookcube_ci.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+<link type="text/css" rel="stylesheet" href="../css/reset.css" />
+<link type="text/css" rel="stylesheet" href="../css/main.css?v=20200917" />
+<link type="text/css" rel="stylesheet" href="../css/slick.css" />
+<link type="text/css" rel="stylesheet"  href="../js/lib/swipe/swiper.css" />
+<script type="text/javascript" src="../js/bookcube.js?200519"></script>
+<script type="text/javascript" src="../js/lib/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/lib/slick.min.js"></script>
+<script type="text/javascript" src="../js/slimScroll.js"></script>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/placeholders.min.js"></script>
+<script type="text/javascript" src="../js/lib/swipe/swiper-4.3.min.js"></script>
+<!-- naver-->
+<script type="text/javascript" src="https://static.nid.naver.com../js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
+	<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript"> if(!wcs_add) var wcs_add = {}; wcs_add["wa"] = "75bf1248432b84"; wcs_do(); </script>
+<!-- naver-->
+<!-- kakao 로그인-->
+<script src="https://developers.kakao.com/sdk../js/kakao.min.js"></script>
+</head>
+<body>
+	<div class="wrap">
+	
+<header>
+	<div class="header-top">
+		<div class="header-top-inner">
+			<div class="h-top">
+				<form name="searchFrm" id="searchFrm" autocomplete="off">
+				<!--input type="hidden" name="searchOption" id="searchOption" value="" /-->
+				<input type="text" style="display: none;" />
+				<input type="hidden" name="searchpage" value="normal" />
+				<input type="hidden" name="page" class="search_page" value="">
+					<fieldset>
+						<legend>검색</legend>
+						<h1 class="logo"><a href="https://www.bookcube.com">북큐브서점</a></h1>
+						<div class="search">						
+							<input type='text' name='searchString' class="search_input" />
+							<input type='button' name='' onclick="frmSearchSubmit()"/>
+						</div>
+						<ul class="my-lnb">
+							<li class="btnLogin"><a href="https://www.bookcube.com/login.asp">로그인</a></li>
+							<li><a href="https://www.bookcube.com/member/register.asp">회원가입</a></li>
+						</ul>
+					</fieldset>
+				</form>
+				<div class="my_layer_box">
+					<div class="my-wrap">
+						<span class="my-dot"></span>
+						<div class="my-inner">
+							<div class="my-top">
+								<h3>마이페이지</h3>
+								<a href="javascript:;" class="btn btnLogOut">로그아웃</a>
+							</div>
+							<ul>
+								<li>
+									<p>북캐시</p>
+									<p>0원</p>
+								</li>
+								<li>
+									<p>적립금</p>
+									<p>0원</p>
+								</li>
+								<li>
+									<p>쿠폰/상품권</p>
+									<p>0장</p>
+								</li>
+								<li>
+									<p>무료이용권</p>
+									<p>0장</p>
+								</li>
+							</ul>
+							<div class="my-bottom">
+								<a href="https://www.bookcube.com/mypage.asp?list=_main" class="effect-btn">마이페이지 바로가기</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="alarm_layer_box" style="display:none;">
+					<iframe src="" width="430" height="510" frameborder="0"  name="alarm_view" id="alarm_view" scrolling="no"></iframe>
+				</div>
+				<div class="fastSearch">
+					<div class="fastRight">
+						<ul class="fastUl">
+							
+						</ul>
+					</div>
+					<div class="auto-complete">
+						<p style="display: none;">자동완성 기능이 꺼져 있습니다.</p>
+						<p><a href="javascript:;" class="">자동완성 끄기</a></p>
+					</div>
+				</div>
+				<script>
+					$(function(){
+						// 총알검색창 display 조정
+						$('.search_input').keyup(function(event){
+							var key = window.event ? event.keyCode : event.which;    
+								if (key  != 13 && key  != 38 && key  != 37 && key  != 39 && key  != 40 ) {// not enter							
+									sniperSearch(); 
+								}
+						});
+
+						// 검색창 닫기	
+						$("body").click(function(){
+							$(".fastSearch").fadeOut(100);
+						});
+						$(".fastSearch").on("click",function(event){
+							event.stopPropagation();
+						});
+
+						//키보드 기능 추가
+						
+						function keyup(e){
+							var i = 0;
+							var frsFlag = true;
+							var ie11Flag = false;
+							
+							$(".search input").on("keyup",function(e){
+								var a  = $(".fastUl li a");
+								var aLen = $(".fastUl li a").length -1;
+								var address = $(".fastUl li a.on").attr("href");
+								var valText = $(a).find(".fsTitle").text();
+								var agent = navigator.userAgent.toLowerCase();
+								if(navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1){
+									ie11Flag = true;
+								}
+								if(e.keyCode == 40){
+									if(i>aLen){
+										i = 0;	
+									}
+									if(ie11Flag){
+										if( e.keyCode == 40 && frsFlag){
+											var ev = jQuery.Event( "keyup", { keyCode: 39 } );
+											jQuery(this).trigger(ev);
+											frsFlag = false;
+											return;
+										}
+									}
+									i++;
+									$(a).removeClass("on");
+									$(a).eq(i-1).addClass("on");
+				
+								//	$(this).val($(a).eq(i-1).find(".fsTitle").text());
+									
+								}else if(e.keyCode == 38){
+									i--;
+									if(i<1){
+										i=aLen+1;
+									}
+									if(ie11Flag){
+										if( e.keyCode == 38 && frsFlag){
+											var ev = jQuery.Event( "keyup", { keyCode: 40 } );
+											jQuery(this).trigger(ev);
+											frsFlag = false;
+											return;
+										}
+									}
+									$(a).removeClass("on");
+									$(a).eq(i-1).addClass("on");
+								//	$(this).val($(a).eq(i-1).find(".fsTitle").text());
+										
+								}else if(e.keyCode == 13){
+									if($(a).hasClass("on")){
+										location.href=address;
+									}else{
+										frmSearchSubmit();
+									}		
+								}else if(e.keyCode == 39){
+									return
+								}else{
+									$(a).removeClass("on");
+									i=0;
+								}		
+							});	
+						}
+						
+						setTimeout(keyup,0);
+
+						$(".auto-complete a").on("click",function(){
+							if($(this).hasClass("off")){
+								$(this).removeClass("off");
+								$(this).text("자동완성 끄기");
+								$(".fastRight").show();
+								$(".auto-complete p:first").hide();
+								$.cookie('sniperYN', 'Y', { path : '/', expires : 100});
+							}else{
+								$(this).addClass("off");
+								$(this).text("자동완성 켜기");
+								$(".fastRight").hide();
+								$(".auto-complete p").show();
+								$.cookie('sniperYN', 'N', { path : '/', expires : 100});
+							}								
+						});
+					});
+
+					/* enter 제거 */
+					function getEnterRemove(val){
+						var value = val;
+						try{
+							value = value.replace(/\r/g, " ");//엔터제거
+							value = value.replace(/\n/g, " ");//행바꿈제거
+						}catch(e){
+							alert(e);
+						}	
+						return value; 
+					}
+
+					function frmSearchSubmit(){		
+							
+						var objFrm = $("#searchFrm") ;
+
+						if ($(".search_input").val() == ''){
+							alert('검색어를 검색해주세요.');
+							$(".search_input").focus();			
+							return ;
+						}else{
+							objFrm.attr("method","get");
+							objFrm.attr("action",httpUrl +"/search.asp");
+							objFrm.submit();
+						}		
+					}
+
+					function sniperSearch() {
+
+						//$(".fastRight .fastUl li").remove(); 
+						//$(".fastSearch").css("display","none");
+
+						var searchVal = getEnterRemove($(".search_input").val());
+						var table = $(".fastRight .fastUl").get(0);
+						var detail_url = "";
+						var img_url = "";
+						var img_cls = "";
+						var strPage = $(".search_page").val();
+
+						if (strPage == "novel"){
+							$.ajax({
+								url : httpUrl+'/novel/common/data/_novel_search.asp',
+								data : {search : searchVal},
+								type : 'post',
+								dataType : 'json',
+								headers : {'cache-control' : "no-cache"},
+								cache : false,
+								success : function(data){
+									$(".fastRight .fastUl li").remove(); 
+
+									if (data.result.length > 0){	
+
+										if (data.result[0].filter_yn == "Y"){
+											newTr = "<li class='harmful'>청소년 유해어가 포함된 단어로는<br />검색 하실 수 없습니다.<br />로그인 및 성인인증 후 재검색 해주세요.</li>";
+											$(table).append(newTr);
+											$(".fastSearch").css("display","block");
+										}else{
+
+											var newTr = "" ;
+												for(var i in data.result){
+													detail_url = "<a href='"+ httpUrl +"/novel/detail.asp?serial_num="+ data.result[i].serial_num +"'>";
+													newTr =
+													"<li>" + detail_url +
+													"		<div class='fsThum'>" +
+													"			<span class='im_br'>" + 
+													"				<img src='"+ data.result[i].img_url +"' alt='"+ data.result[i].title +"' />" +
+													"			</span>" + img_cls +
+													"		</div>" +
+													"		<div class='fsInfo'>" +
+													"			<p class='fsTitle'>"+ data.result[i].title +"[총"+ data.result[i].split_count +"화/"+ data.result[i].complete_val +"]</p>" +
+													"			<p class='fsAuthor'>"+ data.result[i].author +" 저<em>|</em>"+ data.result[i].publisher +"</p>" +
+													"		</div>" +
+													"	</a>" +							
+													"</li>";									
+													$(table).append(newTr);
+													$(".fastSearch").css("display","block");
+												}				
+										}
+									}
+								},
+								error: function() {}
+							});
+						}else if(strPage == "toon"){
+							$.ajax({
+								url : httpUrl+'/toon/data/_toon_search.asp',
+								data : {search : searchVal},
+								type : 'post',
+								dataType : 'json',
+								headers : {'cache-control' : "no-cache"},
+								cache : false,
+								success : function(data){
+									$(".fastRight .fastUl li").remove(); 
+
+									if (data.result.length > 0){	
+
+										if (data.result[0].filter_yn == "Y"){
+											newTr = "<li class='harmful'>청소년 유해어가 포함된 단어로는<br />검색 하실 수 없습니다.<br />로그인 및 성인인증 후 재검색 해주세요.</li>";
+											$(table).append(newTr);
+											$(".fastSearch").css("display","block");
+										}else{
+											var newTr = "" ;
+												for(var i in data.result){
+													detail_url = "<a href='"+ httpUrl +"/toon/detail.asp?webtoon_num="+ data.result[i].webtoon_num +"'>";											
+													newTr =
+													"<li>" + detail_url +
+													"		<div class='fsThum'>" +
+													"			<span class='im_br'>" +
+													"				<img src='"+ data.result[i].cover_url +"' alt='"+ data.result[i].title +"' />" +
+													"			</span>" +
+													"		</div>" +
+													"		<div class='fsInfo'>" +
+													"			<p class='fsTitle'>"+ data.result[i].title +"[총"+ data.result[i].split_count +"화/"+ data.result[i].complete_val +"]</p>" +
+													"			<p class='fsAuthor'>"+ data.result[i].author +" 저<em>|</em>"+ data.result[i].class_name +"</p>" +
+													"		</div>" +
+													"	</a>" +							
+													"</li>";									
+													$(table).append(newTr);
+													$(".fastSearch").css("display","block");
+												}											
+										}
+									}
+								},
+								error: function() {}
+							});
+						}else{
+							$.ajax({
+								url : httpUrl +'/data/_ebook_search.asp',
+								data : {search : searchVal},
+								type : 'post',
+								dataType : 'json',
+								headers : {'cache-control' : "no-cache"},
+								cache : false,
+								success : function(data){
+									$(".fastRight .fastUl li").remove(); 
+
+									if (data.result.length > 0){	
+
+										if (data.result[0].filter_yn == "Y"){
+											newTr = "<li class='harmful'>청소년 유해어가 포함된 단어로는<br />검색 하실 수 없습니다.<br />로그인 및 성인인증 후 재검색 해주세요.</li>";
+											$(table).append(newTr);
+											$(".fastSearch").css("display","block");
+										}else{
+
+											var newTr = "" ;
+												for(var i in data.result){
+													detail_url = "<a href='"+ httpUrl +"/detail.asp?series_num="+ data.result[i].series_num +"&page="+ data.result[i].order_type +"'>";
+													if (data.result[i].cover_display_yn == "0" && $.cookie("adult_yn") != "Y"){
+														img_url = "	<img src='/images/contents/adult_19_94.jpg' alt='19금 표지 이미지' />";
+														//img_cls = "<span class='s19'>성인물</span>";
+													}else{
+														img_url = "	<img src='https://bookimg.bookcube.com/91/"+ data.result[i].book_num.substring(0, 4)+"/"+ data.result[i].book_num +".jpg' alt='"+ data.result[i].title +"' />";
+														img_cls = "";
+													}
+
+													newTr =
+													"<li>" + detail_url +
+													"		<div class='fsThum'>" +
+													"			<span class='im_br'>" + img_url + 
+													"			</span>" + img_cls +
+													"		</div>" +
+													"		<div class='fsInfo'>" +
+													"			<p class='fsTitle'>"+ data.result[i].title +"</p>" +
+													"			<p class='fsAuthor'>"+ data.result[i].author +" 저<em>|</em>"+ data.result[i].publisher +"</p>" +
+													"		</div>" +
+													"	</a>" +							
+													"</li>";									
+													$(table).append(newTr);
+													$(".fastSearch").css("display","block");
+												}		
+										}
+									}
+								},
+								error: function() {}
+							});
+						}
+					}
+				</script>
+			</div> 
+			<div class="h-top-bottom">
+				<h2 class="hide">메인메뉴</h2>
+				<ul class="gnb">
+					<li><a href="https://www.bookcube.com/main.asp">서점</a></li>
+					<li><a href="https://www.bookcube.com/novel/main.asp">웹소설</a></li>
+					<li><a href="https://www.bookcube.com/toon/main.asp">웹툰</a></li>
+				</ul>
+				<ul class="lnb">
+					<li><a href="https://www.bookcube.com/order/bookcash.asp">캐시충전</a>
+					<li><a href="https://www.bookcube.com/customer.asp">고객센터</a>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+<script>
+$(function(){			
+	$(".all-category a").on("click",function(){
+		$(".m-category").fadeIn();	
+	});
+	$(".category-close").on("click",function(){
+		$(".m-category").fadeOut();		
+	});
+	//알리미
+	$("#alarm_view").attr("src", "/main/_alarm.asp");
+	var timer = 0;
+	$(".alarm").on("mouseenter",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			$("#alarm_view").attr("src", "/main/_alarm.asp");
+			if($(".my-wrap").css("display")== "block"){
+				$(".my-wrap").fadeOut();
+			}
+			$(".alarm_layer_box").fadeIn();
+		}
+	});
+	$(".alarm_layer_box").on("mouseleave",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			$(this).fadeOut();
+		}
+	});
+
+	//마이페이지 레이어팝업
+	var timer = 0;
+	$(".mypop.on").on("mouseenter",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			if($(".alarm_layer_box").css("display")== "block"){
+				$(".alarm_layer_box").fadeOut();
+			}
+			$(".my-wrap").fadeIn();
+		}
+	});
+	$(".my-wrap").on("mouseleave",function(){
+		var speed = Math.abs(timer-$.now());
+		if(speed > 300) {
+			timer = $.now();
+			$(this).fadeOut();
+		}
+	});
+
+	$(".btnLogOut").on("click",function(){
+		$.post("/data/_logout.asp",{} , function(data){					
+			if(data.success){
+				window.location.href = httpUrl+"/main.asp";
+			}else{
+				alert(data.message);
+			}
+		}, "json");
+	});
+});
+</script>	
+	<section class="sub">
+		<div class="common-title">
+			<h3>로그인</h3>
+		</div>
+		<div class="user">
+			<form id="login" onsubmit="return login_submit();">
+			<input type="hidden" name="return_url" id="return_url" value="https://www.bookcube.com/order/bookcash.asp">
+				<fieldset>
+					<legend>로그인</legend>
+					<div class="join-wrap">					
+						<div class="join-info">
+							<div class="js-join">
+								<input type="text" name="" id="" placeholder="아이디" maxlength="20" class="strId">
+								<p class="check" style="display: none;">fff</p>
+							</div>
+							<div class="js-join">
+								<input type="password" name="" placeholder="비밀번호" class="strPass">
+								<p class="check" style="display: none;"></p>
+							</div>
+						</div>
+						<div class="m-login">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" value="">
+									<span><i></i></span>
+								</label>
+								<p>로그인유지</p>
+							</div>
+							<p><a href="/member/id_search.asp" class="find-id">아이디 찾기</a><em>|</em><a href="/member/pw_search.asp" class="find-pwd">비밀번호 찾기</a></p>
+						</div>
+						<div class="simple-login-btn">
+							<p class="now-start"><span>지금 시작하세요!</span><a href="https://www.bookcube.com/member/register.asp">북큐브 간편가입 〉</a></p>
+							<input type="submit" name="" id="submit" value="로그인">
+						</div>
+						<div class="login-or">
+							<p class="or">또는</p>
+						</div>
+						<div class="simple-login-btn or">
+							<div class="login-btn kakaotalk">
+								<a href="javascript:loginWithKakao()"><p><span class="kakaotalk">카카오톡</span>카카오로 로그인</p></a>
+							</div>
+							<div class="login-btn naver">
+								<a href="" onclick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false"><p><span class="naver">네이버</span>네이버로 로그인</p></a>
+							</div>
+							<div class="login-btn facebook">
+								<a href="javascript:;"><p><span class="facebook">페이스북</span>페이스북으로 로그인</p></a>
+							</div>
+							<div class="login-btn payco">
+								<a href="javascript:;"><p><span class="payco">페이코</span>페이코로 로그인</p></a>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</section>
+
+	</div>	
+</body>
+</html>
+<form name="sns_input_data" action="https://www.bookcube.com/login_sns.asp" method="post">
+<input type="hidden" name="sns_input_site_id" class="sns_input_site_id" value="">
+<input type="hidden" name="sns_input_id" class="sns_input_id" value="">
+<input type="hidden" name="sns_input_email" class="sns_input_email" value="">
+<input type="hidden" name="sns_input_title" class="sns_input_title" value="">
+<input type="hidden" name="return_url" value="https://www.bookcube.com/order/bookcash.asp">
+
+</form>
+<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+<div id="naver_id_login" style="display:none"></div>
+<!-- //네이버아이디로로그인 버튼 노출 영역 -->
+
+<!-- 네이버아디디로로그인 초기화 Script -->
+<script type="text/javascript">
+	var naver_id_login = new naver_id_login("tdoziaWOhdIeC0LICk28", httpsUrl +"/member/naver/naver.asp");
+
+	naver_id_login.setPopup(); //Popup형태의 인증 진행
+	naver_id_login.init_naver_id_login();
+
+	var naver_url = $("#naver_id_login_anchor").attr("href");
+
+	$(".naver a").attr("href", naver_url);
+</script>
+<!-- // 네이버아이디로로그인 초기화 Script -->
+
+<!-- 페이코 로그인 Script -->
+<script type="text/javascript">
+	var payco_client_id = "3RDL_pOgssXrawcbA2AG" ;
+	var return_url = httpsUrl +"/member/payco/payco_https.asp";
+	//var return_url = httpUrl +"/member/payco/payco.asp";
+	var login_url = "https://id.payco.com/oauth2.0/authorize?response_type=code&client_id="+ payco_client_id +"&redirect_uri="+ escape(return_url) +"&serviceProviderCode=FRIENDS&userLocale=ko_KR"
+	var sOption = "width=630, height=547, top=300, left=300,scrollbars=yes"
+
+	 $(".login-btn.payco").on("click", function(e){
+		var win = window.open(login_url, "payco", sOption);
+	 });
+</script>
+<!--//페이코 로그인 Script -->
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1676308606031166',
+      xfbml      : true,
+      version    : 'v2.8'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+   $(".login-btn.facebook").on("click", function(e){
+	   e.preventDefault();
+		//FB.getLoginStatus(function(res){
+			
+		//});
+		FB.login(function(res){
+			if(res.status == "connected"){
+				FB.api("/me?fields=email,name", function(res){
+					//console.log(res.email);
+					//console.log(res.name);
+					//console.log(res.id);
+
+					$.post("/data/_outside_join_yn.asp", {site_num : "51",ID : res.id}, function(data){						
+						if (data.join_able_yn){
+							sns_data_input("51", res.id, res.email, "페이스북");
+						}else{
+							sns_login('51',res.id,res.email);							
+						}					
+					}, "json");
+
+					//alert(res);
+				});
+			}
+		},{scope:"email"});
+   });
+</script>
+
+<!-- kakao -->
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('27b43a5f358f3c1f77e6002d11090c07');
+    function loginWithKakao() {
+      // 로그인 창을 띄웁니다.
+      Kakao.Auth.login({
+        success: function(authObj) {
+          Kakao.API.request({
+			  url: '/v2/user/me',
+			  success: function(res) {
+				//alert(JSON.stringify(res.id));
+				$.post("/data/_outside_join_yn.asp", {site_num : "21",ID : res.id}, function(data){						
+					if (data.join_able_yn){
+						sns_data_input("21", res.id, "", "카카오");
+					}else{
+						sns_login('21',res.id,'');						
+					}					
+				}, "json");
+			  },
+			  fail: function(error) {
+				alert(JSON.stringify(error));
+			  }
+			});
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+    };
+  //]]>
+
+
+
+function sns_data_input(site_num, res_id, res_email, site_name){
+	$(".sns_input_site_id").val(site_num);
+	$(".sns_input_id").val(res_id);
+	$(".sns_input_email").val(res_email);
+	$(".sns_input_title").val(site_name);	
+
+	$("form[name=sns_input_data]").submit();
+}
+
+function sns_login(site_num, res_id, res_email){
+	$.post("/data/_outside_login_process.asp", {site_num : site_num,ID : res_id, EMAIL : res_email}, function(data){						
+	if(data.success){
+		location.reload();
+	}else{
+		alert(data.message);
+	}
+	}, "json");
+}
+
+function login_submit(){
+	var user_id = $("#login .strId").val();
+	var user_pwd = $("#login .strPass").val();
+	var user_login_save = $("#login #strLoginSave").val();
+	var return_url = $("#return_url").val();
+
+	$.post("/data/_login.asp", {uid : user_id, upwd : user_pwd, loginsave : user_login_save}, function(data){					
+		if(data.success){
+			location.href = return_url;	
+		}else{
+			alert(data.message);
+			//$("#login .strId").val('');
+			$("#login .strPass").val('');
+			$("#login .strPass").focus();										
+		}
+	}, "json");	
+	
+	return false;
+}
+
+$(function(){
+	$("#login .strId").focus();
+});		
+</script>
