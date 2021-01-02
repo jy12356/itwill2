@@ -13,11 +13,47 @@ ArrayList<RentalBean> rentalList = (ArrayList<RentalBean>)request.getAttribute("
 	int startPage = pageInfo.getStartPage();
 	int endPage = pageInfo.getEndPage();
 	int listCount = pageInfo.getListCount();
+	String id= (String)session.getAttribute("id");
 %>    
 <section class="sub">
      <div class="contents-wrap">
+     <div class="mypage">
+			<div class="mypage-top">
+				<div class="detail-inner">
+					<h3>관리자페이지</h3>
+					
+					<div class="mypage-box-bottom">
+						<div>
+							<ul>
+								<li>
+									<span class="kakaotalk">로그인정보</span> <!-- bookcube,kakaotalk,naver,twitter,facebook,payco-->
+									<p><span><%=id %> 님</span></p>
+								<a href="MemberModifyForm.me?id=<%=id %>" class="btn">회원정보</a>
+								</li>			
+								<li>
+									<h4>회원관리</h4>
+									<ul>
+										<li><a href="MemberList.me" class="">회원목록</a></li>
+										<li><a href="Return.rn" class="on">대출반납도서관리</a></li>
+									</ul>
+								</li>
+								<li>
+									<h4>책정보 관리 </h4>
+									<ul>
+										<li><a href="BookWriteForm.bok" class="">책등록</a></li>
+										<li><a href="RequestList.rq" class="">희망도서</a></li>
+										<li><a href="NoticeBoardList.not?page=1" class="">게시글</a></li>
+										<li><a href="QnaList.qna" class="">QnA</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						
+					</div>
+				</div>
+			</div>
         <div class="customer">
-            <h3 class="coTitle">반납 도서</h3>
+            <h3 class="coTitle">대출반납 도서관리</h3>
             
             <div class="customer-contents">
                 <div class="customer-inner">
@@ -108,7 +144,7 @@ ArrayList<RentalBean> rentalList = (ArrayList<RentalBean>)request.getAttribute("
                    </div>
                 </div>
             </div>
-
+</div>
         </div>
      <script>
      

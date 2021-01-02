@@ -26,13 +26,12 @@ int listCount = pageInfo.getListCount();
 	<div class="contents-wrap">
 		<div class="sub_container">
 			<h3 class="coTitle">자유게시판</h3>
-			<div class="boxmenu1-top-menu">
-				<ul>
-					<li class="on"><a href="FreeBoardList.free"><em>자유게시판</em></a></li>
-					<li><a href="RequestList.rq"><em>희망도서신청</em></a></li>
-					<li><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li>
-				</ul>
-			</div>
+<!-- 			<div class="boxmenu1-top-menu"> -->
+<!-- 				<ul> -->
+<!-- 					<li class="on"><a href="FreeBoardList.free"><em>자유게시판</em></a></li> -->
+<!-- 					<li><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
 			<div class="customer-contents">
 				<div class="customer-inner">
 					<table summary="공지사항" class="customer-table notice">

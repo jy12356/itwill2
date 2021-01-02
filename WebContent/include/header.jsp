@@ -100,7 +100,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 						<ul class="my-lnb">
 							<li class="btnLogOut logoutIcon"><a href="MemberLogoutPro.me">로그아웃</a></li>
 							<%if(id.equals("admin")){ %>
-								<li class="mypageIcon"><a href="Admin.book">admin</a></li>
+								<li class="mypageIcon"><a href="MemberList.me">admin</a></li>
 							<%}else{
 								%>
 								<li class="mypageIcon"><a href="Mypage.me?id=<%=id%>">MY</a></li>								
@@ -148,13 +148,15 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 				<h2 class="hide">메인메뉴</h2>
 				<ul class="gnb">
 					<li><a href="Main.book" class="on">홈</a></li>
-					<li><a href="FreeBoardList.free">게시판</a></li>
+					<li><a href="NoticeBoardList.not?page=1">공지사항</a></li>
+					<li><a href="FreeBoardList.free">자유게시판</a></li>					
 					<li><a href="FullCalendar.ca">이달의 책(행사)</a></li>
 						
 				</ul>
 				<ul class="lnb">
-					<li><a href="Charge.dok">정기권 결제</a>
-					<li><a href="QnaList.qna">고객센터</a>
+					<li><a href="Charge.dok">정기권 결제</a></li>					
+					<li><a href="RequestList.rq">희망도서신청</a>
+					<li><a href="QnaList.qna">고객센터</a></li>
 				</ul>
 			</div>
 		</div>

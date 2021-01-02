@@ -29,9 +29,8 @@
 								<li>
 									<h4>회원관리</h4>
 									<ul>
-										<li><a href="http://localhost:8080/itwill2th/MemberList.me" class="">회원목록</a></li>
-										<li><a href="BookDibsList.bok" class="">대출관리</a></li>
-										<li><a href="Return.rn" class="">대출관리</a></li>
+										<li><a href="MemberList.me" class="">회원목록</a></li>
+										<li><a href="Return.rn" class="">대출반납관리</a></li>
 									</ul>
 								</li>
 								<li>

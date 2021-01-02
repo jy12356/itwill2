@@ -11,14 +11,14 @@
     <div class="contents-wrap">
         <div class="customer">
             <h3 class="coTitle">고객센터</h3>
-            <div class="customer-top-menu">
-                <ul>
-                    <li><a href="../sub5/faq.jsp" class=""><em>FAQ</em></a></li>
-                    <li><a href="../sub5/notice.jsp" class=""><em>공지사항</em></a></li>
-                    <li><a href="../sub5/service.jsp" class=""><em>서비스 안내</em></a></li>
-                    <li><a href="../sub5/one.jsp" class=""><em>1:1문의</em></a></li>
-                </ul>
-            </div>
+<!--             <div class="customer-top-menu"> -->
+<!--                 <ul> -->
+<!--                     <li><a href="../sub5/faq.jsp" class=""><em>FAQ</em></a></li> -->
+<!--                     <li><a href="../sub5/notice.jsp" class=""><em>공지사항</em></a></li> -->
+<!--                     <li><a href="../sub5/service.jsp" class=""><em>서비스 안내</em></a></li> -->
+<!--                     <li><a href="../sub5/one.jsp" class=""><em>1:1문의</em></a></li> -->
+<!--                 </ul> -->
+<!--             </div> -->
             <div class="customer-contents">
                 <div class="customer-inner">
                     <table summary="공지사항" class="customer-table notice">

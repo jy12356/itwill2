@@ -47,14 +47,7 @@ int listCount = PageInfo.getListCount();
 					<p><span>운영시간</span>월~금 09:00 - 18:00 (점심시간 12:00 - 13:00) / 주말 및 공휴일 휴무</p>
 				</div>
 			</div>
-			<div class="short-cut">
-				<h4>바로가기</h4>
-				<div>
-					<p><a href="/coupon.asp">쿠폰등록</a></p>
-					<p><a href="Charge.dok">구독결제</a></p>
-					<p><a href="MyPage?id=admin">마이페이지</a></p>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 	<div class="footer-inner">
@@ -108,6 +101,40 @@ int listCount = PageInfo.getListCount();
 		<li><a href=""></a></li>		
 	</ul>
 </div>
+<style>
+/* pc 화면 */
+@media (min-width: 768px) {
+    #kakao-talk-channel-chat-button {
+    position: fixed;
+    z-index: 999;
+    right: 30px; /* 화면 오른쪽으로부터의 거리, 숫자만 변경 */
+    bottom: 30px; /* 화면 아래쪽으로부터의 거리, 숫자만 변경 */
+    }
+}
+/* 모바일 화면 */
+@media (max-width:767px) {
+    #kakao-talk-channel-chat-button {
+    position: fixed;
+    z-index: 999;
+    right: 15px; /* 화면 오른쪽으로부터의 거리, 숫자만 변경 */
+    bottom: 30px; /* 화면 아래쪽으로부터의 거리, 숫자만 변경 */
+    }
+}
+</style>
+<div id="kakao-talk-channel-chat-button"></div>
+
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type='text/javascript'>
+  //<![CDATA[
+    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('JavaScript 키');
+    // 카카오톡 채널 1:1채팅 버튼을 생성합니다.
+    Kakao.Channel.createChatButton({
+      container: '#kakao-talk-channel-chat-button',
+      channelPublicId: '_HpxjaK' // 카카오톡 채널 홈 URL에 명시된 ID
+    });
+  //]]>
+</script>
 
 <script>
 $(function(){

@@ -194,7 +194,7 @@ font-weight:600;box-shadow:0 2px #f2f2f2;border-radius:4px;float:right;}
 .h-top-bottom .lnb:after{content:"";display:block;clear:both;}
 .h-top-bottom .lnb li{float:left;background: url(../images/lnb-dot.gif) no-repeat left center;padding:0 10px;}
 .h-top-bottom .lnb li:first-child{background:none;}
-.h-top-bottom .lnb li:nth-child(2){padding-right:0;}
+.h-top-bottom .lnb li:last-child{padding-right:0;}
 .h-top-bottom .lnb li a{display:inline-block;font-size:14px;line-height:1;}
 .h-top-bottom .lnb li a.cashday{background:url(../images/cashday.jpg) no-repeat right center;padding-right:20px;}
 
@@ -1407,11 +1407,11 @@ box-shadow:0 3px 5px 3px rgba(0,0,0,.2);box-sizing:border-box;z-index:9000;text-
 .mypage-box-bottom > div > ul > li:nth-child(2),
 .mypage-box-bottom > div > ul > li:nth-child(3){border-left:1px solid #f4f4f4;padding: 0 17px;text-align: center;}
 .mypage-box-bottom > div > ul > li h4{margin-left:10px;margin-bottom:17px;font-weight:600;font-size:20px;color:#333;}
-.mypage-box-bottom > div > ul > li a{display:block;font-size:14px;color:#666;line-height:28px;font-weight:600;transition:.5s;padding-left:10px;}
+.mypage-box-bottom > div > ul > li a{display:block;padding: 6px 0;font-size:14px;color:#666;line-height:28px;font-weight:600;transition:.5s;padding-left:10px;border-radius: 5px;}
 .mypage-box-bottom > div > ul > li a:hover{color:#17897a;}
-.mypage-box-bottom > div > ul > li a.on{color:#fff;background:#f5845b;border-radius:4px;}
+.mypage-box-bottom > div > ul > li a.on{color:#fff;background: #72c6ba;}
 .mypage-box-bottom > div > ul > li > ul{}
-.mypage-box-bottom > div > ul > li > ul >li{float: left;width: 48%;background: #eee;text-align: center;padding: 6px 0;margin-right: 4%;margin-top: 7px;border-radius: 5px;}
+.mypage-box-bottom > div > ul > li > ul >li{float: left;width: 48%;background: #eee;text-align: center;margin-right: 4%;margin-top: 7px;border-radius: 5px;}
 .mypage-box-bottom > div > ul > li > ul >li:nth-child(2n){margin-right:0;}
 
 

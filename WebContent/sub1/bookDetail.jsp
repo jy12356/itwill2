@@ -47,7 +47,8 @@ int listCount = pageInfo.getListCount();
 				<div class="book-thum">
 					<div class="figure">
 						<div class="thum-box">
-							<span class="rm_br"><img class="bookImg" src="bookUpload/<%=bookBean.getImage()%>" /> </span><span class="light"></span>
+							<span class="rm_br"><img class="bookImg" src="bookUpload/<%=bookBean.getImage()%>" /> </span>
+							<span class="light"></span>
 						</div>
 					</div>
 					<div class="early-btn">
@@ -208,7 +209,10 @@ int listCount = pageInfo.getListCount();
 					<!-- 						</p> -->
 					<!-- 					</div> -->
 					<div class="detail-btn">
-						<a href="MyBasketInsert.bk?isbn=<%=bookBean.getIsbn()%>" data-order-type="buy" class="d-basket"><span>책바구니</span></a><a href="BookDibsInsert.bok?isbn=<%=bookBean.getIsbn()%>" class="effect-btn">찜바구니</a><a href="BookKindList.bok?isbn=<%=bookBean.getIsbn()%>" class="effect-btn">삭제하기</a><a href="BookModify.bok?isbn=<%=bookBean.getIsbn()%>&page=<%=nowPage%>" class="effect-btn">수정하기</a>
+						<a href="MyBasketInsert.bk?isbn=<%=bookBean.getIsbn()%>" data-order-type="buy" class="d-basket"><span>책바구니</span></a>
+						<a href="BookDibsInsert.bok?isbn=<%=bookBean.getIsbn()%>" class="effect-btn">찜바구니</a>
+						<a href="BookDeletePro.bok?book_num=<%=bookBean.getNum()%>&catg1=<%=bookBean.getCatg1()%>&catg2=<%=bookBean.getCatg2()%>" class="effect-btn">삭제하기</a>
+						<a href="BookModify.bok?isbn=<%=bookBean.getIsbn()%>&page=<%=nowPage%>" class="effect-btn">수정하기</a>
 					</div>
 				</div>
 			</div>
