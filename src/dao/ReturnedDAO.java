@@ -46,6 +46,12 @@ public ReturnedDAO() {}
 			if (rs.next()) {
 				num = rs.getInt(1) + 1;
 			} 
+			sql = "update book set state=? where isbn=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "0");
+			pstmt.setString(2, returnedBean.getIsbn());
+			pstmt.executeUpdate();
+			
 			sql = "insert into returned values(?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);

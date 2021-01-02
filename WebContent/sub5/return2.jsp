@@ -18,8 +18,13 @@ int listCount = pageInfo.getListCount();
 <section class="sub">
      <div class="contents-wrap">
         <div class="customer">
-            <pre><h2 class="coTitle"><a href="rentalList.rn">주문배송조회</a>  |  <a href="ReturnedList.rt">과거주문내역</a>  |  <a href="ReservationList.rn">예약중인도서</a></h2></pre>
-            <h2 class="coTitle">과거주문내역</h2>
+             <div class="boxmenu1-top-menu">
+				<ul>
+					<li><a href="rentalList.rn"><em>대여내역</em></a></li>
+					<li  class="on"><a href="ReturnedList.rt"><em>과거대여내역</em></a></li>
+					<li><a href="ReservationList.rn"><em>예약중인도서</em></a></li>
+				</ul>
+			</div>
             <div class="customer-contents">
                 <div class="customer-inner">
                     <table summary="" class="customer-table notice">
