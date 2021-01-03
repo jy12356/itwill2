@@ -14,7 +14,7 @@
 						<div class="join-info">
 							<div class="js-join">
 								<input type="text" name="id" id="id" placeholder="아이디" maxlength="20" class="strId" required="required">
-								<p class="check" style="display: none;">fff</p>
+								<p class="check" style="display: none;"></p>
 							</div>
 							<div class="js-join">
 								<input type="password" name="password" id="password" placeholder="비밀번호" class="strPass" required="required">
@@ -32,7 +32,7 @@
 							<p><a href="/member/id_search.asp" class="find-id">아이디 찾기</a><em>|</em><a href="/member/pw_search.asp" class="find-pwd">비밀번호 찾기</a></p>
 						</div>
 						<div class="simple-login-btn">
-							<p class="now-start"><span>지금 시작하세요!</span><a href="https://www.bookcube.com/member/register.asp">북큐브 간편가입 〉</a></p>
+							<p class="now-start"><span>지금 시작하세요!</span><a href="MemberJoinForm.me">북큐브 간편가입 〉</a></p>
 							<input type="submit" name="" id="submit" value="로그인">
 						</div>
 						<div class="login-or">

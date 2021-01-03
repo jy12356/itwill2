@@ -54,7 +54,7 @@ public class MemberDAO {
 				num = rs.getInt(1) + 1;
 			}
 
-			sql = "INSERT INTO member (num,id,password,email,phone,catg,age,address,name,date) VALUES (?,?,?,?,?,?,?,?,?,now())";
+			sql = "INSERT INTO member (num,id,password,email,phone,catg,age,address,name,state,date) VALUES (?,?,?,?,?,?,?,?,?,구독안함,now())";
 			pstmt.setInt(1, num);
 			pstmt.setString(2, memberBean.getId());
 			pstmt.setString(3, memberBean.getPassword());
@@ -64,7 +64,7 @@ public class MemberDAO {
 			pstmt.setInt(7, memberBean.getAge());
 			pstmt.setString(8, memberBean.getAddress());
 			pstmt.setString(9, memberBean.getName());
-
+//			pstmt.setString(10, memberBean.getState());
 			insertCount = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -303,26 +303,25 @@ public class MemberDAO {
 	}
 
 	public int dibsDelete(List<Integer> interNumList, String id) {
-		System.out.println("bookDAO - dibsDelete");
-		int isDeleteOk = 0;
-		PreparedStatement pstmt = null;
-		try {
-			for (int i = 0; i < interNumList.size(); i++) {
-				String sql = "delete from interestinglist where num=? and id=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, interNumList.get(i));
-				pstmt.setString(2, id);
-				System.out.println(pstmt);
-				isDeleteOk = pstmt.executeUpdate();
-			}
-		} catch (Exception e) {
-			System.out.println("dibsDelete 오류!" + e.getMessage());
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		return isDeleteOk;
-	}
+		System.out.println("memberDAO - dibsDelete");
+	      int isDelete = 0;
+	      PreparedStatement pstmt = null;
+	      try {
+	         for(int i=0; i< interNumList.size(); i++) {
+	            String sql = "delete from member where num=?";
+	            pstmt = con.prepareStatement(sql);
+	            pstmt.setInt(1, interNumList.get(i));
+	            System.out.println(pstmt);
+	            isDelete = pstmt.executeUpdate();
+	         }
+	      }catch (Exception e) {
+	         System.out.println("dibsDelete 오류!" + e.getMessage());
+	         e.printStackTrace();
+	      }finally {
+	         close(pstmt);
+	      }
+	      return isDelete;
+	   }
 
 	// ========================================================================
 	// MemberList calculating..
