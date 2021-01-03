@@ -73,6 +73,10 @@ header{border-bottom:1px solid #d1d8e4;}
 .my-lnb li.alarmIcon span.alarmdot{display:none;}
 .my-lnb li.alarmIcon.on {position:relative;}
 .my-lnb li.alarmIcon.on span.alarmdot{display:block; position:absolute;right: -5px;top: -6px;display:block;width: 20px;height: 20px;background: #35b09fba;border-radius:50%;color: #fff;font-size: 10px;line-height: 20px;}
+.my-lnb li.alarmIcon2{background:url(../images/alarm-icon-on.png) no-repeat center 4px;}
+.my-lnb li.alarmIcon2 span.alarmdot{display:none;}
+.my-lnb li.alarmIcon2.on {position:relative;}
+.my-lnb li.alarmIcon2.on span.alarmdot{display:block; position:absolute;right: -5px;top: -6px;display:block;width: 20px;height: 20px;background: #35b09fba;border-radius:50%;color: #fff;font-size: 10px;line-height: 20px;}
 
 /* .my-lnb li.alarmIcon:hover{animation: shake 2s infinite linear; /* transform: rotate(10deg);transition: 0.3s; } */
 @keyframes shake{
