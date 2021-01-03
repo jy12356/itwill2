@@ -2,6 +2,11 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="vo.MsgBean"%>
+<%
+String id = (String)session.getAttribute("id");
+ArrayList<MsgBean> myMsgList = (ArrayList<MsgBean>) request.getAttribute("msgList");
+PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -15,6 +20,13 @@
 			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
 			j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 	})(window,document,'script','dataLayer','GTM-KP248RV');
+</script>
+<script>
+	window.onload = function() {
+		if(id != null){
+<%-- 			<% int listCount = pageInfo.getListCount(); %> --%>
+		}
+	}
 </script>
 <!-- End Google Tag Manager -->
 
@@ -68,11 +80,6 @@
 <!-- naver-->
 <!-- kakao 로그인-->
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<%
-String id = (String)session.getAttribute("id");
-ArrayList<MsgBean> myMsgList = (ArrayList<MsgBean>) request.getAttribute("msgList");
-PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
-%>
 </head>
 <body>
 <div class="wrap" data-page="nm" data-web-class="일반">
@@ -106,27 +113,24 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 								<li class="mypageIcon"><a href="Mypage.me?id=<%=id%>">MY</a></li>								
 								<li class="basketIcon"><a href="MyBasketList.bk">책바구니</a></li>
 							<%} %>
+							
 							<%if(myMsgList == null) { %>
-							<li class="alarm on alarmIcon">
-								<a href="MyMsg.msg">
-									<span class="alarmdot">
-<!-- 										50 -->
-									</span>
-									알리미
-								</a>
+							<li class="alarm on alarmIcon" id="message">
+								<a href="MyMsg.msg">알리미</a>
 							</li>
 							<% } else { %>
-							<li class="alarm on alarmIcon2">
+							<li class="alarm on alarmIcon2" id="message2">
 								<a href="MyMsg.msg">
 									<span class="alarmdot">
-<%-- 										<%=myMsgList.size() %> --%>
+										<%=myMsgList.size() %>
 									</span>
 									알리미
 								</a>
 							</li>
 							<% } %>
+							
 						</ul>
-						<%} %>
+						<% } %>
 					</fieldset>
 				</form>
 				<div class="alarm_layer_box" style="display:none;">
@@ -269,4 +273,5 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 
 // 	$("#login .naver a").attr("href", naver_url);
 </script>
-
+</div>
+</body>
