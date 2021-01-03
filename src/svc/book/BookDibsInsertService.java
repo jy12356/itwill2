@@ -12,7 +12,7 @@ public class BookDibsInsertService {
 
 	public boolean checkBookDibsOverlap(String isbn, String id) {
 		System.out.println("BookDibsInsertService - checkBookDibsOverlap()");
-		boolean checkBookDibsOverlap = false; // 글 등록 성공 여부를 저장
+		boolean checkBookDibsOverlap = false; 
 		Connection con = getConnection();
 		BookDAO bookDAO = BookDAO.getInstance();
 		bookDAO.setConnection(con);

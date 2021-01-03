@@ -169,11 +169,11 @@ public class MsgDAO {
 		int updateStatus = 0;
 		String sql = null;
 		
-		try {
-			
+		try {			
 			sql = "update message set isRead='y' where num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1,  num);
+			System.out.println(pstmt);
 			updateStatus = pstmt.executeUpdate();
 			
 		} catch (Exception e) {

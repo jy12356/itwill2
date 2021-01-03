@@ -31,6 +31,7 @@ public class BookDibsListInsertAction implements Action {
 		}else {
 			BookDibsInsertService bookDibsInsertService = new BookDibsInsertService();
 			boolean isDibsoverlap = bookDibsInsertService.checkBookDibsOverlap(isbn,id);
+			System.out.println(isDibsoverlap);
 			if(isDibsoverlap == true) {
 				response.setContentType("text/html; charset=UTF-8"); 
 				PrintWriter out = response.getWriter();
@@ -40,6 +41,7 @@ public class BookDibsListInsertAction implements Action {
 				out.println("</script>"); // 자바스크립트 끝 태그
 			}else {
 				boolean isInsertSuccess = bookDibsInsertService.insertBookDibs(isbn,id);
+				
 				if(!isInsertSuccess) {
 					response.setContentType("text/html; charset=UTF-8"); 
 					PrintWriter out = response.getWriter();
