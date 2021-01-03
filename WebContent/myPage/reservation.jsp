@@ -67,49 +67,43 @@ int listCount = pageInfo.getListCount();
 				</div>
 
 				<div class="paging">
-					<%
-						if (nowPage <= 1) {
-					%>
-					<a href="ReservationList.rn?page=1" class="arr" data-page-num="1">
-						<img src="images/p-first.png"><span class="hide">처음페이지</span>
-					</a> <a href="ReservationList.rn?page=<%=nowPage - 1%>"
-						class="arr prev" data-page-num="<%=nowPage - 1%>"> <img
-						src="images/p-prev.png"><span class="hide">이전페이지</span>
-					</a>
-					<%
-						}
-					%>
-					<%
-						for (int i = startPage; i <= endPage; i++) {
-						if (i == nowPage) {
-					%>
-					<a href="ReservationList.rn?page=<%=i%>" class="on fir"
-						data-page-num="<%=i%>"><%=i%></a>
-					<%
-						} else {
-					%>
-					<a href="ReservationList.rn?page=<%=i%>" class=""
-						data-page-num="<%=i%>"><%=i%></a>
-					<%
-						}
-					%>
-					<%
-						}
-					%>
-					<%
-						if (nowPage >= maxPage) {
-					%>
-					<a href="ReservationList.rn?page=<%=nowPage + 1%>"
-						class="arr next" data-page-num="<%=nowPage + 1%>"> <img
-						src="images/p-next.png"><span class="hide">다음페이지</span>
-					</a> <a href="ReservationList.rn?page=<%=maxPage%>" class="arr"
-						data-page-num="<%=maxPage%>"> <img src="images/p-last.png"><span
-						class="hide">마지막페이지</span>
-					</a>
-					<%
-						}
-					%>
-				</div>
+                            	<a href="ReservationList.rn?page=1" class="arr" data-page-num="1">
+										<img src="images/p-first.png"><span class="hide">처음페이지</span>
+								</a>
+                            	<%if(nowPage <=1) {%>
+									
+                            		<a href="ReservationList.rn?page=<%=nowPage%>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								<%}else{%>
+								<a href="ReservationList.rn?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								
+								<%} %>
+								
+								<%for(int i = startPage; i <= endPage; i++) { 
+										if(i == nowPage) { %>
+											<a href="ReservationList.rn?page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
+										<%} else { %>
+											<a href="ReservationList.rn?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
+										<%} %>
+								<%} %>
+								
+                            	<%if(nowPage >= maxPage) { %>
+									<a href="ReservationList.rn?page=<%=nowPage%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+	                            <%}else{%>   
+	                            	<a href="ReservationList.rn?page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+                            	<%} %>
+	                            	<a href="ReservationList.rn?page=<%=maxPage%>" class="arr" data-page-num="781">
+                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
+                               		</a>
+								                             
+                            </div>
 			</div>
 		</div>
 
