@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
 import action.Action;
 import svc.review.ReCommentDeleteProService;
 import svc.review.ReviewDeleteProService;
@@ -34,35 +36,42 @@ public class ReCommentDeleteProAction implements Action {
 		System.out.println("작성자 :" + comment_id);
 		
 		ReCommentDeleteProService reCommentDeleteProService = new ReCommentDeleteProService();
-		
 		boolean isCommentWriter = reCommentDeleteProService.isCommentWriter(comment_num, board_num, board_type, comment_id);
-		
+
+		JSONObject json = new JSONObject();
 		// 작성자 일치 판별
 		if(!isCommentWriter) { // 아이디가 틀릴 경우
-			response.setContentType("text/html;charset=UTF-8");
+			json.put("text", "삭제권한이 없습니다!");
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('삭제 권한이 없습니다!')");
-			out.println("history.back()");
-			out.println("</script>");			
+//			out.println("<script>");
+//			out.println("alert('삭제 권한이 없습니다!')");
+//			out.println("history.back()");
+//			out.println("</script>");
+			out.print(json.toString());
 		} else { // 아이디가 일치 할 경우
 			boolean isDeleteSuccess = ReCommentDeleteProService.removeComment(comment_num);
 			// 삭제 작업 요청 결과 판별
 			if(!isDeleteSuccess) { // 삭제 실패 시
 				// 자바스크립트를 활용하여 "삭제 실패!" 출력 후
 				// 이전페이지로 이동
-				response.setContentType("text/html;charset=UTF-8");
+				json.put("text", "댓글삭제 실패!");
+				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('삭제 실패!')");
-				out.println("history.back()");
+//				out.println("<script>");
+//				out.println("alert('삭제 실패!')");
+//				out.println("history.back()");
+				out.print(json);
 			} else {
-				forward = new ActionForward();
-				forward.setPath("BookDetail.bok?isbn="+book_isbn);
-				forward.setRedirect(true);
+				json.put("text", "댓글을 삭제하였습니다");
+				PrintWriter out = response.getWriter();
+				out.print(json);
+//				forward = new ActionForward();
+//				forward.setPath("BookDetail.bok?isbn="+book_isbn);
+//				forward.setRedirect(true);
 			}
 		}
-		return forward;
+		return null;
 		
 	}
 
