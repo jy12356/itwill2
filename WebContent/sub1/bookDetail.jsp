@@ -507,23 +507,95 @@ int listCount = pageInfo.getListCount();
 	};
 	
 	// 댓글 삭제
-	function delchk(){
-		if(confirm("댓글을 삭제하시겠습니까?")==true){
+	function comment_delete(){
+		alert("댓글삭제");
+		var isbn=$(this).data("isbn");
+		var board_type=$(this).data("board_type");
+		var board_num=$(this).data("board_num");
+		var comment_num=$(this).data("comment_num");
+		var comment_id= "<%=(String)session.getAttribute("id")%>";
+		alert(isbn);
+		alert(board_type);
+		alert(board_num);
+		alert(comment_num);
+		alert(comment_id);
+		if(confirm("댓글을 삭제하시겠습니까?")==true) {
+			$.ajax({
+				type : "GET",
+				data : "json",
+				url : "ReCommentDeletePro.re",
+				data : {
+					"isbn" : isbn,
+					"board_type" : board_type,
+					"board_num" : board_num,
+					"comment_num" : comment_num,
+					"comment_id" : comment_id,
+				},
+				success : function(data) {
+					alert("정상적으로 삭제 되었습니다.");
+					reply_write(board_num);
+				},
+				error : function(error) {
+					alert("오류발생" + error);
+				}
+			});
 		} else {
 			return false;
-		} 
+		}
 	}
 	
 	// 댓글 수정창 열기
-	function comment_Modi() {
-		alert("comment_num");
+	function comment_Modi_Open() {
 		if($(".comment-text").css("display")=="none"){
 			$(".comment-text").show();
 		} else {
 			$(".comment-text").hide();
+			reply_write(board_num);
 			}
 		}
+	
+	// 댓글 수정
+	function comment_Modi(){
+		alert("댓글수정");
+		var isbn = $('input[name="isbn"]').val();
+		var board_type = $('input[name="board_type"]').val();
+		var board_num = $('input[name="board_num"]').val();
+		var comment_num = $('input[name="comment_num"]').val();
+		var comment_id = "<%=(String)session.getAttribute("id")%>";
+		var comment_desc = $('textarea[name="comment_desc"]').val();
+		alert(isbn);
+		alert(board_type);
+		alert(board_num);
+		alert(comment_num);
+		alert(comment_id);
+		alert(comment_desc);
+		if(confirm("댓글을 수정하시겠습니까?")==true) {
+			$.ajax({
+				type : "GET",
+				data : "json",
+				url : "ReCommentModifyPro.re",
+				data : {
+					"isbn" : isbn,
+					"board_type" : board_type,
+					"board_num" : board_num,
+					"comment_num" : comment_num,
+					"comment_id" : comment_id,
+					"comment_desc" : comment_desc
+				},
+				success : function(data) {
+					alert("정상적으로 등록이 되었습니다.");
+					comment_Modi_Open();
+				},
+				error : function(error) {
+					alert("오류발생" + error);
+				}
+			});
+		} else {
+			return false;
+		}
+	}
 
+	
 	$(document).ready(
 			function() {
 				$(".my-review").on("click", function() {
@@ -597,23 +669,24 @@ int listCount = pageInfo.getListCount();
 	                				'</div>'+
 	                				'<div class="btn_inner">'+
 // 	                				'<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>'+
-	                				'<a href="javascript:;" onclick="comment_Modi();" class="comment_modi_show btn rview_modi_show" data-comment_num="'+entry["comment_num"]+'">수정</a>'+
-	                				'<a href="ReCommentDeletePro.re?comment_num='+entry["comment_num"]+'&board_num='+entry["board_num"]+'&board_type=2&id='+id+'&isbn='+isbn+'" class="delete-btn btn"  onclick="return delchk();">삭제</a>'+
+	                				'<a href="javascript:;" onclick="comment_Modi_Open();" class="comment_modi_show btn rview_modi_show" data-comment_num="'+entry["comment_num"]+'">수정</a>'+
+	                				'<a href="javascript:;" onclick="comment_delete();" class="comment_delete_show btn" data-comment_num="'+entry["comment_num"]+'">삭제</a>'+
 	                				'</div>'+
 
 	                				'<div class="comment-text" style="display: none;">'+
-	                				'<form action="ReCommentModifyPro.re" class="comment-write reply-write" method="post" id="MyReModify">'+
+	                				'<form action="javascript:;" class="comment-write reply-write" method="post" id="MyReModify">'+
+// 	                				'<form action="ReCommentModifyPro.re" class="comment-write reply-write" method="post" id="MyReModify">'+
 	                				'<div>'+
 	                				'<input type="hidden" name="isbn" value="'+isbn+'">'+
 // 	                				'<input type="hidden" name="page" value='+page+'>'+
 	                				'<input type="hidden" name="comment_num" value="'+entry["comment_num"]+'">'+
 	                				'<input type="hidden" name="board_num" value="'+entry["board_num"]+'">'+
 	                				'<input type="hidden" name="board_type" value="2">'+
-	                				'<input type="hidden" name="id" value="'+id+'">'+
-	                				'<textarea name="comment_desc">'+entry["comment_desc"]+'</textarea>'+
+	                				'<input type="hidden" name="comment_id" value="'+id+'">'+
+	                				'<textarea name="comment_desc">'+entry.comment_desc+'</textarea>'+
 	                				'</div>'+
 	                				'<div class="btn_inner">'+
-	                				'<input type="submit" value="수정" class="btn reviewInput ReComment_Modify">'+
+	                				'<input type="submit" value="수정" onclick="comment_Modi();" class="btn reviewInput ReComment_Modify">'+
 	                				'<input type="reset" value="취소" onclick="modi_close();" class="btn reviewCancele">'+
 	                				'</div>'+
 	                				'</form>'+
@@ -627,6 +700,48 @@ int listCount = pageInfo.getListCount();
 						}
 					});
 				}
+				
+// 				// 댓글리스트(수정해보는중)
+// 				function reply_write(board_num){
+<%-- 					var id = '<%=(String)session.getAttribute("id")%>'; --%>
+// // 					var page = $('input[name="page"]').val();
+// 					var isbn = $('input[name="isbn"]').val();
+// 					var board_type = $('input[name="board_type"]').val();
+// 					var board_num = board_num;
+// 					$.ajax({
+// 						type : "GET",
+// 						data : "json",
+// 						url : "ReCommentList.re",
+// 						data : {
+// // 							"page" : page,
+// 							"isbn" : isbn,
+// 							"board_type" : board_type,
+// 							"board_num" : board_num
+// 						},
+// 						success : function(json) {
+// 							console.log(json);
+// 							var str = "";
+// 							var obj = JSON.parse(json);											
+// 							$(obj).each(function () {
+// 						            str +=  "<p class='comment_num>" + this.comment_num + "</p>"
+// 						                +   "<p class='comment_id'>" + this.comment_id + "</p>"
+// 						                +   "<p class='comment_id'>" + this.comment_desc + "</p>"
+// 						                +   "<button type='button' onclick='comment_Modi();' class='btn data-toggle='modal' data-comment_num='"+ this.comment_num +"'>댓글 수정</button>"
+// 						      		 	+   "<div class='comment-text' style='display: none;''>"
+// 						                +	"<form action='script:;' class='comment-write reply-write' method='post' id='MyReModify'>"
+// 						                + 	"<textarea name='comment_desc'>" + this.comment_desc+ "</textarea>"
+// 						                + 	"</form>"
+// 	 	                				+	"</div>" ;
+						                
+
+// 						        });
+// 						        $(".reply").html(str);
+// 						},
+// 						error : function(error) {
+// 							alert("오류 발생" + error);
+// 						}
+// 					});
+// 				}
 								
 				//댓글 입력창 보이기(수정)
 				$(".comment_modify").on("click",function() {
