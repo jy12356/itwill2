@@ -69,8 +69,12 @@ public class BookWriteProAction implements Action {
 				out.println("history.back()"); // 이전 페이지로 이동
 				out.println("</script>"); // 자바스크립트 끝 태그
 			} else {
+				System.out.println("등록되었습니다.");
 				forward = new ActionForward();
-				forward.setPath("/sub1/bookList.jsp?catg1="+catg1+"&catg2="+catg2);
+				System.out.println(bookBean.getCatg1() +", " +bookBean.getCatg2());
+				forward.setPath("BookList.bok?catg1="+bookBean.getCatg1()+"&catg2="+bookBean.getCatg2());
+				System.out.println(forward.getPath());
+				forward.setRedirect(true);
 			}
 		}else{
 			response.setContentType("text/html; charset=UTF-8"); 
