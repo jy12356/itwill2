@@ -102,8 +102,9 @@ String nowPage = request.getParameter("page");
 
 							</table>
 							<div class="btn_inner">
-								<input type="submit" class="btn" value="수정"> <a
-									href="javascript:window.history.back();" class="btn">취소</a>
+								<input type="submit" class="btn" value="수정"> 
+									<input type="button" onClick="history.back();" class="btn" value="취소">
+<!-- 								<a href="javascript:window.history.back();" class="btn">취소</a> -->
 							</div>
 						</div>
 					</div>
