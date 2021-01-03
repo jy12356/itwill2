@@ -51,8 +51,7 @@ int listCount = pageInfo.getListCount();
 								<td class="tac check_box"><input type="checkbox"
 									id="checkbox_num" class="check_num"
 									value="<%=reservationList.get(i).getNum()%>" name="inter_num"></td>
-								<td><a
-									href="BookDetail.bok?isbn=<%=reservationList.get(i).getIsbn()%>"><%=reservationList.get(i).getTitle()%></td>
+								<td><a href="BookDetail.bok?isbn=<%=reservationList.get(i).getIsbn()%>"><%=reservationList.get(i).getTitle()%></td>
 								<td><%=reservationList.get(i).getSeq()%></td>
 								<td><%=reservationList.get(i).getDate()%></td>
 							</tr>

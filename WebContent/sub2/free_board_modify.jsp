@@ -50,7 +50,7 @@ String nowPage = request.getParameter("page");
 										<!-- 제목 -->
 										<td>제목</td>
 										<td colspan="3"><input type="text" name="title"
-											style="text-align: center"
+											style="text-align: left;"
 											value="<%=article.getBoard_subject()%>" required="required">
 										</td>
 									</tr>
