@@ -235,7 +235,7 @@ font-weight:600;box-shadow:0 2px #f2f2f2;border-radius:4px;float:right;}
 .today-hot{width:100%;height:382px;background:#f4f4f4;position:relative;text-align:center;}
 /*.today-hot:after{content:"";position:absolute;bottom:0;left:50%;margin-left:-450px;width:900px;height:27px;background:url(../images/slider-wave.jpg) no-repeat left center;}*/
 .hot-title{padding-top:24px;font-size:24px;color:#333;font-weight:600;}
-.hot-title a{font-size:16px;font-weight:600;line-height:22px;color:#333;letter-spacing:-1px;}
+.hot-title a{display: block;width: 159px;font-size:16px;font-weight:600;line-height:22px;color:#333;letter-spacing:-1px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 section.romance .hot-title {color: #da4585;}
 section.bl .hot-title {color: #dc6c60;}
 section.fanmu .hot-title {color: #6574c0;}
@@ -285,25 +285,7 @@ background: linear-gradient(to right,rgba(0,0,0,.3) 0,rgba(0,0,0,0) 4%,rgba(0,0,
 .about{padding:10px;/* padding-top:40px; */color:#fff;text-align:center;display:none;height: auto;font-weight:600;}
 .slider ul li:hover .about{display:block;}
 .about h2{font-size:14px;margin-bottom:10px;}
-.about p{
-
-display: block;
-
-font-size:13px;
-
-height: auto;
-
-text-overflow: ellipsis;
-
-display: -webkit-box;
-
--webkit-line-clamp: 3;
-
--webkit-box-orient: vertical;
-
-overflow-wrap: break-word;
-
-}
+.about p{font-size:13px;max-height: 182px;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 14;-webkit-box-orient: vertical;overflow-wrap: break-word;overflow: hidden;}
 .hot-info{width:150px;margin:0 auto;padding:15px 0;text-align:left;}
 .hot-info p.hot-title{margin-bottom:4px;font-size:16px;color:#333;line-height:20px;font-weight:600;}
 .hot-info p{padding:0 6px;font-size:12px;color:#999;}
@@ -969,7 +951,7 @@ border-bottom-left-radius:0 0;}
 .list-page div.thum .book-list:after{content:"";display:block;clear:both;}
 .list-page div.thum .book-list li{float:left;padding:27px 15px 20px 15px;border-bottom:none;}
 .list-page div.thum .book-list li .figure{}
-.list-page div.thum .book-list li .hot-info{width:150px;margin:0 auto;padding:15px 0;text-align:left;box-sizing:border-box;height:200px;overflow:hidden;}
+.list-page div.thum .book-list li .hot-info{width:150px;margin:0 auto;padding:15px 0;text-align:left;box-sizing:border-box;height: 104px;overflow:hidden;}
 .list-page div.thum .book-list li .hot-info p{font-weight:600;}
 .list-page div.thum .book-list li .hot-info .hot-title{margin-bottom:5px;line-height:20px;font-size:15px;}
 .list-page div.thum .book-list li .hot-info .hot-author{margin-bottom:7px;font-size:12px;color:#999;}

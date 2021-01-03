@@ -14,7 +14,7 @@ public class MainListService {
 		Connection con= getConnection();
 		BookDAO bookDAO = BookDAO.getInstance();
 		bookDAO.setConnection(con);
-		listCount = bookDAO.selectListCount();
+		listCount = bookDAO.selectListCounMain();
 		close(con);
 		return listCount; 
 	}

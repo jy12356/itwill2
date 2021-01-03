@@ -38,6 +38,8 @@ public class BookWriteProAction implements Action {
 		
 		//전달할 데이터를 BoardBean객체에 저장
 		String isbn =multi.getParameter("isbn");
+		String catg1= multi.getParameter("catg1");
+		String catg2= multi.getParameter("catg2");
 		BookBean bookBean = new BookBean();
 		bookBean.setTitle(multi.getParameter("title"));
 		if(multi.getOriginalFileName("image") !=null) {
@@ -68,8 +70,7 @@ public class BookWriteProAction implements Action {
 				out.println("</script>"); // 자바스크립트 끝 태그
 			} else {
 				forward = new ActionForward();
-				forward.setPath("BookList.bok");
-				forward.setRedirect(true);
+				forward.setPath("/sub1/bookList.jsp?catg1="+catg1+"&catg2="+catg2);
 			}
 		}else{
 			response.setContentType("text/html; charset=UTF-8"); 
