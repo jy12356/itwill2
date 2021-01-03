@@ -69,7 +69,7 @@ public class ReviewLikeCountAction implements Action {
 				
 			}
 		}
-			return null;
+			return forward;
 	}
 
 }

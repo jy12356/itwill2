@@ -135,13 +135,13 @@
                                 	<input type="hidden" class="bookstate" value="<%=bookList.get(i).getState()%>">
                                 	
                                     <div class="figure">
-                                        <a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>&page=<%=nowPage%>">
+                                        <a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>&limit=10">
                                             <span class="rm_br"><img src="bookUpload/<%=bookList.get(i).getImage()%>" alt="도서 이미지" /></span>
                                             <span class="light"></span>
                                         </a>
                                     </div>
                                     <div class="hot-info">
-                                        <p class="hot-title"><a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&page=<%=nowPage%>&title=<%=bookList.get(i).getTitle() %>"><%=bookList.get(i).getTitle() %></a></p>
+                                        <p class="hot-title"><a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle() %>&limit=10"><%=bookList.get(i).getTitle() %></a></p>
                                         <p class="hot-author"><%=bookList.get(i).getAuthor()%><em>|</em><%=bookList.get(i).getPublisher()%><em>|</em>
                                         	
                                         	<%=bookList.get(i).getPubdate()%>
@@ -199,6 +199,9 @@
 							<%} %>
 							
                             <div class="paging">
+                            	<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=1" class="arr" data-page-num="1">
+										<img src="images/p-first.png"><span class="hide">처음페이지</span>
+								</a>
                             	<%if(nowPage <=1) {%>
 									
                             		<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage%>" class="arr prev" data-page-num="1">
@@ -210,9 +213,7 @@
 									</a>
 								
 								<%} %>
-								<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=1" class="arr" data-page-num="1">
-										<img src="images/p-first.png"><span class="hide">처음페이지</span>
-								</a>
+								
 								<%for(int i = startPage; i <= endPage; i++) { 
 										if(i == nowPage) { %>
 											<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>

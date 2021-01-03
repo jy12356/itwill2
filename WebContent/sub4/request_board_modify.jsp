@@ -31,7 +31,12 @@
 									<col width="*">
 								</colgroup>
 								<tbody>
-								
+		                        	<tr>
+			                            <td>신청자</td>
+			                            <td colspan="3">
+			                            	<input type="text" name="id" value="<%=id%>" readonly="readonly">
+			                            </td>
+			                        </tr>
 	                            	<tr>
 										<th>도서명 <em><font color="red">(*)</font></em></th>
 										<td><input type="text" name="subject" value="<%=article.getSubject()%>" required="required"></td>

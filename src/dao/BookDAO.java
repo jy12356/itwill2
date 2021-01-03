@@ -97,7 +97,7 @@ public class BookDAO {
 		int startRow=(page-1)*limit;
 		
 		String sql = "select b.*,r.count review, r.starcount starcount  from book b left outer join "
-				+ "(select isbn, count(*) count,round(10/sum(starcount),1) starcount from review  group by isbn) r "
+				+ "(select isbn, count(*) count,round(AVG(starcount),1) starcount from review  group by isbn) r "
 				+ "on b.isbn = r.isbn where title like ? and catg1 like ? and catg2 like ? "
 				+ "order by pubdate desc limit ?,?";
 		try {
@@ -343,14 +343,40 @@ public class BookDAO {
 		}
 		
    //전체책 갯수
-   public int selectListCount() {
+   public int selectListCount(String catg1, String catg2, String search) {
+      System.out.println("BookDAO - selectListCount()");
+      int listCount = 0;
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
+      String sql = "select count(*) from book where  catg1 like ? and  catg2 like ? and  title like ? ";
+      try {
+    	  pstmt=con.prepareStatement(sql);
+    	  pstmt.setString(1, catg1+"%");
+	      pstmt.setString(2, catg2+"%");
+	      pstmt.setString(3, "%"+search+"%");
+         rs = pstmt.executeQuery();
+         if(rs.next()) {
+            listCount = rs.getInt(1);
+         }
+         
+      }catch (Exception e) {
+         System.out.println("selectListCount 오류!:"+e.getMessage());
+         e.printStackTrace();
+      }
+      
+            
+      
+      return listCount;
+   }
+   //전체책 갯수
+   public int selectListCounMain() {
       System.out.println("BookDAO - selectListCount()");
       int listCount = 0;
       PreparedStatement pstmt = null;
       ResultSet rs = null;
       String sql = "select count(*) from book";
       try {
-         pstmt=con.prepareStatement(sql);
+    	  pstmt=con.prepareStatement(sql);
          rs = pstmt.executeQuery();
          if(rs.next()) {
             listCount = rs.getInt(1);

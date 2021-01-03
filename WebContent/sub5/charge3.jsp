@@ -65,25 +65,25 @@
 	</div>
                     <div class="paging">
                   	<%if(nowPage <= 1) {%>
-						<a href="BookDibsList.bok?page=1" class="arr" data-page-num="1">
+						<a href="ChargeList2.dok?page=1" class="arr" data-page-num="1">
 							<img src="images/p-first.png"><span class="hide">처음페이지</span>
 						</a>
-                         		<a href="BookDibsList.bok?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="<%=nowPage - 1 %>">
+                         		<a href="ChargeList2.dok?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="<%=nowPage - 1 %>">
 							<img src="images/p-prev.png"><span class="hide">이전페이지</span>
 						</a>
 					<%}%>
 					<%for(int i = startPage; i <= endPage; i++) { 
 							if(i == nowPage) { %>
-								<a href="BookDibsList.bok?page=<%=i %>" class="on fir" data-page-num="<%=i %>"><%=i %></a>
+								<a href="ChargeList2.dok?page=<%=i %>" class="on fir" data-page-num="<%=i %>"><%=i %></a>
 							<%} else { %>
-								<a href="BookDibsList.bok?page=<%=i %>" class="" data-page-num="<%=i %>"><%=i %></a>
+								<a href="ChargeList2.dok?page=<%=i %>" class="" data-page-num="<%=i %>"><%=i %></a>
 							<%} %>
 					<%} %>
                    	<%if(nowPage >= maxPage) { %>
-						<a href="BookDibsList.bok?page=<%=nowPage + 1 %>" class="arr next" data-page-num="<%=nowPage + 1 %>">
+						<a href="ChargeList2.dok?page=<%=nowPage + 1 %>" class="arr next" data-page-num="<%=nowPage + 1 %>">
                         		<img src="images/p-next.png"><span class="hide">다음페이지</span>
                        	</a>
-                       	<a href="BookDibsList.bok?page=<%=maxPage%>" class="arr"data-page-num="<%=maxPage%>">
+                       	<a href="ChargeList2.dok?page=<%=maxPage%>" class="arr"data-page-num="<%=maxPage%>">
                       		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
                    		</a>
 					<%}%>                                

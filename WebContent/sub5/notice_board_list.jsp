@@ -5,9 +5,9 @@
 	pageEncoding="UTF-8"%>
 <%
 	String id = (String) session.getAttribute("id");
-if (id == null) {
-	id = "admin";
-}
+// if(id==null) { // 로긴안한상태면 로그인화면으로
+// 	response.sendRedirect("../member.login.jsp");
+// }
 
 // 전달받은 request 객체로부터 데이터 가져오기
 // "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
@@ -35,20 +35,18 @@ int listCount = PageInfo.getListCount();
 	<div class="contents-wrap">
 		<div class="customer">
 			<h3 class="coTitle">공지사항</h3>
-				<div class="boxmenu1-top-menu">
-				<ul>
-					<li><a href="QnaList.qna"><em>1:1문의</em></a></li>
-					<li><a href="../customer.asp?page=faq"><em>FAQ</em></a></li>
-					<li class="on"><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li>
-				</ul>
-			</div>
+<!-- 				<div class="boxmenu1-top-menu"> -->
+<!-- 				<ul> -->
+<!-- 					<li class="on"><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
 			<div class="customer-contents">
 				<div class="customer-inner">
 					<table summary="공지사항" class="customer-table notice">
 
 						<caption>공지사항</caption>
 						<colgroup>
-							<col style="width: 10%;">
+<!-- 							<col style="width: 10%;"> -->
 							<col style="width: 50%;">
 							<col style="width: 20%;">
 							<col style="width: 15%;">
@@ -56,7 +54,7 @@ int listCount = PageInfo.getListCount();
 						</colgroup>
 						<thead>
 							<tr>
-								<th scope="col" abbr="번호">번호</th>
+<!-- 								<th scope="col" abbr="번호">	번호</th> -->
 								<th scope="col" abbr="제목">제목</th>
 								<th scope="col" abbr="작성자">작성자</th>
 								<th scope="col" abbr="등록일">등록일</th>
@@ -71,8 +69,8 @@ int listCount = PageInfo.getListCount();
 								for (int i = 0; i < articleList.size(); i++) {
 							%>
 							<tr>
-								<td align="center" class = "tac"><%=articleList.get(i).getNum()%></td>
-								<td>
+<%-- 								<td align="center" class = "tac"><%=articleList.get(i).getNum()%></td> --%>
+								<td class = "tac">
 								<a href="NoticeBoardDetail.not?num=<%=articleList.get(i).getNum()%>">
 										<%=articleList.get(i).getSubject()%></a>
 								</td>

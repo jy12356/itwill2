@@ -17,18 +17,8 @@ public class ReviewWriteProAction implements Action {
 		System.out.println("ReviewWriteProAction!");
 		
 		ActionForward forward = null;
-		
-//		// 현재 컨텍스트(객체) 정보 가져오기 위해  request 객체의 getServletContext() 메서드를 호출
-//		ServletContext context = request.getServletContext();
 			
-		ReviewBean reviewBean = new ReviewBean();
-		
-		// 12.06 
-//		System.out.println("글쓴이 : " + request.getParameter("id")); 
-//		System.out.println("글내용 : " + request.getParameter("content"));
-//		System.out.println("별점 : " + Integer.parseInt(request.getParameter("starcount")));
-//		System.out.println("스포 : " + Integer.parseInt(request.getParameter("spoiler")));
-		 
+		ReviewBean reviewBean = new ReviewBean();	 
 
 		String book_isbn = request.getParameter("isbn");
 		String page=request.getParameter("page");
@@ -62,7 +52,7 @@ public class ReviewWriteProAction implements Action {
 		} else {
 			// 리뷰 등록 성공시
 			forward = new ActionForward();
-			forward.setPath("BookDetail.bok?isbn="+book_isbn+"&page="+page);
+			forward.setPath("BookDetail.bok?isbn="+book_isbn);
 			forward.setRedirect(true);			
 		}
 		return forward;

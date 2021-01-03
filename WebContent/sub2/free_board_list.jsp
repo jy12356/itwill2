@@ -4,28 +4,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	// 	String id = (String) session.getAttribute("id");
-// if (id == null) {
-// 	id = "홍길동";
-// }
-
-// String id = (String) session.getAttribute("id"); //
-// if(id==null) { 
-// // 	response.sendRedirect("../member.login.jsp");
-// }
-
-// 전달받은 request 객체로부터 데이터 가져오기
-// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
-// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
-// 전부 Object타입이라 형변환 필요
-ArrayList<FreeBoardBean> articleList = (ArrayList<FreeBoardBean>) request.getAttribute("articleList");
+	ArrayList<FreeBoardBean> articleList = (ArrayList<FreeBoardBean>) request.getAttribute("articleList");
 PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 int nowPage = pageInfo.getPage();
 int maxPage = pageInfo.getMaxPage();
 int startPage = pageInfo.getStartPage();
 int endPage = pageInfo.getEndPage();
 int listCount = pageInfo.getListCount();
-
 %>
 
 <jsp:include page="../include/header.jsp" />
@@ -41,13 +26,12 @@ int listCount = pageInfo.getListCount();
 	<div class="contents-wrap">
 		<div class="sub_container">
 			<h3 class="coTitle">자유게시판</h3>
-			<div class="boxmenu1-top-menu">
-				<ul>
-					<li class="on"><a href="FreeBoardList.free"><em>자유게시판</em></a></li>
-					<li><a href="RequestList.rq"><em>희망도서신청</em></a></li>
-					<li><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li>
-				</ul>
-			</div>
+<!-- 			<div class="boxmenu1-top-menu"> -->
+<!-- 				<ul> -->
+<!-- 					<li class="on"><a href="FreeBoardList.free"><em>자유게시판</em></a></li> -->
+<!-- 					<li><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
 			<div class="customer-contents">
 				<div class="customer-inner">
 					<table summary="공지사항" class="customer-table notice">
@@ -83,13 +67,13 @@ int listCount = pageInfo.getListCount();
 								<td>
 									<%
 										if (articleList.get(i).getBoard_re_lev() != 0) {
-									%> <%
- 	for (int j = 0; j <= articleList.get(i).getBoard_re_lev() * 2; j++) {
- %> &nbsp; <%
- 	}
- %> ▶ <%
- 	}
- %>  <a
+									
+ 										for (int j = 0; j <= articleList.get(i).getBoard_re_lev() * 2; j++) {
+ 									%> &nbsp; <%
+ 										}
+ 										%> ▶ <%
+ 										}
+ 										%> <a
 									href="FreeBoardDetail.free?board_num=<%=articleList.get(i).getBoard_num()%>&page=<%=nowPage%>&board_type=<%=1%>&limit=10">
 										<%=articleList.get(i).getBoard_subject()%>
 								</a>
@@ -103,22 +87,30 @@ int listCount = pageInfo.getListCount();
 							%>
 						</tbody>
 					</table>
-					<% 
-					String id = (String) session.getAttribute("id"); //
-					
-					if(id!=null) { 
-						%>
-						<div class="btn_inner">
+					<%
+						String id = (String) session.getAttribute("id"); //
+
+// 					if (id != null) {
+					%>
+					<div class="btn_inner">
 						<a href="FreeBoardWriteForm.free" class="btn">글쓰기</a>
 					</div>
-						<%
-					}
+					<%
+// 						}
 					%>
-					
+					<input type="hidden" name="id" id="myId" value="<%=id%>">
+<script type="text/javascript">
+$(".btn").on("click", function() {
+	var myid = document.getElementById('myId').value;
+	if (myid == "null") {
+		alert("로그인 해주시길 바랍니다.");
+		return false;
+	}
+});
+
+</script>
 
 					<div class="paging">
-<!-- 						<a href="free_board.jsp?pageNum=1" class="arr" data-page-num="1"><img -->
-<!-- 							src="../images/p-first.png"><span class="hide">처음페이지</span></a> -->
 
 						<!-- 이전페이지 -->
 						<%

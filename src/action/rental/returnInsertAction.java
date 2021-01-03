@@ -11,11 +11,14 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import svc.Mybasket.MyBasketInsertService;
 import svc.msg.MsgSpanService;
+import svc.qna.QnaDeleteProService;
 import svc.rental.RentalInsertService;
+import svc.rental.ReturnDeleteProService;
 import svc.rental.ReturnInsertService;
 import vo.ActionForward;
 import vo.MsgBean;
 import vo.RentalBean;
+import vo.ReturnedBean;
 
 public class returnInsertAction implements Action {
 
@@ -25,19 +28,16 @@ public class returnInsertAction implements Action {
 		ActionForward forward = null;
 		
 		int num = Integer.parseInt(request.getParameter("num"));
-		String state = request.getParameter("state");
-		RentalBean article = new RentalBean();
-		article.setState(state);
-		article.setNum(num);
 		
-		ReturnInsertService returnInsertService = new ReturnInsertService();
-		boolean isModifySuccess = returnInsertService.registArticle(article);
 		
-		if(!isModifySuccess) {
+		ReturnDeleteProService returnDeleteProService = new ReturnDeleteProService();
+		boolean isDeleteSuccess = returnDeleteProService.removeArticle(num);
+		
+		if(!isDeleteSuccess) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('구매 실패!')");
+			out.println("alert('반납 실패!')");
 			out.println("history.back()");
 			out.println("</script>");
 		}else {
@@ -60,6 +60,8 @@ public class returnInsertAction implements Action {
 				out.println("</script>"); // 자바스크립트 끝 태그
 			}else {
 				forward = new ActionForward();
+				ReturnedBean returnedBean = new ReturnedBean();
+				returnedBean.setNum(num);
 				forward.setPath("Return.rn");
 				forward.setRedirect(true);
 			}

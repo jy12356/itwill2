@@ -200,9 +200,8 @@ int listCount = pageInfo.getListCount();
 								<li>
 									<h4>회원관리</h4>
 									<ul>
-										<li><a href="http://localhost:8080/itwill2th/MemberList.me" class="">회원목록</a></li>
-										<li><a href="BookDibsList.bok" class="">대출관리</a></li>
-										<li><a href="Return.rn" class="">대출관리</a></li>
+										<li><a href="MemberList.me" class="on">회원목록</a></li>
+										<li><a href="Return.rn" class="">대출반납관리</a></li>
 									</ul>
 								</li>
 								<li>
@@ -331,9 +330,9 @@ int listCount = pageInfo.getListCount();
                                		</a>
 						</div>
 					</div>
-
+					</div>
 				</div>
-
+				</div>
 			</div>
 	</section>
     
@@ -344,59 +343,78 @@ int listCount = pageInfo.getListCount();
 	google.load("visualization", "1.0", {
 	     callback: function () {
 	       var queryObjectLen="";
+	       // 리스트 생성
 	       var arr1 = new Array() ;
 	       var arr2 = new Array() ;
+
 	       var arr3 = new Array() ;
+
 	       var arr4 = new Array() ;
 	       
 	       $.ajax({
 	    	   
     	    type: "POST", 
 			url : "MemberListCal.me",
-            contentType: "charset=UTF-8", 
 			dataType : "json",
 			success : function(data) {
  				queryObjectLen = data.length;
- 				alert(queryObjectLen+" . "+JSON.stringify(data));
- 				
+ 				alert(queryObjectLen);
 				$.each(data, function( index, responseObj){ 
 
 				    // 객체 생성
 			        var obj1 = new Object() ;
-					obj1.catg_count = responseObj.catg_count;
-					obj1.catg = responseObj.catg;
+					    obj1.catg_count = responseObj.catg_count;
+					    obj1.catg = responseObj.catg;
+
+
 		            // 리스트에 생성된 객체 삽입
-		            arr1.push(obj1) ;
-		           
+					if(obj1.catg_count !=  undefined || obj1.catg != undefined){
+		            	arr1.push(obj1) ;
+					}
+
 		 	        var obj2 = new Object() ;
 		            obj2.date = responseObj.date;
 					obj2.id_count = responseObj.id_count;
-					arr2.push(obj2) ;
+					if(obj2.date !=  undefined || obj2.id_count != undefined){
+		            	arr2.push(obj2) ;
+					}
+					
 
 			        var obj3 = new Object() ;	
 		            obj3.qna_genre = responseObj.qna_genre;
 					obj3.qna_count = responseObj.qna_count;
-					arr3.push(obj3) ;
+
+					if(obj3.qna_genre !=  undefined || obj2.qna_count != undefined){
+						arr3.push(obj3) ;
+					}
+					
 
 				    var obj4 = new Object() ;
 		            obj4.retal_count = responseObj.retal_count;
 					obj4.s_date = responseObj.s_date;
-					arr4.push(obj4) ;
+
+					if(obj4.retal_count !=  undefined || obj4.s_date != undefined){
+						arr4.push(obj4) ;
+					}
+		            
+		            					
 				});
 				 // String 형태로 변환
-				arr1 = $.grep(arr1,function(n){ return n == " " || n; }); // 배열 빈요소 제거
 		        var jsonData1 = JSON.stringify(arr1) ;
-				
-		        /* arr2 = $.grep(arr2,function(n){ return n == " " || n; });  */
 		        var jsonData2 = JSON.stringify(arr2) ;
-		        
-		        arr3 = $.grep(arr3,function(n){ return n == " " || n; }); 
 		        var jsonData3 = JSON.stringify(arr3) ;
-		        
-		        arr4 = $.grep(arr4,function(n){ return n == " " || n; }); 
+		        var jsonData4 = JSON.stringify(arr4) ;
+		         
+		        alert(jsonData1) ;
+		        alert(jsonData2) ;
+		        alert(jsonData3) ;
+		        alert(jsonData4) ;
+
+				    var jsonData1 = JSON.stringify(arr1) ;
+		        var jsonData2 = JSON.stringify(arr2) ;
+		        var jsonData3 = JSON.stringify(arr3) ;
 		        var jsonData4 = JSON.stringify(arr4) ;
 		        
-		        alert("// "+JSON.parse(jsonData1)[2].catg);
 			        
 	        var data = new google.visualization.DataTable();
 			data.addColumn("string", "catg");

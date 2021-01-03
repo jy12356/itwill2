@@ -1,5 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="vo.PageInfo"%>
+<%@page import="vo.MsgBean"%>
+<%
+String id = (String)session.getAttribute("id");
+ArrayList<MsgBean> myMsgList = (ArrayList<MsgBean>) request.getAttribute("msgList");
+PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -13,6 +20,13 @@
 			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
 			j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 	})(window,document,'script','dataLayer','GTM-KP248RV');
+</script>
+<script>
+	window.onload = function() {
+		if(id != null){
+<%-- 			<% int listCount = pageInfo.getListCount(); %> --%>
+		}
+	}
 </script>
 <!-- End Google Tag Manager -->
 
@@ -66,9 +80,6 @@
 <!-- naver-->
 <!-- kakao 로그인-->
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<%
-String id = (String)session.getAttribute("id");
-%>
 </head>
 <body>
 <div class="wrap" data-page="nm" data-web-class="일반">
@@ -96,15 +107,30 @@ String id = (String)session.getAttribute("id");
 						<ul class="my-lnb">
 							<li class="btnLogOut logoutIcon"><a href="MemberLogoutPro.me">로그아웃</a></li>
 							<%if(id.equals("admin")){ %>
-								<li class="mypageIcon"><a href="Admin.book">admin</a></li>
+								<li class="mypageIcon"><a href="MemberList.me">admin</a></li>
 							<%}else{
 								%>
 								<li class="mypageIcon"><a href="Mypage.me?id=<%=id%>">MY</a></li>								
-								<li class="basketIcon"><a href="MyBasketInsert.bk">책바구니</a></li>
+								<li class="basketIcon"><a href="MyBasketList.bk">책바구니</a></li>
 							<%} %>
-							<li class="alarm on alarmIcon"><a href="MyMsg.msg">알리미</a></li>
+							
+							<%if(myMsgList == null) { %>
+							<li class="alarm on alarmIcon" id="message">
+								<a href="MyMsg.msg">알리미</a>
+							</li>
+							<% } else { %>
+							<li class="alarm on alarmIcon2" id="message2">
+								<a href="MyMsg.msg">
+									<span class="alarmdot">
+										<%=myMsgList.size() %>
+									</span>
+									알리미
+								</a>
+							</li>
+							<% } %>
+							
 						</ul>
-						<%} %>
+						<% } %>
 					</fieldset>
 				</form>
 				<div class="alarm_layer_box" style="display:none;">
@@ -126,13 +152,15 @@ String id = (String)session.getAttribute("id");
 				<h2 class="hide">메인메뉴</h2>
 				<ul class="gnb">
 					<li><a href="Main.book" class="on">홈</a></li>
-					<li><a href="FreeBoardList.free">게시판</a></li>
+					<li><a href="NoticeBoardList.not?page=1">공지사항</a></li>
+					<li><a href="FreeBoardList.free">자유게시판</a></li>					
 					<li><a href="FullCalendar.ca">이달의 책(행사)</a></li>
 						
 				</ul>
 				<ul class="lnb">
-					<li><a href="Charge.dok">정기권 결제</a>
-					<li><a href="QnaList.qna">고객센터</a>
+					<li><a href="Charge.dok">정기권 결제</a></li>					
+					<li><a href="RequestList.rq">희망도서신청</a>
+					<li><a href="QnaList.qna">고객센터</a></li>
 				</ul>
 			</div>
 		</div>
@@ -245,4 +273,5 @@ String id = (String)session.getAttribute("id");
 
 // 	$("#login .naver a").attr("href", naver_url);
 </script>
-
+</div>
+</body>

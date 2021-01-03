@@ -15,15 +15,23 @@
 <section class="sub">
      <div class="contents-wrap">
         <div class="customer">
-            <pre><h2 class="coTitle"><a href="rentalList.rn">대여내역</a>  |  <a href="Return2.rn">과거대여내역</a>  |  <a href="ReservationList.rn">예약중인도서</a></h2></pre>
-            <h2 class="coTitle">주문배송조회</h2>
+
+            
+<!--             <h2 class="coTitle">주문배송조회</h2> -->
+            <div class="boxmenu1-top-menu">
+				<ul>
+					<li class="on"><a href="rentalList.rn"><em>대여내역</em></a></li>
+					<li><a href="ReturnedList.rt"><em>과거대여내역</em></a></li>
+					<li><a href="ReservationList.rn"><em>예약중인도서</em></a></li>
+				</ul>
+			</div>
             <div class="customer-contents">
                 <div class="customer-inner">
                     <table summary="" class="customer-table notice">
                         <caption></caption>
                         <colgroup>
-                         	<col style="width:5%">
-                            <col style="width:35%">
+<!--                          	<col style="width:5%"> -->
+                            <col style="width:40%">
                             <col style="width:20%">
                             <col style="width:20%">
                             <col style="width:20%">
@@ -31,7 +39,7 @@
                         </colgroup>
                         <thead>
                             <tr>
-                            	<th scope="col" abbr=""><input type="checkbox" id="allCheck"></th>
+<!--                             	<th scope="col" abbr=""><input type="checkbox" id="allCheck"></th> -->
                                 <th scope="col" abbr="">도서명</th>
                                 <th scope="col" abbr="">도착일</th>
                                 <th scope="col" abbr="">대여가능기간</th>
@@ -40,10 +48,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <%for(int i=0; i < rentalList.size(); i++ ){ %>
+                        <%
+                        
+                        for(int i=0; i < rentalList.size(); i++ ){ %>
                             <tr>
-                                <td class="tac check_box">
-                                <input type="checkbox" id="checkbox_num" class="check_num" value="<%=rentalList.get(i).getNum()%>" name="inter_num"></td>
+<!--                                 <td class="tac check_box"> -->
+<%--                                 <input type="checkbox" id="checkbox_num" class="check_num" value="<%=rentalList.get(i).getNum()%>" name="inter_num"></td> --%>
                                 <td><a href="BookDetail.bok?isbn=<%=rentalList.get(i).getIsbn()%>"><%=rentalList.get(i).getTitle()%></td>
                                 <td><%=rentalList.get(i).getS_date()%></td>
                                 <td><%=rentalList.get(i).getS_date()%> ~ <%=rentalList.get(i).getOnrental_date()%></td>
@@ -58,31 +68,32 @@
 <!-- 					</div> -->
                     </div>
                     
-                    <div class="paging">
-                  	<%if(nowPage <= 1) {%>
-						<a href="rentalList.rn?page=1" class="arr" data-page-num="1">
-							<img src="images/p-first.png"><span class="hide">처음페이지</span>
-						</a>
-                         		<a href="rentalList.rn?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="<%=nowPage - 1 %>">
-							<img src="images/p-prev.png"><span class="hide">이전페이지</span>
-						</a>
-					<%}%>
-					<%for(int i = startPage; i <= endPage; i++) { 
-							if(i == nowPage) { %>
-								<a href="rentalList.rn?page=<%=i %>" class="on fir" data-page-num="<%=i %>"><%=i %></a>
-							<%} else { %>
-								<a href="rentalList.rn?page=<%=i %>" class="" data-page-num="<%=i %>"><%=i %></a>
-							<%} %>
-					<%} %>
-                   	<%if(nowPage >= maxPage) { %>
-						<a href="rentalList.rn?page=<%=nowPage + 1 %>" class="arr next" data-page-num="<%=nowPage + 1 %>">
-                        		<img src="images/p-next.png"><span class="hide">다음페이지</span>
-                       	</a>
-                       	<a href="rentalList.rn?page=<%=maxPage%>" class="arr"data-page-num="<%=maxPage%>">
-                      		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
-                   		</a>
-					<%}%>                                
-                   </div>
+                    
+<!--                     <div class="paging"> -->
+<%--                   	<%if(nowPage <= 1) {%> --%>
+<!-- 						<a href="rentalList.rn?page=1" class="arr" data-page-num="1"> -->
+<!-- 							<img src="images/p-first.png"><span class="hide">처음페이지</span> -->
+<!-- 						</a> -->
+<%--                          		<a href="rentalList.rn?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="<%=nowPage - 1 %>"> --%>
+<!-- 							<img src="images/p-prev.png"><span class="hide">이전페이지</span> -->
+<!-- 						</a> -->
+<%-- 					<%}%> --%>
+<%-- 					<%for(int i = startPage; i <= endPage; i++) {  --%>
+<%-- 							if(i == nowPage) { %> --%>
+<%-- 								<a href="rentalList.rn?page=<%=i %>" class="on fir" data-page-num="<%=i %>"><%=i %></a> --%>
+<%-- 							<%} else { %> --%>
+<%-- 								<a href="rentalList.rn?page=<%=i %>" class="" data-page-num="<%=i %>"><%=i %></a> --%>
+<%-- 							<%} %> --%>
+<%-- 					<%} %> --%>
+<%--                    	<%if(nowPage >= maxPage) { %> --%>
+<%-- 						<a href="rentalList.rn?page=<%=nowPage + 1 %>" class="arr next" data-page-num="<%=nowPage + 1 %>"> --%>
+<!--                         		<img src="images/p-next.png"><span class="hide">다음페이지</span> -->
+<!--                        	</a> -->
+<%--                        	<a href="rentalList.rn?page=<%=maxPage%>" class="arr"data-page-num="<%=maxPage%>"> --%>
+<!--                       		<img src="images/p-last.png"><span class="hide">마지막페이지</span> -->
+<!--                    		</a> -->
+<%-- 					<%}%>                                 --%>
+<!--                    </div> -->
                 </div>
             </div>
 

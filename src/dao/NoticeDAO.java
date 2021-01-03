@@ -144,7 +144,6 @@ public class NoticeDAO {
 			//읽어올 게시물이 존재할 경우
 			//BoardBean 객체를 생성하여 레코드 데이터 모두 저장 후
 			//BoardBean 객체를 다시 ArrayList 객체에 추가
-			//=>단, 패스워드(board_pass)는 제외
 			while(rs.next()) {
 				NoticeBean article = new NoticeBean();
 				article.setNum(rs.getInt("num"));

@@ -1,4 +1,4 @@
-/*ê³µí†µcssì†ŒìŠ¤*/
+/*ÃªÂ³ÂµÃ­â€ ÂµcssÃ¬â€ Å’Ã¬Å Â¤*/
 .clearfix{width: 100%;}
 .clearfix::after{content: ''; clear: both;display: block;}
 .no{padding:100px 0;text-align:center;font-size:14px;font-weight:600;color:#333;line-height:1.6;}
@@ -177,7 +177,7 @@ a:hover {text-decoration:underline;}
 .fw_n{font-weight:normal !important;}
 
 
-.topBtn{position:fixed;right: 4%;bottom:15px;width:40px;height:40px;background:url(../images/topBtn.png) no-repeat left center #fff;text-indent:-9999px;z-index:10000;}
+.topBtn{position:fixed;right: 1.7%;bottom: 99px;width:40px;height:40px;background:url(../images/topBtn.png) no-repeat left center #fff;text-indent:-9999px;z-index:10000;}
 .topBtn a{display:block;width:40px;height:40px;}
 
 
@@ -222,7 +222,7 @@ a:hover {text-decoration:underline;}
 
 .btn_inner{margin: 15px 0 10px;text-align: right;}
 .btn_inner input[type="button"].btn,.btn_inner button.btn,.btn_inner .btn{padding: 7px 10px;}
-input[type="button"].btn,button.btn,.btn{text-align:center;color: #333 !important;padding:0 8px;border:1px solid #c1c1c1;box-shadow:0 2px #f2f2f2;font-size:13px;line-height:23px;border-radius:4px;font-weight: 600 !important;overflow: inherit !important;width: auto !important;}
+input[type="button"].btn,button.btn,.btn{text-align:center;color: #333 !important;padding:0 8px;border:1px solid #c1c1c1;box-shadow:0 2px #f2f2f2;font-size:13px;line-height:23px;border-radius:4px;font-weight: 600 !important;overflow: inherit !important;width: auto !important;background: #fff;}
 .default-btn-wrap{text-align:center;}
 .default-btn-wrap input[type="submit"],
 .default-btn-wrap a{display:inline-block;line-height:30px;height:32px;box-sizing:border-box;width:81px;margin:0 2px;color:#333;font-weight:bold;font-size:13px;background: #fff;vertical-align: top;}
@@ -295,7 +295,7 @@ box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(249,132,90,.6);}
 .customer-notice tbody td input[type="text"]{width: 99%;vertical-align: initial;height: 28px;border: 1px solid #d5d5d573;padding: 0 10px;line-height: 28px;box-sizing: border-box;}
 .customer-notice tbody td textarea{transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, background-color ease-in-out .5s;box-sizing: border-box;width: 100%;height: 280px;border: 1px solid #e5e6e7;background: #f3f3f4;resize: none;padding: 5px;overflow: auto;}
 .customer-notice tbody td textarea:focus{box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgb(13 83 67 / 60%);border-color: #17897a;background: #fff;line-height: 18px;font-size: 13px;}
-/*ë§ì¤„ìž„í‘œ*/
+/*Ã«Â§ÂÃ¬Â¤â€žÃ¬Å¾â€žÃ­â€˜Å“*/
 .overf_width50{width: 50px !important; white-space: nowrap !important;overflow: hidden !important;text-overflow: ellipsis !important;}
 .overf_width60{width: 60px !important; white-space: nowrap !important;overflow: hidden !important;text-overflow: ellipsis !important;}
 .overf_width70{width: 70px !important; white-space: nowrap !important;overflow: hidden !important;text-overflow: ellipsis !important;}

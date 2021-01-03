@@ -47,14 +47,7 @@ int listCount = PageInfo.getListCount();
 					<p><span>운영시간</span>월~금 09:00 - 18:00 (점심시간 12:00 - 13:00) / 주말 및 공휴일 휴무</p>
 				</div>
 			</div>
-			<div class="short-cut">
-				<h4>바로가기</h4>
-				<div>
-					<p><a href="/coupon.asp">쿠폰등록</a></p>
-					<p><a href="Charge.dok">구독결제</a></p>
-					<p><a href="MyPage?id=admin">마이페이지</a></p>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 	<div class="footer-inner">
@@ -102,13 +95,6 @@ int listCount = PageInfo.getListCount();
 <div class="topBtn">
 	<a href="javascript:;">TOP</a>
 </div>
-<div class="chats">
-	<ul>
-		<li><a href=""><img src="images/mal.png"></a></li>
-		<li><a href=""></a></li>		
-	</ul>
-</div>
-
 <script>
 $(function(){
 //탑버튼
@@ -149,7 +135,6 @@ var pop = {
 	
 	
 		
-</div>	
 
 		<!--Start of Tawk.to Script-->
 <script type="text/javascript">

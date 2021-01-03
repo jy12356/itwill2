@@ -67,7 +67,7 @@ public class BookModifyProAction implements Action{
 			out.println("</script>");// 자바스크립트끝태그
 		}else {
 			forward = new ActionForward();
-			forward.setPath("BookDetail.bok?isbn="+bookBean.getIsbn()+"&page="+page+"&booknum="+bookBean.getNum());
+			forward.setPath("BookDetail.bok?isbn="+bookBean.getIsbn()+"&booknum="+bookBean.getNum());
 			forward.setRedirect(true);			
 		}
 		return forward;
