@@ -497,6 +497,8 @@ int listCount = pageInfo.getListCount();
 </div>
 </section>
 <script type="text/javascript">
+	
+
 	function idYn() {
 		var myid = document.getElementById('myId').value;
 		alert(myid);
@@ -505,20 +507,24 @@ int listCount = pageInfo.getListCount();
 			return false;
 		}
 	};
+
 	
 	// 댓글 삭제
-	function comment_delete(){
+	function comment_delete(obj){
 		alert("댓글삭제");
-		var isbn=$(this).data("isbn");
-		var board_type=$(this).data("board_type");
-		var board_num=$(this).data("board_num");
-		var comment_num=$(this).data("comment_num");
+		var firstSec = $(obj).attr('class');
+		alert(firstSec);
+		
+		var isbn=$(obj).parent().siblings('#book_isbn').val();
+		var board_type=$(obj).parent().siblings("#board_type").val();
+		var board_num=$(obj).parent().siblings("#board_num").val();
+		var comment_num=$(obj).data("comment_num");
 		var comment_id= "<%=(String)session.getAttribute("id")%>";
-		alert(isbn);
-		alert(board_type);
-		alert(board_num);
-		alert(comment_num);
-		alert(comment_id);
+		alert("isbn "+isbn);
+		alert("board_type "+board_type);
+		alert("board_num "+board_num);
+		alert("comment_num "+comment_num);
+		alert("comment_id "+ comment_id);
 		if(confirm("댓글을 삭제하시겠습니까?")==true) {
 			$.ajax({
 				type : "GET",
@@ -543,7 +549,6 @@ int listCount = pageInfo.getListCount();
 			return false;
 		}
 	}
-	
 	// 댓글 수정창 열기
 	function comment_Modi_Open() {
 		if($(".comment-text").css("display")=="none"){
@@ -658,9 +663,9 @@ int listCount = pageInfo.getListCount();
 							$.each(JSON.parse(json), function(index, entry) {
 								entry["comment_id"]
 								$(".reply").append(
-									'<input type="hidden" name="book_isbn" value='+isbn+'>'+
-	                				'<input type="hidden" name="board_type" value="2">'+
-	                				'<input type="hidden" name="board_num" value="'+entry["board_num"]+'">'+
+									'<input type="hidden" name="book_isbn" id="book_isbn" value='+isbn+'>'+
+	                				'<input type="hidden" name="board_type" id="board_type" value="2">'+
+	                				'<input type="hidden" name="board_num" id="board_num" value="'+entry["board_num"]+'">'+
 	                				'<p class="comment-vote bookcube" id="cmt_vote">'+
 	                				'<i id="c_id">'+entry["comment_id"]+'</i><em>|</em><span id="c_date" class="date">'+entry["date"]+'</span>'+
 	                				'</p>'+
@@ -670,7 +675,7 @@ int listCount = pageInfo.getListCount();
 	                				'<div class="btn_inner">'+
 // 	                				'<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>'+
 	                				'<a href="javascript:;" onclick="comment_Modi_Open();" class="comment_modi_show btn rview_modi_show" data-comment_num="'+entry["comment_num"]+'">수정</a>'+
-	                				'<a href="javascript:;" onclick="comment_delete();" class="comment_delete_show btn" data-comment_num="'+entry["comment_num"]+'">삭제</a>'+
+	                				'<a href="javascript:;" onclick="comment_delete(this);" class="comment_delete_show btn" data-comment_num="'+entry["comment_num"]+'">삭제</a>'+
 	                				'</div>'+
 
 	                				'<div class="comment-text" style="display: none;">'+

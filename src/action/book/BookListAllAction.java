@@ -36,7 +36,7 @@ public class BookListAllAction implements Action {
 			search = request.getParameter("search");
 		}
 		BookListService bookListService = new BookListService();
-		int listCount = bookListService.getListCount();
+		int listCount = bookListService.getListCount(catg1,catg2,search);
 		System.out.println("전체 게시물 수 : " + listCount);
 		
 		
