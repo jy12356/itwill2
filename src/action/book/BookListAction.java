@@ -39,7 +39,7 @@ public class BookListAction implements Action {
 		System.out.println("12121221121222"+catg1);
 		System.out.println("1212121"+catg2);
 		BookListService bookListService = new BookListService();
-		int listCount = bookListService.getListCount();
+		int listCount = bookListService.getListCount(catg1,catg2,search);
 		System.out.println("전체 게시물 수 : " + listCount);
 		
 		
@@ -47,13 +47,13 @@ public class BookListAction implements Action {
 		ArrayList<BookBean> bookList = new ArrayList<BookBean>();
 		bookList = bookListService.getBookList(page,limit,catg1,catg2,search);
 
-		int maxPage = (int)((double)listCount/ limit+0.95);
-		int startPage = ((int)((double)page/10+0.9)-1)*10+1;
-		int endPage=startPage+10-1;
+		int maxPage = (int)((double)listCount / limit + 0.95);
+		int startPage = ((int)((double)page / 10 + 0.9) - 1) * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
-
 		PageInfo pageInfo = new PageInfo(page, maxPage, startPage, endPage, listCount);
 		request.setAttribute("bookList", bookList);
 		request.setAttribute("pageInfo", pageInfo);
