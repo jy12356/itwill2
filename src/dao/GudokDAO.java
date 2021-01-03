@@ -41,6 +41,12 @@ public GudokDAO() {}
 			if(rs.next()) {
 				num = rs.getInt(1) + 1;
 			}
+			sql = "update member set state=? where id=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "구독중");
+			pstmt.setString(2, gudokBean.getId());
+			pstmt.executeUpdate();
+			
 			sql = "Insert into gudok values(?,?,now(),?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
