@@ -75,7 +75,7 @@ int listCount = pageInfo.getListCount();
 									}
 								}
 							}else {%>
-								<tr><td rowspan="6">책바구니가 비었습니다.</td></tr>
+								<tr><td colspan="6">책바구니가 비었습니다.</td></tr>
 							<%}	%>
 							</tbody>
 						</table>
@@ -124,7 +124,7 @@ int listCount = pageInfo.getListCount();
 								
 								
 								} else {%>
-								<tr><td rowspan="6">책바구니가 비었습니다.</td></tr>
+								<tr><td colspan="6">책바구니가 비었습니다.</td></tr>
 								<%}%>
 						</tbody>
 					</table>
