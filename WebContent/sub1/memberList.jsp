@@ -227,16 +227,16 @@ int listCount = pageInfo.getListCount();
 						<table summary="공지사항" class="customer-table notice">
 							<!-- <table class="columns"> -->
 							<tr>
-								<td><div id="chart1" style="background-color :blue;"></div></td>
+								<td><div id="chart1" style="border: 2px solid red; height: 300px; width: 400px;"></div></td>
 							</tr>
 							<tr>
-								<td><div id="chart2" style="background-color :orange;"></div></td>
+								<td><div id="chart2" style="border: 2px solid blue; height: 300px; width: 400px;"></div></td>
 							</tr>
 							<tr>
-								<td><div id="chart3" style="background-color :blue;"></div></td>
+								<td><div id="chart3" style="border: 2px solid purple; height: 300px; width: 400px;"></div></td>
 							</tr>
 							<tr>
-								<td><div id="chart4" style="background-color :orange;"></div></td>
+								<td><div id="chart4" style="border: 2px solid orange; height: 300px; width: 400px;"></div></td>
 							</tr> 
 							
 							<!--  </table> -->
@@ -269,8 +269,8 @@ int listCount = pageInfo.getListCount();
 									for (int i = 0; i < articleList.size(); i++) {
 								%>
 								<tr>
-									<th scope="col" class="memSortTbody" abbr="선택"><input
-										type="checkbox" name="check_box" id="check_box"
+									<th scope="col" class="check_box" abbr="선택"><input
+										type="checkbox" name="inter_num" id="checkbox_num"
 										value=<%=articleList.get(i).getNum()%>></th>
 									<th scope="col" class="memSortTbody" abbr="회원번호" id="num"><%=articleList.get(i).getNum()%></th>
 									<th scope="col" class="memSortTbody" abbr="아이디" id="id"><%=articleList.get(i).getId()%></th>
@@ -291,23 +291,44 @@ int listCount = pageInfo.getListCount();
 						</tbody>
 						<label for="" class="radio" data-sort="등급"> <input
 							type="button" name="reportChkBxRow" class="btn2" value="삭제"
-							onclick="deleteListMem()"></label>
+							onclick="deleteListMem(); return false;"></label>
 						<div class="paging">
-							<a href="/customer.asp?page=notice&pageNum=1" class="arr"
-								data-page-num="1"><img src="images/p-first.png"><span
-								class="hide">처음페이지</span></a> <a
-								href="/customer.asp?page=notice&pageNum=1" class="arr prev"
-								data-page-num="1"><img src="images/p-prev.png"><span
-								class="hide">이전페이지</span></a> <a
-								href="/customer.asp?page=notice&pageNum=1" class="on fir"
-								data-page-num="1">1</a>
-							<!-- 	<a href="/customer.asp?page=notice&pageNum=2" class="" data-page-num="2">2</a><a href="/customer.asp?page=notice&pageNum=3" class="" data-page-num="3">3</a><a href="/customer.asp?page=notice&pageNum=4" class="" data-page-num="4">4</a><a href="/customer.asp?page=notice&pageNum=5" class="" data-page-num="5">5</a><a href="/customer.asp?page=notice&pageNum=6" class="" data-page-num="6">6</a><a href="/customer.asp?page=notice&pageNum=7" class="" data-page-num="7">7</a><a href="/customer.asp?page=notice&pageNum=8" class="" data-page-num="8">8</a><a href="/customer.asp?page=notice&pageNum=9" class="" data-page-num="9">9</a><a href="/customer.asp?page=notice&pageNum=10" class="" data-page-num="10">10</a> -->
-							<a href="/customer.asp?page=notice&pageNum=11" class="arr next"
-								data-page-num="11"> <img src="images/p-next.png"><span
-								class="hide">다음페이지</span></a> <a
-								href="/customer.asp?page=notice&pageNum=27" class="arr"
-								data-page-num="27"><img src="images/p-last.png"><span
-								class="hide">마지막페이지</span></a>
+						
+							<a href="MemberList.me?page=1" class="arr" data-page-num="1">
+										<img src="images/p-first.png"><span class="hide">처음페이지</span>
+								</a>
+							<%if(nowPage <=1) {%>
+									
+                            		<a href="MemberList.me?page=<%=nowPage%>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								<%}else{%>
+								<a href="MemberList.me?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								
+								<%} %>
+								
+								<%for(int i = startPage; i <= endPage; i++) { 
+										if(i == nowPage) { %>
+											<a href="MemberList.me?page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
+										<%} else { %>
+											<a href="MemberList.me?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
+										<%} %>
+								<%} %>
+								
+                            	<%if(nowPage >= maxPage) { %>
+									<a href="MemberList.me?page=<%=nowPage%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+	                            <%}else{%>   
+	                            	<a href="MemberList.me?page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+                            	<%} %>
+	                            	<a href="MemberList.me?page=<%=maxPage%>" class="arr" data-page-num="781">
+                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
+                               		</a>
 						</div>
 					</div>
 
@@ -316,44 +337,82 @@ int listCount = pageInfo.getListCount();
 			</div>
 	</section>
     
-	<!-- <script type="text/javascript"
+	<script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	 --><script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript">
 	google.load("visualization", "1.0", {
 	     callback: function () {
-	       var queryObject="";
 	       var queryObjectLen="";
-	      
+	       var arr1 = new Array() ;
+	       var arr2 = new Array() ;
+	       var arr3 = new Array() ;
+	       var arr4 = new Array() ;
+	       
 	       $.ajax({
 	    	   
     	    type: "POST", 
-            contentType: "charset=UTF-8", 
 			url : "MemberListCal.me",
-			dataType : "text",
+            contentType: "charset=UTF-8", 
+			dataType : "json",
 			success : function(data) {
-				queryObjectLen = data.length;
-				$.each(JSON.parse(data), function( key, value ){ console.log( 'key:' + key + ' / ' + 'value:' + value ); alert("성공~"); });
+ 				queryObjectLen = data.length;
+ 				alert(queryObjectLen+" . "+JSON.stringify(data));
+ 				
+				$.each(data, function( index, responseObj){ 
 
-				/* queryObject = JSON.stringify(data); */
+				    // 객체 생성
+			        var obj1 = new Object() ;
+					obj1.catg_count = responseObj.catg_count;
+					obj1.catg = responseObj.catg;
+		            // 리스트에 생성된 객체 삽입
+		            arr1.push(obj1) ;
+		           
+		 	        var obj2 = new Object() ;
+		            obj2.date = responseObj.date;
+					obj2.id_count = responseObj.id_count;
+					arr2.push(obj2) ;
+
+			        var obj3 = new Object() ;	
+		            obj3.qna_genre = responseObj.qna_genre;
+					obj3.qna_count = responseObj.qna_count;
+					arr3.push(obj3) ;
+
+				    var obj4 = new Object() ;
+		            obj4.retal_count = responseObj.retal_count;
+					obj4.s_date = responseObj.s_date;
+					arr4.push(obj4) ;
+				});
+				 // String 형태로 변환
+				arr1 = $.grep(arr1,function(n){ return n == " " || n; }); // 배열 빈요소 제거
+		        var jsonData1 = JSON.stringify(arr1) ;
 				
-				/* alert("성공!! queryObject : "+catg+", queryObjectLen : "+queryObjectLen) */
-				
-			var data = new google.visualization.DataTable();
+		        /* arr2 = $.grep(arr2,function(n){ return n == " " || n; });  */
+		        var jsonData2 = JSON.stringify(arr2) ;
+		        
+		        arr3 = $.grep(arr3,function(n){ return n == " " || n; }); 
+		        var jsonData3 = JSON.stringify(arr3) ;
+		        
+		        arr4 = $.grep(arr4,function(n){ return n == " " || n; }); 
+		        var jsonData4 = JSON.stringify(arr4) ;
+		        
+		        alert("// "+JSON.parse(jsonData1)[2].catg);
+			        
+	        var data = new google.visualization.DataTable();
 			data.addColumn("string", "catg");
 			data.addColumn("number", "catg_count");
-			for (var i = 0; i < queryObjectLen; i++) {
-				var catg = catg[i];
-				var catg_count = catg_count[i];
-				data.addRows([ catg, parseInt(catg_count) ]);
+			for (var i = 0; i < 1; i++) {
+				var catg = JSON.parse(jsonData1)[i].catg;
+				var catg_count = JSON.parse(jsonData1)[i].catg_count;
+				data.addRows([ catg, catg_count ]);
 			}
 			
 			var data2 = new google.visualization.DataTable();
 			data2.addColumn("string", "date");
 			data2.addColumn("number", "id_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var date = date[i];
-				var id_count = id_count[i];
+				var date = JSON.parse(jsonData2)[i].date; 
+				var id_count = JSON.parse(jsonData2)[i].id_count;
 				data2.addRows([ [ date, parseInt(id_count) ] ]);
 			}
 			
@@ -361,8 +420,8 @@ int listCount = pageInfo.getListCount();
 			data3.addColumn("string", "qna_genre");
 			data3.addColumn("number", "qna_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var qna_genre = qna_genre[i];
-				var qna_count = qna_count[i];
+				var qna_genre = JSON.parse(jsonData3)[i].qna_genre;
+				var qna_count = JSON.parse(jsonData3)[i].qna_count;
 				data3.addRows([ [ qna_genre, parseInt(qna_count) ] ]);
 			}
 			
@@ -370,8 +429,8 @@ int listCount = pageInfo.getListCount();
 			data4.addColumn("string", "s_date");
 			data4.addColumn("number", "retal_count");
 			for (var i = 0; i < queryObjectLen; i++) {
-				var s_date = s_date[i];
-				var retal_count = retal_count[i];
+				var s_date = JSON.parse(jsonData4)[i].s_date;
+				var retal_count = JSON.parse(jsonData4)[i].retal_count;
 				data4.addRows([ [ s_date, parseInt(retal_count) ] ]);
 			}
 			
@@ -389,44 +448,44 @@ int listCount = pageInfo.getListCount();
 			var options2 = {
 				title : "2번 그래프_가입자수증가",
 				 /*   curveType: "function",  */
-				colors : [ "green", "yellow" ],
+				/* colors : [ "green", "yellow" ],
 				hAxis : {
 					title : "Location22"
 				},
 				vAxis : {
 					title : "No. of Posts22"
-				} 
+				}  */
 			};
 			
 			var options3 = {
 				title : "3번 그래프_불만사항 접수",
-				colors : [ "green", "yellow" ],
+				/* colors : [ "green", "yellow" ],
 				hAxis : {
 					title : "Location33"
 				},
 				vAxis : {
 					title : "No. of Posts33"
-				}
+				} */
 			};
 			
 			var options4 = {
 				title : "4번 그래프_대출 그래프",
-				colors : [ "green", "yellow" ],
+				/* colors : [ "green", "yellow" ],
 				hAxis : {
 					title : "Location44"
 				},
 				vAxis : {
 					title : "No. of Posts44"
-				}
+				} */
 			};
 			
 			var chart1 =  new google.visualization.PieChart(document.getElementById("chart1"));
-	           chart1.draw(data,options);
+            chart1.draw(data,options);
 
 			var chart2 =  new google.visualization.LineChart(document.getElementById("chart2"));
 			chart2.draw(data2,options2);
 
-			var chart3 =  new google.visualization.PieChart(document.getElementById("chart3"));
+			var chart3 =  new google.visualization.ScatterChart(document.getElementById("chart3"));
 			chart3.draw(data3,options3);
 
 			var chart4 =  new google.visualization.PieChart(document.getElementById("chart4"));
@@ -442,55 +501,46 @@ s
 	     packages:["corechart"]
 	});
     
-    	/* if(confirm_val) {
-				var inter_num = [];
-				if ($('.check_box input[type="checkbox"]:checked').length > 0) {
-					$('.check_box input[type="checkbox"]:checked').each(function(){
-						inter_num.push($(this).attr("value"));  
-					});
-				}else{
-					alert("게시물을 선택해주시길 바랍니다.");
-					return false;	            	
-				};	
-				var interArr = {"inter_num" :inter_num};
-				$.ajax({
-					url : "MemListDelete.me",
-					type : "post",
-					dataType: 'text',
-					data : interArr,
-					success : function(){
-						location.href = "BookDibsList.bok";
-					},error:function(request,status,error){
-				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				       }`
+	jQuery(document).ready(function($) {
+		$( "#datepicker" ).datepicker({
+		  dateFormat:"yyyy-mm-dd",
+		  changeMonth: true,
+		  changeYear: true,
+		  maxDate: "+0D"
+		});
 
-				});
-			} 
-	    }; */
-	    
-//$(document).ready(function(){
-	 
-    // 라디오버튼 클릭시 이벤트 발생
-    
- //   $("input:radio[name=memLiName]").click(function(){
- //
- //       if($("input[name=memLiName]:checked").val() == "1"){
- //           $("div[id=memLiNameList]").attr("disabled",true);
-            // radio 버튼의 value 값이 1이라면 활성화 div class="list-sort" id="memLiNameList"
- 
-//        }else if($("input[name=radio]:checked").val() == "0"){
-//              $("div[id=memLiNameList]").attr("disabled",false);
-            // radio 버튼의 value 값이 0이라면 비활성화
-//        }
-//    });
-//});
-	    
-//$(document).ready(function(){
-//	$("input:radio[id=memLiName]").click(function(){
-//		$("div[id=memLiNameList]").attr("disabled",true);
+		});
+	
+	
+	function deleteListMem(){
+		var confirm_val = confirm("정말 삭제하시겠습니까?");
 		
-//	})
-//})    
+		if(confirm_val) {
+			var inter_num = [];
+			if ($('.check_box input[type="checkbox"]:checked').length > 0) {
+				$('.check_box input[type="checkbox"]:checked').each(function(){
+					inter_num.push($(this).attr("value"));  
+				});
+			}else{
+				alert("게시물을 선택해주시길 바랍니다.");
+				return false;	            	
+			};	
+			var interArr = {"inter_num" :inter_num};
+			$.ajax({
+				url : "MemListDelete.me",
+				type : "post",
+				dataType: 'text',
+				data : interArr,
+				success : function(){
+					location.href = "MemberList.me";
+				},error:function(request,status,error){
+			        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			       }
+
+			});
+		} 
+    };
+	
 	    
 	</script>
 </html>

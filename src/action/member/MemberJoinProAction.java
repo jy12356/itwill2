@@ -30,7 +30,7 @@ public class MemberJoinProAction implements Action {
 		memberBean.setAge(Integer.parseInt(request.getParameter("age")));
 		memberBean.setAddress(request.getParameter("sample4_postcode")+'/'+request.getParameter("sample4_roadAddress")+'/'+request.getParameter("sample4_detailAddress"));
 		memberBean.setName(request.getParameter("name"));
-		
+//		memberBean.setState(request.getParameter("state"));
 		MemberWriteProService memberWriteProService = new MemberWriteProService();
 		boolean isWriteSuccess = memberWriteProService.registArticle(memberBean);
 		

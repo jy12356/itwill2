@@ -3,6 +3,7 @@ package svc;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.BookDAO;
 import dao.MemberDAO;
 import vo.MemberBean;
 
@@ -13,19 +14,19 @@ import java.sql.Connection;
 public class MemListDeleteService {
 	public boolean dibsDelete(List<Integer> inerNumList, String id) {
 		System.out.println("BookDibsDeleteService - dibsDelete");
-		boolean isDeleteOk = false;
-		int isDeleteOkCount = 0;
+		boolean isDelete = false;
+		int isDeleteCount = 0;
 		Connection con =  getConnection();
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
-		isDeleteOkCount = memberDAO.dibsDelete(inerNumList,id);
-		if(isDeleteOkCount > 0) {
-			isDeleteOk = true;
+		isDeleteCount = memberDAO.dibsDelete(inerNumList,id);
+		if(isDeleteCount > 0) {
+			isDelete = true;
 			commit(con);
 		}else {
 			rollback(con);
 		}
 		close(con);
-		return isDeleteOk;
+		return isDelete;
 	}
 }
