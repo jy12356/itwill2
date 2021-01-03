@@ -232,7 +232,7 @@
 			</table>
 			<div class="user-leave">
 				<p>회원 탈퇴를 원하실 경우 우측의 회원 탈퇴 버튼을 클릭하세요.</p>
-				<a href="MemberDeletePro.me" class="btn">회원탈퇴</a>
+				<a href="MemberDeleteForm.me" class="btn">회원탈퇴</a>
 			</div>
 		</div>		
 	</div>

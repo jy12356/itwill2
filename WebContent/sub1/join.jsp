@@ -16,6 +16,7 @@
 	<form id="register_step2" action="MemberJoinPro.me" >
 	<input type="hidden" name="" id="id_chk" value="0">
 	<input type="hidden" name="" id="email_chk" value="0">
+	<!-- <input type="hidden" name="state" id="state" value="구독안"> -->
 		<fieldset>
 			<legend>회원가입</legend>
 			<div class="join-wrap">

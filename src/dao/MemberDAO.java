@@ -54,7 +54,7 @@ public class MemberDAO {
 				num = rs.getInt(1) + 1;
 			}
 
-			sql = "INSERT INTO member (num,id,password,email,phone,catg,age,address,name,state,date) VALUES (?,?,?,?,?,?,?,?,?,구독안함,now())";
+			sql = "INSERT INTO member (num,id,password,email,phone,catg,age,address,name,date) VALUES (?,?,?,?,?,?,?,?,?,now())";
 			pstmt.setInt(1, num);
 			pstmt.setString(2, memberBean.getId());
 			pstmt.setString(3, memberBean.getPassword());
