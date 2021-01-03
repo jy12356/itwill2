@@ -22,7 +22,7 @@ public class ReCommentWriteProService {
 		
 		int insertCount = reviewDAO.insertComment(commentBean);
 		
-		if(insertCount>0) {
+		if(insertCount > 0) {
 			commit(con);
 			isWriteSuccess = true;
 		} else {

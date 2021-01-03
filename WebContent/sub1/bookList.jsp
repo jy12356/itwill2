@@ -135,13 +135,13 @@
                                 	<input type="hidden" class="bookstate" value="<%=bookList.get(i).getState()%>">
                                 	
                                     <div class="figure">
-                                        <a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>&limit=10">
+                                        <a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>">
                                             <span class="rm_br"><img src="bookUpload/<%=bookList.get(i).getImage()%>" alt="도서 이미지" /></span>
                                             <span class="light"></span>
                                         </a>
                                     </div>
                                     <div class="hot-info">
-                                        <p class="hot-title"><a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle() %>&limit=10"><%=bookList.get(i).getTitle() %></a></p>
+                                        <p class="hot-title"><a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle() %>"><%=bookList.get(i).getTitle() %></a></p>
                                         <p class="hot-author"><%=bookList.get(i).getAuthor()%><em>|</em><%=bookList.get(i).getPublisher()%><em>|</em>
                                         	
                                         	<%=bookList.get(i).getPubdate()%>

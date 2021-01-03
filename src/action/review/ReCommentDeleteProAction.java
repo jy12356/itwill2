@@ -28,7 +28,7 @@ public class ReCommentDeleteProAction implements Action {
 		int comment_num = Integer.parseInt(request.getParameter("comment_num"));		
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		int board_type = Integer.parseInt(request.getParameter("board_type"));
-		String comment_id = request.getParameter("id");
+		String comment_id = request.getParameter("comment_id");
 		
 		System.out.println("리뷰번호 :" + comment_num);
 		System.out.println("리뷰번호 :" + board_num);
@@ -61,11 +61,11 @@ public class ReCommentDeleteProAction implements Action {
 //				out.println("<script>");
 //				out.println("alert('삭제 실패!')");
 //				out.println("history.back()");
-				out.print(json);
+				out.print(json.toString());
 			} else {
-				json.put("text", "댓글을 삭제하였습니다");
+				json.put("text", "댓글을 삭제하였습니다.");
 				PrintWriter out = response.getWriter();
-				out.print(json);
+				out.print(json.toString());
 //				forward = new ActionForward();
 //				forward.setPath("BookDetail.bok?isbn="+book_isbn);
 //				forward.setRedirect(true);

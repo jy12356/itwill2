@@ -83,7 +83,7 @@ public class BookDetailAction implements Action {
 		request.setAttribute("limit", limit);
 		
 		forward = new ActionForward();
-		forward.setPath("/sub1/bookDetail.jsp?isbn="+book_isbn);
+		forward.setPath("/sub1/bookDetail.jsp?isbn="+book_isbn+"&limit="+limit+10);
 //		forward.setPath("BookDetail.bok?isbn="+book_isbn+"&page="+page);
 		
 		return forward;
