@@ -58,6 +58,10 @@
 						</tbody>
 					</table>
 					<div class="btn_inner">
+					<%
+						if(id != null) {
+						if(id.equals(article.getId())) {
+					%>
 						<input type="button" class="btn" value="수정"
 							onclick="location.href='RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
 						<input type="button" class="btn" value="삭제"
@@ -66,6 +70,9 @@
 							onclick="location.href='RequestList.rq?page=<%=nowPage%>'">
 						<input type="button" class="btn" value="답변"
 							onclick="location.href='RequestReplyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+					<%
+						}}
+					%>
 					</div>
 				</div>
 			</div>
