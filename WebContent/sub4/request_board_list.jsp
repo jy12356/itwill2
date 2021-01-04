@@ -5,6 +5,7 @@
 <%
 ArrayList<RequestBean> articleList = (ArrayList<RequestBean>)request.getAttribute("articleList");
 PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+String id = (String)session.getAttribute("id");
 int nowPage = pageInfo.getPage();
 int maxPage = pageInfo.getMaxPage();
 int startPage = pageInfo.getStartPage();
@@ -73,9 +74,8 @@ int listCount = pageInfo.getListCount();
 						</tbody>
 						</table>
 						<%
-						String id = (String) session.getAttribute("id");
+						id = (String) session.getAttribute("id");
 						%>
-						
 						<div class="btn_inner">
 							<input type="button" class="btn" value="도서 신청" onclick="location.href='RequestWriteForm.rq'">
 						</div>

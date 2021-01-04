@@ -263,6 +263,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 			objFrm.submit();
 		}		
 	}
+	}
 
 // 	var naver_id_login = new naver_id_login("tdoziaWOhdIeC0LICk28", httpsUrl +"/member/naver/naver.asp");
 

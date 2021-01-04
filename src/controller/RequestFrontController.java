@@ -13,6 +13,7 @@ import action.Action;
 import action.request.RequestDeleteProAction;
 import action.request.RequestDetailAction;
 import action.request.RequestListAction;
+import action.request.RequestMyListAction;
 import action.request.RequestModifyFormAction;
 import action.request.RequestModifyProAction;
 import action.request.RequestReplyFormAction;
@@ -57,7 +58,16 @@ public class RequestFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
+		} else if (command.equals("/RequestMyList.rq")) {
+			action = new RequestMyListAction();
 
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		} else if (command.equals("/RequestDetail.rq")) {
 			action = new RequestDetailAction();
 
