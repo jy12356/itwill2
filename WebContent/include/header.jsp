@@ -125,7 +125,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 							<li class="alarm on alarmIcon2" id="message2">
 								<a href="MyMsg.msg">
 									<span class="alarmdot">
-										<%=myMsgList.size() %>
+										<%=messageCount%>
 									</span>
 									알리미
 								</a>
