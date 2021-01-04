@@ -64,7 +64,7 @@
                         <li><a href="BookList.bok?catg1=과학/IT"<%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
                         <li><a href="BookList.bok?catg1=과학/IT&catg2=수학" <%if(catg2.equals("수학")){%>class="on"<%}%>>수학</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=과학" <%if(catg2.equals("과학")){%>class="on"<%}%>>과학</a></li>	
-						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT/비즈니스" <%if(catg2.equals("IT/비즈니스")){%>class="on"<%}%>>IT/비즈니스</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT비즈니스" <%if(catg2.equals("IT/비즈니스")){%>class="on"<%}%>>IT/비즈니스</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=자격증" <%if(catg2.equals("자격증")){%>class="on"<%}%>>자격증</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=프로그래밍" <%if(catg2.equals("프로그래밍")){%>class="on"<%}%>>프로그래밍</a></li>	
 							

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+import svc.alarm.AlarmListService;
 import svc.msg.MyMsgDetailService;
 import svc.request.RequestDetailService;
 import vo.ActionForward;
@@ -20,14 +21,22 @@ public class GetMyMsgAction implements Action {
 		System.out.println("RequestDetailAction");
 		
 		ActionForward forward = null;
+		
 		HttpSession session = request.getSession();
 		int num = Integer.parseInt(request.getParameter("num"));
 		String id = (String)session.getAttribute("id");
+		
 		MyMsgDetailService myMsgDetailService = new MyMsgDetailService();
 		MsgBean msgBean = myMsgDetailService.getMsgDetail(num,id);
 		if(msgBean != null) {
 			boolean isRead = myMsgDetailService.updateIsRead(num);
+			
 			if(isRead) {
+
+				AlarmListService alarmlistservice = new AlarmListService();
+				int messageCount = alarmlistservice.listCount(id);				
+				System.out.println("messageCount" + messageCount);
+				session.setAttribute("messageCount", messageCount);
 				request.setAttribute("msgBean", msgBean);
 				forward = new ActionForward();
 				forward.setPath("/myPage/myMsgDetail.jsp?num="+msgBean.getNum());

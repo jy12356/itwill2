@@ -4,6 +4,11 @@
 <%@page import="vo.MsgBean"%>
 <%
 String id = (String)session.getAttribute("id");
+
+int messageCount = 0;
+if(session.getAttribute("messageCount") !=null){
+	messageCount = (int)session.getAttribute("messageCount");
+};
 ArrayList<MsgBean> myMsgList = (ArrayList<MsgBean>) request.getAttribute("msgList");
 PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 %>
@@ -23,9 +28,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 </script>
 <script>
 	window.onload = function() {
-		if(id != null){
-<%-- 			<% int listCount = pageInfo.getListCount(); %> --%>
-		}
+		
 	}
 </script>
 <!-- End Google Tag Manager -->
@@ -114,7 +117,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 								<li class="basketIcon"><a href="MyBasketList.bk">책바구니</a></li>
 							<%} %>
 							
-							<%if(myMsgList == null) { %>
+							<%if(messageCount == 0) { %>
 							<li class="alarm on alarmIcon" id="message">
 								<a href="MyMsg.msg">알리미</a>
 							</li>
@@ -122,7 +125,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 							<li class="alarm on alarmIcon2" id="message2">
 								<a href="MyMsg.msg">
 									<span class="alarmdot">
-										<%=myMsgList.size() %>
+										<%=messageCount%>
 									</span>
 									알리미
 								</a>
@@ -218,7 +221,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 					<ul class="">
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=수학">수학</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=과학">과학</a></li>	
-						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT/비즈니스">IT/비즈니스</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT비즈니스">IT/비즈니스</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=자격증">자격증</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=프로그래밍">프로그래밍</a></li>		
 					</ul>
