@@ -1248,6 +1248,8 @@ background:-webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,25
 .payment-result p:nth-child(2){color:#909090;font-size:16px;}
 .payment-result input[type='submit']{margin:20px 2px 0 2px;cursor:pointer;display:inline-block;width:109px;height:50px;line-height:48px;border: 1px solid #069e89;background: #069e89;font-size:14px;color:#fff;text-align:center;box-shadow:0 2px #f6ded5;border-radius:4px;transition:.5s;}
 .payment-result input[type='submit']:hover{box-shadow: 0 6px 4px rgba(0,0,0,.075), 0 0 30px #069e8985;}
+.payment-result input[type='button']{margin:20px 2px 0 2px;cursor:pointer;display:inline-block;width:109px;height:50px;line-height:48px;border: 1px solid #069e89;background: #069e89;font-size:14px;color:#fff;text-align:center;box-shadow:0 2px #f6ded5;border-radius:4px;transition:.5s;}
+.payment-result input[type='button']:hover{box-shadow: 0 6px 4px rgba(0,0,0,.075), 0 0 30px #069e8985;}
 .payment-result a{color:#333;font-size:14px;box-sizing:border-box;font-weight:600;margin:20px 2px 0 2px;line-height:48px;width:109px;display:inline-block;vertical-align:middle;background:#fff;transition:.5s;}
 .payment-result a:hover{box-shadow:0 4px 4px rgba(0,0,0,.075),0 0 10px rgba(243,243,243,.6);}
 .payco-choice{display:none;margin-top:-1px;padding:18px 19px;border:1px solid #e0e1e2;}
