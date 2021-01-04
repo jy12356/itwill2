@@ -90,9 +90,18 @@ int listCount = PageInfo.getListCount();
 							%>
 						</tbody>
 					</table>
+					 <%
+	                   
+							                        if(id != null) {
+						                        	if( id.equals("admin")){
+						%> 
 					<div class="btn_inner">
 						<a href="NoticeWriteForm.not" class="btn">글쓰기</a>
 					</div>
+					<%
+						        }
+							                        }
+					%>
 
 					<div class="paging">
 						<a href="NoticeBoardList.not?pageNum=1" class="arr" data-page-num="1"><img

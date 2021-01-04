@@ -1,10 +1,10 @@
 [{
     "_id": 1,
     "title": "됐으면 좋겟다...",
-    "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
+    "description": "제",
     "start": "2020-12-07T09:30",
     "end": "2020-12-07T15:00",
-    "type": "입고",
+    "type": "기타",
     "username": "admin",
     "backgroundColor": "#D25565",
     "textColor": "#ffffff",
@@ -12,7 +12,7 @@
   }, {
     "_id": 2,
     "title": "되는거 같기는 한데",
-    "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
+    "description": "",
     "start": "2020-12-01T12:30",
     "end": "2020-12-01T15:30",
     "type": "입고",
@@ -23,7 +23,7 @@
   }, {
     "_id": 3,
     "title": "수료",
-    "description": "Lorem ipsum dolor sit incid idunt ut Lorem ipsum sit.",
+    "description": "수료",
     "start": "2021-01-06",
     "end": "2021-01-06",
     "type": "기타",
@@ -63,6 +63,18 @@
     "type": "기타",
     "username": "admin",
     "backgroundColor": "#63e6be",
+    "textColor": "#ffffff",
+    "allDay": true
+  },
+{
+    "_id": 7,
+    "title": "책입고",
+    "description": "",
+    "start": "2021-01-02",
+    "end": "2021-01-02",
+    "type": "입고",
+    "username": "admin",
+    "backgroundColor": "#4d638c",
     "textColor": "#ffffff",
     "allDay": true
   }]
