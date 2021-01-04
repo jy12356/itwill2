@@ -138,6 +138,20 @@ th.memSortTbody {
 	font-size: 14px;
 	border: 1px solid #72ada5 !important;
 }
+
+.container{margin:0 auto; width:80%;}
+.tab_tit{padding-top:20px; border-bottom:1px solid #777;}
+.tab_tit::after{content:''; display:block; clear:both;}
+.tab_tit li{float: left;width: 150px;height: 32px;text-align: center;line-height: 32px; cursor:pointer}
+.tab_tit li::after{content:''; display:none; clear:both; width:100%; height:3px; background:#48474e;}
+.tab_tit li.on::after{display:block;}
+
+.cnt{display:none; padding:40px 10px;} 
+.cnt.on{display:block; padding:40px 10px;}
+.cnt h2{font-size:20px; font-weight:800;}
+.cnt ul{padding:20px 0px;}
+.cnt ul li{line-height:22px;}
+.cnt ul li::before{content: '';display: inline-block;margin-top: 9px;margin-right: 9px;width: 5px;height: 5px;background: #2f4394;border-radius: 50%;vertical-align: top;}
 </style>
 
 <%
@@ -220,23 +234,17 @@ int listCount = pageInfo.getListCount();
 				</div>
 			</div>
 			<div class="customer" style="width: 1400px;">
-				<h3 class="coTitle">고객관리</h3>
+				
+				
+				<ul class="tab_tit">
+				    <li class="on" data-tab="tab1">고객관리</li>
+				    <li data-tab="tab2" onclick="javascript:test()">대시보드</li>
+				  </ul>
+				
+				
+				<div id="tab1" class="cnt on"><h3 class="coTitle">고객관리</h3>
 				<div class="customer-contents">
 					<div class="customer-inner">
-						<table summary="공지사항" class="customer-table notice" >
-							<!-- <table class="columns"> -->
-							<tr>
-								<td><div id="chart1" ></div></td>
-								<td><div id="chart2" ></div></td>
-							</tr>
-							<tr>
-								<td><div id="chart3" ></div></td>
-								<td><div id="chart4" ></div></td>
-							</tr> 
-							
-							<!--  </table> -->
-
-						</table>
 
 
 
@@ -327,6 +335,28 @@ int listCount = pageInfo.getListCount();
 						</div>
 					</div>
 					</div>
+					</div>
+					
+					
+					
+					 <div id="tab2" class="cnt">
+					<h3 class="coTitle">대시보드 </h3>
+						<table>
+							<!-- <table class="columns"> -->
+							<tr>
+								<td><div id="chart1" style="padding: 10px;"></div></td>
+								<td><div id="chart2" style="padding: 10px;"></div></td>
+							</tr>
+							<tr>
+								<td><div id="chart3" style="padding: 10px;"></div></td>
+								<td><div id="chart4" style="padding: 10px;"></div></td>
+							</tr> 
+						</table>
+						</div>
+						
+						
+						
+						
 				</div>
 				</div>
 			</div>
@@ -336,15 +366,17 @@ int listCount = pageInfo.getListCount();
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript">
-	google.load("visualization", "1.0", {
-	     callback: function () {
+	function drawGraph() {
+	
+	google.load("visualization", "1", {packages:["corechart"]}); 
+    google.setOnLoadCallback(drawChart); 
+    
+    function drawChart() {
 	       var queryObjectLen="";
 	       // 리스트 생성
 	       var arr1 = new Array() ;
 	       var arr2 = new Array() ;
-
 	       var arr3 = new Array() ;
-
 	       var arr4 = new Array() ;
 	       
 	       $.ajax({
@@ -412,7 +444,7 @@ int listCount = pageInfo.getListCount();
 			var data2 = new google.visualization.DataTable();
 			data2.addColumn("string", "date");
 			data2.addColumn("number", "id_count");
-			for (var i = 0; i < arr2.length; i++) {
+			for (var i = 0; i < 7; i++) {
 				var date = JSON.parse(jsonData2)[i].date; 
 				var id_count = JSON.parse(jsonData2)[i].id_count;
 				data2.addRows([ [ date, parseInt(id_count) ] ]);
@@ -420,92 +452,147 @@ int listCount = pageInfo.getListCount();
 			
 			var data3 = new google.visualization.DataTable();
 			data3.addColumn("string", "qna_genre");
-			data3.addColumn("number", "qna_count");
+			data3.addColumn("number", "불만사항");
+			data3.addColumn("number", "취소/환불");
+			data3.addRows([ 
+				[ 'Jan' , 15, 4 ],   
+		        [ 'Feb' , 14, 2 ],   
+		        [ 'Mar' , 13, 5 ],   
+		        [ 'Apr' , 14, 5 ],
+		        [ 'May' , 13, 12 ],   
+		        [ 'Jun' , 15, 14 ],   
+				[ 'Jul' , 12, 15 ],   
+		        [ 'Aug' , 11, 8 ],
+		        [ 'Sep' , 17, 6 ],   
+		        [ 'Oct' , 21, 6 ],   
+		        [ 'Nov' , 12, 8 ],   
+		        [ 'Dec' , 11, 5 ] 
+				]);
 			for (var i = 0; i < arr3.length; i++) {
 				var qna_genre = JSON.parse(jsonData3)[i].qna_genre;
 				var qna_count = JSON.parse(jsonData3)[i].qna_count;
-				data3.addRows([ [ qna_genre, parseInt(qna_count) ] ]);
 			}
 			
 			var data4 = new google.visualization.DataTable();
-			data4.addColumn("string", "s_date");
-			data4.addColumn("number", "retal_count");
-			for (var i = 0; i < arr4.length; i++) {
-				var s_date = JSON.parse(jsonData4)[i].s_date;
-				var retal_count = JSON.parse(jsonData4)[i].retal_count;
-				data4.addRows([ [ s_date, parseInt(retal_count) ] ]);
-			}
+			data4.addColumn("string", "월");
+			data4.addColumn("number", "대여수");
+			data4.addRows([ 
+				  [ 'Jan' , 523 ],   
+		          [ 'Feb' , 535 ],   
+		          [ 'Mar' , 582 ],   
+		          [ 'Apr' , 515 ],
+		          [ 'May' , 593 ],   
+		          [ 'Jun' , 551 ],   
+		          [ 'Jul' , 606 ],   
+		          [ 'Aug' , 591 ],
+		          [ 'Sep' , 562 ],   
+		          [ 'Oct' , 591 ],   
+		          [ 'Nov' , 521 ],   
+		          [ 'Dec' , 585 ] ]);
 			
 			var options = {
 				title : "회원들의 장르별 선호도",
 				is3D : true,
-				width: 600,
-		        height: 600
+				width: 700,
+		        height: 400,
+		        backgroundColor: '#e6e6ff'
 			};
 			
 			var options2 = {
 		        is3D : true,
 				title : '가입자수 추이 ',
-				width: 600,
-		        height: 600,
+				width: 700,
+		        height: 400,
+		        role: 'annotation' ,
 		       /*  role: 'tooltip', */
 		        /* bar: {groupWidth: "70%"}, */
-		         legend: { position: "none" }, 
-		       colors : [ "red", "#e5e4e2"],
-		         trendlines: {
+		        legend: { position: "none" }, 
+		        colors : [ "red"],
+		        trendlines: {
 		            0: {
 		              type: 'exponential',
 		              visibleInLegend: true,
 		            }
-		          } 
+		          },
+		          hAxis: {
+		              slantedText: true,
+		              slantedTextAngle: 20,
+		              gridlines: {count: 7}
+		           },
+		           animation:{
+			        	  duration: 1500,
+			              easing: 'out',
+			              startup: true
+	                   },
+		           backgroundColor: '#ffe6ff'
 	        };
 			
 			var options3 = {
 				is3D : true,
-				title : "가입자 추이 ",
-				width: 600,
-		        height: 600
+				title : "불만사항 접수 ",
+				width: 700,
+		        height: 400,
+	            
+	          bar: { groupWidth: "90%" },
+	          backgroundColor: '#ffffe6',
+	          animation:{
+	        	  duration: 1500,
+	              easing: 'out',
+	              startup: true
+               }
 			};
 			
 			var options4 = {
-				title : "가입자수 추이 ",
-				width: 600,
-		        height: 600
-			};
+					/* is3D : true, */
+					title : '월별 배송량 ',
+					width: 700,
+			        height: 400,
+			        role: 'annotation' ,
+			        legend: { position: "none" }, 
+			        trendlines: {
+			            0: {
+			              type: 'exponential',
+			              visibleInLegend: true,
+			            }
+			          },
+			          animation:{
+			        	  duration: 1500,
+			              easing: 'out',
+			              startup: true
+	                   },
+			          backgroundColor: '#f1f8e9'  
+		        };
 			
 			var chart1 =  new google.visualization.PieChart(document.getElementById("chart1"));
             chart1.draw(data,options);
 
-			var chart2 =  new google.visualization.LineChart(document.getElementById("chart2"));
+			var chart2 =  new google.visualization.BarChart(document.getElementById("chart2"));
 			chart2.draw(data2,options2);
 
-			var chart3 =  new google.visualization.PieChart(document.getElementById("chart3"));
+			var chart3 =  new google.visualization.AreaChart(document.getElementById("chart3"));
 			chart3.draw(data3,options3);
 
-			var chart4 =  new google.visualization.ColumnChart(document.getElementById("chart4"));
+			var chart4 =  new google.visualization.LineChart(document.getElementById("chart4"));
 			chart4.draw(data4,options4);
+			},
 			
-		},
+	       	
 		error: function (xhr, type,data,queryObject) {
 	           alert(data+"~~~"+queryObject)
-s
+
 	         }
 	       });
-	     },
-	     packages:["corechart"]
-	});
-    
-	/* jQuery(document).ready(function($) {
-		$( "#datepicker" ).datepicker({
-		  dateFormat:"yyyy-mm-dd",
-		  changeMonth: true,
-		  changeYear: true,
-		  maxDate: "+0D"
-		});
-
-		});
-	 */
-	
+	     };
+	}
+     function test() {
+    	  drawGraph();
+    	  document.getElementById("chart1").style.display = "block";
+    	  document.getElementById("chart2").style.display = "block";
+    	  document.getElementById("chart3").style.display = "block";
+    	  document.getElementById("chart4").style.display = "block";
+    	  }
+	     
+	     
 	function deleteListMem(){
 		var confirm_val = confirm("정말 삭제하시겠습니까?");
 		
@@ -535,7 +622,17 @@ s
 		} 
     };
 	
-	    
+    
+    
+    $(function() {
+    	  $('ul.tab_tit li').click(function() {
+    	    var onTab = $(this).attr('data-tab');
+    	    $('ul.tab_tit li').removeClass('on');
+    	    $('.cnt').removeClass('on');
+    	    $(this).addClass('on');
+    	    $('#' + onTab).addClass('on');
+    	  })
+    	}); 
 	</script>
 </html>
 <jsp:include page="../include/footer.jsp" />

@@ -96,7 +96,7 @@
 						<div class="figure">
 							<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>">
 								<span class="rm_br">
-									<img src="bookUpload/<%=bookList5.get(i).getImage() %>" >
+									<img src="bookUpload/<%=bookList.get(i).getImage() %>" >
 								</span> 
 								<span class="light"></span>
 							</a>
@@ -149,14 +149,16 @@
 								</p>
 							</li>
 						<%
-						if(bookList2!=null || bookList3!=null || bookList4!=null){
-						for(int i = 0; i < 10; i++) {
+							for(int i = 0; i < 10; i++) {
 						%>							
 							<li class="top-rank top-one">
 								<p class="rank">
 									<span><strong><%=i+1%></strong></span>
 									<span class="icon"></span>
 								</p>
+								<%
+									if(bookList2.size() != 9){
+								%>
 								<div class="webtoon">
 									<p>
 										<strong><%=bookList2.get(i).getTitle()%></strong>
@@ -173,6 +175,9 @@
 										</a>
 									</div>
 								</div>
+								<%
+									} if(bookList3.size() != 9) {
+								%>
 								<div class="comic">
 									<p>
 										<strong><%=bookList3.get(i).getTitle()%></strong>
@@ -189,7 +194,9 @@
 										</a>
 									</div>
 								</div>
-								
+								<%
+									} if (bookList4.size() != 9) {
+								%>
 								<div class="fiction">
 									<p>
 										<strong><%=bookList4.get(i).getTitle()%></strong>
@@ -206,9 +213,12 @@
 										</a>
 									</div>
 								</div>
+								<%
+									}
+								%>
 							</li>							
 							<%
-								}}
+								}
 							%>
 						</ul>
 					</div>

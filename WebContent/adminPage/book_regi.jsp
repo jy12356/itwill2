@@ -52,7 +52,7 @@ request.setCharacterEncoding("UTF-8");
 	                	</div>
                 	</div>
                 	
-                	<form action="BookWritePro.bok" method="post" name="bookRegForm" enctype="multipart/form-data">
+                	<form action="BookWritePro.bok" method="post" name="bookRegForm" accept-charset="utf-8" enctype="multipart/form-data">
                 		<div class="one-ps pb10">
                 			<p>
 								* 항목은 필수 입력 항목입니다.

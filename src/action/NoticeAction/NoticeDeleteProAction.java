@@ -64,7 +64,7 @@ public class NoticeDeleteProAction implements NoticeAction {
 				// => URL 뒤에 파라미터로 페이지번호(page)를 전달
 				forward = new NoticeActionForward();
 				forward.setPath(
-						"NoticeBoardList.not?page=" + multi.getParameter("page"));
+						"NoticeBoardList.not?page=1");
 				forward.setRedirect(true);
 			}
 		}

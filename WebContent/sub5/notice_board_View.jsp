@@ -25,38 +25,34 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
                 	<form action="NoticeBoardWritePro.not" method="post"
                 	enctype="multipart/form-data" name="notice_writeForm">
 	                    <table summary="게시판" class="customer-notice">
-	                        <caption>게시판</caption>
-	                        <colgroup>
-	                            <col width="15%">
-	                            <col width="35%">
-	                            <col width="15%">
-	                            <col width="35%">
-	                        </colgroup>
+	                        <caption>공지사항</caption>
+						<colgroup>
+							<col width="20%">
+							<col width="30%">
+							<col width="20%">
+							<col width="30%">
+						</colgroup>
 	                        <tbody>
+<!-- 	                            <tr> -->
+<!-- <!-- 	                            <td>글 번호</td> -->
+<!-- 	                            <td colspan="3"> -->
+<%-- 	                            <%=article.getNum() %> --%>
+<%-- 	                            	<input type="hidden" name="page" value="<%=nowPage %>" /> --%>
+<%-- 	                            	<input type="hidden" name="num" value=<%=article.getNum() %>> --%>
+<!-- 	                            	</td> -->
+<!-- 	                            </tr> -->
 	                            <tr>
-	                            <td>글 번호</td>
-	                            <td colspan="3">
-	                            <%=article.getNum() %>
-	                            	<input type="hidden" name="page" value="<%=nowPage %>" />
-	                            	<input type="hidden" name="num" value=<%=article.getNum() %>>
-	                            	</td>
-	                            </tr>
-	                            <tr>
-	                                <td>제목</td>
-	                                <td colspan="3">
+<!-- 	                                <td>제목</td> -->
+	                                <td colspan="4">
 	                                	<%=article.getSubject() %>
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                            	<td>작성자</td>
-	                            	<td colspan="3">
-	                            		<%=article.getId() %>
-	                            	</td>
-<!-- 	                            	<td class="th">비밀번호</td> -->
-<!-- 	                            	<td> -->
-<!-- 	                            		<input type="text" name="pass"> -->
-<!-- 	                            	</td> -->
-	                            </tr>
+								<td class="th">작성자</td>
+								<td class="td"><%=article.getId() %></td>
+								<td class="th">등록일</td>
+								<td class="td"><%=article.getDate() %></td>
+							</tr>
 	                            <tr>
 	                                <td>파일</td>
 	                            	<td colspan="3">
@@ -68,14 +64,16 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 	                            	</td>
 	                            </tr>
 	                            <tr>
-	                                <td>내용</td>
-	                                <td colspan="3">
+	                                <td class = "th">내용</td>
+	                                <td colspan="3" class = "td">
+	                                <p>
 	                                    <%=article.getContent() %>
+	                                </p>
 	                                </td>
 	                            </tr>
 	                        </tbody>
 	                    </table>
-	                    <div class="default-btn-wrap">	
+	                    <div class="btn_inner">	
 	                        <input type="button" value="목록" class="btn" onclick="location.href='NoticeBoardList.not?page=1'">
 	                   <%
 	                   
