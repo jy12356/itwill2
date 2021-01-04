@@ -221,7 +221,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 					<ul class="">
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=수학">수학</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=과학">과학</a></li>	
-						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT/비즈니스">IT/비즈니스</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT비즈니스">IT/비즈니스</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=자격증">자격증</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=프로그래밍">프로그래밍</a></li>		
 					</ul>
