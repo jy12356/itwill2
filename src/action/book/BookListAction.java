@@ -18,14 +18,15 @@ public class BookListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BookListAction");
 		ActionForward forward = null;
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
 		int page = 1;//현재 페이지 번호 저장할 변수
 		int limit = 10; //페이지당 표시할 게시물 수를 결정하는 변수
 		if(request.getParameter("page")!=null) {
 			page = Integer.parseInt(request.getParameter("page"));			
 		}
 
-
+		System.out.println("나와라잉 "+request.getParameter("catg1") +"원인?");
+		System.out.println("나와라잉 "+request.getParameter("catg2")+"원인?");
 		String catg1 = "";
 		String catg2 = "";
 		String search="";
