@@ -73,7 +73,8 @@ public class BookWriteProAction implements Action {
 				System.out.println("등록되었습니다.");
 				forward = new ActionForward();
 				System.out.println(bookBean.getCatg1() +", " +bookBean.getCatg2());
-				forward.setPath("BookList.bok?catg1="+URLDecoder.decode(bookBean.getCatg1(), "UTF-8")+"&catg2="+URLDecoder.decode(bookBean.getCatg2(),"UTF-8"));
+//				forward.setPath("BookList.bok?catg1="+URLDecoder.decode(bookBean.getCatg1(), "UTF-8")+"&catg2="+URLDecoder.decode(bookBean.getCatg2(),"UTF-8"));
+				forward.setPath("BookList.bok?catg1='소설'&catg2='소설'");
 				System.out.println(forward.getPath());
 				forward.setRedirect(true);
 			}
