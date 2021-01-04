@@ -10,15 +10,11 @@
 <% 
 request.setCharacterEncoding("utf-8"); 
 BookBean bookBean=(BookBean) request.getAttribute("bookBean"); 
-String nowPage=request.getParameter("page");
-if(nowPage==null){
-	nowPage="1";
-}
+String nowPage=request.getParameter("page"); 
 String id=(String) session.getAttribute("id");
 String isbn=request.getParameter("isbn");
 int limit=((Integer)request.getAttribute("limit")).intValue();
 System.out.println("limit :" + limit);
-System.out.println("현재page :" + nowPage);
 
 ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>) request.getAttribute("articleList");
 PageInfo pageInfo=(PageInfo)request.getAttribute("pageInfo"); 
@@ -298,8 +294,8 @@ int listCount = pageInfo.getListCount();
 					</ul>
 					<div class="review-score-box">
 						<div class="k-array">
-<!-- 							<input type="radio" name="" id=""><label for="" class="radio reviewSort" data-sort="좋아요"><span class="radio_off"><em>좋아요순</em></span></label> -->
-							<input type="radio" name="" id=""><label for="" class="radio reviewSort" data-sort="최신순"><span class="radio_on"><em>최신순</em></span></label>
+							<input type="radio" name="" id=""><label for="" class="radio reviewSort" data-sort="좋아요"><span class="radio_off"><em>좋아요순</em></span></label><input type="radio" name="" id="">
+							<label for="" class="radio reviewSort" data-sort="최신순"><span class="radio_on"><em>최신순</em></span></label>
 						</div>
 						<div class="review-score">
 							<% if (bookBean.getStarcount() < 1) { %>
@@ -360,17 +356,16 @@ int listCount = pageInfo.getListCount();
 								<div class="btn_inner">
 									<% 
 									if(id != null) {
-										if(id.equals(articleList.get(i).getId())) {
+										if(id.equals(articleList.get(i).getId()) || id.equals("admin")) {
 									%>
 									<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>
-									<% } if(id.equals(articleList.get(i).getId()) || id.equals("admin")) { %>
 									<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
 									<%
 										}
 									}
 									%>
-									<a href="javascript:;" class="heart-btn btn" data-review_num="<%=articleList.get(i).getNum()%>" data-like_id="<%=id%>" data-isbn="<%=isbn%>">좋아요</a>
-									<a href="javascript:;" class="comment_write_show btn" data-board_num="<%=articleList.get(i).getNum()%>">댓글</a>
+									<a href="javascript:;" class="heart-btn btn" data-review-num="<%=articleList.get(i).getNum()%>" data-like-id="<%=id%>" data-isbn="<%=isbn%>">좋아요</a>
+									<a href="javascript:;" class="comment_write_show btn" data-comment-count="<%=articleList.get(i).getNum()%>">댓글</a>
 								</div>
 							</div>
 							<!-- 서평 수정-->
@@ -401,7 +396,7 @@ int listCount = pageInfo.getListCount();
 							</div>
 							<!-- 서평 수정-->
 							<!-- 댓글 창 -->
-							<div class="cmtRly clearfix del_succ" data-review-num="" data-comment-num="" style="none">
+							<div class="cmtRly clearfix" data-review-num="" data-comment-num="" style="none">
 								<!-- 댓글 등록 입력창-->
 								<form action="javascript:;" class="comment-write reply-write" method="get" id="myReComment">
 									<div>
@@ -448,7 +443,7 @@ int listCount = pageInfo.getListCount();
 				<!-- 서평 있을 때 -->
 				<!-- 서평 리스트 더보기 -->
 				<div class="d-more reviewMore" style="display: ;">
-<%-- 				 <a href="BookDetail.bok?isbn=<%=isbn%>&limit=<%=limit+10%>">10개 더보기</a> --%>
+				 <a href="BookDetail.bok?isbn=<%=isbn%>&limit=<%=limit+10%>">10개 더보기</a>
 				</div>
 				<!-- 서평 리스트 더보기 -->
 				<!-- 서평리스트 내용-->
@@ -504,7 +499,7 @@ int listCount = pageInfo.getListCount();
 
 	function idYn() {
 		var myid = document.getElementById('myId').value;
-// 		alert(myid);
+		alert(myid);
 		if (myid == "null") {
 			alert("로그인 해주시길 바랍니다.");
 			return false;
@@ -514,6 +509,7 @@ int listCount = pageInfo.getListCount();
 	
 	// 댓글 삭제
 	function comment_delete(obj){
+		alert("댓글삭제");
 		var firstSec = $(obj).attr('class');
 // 		alert(firstSec);		
 		var isbn=$(obj).parent().siblings('#book_isbn').val();
@@ -521,42 +517,38 @@ int listCount = pageInfo.getListCount();
 		var board_num=$(obj).parent().siblings("#board_num").val();
 		var comment_num=$(obj).data("comment_num");
 		var comment_id= "<%=(String)session.getAttribute("id")%>";
-		var page = "<%=nowPage%>"
-		if (comment_id == "null") {
-			alert("로그인을 해주시길 바랍니다.");
+// 		alert("isbn "+isbn);
+// 		alert("board_type "+board_type);
+// 		alert("board_num "+board_num);
+// 		alert("comment_num "+comment_num);
+// 		alert("comment_id "+ comment_id);
+		if(confirm("댓글을 삭제하시겠습니까?")==true) {
+			$.ajax({
+				type : "GET",
+				data : "json",
+				url : "ReCommentDeletePro.re",
+				data : {
+					"isbn" : isbn,
+					"board_type" : board_type,
+					"board_num" : board_num,
+					"comment_num" : comment_num,
+					"comment_id" : comment_id,
+				},
+				success : function(data) {
+					var text = data.text;
+					alert(text);
+									},
+				error : function(error) {
+					alert("오류발생" + error);
+				}
+			});
+		} else {
 			return false;
 		}
-			if(confirm("댓글을 삭제하시겠습니까?")==true) {
-				$.ajax({
-					type : "GET",
-					data : "json",
-					url : "ReCommentDeletePro.re",
-					data : {
-						"page" : page,
-						"isbn" : isbn,
-						"board_type" : board_type,
-						"board_num" : board_num,
-						"comment_num" : comment_num,
-						"comment_id" : comment_id,
-					},
-					success : function(data) {
-						var text = data.text;
-						alert(text);
-	// 					$(".comment_write_show").trigger("click", board_num);
-					},
-					error : function(error) {
-						alert("오류발생" + error);
-					}
-				});
-			} else {
-				return false;
-		}
+		
 	}
-
-	
 	// 댓글 수정창 열기
-	function comment_Modi_Open(obj) {
-		var firstSec = $(obj).attr('class');
+	function comment_Modi_Open() {
 		if($(".comment-text").css("display")=="none"){
 			$(".comment-text").show();
 		} else {
@@ -565,8 +557,8 @@ int listCount = pageInfo.getListCount();
 		}
 	
 	// 댓글 수정
-	function comment_Modi(firstSec){
-		alert(firstSec);
+	function comment_Modi(){
+		alert("댓글수정");
 		var isbn = $('input[name="isbn"]').val();
 		var board_type = $('input[name="board_type"]').val();
 		var board_num = $('input[name="board_num"]').val();
@@ -633,7 +625,7 @@ int listCount = pageInfo.getListCount();
 				
 				//리뷰댓글 입력창 보이기
 				$(".comment_write_show").on("click",function() {
-					var board_num = $(this).data("board_num");
+					var board_num = $(this).data("comment-count");
 					var reply_display =$(this).parent().parent().next().next().css("display");
 					if (reply_display == "none") {
 						$(".cmtModi").hide();
@@ -647,7 +639,6 @@ int listCount = pageInfo.getListCount();
 				
 				// 댓글리스트
 				function reply_write(board_num){
-					alert("댓글리스트!");
 					var id = '<%=(String)session.getAttribute("id")%>';
 // 					var page = $('input[name="page"]').val();
 					var isbn = $('input[name="isbn"]').val();
@@ -681,7 +672,7 @@ int listCount = pageInfo.getListCount();
 	                				'</div>'+
 	                				'<div class="btn_inner">'+
 // 	                				'<a href="javascript:;" class="comment_modi_show btn rview_modi_show">수정</a>'+
-// 	                				'<a href="javascript:;" onclick="comment_Modi_Open(this);" class="comment_modi_show btn rview_modi_show" data-comment_num="'+entry["comment_num"]+'">수정</a>'+
+	                				'<a href="javascript:;" onclick="comment_Modi_Open();" class="comment_modi_show btn rview_modi_show" data-comment_num="'+entry["comment_num"]+'">수정</a>'+
 	                				'<a href="javascript:;" onclick="comment_delete(this);" class="comment_delete_show btn" data-comment_num="'+entry["comment_num"]+'">삭제</a>'+
 	                				'</div>'+
 
@@ -754,14 +745,7 @@ int listCount = pageInfo.getListCount();
 // 						}
 // 					});
 // 				}
-				
-
-
-
-
-
-
-
+								
 				//댓글 입력창 보이기(수정)
 				$(".comment_modify").on("click",function() {
 					if ($.cookie("user_num")) {
@@ -782,9 +766,9 @@ int listCount = pageInfo.getListCount();
 				
 				// 좋아요
 				$(".heart-btn").on("click",function() {
-					var num = $(this).data("review_num");
-					var review_num = $(this).data("review_num");
-					var like_id = $(this).data("like_id");
+					var num = $(this).data("review-num");
+					var review_num = $(this).data("review-num");
+					var like_id = $(this).data("like-id");
 					var book_isbn = $(this).data("isbn");
 					if (like_id == null) {
 						alert("로그인을 해주시길 바랍니다.");
@@ -825,8 +809,9 @@ int listCount = pageInfo.getListCount();
 // 					var board_num = $('input[name="board_num"]').val();
 // 					var comment_id = $('input[name="comment_id"]').val();
 					var board_num = $(this).data("board_num");
-					var comment_id = '<%=(String)session.getAttribute("id")%>';
-					var comment_desc = $('textarea[name="comment_desc"]').val();
+					var comment_id = $(this).data("comment_id");
+					var comment_desc = $('textarea[name="comment_desc"]:visible').val();
+					alert(board_num);
 					if (comment_id == null) {
 						alert("로그인을 해주시길 바랍니다.");
 						$("textarea[name=comment_desc]").val("");
@@ -848,7 +833,7 @@ int listCount = pageInfo.getListCount();
 							success : function(data) {
 								var text = data.text;
 								alert(text);
-								
+
 							<%-- <div class="comment comment_inner reIcon">
 								<input type="hidden" name="isbn" value="<%=isbn%>"> 
 								<input type="hidden" name="page" value="<%=nowPage%>"> 
@@ -871,11 +856,11 @@ int listCount = pageInfo.getListCount();
 								alert("오류발생" + error);
 							}
 						});
+					$('textarea[name="comment_desc"]').val("");
+					reply_write(board_num);
 					} else {
 						return false;
 					}
-					$('textarea[name="comment_desc"]').val("");
-					reply_write(board_num);
 				});
 				
 				// 댓글 수정
