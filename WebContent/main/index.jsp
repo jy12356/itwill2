@@ -241,5 +241,19 @@
 			</div>
 		</div>
 	</div>
+	<div class="main-inner">
+		<div class="main_ct_best">
+			<div class="e-book-ps">
+				<h3>동서남북 이용안내</h3>
+				<ul>
+					<li>대출 후 직접 받아 보실수 있는 상품입니다.</li>
+					<li>사이트 내 정기 구독권 구매시 무료로 사용하실 수 있습니다.</li>
+					<li>대출 하신 책은 ""마이페이지 > 대출목록”에서 확인 하실 수 있습니다.</li>
+					<li>ID 계정 당 총 5권의 도서를 횟수 제한 없이 대출 하실 수 있습니다.</li>
+					<li>대출 하신 도서를 훼손 및 분실시 책임을 물으실 수 있습니다.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </section>
 <jsp:include page="../include/footer.jsp" />
