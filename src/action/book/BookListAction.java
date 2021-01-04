@@ -26,8 +26,6 @@ public class BookListAction implements Action {
 		}
 
 
-		System.out.println(URLDecoder.decode(request.getParameter("catg1"),"UTF-8"));
-		System.out.println(URLDecoder.decode(request.getParameter("catg2"),"UTF-8"));
 		String catg1 = "";
 		String catg2 = "";
 		String search="";
