@@ -19,8 +19,9 @@ public class AlarmListService {
 		alarmDAO.setConnection(con);
 
 		listCount = alarmDAO.selectListCount(id);
-
+		System.out.println(listCount);
 		close(con);
+		
 
 		return listCount;
 	}
