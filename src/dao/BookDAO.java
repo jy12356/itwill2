@@ -158,7 +158,7 @@ public class BookDAO {
 			pstmt.setString(1, "소설");
 //			pstmt.setString(2, "%"+catg2);
 			pstmt.setInt(2, 0);
-			pstmt.setInt(3, 2);
+			pstmt.setInt(3, 10);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			bookList2 = new ArrayList<BookBean>();
@@ -209,7 +209,7 @@ public class BookDAO {
 				pstmt.setString(1, catg1);
 //				pstmt.setString(2, "%"+catg2);
 				pstmt.setInt(2, 0);
-				pstmt.setInt(3, 2);
+				pstmt.setInt(3, 10);
 				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				bookList3 = new ArrayList<BookBean>();

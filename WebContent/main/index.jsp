@@ -149,8 +149,8 @@
 								</p>
 							</li>
 						<%
-						if(bookList2!=null){
-						for(int i = 0; i < 2; i++) {
+						if(bookList2!=null || bookList3!=null || bookList4!=null){
+						for(int i = 0; i < 10; i++) {
 						%>							
 							<li class="top-rank top-one">
 								<p class="rank">
