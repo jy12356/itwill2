@@ -1,6 +1,6 @@
 <%@page import="vo.RequestBean"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="vo.PageInfo"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	String id = (String) session.getAttribute("id");
 	RequestBean article = (RequestBean) request.getAttribute("article");
@@ -60,7 +60,7 @@
 					<div class="btn_inner">
 					<%
 						if(id != null) {
-						if(id.equals(article.getId())) {
+						if(id.equals("admin")) {
 					%>
 						<input type="button" class="btn" value="수정"
 							onclick="location.href='RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
@@ -69,13 +69,48 @@
 						<input type="button" class="btn" value="목록"
 							onclick="location.href='RequestList.rq?page=<%=nowPage%>'">
 						<input type="button" class="btn" value="답변"
-							onclick="location.href='RequestReplyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+							onclick="location.href='RequestReplyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">		
 					<%
-						}}
+						} else if(id.equals(article.getId())) {
+					%>
+						<input type="button" class="btn" value="수정"
+							onclick="location.href='RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+						<input type="button" class="btn" value="삭제"
+							onclick="location.href='RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+						<input type="button" class="btn" value="목록"
+							onclick="location.href='RequestList.rq?page=<%=nowPage%>'">
+					<%
+						} else {
+					%>
+						<input type="button" class="btn" value="목록"
+							onclick="location.href='RequestList.rq?page=<%=nowPage%>'">		
+					<%						
+						}
+						} else {
+					%>
+						<input type="button" class="btn" value="목록"
+							onclick="location.href='RequestList.rq?page=<%=nowPage%>'">
+					<%		
+						}
 					%>
 					</div>
 				</div>
 			</div>
+			<script>
+				$(function(){
+					$(".vs1Del").on("click",function(){		
+						var msg_num = $(this).data("num");
+						$.post("/data/_vs1del.asp", {num : msg_num}, function(data){					
+							if(data.success){
+								alert('삭제되었습니다.');
+								location.href = "/request.asp?page=vs1&page2=list";
+							}else{
+								alert(data.message);
+							}				
+						}, "json");			
+					});
+				});
+			</script>
 		</div>
 	</div>
 
