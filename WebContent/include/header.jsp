@@ -4,7 +4,11 @@
 <%@page import="vo.MsgBean"%>
 <%
 String id = (String)session.getAttribute("id");
-int messageCount = (int)session.getAttribute("messageCount");
+
+int messageCount = 0;
+if(session.getAttribute("messageCount") !=null){
+	messageCount = (int)session.getAttribute("messageCount");
+};
 ArrayList<MsgBean> myMsgList = (ArrayList<MsgBean>) request.getAttribute("msgList");
 PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 %>
