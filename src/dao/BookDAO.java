@@ -652,9 +652,9 @@ public class BookDAO {
       String sql = "select i.num num, "
             + "i.isbn isbn,i.id id, b.title title, b.author author, "
             + "b.publisher publisher, b.pubdate pubdate, "
-            + "min(case when b.state = 0 then '대여가능' else '대여불가능' end) as state "
+            + "(case when b.state = 0 then '대여가능' else '대여불가능' end) as state "
             + "from interestinglist  as i  left outer join book as b on i.isbn = b.isbn "
-            + "where i.id=? group by i.isbn order by i.num desc limit ?,?;";
+            + "where i.id=? order by i.num desc limit ?,?;";
       try {
          pstmt=con.prepareStatement(sql);
          pstmt.setString(1, id);
