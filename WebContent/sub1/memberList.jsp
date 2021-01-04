@@ -223,19 +223,15 @@ int listCount = pageInfo.getListCount();
 				<h3 class="coTitle">고객관리</h3>
 				<div class="customer-contents">
 					<div class="customer-inner">
-						<table summary="공지사항" class="customer-table notice">
+						<table summary="공지사항" class="customer-table notice" >
 							<!-- <table class="columns"> -->
 							<tr>
-								<td><div id="chart1" style="border: 2px solid red; height: 300px; width: 400px;"></div></td>
+								<td><div id="chart1" ></div></td>
+								<td><div id="chart2" ></div></td>
 							</tr>
 							<tr>
-								<td><div id="chart2" style="border: 2px solid blue; height: 300px; width: 400px;"></div></td>
-							</tr>
-							<tr>
-								<td><div id="chart3" style="border: 2px solid purple; height: 300px; width: 400px;"></div></td>
-							</tr>
-							<tr>
-								<td><div id="chart4" style="border: 2px solid orange; height: 300px; width: 400px;"></div></td>
+								<td><div id="chart3" ></div></td>
+								<td><div id="chart4" ></div></td>
 							</tr> 
 							
 							<!--  </table> -->
@@ -336,8 +332,8 @@ int listCount = pageInfo.getListCount();
 			</div>
 	</section>
     
-	<script type="text/javascript"
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!-- <script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript">
 	google.load("visualization", "1.0", {
@@ -357,8 +353,7 @@ int listCount = pageInfo.getListCount();
 			url : "MemberListCal.me",
 			dataType : "json",
 			success : function(data) {
- 				queryObjectLen = data.length;
- 				alert(queryObjectLen);
+				
 				$.each(data, function( index, responseObj){ 
 
 				    // 객체 생성
@@ -404,31 +399,20 @@ int listCount = pageInfo.getListCount();
 		        var jsonData2 = JSON.stringify(arr2) ;
 		        var jsonData3 = JSON.stringify(arr3) ;
 		        var jsonData4 = JSON.stringify(arr4) ;
-		         
-		        alert(jsonData1) ;
-		        alert(jsonData2) ;
-		        alert(jsonData3) ;
-		        alert(jsonData4) ;
-
-				    var jsonData1 = JSON.stringify(arr1) ;
-		        var jsonData2 = JSON.stringify(arr2) ;
-		        var jsonData3 = JSON.stringify(arr3) ;
-		        var jsonData4 = JSON.stringify(arr4) ;
 		        
-			        
 	        var data = new google.visualization.DataTable();
 			data.addColumn("string", "catg");
 			data.addColumn("number", "catg_count");
-			for (var i = 0; i < 1; i++) {
+			for (var i = 0; i < arr1.length; i++) {
 				var catg = JSON.parse(jsonData1)[i].catg;
-				var catg_count = JSON.parse(jsonData1)[i].catg_count;
-				data.addRows([ catg, catg_count ]);
+				var catg_count = JSON.parse(jsonData1)[i].catg_count; 
+				data.addRows([ [catg, parseInt(catg_count) ] ]);
 			}
 			
 			var data2 = new google.visualization.DataTable();
 			data2.addColumn("string", "date");
 			data2.addColumn("number", "id_count");
-			for (var i = 0; i < queryObjectLen; i++) {
+			for (var i = 0; i < arr2.length; i++) {
 				var date = JSON.parse(jsonData2)[i].date; 
 				var id_count = JSON.parse(jsonData2)[i].id_count;
 				data2.addRows([ [ date, parseInt(id_count) ] ]);
@@ -437,7 +421,7 @@ int listCount = pageInfo.getListCount();
 			var data3 = new google.visualization.DataTable();
 			data3.addColumn("string", "qna_genre");
 			data3.addColumn("number", "qna_count");
-			for (var i = 0; i < queryObjectLen; i++) {
+			for (var i = 0; i < arr3.length; i++) {
 				var qna_genre = JSON.parse(jsonData3)[i].qna_genre;
 				var qna_count = JSON.parse(jsonData3)[i].qna_count;
 				data3.addRows([ [ qna_genre, parseInt(qna_count) ] ]);
@@ -446,55 +430,47 @@ int listCount = pageInfo.getListCount();
 			var data4 = new google.visualization.DataTable();
 			data4.addColumn("string", "s_date");
 			data4.addColumn("number", "retal_count");
-			for (var i = 0; i < queryObjectLen; i++) {
+			for (var i = 0; i < arr4.length; i++) {
 				var s_date = JSON.parse(jsonData4)[i].s_date;
 				var retal_count = JSON.parse(jsonData4)[i].retal_count;
 				data4.addRows([ [ s_date, parseInt(retal_count) ] ]);
 			}
 			
 			var options = {
-				title : "1번 그래프_선호장르",
-				colors : [ "green", "yellow" ],
-				hAxis : {
-					title : "Location11"
-				},
-				vAxis : {
-					title : "No. of Posts11"
-				}
+				title : "회원들의 장르별 선호도",
+				is3D : true,
+				width: 600,
+		        height: 600
 			};
 			
 			var options2 = {
-				title : "2번 그래프_가입자수증가",
-				 /*   curveType: "function",  */
-				/* colors : [ "green", "yellow" ],
-				hAxis : {
-					title : "Location22"
-				},
-				vAxis : {
-					title : "No. of Posts22"
-				}  */
-			};
+		        is3D : true,
+				title : '가입자수 추이 ',
+				width: 600,
+		        height: 600,
+		       /*  role: 'tooltip', */
+		        /* bar: {groupWidth: "70%"}, */
+		         legend: { position: "none" }, 
+		       colors : [ "red", "#e5e4e2"],
+		         trendlines: {
+		            0: {
+		              type: 'exponential',
+		              visibleInLegend: true,
+		            }
+		          } 
+	        };
 			
 			var options3 = {
-				title : "3번 그래프_불만사항 접수",
-				/* colors : [ "green", "yellow" ],
-				hAxis : {
-					title : "Location33"
-				},
-				vAxis : {
-					title : "No. of Posts33"
-				} */
+				is3D : true,
+				title : "가입자 추이 ",
+				width: 600,
+		        height: 600
 			};
 			
 			var options4 = {
-				title : "4번 그래프_대출 그래프",
-				/* colors : [ "green", "yellow" ],
-				hAxis : {
-					title : "Location44"
-				},
-				vAxis : {
-					title : "No. of Posts44"
-				} */
+				title : "가입자수 추이 ",
+				width: 600,
+		        height: 600
 			};
 			
 			var chart1 =  new google.visualization.PieChart(document.getElementById("chart1"));
@@ -503,10 +479,10 @@ int listCount = pageInfo.getListCount();
 			var chart2 =  new google.visualization.LineChart(document.getElementById("chart2"));
 			chart2.draw(data2,options2);
 
-			var chart3 =  new google.visualization.ScatterChart(document.getElementById("chart3"));
+			var chart3 =  new google.visualization.PieChart(document.getElementById("chart3"));
 			chart3.draw(data3,options3);
 
-			var chart4 =  new google.visualization.PieChart(document.getElementById("chart4"));
+			var chart4 =  new google.visualization.ColumnChart(document.getElementById("chart4"));
 			chart4.draw(data4,options4);
 			
 		},
@@ -519,7 +495,7 @@ s
 	     packages:["corechart"]
 	});
     
-	jQuery(document).ready(function($) {
+	/* jQuery(document).ready(function($) {
 		$( "#datepicker" ).datepicker({
 		  dateFormat:"yyyy-mm-dd",
 		  changeMonth: true,
@@ -528,7 +504,7 @@ s
 		});
 
 		});
-	
+	 */
 	
 	function deleteListMem(){
 		var confirm_val = confirm("정말 삭제하시겠습니까?");

@@ -41,7 +41,7 @@
 										<li><a href="/mypage.asp?list=_review" class="">서평/댓글</a></li>
 										<li><a href="/mypage.asp?list=_prefer" class="">희망도서</a></li>
 										<li><a href="/mypage.asp?list=_prefer" class="">게시글</a></li>
-										<li><a href="/mypage.asp?list=_prefer" class="">QnA</a></li>
+										<li><a href="QnaList.qna" class="">QnA</a></li>
 									</ul>
 								</li>
 							</ul>

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.MemberJoinProService;
 import action.mybasket.BasketDeleteAction;
 import action.mybasket.MyBasketInsertAction;
 import action.mybasket.MyBasketListAction;
@@ -83,6 +82,14 @@ public class RentalController extends HttpServlet {
 				e.printStackTrace();
 			} 
 			
+		} else if (command.equals("/reservationDelete.rn")) {
+				action = new ReservationDeleteAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} 
+			
 			
 	// 반납용
 		} else if (command.equals("/Return.rn")) {
@@ -98,10 +105,7 @@ public class RentalController extends HttpServlet {
 //	 과거주문내역	
 	}else if (command.equals("/ReturnInsert.rn")) {
 			action = new returnInsertAction();
-//=======
-//		} else if (command.equals("/reservationDelete.rn")) {
-//			action = new ReservationDeleteAction();
-//>>>>>>> master
+
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
