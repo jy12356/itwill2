@@ -48,7 +48,7 @@ int listCount = PageInfo.getListCount();
 
 						<caption>공지사항</caption>
 						<colgroup>
-<!-- 							<col style="width: 10%;"> -->
+							<col style="width: 10%;">
 							<col style="width: 50%;">
 							<col style="width: 20%;">
 							<col style="width: 15%;">
@@ -56,7 +56,7 @@ int listCount = PageInfo.getListCount();
 						</colgroup>
 						<thead>
 							<tr>
-<!-- 								<th scope="col" abbr="번호">	번호</th> -->
+								<th scope="col" abbr="번호">	번호</th>
 								<th scope="col" abbr="제목">제목</th>
 								<th scope="col" abbr="작성자">작성자</th>
 								<th scope="col" abbr="등록일">등록일</th>
@@ -71,7 +71,7 @@ int listCount = PageInfo.getListCount();
 								for (int i = 0; i < articleList.size(); i++) {
 							%>
 							<tr>
-<%-- 								<td align="center" class = "tac"><%=articleList.get(i).getNum()%></td> --%>
+								<td align="center" class = "tac"><%=articleList.get(i).getNum()%></td>
 								<td class = "tac">
 								<a href="NoticeBoardDetail.not?num=<%=articleList.get(i).getNum()%>">
 										<%=articleList.get(i).getSubject()%></a>

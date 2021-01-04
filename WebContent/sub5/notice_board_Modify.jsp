@@ -29,10 +29,10 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 	                    <table summary="게시판" class="customer-notice">
 	                        <caption>게시판</caption>
 	                        <colgroup>
-	                            <col width="15%">
-	                            <col width="35%">
-	                            <col width="15%">
-	                            <col width="35%">
+									<col width="20%">
+									<col width="30%">
+									<col width="20%">
+									<col width="30%">
 	                        </colgroup>
 	                        <tbody>
 <!-- 	                        <div class="select-wrap"> -->
@@ -52,14 +52,14 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 <!-- 												</ul> -->
 <!-- 											</div> -->
 <!-- 											</div> -->
-								<tr>
-	                            <td>글 번호</td>
-	                            <td colspan="3">
-	                            	<%=article.getNum() %>
-	                            	<input type="hidden" name="page" value="<%=nowPage %>" />
-	                            	<input type="hidden" name="num" value=<%=article.getNum() %>>
-	                            	</td>
-	                            </tr>
+<!-- 								<tr> -->
+<!-- 	                            <td>글 번호</td> -->
+<!-- 	                            <td colspan="3"> -->
+<%-- 	                            	<%=article.getNum() %> --%>
+<%-- 	                            	<input type="hidden" name="page" value="<%=nowPage %>" /> --%>
+<%-- 	                            	<input type="hidden" name="num" value=<%=article.getNum() %>> --%>
+<!-- 	                            	</td> -->
+<!-- 	                            </tr> -->
 	                            <tr>
 	                                <td>제목</td>
 	                                <td colspan="3">
@@ -67,25 +67,29 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 	                                	
 	                                </td>
 	                            </tr>
+										<tr>
+										<td class="th">작성자</td>
+										<td class="td"><input type="text" name="id"
+											value="<%=article.getId()%>" readonly="readonly"></td>
+										<td class="th">등록일</td>
+										<td class="td"><%=article.getDate()%></td>
+									</tr>
 	                            
-	                            <tr>
-	                            	<td>작성자</td>
-	                            	<td colspan="3">
-	                            	<input type="text" name="id" required="required" value="<%=article.getId() %>" readonly="readonly"  />
-	                            	</td>
 <!-- 	                            	<td class="th">비밀번호</td> -->
 <!-- 	                            	<td> -->
 <!-- 	                            		<input type="text" name="pass"> -->
 <!-- 	                            	</td> -->
-	                            </tr>
 	                            <tr>
-	                                <td>내용</td>
-	                                <td colspan="3">
-	                                <input type="text" name="content" required="required" value=<%=article.getContent() %> />
+	                                <td class="th">내용</td>
+	                                <td colspan="3" class="td">
+	                               <p>
+												<textarea name="desc" required="required"><%=article.getContent() %></textarea>
+
+											</p>
 	                                </td>
 	                            </tr>
 	                            <tr>
-	                                <td>파일</td>
+	                                <td class="th">파일</td>
 	                            	<td colspan="3">
 	                            	<%=article.getFile() %>
 	                            	<input type="file" name="file" value=<%=article.getFile() %>>
@@ -93,9 +97,9 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 	                            </tr>
 	                        </tbody>
 	                    </table>
-	                    <div class="default-btn-wrap">	
+	                    <div class="btn_inner">	
 	                    	<input type="submit" value="수정" class="btn">&nbsp;&nbsp;
-	                        <input type="button" value="목록" class="btn" onclick="history.back()">
+	                        <input type="button" value="취소" class="btn" onclick="history.back()">
 	                    </div>
                     </form>
                 </div>
