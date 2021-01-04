@@ -349,7 +349,7 @@ public class MemberDAO {
          String query1 = "select catg, count(*) as catg_count from member group by catg;";
          PreparedStatement pstm1 = con.prepareStatement(query1);
          System.out.println("pstm1 : " + pstm1);
-         String query2 = "select date, count(*) as id_count from member group by date;";
+         String query2 = "select date, count(*) as id_count from member group by date order by date desc;";
          PreparedStatement pstm2 = con.prepareStatement(query2);
          System.out.println("pstm2 : " + pstm2);
          String query3 = "select qna_genre, count(*) as qna_count from qna group by qna_genre;";
