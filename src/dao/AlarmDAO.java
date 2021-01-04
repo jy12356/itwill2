@@ -40,7 +40,7 @@ public class AlarmDAO {
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT COUNT(num) FROM message WHERE id=? AND state=?";
+			String sql = "SELECT COUNT(num) FROM message WHERE id=? AND isRead=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, "n");
