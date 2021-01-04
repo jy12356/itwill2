@@ -13,7 +13,7 @@ BookBean bookBean=(BookBean) request.getAttribute("bookBean");
 String nowPage=request.getParameter("page"); 
 String id=(String) session.getAttribute("id");
 String isbn=request.getParameter("isbn");
-int limit=(Integer)request.getAttribute("limit");
+int limit=((Integer)request.getAttribute("limit")).intValue();
 System.out.println("limit :" + limit);
 
 ArrayList<ReviewBean> articleList = (ArrayList<ReviewBean>) request.getAttribute("articleList");
@@ -362,12 +362,10 @@ int listCount = pageInfo.getListCount();
 									<a href="ReviewDeletePro.re?num=<%=articleList.get(i).getNum()%>&id=<%=id%>&isbn=<%=isbn%>&page=<%=nowPage%>" class="delete-btn btn">삭제</a>
 									<%
 										}
+									}
 									%>
 									<a href="javascript:;" class="heart-btn btn" data-review-num="<%=articleList.get(i).getNum()%>" data-like-id="<%=id%>" data-isbn="<%=isbn%>">좋아요</a>
 									<a href="javascript:;" class="comment_write_show btn" data-comment-count="<%=articleList.get(i).getNum()%>">댓글</a>
-									<%
-									}
-									%>
 								</div>
 							</div>
 							<!-- 서평 수정-->
@@ -513,18 +511,17 @@ int listCount = pageInfo.getListCount();
 	function comment_delete(obj){
 		alert("댓글삭제");
 		var firstSec = $(obj).attr('class');
-		alert(firstSec);
-		
+// 		alert(firstSec);		
 		var isbn=$(obj).parent().siblings('#book_isbn').val();
 		var board_type=$(obj).parent().siblings("#board_type").val();
 		var board_num=$(obj).parent().siblings("#board_num").val();
 		var comment_num=$(obj).data("comment_num");
 		var comment_id= "<%=(String)session.getAttribute("id")%>";
-		alert("isbn "+isbn);
-		alert("board_type "+board_type);
-		alert("board_num "+board_num);
-		alert("comment_num "+comment_num);
-		alert("comment_id "+ comment_id);
+// 		alert("isbn "+isbn);
+// 		alert("board_type "+board_type);
+// 		alert("board_num "+board_num);
+// 		alert("comment_num "+comment_num);
+// 		alert("comment_id "+ comment_id);
 		if(confirm("댓글을 삭제하시겠습니까?")==true) {
 			$.ajax({
 				type : "GET",
@@ -538,9 +535,9 @@ int listCount = pageInfo.getListCount();
 					"comment_id" : comment_id,
 				},
 				success : function(data) {
-					alert("정상적으로 삭제 되었습니다.");
-					reply_write(board_num);
-				},
+					var text = data.text;
+					alert(text);
+									},
 				error : function(error) {
 					alert("오류발생" + error);
 				}
@@ -548,6 +545,7 @@ int listCount = pageInfo.getListCount();
 		} else {
 			return false;
 		}
+		
 	}
 	// 댓글 수정창 열기
 	function comment_Modi_Open() {
@@ -555,7 +553,6 @@ int listCount = pageInfo.getListCount();
 			$(".comment-text").show();
 		} else {
 			$(".comment-text").hide();
-			reply_write(board_num);
 			}
 		}
 	
@@ -566,7 +563,7 @@ int listCount = pageInfo.getListCount();
 		var board_type = $('input[name="board_type"]').val();
 		var board_num = $('input[name="board_num"]').val();
 		var comment_num = $('input[name="comment_num"]').val();
-		var comment_id = "<%=(String)session.getAttribute("id")%>";
+		var comment_id = '<%=(String)session.getAttribute("id")%>';
 		var comment_desc = $('textarea[name="comment_desc"]').val();
 		alert(isbn);
 		alert(board_type);
@@ -598,6 +595,7 @@ int listCount = pageInfo.getListCount();
 		} else {
 			return false;
 		}
+		 reply_write(board_num);
 	}
 
 	
@@ -709,7 +707,7 @@ int listCount = pageInfo.getListCount();
 // 				// 댓글리스트(수정해보는중)
 // 				function reply_write(board_num){
 <%-- 					var id = '<%=(String)session.getAttribute("id")%>'; --%>
-// // 					var page = $('input[name="page"]').val();
+//  					var page = $('input[name="page"]').val();
 // 					var isbn = $('input[name="isbn"]').val();
 // 					var board_type = $('input[name="board_type"]').val();
 // 					var board_num = board_num;
@@ -814,7 +812,7 @@ int listCount = pageInfo.getListCount();
 					var comment_id = $(this).data("comment_id");
 					var comment_desc = $('textarea[name="comment_desc"]:visible').val();
 					alert(board_num);
-					if (comment_id == "null") {
+					if (comment_id == null) {
 						alert("로그인을 해주시길 바랍니다.");
 						$("textarea[name=comment_desc]").val("");
 						return false;
@@ -825,7 +823,7 @@ int listCount = pageInfo.getListCount();
 							type : "POST",
 							dataType : "json",
 							data : {
-// 								"page" : page,
+								"page" : page,
 								"isbn" : isbn,
 								"board_type" : board_type,
 								"board_num" : board_num,
@@ -833,7 +831,8 @@ int listCount = pageInfo.getListCount();
 								"comment_desc" : comment_desc
 							},
 							success : function(data) {
-								alert("정상적으로 등록이 되었습니다.");
+								var text = data.text;
+								alert(text);
 
 							<%-- <div class="comment comment_inner reIcon">
 								<input type="hidden" name="isbn" value="<%=isbn%>"> 
