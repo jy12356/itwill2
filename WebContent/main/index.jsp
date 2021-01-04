@@ -149,16 +149,24 @@
 								</p>
 							</li>
 						<%
-							for(int i = 0; i < 10; i++) {
+							if(bookList2 != null || bookList3 != null || bookList4 != null){
+								
+								int bookSize = 10;
+								if(bookList2.size() <= 10) {
+									bookSize = bookList2.size();
+									if(bookList3.size() <= bookSize) {
+										bookSize = bookList3.size();
+										if(bookList4.size() <= bookSize) {
+											bookSize = bookList4.size();
+								}}}
+							for(int i = 0; i < bookSize; i++) {
 						%>							
 							<li class="top-rank top-one">
 								<p class="rank">
 									<span><strong><%=i+1%></strong></span>
 									<span class="icon"></span>
 								</p>
-								<%
-									if(bookList2.size() != 9){
-								%>
+								
 								<div class="webtoon">
 									<p>
 										<strong><%=bookList2.get(i).getTitle()%></strong>
@@ -175,9 +183,7 @@
 										</a>
 									</div>
 								</div>
-								<%
-									} if(bookList3.size() != 9) {
-								%>
+								
 								<div class="comic">
 									<p>
 										<strong><%=bookList3.get(i).getTitle()%></strong>
@@ -194,9 +200,7 @@
 										</a>
 									</div>
 								</div>
-								<%
-									} if (bookList4.size() != 9) {
-								%>
+								
 								<div class="fiction">
 									<p>
 										<strong><%=bookList4.get(i).getTitle()%></strong>
@@ -214,12 +218,9 @@
 									</div>
 								</div>
 								<%
-									}
+									}}
 								%>
-							</li>							
-							<%
-								}
-							%>
+							</li>
 						</ul>
 					</div>
 				</div>
