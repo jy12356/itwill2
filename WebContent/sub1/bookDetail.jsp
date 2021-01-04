@@ -541,8 +541,8 @@ int listCount = pageInfo.getListCount();
 					},
 					success : function(data) {
 						var text = data.text;
-						alert(text);
-	// 					$(".comment_write_show").trigger("click", board_num);
+// 						alert(text);
+
 					},
 					error : function(error) {
 						alert("오류발생" + error);
@@ -551,6 +551,9 @@ int listCount = pageInfo.getListCount();
 			} else {
 				return false;
 		}
+			alert("댓글을 삭제하였습니다.");
+			$(".comment_write_show").trigger("click", $(this).board_num);
+			
 	}
 
 	
@@ -647,7 +650,6 @@ int listCount = pageInfo.getListCount();
 				
 				// 댓글리스트
 				function reply_write(board_num){
-					alert("댓글리스트!");
 					var id = '<%=(String)session.getAttribute("id")%>';
 // 					var page = $('input[name="page"]').val();
 					var isbn = $('input[name="isbn"]').val();
