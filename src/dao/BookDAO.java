@@ -151,7 +151,6 @@ public class BookDAO {
 
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
-		catg1="소설";
 		String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
@@ -202,11 +201,10 @@ public class BookDAO {
 
 			//조회를 시작할 레코드 행 번호 계산
 			int startRow=(page-1)*limit;
-			catg1="인문/경제";
 			String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 			try {
 				pstmt=con.prepareStatement(sql);
-				pstmt.setString(1, catg1);
+				pstmt.setString(1, "인문/경제");
 //				pstmt.setString(2, "%"+catg2);
 				pstmt.setInt(2, 0);
 				pstmt.setInt(3, 10);
@@ -253,14 +251,13 @@ public class BookDAO {
 
 			//조회를 시작할 레코드 행 번호 계산
 			int startRow=(page-1)*limit;
-			catg1="과학";
-			String sql = "select * from book order by count desc limit ?,?";
+			String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 			try {
 				pstmt=con.prepareStatement(sql);
-//				pstmt.setString(1, "%"+catg1);
+				pstmt.setString(1, "과학/IT");
 //				pstmt.setString(2, "%"+catg2);
-				pstmt.setInt(1, 0);
-				pstmt.setInt(2, 10);
+				pstmt.setInt(2, 0);
+				pstmt.setInt(3, 10);
 				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				bookList4 = new ArrayList<BookBean>();
@@ -652,9 +649,15 @@ public class BookDAO {
       String sql = "select i.num num, "
             + "i.isbn isbn,i.id id, b.title title, b.author author, "
             + "b.publisher publisher, b.pubdate pubdate, "
+<<<<<<< HEAD
+            + "min(case when b.state = 0 then '대여가능' else '대여불가능' end) as state "
+            + "from interestinglist  as i join book as b on i.isbn = b.isbn "
+            + "where i.id=? group by i.isbn order by i.num desc limit ?,?;";
+=======
             + "(case when b.state = 0 then '대여가능' else '대여불가능' end) as state "
             + "from interestinglist  as i  left outer join book as b on i.isbn = b.isbn "
             + "where i.id=? order by i.num desc limit ?,?;";
+>>>>>>> branch 'master' of https://github.com/jy12356/itwill2.git
       try {
          pstmt=con.prepareStatement(sql);
          pstmt.setString(1, id);
@@ -714,14 +717,14 @@ public class BookDAO {
       PreparedStatement pstmt = null;
       ResultSet rs = null;
       try {
-         String sql = "select isbn from interestinglist where id=? and isbn=?";
+         String sql = "select isbn from interestinglist where id=?";
          pstmt=con.prepareStatement(sql);
          pstmt.setString(1, id);
-         pstmt.setString(2, isbn);
-         System.out.println(pstmt);
          rs = pstmt.executeQuery();
          if(rs.next()) {
-               isDibsYnCount = 1;                           
+            if(rs.getString("isbn").equals(isbn)) {
+               isDibsYnCount = 1;               
+            }
          }
       } catch (Exception e) {
          System.out.println("isDibsYnCount 오류!" + e.getMessage() );

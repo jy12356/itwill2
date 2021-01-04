@@ -2,7 +2,6 @@
 <%@page import="vo.PageInfo"%>
 <%@page import="vo.RequestBean"%>
 <%@page import="java.util.ArrayList"%>
-<jsp:include page="../include/header.jsp"/>
 <%
 ArrayList<RequestBean> articleList = (ArrayList<RequestBean>)request.getAttribute("articleList");
 PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
@@ -12,6 +11,7 @@ int startPage = pageInfo.getStartPage();
 int endPage = pageInfo.getEndPage();
 int listCount = pageInfo.getListCount();
 %>
+<jsp:include page="../include/header.jsp"/>
 <section class="sub">
 <div class="category-nav">
 	<div class="category-nav-inner">
@@ -49,7 +49,6 @@ int listCount = pageInfo.getListCount();
 							<th>등록일</th>
 						</tr>
 						<%
-						
 						for(int i = 0; i < articleList.size(); i++) {
 						%>
 						<tr>
@@ -73,40 +72,69 @@ int listCount = pageInfo.getListCount();
 						%>
 						</tbody>
 						</table>
+						<%
+						String id = (String) session.getAttribute("id");
+						%>
+						
 						<div class="btn_inner">
 							<input type="button" class="btn" value="도서 신청" onclick="location.href='RequestWriteForm.rq'">
 						</div>
-						<div class ="paging">
-						<section id="pageList">
-	<%if(nowPage <= 1) {%>
-<!-- 			<input type="button" value="이전" class = "on fir"> -->
-	<%} else {%>
-			<a href="RequestList.rq?page=<%=startPage%>"><img src="sub4/boardimg/first.png"></a>
-			<a href="RequestList.rq?page=<%=nowPage - 1 %>"><img src="sub4/boardimg/prev.png"></a>
-	<%} %>
-	
-	<%for(int i = startPage; i <= endPage; i++) { 
-			if(i == nowPage) { %>
-				<a href="RequestList.rq?page=<%=i %>" class = "on fir" data-page-num="1"><%=i %>&nbsp;</a>
-			<%} else { %>
-				<a href="RequestList.rq?page=<%=i %>" class = "on fir">[<%=i %>]</a>&nbsp;
-			<%} %>
-	<%} %>
-	
-	<%if(nowPage >= maxPage) { %>
-	<%} else { %>
-			<a href="RequestList.rq?page=<%=nowPage + 1 %>"><img src="sub4/boardimg/next.png"></a>
-			<a href="RequestList.rq?page=<%=endPage%>"><img src="sub4/boardimg/last.png"></a>
-	<%} %>
-	</section>
-	</div>
-	<%
-	} else {
-	%>
-	<section id="emptyArea">등록된 글이 없습니다</section>
-	<%
-	}
-	%>
+						<input type="hidden" name="id" id="myId" value="<%=id%>">
+						
+						<script type="text/javascript">
+						$(".btn").on("click", function() {
+							var myid = document.getElementById('myId').value;
+							if (myid == "null") {
+								alert("비회원 상태로 작성 시 차후 수정 및 삭제가 불가능합니다.");
+								return true;
+							}
+						});
+						</script>					
+						
+						<div class="paging">
+                            	<a href="RequestList.rq?page=1" class="arr" data-page-num="1">
+										<img src="images/p-first.png"><span class="hide">처음페이지</span>
+								</a>
+                            	<%if(nowPage <=1) {%>
+									
+                            		<a href="RequestList.rq?page=<%=nowPage%>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								<%}else{%>
+								<a href="RequestList.rq?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								
+								<%} %>
+								
+								<%for(int i = startPage; i <= endPage; i++) { 
+										if(i == nowPage) { %>
+											<a href="RequestList.rq?page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
+										<%} else { %>
+											<a href="RequestList.rq?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
+										<%} %>
+								<%} %>
+								
+                            	<%if(nowPage >= maxPage) { %>
+									<a href="RequestList.rq?page=<%=nowPage%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+	                            <%}else{%>   
+	                            	<a href="RequestList.rq?page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+                            	<%} %>
+	                            	<a href="RequestList.rq?page=<%=maxPage%>" class="arr" data-page-num="781">
+                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
+                               		</a>                        
+                            </div>
+							<%
+							} else {
+							%>
+							<section id="emptyArea">등록된 글이 없습니다</section>
+							<%
+							}
+							%>
 					</div>
 				</div>
 			</div>
