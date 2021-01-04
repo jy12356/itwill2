@@ -120,36 +120,52 @@ int listCount = pageInfo.getListCount();
 						</tbody>
 						</table>
 						<div class ="paging">
-						<section id="pageList">
-	<%if(nowPage <= 1) {%>
-			<input type="button" value="이전" class = "on fir">
-	<%} else {%>
-			<input type="button" value="이전" onclick="location.href='QnaList.qna?page=<%=nowPage - 1 %>'" class = "on fir">
-	<%} %>
+						<a href="QnaList.qna" class="arr" data-page-num="1">
+						<img src="images/p-first.png"><span class="hide">처음페이지</span>
+						</a>
+						<%if(nowPage <=1) {%>
+									
+                           <a href="QnaList.qna?page=<%=nowPage%>" class="arr prev" data-page-num="1">
+							<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+							</a>
+							<%}else{%>
+							<a href="QnaList.qna?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
+							<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+							</a>
+								
+						<%} %>
+							<%for(int i = startPage; i <= endPage; i++) { 
+								if(i == nowPage) { %>
+								<a href="QnaList.qna?page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
+							<%} else { %>
+								<a href="QnaList.qna?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
+							<%} %>
+						<%} %>
 	
-	<%for(int i = startPage; i <= endPage; i++) { 
-			if(i == nowPage) { %>
-				<a href="QnaList.qna?page=<%=i %>" class = "on fir" data-page-num="1"><%=i %>&nbsp;</a>
-			<%} else { %>
-					<a href="QnaList.qna?page=<%=i %>" class = "on fir">[<%=i %>]</a>&nbsp;
-			<%} %>
-	<%} %>
-	
-	<%if(nowPage >= maxPage) { %>
-			<input type="button" value="다음" class = "on fir">
-	<%} else { %>
-			<input type="button" value="다음" onclick="location.href='QnaList.qna?page=<%=nowPage + 1 %>'" class = "on fir">
-	<%} %>
-	</section>
-	</div>
-	<%
-	} else {
-	%>
-	<section id="emptyArea">등록된 글이 없습니다</section>
-	<%
-	}
-	%>
+						<%if(nowPage >= maxPage) { %>
+									<a href="QnaList.qna?page=<%=nowPage%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+	                            <%}else{%>   
+	                            	<a href="QnaList.qna?page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+                            	<%} %>
+	                            	<a href="QnaList.qna?page=<%=maxPage%>" class="arr" data-page-num="781">
+                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
+                               		</a>
+                            </div>
+                        </div>
+                    </div>
+                    <%}else {
+					%>
+					<div class="list-page">
+                        <div class="list">
+                            <ul class="book-list">
+                            	<li>등록된 문의가 없습니다.</li>
+                            </ul>
 					</div>
+					<%} %>
 				</div>
 			</div>
 		</div>
