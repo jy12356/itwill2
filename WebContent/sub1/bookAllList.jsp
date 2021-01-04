@@ -178,10 +178,11 @@
 					<div class="list-page">
                         <div class="list">
                             <ul class="book-list">
-                            	<li>등록된 도서가 없습니다.</li>
+<!--                             	<li>검색된 도서가 없습니다.</li> -->
+									<li><img class="nodate" alt="" src="images/nodata.jpg"></li>
                             </ul>
                     	</div>
-                    	<%if(id.equals("admin")){ %>
+                    	<%if(id != null && id.equals("admin")){ %>
 	                   	<div class="btn_inner">
 								<a href="BookWriteForm.bok" class="btn">글쓰기</a>
 						</div>

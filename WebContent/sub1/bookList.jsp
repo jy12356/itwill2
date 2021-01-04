@@ -7,6 +7,7 @@
 	// 전달받은 request 객체로부터 데이터 가져오기
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
+	request.setCharacterEncoding("UTF-8");
 	String id = (String) session.getAttribute("id"); 
 	ArrayList<BookBean> bookList = (ArrayList<BookBean>)request.getAttribute("bookList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
@@ -118,7 +119,7 @@
                         </div>
                     </div>
                     <%
-						if(bookList != null && listCount > 0) {
+						if(bookList != null && listCount > 0 ) {
 					%>
                     <div class="list-page">
                         <div class="list">
@@ -241,12 +242,13 @@
                     <%}else {
 					%>
 					<div class="list-page">
-                        <div class="list">
+                       	<div class="list">
                             <ul class="book-list">
-                            	<li>등록된 도서가 없습니다.</li>
+<!--                             	<li>검색된 도서가 없습니다.</li> -->
+									<li><img class="nodate" alt="" src="images/nodata.jpg"></li>
                             </ul>
                     	</div>
-                    	<%if(id.equals("admin")){ %>
+                    	<%if(id != null && id.equals("admin")){ %>
 	                   	<div class="btn_inner">
 								<a href="BookWriteForm.bok" class="btn">글쓰기</a>
 						</div>

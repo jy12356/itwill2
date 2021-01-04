@@ -1,6 +1,7 @@
 package action.book;
 
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -72,7 +73,7 @@ public class BookWriteProAction implements Action {
 				System.out.println("등록되었습니다.");
 				forward = new ActionForward();
 				System.out.println(bookBean.getCatg1() +", " +bookBean.getCatg2());
-				forward.setPath("BookList.bok?catg1="+bookBean.getCatg1()+"&catg2="+bookBean.getCatg2());
+				forward.setPath("BookList.bok?catg1="+URLDecoder.decode(bookBean.getCatg1(), "UTF-8")+"&catg2="+URLDecoder.decode(bookBean.getCatg2(),"UTF-8"));
 				System.out.println(forward.getPath());
 				forward.setRedirect(true);
 			}
