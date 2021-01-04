@@ -75,7 +75,6 @@ int listCount = pageInfo.getListCount();
 						<%
 						String id = (String) session.getAttribute("id");
 						%>
-						
 						<div class="btn_inner">
 							<input type="button" class="btn" value="도서 신청" onclick="location.href='RequestWriteForm.rq'">
 						</div>
