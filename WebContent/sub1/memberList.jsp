@@ -138,6 +138,20 @@ th.memSortTbody {
 	font-size: 14px;
 	border: 1px solid #72ada5 !important;
 }
+
+.container{margin:0 auto; width:80%;}
+.tab_tit{padding-top:20px; border-bottom:1px solid #777;}
+.tab_tit::after{content:''; display:block; clear:both;}
+.tab_tit li{float: left;width: 150px;height: 32px;text-align: center;line-height: 32px; cursor:pointer}
+.tab_tit li::after{content:''; display:none; clear:both; width:100%; height:3px; background:#48474e;}
+.tab_tit li.on::after{display:block;}
+
+.cnt{display:none; padding:40px 10px;} 
+.cnt.on{display:block; padding:40px 10px;}
+.cnt h2{font-size:20px; font-weight:800;}
+.cnt ul{padding:20px 0px;}
+.cnt ul li{line-height:22px;}
+.cnt ul li::before{content: '';display: inline-block;margin-top: 9px;margin-right: 9px;width: 5px;height: 5px;background: #2f4394;border-radius: 50%;vertical-align: top;}
 </style>
 
 <%
@@ -220,7 +234,15 @@ int listCount = pageInfo.getListCount();
 				</div>
 			</div>
 			<div class="customer" style="width: 1400px;">
-				<h3 class="coTitle">고객관리</h3>
+				
+				
+				<ul class="tab_tit">
+				    <li class="on" data-tab="tab1">고객관리</li>
+				    <li data-tab="tab2" onclick="javascript:test()">대시보드</li>
+				  </ul>
+				
+				
+				<div id="tab1" class="cnt on"><h3 class="coTitle">고객관리</h3>
 				<div class="customer-contents">
 					<div class="customer-inner">
 
@@ -313,8 +335,13 @@ int listCount = pageInfo.getListCount();
 						</div>
 					</div>
 					</div>
+					</div>
+					
+					
+					
+					 <div id="tab2" class="cnt">
 					<h3 class="coTitle">대시보드 </h3>
-						<table >
+						<table>
 							<!-- <table class="columns"> -->
 							<tr>
 								<td><div id="chart1" style="padding: 10px;"></div></td>
@@ -325,6 +352,11 @@ int listCount = pageInfo.getListCount();
 								<td><div id="chart4" style="padding: 10px;"></div></td>
 							</tr> 
 						</table>
+						</div>
+						
+						
+						
+						
 				</div>
 				</div>
 			</div>
@@ -334,15 +366,17 @@ int listCount = pageInfo.getListCount();
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript">
-	google.load("visualization", "1.0", {
-	     callback: function () {
+	function drawGraph() {
+	
+	google.load("visualization", "1", {packages:["corechart"]}); 
+    google.setOnLoadCallback(drawChart); 
+    
+    function drawChart() {
 	       var queryObjectLen="";
 	       // 리스트 생성
 	       var arr1 = new Array() ;
 	       var arr2 = new Array() ;
-
 	       var arr3 = new Array() ;
-
 	       var arr4 = new Array() ;
 	       
 	       $.ajax({
@@ -410,7 +444,7 @@ int listCount = pageInfo.getListCount();
 			var data2 = new google.visualization.DataTable();
 			data2.addColumn("string", "date");
 			data2.addColumn("number", "id_count");
-			for (var i = 0; i < arr2.length; i++) {
+			for (var i = 0; i < 7; i++) {
 				var date = JSON.parse(jsonData2)[i].date; 
 				var id_count = JSON.parse(jsonData2)[i].id_count;
 				data2.addRows([ [ date, parseInt(id_count) ] ]);
@@ -485,6 +519,11 @@ int listCount = pageInfo.getListCount();
 		              slantedTextAngle: 20,
 		              gridlines: {count: 7}
 		           },
+		           animation:{
+			        	  duration: 1500,
+			              easing: 'out',
+			              startup: true
+	                   },
 		           backgroundColor: '#ffe6ff'
 	        };
 			
@@ -495,7 +534,12 @@ int listCount = pageInfo.getListCount();
 		        height: 400,
 	            
 	          bar: { groupWidth: "90%" },
-	          backgroundColor: '#ffffe6'
+	          backgroundColor: '#ffffe6',
+	          animation:{
+	        	  duration: 1500,
+	              easing: 'out',
+	              startup: true
+               }
 			};
 			
 			var options4 = {
@@ -511,6 +555,11 @@ int listCount = pageInfo.getListCount();
 			              visibleInLegend: true,
 			            }
 			          },
+			          animation:{
+			        	  duration: 1500,
+			              easing: 'out',
+			              startup: true
+	                   },
 			          backgroundColor: '#f1f8e9'  
 		        };
 			
@@ -527,27 +576,23 @@ int listCount = pageInfo.getListCount();
 			chart4.draw(data4,options4);
 			},
 			
-			
+	       	
 		error: function (xhr, type,data,queryObject) {
 	           alert(data+"~~~"+queryObject)
-s
+
 	         }
 	       });
-	     },
-	     packages:["corechart"]
-	});
-    
-	/* jQuery(document).ready(function($) {
-		$( "#datepicker" ).datepicker({
-		  dateFormat:"yyyy-mm-dd",
-		  changeMonth: true,
-		  changeYear: true,
-		  maxDate: "+0D"
-		});
-
-		});
-	 */
-	
+	     };
+	}
+     function test() {
+    	  drawGraph();
+    	  document.getElementById("chart1").style.display = "block";
+    	  document.getElementById("chart2").style.display = "block";
+    	  document.getElementById("chart3").style.display = "block";
+    	  document.getElementById("chart4").style.display = "block";
+    	  }
+	     
+	     
 	function deleteListMem(){
 		var confirm_val = confirm("정말 삭제하시겠습니까?");
 		
@@ -577,7 +622,17 @@ s
 		} 
     };
 	
-	    
+    
+    
+    $(function() {
+    	  $('ul.tab_tit li').click(function() {
+    	    var onTab = $(this).attr('data-tab');
+    	    $('ul.tab_tit li').removeClass('on');
+    	    $('.cnt').removeClass('on');
+    	    $(this).addClass('on');
+    	    $('#' + onTab).addClass('on');
+    	  })
+    	}); 
 	</script>
 </html>
 <jsp:include page="../include/footer.jsp" />
