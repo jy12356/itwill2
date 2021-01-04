@@ -30,15 +30,15 @@
                 	enctype="multipart/form-data" name="notice_DeleteForm">
 	                    <table summary="게시판" class="customer-notice">
 	                        <caption>게시판</caption>
-	                        <colgroup>
-	                            <col width="15%">
-	                            <col width="35%">
-	                            <col width="15%">
-	                            <col width="35%">
-	                        </colgroup>
+<!-- 	                        <colgroup> -->
+<!-- 	                            <col width="15%"> -->
+<!-- 	                            <col width="35%"> -->
+<!-- 	                            <col width="15%"> -->
+<!-- 	                            <col width="35%"> -->
+<!-- 	                        </colgroup> -->
 	                        <tbody>
-								<tr>						                      
-	                           <td colspan="3">
+								<tr class="td">						                      
+	                           <td colspan="3" class="td">
 	                            공지사항이 삭제 됩니다.
 	                            <input type="hidden" name="page" value=<%=nowPage %> >
 	                            <input type="hidden" name="num" value=<%=num%> >
@@ -48,9 +48,9 @@
 	                      
 	                        </tbody>
 	                    </table>
-	                    <div class="default-btn-wrap">	
+	                    <div class="btn_inner">	
 	                        <input type="submit" value="삭제" class="btn"value="삭제">
-	                        <input type="button" value="목록" class="btn" onclick="location.href='NoticeBoardList.not?page=1'">
+	                        <input type="button" value="취소" class="btn" onclick="location.href='NoticeBoardList.not?page=1'">
 	                    </div>
                     </form>
                 </div>
