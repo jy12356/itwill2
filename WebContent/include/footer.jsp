@@ -52,14 +52,14 @@ int listCount = PageInfo.getListCount();
 	</div>
 	<div class="footer-inner">
 		<ul class="f-lnb">
-			<li><a href="http://www.bookcubenetworks.co.kr">회사소개</a></li>
-			<li><a href="/customer.asp?page=notice&num=24007&page2=view&pageNum=15">이용약관</a></li>
-			<li><a href="/customer.asp?page=notice&num=24264&page2=view&pageNum=15">개인정보보호정책</a></li>
-			<li><a href="/customer.asp?page=notice&num=104583&page2=view&pageNum=1">청소년보호정책</a></li>
+			<li><a href="#">회사소개</a></li>
+			<li><a href="#">이용약관</a></li>
+			<li><a href="#">개인정보보호정책</a></li>
+			<li><a href="#">청소년보호정책</a></li>
 		</ul>
 		<div class="f-banner">
 			<ul>
-				<li><a href="mailto:webmaster@bookcube.com"><span></span>이메일문의</a></li>
+				<li><a href="#"><span></span>이메일문의</a></li>
 			</ul>
 			<div class="so-pop blind" id="so">
 				<div class="login-bg"></div>

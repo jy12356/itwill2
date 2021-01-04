@@ -239,7 +239,7 @@ font-weight:600;box-shadow:0 2px #f2f2f2;border-radius:4px;float:right;}
 .today-hot{width:100%;height:382px;background:#f4f4f4;position:relative;text-align:center;}
 /*.today-hot:after{content:"";position:absolute;bottom:0;left:50%;margin-left:-450px;width:900px;height:27px;background:url(../images/slider-wave.jpg) no-repeat left center;}*/
 .hot-title{padding-top:24px;font-size:24px;color:#333;font-weight:600;}
-.hot-title a{display: block;width: 159px;font-size:16px;font-weight:600;line-height:22px;color:#333;letter-spacing:-1px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.hot-title a{display: block;width: 100%;font-size:16px;font-weight:600;line-height:22px;color:#333;letter-spacing:-1px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 section.romance .hot-title {color: #da4585;}
 section.bl .hot-title {color: #dc6c60;}
 section.fanmu .hot-title {color: #6574c0;}

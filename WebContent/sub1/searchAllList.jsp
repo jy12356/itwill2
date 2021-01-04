@@ -169,8 +169,7 @@ String search=request.getParameter("search");
 						<tbody>
 							<%
 							if (freeBAllList.size() != 0) {
-							%>
-							<%
+							
 							int freeBAllListS = 6;
                     		if(freeBAllList.size() < 6){
                     			freeBAllListS = freeBAllList.size();

@@ -59,14 +59,14 @@
 						<li><a href="BookList.bok?catg1=인문/경제&catg2=인문" <%if(catg2.equals("인문")){%>class="on"<%}%>>인문</a></li>	
 							
                     </ul>
-				<%}else if(catg1.equals("과학")){  %>
+				<%}else if(catg1.equals("과학/IT")){  %>
 					<ul class="field-list">
-                        <li><a href="BookList.bok?catg1=과학" <%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
-                        <li><a href="BookList.bok?catg1=과학&catg2=수학" <%if(catg2.equals("수학")){%>class="on"<%}%>>수학</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=과학" <%if(catg2.equals("과학")){%>class="on"<%}%>>과학</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=IT/비즈니스" <%if(catg2.equals("IT/비즈니스")){%>class="on"<%}%>>IT/비즈니스</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=자격증" <%if(catg2.equals("자격증")){%>class="on"<%}%>>자격증</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=프로그래밍" <%if(catg2.equals("프로그래밍")){%>class="on"<%}%>>프로그래밍</a></li>	
+                        <li><a href="BookList.bok?catg1=과학/IT"<%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
+                        <li><a href="BookList.bok?catg1=과학/IT&catg2=수학" <%if(catg2.equals("수학")){%>class="on"<%}%>>수학</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=과학" <%if(catg2.equals("과학")){%>class="on"<%}%>>과학</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT/비즈니스" <%if(catg2.equals("IT/비즈니스")){%>class="on"<%}%>>IT/비즈니스</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=자격증" <%if(catg2.equals("자격증")){%>class="on"<%}%>>자격증</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=프로그래밍" <%if(catg2.equals("프로그래밍")){%>class="on"<%}%>>프로그래밍</a></li>	
 							
                     </ul>
 				<%}else if(catg1.equals("취미")){  %>
