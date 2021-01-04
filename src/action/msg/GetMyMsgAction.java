@@ -20,9 +20,11 @@ public class GetMyMsgAction implements Action {
 		System.out.println("RequestDetailAction");
 		
 		ActionForward forward = null;
+		
 		HttpSession session = request.getSession();
 		int num = Integer.parseInt(request.getParameter("num"));
 		String id = (String)session.getAttribute("id");
+		
 		MyMsgDetailService myMsgDetailService = new MyMsgDetailService();
 		MsgBean msgBean = myMsgDetailService.getMsgDetail(num,id);
 		if(msgBean != null) {

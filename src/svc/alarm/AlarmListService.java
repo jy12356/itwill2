@@ -9,7 +9,7 @@ import vo.AlarmBean;
 
 public class AlarmListService {
 
-	public int getListCount() throws Exception {
+	public int listCount(String id) {
 		int listCount = 0;
 
 		Connection con = getConnection();
@@ -18,28 +18,10 @@ public class AlarmListService {
 
 		alarmDAO.setConnection(con);
 
-		listCount = alarmDAO.selectListCount();
+		listCount = alarmDAO.selectListCount(id);
 
 		close(con);
 
 		return listCount;
-		
-	}
-	
-	public ArrayList<AlarmBean> getArticleList(int page, int limit) throws Exception {
-		
-		ArrayList<AlarmBean> articleList = null;
-
-		Connection con = getConnection();
-
-		AlarmDAO alarmDAO = AlarmDAO.getInstance();
-
-		alarmDAO.setConnection(con);
-
-		articleList = alarmDAO.selectArticleList(page, limit);
-
-		close(con);
-
-		return articleList;
 	}
 }

@@ -33,15 +33,17 @@ public class AlarmDAO {
 	
 
 	// 전체 알림 조회
-	public int selectListCount() {
+	public int selectListCount(String id) {
 		int listCount = 0;
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-			String sql = "SELECT COUNT(num) FROM bookreq";
+			String sql = "SELECT COUNT(num) FROM message WHERE id=? AND state=?";
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, "n");
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {

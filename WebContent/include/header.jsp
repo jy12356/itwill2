@@ -4,6 +4,7 @@
 <%@page import="vo.MsgBean"%>
 <%
 String id = (String)session.getAttribute("id");
+int messageCount = (int)session.getAttribute("messageCount");
 ArrayList<MsgBean> myMsgList = (ArrayList<MsgBean>) request.getAttribute("msgList");
 PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 %>
@@ -23,9 +24,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 </script>
 <script>
 	window.onload = function() {
-		if(id != null){
-<%-- 			<% int listCount = pageInfo.getListCount(); %> --%>
-		}
+		
 	}
 </script>
 <!-- End Google Tag Manager -->
@@ -114,7 +113,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 								<li class="basketIcon"><a href="MyBasketList.bk">책바구니</a></li>
 							<%} %>
 							
-							<%if(myMsgList == null) { %>
+							<%if(messageCount == 0) { %>
 							<li class="alarm on alarmIcon" id="message">
 								<a href="MyMsg.msg">알리미</a>
 							</li>

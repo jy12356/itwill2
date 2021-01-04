@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import svc.MemberDeleteProService;
 import svc.MemberLoginProService;
+import svc.alarm.AlarmListService;
 import vo.ActionForward;
 
 public class MemberLoginProAction implements Action {
@@ -26,10 +27,16 @@ public class MemberLoginProAction implements Action {
 		try {
 			boolean isMember = memberLoginProService.registArticle(id, password);
 			System.out.println(isMember);
+			
+			AlarmListService alarmlistservice = new AlarmListService();
+			int messageCount = alarmlistservice.listCount(id);
+			
+			System.out.println("messageCount" + messageCount);
 
 			if(isMember) {
 				HttpSession session = request.getSession();
 				session.setAttribute("id", id);
+				session.setAttribute("messageCount", messageCount);
 				forward = new ActionForward();
 				forward.setRedirect(true);
 				forward.setPath("Main.book"); 
