@@ -1,5 +1,6 @@
 package action.book;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,16 +25,19 @@ public class BookListAction implements Action {
 			page = Integer.parseInt(request.getParameter("page"));			
 		}
 
-		System.out.println(request.getParameter("catg1"));
-		System.out.println(request.getParameter("catg2"));
+
+		System.out.println("제발제발제 "+(String)request.getParameter("catg1"));
+		System.out.println("제발제발제 "+(String)request.getParameter("catg2"));
+		System.out.println(URLDecoder.decode(request.getParameter("catg1"),"UTF-8"));
+		System.out.println(URLDecoder.decode(request.getParameter("catg2"),"UTF-8"));
 		String catg1 = "";
 		String catg2 = "";
 		String search="";
 		if(request.getParameter("catg1") != null) {
-			catg1 = request.getParameter("catg1");
+			catg1 = new String(request.getParameter("catg1").getBytes("8859_1"),"UTF-8");
 		}
 		if(request.getParameter("catg2") != null) {
-			catg2 = request.getParameter("catg2");
+			catg2 =  new String(request.getParameter("catg2").getBytes("8859_1"),"UTF-8");
 		}
 		if(request.getParameter("search") != null) {
 			search = request.getParameter("search");

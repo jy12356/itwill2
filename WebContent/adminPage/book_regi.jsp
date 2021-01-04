@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../include/header.jsp"/>
+<%
+request.setCharacterEncoding("UTF-8");
+%>
 <section class="sub">
     <div class="category-nav">
         <div class="category-nav-inner">
