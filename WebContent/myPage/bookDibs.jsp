@@ -49,7 +49,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <%for(int i=0; i < bookListDibsList.size(); i++ ){ %>
+                        <% if(bookListDibsList.size() > 0){
+                        for(int i=0; i < bookListDibsList.size(); i++ ){ %>
                             <tr>
                                 <td class="tac check_box"><input type="checkbox" id="checkbox_num" class="check_num" value="<%=bookListDibsList.get(i).getNum()%>" name="inter_num"></td>
                                 <td><p class="title"><a href="BookDetail.bok?isbn=<%=bookListDibsList.get(i).getIsbn()%>"><%=bookListDibsList.get(i).getTitle()%></a></p></td>
@@ -61,6 +62,11 @@
                                 <td class="book_basketbtn">
 			                    	<a href="MyBasketInsert.bk?isbn=<%=bookListDibsList.get(i).getIsbn()%>" class="btn">책바구니</a>                               	
                                	</td>
+                            </tr>
+                        <%}
+                        }else{ %>
+                        	<tr>
+                                <td colspan="8" class="tac">등록된 찜도서가 없습니다.</td>
                             </tr>
                         <%} %>
                         </tbody>
