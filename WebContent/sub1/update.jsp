@@ -43,7 +43,7 @@
 							</tr>
 							<tr>
 								<th>네이버계정</th>
-								<td><a href="" onClick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+,top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false" class="naver outside_input">연동하기</a><span>네이버 계정으로 북큐브를 이용해 보세요!</span></td> 
+								<td><a href="#" onClick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+,top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false" class="naver outside_input">연동하기</a><span>네이버 계정으로 북큐브를 이용해 보세요!</span></td> 
 							</tr>
 							<tr>
 								<th>페이스북계정</th>
@@ -375,25 +375,16 @@ $(function getCatg() {
 	function checkPasswd2(passwdForm) { // 파라미터 this 로 전달된 ID 입력폼을 매개변수에 저장
 		var password2 = passwdForm.value; // ID 입력폼의 입력값을 가져와서 변수에 저장
 		var password1 = document.getElementById('password1').value;
-		var password = document.getElementById('password').value;
 		var element = document.getElementById('checkPasswdResult2');
 		
-		
-		if(password1==null){
-			password1 = password
-			alert(password+"//"+password1);
-		} else {
-			/* alert(password+"//"+password1); */
-			if(password1!=password2){
-				element.innerHTML = "비밀번호가 일치하지 않습니다!";
-				var myElement = document.getElementById('checkPasswdResult2');
-				myElement.style.color="red";
-				checkPasswd2Result = false;
-			} else if(password1=password2) {
-				element.innerHTML = "";
-				checkPasswd2Result = true;
-			}
-			
+		if(password1!=password2){
+			element.innerHTML = "비밀번호가 일치하지 않습니다!";
+			var myElement = document.getElementById('checkPasswdResult2');
+			myElement.style.color="red";
+			checkPasswd2Result = false;
+		} else if(password1=password2) {
+			element.innerHTML = "";
+			checkPasswd2Result = true;
 		}
 		
 	}

@@ -59,7 +59,7 @@
 	</section>
  <script type="text/javascript">
  
-	var naver_id_login = new naver_id_login("bWBJf2PWa1wvH5_cl84S", "http://localhost:8080/itwill2th/sub1/callback.jsp");
+	var naver_id_login = new naver_id_login("P3nq6LUKrLz6LOPOVOMf", "http://itwillbs6.cafe24.com/itwill2th/sub1/callback.jsp");
 
 	naver_id_login.setPopup(); //Popup형태의 인증 진행
 	naver_id_login.init_naver_id_login();

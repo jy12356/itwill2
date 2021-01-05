@@ -10,11 +10,11 @@
   </head>
   <body>
   <%
-    String clientId = "bWBJf2PWa1wvH5_cl84S";//애플리케이션 클라이언트 아이디값";
-    String clientSecret = "mMN8nKBN11";//애플리케이션 클라이언트 시크릿값";
+    String clientId = "P3nq6LUKrLz6LOPOVOMf";//애플리케이션 클라이언트 아이디값";
+    String clientSecret = "f_078uxS96";//애플리케이션 클라이언트 시크릿값";
     String code = request.getParameter("code");
     String state = request.getParameter("state");
-    String redirectURI = URLEncoder.encode("http://localhost:8080/itwill2th/sub1/callback.jsp", "UTF-8");
+    String redirectURI = URLEncoder.encode("http://itwillbs6.cafe24.com/itwill2th/Main.book", "UTF-8");
     String apiURL;
     apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
     apiURL += "client_id=" + clientId;
