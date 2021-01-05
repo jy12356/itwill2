@@ -32,7 +32,7 @@
 								<tbody>
 		                        	<tr>
 			                            <th>신청자</th>
-			                            <td colspan="3">
+			                            <td>
 			                            	<input type="hidden" name="num" value="<%=article.getNum()%>">
                    				            <input type="hidden" name="page" value="<%=nowPage%>">
 			                            	<input type="text" name="id" value="<%=id%>" readonly="readonly">
