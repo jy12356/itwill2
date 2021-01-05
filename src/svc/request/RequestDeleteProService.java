@@ -31,9 +31,9 @@ public class RequestDeleteProService {
 		return isArticleRequestWriter;
 	}
 	
-	public boolean removeArticle(RequestBean article) {
+	public boolean removeArticle(int num) {
 
-		boolean isDeleteSuccess = true;
+		boolean isDeleteSuccess = false;
 
 		Connection con = getConnection();
 
@@ -41,7 +41,7 @@ public class RequestDeleteProService {
 
 		requestDAO.setConnection(con);
 
-		int deleteCount = requestDAO.removeArticle(article);
+		int deleteCount = requestDAO.removeArticle(num);
 
 		if(deleteCount > 0) {
 			commit(con);
