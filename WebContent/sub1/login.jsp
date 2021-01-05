@@ -29,7 +29,7 @@
 								</label>
 								<p>로그인유지</p>
 							</div>
-							<p><a href="/member/id_search.asp" class="find-id">아이디 찾기</a><em>|</em><a href="/member/pw_search.asp" class="find-pwd">비밀번호 찾기</a></p>
+							<p><a href="#" class="find-id">아이디 찾기</a><em>|</em><a href="#" class="find-pwd">비밀번호 찾기</a></p>
 						</div>
 						<div class="simple-login-btn">
 							<p class="now-start"><span>지금 시작하세요!</span><a href="MemberJoinForm.me">북큐브 간편가입 〉</a></p>
@@ -40,16 +40,16 @@
 						</div>
 						<div class="simple-login-btn or">
 							<div class="login-btn kakaotalk">
-								<a href="javascript:loginWithKakao()"><p><span class="kakaotalk">카카오톡</span>카카오로 로그인</p></a>
+								<a href="#"><p><span class="kakaotalk">카카오톡</span>카카오로 로그인</p></a>
 							</div>
 							<div class="login-btn naver">
-								<a href="" onclick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false"><p><span class="naver">네이버</span>네이버로 로그인</p></a>
+								<a href="http://localhost:8080/itwill2th/sub1/naverlogin.jsp" onclick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false"><p><span class="naver">네이버</span>네이버로 로그인</p></a>
 							</div>
 							<div class="login-btn facebook">
-								<a href="javascript:;"><p><span class="facebook">페이스북</span>페이스북으로 로그인</p></a>
+								<a href="#"><p><span class="facebook">페이스북</span>페이스북으로 로그인</p></a>
 							</div>
 							<div class="login-btn payco">
-								<a href="javascript:;"><p><span class="payco">페이코</span>페이코로 로그인</p></a>
+								<a href="#"><p><span class="payco">페이코</span>페이코로 로그인</p></a>
 							</div>
 						</div>
 					</div>
@@ -58,7 +58,8 @@
 		</div>
 	</section>
  <script type="text/javascript">
-	var naver_id_login = new naver_id_login("tdoziaWOhdIeC0LICk28", httpsUrl +"/member/naver/naver.asp");
+ 
+	var naver_id_login = new naver_id_login("bWBJf2PWa1wvH5_cl84S", "http://localhost:8080/itwill2th/sub1/callback.jsp");
 
 	naver_id_login.setPopup(); //Popup형태의 인증 진행
 	naver_id_login.init_naver_id_login();
@@ -77,14 +78,14 @@
 	var login_url = "https://id.payco.com/oauth2.0/authorize?response_type=code&client_id="+ payco_client_id +"&redirect_uri="+ escape(return_url) +"&serviceProviderCode=FRIENDS&userLocale=ko_KR"
 	var sOption = "width=630, height=547, top=300, left=300,scrollbars=yes"
 
-	 $(".login-btn.payco").on("click", function(e){
+	/*  $(".login-btn.payco").on("click", function(e){
 		var win = window.open(login_url, "payco", sOption);
-	 });
+	 }); */
 </script>
 <!--//페이코 로그인 Script -->
 
 <script>
-  window.fbAsyncInit = function() {
+  /* window.fbAsyncInit = function() {
     FB.init({
       appId      : '1676308606031166',
       xfbml      : true,
@@ -124,7 +125,7 @@
 				});
 			}
 		},{scope:"email"});
-   });
+   }); */
 </script>
 
 <!-- kakao -->

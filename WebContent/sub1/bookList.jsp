@@ -64,7 +64,7 @@
                         <li><a href="BookList.bok?catg1=과학/IT"<%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
                         <li><a href="BookList.bok?catg1=과학/IT&catg2=수학" <%if(catg2.equals("수학")){%>class="on"<%}%>>수학</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=과학" <%if(catg2.equals("과학")){%>class="on"<%}%>>과학</a></li>	
-						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT/비즈니스" <%if(catg2.equals("IT/비즈니스")){%>class="on"<%}%>>IT/비즈니스</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT비즈니스" <%if(catg2.equals("IT/비즈니스")){%>class="on"<%}%>>IT/비즈니스</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=자격증" <%if(catg2.equals("자격증")){%>class="on"<%}%>>자격증</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=프로그래밍" <%if(catg2.equals("프로그래밍")){%>class="on"<%}%>>프로그래밍</a></li>	
 							
@@ -198,45 +198,89 @@
 								<a href="BookWriteForm.bok" class="btn">글쓰기</a>
 							</div>
 							<%} %>
-							
-                            <div class="paging">
-                            	<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=1" class="arr" data-page-num="1">
-										<img src="images/p-first.png"><span class="hide">처음페이지</span>
-								</a>
-                            	<%if(nowPage <=1) {%>
+
+							<%if(catg2 != "전체"){ %>
+	                            <div class="paging">
+	                            	<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=1" class="arr" data-page-num="1">
+											<img src="images/p-first.png"><span class="hide">처음페이지</span>
+
+									</a>
+	                            	<%if(nowPage <=1) {%>
+										
+	                            		<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage%>" class="arr prev" data-page-num="1">
+											<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+										</a>
+									<%}else{%>
+									<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
+											<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+										</a>
 									
-                            		<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage%>" class="arr prev" data-page-num="1">
-										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									<%} %>
+									
+									<%for(int i = startPage; i <= endPage; i++) { 
+											if(i == nowPage) { %>
+												<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
+											<%} else { %>
+												<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
+											<%} %>
+									<%} %>
+									
+	                            	<%if(nowPage >= maxPage) { %>
+										<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage%>" class="arr next" data-page-num="11">
+		                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+		                            	</a>
+		                            <%}else{%>   
+		                            	<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
+		                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+		                            	</a>
+	                            	<%} %>
+		                            	<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=maxPage%>" class="arr" data-page-num="781">
+	                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
+	                               		</a>
+									                             
+	                            </div>
+                            <%}else{ %>
+                           		<div class="paging">
+	                            	<a href="BookList.bok?catg1=<%=catg1%>&page=1" class="arr" data-page-num="1">
+											<img src="images/p-first.png"><span class="hide">처음페이지</span>
 									</a>
-								<%}else{%>
-								<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
-										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
-									</a>
-								
-								<%} %>
-								
-								<%for(int i = startPage; i <= endPage; i++) { 
-										if(i == nowPage) { %>
-											<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
-										<%} else { %>
-											<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
-										<%} %>
-								<%} %>
-								
-                            	<%if(nowPage >= maxPage) { %>
-									<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage%>" class="arr next" data-page-num="11">
-	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
-	                            	</a>
-	                            <%}else{%>   
-	                            	<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
-	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
-	                            	</a>
-                            	<%} %>
-	                            	<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=maxPage%>" class="arr" data-page-num="781">
-                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
-                               		</a>
-								                             
-                            </div>
+
+	                            	<%if(nowPage <=1) {%>
+										
+	                            		<a href="BookList.bok?catg1=<%=catg1%>&page=<%=nowPage%>" class="arr prev" data-page-num="1">
+											<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+										</a>
+									<%}else{%>
+									<a href="BookList.bok?catg1=<%=catg1%>&page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
+											<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+										</a>
+									
+									<%} %>
+									
+									<%for(int i = startPage; i <= endPage; i++) { 
+											if(i == nowPage) { %>
+												<a href="BookList.bok?catg1=<%=catg1%>&page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
+											<%} else { %>
+												<a href="BookList.bok?catg1=<%=catg1%>&page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
+											<%} %>
+									<%} %>
+									
+	                            	<%if(nowPage >= maxPage) { %>
+										<a href="BookList.bok?catg1=<%=catg1%>&page=<%=nowPage%>" class="arr next" data-page-num="11">
+		                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+		                            	</a>
+		                            <%}else{%>   
+		                            	<a href="BookList.bok?catg1=<%=catg1%>&page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
+		                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+		                            	</a>
+	                            	<%} %>
+		                            	<a href="BookList.bok?catg1=<%=catg1%>&page=<%=maxPage%>" class="arr" data-page-num="781">
+	                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
+	                               		</a>
+									                             
+	                            </div>
+                            <%} %>
+
                         </div>
                     </div>
                     <%}else {

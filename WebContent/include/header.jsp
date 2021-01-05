@@ -6,7 +6,9 @@
 String id = (String)session.getAttribute("id");
 
 int messageCount = 0;
+
 if(session.getAttribute("messageCount") != null){
+
 	messageCount = (int)session.getAttribute("messageCount");
 };
 ArrayList<MsgBean> myMsgList = (ArrayList<MsgBean>) request.getAttribute("msgList");
@@ -131,6 +133,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 								</a>
 							</li>
 							<% } %>
+							
 						</ul>
 						<% } %>
 					</fieldset>
@@ -220,7 +223,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 					<ul class="">
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=수학">수학</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=과학">과학</a></li>	
-						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT/비즈니스">IT/비즈니스</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT비즈니스">IT/비즈니스</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=자격증">자격증</a></li>	
 						<li><a href="BookList.bok?catg1=과학/IT&catg2=프로그래밍">프로그래밍</a></li>		
 					</ul>
@@ -264,7 +267,6 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 			objFrm.attr("action","SearchAll.book");
 			objFrm.submit();
 		}		
-	}
 	}
 
 // 	var naver_id_login = new naver_id_login("tdoziaWOhdIeC0LICk28", httpsUrl +"/member/naver/naver.asp");

@@ -39,7 +39,7 @@ public class MemberJoinProAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>"); 
-			out.println("alert('fail!')");
+			out.println("alert('회원가입에 실패하였습니다.')");
 			out.println("history.back()");
 			out.println("</script>"); 
 		} else {

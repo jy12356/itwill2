@@ -19,7 +19,7 @@
 				<li>- 본인인증 완료한 아이디를 탈퇴 후 재가입 시 본인인증 혜택은 중복으로 지급되지 않습니다. 또한, 본인인증 회원만 참여 가능한 이벤트에서 제외됩니다.</li>
 			</ul>
 			<div>
-				<a href="https://www.bookcube.com/customer.asp?page=notice&page2=view&num=24264&pageNum=1" target="_blank" class="btn">개인 정보 취급 방침</a>
+				<a href="#" target="_blank" class="btn">개인 정보 취급 방침</a>
 			</div>
 			<form action="MemberDeletePro.me" method='post' onsubmit="del_submit();">
 				<fieldset>

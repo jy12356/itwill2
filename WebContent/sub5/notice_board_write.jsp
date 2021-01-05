@@ -14,25 +14,25 @@ NoticeBean article = (NoticeBean)request.getAttribute("article");
 <jsp:include page="../include/header.jsp"/>
 
 						<script>
-                             $(function () {
-                                 $(".one-select").on("click", function () {
-                                     if ($(this).hasClass("on")) {
-                                         $(this).removeClass("on");
-                                         $(this).next().hide();
-                                     } else {
-                                         $(this).addClass("on");
-                                         $(this).next().show();
-                                     }
-                                 });
-                                 $(document).on("click", ".one-list li", function () {
-                                     var text = $(this).text();
-                                     $(this)
-                                         .parent()
-                                         .prev()
-                                         .text(text)
-                                         .removeClass("on");
-                                     $(this).parent().hide();
-                                 });
+//                              $(function () {
+//                                  $(".one-select").on("click", function () {
+//                                      if ($(this).hasClass("on")) {
+//                                          $(this).removeClass("on");
+//                                          $(this).next().hide();
+//                                      } else {
+//                                          $(this).addClass("on");
+//                                          $(this).next().show();
+//                                      }
+//                                  });
+//                                  $(document).on("click", ".one-list li", function () {
+//                                      var text = $(this).text();
+//                                      $(this)
+//                                          .parent()
+//                                          .prev()
+//                                          .text(text)
+//                                          .removeClass("on");
+//                                      $(this).parent().hide();
+//                                  });
                                  // 첨부 파일 확장자 검사 및 용량 체크
                                  // $(".onebyone input[type='file']").on("change", function() {
                                  // var ext = $(this).val().split('.').pop().toLowerCase();
@@ -70,15 +70,15 @@ NoticeBean article = (NoticeBean)request.getAttribute("article");
                                  // e.unwrap();
                                  // }
                                  // 필수 입력 항목 체크
-                                 var _btn = $(".one-btn input[type='submit']");
-                                 _btn.on("click", function () {
-                                     var sel2Prev = $(".sel2").prev().text();
-                                     if (!$(".sel2").hasClass("on") || sel2Prev.match("2차 선택") || $(".required").val().length < 1 || $(".onebyone textarea").val().length < 1) {
-                                         alert("필수 항목을 입력해 주세요.");
-                                         return false;
-                                     }
-                                 });
-                             });
+//                                  var _btn = $(".one-btn input[type='submit']");
+//                                  _btn.on("click", function () {
+//                                      var sel2Prev = $(".sel2").prev().text();
+//                                      if (!$(".sel2").hasClass("on") || sel2Prev.match("2차 선택") || $(".required").val().length < 1 || $(".onebyone textarea").val().length < 1) {
+//                                          alert("필수 항목을 입력해 주세요.");
+//                                          return false;
+//                                      }
+//                                  });
+//                              });
                          </script>
 <section class="sub">
     <div class="category-nav">
@@ -101,9 +101,9 @@ NoticeBean article = (NoticeBean)request.getAttribute("article");
 	                            <col width="15%">
 	                            <col width="35%">
 	                        </colgroup>
-	                        <colgroup>
-								<col width="100px">
-								<col width="*"></colgroup>
+<!-- 	                        <colgroup> -->
+<!-- 								<col width="100px"> -->
+<!-- 								<col width="*"></colgroup> -->
 	                        <tbody>
 <!-- 	                        <tr> -->
 <!-- 									<td> -->
@@ -156,7 +156,7 @@ NoticeBean article = (NoticeBean)request.getAttribute("article");
 	                    </table>
 	                    <div class="default-btn-wrap">
 	                    	<input type="submit" class="btn" value="글쓰기">
-	                        <input type="button" class="btn" value="목록" onclick="history.back()">
+	                    	<a href="NoticeBoardList.not" class="btn">목록</a>
 	                    </div>
                     </form>
                 </div>

@@ -24,6 +24,7 @@ public class ReCommentDeleteProService {
 		
 		isCommentWriter = reviewDAO.isArticleCommentWriter(comment_num, board_num, board_type, comment_id);
 		
+		System.out.println("돌아가는 중");
 		return isCommentWriter;
 	}
 
@@ -43,12 +44,12 @@ public class ReCommentDeleteProService {
 		if(deleteCount > 0) {
 			commit(con);
 			isDeleteSuccess = true;
-
 		} else {
 			rollback(con);
 		}
 		close(con);		
 		
+		System.out.println("액션으로 다시 돌아감");
 		return isDeleteSuccess;
 	}
 	

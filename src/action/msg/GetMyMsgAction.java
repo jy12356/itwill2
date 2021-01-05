@@ -37,7 +37,7 @@ public class GetMyMsgAction implements Action {
 				int messageCount = alarmlistservice.listCount(id);				
 				System.out.println("messageCount" + messageCount);
 				session.setAttribute("messageCount", messageCount);
-				
+
 				request.setAttribute("msgBean", msgBean);
 				forward = new ActionForward();
 				forward.setPath("/myPage/myMsgDetail.jsp?num="+msgBean.getNum());

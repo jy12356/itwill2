@@ -36,12 +36,7 @@ public class BookDetailAction implements Action {
 		// 서평 리스트 출력 ----------
 		// 페이지 처리를 위한 변수 선언
 		int page1 = 1; // 현재 페이지 번호 저장할 변수
-		int limit = 0; // 페이지 당 표시할 게시물 수를 결정하는 변수
-		if(request.getParameter("limit") != null) {
-			limit = Integer.parseInt(request.getParameter("limit"));
-		} else {
-			limit = 10;
-		}
+		int limit = 100; // 페이지 당 표시할 게시물 수를 결정하는 변수
 
 		if (request.getParameter("page") != null) {
 			page1 = Integer.parseInt(request.getParameter("page"));
@@ -83,7 +78,8 @@ public class BookDetailAction implements Action {
 		request.setAttribute("limit", limit);
 		
 		forward = new ActionForward();
-		forward.setPath("/sub1/bookDetail.jsp?isbn="+book_isbn+"&limit="+limit+10);
+		forward.setPath("/sub1/bookDetail.jsp?isbn="+book_isbn);
+
 //		forward.setPath("BookDetail.bok?isbn="+book_isbn+"&page="+page);
 		
 		return forward;

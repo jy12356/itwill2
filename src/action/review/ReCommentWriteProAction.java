@@ -1,6 +1,7 @@
 package action.review;
 
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ public class ReCommentWriteProAction implements Action {
 		String page=request.getParameter("page");
 		System.out.println("책코드 : " + book_isbn);
 		System.out.println("페이지번호 : " + page);
+		Timestamp date=new Timestamp(System.currentTimeMillis());
 		
 		CommentBean commentBean = new CommentBean();
 		
@@ -53,6 +55,7 @@ public class ReCommentWriteProAction implements Action {
 			out.print(json.toString());	
 		} else {
 			// 리뷰 등록 성공시
+			response.setContentType("text/html; charset=UTF-8");
 			json.put("text", "댓글을 등록하였습니다");
 			jsonArray.add(json);
 			PrintWriter out = response.getWriter();

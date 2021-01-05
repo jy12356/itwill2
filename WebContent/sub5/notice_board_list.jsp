@@ -63,9 +63,6 @@ int listCount = PageInfo.getListCount();
 						<tbody>
 						<%
 							if (articleList.size() != 0) {
-						%>
-							<%
-						
 								for (int i = 0; i < articleList.size(); i++) {
 							%>
 							<tr>
@@ -100,63 +97,60 @@ int listCount = PageInfo.getListCount();
 						        }
 							                        }
 					%>
-
-					<div class="paging">
-						<a href="NoticeBoardList.not?pageNum=1" class="arr" data-page-num="1"><img
-							src="images/p-first.png"><span class="hide">처음페이지</span></a>
-
-						<!-- 이전페이지 -->
-						<%
-							if (nowPage <= 1) {
-						%>
-						<input type="button" value="이전">&nbsp;
-						<%
-							} else {
-						%>
-						<input type="button" value="이전"
-							onclick="location.href='NoticeBoardList.not?page=<%=nowPage - 1%>'">&nbsp;
-						<%
-							}
-						%>
-
-						<!-- 게시글 목록 -->
-						<%
-							for (int i = startPage; i <= endPage; i++) {
-							if (i == nowPage) {
-						%>
-						[<%=i%>]&nbsp;
-						<%
-							} else {
-						%>
-						<a href="NoticeBoardList.not?page=<%=i%>">[<%=i%>]
-						</a>&nbsp;
-						<%
-							}
-						%>
-						<%
-							}
-						%>
-						<!-- 다음페이지 -->
-						<%
-							if (nowPage >= maxPage) {
-						%>
-						<input type="button" value="다음">
-						<%
-							} else {
-						%>
-						<input type="button" value="다음"
-							onclick="location.href='NoticeBoardList.not?page=<%=nowPage + 1%>'">
-						<%
-							}
-						%>
-						<!-- 						<a href="board.jsp?pageNum=27" class="arr" data-page-num="27"><img -->
-						<!-- 							src="../images/p-last.png"><span class="hide">마지막페이지</span></a> -->
+					
+					
+											<div class="paging">
+                            	<a href="NoticeBoardList.not?page=1" class="arr" data-page-num="1">
+										<img src="images/p-first.png"><span class="hide">처음페이지</span>
+								</a>
+                            	<%if(nowPage <=1) {%>
+									
+                            		<a href="NoticeBoardList.notpage=<%=nowPage%>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								<%}else{%>
+								<a href="NoticeBoardList.not?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								
+								<%} %>
+								
+								<%for(int i = startPage; i <= endPage; i++) { 
+										if(i == nowPage) { %>
+											<a href="NoticeBoardList.not?page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
+										<%} else { %>
+											<a href="NoticeBoardList.not?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
+										<%} %>
+								<%} %>
+								
+                            	<%if(nowPage >= maxPage) { %>
+									<a href="NoticeBoardList.not?page=<%=nowPage%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+	                            <%}else{%>   
+	                            	<a href="NoticeBoardList.not?page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+                            	<%} %>
+	                            	<a href="NoticeBoardList.not?page=<%=maxPage%>" class="arr" data-page-num="781">
+                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
+                               		</a>                        
+                            </div>
+<%-- 							<% --%>
+<!-- 							} else { -->
+<!-- 							%> -->
+<!-- 							<section id="emptyArea">등록된 글이 없습니다</section> -->
+<%-- 							<% --%>
+<!-- 							} -->
+<!-- 							%> -->
 					</div>
+					
+
+	
 				</div>
 			</div>
 
 		</div>
-	</div>
 
 </section>
 <footer><jsp:include page="../include/footer.jsp" /></footer>
