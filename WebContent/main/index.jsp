@@ -96,7 +96,7 @@
 						<div class="figure">
 							<a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle()%>">
 								<span class="rm_br">
-									<img src="bookUpload/<%=bookList5.get(i).getImage() %>" >
+									<img src="bookUpload/<%=bookList.get(i).getImage() %>" >
 								</span> 
 								<span class="light"></span>
 							</a>
@@ -149,14 +149,24 @@
 								</p>
 							</li>
 						<%
-						if(bookList2!=null){
-						for(int i = 0; i < 2; i++) {
+							if(bookList2 != null || bookList3 != null || bookList4 != null){
+								
+								int bookSize = 10;
+								if(bookList2.size() <= 10) {
+									bookSize = bookList2.size();
+									if(bookList3.size() <= bookSize) {
+										bookSize = bookList3.size();
+										if(bookList4.size() <= bookSize) {
+											bookSize = bookList4.size();
+								}}}
+							for(int i = 0; i < bookSize; i++) {
 						%>							
 							<li class="top-rank top-one">
 								<p class="rank">
 									<span><strong><%=i+1%></strong></span>
 									<span class="icon"></span>
 								</p>
+								
 								<div class="webtoon">
 									<p>
 										<strong><%=bookList2.get(i).getTitle()%></strong>
@@ -173,6 +183,7 @@
 										</a>
 									</div>
 								</div>
+								
 								<div class="comic">
 									<p>
 										<strong><%=bookList3.get(i).getTitle()%></strong>
@@ -206,10 +217,10 @@
 										</a>
 									</div>
 								</div>
-							</li>							
-							<%
-								}}
-							%>
+								<%
+									}}
+								%>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -226,6 +237,20 @@
 					<li><a href="BookList.bok?catg1=과학">과학<span class="ct-arrow"></span></a></li>
 					<li><a href="BookList.bok?catg1=취미">취미<span class="ct-arrow"></span></a></li>
 					<li><a href="BookList.bok?catg1=만화/웹소설">만화/웹소설<span class="ct-arrow"></span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main-inner">
+		<div class="main_ct_best">
+			<div class="e-book-ps">
+				<h3>동서남북 이용안내</h3>
+				<ul>
+					<li>대출 후 직접 받아 보실수 있는 상품입니다.</li>
+					<li>사이트 내 정기 구독권 구매시 무료로 사용하실 수 있습니다.</li>
+					<li>대출 하신 책은 ""마이페이지 > 대출목록”에서 확인 하실 수 있습니다.</li>
+					<li>ID 계정 당 총 5권의 도서를 횟수 제한 없이 대출 하실 수 있습니다.</li>
+					<li>대출 하신 도서를 훼손 및 분실시 책임을 물으실 수 있습니다.</li>
 				</ul>
 			</div>
 		</div>

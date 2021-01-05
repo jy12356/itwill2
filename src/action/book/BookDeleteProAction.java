@@ -1,6 +1,7 @@
 package action.book;
 
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,21 +14,22 @@ public class BookDeleteProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		ActionForward forward = null;
+		String catg1= URLEncoder.encode(request.getParameter("catg1"),"UTF-8");
+		String catg2= URLEncoder.encode(request.getParameter("catg2"),"UTF-8");
 		int book_num = Integer.parseInt(request.getParameter("book_num"));
-		String title = request.getParameter("title");
-		String isbn = request.getParameter("isbn");
-		System.out.println("1111"+title);
-		System.out.println("222222"+isbn);
-		
+		System.out.println(catg1);
+		System.out.println(catg2);
+				
 		BookDeleteProService bookDeleteProService = new BookDeleteProService(); 
 		boolean isBookExis =  bookDeleteProService.bookExis(book_num);
 		if(!isBookExis) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('삭제에 실패하였습니다.')");
-			out.println("history.back()");
+			out.println("alert('이미 삭제된 도서입니다.')");
+			out.println("history.go(-2)");
 			out.println("</script>");
 		}else {
 			boolean isDelete = bookDeleteProService.bookdelete(book_num);
@@ -39,8 +41,10 @@ public class BookDeleteProAction implements Action {
 				out.println("history.back()");
 				out.println("</script>");
 			}else {
+
 				forward = new ActionForward();
-				forward.setPath("BookKindList.bok?title="+ title+"&isbn="+isbn);
+				forward.setPath("BookList.bok?catg1="+catg1+"&catg2="+catg2);
+				System.out.println(forward.getPath());
 				forward.setRedirect(true);
 			}
 		}

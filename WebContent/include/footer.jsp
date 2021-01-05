@@ -47,26 +47,19 @@ int listCount = PageInfo.getListCount();
 					<p><span>운영시간</span>월~금 09:00 - 18:00 (점심시간 12:00 - 13:00) / 주말 및 공휴일 휴무</p>
 				</div>
 			</div>
-			<div class="short-cut">
-				<h4>바로가기</h4>
-				<div>
-					<p><a href="/coupon.asp">쿠폰등록</a></p>
-					<p><a href="Charge.dok">구독결제</a></p>
-					<p><a href="MyPage?id=admin">마이페이지</a></p>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 	<div class="footer-inner">
 		<ul class="f-lnb">
-			<li><a href="http://www.bookcubenetworks.co.kr">회사소개</a></li>
-			<li><a href="/customer.asp?page=notice&num=24007&page2=view&pageNum=15">이용약관</a></li>
-			<li><a href="/customer.asp?page=notice&num=24264&page2=view&pageNum=15">개인정보보호정책</a></li>
-			<li><a href="/customer.asp?page=notice&num=104583&page2=view&pageNum=1">청소년보호정책</a></li>
+			<li><a href="#">회사소개</a></li>
+			<li><a href="#">이용약관</a></li>
+			<li><a href="#">개인정보보호정책</a></li>
+			<li><a href="#">청소년보호정책</a></li>
 		</ul>
 		<div class="f-banner">
 			<ul>
-				<li><a href="mailto:webmaster@bookcube.com"><span></span>이메일문의</a></li>
+				<li><a href="#"><span></span>이메일문의</a></li>
 			</ul>
 			<div class="so-pop blind" id="so">
 				<div class="login-bg"></div>
@@ -102,13 +95,6 @@ int listCount = PageInfo.getListCount();
 <div class="topBtn">
 	<a href="javascript:;">TOP</a>
 </div>
-<div class="chats">
-	<ul>
-		<li><a href=""><img src="images/mal.png"></a></li>
-		<li><a href=""></a></li>		
-	</ul>
-</div>
-
 <script>
 $(function(){
 //탑버튼
@@ -149,7 +135,6 @@ var pop = {
 	
 	
 		
-</div>	
 
 		<!--Start of Tawk.to Script-->
 <script type="text/javascript">

@@ -138,6 +138,20 @@ th.memSortTbody {
 	font-size: 14px;
 	border: 1px solid #72ada5 !important;
 }
+
+.container{margin:0 auto; width:80%;}
+.tab_tit{padding-top:20px; border-bottom:1px solid #777;}
+.tab_tit::after{content:''; display:block; clear:both;}
+.tab_tit li{float: left;width: 150px;height: 32px;text-align: center;line-height: 32px; cursor:pointer}
+.tab_tit li::after{content:''; display:none; clear:both; width:100%; height:3px; background:#48474e;}
+.tab_tit li.on::after{display:block;}
+
+.cnt{display:none; padding:40px 10px;} 
+.cnt.on{display:block; padding:40px 10px;}
+.cnt h2{font-size:20px; font-weight:800;}
+.cnt ul{padding:20px 0px;}
+.cnt ul li{line-height:22px;}
+.cnt ul li::before{content: '';display: inline-block;margin-top: 9px;margin-right: 9px;width: 5px;height: 5px;background: #2f4394;border-radius: 50%;vertical-align: top;}
 </style>
 
 <%
@@ -200,9 +214,8 @@ int listCount = pageInfo.getListCount();
 								<li>
 									<h4>회원관리</h4>
 									<ul>
-										<li><a href="http://localhost:8080/itwill2th/MemberList.me" class="">회원목록</a></li>
-										<li><a href="BookDibsList.bok" class="">대출관리</a></li>
-										<li><a href="Return.rn" class="">대출관리</a></li>
+										<li><a href="MemberList.me" class="on">회원목록</a></li>
+										<li><a href="Return.rn" class="">대출반납관리</a></li>
 									</ul>
 								</li>
 								<li>
@@ -221,27 +234,17 @@ int listCount = pageInfo.getListCount();
 				</div>
 			</div>
 			<div class="customer" style="width: 1400px;">
-				<h3 class="coTitle">고객관리</h3>
+				
+				
+				<ul class="tab_tit">
+				    <li class="on" data-tab="tab1">고객관리</li>
+				    <li data-tab="tab2" onclick="javascript:test()">대시보드</li>
+				  </ul>
+				
+				
+				<div id="tab1" class="cnt on"><h3 class="coTitle">고객관리</h3>
 				<div class="customer-contents">
 					<div class="customer-inner">
-						<table summary="공지사항" class="customer-table notice">
-							<!-- <table class="columns"> -->
-							<tr>
-								<td><div id="chart1" style="background-color :blue;"></div></td>
-							</tr>
-							<tr>
-								<td><div id="chart2" style="background-color :orange;"></div></td>
-							</tr>
-							<tr>
-								<td><div id="chart3" style="background-color :blue;"></div></td>
-							</tr>
-							<tr>
-								<td><div id="chart4" style="background-color :orange;"></div></td>
-							</tr> 
-							
-							<!--  </table> -->
-
-						</table>
 
 
 
@@ -269,8 +272,8 @@ int listCount = pageInfo.getListCount();
 									for (int i = 0; i < articleList.size(); i++) {
 								%>
 								<tr>
-									<th scope="col" class="memSortTbody" abbr="선택"><input
-										type="checkbox" name="check_box" id="check_box"
+									<th scope="col" class="check_box" abbr="선택"><input
+										type="checkbox" name="inter_num" id="checkbox_num"
 										value=<%=articleList.get(i).getNum()%>></th>
 									<th scope="col" class="memSortTbody" abbr="회원번호" id="num"><%=articleList.get(i).getNum()%></th>
 									<th scope="col" class="memSortTbody" abbr="아이디" id="id"><%=articleList.get(i).getId()%></th>
@@ -291,209 +294,345 @@ int listCount = pageInfo.getListCount();
 						</tbody>
 						<label for="" class="radio" data-sort="등급"> <input
 							type="button" name="reportChkBxRow" class="btn2" value="삭제"
-							onclick="deleteListMem()"></label>
+							onclick="deleteListMem(); return false;"></label>
 						<div class="paging">
-							<a href="/customer.asp?page=notice&pageNum=1" class="arr"
-								data-page-num="1"><img src="images/p-first.png"><span
-								class="hide">처음페이지</span></a> <a
-								href="/customer.asp?page=notice&pageNum=1" class="arr prev"
-								data-page-num="1"><img src="images/p-prev.png"><span
-								class="hide">이전페이지</span></a> <a
-								href="/customer.asp?page=notice&pageNum=1" class="on fir"
-								data-page-num="1">1</a>
-							<!-- 	<a href="/customer.asp?page=notice&pageNum=2" class="" data-page-num="2">2</a><a href="/customer.asp?page=notice&pageNum=3" class="" data-page-num="3">3</a><a href="/customer.asp?page=notice&pageNum=4" class="" data-page-num="4">4</a><a href="/customer.asp?page=notice&pageNum=5" class="" data-page-num="5">5</a><a href="/customer.asp?page=notice&pageNum=6" class="" data-page-num="6">6</a><a href="/customer.asp?page=notice&pageNum=7" class="" data-page-num="7">7</a><a href="/customer.asp?page=notice&pageNum=8" class="" data-page-num="8">8</a><a href="/customer.asp?page=notice&pageNum=9" class="" data-page-num="9">9</a><a href="/customer.asp?page=notice&pageNum=10" class="" data-page-num="10">10</a> -->
-							<a href="/customer.asp?page=notice&pageNum=11" class="arr next"
-								data-page-num="11"> <img src="images/p-next.png"><span
-								class="hide">다음페이지</span></a> <a
-								href="/customer.asp?page=notice&pageNum=27" class="arr"
-								data-page-num="27"><img src="images/p-last.png"><span
-								class="hide">마지막페이지</span></a>
+						
+							<a href="MemberList.me?page=1" class="arr" data-page-num="1">
+										<img src="images/p-first.png"><span class="hide">처음페이지</span>
+								</a>
+							<%if(nowPage <=1) {%>
+									
+                            		<a href="MemberList.me?page=<%=nowPage%>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								<%}else{%>
+								<a href="MemberList.me?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								
+								<%} %>
+								
+								<%for(int i = startPage; i <= endPage; i++) { 
+										if(i == nowPage) { %>
+											<a href="MemberList.me?page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
+										<%} else { %>
+											<a href="MemberList.me?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
+										<%} %>
+								<%} %>
+								
+                            	<%if(nowPage >= maxPage) { %>
+									<a href="MemberList.me?page=<%=nowPage%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+	                            <%}else{%>   
+	                            	<a href="MemberList.me?page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+                            	<%} %>
+	                            	<a href="MemberList.me?page=<%=maxPage%>" class="arr" data-page-num="781">
+                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
+                               		</a>
 						</div>
 					</div>
-
+					</div>
+					</div>
+					
+					
+					
+					 <div id="tab2" class="cnt">
+					<h3 class="coTitle">대시보드 </h3>
+						<table>
+							<!-- <table class="columns"> -->
+							<tr>
+								<td><div id="chart1" style="padding: 10px;"></div></td>
+								<td><div id="chart2" style="padding: 10px;"></div></td>
+							</tr>
+							<tr>
+								<td><div id="chart3" style="padding: 10px;"></div></td>
+								<td><div id="chart4" style="padding: 10px;"></div></td>
+							</tr> 
+						</table>
+						</div>
+						
+						
+						
+						
 				</div>
-
+				</div>
 			</div>
 	</section>
     
-	<script type="text/javascript"
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<!-- <script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript">
-	google.load("visualization", "1.0", {
-	     callback: function () {
-	       var queryObject="";
+	function drawGraph() {
+	
+	google.load("visualization", "1", {packages:["corechart"]}); 
+    google.setOnLoadCallback(drawChart); 
+    
+    function drawChart() {
 	       var queryObjectLen="";
-	      
+	       // 리스트 생성
+	       var arr1 = new Array() ;
+	       var arr2 = new Array() ;
+	       var arr3 = new Array() ;
+	       var arr4 = new Array() ;
+	       
 	       $.ajax({
-    	   type: "POST",
-           contentType: "application/json",
+	    	   
+    	    type: "POST", 
 			url : "MemberListCal.me",
 			dataType : "json",
 			success : function(data) {
-				queryObject =JSON.stringify(data) ;
-				/* queryObject = eval("(" + JSON.stringify(data) + ")");  
-				queryObject =JSON.stringify(queryObject) ; */
-				queryObjectLen = queryObject.length;
-				console.log("111opdetails.opObjCatg : "+opObjCatg.toString());
-				console.log("111opdetails.opObjJoin : "+opObjJoin.toString());
-				console.log("111opdetails.opObjQna : "+opObjQna.toString());
-				console.log("111opdetails.opObjRental : "+opObjRental.toString());
-				console.log("111responseObj : "+responseObj.toString());
+				
+				$.each(data, function( index, responseObj){ 
 
-			var data = new google.visualization.DataTable();
+				    // 객체 생성
+			        var obj1 = new Object() ;
+					    obj1.catg_count = responseObj.catg_count;
+					    obj1.catg = responseObj.catg;
+
+
+		            // 리스트에 생성된 객체 삽입
+					if(obj1.catg_count !=  undefined || obj1.catg != undefined){
+		            	arr1.push(obj1) ;
+					}
+
+		 	        var obj2 = new Object() ;
+		            obj2.date = responseObj.date;
+					obj2.id_count = responseObj.id_count;
+					if(obj2.date !=  undefined || obj2.id_count != undefined){
+		            	arr2.push(obj2) ;
+					}
+					
+
+			        var obj3 = new Object() ;	
+		            obj3.qna_genre = responseObj.qna_genre;
+					obj3.qna_count = responseObj.qna_count;
+
+					if(obj3.qna_genre !=  undefined || obj2.qna_count != undefined){
+						arr3.push(obj3) ;
+					}
+					
+
+				    var obj4 = new Object() ;
+		            obj4.retal_count = responseObj.retal_count;
+					obj4.s_date = responseObj.s_date;
+
+					if(obj4.retal_count !=  undefined || obj4.s_date != undefined){
+						arr4.push(obj4) ;
+					}
+		            
+		            					
+				});
+				 // String 형태로 변환
+		        var jsonData1 = JSON.stringify(arr1) ;
+		        var jsonData2 = JSON.stringify(arr2) ;
+		        var jsonData3 = JSON.stringify(arr3) ;
+		        var jsonData4 = JSON.stringify(arr4) ;
+		        
+	        var data = new google.visualization.DataTable();
 			data.addColumn("string", "catg");
 			data.addColumn("number", "catg_count");
-			for (var i = 0; i < queryObjectLen; i++) {
-				var catg = queryObject.opObjCatg.getKey();
-				var catg_count =  queryObject.opObjCatg.getValue();
-				data.addRows([ catg, parseInt(catg_count) ]);
+			for (var i = 0; i < arr1.length; i++) {
+				var catg = JSON.parse(jsonData1)[i].catg;
+				var catg_count = JSON.parse(jsonData1)[i].catg_count; 
+				data.addRows([ [catg, parseInt(catg_count) ] ]);
 			}
 			
 			var data2 = new google.visualization.DataTable();
 			data2.addColumn("string", "date");
 			data2.addColumn("number", "id_count");
-			for (var i = 0; i < queryObjectLen; i++) {
-				var date = queryObject.opObjJoin.getKey();
-				var id_count = queryObject.opObjJoin.getValue();
+			for (var i = 0; i < 7; i++) {
+				var date = JSON.parse(jsonData2)[i].date; 
+				var id_count = JSON.parse(jsonData2)[i].id_count;
 				data2.addRows([ [ date, parseInt(id_count) ] ]);
 			}
 			
 			var data3 = new google.visualization.DataTable();
 			data3.addColumn("string", "qna_genre");
-			data3.addColumn("number", "qna_count");
-			for (var i = 0; i < queryObjectLen; i++) {
-				var qna_genre = queryObject.opObjQna.getKey();
-				var qna_count = queryObject.opObjQna.getValue();
-				data3.addRows([ [ qna_genre, parseInt(qna_count) ] ]);
+			data3.addColumn("number", "불만사항");
+			data3.addColumn("number", "취소/환불");
+			data3.addRows([ 
+				[ 'Jan' , 15, 4 ],   
+		        [ 'Feb' , 14, 2 ],   
+		        [ 'Mar' , 13, 5 ],   
+		        [ 'Apr' , 14, 5 ],
+		        [ 'May' , 13, 12 ],   
+		        [ 'Jun' , 15, 14 ],   
+				[ 'Jul' , 12, 15 ],   
+		        [ 'Aug' , 11, 8 ],
+		        [ 'Sep' , 17, 6 ],   
+		        [ 'Oct' , 21, 6 ],   
+		        [ 'Nov' , 12, 8 ],   
+		        [ 'Dec' , 11, 5 ] 
+				]);
+			for (var i = 0; i < arr3.length; i++) {
+				var qna_genre = JSON.parse(jsonData3)[i].qna_genre;
+				var qna_count = JSON.parse(jsonData3)[i].qna_count;
 			}
 			
 			var data4 = new google.visualization.DataTable();
-			data4.addColumn("string", "s_date");
-			data4.addColumn("number", "retal_count");
-			for (var i = 0; i < queryObjectLen; i++) {
-				var s_date = queryObject.opObjRental.getKey();
-				var retal_count = opObjRental.getValue();
-				data4.addRows([ [ s_date, parseInt(retal_count) ] ]);
-			}
+			data4.addColumn("string", "월");
+			data4.addColumn("number", "대여수");
+			data4.addRows([ 
+				  [ 'Jan' , 523 ],   
+		          [ 'Feb' , 535 ],   
+		          [ 'Mar' , 582 ],   
+		          [ 'Apr' , 515 ],
+		          [ 'May' , 593 ],   
+		          [ 'Jun' , 551 ],   
+		          [ 'Jul' , 606 ],   
+		          [ 'Aug' , 591 ],
+		          [ 'Sep' , 562 ],   
+		          [ 'Oct' , 591 ],   
+		          [ 'Nov' , 521 ],   
+		          [ 'Dec' , 585 ] ]);
 			
 			var options = {
-				title : "1번 그래프_선호장르",
-				colors : [ "green", "yellow" ],
-				hAxis : {
-					title : "Location11"
-				},
-				vAxis : {
-					title : "No. of Posts11"
-				}
+				title : "회원들의 장르별 선호도",
+				is3D : true,
+				width: 700,
+		        height: 400,
+		        backgroundColor: '#e6e6ff'
 			};
 			
 			var options2 = {
-				title : "2번 그래프_가입자수증가",
-				 /*   curveType: "function",  */
-				colors : [ "green", "yellow" ],
-				hAxis : {
-					title : "Location22"
-				},
-				vAxis : {
-					title : "No. of Posts22"
-				} 
-			};
+		        is3D : true,
+				title : '가입자수 추이 ',
+				width: 700,
+		        height: 400,
+		        role: 'annotation' ,
+		       /*  role: 'tooltip', */
+		        /* bar: {groupWidth: "70%"}, */
+		        legend: { position: "none" }, 
+		        colors : [ "red"],
+		        trendlines: {
+		            0: {
+		              type: 'exponential',
+		              visibleInLegend: true,
+		            }
+		          },
+		          hAxis: {
+		              slantedText: true,
+		              slantedTextAngle: 20,
+		              gridlines: {count: 7}
+		           },
+		           animation:{
+			        	  duration: 1500,
+			              easing: 'out',
+			              startup: true
+	                   },
+		           backgroundColor: '#ffe6ff'
+	        };
 			
 			var options3 = {
-				title : "3번 그래프_불만사항 접수",
-				colors : [ "green", "yellow" ],
-				hAxis : {
-					title : "Location33"
-				},
-				vAxis : {
-					title : "No. of Posts33"
-				}
+				is3D : true,
+				title : "불만사항 접수 ",
+				width: 700,
+		        height: 400,
+	            
+	          bar: { groupWidth: "90%" },
+	          backgroundColor: '#ffffe6',
+	          animation:{
+	        	  duration: 1500,
+	              easing: 'out',
+	              startup: true
+               }
 			};
 			
 			var options4 = {
-				title : "4번 그래프_대출 그래프",
-				colors : [ "green", "yellow" ],
-				hAxis : {
-					title : "Location44"
-				},
-				vAxis : {
-					title : "No. of Posts44"
-				}
-			};
+					/* is3D : true, */
+					title : '월별 배송량 ',
+					width: 700,
+			        height: 400,
+			        role: 'annotation' ,
+			        legend: { position: "none" }, 
+			        trendlines: {
+			            0: {
+			              type: 'exponential',
+			              visibleInLegend: true,
+			            }
+			          },
+			          animation:{
+			        	  duration: 1500,
+			              easing: 'out',
+			              startup: true
+	                   },
+			          backgroundColor: '#f1f8e9'  
+		        };
 			
 			var chart1 =  new google.visualization.PieChart(document.getElementById("chart1"));
-	           chart1.draw(data,options);
+            chart1.draw(data,options);
 
-			var chart2 =  new google.visualization.LineChart(document.getElementById("chart2"));
+			var chart2 =  new google.visualization.BarChart(document.getElementById("chart2"));
 			chart2.draw(data2,options2);
 
-			var chart3 =  new google.visualization.PieChart(document.getElementById("chart3"));
+			var chart3 =  new google.visualization.AreaChart(document.getElementById("chart3"));
 			chart3.draw(data3,options3);
 
-			var chart4 =  new google.visualization.PieChart(document.getElementById("chart4"));
+			var chart4 =  new google.visualization.LineChart(document.getElementById("chart4"));
 			chart4.draw(data4,options4);
+			},
 			
-		},
+	       	
 		error: function (xhr, type,data,queryObject) {
 	           alert(data+"~~~"+queryObject)
-s
+
 	         }
 	       });
-	     },
-	     packages:["corechart"]
-	});
-    
-    	/* if(confirm_val) {
-				var inter_num = [];
-				if ($('.check_box input[type="checkbox"]:checked').length > 0) {
-					$('.check_box input[type="checkbox"]:checked').each(function(){
-						inter_num.push($(this).attr("value"));  
-					});
-				}else{
-					alert("게시물을 선택해주시길 바랍니다.");
-					return false;	            	
-				};	
-				var interArr = {"inter_num" :inter_num};
-				$.ajax({
-					url : "MemListDelete.me",
-					type : "post",
-					dataType: 'text',
-					data : interArr,
-					success : function(){
-						location.href = "BookDibsList.bok";
-					},error:function(request,status,error){
-				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				       }`
-
-				});
-			} 
-	    }; */
-	    
-//$(document).ready(function(){
-	 
-    // 라디오버튼 클릭시 이벤트 발생
-    
- //   $("input:radio[name=memLiName]").click(function(){
- //
- //       if($("input[name=memLiName]:checked").val() == "1"){
- //           $("div[id=memLiNameList]").attr("disabled",true);
-            // radio 버튼의 value 값이 1이라면 활성화 div class="list-sort" id="memLiNameList"
- 
-//        }else if($("input[name=radio]:checked").val() == "0"){
-//              $("div[id=memLiNameList]").attr("disabled",false);
-            // radio 버튼의 value 값이 0이라면 비활성화
-//        }
-//    });
-//});
-	    
-//$(document).ready(function(){
-//	$("input:radio[id=memLiName]").click(function(){
-//		$("div[id=memLiNameList]").attr("disabled",true);
+	     };
+	}
+     function test() {
+    	  drawGraph();
+    	  document.getElementById("chart1").style.display = "block";
+    	  document.getElementById("chart2").style.display = "block";
+    	  document.getElementById("chart3").style.display = "block";
+    	  document.getElementById("chart4").style.display = "block";
+    	  }
+	     
+	     
+	function deleteListMem(){
+		var confirm_val = confirm("정말 삭제하시겠습니까?");
 		
-//	})
-//})    
-	    
+		if(confirm_val) {
+			var inter_num = [];
+			if ($('.check_box input[type="checkbox"]:checked').length > 0) {
+				$('.check_box input[type="checkbox"]:checked').each(function(){
+					inter_num.push($(this).attr("value"));  
+				});
+			}else{
+				alert("게시물을 선택해주시길 바랍니다.");
+				return false;	            	
+			};	
+			var interArr = {"inter_num" :inter_num};
+			$.ajax({
+				url : "MemListDelete.me",
+				type : "post",
+				dataType: 'text',
+				data : interArr,
+				success : function(){
+					location.href = "MemberList.me";
+				},error:function(request,status,error){
+			        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			       }
+
+			});
+		} 
+    };
+	
+    
+    
+    $(function() {
+    	  $('ul.tab_tit li').click(function() {
+    	    var onTab = $(this).attr('data-tab');
+    	    $('ul.tab_tit li').removeClass('on');
+    	    $('.cnt').removeClass('on');
+    	    $(this).addClass('on');
+    	    $('#' + onTab).addClass('on');
+    	  })
+    	}); 
 	</script>
 </html>
 <jsp:include page="../include/footer.jsp" />

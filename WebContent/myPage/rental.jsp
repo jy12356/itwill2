@@ -15,12 +15,13 @@
 <section class="sub">
      <div class="contents-wrap">
         <div class="customer">
+
             
 <!--             <h2 class="coTitle">주문배송조회</h2> -->
             <div class="boxmenu1-top-menu">
 				<ul>
 					<li class="on"><a href="rentalList.rn"><em>대여내역</em></a></li>
-					<li><a href="Return2.rn"><em>과거대여내역</em></a></li>
+					<li><a href="ReturnedList.rt"><em>과거대여내역</em></a></li>
 					<li><a href="ReservationList.rn"><em>예약중인도서</em></a></li>
 				</ul>
 			</div>

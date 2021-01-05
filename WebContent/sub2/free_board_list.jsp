@@ -26,13 +26,12 @@ int listCount = pageInfo.getListCount();
 	<div class="contents-wrap">
 		<div class="sub_container">
 			<h3 class="coTitle">자유게시판</h3>
-			<div class="boxmenu1-top-menu">
-				<ul>
-					<li class="on"><a href="FreeBoardList.free"><em>자유게시판</em></a></li>
-					<li><a href="RequestList.rq"><em>희망도서신청</em></a></li>
-					<li><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li>
-				</ul>
-			</div>
+<!-- 			<div class="boxmenu1-top-menu"> -->
+<!-- 				<ul> -->
+<!-- 					<li class="on"><a href="FreeBoardList.free"><em>자유게시판</em></a></li> -->
+<!-- 					<li><a href="NoticeBoardList.not?page=1"><em>공지사항</em></a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
 			<div class="customer-contents">
 				<div class="customer-inner">
 					<table summary="공지사항" class="customer-table notice">
@@ -112,58 +111,48 @@ $(".btn").on("click", function() {
 </script>
 
 					<div class="paging">
-
-						<!-- 이전페이지 -->
-						<%
-							if (nowPage <= 1) {
-						%>
-						<input type="button" value="이전">&nbsp;
-						<%
-							} else {
-						%>
-						<input type="button" value="이전"
-							onclick="location.href='FreeBoardList.free?page=<%=nowPage - 1%>'">&nbsp;
-						<%
+                            	<a href="FreeBoardList.free?page=1" class="arr" data-page-num="1">
+										<img src="images/p-first.png"><span class="hide">처음페이지</span>
+								</a>
+                            	<%if(nowPage <=1) {%>
+									
+                            		<a href="FreeBoardList.free?page=<%=nowPage%>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								<%}else{%>
+								<a href="FreeBoardList.free?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								
+								<%} %>
+								
+								<%for(int i = startPage; i <= endPage; i++) { 
+										if(i == nowPage) { %>
+											<a href="FreeBoardList.free?page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
+										<%} else { %>
+											<a href="FreeBoardList.free?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
+										<%} %>
+								<%} %>
+								
+                            	<%if(nowPage >= maxPage) { %>
+									<a href="FreeBoardList.free?page=<%=nowPage%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+	                            <%}else{%>   
+	                            	<a href="FreeBoardList.free?page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+                            	<%} %>
+	                            	<a href="FreeBoardList.free?page=<%=maxPage%>" class="arr" data-page-num="781">
+                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
+                               		</a>
+								                             
+                            </div>
+                   	
+                   	<%
 							}
-						%>
-
-						<%
-							for (int i = startPage; i <= endPage; i++) {
-							if (i == nowPage) {
-						%>
-						[<%=i%>]&nbsp;
-						<%
-							} else {
-						%>
-						<a href="FreeBoardList.free?page=<%=i%>">[<%=i%>]
-						</a>&nbsp;
-						<%
-							}
-						%>
-						<%
-							}
-						%>
-						<!-- 다음페이지 -->
-						<%
-							if (nowPage >= maxPage) {
-						%>
-						<input type="button" value="다음">
-						<%
-							} else {
-						%>
-						<input type="button" value="다음"
-							onclick="location.href='FreeBoardList.free?page=<%=nowPage + 1%>'">
-						<%
-							}
-						%>
-						<%
-							} else {
-						%>
-						<section id="emptyArea">등록된 글이 없습니다</section>
-						<%
-							}
-						%>
-					</div>
+					%>                                
+                   
 				</div>
 			</div>
 

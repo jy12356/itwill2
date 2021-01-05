@@ -38,9 +38,10 @@
 		                            <col width="35%">
 								</colgroup>
 								<tbody>
-									<tr>
+			                       <tr>
 			                            <td>신청자</td>
 			                            <td colspan="3">
+			                            	<input type="hidden" name="rid" value="<%=article.getId() %>">
 			                            	<input type="text" name="id" value="관리자" readonly="readonly">
 			                            </td>
 			                        </tr>

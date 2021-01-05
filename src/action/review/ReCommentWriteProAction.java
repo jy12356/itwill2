@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import action.Action;
@@ -39,7 +40,7 @@ public class ReCommentWriteProAction implements Action {
 		boolean isWriteSuccess = reCommentWriteProService.registArticle(commentBean);
 		
 		JSONObject json = new JSONObject();
-		
+		JSONArray jsonArray = new JSONArray(); 
 		if(!isWriteSuccess) {
 			// 리뷰 등록 실패시
 			json.put("text", "댓글등록 실패!");
@@ -49,11 +50,11 @@ public class ReCommentWriteProAction implements Action {
 //			out.println("alert('댓글등록 실패!')"); // 다이얼로그 메세지 출력
 //			out.println("history.back()"); // 이전 페이저로 이동
 //			out.println("</script>"); // 자바스크립트 끝 태그
-			out.print(json.toString());
-			
+			out.print(json.toString());	
 		} else {
 			// 리뷰 등록 성공시
 			json.put("text", "댓글을 등록하였습니다");
+			jsonArray.add(json);
 			PrintWriter out = response.getWriter();
 			out.print(json);
 //			forward = new ActionForward();

@@ -97,7 +97,7 @@ public class BookDAO {
 		int startRow=(page-1)*limit;
 		
 		String sql = "select b.*,r.count review, r.starcount starcount  from book b left outer join "
-				+ "(select isbn, count(*) count,round(10/sum(starcount),1) starcount from review  group by isbn) r "
+				+ "(select isbn, count(*) count,round(AVG(starcount),1) starcount from review  group by isbn) r "
 				+ "on b.isbn = r.isbn where title like ? and catg1 like ? and catg2 like ? "
 				+ "order by pubdate desc limit ?,?";
 		try {
@@ -151,14 +151,13 @@ public class BookDAO {
 
 		//조회를 시작할 레코드 행 번호 계산
 		int startRow=(page-1)*limit;
-		catg1="소설";
 		String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 		try {
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, "소설");
 //			pstmt.setString(2, "%"+catg2);
 			pstmt.setInt(2, 0);
-			pstmt.setInt(3, 2);
+			pstmt.setInt(3, 10);
 			System.out.println(pstmt);
 			rs = pstmt.executeQuery();
 			bookList2 = new ArrayList<BookBean>();
@@ -202,14 +201,13 @@ public class BookDAO {
 
 			//조회를 시작할 레코드 행 번호 계산
 			int startRow=(page-1)*limit;
-			catg1="인문/경제";
 			String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 			try {
 				pstmt=con.prepareStatement(sql);
-				pstmt.setString(1, catg1);
+				pstmt.setString(1, "인문/경제");
 //				pstmt.setString(2, "%"+catg2);
 				pstmt.setInt(2, 0);
-				pstmt.setInt(3, 2);
+				pstmt.setInt(3, 10);
 				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				bookList3 = new ArrayList<BookBean>();
@@ -253,14 +251,13 @@ public class BookDAO {
 
 			//조회를 시작할 레코드 행 번호 계산
 			int startRow=(page-1)*limit;
-			catg1="과학";
-			String sql = "select * from book order by count desc limit ?,?";
+			String sql = "select * from book where catg1 like ? order by count desc limit ?,?";
 			try {
 				pstmt=con.prepareStatement(sql);
-//				pstmt.setString(1, "%"+catg1);
+				pstmt.setString(1, "과학/IT");
 //				pstmt.setString(2, "%"+catg2);
-				pstmt.setInt(1, 0);
-				pstmt.setInt(2, 10);
+				pstmt.setInt(2, 0);
+				pstmt.setInt(3, 10);
 				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				bookList4 = new ArrayList<BookBean>();
@@ -343,14 +340,40 @@ public class BookDAO {
 		}
 		
    //전체책 갯수
-   public int selectListCount() {
+   public int selectListCount(String catg1, String catg2, String search) {
+      System.out.println("BookDAO - selectListCount()");
+      int listCount = 0;
+      PreparedStatement pstmt = null;
+      ResultSet rs = null;
+      String sql = "select count(*) from book where  catg1 like ? and  catg2 like ? and  title like ? ";
+      try {
+    	  pstmt=con.prepareStatement(sql);
+    	  pstmt.setString(1, catg1+"%");
+	      pstmt.setString(2, catg2+"%");
+	      pstmt.setString(3, "%"+search+"%");
+         rs = pstmt.executeQuery();
+         if(rs.next()) {
+            listCount = rs.getInt(1);
+         }
+         
+      }catch (Exception e) {
+         System.out.println("selectListCount 오류!:"+e.getMessage());
+         e.printStackTrace();
+      }
+      
+            
+      
+      return listCount;
+   }
+   //전체책 갯수
+   public int selectListCounMain() {
       System.out.println("BookDAO - selectListCount()");
       int listCount = 0;
       PreparedStatement pstmt = null;
       ResultSet rs = null;
       String sql = "select count(*) from book";
       try {
-         pstmt=con.prepareStatement(sql);
+    	  pstmt=con.prepareStatement(sql);
          rs = pstmt.executeQuery();
          if(rs.next()) {
             listCount = rs.getInt(1);
@@ -626,9 +649,9 @@ public class BookDAO {
       String sql = "select i.num num, "
             + "i.isbn isbn,i.id id, b.title title, b.author author, "
             + "b.publisher publisher, b.pubdate pubdate, "
-            + "min(case when b.state = 0 then '대여가능' else '대여불가능' end) as state "
-            + "from interestinglist  as i join book as b on i.isbn = b.isbn "
-            + "where i.id=? group by i.isbn order by i.num desc limit ?,?;";
+            + "(case when b.state = 0 then '대여가능' else '대여불가능' end) as state "
+            + "from interestinglist  as i  left outer join book as b on i.isbn = b.isbn "
+            + "where i.id=? order by i.num desc limit ?,?;";
       try {
          pstmt=con.prepareStatement(sql);
          pstmt.setString(1, id);

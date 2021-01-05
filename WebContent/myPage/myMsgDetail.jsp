@@ -28,22 +28,14 @@
 						<tbody>
 							<tr>
 								<td>보낸이</td>
-								<td colspan="3"><%=msgBean.getFromId()%></td>
+								<td><%=msgBean.getFromId()%></td>
 							</tr>
 							<tr>
 								<td>보낸날짜</td>
 								<td><%=msgBean.getDate()%></td>
-								<td class="th">읽음유무</td>
-								<td>
-								<%if(msgBean.getIsRead().equals("y")){ %>
-									읽음
-								<%}else{ %>
-									읽지않음
-								<%} %>
-								</td>
 							</tr>
 							<tr>
-								<td class="td" colspan="4"><%=msgBean.getContent() %></td>
+								<td class="td" colspan="2"><%=msgBean.getContent() %></td>
 								
 							</tr>
 						</tbody>
@@ -51,7 +43,7 @@
 					<div class="btn_inner">
 						
 						<input type="button" class="btn" value="삭제" onclick="location.href='RequestDeletePro.rq?num=<%=msgBean.getNum()%>&page=<%=nowPage%>'">
-						<input type="button" class="btn" value="목록" onclick="location.href='MyMsg.msg?num=<%=msgBean.getNum()%>">
+						<input type="button" class="btn" value="목록" onclick="location.href='MyMsg.msg'">
 						
 					</div>
 				</div>

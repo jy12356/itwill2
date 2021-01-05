@@ -45,7 +45,7 @@ public class ReviewLikeCountAction implements Action {
 			likeBean.setBook_isbn(request.getParameter("book_isbn")); // 좋아요 1 등록
 			likeBean.setReview_num(Integer.parseInt(request.getParameter("review_num"))); // 리뷰게시물번호
 			
-			boolean isLikeSuccess= reviewLikeCountService.ReviewLikeUp(likeBean,num);
+			boolean isLikeSuccess= reviewLikeCountService.ReviewLikeUp(likeBean, num);
 			
 			if(!isLikeSuccess) {
 				// 좋아요 등록 실패시

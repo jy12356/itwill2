@@ -78,11 +78,13 @@ public class BookDetailAction implements Action {
 		
 		request.setAttribute("articleList", articleList);		
 
-	//	request.setAttribute("commentList", commentList);
+//		request.setAttribute("commentList", commentList);
 		request.setAttribute("pageInfo", pageInfo);
+		request.setAttribute("limit", limit);
 		
 		forward = new ActionForward();
-		forward.setPath("/sub1/bookDetail.jsp?isbn="+book_isbn+"&page="+page);
+		forward.setPath("/sub1/bookDetail.jsp?isbn="+book_isbn+"&limit="+limit+10);
+//		forward.setPath("BookDetail.bok?isbn="+book_isbn+"&page="+page);
 		
 		return forward;
 	}

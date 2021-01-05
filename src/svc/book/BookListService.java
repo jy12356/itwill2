@@ -8,13 +8,13 @@ import static db.JdbcUtil.*;
 
 public class BookListService {
 
-	public int getListCount() {
+	public int getListCount(String catg1, String catg2, String search) {
 		System.out.println("getListCount");
 		int listCount=0;
 		Connection con= getConnection();
 		BookDAO bookDAO = BookDAO.getInstance();
 		bookDAO.setConnection(con);
-		listCount = bookDAO.selectListCount();
+		listCount = bookDAO.selectListCount(catg1,catg2,search);
 		close(con);
 		return listCount; 
 	}

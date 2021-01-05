@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+import svc.alarm.AlarmListService;
 import svc.msg.MsgSpanService;
 import svc.request.RequestReplyProService;
 import vo.ActionForward;
@@ -20,6 +21,9 @@ public class RequestReplyProAction implements Action {
 		System.out.println("RequestReplyProAction!");
 		
 		ActionForward forward = null;
+
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		
 		RequestBean article = new RequestBean();
 		article.setNum(Integer.parseInt(request.getParameter("num")));
@@ -42,9 +46,15 @@ public class RequestReplyProAction implements Action {
 			out.println("history.back()");
 			out.println("</script>");
 		} else {		
-				HttpSession session = request.getSession();
+			AlarmListService alarmlistservice = new AlarmListService();
+			int messageCount = alarmlistservice.listCount(id);
+			System.out.println("messageCount" + messageCount);
+			session.setAttribute("messageCount", messageCount);
+			
+				session = request.getSession();	
+				
 				MsgBean msgBean = new MsgBean();		
-				String id =request.getParameter("id");
+				id =request.getParameter("rid");
 				String fromid = (String)session.getAttribute("id");
 				String content = "신청하신 도서가 등록되었습니다. ";
 				msgBean.setId(id);

@@ -2,6 +2,16 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="vo.PageInfo"%>
 <%@page import="vo.MsgBean"%>
+<%
+String id = (String)session.getAttribute("id");
+
+int messageCount = 0;
+if(session.getAttribute("messageCount") !=null){
+	messageCount = (int)session.getAttribute("messageCount");
+};
+ArrayList<MsgBean> myMsgList = (ArrayList<MsgBean>) request.getAttribute("msgList");
+PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+%>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -15,6 +25,11 @@
 			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
 			j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 	})(window,document,'script','dataLayer','GTM-KP248RV');
+</script>
+<script>
+	window.onload = function() {
+		
+	}
 </script>
 <!-- End Google Tag Manager -->
 
@@ -68,11 +83,6 @@
 <!-- naver-->
 <!-- kakao 로그인-->
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<%
-String id = (String)session.getAttribute("id");
-ArrayList<MsgBean> myMsgList = (ArrayList<MsgBean>) request.getAttribute("msgList");
-PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
-%>
 </head>
 <body>
 <div class="wrap" data-page="nm" data-web-class="일반">
@@ -100,33 +110,30 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 						<ul class="my-lnb">
 							<li class="btnLogOut logoutIcon"><a href="MemberLogoutPro.me">로그아웃</a></li>
 							<%if(id.equals("admin")){ %>
-								<li class="mypageIcon"><a href="Admin.book">admin</a></li>
+								<li class="mypageIcon"><a href="MemberList.me">admin</a></li>
 							<%}else{
 								%>
 								<li class="mypageIcon"><a href="Mypage.me?id=<%=id%>">MY</a></li>								
-								<li class="basketIcon"><a href="MyBasketInsert.bk">책바구니</a></li>
+								<li class="basketIcon"><a href="MyBasketList.bk">책바구니</a></li>
 							<%} %>
-							<%if(myMsgList == null) { %>
-							<li class="alarm on alarmIcon">
-								<a href="MyMsg.msg">
-									<span class="alarmdot">
-<!-- 										50 -->
-									</span>
-									알리미
-								</a>
+							
+							<%if(messageCount == 0) { %>
+							<li class="alarm on alarmIcon" id="message">
+								<a href="MyMsg.msg">알리미</a>
 							</li>
 							<% } else { %>
-							<li class="alarm on alarmIcon2">
+							<li class="alarm on alarmIcon2" id="message2">
 								<a href="MyMsg.msg">
 									<span class="alarmdot">
-<%-- 										<%=myMsgList.size() %> --%>
+										<%=messageCount%>
 									</span>
 									알리미
 								</a>
 							</li>
 							<% } %>
+							
 						</ul>
-						<%} %>
+						<% } %>
 					</fieldset>
 				</form>
 				<div class="alarm_layer_box" style="display:none;">
@@ -148,13 +155,15 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 				<h2 class="hide">메인메뉴</h2>
 				<ul class="gnb">
 					<li><a href="Main.book" class="on">홈</a></li>
-					<li><a href="FreeBoardList.free">게시판</a></li>
+					<li><a href="NoticeBoardList.not?page=1">공지사항</a></li>
+					<li><a href="FreeBoardList.free">자유게시판</a></li>					
 					<li><a href="FullCalendar.ca">이달의 책(행사)</a></li>
 						
 				</ul>
 				<ul class="lnb">
-					<li><a href="Charge.dok">정기권 결제</a>
-					<li><a href="QnaList.qna">고객센터</a>
+					<li><a href="Charge.dok">정기권 결제</a></li>					
+					<li><a href="RequestList.rq">희망도서신청</a>
+					<li><a href="QnaList.qna">고객센터</a></li>
 				</ul>
 			</div>
 		</div>
@@ -168,7 +177,7 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 			<ul class="snb-left">
 				<li><a href="javascript:;" class="on">소설</a></li>
 				<li><a href="javascript:;" class="">인문/경제</a></li>
-				<li><a href="javascript:;" class="">과학</a></li>
+				<li><a href="javascript:;" class="">과학/IT</a></li>
 				<li><a href="javascript:;" class="">취미</a></li>
 				<li><a href="javascript:;" class="">만화/웹소설</a></li>
 				
@@ -210,11 +219,11 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 				</div>
 				<div>
 					<ul class="">
-						<li><a href="BookList.bok?catg1=과학&catg2=수학">수학</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=과학">과학</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=IT/비즈니스">IT/비즈니스</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=자격증">자격증</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=프로그래밍">프로그래밍</a></li>		
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=수학">수학</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=과학">과학</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT비즈니스">IT/비즈니스</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=자격증">자격증</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=프로그래밍">프로그래밍</a></li>		
 					</ul>
 				</div>
 				<div>
@@ -267,4 +276,5 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 
 // 	$("#login .naver a").attr("href", naver_url);
 </script>
-
+</div>
+</body>

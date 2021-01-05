@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
-import action.MemberJoinProService;
 import action.mybasket.BasketDeleteAction;
 import action.mybasket.MyBasketInsertAction;
 import action.mybasket.MyBasketListAction;
@@ -21,7 +20,6 @@ import action.rental.ReservationListAction;
 import action.rental.rentalDeleteAction;
 import action.rental.reservationInsertAction;
 import action.rental.returnAction;
-import action.rental.returnAction2;
 import action.rental.returnInsertAction;
 import vo.ActionForward;
 
@@ -84,6 +82,14 @@ public class RentalController extends HttpServlet {
 				e.printStackTrace();
 			} 
 			
+		} else if (command.equals("/reservationDelete.rn")) {
+				action = new ReservationDeleteAction();
+				try {
+					forward = action.execute(request, response);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} 
+			
 			
 	// 반납용
 		} else if (command.equals("/Return.rn")) {
@@ -99,23 +105,12 @@ public class RentalController extends HttpServlet {
 //	 과거주문내역	
 	}else if (command.equals("/ReturnInsert.rn")) {
 			action = new returnInsertAction();
-//=======
-//		} else if (command.equals("/reservationDelete.rn")) {
-//			action = new ReservationDeleteAction();
-//>>>>>>> master
+
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
-	}else if (command.equals("/Return2.rn")) {
-		action = new returnAction2();
-		try {
-			forward = action.execute(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	} 
 		
 		

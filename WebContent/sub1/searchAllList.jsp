@@ -169,8 +169,7 @@ String search=request.getParameter("search");
 						<tbody>
 							<%
 							if (freeBAllList.size() != 0) {
-							%>
-							<%
+							
 							int freeBAllListS = 6;
                     		if(freeBAllList.size() < 6){
                     			freeBAllListS = freeBAllList.size();
@@ -190,7 +189,7 @@ String search=request.getParameter("search");
 									 %> ▶ <%
 									 	}
 									 %>  
-									 <a	href="FreeBoardDetail.free?board_num=<%=freeBAllList.get(i).getBoard_num()%>&board_type=<%=1%>">
+									 <a	href="FreeBoardDetail.free?board_num=<%=freeBAllList.get(i).getBoard_num()%>&page=1&board_type=1&limit=10">
 										<%=freeBAllList.get(i).getBoard_subject()%>
 								</a>
 								</td>

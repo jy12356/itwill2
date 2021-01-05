@@ -50,7 +50,7 @@ String nowPage = request.getParameter("page");
 										<!-- 제목 -->
 										<td>제목</td>
 										<td colspan="3"><input type="text" name="title"
-											style="text-align: center"
+											style="text-align: left;"
 											value="<%=article.getBoard_subject()%>" required="required">
 										</td>
 									</tr>
@@ -102,8 +102,9 @@ String nowPage = request.getParameter("page");
 
 							</table>
 							<div class="btn_inner">
-								<input type="submit" class="btn" value="수정"> <a
-									href="javascript:window.history.back();" class="btn">취소</a>
+								<input type="submit" class="btn" value="수정"> 
+									<input type="button" onClick="history.back();" class="btn" value="취소">
+<!-- 								<a href="javascript:window.history.back();" class="btn">취소</a> -->
 							</div>
 						</div>
 					</div>

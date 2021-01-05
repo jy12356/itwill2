@@ -7,6 +7,7 @@
 	// 전달받은 request 객체로부터 데이터 가져오기
 	// "pageInfo" 객체와 "articleList" 객체를 request 객체로부터 꺼내서 저장
 	// "pageInfo" 객체로부터 페이지 관련 값들을 꺼내서 변수에 저장
+	request.setCharacterEncoding("UTF-8");
 	String id = (String) session.getAttribute("id"); 
 	ArrayList<BookBean> bookList = (ArrayList<BookBean>)request.getAttribute("bookList");
 	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
@@ -58,14 +59,14 @@
 						<li><a href="BookList.bok?catg1=인문/경제&catg2=인문" <%if(catg2.equals("인문")){%>class="on"<%}%>>인문</a></li>	
 							
                     </ul>
-				<%}else if(catg1.equals("과학")){  %>
+				<%}else if(catg1.equals("과학/IT")){  %>
 					<ul class="field-list">
-                        <li><a href="BookList.bok?catg1=과학" <%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
-                        <li><a href="BookList.bok?catg1=과학&catg2=수학" <%if(catg2.equals("수학")){%>class="on"<%}%>>수학</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=과학" <%if(catg2.equals("과학")){%>class="on"<%}%>>과학</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=IT/비즈니스" <%if(catg2.equals("IT/비즈니스")){%>class="on"<%}%>>IT/비즈니스</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=자격증" <%if(catg2.equals("자격증")){%>class="on"<%}%>>자격증</a></li>	
-						<li><a href="BookList.bok?catg1=과학&catg2=프로그래밍" <%if(catg2.equals("프로그래밍")){%>class="on"<%}%>>프로그래밍</a></li>	
+                        <li><a href="BookList.bok?catg1=과학/IT"<%if(catg2.equals("전체")){%>class="on"<%}%>>전체</a></li>	
+                        <li><a href="BookList.bok?catg1=과학/IT&catg2=수학" <%if(catg2.equals("수학")){%>class="on"<%}%>>수학</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=과학" <%if(catg2.equals("과학")){%>class="on"<%}%>>과학</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=IT비즈니스" <%if(catg2.equals("IT/비즈니스")){%>class="on"<%}%>>IT/비즈니스</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=자격증" <%if(catg2.equals("자격증")){%>class="on"<%}%>>자격증</a></li>	
+						<li><a href="BookList.bok?catg1=과학/IT&catg2=프로그래밍" <%if(catg2.equals("프로그래밍")){%>class="on"<%}%>>프로그래밍</a></li>	
 							
                     </ul>
 				<%}else if(catg1.equals("취미")){  %>
@@ -118,7 +119,7 @@
                         </div>
                     </div>
                     <%
-						if(bookList != null && listCount > 0) {
+						if(bookList != null && listCount > 0 ) {
 					%>
                     <div class="list-page">
                         <div class="list">
@@ -135,13 +136,13 @@
                                 	<input type="hidden" class="bookstate" value="<%=bookList.get(i).getState()%>">
                                 	
                                     <div class="figure">
-                                        <a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>&page=<%=nowPage%>">
+                                        <a href="BookDetail.bok?isbn=<%=bookList.get(i).getIsbn()%>">
                                             <span class="rm_br"><img src="bookUpload/<%=bookList.get(i).getImage()%>" alt="도서 이미지" /></span>
                                             <span class="light"></span>
                                         </a>
                                     </div>
                                     <div class="hot-info">
-                                        <p class="hot-title"><a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&page=<%=nowPage%>&title=<%=bookList.get(i).getTitle() %>"><%=bookList.get(i).getTitle() %></a></p>
+                                        <p class="hot-title"><a href="BookDetail.bok?booknum=<%=bookList.get(i).getNum()%>&isbn=<%=bookList.get(i).getIsbn()%>&title=<%=bookList.get(i).getTitle() %>"><%=bookList.get(i).getTitle() %></a></p>
                                         <p class="hot-author"><%=bookList.get(i).getAuthor()%><em>|</em><%=bookList.get(i).getPublisher()%><em>|</em>
                                         	
                                         	<%=bookList.get(i).getPubdate()%>
@@ -199,6 +200,9 @@
 							<%} %>
 							
                             <div class="paging">
+                            	<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=1" class="arr" data-page-num="1">
+										<img src="images/p-first.png"><span class="hide">처음페이지</span>
+								</a>
                             	<%if(nowPage <=1) {%>
 									
                             		<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=nowPage%>" class="arr prev" data-page-num="1">
@@ -210,9 +214,7 @@
 									</a>
 								
 								<%} %>
-								<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=1" class="arr" data-page-num="1">
-										<img src="images/p-first.png"><span class="hide">처음페이지</span>
-								</a>
+								
 								<%for(int i = startPage; i <= endPage; i++) { 
 										if(i == nowPage) { %>
 											<a href="BookList.bok?catg1=<%=catg1%>&catg2=<%=catg2%>&page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
@@ -240,12 +242,13 @@
                     <%}else {
 					%>
 					<div class="list-page">
-                        <div class="list">
+                       	<div class="list">
                             <ul class="book-list">
-                            	<li>등록된 도서가 없습니다.</li>
+<!--                             	<li>검색된 도서가 없습니다.</li> -->
+									<li><img class="nodate" alt="" src="images/nodata.jpg"></li>
                             </ul>
                     	</div>
-                    	<%if(id.equals("admin")){ %>
+                    	<%if(id != null && id.equals("admin")){ %>
 	                   	<div class="btn_inner">
 								<a href="BookWriteForm.bok" class="btn">글쓰기</a>
 						</div>
