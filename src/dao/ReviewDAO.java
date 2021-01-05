@@ -230,7 +230,7 @@ public class ReviewDAO {
 			System.out.println("2.글번호 :" + num);
 			System.out.println("2.작성자 :" + id);
 			if(rs.next()) {
-				if(id.equals(rs.getString("id"))) {
+				if(id.equals(rs.getString("id"))|| id.equals("admin")) {
 					isArticleWriter = true;
 				}
 			}
@@ -411,6 +411,7 @@ public class ReviewDAO {
 			} finally {
 				close(pstmt);
 			}
+			System.out.println("다시 돌아가는 중");
 			return deleteCount;
 		}
 		
@@ -435,8 +436,11 @@ public class ReviewDAO {
 				System.out.println("댓글작성자 :" + comment_id);
 				
 				if(rs.next()) {
-					if(comment_id.equals(rs.getString("comment_id"))) {
+					if(comment_id.equals(rs.getString("comment_id")) || comment_id.equals("admin")) {
 						isCommentWriter = true;
+						System.out.println("true");
+					} else {
+						System.out.println("false");
 					}
 				}
 			} catch (Exception e) {
@@ -575,6 +579,9 @@ public class ReviewDAO {
 				if(rs.next()) {
 					if(like_id.equals(rs.getString("like_id"))) {
 						isLikeWriter = true;
+						System.out.println("true");
+					} else {
+						System.out.println("false");
 					}
 				}
 				
@@ -585,6 +592,7 @@ public class ReviewDAO {
 				close(pstmt);
 				close(rs);
 			}
+			System.out.println("서비스로 돌아감");
 			return isLikeWriter;
 		}		
 	}

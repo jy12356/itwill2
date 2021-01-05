@@ -102,7 +102,7 @@
 							</table>
 							<div class="one-btn">
 								<input type="submit" value="답변글등록">&nbsp;&nbsp;
-								<input type="reset" value="다시쓰기">
+								<input type="button" value="뒤로" onclick="history.back()">
 							</div>
 						</form>
 						</div>

@@ -45,7 +45,6 @@ public class MemberLoginProAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('" + e.getMessage() + "')"); // 실패 메세지 출력
 			out.println("history.back()");
 			out.println("</script>");
 		}

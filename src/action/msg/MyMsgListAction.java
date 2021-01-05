@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+import svc.alarm.AlarmListService;
 import svc.book.BookListService;
 import svc.book.MainListService;
 import svc.msg.MsgListService;
@@ -30,6 +31,10 @@ public class MyMsgListAction implements Action {
 		HttpSession session =request.getSession();
 		String id = (String)session.getAttribute("id");
 		
+		AlarmListService alarmlistservice = new AlarmListService();
+		int messageCount = alarmlistservice.listCount(id);				
+		System.out.println("messageCount" + messageCount);
+		session.setAttribute("messageCount", messageCount);
 		
 		MsgListService msgListService = new MsgListService();
 		int listCount = msgListService.myMsgListCount(id);
