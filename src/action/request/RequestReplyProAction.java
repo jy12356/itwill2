@@ -46,13 +46,12 @@ public class RequestReplyProAction implements Action {
 			out.println("history.back()");
 			out.println("</script>");
 		} else {		
-			AlarmListService alarmlistservice = new AlarmListService();
-			int messageCount = alarmlistservice.listCount(id);
-			System.out.println("messageCount" + messageCount);
-			session.setAttribute("messageCount", messageCount);
+				AlarmListService alarmlistservice = new AlarmListService();
+				int messageCount = alarmlistservice.listCount(id);
+				System.out.println("messageCount" + messageCount);
+				session.setAttribute("messageCount", messageCount);
 			
-				session = request.getSession();	
-				
+				session = request.getSession();
 				MsgBean msgBean = new MsgBean();		
 				id =request.getParameter("rid");
 				String fromid = (String)session.getAttribute("id");

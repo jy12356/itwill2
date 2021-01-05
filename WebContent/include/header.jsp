@@ -6,7 +6,7 @@
 String id = (String)session.getAttribute("id");
 
 int messageCount = 0;
-if(session.getAttribute("messageCount") !=null){
+if(session.getAttribute("messageCount") != null){
 	messageCount = (int)session.getAttribute("messageCount");
 };
 ArrayList<MsgBean> myMsgList = (ArrayList<MsgBean>) request.getAttribute("msgList");
@@ -131,7 +131,6 @@ PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
 								</a>
 							</li>
 							<% } %>
-							
 						</ul>
 						<% } %>
 					</fieldset>
