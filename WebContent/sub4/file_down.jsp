@@ -16,7 +16,7 @@
      ServletContext context = getServletContext();
      String sDownloadPath = context.getRealPath(savePath);
      // upload물리적 경로\\ 파일이름
-     String sFilePath = sDownloadPath + "\\" + fileName;
+     String sFilePath = sDownloadPath + "/" + fileName;
      System.out.println(sFilePath);
 
    byte b[] = new byte[4096];
