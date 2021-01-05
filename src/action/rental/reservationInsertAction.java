@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+import svc.alarm.AlarmListService;
 import svc.msg.MsgSpanService;
 import svc.rental.RentalInsertService;
 import svc.rental.reservationInsertService;
@@ -63,6 +64,10 @@ public class reservationInsertAction implements Action {
 					out.println("history.back()"); // 이전 페이지로 이동
 					out.println("</script>"); // 자바스크립트 끝 태그
 				} else {
+					AlarmListService alarmlistservice = new AlarmListService();
+					int messageCount = alarmlistservice.listCount(id);
+					System.out.println("messageCount" + messageCount);
+					session.setAttribute("messageCount", messageCount);
 					
 					// 예약신청시 메시지 보내기
 					MsgBean msgBean = new MsgBean();		

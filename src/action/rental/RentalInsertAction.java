@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import action.Action;
 import svc.Mybasket.MyBasketInsertService;
+import svc.alarm.AlarmListService;
 import svc.msg.MsgSpanService;
 import svc.rental.RentalInsertService;
 import vo.ActionForward;
@@ -72,6 +73,11 @@ public class RentalInsertAction implements Action {
 //					out.println("</script>"); // 자바스크립트 끝 태그
 				} else {
 					System.out.println("순서 7");
+					
+					AlarmListService alarmlistservice = new AlarmListService();
+					int messageCount = alarmlistservice.listCount(id);
+					System.out.println("messageCount" + messageCount);
+					session.setAttribute("messageCount", messageCount);
 					
 					// 대출신청시 메시지 보내기
 					MsgBean msgBean = new MsgBean();		
