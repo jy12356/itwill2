@@ -66,7 +66,7 @@
 								<td>첨부파일 미리보기</td>
 								<td>
 									<label>
-										<img src="sub4/file_down.jsp?file=<%=article.getFile()%>" class="file"/>
+										<img src="sub4/file_down.jsp?file=<%=article.getFile()%>" width="320" height="240"/>
 									</label>
 								</td>
 							</tr>
