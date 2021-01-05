@@ -27,6 +27,8 @@ public class RequestModifyFormAction implements Action {
 		forward = new ActionForward();
 		forward.setPath("/sub4/request_board_modify.jsp");
 		
+		System.out.println("RequestModifyFormAction - end");
+		
 		return forward;
 	}
 

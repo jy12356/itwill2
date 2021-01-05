@@ -19,36 +19,24 @@ public class RequestDeleteProAction implements Action {
 		ActionForward forward = null;
 
 		int num = Integer.parseInt(request.getParameter("num"));
+		String id = request.getParameter("id");
+		System.out.println("DeleteActionPro ID : "+ id);
 
 		RequestDeleteProService requestDeleteProService = new RequestDeleteProService();
-		
-		boolean isRightUser = requestDeleteProService.isArticleRequestWriter(num, request.getParameter("id"));
 
-		
-		if(!isRightUser) {
+		boolean isDeleteSuccess = requestDeleteProService.removeArticle(num);
+
+		if(!isDeleteSuccess) {
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('삭제 권한이 없어요')");
+			out.println("alert('삭제에 실패했어요')");
 			out.println("history.back()");
 			out.println("</script>");
 		} else {
-			RequestBean article = new RequestBean();
-			article.setNum(num);
-			boolean isDeleteSuccess = requestDeleteProService.removeArticle(article);
-
-			if(!isDeleteSuccess) {
-				response.setContentType("text/html;charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('삭제에 실패했어요')");
-				out.println("history.back()");
-				out.println("</script>");
-			} else {
-				forward = new ActionForward();
-				forward.setPath("RequestList.rq?page=" + request.getParameter("page"));
-				forward.setRedirect(true);
-			}
+			forward = new ActionForward();
+			forward.setPath("RequestList.rq?page=" + request.getParameter("page"));
+			forward.setRedirect(true);
 		}
 	
 		return forward;
