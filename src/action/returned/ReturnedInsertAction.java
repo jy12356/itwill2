@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+
+import svc.alarm.AlarmListService;
+
 import svc.msg.MsgSpanService;
 import svc.rental.ReturnDeleteProService;
 import svc.returned.ReturnedInsertService;
@@ -23,6 +26,10 @@ public class ReturnedInsertAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ReturnedInsertAction!!");
+
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
 		ActionForward forward = null;
 		String s_date = (String)request.getParameter("s_date");
 		String onrental_date = (String)request.getParameter("onrental_date");
@@ -60,9 +67,15 @@ public class ReturnedInsertAction implements Action {
 				out.println("history.back()");
 				out.println("</script>");
 			}else {
-				HttpSession session = request.getSession();
+
+				AlarmListService alarmlistservice = new AlarmListService();
+				int messageCount = alarmlistservice.listCount(id);
+				System.out.println("messageCount" + messageCount);
+				session.setAttribute("messageCount", messageCount);
+				
+				session = request.getSession();
 				MsgBean msgBean = new MsgBean();		
-				String id =request.getParameter("id");
+				id =request.getParameter("id");
 				String fromid = (String)session.getAttribute("id");
 				String content = "반납이 완료되었습니다.";
 				msgBean.setId(id);
