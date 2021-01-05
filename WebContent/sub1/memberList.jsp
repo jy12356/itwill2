@@ -223,7 +223,7 @@ int listCount = pageInfo.getListCount();
 									<ul>
 										<li><a href="BookWriteForm.bok" class="">책등록</a></li>
 										<li><a href="RequestMyList.rq" class="">희망도서</a></li>
-										<li><a href="NoticeBoardList.not?page=1" class="">게시글</a></li>
+										<li><a href="#a" class="">게시글</a></li>
 										<li><a href="QnaList.qna" class="">QnA</a></li>
 									</ul>
 								</li>
