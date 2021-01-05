@@ -65,7 +65,7 @@ public class ReviewLikeCountService {
 		isLikeWriter = reviewDAO.isArticleLikeWriter(like_id, review_num);
 		
 		close(con);
-		
+		System.out.println("액션으로 돌아감");
 		return isLikeWriter;
 	}	
 }

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import action.Action;
@@ -30,17 +31,18 @@ public class ReCommentDeleteProAction implements Action {
 		int board_type = Integer.parseInt(request.getParameter("board_type"));
 		String comment_id = request.getParameter("comment_id");
 		
-		System.out.println("리뷰번호 :" + comment_num);
+		System.out.println("댓글번호 :" + comment_num);
 		System.out.println("리뷰번호 :" + board_num);
-		System.out.println("댓글보드번호 :" + board_type);
+		System.out.println("댓글보드타입 :" + board_type);
 		System.out.println("작성자 :" + comment_id);
 		
 		ReCommentDeleteProService reCommentDeleteProService = new ReCommentDeleteProService();
 		boolean isCommentWriter = reCommentDeleteProService.isCommentWriter(comment_num, board_num, board_type, comment_id);
 
+		System.out.println("ReCommentDeleteProAction - 돌아옴");
 		JSONObject json = new JSONObject();
 		// 작성자 일치 판별
-		if(!isCommentWriter) { // 아이디가 틀릴 경우
+		if(isCommentWriter==false) { // 아이디가 틀릴 경우
 			json.put("text", "삭제권한이 없습니다!");
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -51,6 +53,11 @@ public class ReCommentDeleteProAction implements Action {
 			out.print(json.toString());
 		} else { // 아이디가 일치 할 경우
 			boolean isDeleteSuccess = ReCommentDeleteProService.removeComment(comment_num);
+			System.out.println("ReCommentDeleteProAction - 다시돌아옴");
+			System.out.println("댓글 삭제자 :" + comment_id);
+			System.out.println("댓글 삭제리뷰번호 :" + board_num);
+			
+			JSONArray jsonArray = new JSONArray(); 
 			// 삭제 작업 요청 결과 판별
 			if(!isDeleteSuccess) { // 삭제 실패 시
 				// 자바스크립트를 활용하여 "삭제 실패!" 출력 후
@@ -63,16 +70,15 @@ public class ReCommentDeleteProAction implements Action {
 //				out.println("history.back()");
 				out.print(json.toString());
 			} else {
-				json.put("text", "댓글을 삭제하였습니다.");
+				json.put("text", "댓글을 삭제하였습니다");
+				jsonArray.add(json);
 				PrintWriter out = response.getWriter();
-				out.print(json.toString());
+				out.print(json);
 //				forward = new ActionForward();
 //				forward.setPath("BookDetail.bok?isbn="+book_isbn);
 //				forward.setRedirect(true);
 			}
 		}
 		return null;
-		
 	}
-
 }
