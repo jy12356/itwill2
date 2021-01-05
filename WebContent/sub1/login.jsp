@@ -29,7 +29,7 @@
 								</label>
 								<p>로그인유지</p>
 							</div>
-							<p><a href="/member/id_search.asp" class="find-id">아이디 찾기</a><em>|</em><a href="/member/pw_search.asp" class="find-pwd">비밀번호 찾기</a></p>
+							<p><a href="#" class="find-id">아이디 찾기</a><em>|</em><a href="#" class="find-pwd">비밀번호 찾기</a></p>
 						</div>
 						<div class="simple-login-btn">
 							<p class="now-start"><span>지금 시작하세요!</span><a href="MemberJoinForm.me">북큐브 간편가입 〉</a></p>
@@ -58,7 +58,7 @@
 		</div>
 	</section>
  <script type="text/javascript">
-	var naver_id_login = new naver_id_login("tdoziaWOhdIeC0LICk28", httpsUrl +"/member/naver/naver.asp");
+	var naver_id_login = new naver_id_login("bWBJf2PWa1wvH5_cl84S", "https://itwillbs6.cafe24.com/member/naver/naver.asp");
 
 	naver_id_login.setPopup(); //Popup형태의 인증 진행
 	naver_id_login.init_naver_id_login();

@@ -43,8 +43,7 @@
 							</tr>
 							<tr>
 								<th>네이버계정</th>
-								<td>
-<!-- 									<a href="" onClick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+,top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false" class="naver outside_input">연동하기</a><span>네이버 계정으로 북큐브를 이용해 보세요!</span></td> -->
+								<td><a href="" onClick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+,top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false" class="naver outside_input">연동하기</a><span>네이버 계정으로 북큐브를 이용해 보세요!</span></td> 
 							</tr>
 							<tr>
 								<th>페이스북계정</th>
@@ -73,16 +72,6 @@
 								<td>
 									<div>
 										<label><input type='text' name='email' id='email'  onkeyup="checkEmail(this)" value='<%=article.getEmail() %>' /></label>
-										<input type='button' name='' value='중복체크' class="emailchk"/>
-									</div>
-									<div>
-										<div class="checkbox">
-											<label>
-												<input type="checkbox" name="register_newsletter" >
-												<span><i></i></span>
-											</label>
-											북큐브 뉴스레터를 통해 신간도서, 베스트셀러, 이벤트 소식 등 유익한 정보를 전해드립니다.
-										</div>
 									</div>
 								</td>
 							</tr>
@@ -390,9 +379,11 @@ $(function getCatg() {
 		var element = document.getElementById('checkPasswdResult2');
 		
 		
-		if(password==null){
+		if(password1==null){
 			password1 = password
+			alert(password+"//"+password1);
 		} else {
+			/* alert(password+"//"+password1); */
 			if(password1!=password2){
 				element.innerHTML = "비밀번호가 일치하지 않습니다!";
 				var myElement = document.getElementById('checkPasswdResult2');
