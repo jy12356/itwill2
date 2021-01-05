@@ -53,7 +53,7 @@
 							</tr>
 							<tr>
 								<td>출판년도</td>
-								<td colspan="3"><input type="text" id="pubdate" name="pubdate" required="required"></td>
+								<td colspan="3"><input type="text" id="pubdate" name="pubdate"></td>
 							</tr>
 							<tr>
 								<td>첨부 내용</td>
