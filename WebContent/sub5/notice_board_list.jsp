@@ -99,41 +99,58 @@ int listCount = PageInfo.getListCount();
 					%>
 					
 					
-						<div class ="paging">
-	<%if(nowPage <= 1) {%>
-			<a href="NoticeBoardList.not?page=<%=startPage%>"><img src="sub4/boardimg/first.png"></a>
-			<a href="NoticeBoardList.not?page=<%=nowPage - 1 %>"><img src="sub4/boardimg/prev.png"></a>
-	<%} %>
-	
-	<%for(int i = startPage; i <= endPage; i++) { 
-			if(i == nowPage) { %>
-				<a href="NoticeBoardList.not?page=<%=i %>" class = "on fir" data-page-num="1"><%=i %>&nbsp;</a>
-			<%} else { %>
-				<a href="NoticeBoardList.not?page=<%=i %>" class = ""><%=i %></a>&nbsp;
-			<%} %>
-	<%} %>
-	
-	<%if(nowPage >= maxPage) { %>
-	<%} else { %>
-			<a href="NoticeBoardList.not?page=<%=nowPage + 1 %>"><img src="sub4/boardimg/next.png"></a>
-			<a href="NoticeBoardList.not?page=<%=endPage%>"><img src="sub4/boardimg/last.png"></a>
-			<%
-	}
-			%>
-	</div>
-<%-- 	<% --%>
-<!-- 	else { -->
-<!-- 	%> -->
-<!-- 	<section id="emptyArea">등록된 글이 없습니다</section> -->
-<%-- 	<% --%>
-<!-- 	} -->
-<!-- 	%> -->
+											<div class="paging">
+                            	<a href="NoticeBoardList.not?page=1" class="arr" data-page-num="1">
+										<img src="images/p-first.png"><span class="hide">처음페이지</span>
+								</a>
+                            	<%if(nowPage <=1) {%>
+									
+                            		<a href="NoticeBoardList.notpage=<%=nowPage%>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								<%}else{%>
+								<a href="NoticeBoardList.not?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
+										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
+									</a>
+								
+								<%} %>
+								
+								<%for(int i = startPage; i <= endPage; i++) { 
+										if(i == nowPage) { %>
+											<a href="NoticeBoardList.not?page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
+										<%} else { %>
+											<a href="NoticeBoardList.not?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
+										<%} %>
+								<%} %>
+								
+                            	<%if(nowPage >= maxPage) { %>
+									<a href="NoticeBoardList.not?page=<%=nowPage%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+	                            <%}else{%>   
+	                            	<a href="NoticeBoardList.not?page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
+	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
+	                            	</a>
+                            	<%} %>
+	                            	<a href="NoticeBoardList.not?page=<%=maxPage%>" class="arr" data-page-num="781">
+                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
+                               		</a>                        
+                            </div>
+<%-- 							<% --%>
+<!-- 							} else { -->
+<!-- 							%> -->
+<!-- 							<section id="emptyArea">등록된 글이 없습니다</section> -->
+<%-- 							<% --%>
+<!-- 							} -->
+<!-- 							%> -->
+					</div>
+					
+
 	
 				</div>
 			</div>
 
 		</div>
-	</div>
 
 </section>
 <footer><jsp:include page="../include/footer.jsp" /></footer>
