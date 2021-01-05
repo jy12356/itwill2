@@ -59,6 +59,20 @@
 									%>
 								</td>
 							</tr>
+							<%
+							if (article.getFile() != null) {
+							%>
+							<tr>
+								<td>첨부파일 미리보기</td>
+								<td>
+									<label>
+										<img src="sub4/file_down.jsp?file=<%=article.getFile()%>" class="file"/>
+									</label>
+								</td>
+							</tr>
+							<%
+								}
+							%>
 						</tbody>
 					</table>
 					<div class="btn_inner">
