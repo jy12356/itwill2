@@ -5,7 +5,7 @@
 		<div class="common-title">
 			<h3>로그인</h3>
 		</div>
-		<div class="user">
+		<div class="user mb30">
 			<form id="login" action="MemberLoginPro.me">
 			<input type="hidden" name="return_url" id="return_url" value="https://www.bookcube.com">
 				<fieldset>
@@ -32,7 +32,7 @@
 							<p><a href="#" class="find-id">아이디 찾기</a><em>|</em><a href="#" class="find-pwd">비밀번호 찾기</a></p>
 						</div>
 						<div class="simple-login-btn">
-							<p class="now-start"><span>지금 시작하세요!</span><a href="MemberJoinForm.me">북큐브 간편가입 〉</a></p>
+							<p class="now-start"><span>지금 시작하세요!</span><a href="MemberJoinForm.me">동서남북 간편가입 〉</a></p>
 							<input type="submit" name="" id="submit" value="로그인">
 						</div>
 						<div class="login-or">
@@ -43,7 +43,7 @@
 								<a href="#"><p><span class="kakaotalk">카카오톡</span>카카오로 로그인</p></a>
 							</div>
 							<div class="login-btn naver">
-								<a href="http://localhost:8080/itwill2th/sub1/naverlogin.jsp" onclick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false"><p><span class="naver">네이버</span>네이버로 로그인</p></a>
+								<a href="" onclick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-430)/2+',scrollbars=yes, width=1, height=1'); return false"><p><span class="naver">네이버</span>네이버로 로그인</p></a>
 							</div>
 							<div class="login-btn facebook">
 								<a href="#"><p><span class="facebook">페이스북</span>페이스북으로 로그인</p></a>
