@@ -79,6 +79,7 @@ public class BookDetailAction implements Action {
 		
 		forward = new ActionForward();
 		forward.setPath("/sub1/bookDetail.jsp?isbn="+book_isbn);
+
 //		forward.setPath("BookDetail.bok?isbn="+book_isbn+"&page="+page);
 		
 		return forward;

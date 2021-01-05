@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import action.Action;
+
 import svc.alarm.AlarmListService;
+
 import svc.msg.MsgSpanService;
 import svc.rental.ReturnDeleteProService;
 import svc.returned.ReturnedInsertService;
@@ -24,7 +26,7 @@ public class ReturnedInsertAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("ReturnedInsertAction!!");
-		
+
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		
@@ -65,6 +67,7 @@ public class ReturnedInsertAction implements Action {
 				out.println("history.back()");
 				out.println("</script>");
 			}else {
+
 				AlarmListService alarmlistservice = new AlarmListService();
 				int messageCount = alarmlistservice.listCount(id);
 				System.out.println("messageCount" + messageCount);

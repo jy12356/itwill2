@@ -39,6 +39,7 @@ public class ReCommentDeleteProAction implements Action {
 		ReCommentDeleteProService reCommentDeleteProService = new ReCommentDeleteProService();
 		boolean isCommentWriter = reCommentDeleteProService.isCommentWriter(comment_num, board_num, board_type, comment_id);
 
+
 		System.out.println("ReCommentDeleteProAction - 돌아옴");
 		JSONObject json = new JSONObject();
 		// 작성자 일치 판별

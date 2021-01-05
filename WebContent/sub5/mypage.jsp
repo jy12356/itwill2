@@ -38,6 +38,7 @@
 								<li>
 									<h4>나의 활동</h4>
 									<ul>
+
 										<li><a href="#a" class="">서평/댓글</a></li>
 										<li><a href="RequestMyList.rq" class="">희망도서</a></li>
 										<li><a href="#a" class="">게시글</a></li>
