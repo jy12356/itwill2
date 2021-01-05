@@ -156,7 +156,7 @@ NoticeBean article = (NoticeBean)request.getAttribute("article");
 	                    </table>
 	                    <div class="default-btn-wrap">
 	                    	<input type="submit" class="btn" value="글쓰기">
-	                        <input type="button" class="btn" value="목록" onclick="history.back()">
+	                    	<a href="NoticeBoardList.not" class="btn">목록</a>
 	                    </div>
                     </form>
                 </div>

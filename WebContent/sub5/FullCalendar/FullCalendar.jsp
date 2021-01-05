@@ -103,23 +103,44 @@ if (id == null) {
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
+                                                     <%
+	                   
+							                        if(id != null) {
+						                        	if( id.equals("admin")){
+						%> 
                                 <label class="col-xs-4" for="edit-color">색상</label>
-<!--                                 <select class="inputModal" name="color" id="edit-color"> -->
-<!--                                     <option value="#D25565" style="color:#D25565;">빨간색</option> -->
-<!--                                     <option value="#9775fa" style="color:#9775fa;">보라색</option> -->
-<!--                                     <option value="#ffa94d" style="color:#ffa94d;">주황색</option> -->
-<!--                                     <option value="#74c0fc" style="color:#74c0fc;">파란색</option> -->
-<!--                                     <option value="#f06595" style="color:#f06595;">핑크색</option> -->
-<!--                                     <option value="#63e6be" style="color:#63e6be;">연두색</option> -->
-<!--                                     <option value="#a9e34b" style="color:#a9e34b;">초록색</option> -->
-<!--                                     <option value="#4d638c" style="color:#4d638c;">남색</option> -->
-<!--                                     <option value="#495057" style="color:#495057;">검정색</option> -->
-<!--                                 </select> -->
+                                <select class="inputModal" name="color" id="edit-color">
+                                    <option value="#D25565" style="color:#D25565;">빨간색</option>
+                                    <option value="#9775fa" style="color:#9775fa;">보라색</option>
+                                    <option value="#ffa94d" style="color:#ffa94d;">주황색</option>
+                                    <option value="#74c0fc" style="color:#74c0fc;">파란색</option>
+                                    <option value="#f06595" style="color:#f06595;">핑크색</option>
+                                    <option value="#63e6be" style="color:#63e6be;">연두색</option>
+                                    <option value="#a9e34b" style="color:#a9e34b;">초록색</option>
+                                    <option value="#4d638c" style="color:#4d638c;">남색</option>
+                                    <option value="#495057" style="color:#495057;">검정색</option>
+                                </select>
+                                <%
+						                        	}
+							                        }
+                                %>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
+                                                     <%
+	                   
+							                        if(id != null) {
+						                        	if( id.equals("admin")){
+						%> 
                                 <label class="col-xs-4" for="edit-desc" >설명</label>
+                                <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
+                                    id="edit-desc"></textarea>
+                                    <%
+						                        	}
+							                        }
+                                    %>
+                                    <label class="col-xs-4" for="edit-desc" >설명</label>
                                 <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
                                     id="edit-desc" readonly="readonly"></textarea>
                             </div>
@@ -157,8 +178,8 @@ if (id == null) {
                     <label for="calendar_view">구분별</label>
                     <div class="input-group">
                         <select class="filter" id="type_filter" multiple="multiple">
-                            <option value="입고">입고</option>
-                            <option value="휴무">휴무</option>
+                            <option value="신간입고안내">신간입고안내</option>
+                            <option value="휴무안내">휴무안내</option>
                             <option value="기타">기타</option>
                         </select>
                     </div>
