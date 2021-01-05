@@ -101,7 +101,6 @@ int listCount = PageInfo.getListCount();
 					
 						<div class ="paging">
 	<%if(nowPage <= 1) {%>
-	<%} else {%>
 			<a href="NoticeBoardList.not?page=<%=startPage%>"><img src="sub4/boardimg/first.png"></a>
 			<a href="NoticeBoardList.not?page=<%=nowPage - 1 %>"><img src="sub4/boardimg/prev.png"></a>
 	<%} %>
@@ -110,7 +109,7 @@ int listCount = PageInfo.getListCount();
 			if(i == nowPage) { %>
 				<a href="NoticeBoardList.not?page=<%=i %>" class = "on fir" data-page-num="1"><%=i %>&nbsp;</a>
 			<%} else { %>
-				<a href="NoticeBoardList.not?page=<%=i %>" class = "on fir"><%=i %></a>&nbsp;
+				<a href="NoticeBoardList.not?page=<%=i %>" class = ""><%=i %></a>&nbsp;
 			<%} %>
 	<%} %>
 	

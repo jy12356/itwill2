@@ -58,7 +58,7 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 	                            	<td colspan="3">
 	                            		<%
 				if(article.getFile() != null) {
-					%> <a href="sub5/file_down.jsp?downFile=<%=article.getFile()%>"><%=article.getFile() %></a> <%
+					%> <a href="sub5/notice_file_down.jsp?downFile=<%=article.getFile()%>"><%=article.getFile() %></a> <%
 				}
 			%>
 	                            	</td>
