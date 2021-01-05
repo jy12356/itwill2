@@ -55,6 +55,7 @@ public class ReCommentWriteProAction implements Action {
 			out.print(json.toString());	
 		} else {
 			// 리뷰 등록 성공시
+			response.setContentType("text/html; charset=UTF-8");
 			json.put("text", "댓글을 등록하였습니다");
 			jsonArray.add(json);
 			PrintWriter out = response.getWriter();

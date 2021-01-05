@@ -29,6 +29,10 @@
 								<td colspan="2" class="th"><%=article.getSubject()%></td>
 							</tr>
 							<tr>
+								<td>작성자</td>
+								<td><%=article.getId()%></td>
+							</tr>
+							<tr>
 								<td>저자</td>
 								<td><%=article.getAuthor()%></td>
 							</tr>
@@ -55,6 +59,20 @@
 									%>
 								</td>
 							</tr>
+							<%
+							if (article.getFile() != null) {
+							%>
+							<tr>
+								<td>첨부파일 미리보기</td>
+								<td>
+									<label>
+										<img src="sub4/file_down.jsp?file=<%=article.getFile()%>" class="file"/>
+									</label>
+								</td>
+							</tr>
+							<%
+								}
+							%>
 						</tbody>
 					</table>
 					<div class="btn_inner">
@@ -65,7 +83,7 @@
 						<input type="button" class="btn" value="수정"
 							onclick="location.href='RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
 						<input type="button" class="btn" value="삭제"
-							onclick="location.href='RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+							onclick="location.href='RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=article.getId()%>'">
 						<input type="button" class="btn" value="목록"
 							onclick="location.href='RequestList.rq?page=<%=nowPage%>'">
 						<input type="button" class="btn" value="답변"
@@ -76,7 +94,7 @@
 						<input type="button" class="btn" value="수정"
 							onclick="location.href='RequestModifyForm.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
 						<input type="button" class="btn" value="삭제"
-							onclick="location.href='RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+							onclick="location.href='RequestDeletePro.rq?num=<%=article.getNum()%>&page=<%=nowPage%>&id=<%=article.getId()%>'">
 						<input type="button" class="btn" value="목록"
 							onclick="location.href='RequestList.rq?page=<%=nowPage%>'">
 					<%

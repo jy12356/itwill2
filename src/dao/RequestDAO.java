@@ -161,17 +161,11 @@ public class RequestDAO {
 			String sql = "SELECT id FROM bookreq WHERE num=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				if (id.equals(rs.getString("id"))) {
-					isArticleRequestWriter = true;
-				}
-			}
+
 		} catch (SQLException e) {
 			System.out.println("isArticleRequestWriter() 오류! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
-			close(rs);
 			close(pstmt);
 		}
 
@@ -296,9 +290,9 @@ public class RequestDAO {
 			pstmt.setInt(1, num);
 			pstmt.setString(2, article.getId());
 			pstmt.setString(3, article.getSubject());
-			pstmt.setString(4, ""); // 저자 생략
-			pstmt.setString(5, ""); // 출판사 생략
-			pstmt.setString(6, ""); // 출판일 생략
+			pstmt.setString(4, article.getAuthor()); // 저자 생략
+			pstmt.setString(5, article.getPublisher()); // 출판사 생략
+			pstmt.setString(6, article.getPubdate()); // 출판일 생략
 			pstmt.setString(7, ""); // ISBN 생략
 			pstmt.setString(8, article.getContent());
 			pstmt.setString(9, ""); // 파일업로드 생략
@@ -320,7 +314,7 @@ public class RequestDAO {
 	}
 
 	// 글 삭제
-	public int removeArticle(RequestBean article) {
+	public int removeArticle(int num) {
 		int deleteCount = 0;
 
 		PreparedStatement pstmt = null;
@@ -328,11 +322,11 @@ public class RequestDAO {
 		try {
 			String sql = "DELETE FROM bookreq WHERE num=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, article.getNum());
+			pstmt.setInt(1, num);
 			deleteCount = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println("deleteArticle() 오류! - " + e.getMessage());
+			System.out.println("removeArticle() 오류! - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			close(pstmt);

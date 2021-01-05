@@ -539,8 +539,8 @@ int listCount = pageInfo.getListCount();
 		}
 			if(confirm("댓글을 삭제하시겠습니까?")==true) {
 				$.ajax({
-					type : "GET",
-					data : "json",
+					type : "POST",
+					dataType : "json",
 					url : "ReCommentDeletePro.re",
 					data : {
 						"page" : page,
@@ -552,7 +552,7 @@ int listCount = pageInfo.getListCount();
 					},
 					success : function(data) {
 						var text = data.text;
-// 						alert(text);
+						alert(text);
 
 					},
 					error : function(error) {
@@ -562,8 +562,9 @@ int listCount = pageInfo.getListCount();
 			} else {
 				return false;
 		}
-			alert("댓글을 삭제하였습니다.");
-			$(".comment_write_show").trigger("click", $(this).board_num);
+			var board_num = data.board_num;
+			$(".comment_write_show").trigger("click");
+// 			reply_write(board_num);
 			
 	}
 
@@ -688,8 +689,8 @@ int listCount = pageInfo.getListCount();
 	                				'<input type="hidden" name="board_type" id="board_type" value="2">'+
 	                				'<input type="hidden" name="board_num" id="board_num" value="'+entry["board_num"]+'">'+
 	                				'<p class="comment-vote bookcube" id="cmt_vote">'+
-	                				'<i id="c_id">'+entry["comment_id"]+'</i><em>|</em><span id="c_date" class="date">'+entry["date"]+'</span>'+
-	                				'</p>'+
+	                				'<span id="c_date" class="date"><댓글></span><em>|</em><i id="c_id">'+entry["comment_id"]+
+	                				'</i></p>'+
 	                				'<div class="comment-content">'+
 	                				'<span id="c_desc">'+entry["comment_desc"]+'</span>'+
 	                				'</div>'+
@@ -857,6 +858,9 @@ int listCount = pageInfo.getListCount();
 							success : function(data) {
 								var text = data.text;
 								alert(text);
+
+								reply_write(board_num);
+								
 
 							<%-- <div class="comment comment_inner reIcon">
 								<input type="hidden" name="isbn" value="<%=isbn%>"> 

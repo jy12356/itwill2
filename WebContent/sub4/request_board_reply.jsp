@@ -47,23 +47,23 @@
 			                        </tr>
 	                            	<tr>
 										<td>제목</td>
-										<td colspan="3"><input type="text" name="subject" value="Re : <%=article.getSubject()%>" required="required" readonly></td>
+										<td colspan="3"><input type="text" id="subject" name="subject" value="Re : <%=article.getSubject()%>" required="required" readonly></td>
 									</tr>
 									<tr>
 										<td>저자</td>
-										<td colspan="3"><input type="text" name="author" value="<%=article.getAuthor()%>" required="required" readonly></td>
+										<td colspan="3"><input type="text" id="author" name="author" value="<%=article.getAuthor()%>" required="required" readonly></td>
 									</tr>
 									<tr>
 										<td>출판사</td>
-										<td colspan="3"><input type="text" name="publisher" value="<%=article.getPublisher()%>" required="required" readonly></td>
+										<td colspan="3"><input type="text" id="publisher" name="publisher" value="<%=article.getPublisher()%>" required="required" readonly></td>
 									</tr>
 									<tr>
 										<td>출판년도</td>
-										<td colspan="3"><input type="text" name="pubdate" value="<%=article.getPubdate()%>" required="required" readonly></td>
+										<td colspan="3"><input type="text" id="pubdate" name="pubdate" value="<%=article.getPubdate()%>" required="required" readonly></td>
 									</tr>
 									<tr>
 										<td>첨부 내용</td>
-										<td colspan="3"><textarea name="content" id="content" name="content"></textarea>
+										<td colspan="3"><textarea name="content" id="content"></textarea>
 		                                </td>
 									</tr>
 								</tbody>

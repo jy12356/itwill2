@@ -67,7 +67,7 @@
 											<%
 												if (article.getFile() != null) {
 											%> 
-												<a href="sub4/file_down.jsp?downFile=<%=article.getFile()%>"><%=article.getFile()%></a>
+												<a class="file" href="sub4/file_down.jsp?file=<%=article.getFile()%>"><%=article.getFile()%></a>
 											<%
 												}
 											%>

@@ -96,43 +96,43 @@ int listCount = pageInfo.getListCount();
 						});
 						</script>					
 						
-						<div class="paging">
-                            	<a href="RequestList.rq?page=1" class="arr" data-page-num="1">
-										<img src="images/p-first.png"><span class="hide">처음페이지</span>
-								</a>
-                            	<%if(nowPage <=1) {%>
+<!-- 						<div class="paging"> -->
+<!--                             	<a href="RequestMyList.rq?page=1" class="arr" data-page-num="1"> -->
+<!-- 										<img src="images/p-first.png"><span class="hide">처음페이지</span> -->
+<!-- 								</a> -->
+<%--                             	<%if(nowPage <=1) {%> --%>
 									
-                            		<a href="RequestList.rq?page=<%=nowPage%>" class="arr prev" data-page-num="1">
-										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
-									</a>
-								<%}else{%>
-								<a href="RequestList.rq?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1">
-										<img src="images/p-prev.png"><span class="hide">이전페이지</span>
-									</a>
+<%--                             		<a href="RequestMyList.rq?page=<%=nowPage%>" class="arr prev" data-page-num="1"> --%>
+<!-- 										<img src="images/p-prev.png"><span class="hide">이전페이지</span> -->
+<!-- 									</a> -->
+<%-- 								<%}else{%> --%>
+<%-- 								<a href="RequestMyList.rq?page=<%=nowPage - 1 %>" class="arr prev" data-page-num="1"> --%>
+<!-- 										<img src="images/p-prev.png"><span class="hide">이전페이지</span> -->
+<!-- 									</a> -->
 								
-								<%} %>
+<%-- 								<%} %> --%>
 								
-								<%for(int i = startPage; i <= endPage; i++) { 
-										if(i == nowPage) { %>
-											<a href="RequestList.rq?page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a>
-										<%} else { %>
-											<a href="RequestList.rq?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a>
-										<%} %>
-								<%} %>
+<%-- 								<%for(int i = startPage; i <= endPage; i++) {  --%>
+<%-- 										if(i == nowPage) { %> --%>
+<%-- 											<a href="RequestMyList.rq?page=<%=i%>" class="on" data-page-num="<%=i%>"><%=i%></a> --%>
+<%-- 										<%} else { %> --%>
+<%-- 											<a href="RequestMyList.rq?page=<%=i%>" class="" data-page-num="<%=i%>"><%=i%></a> --%>
+<%-- 										<%} %> --%>
+<%-- 								<%} %> --%>
 								
-                            	<%if(nowPage >= maxPage) { %>
-									<a href="RequestList.rq?page=<%=nowPage%>" class="arr next" data-page-num="11">
-	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
-	                            	</a>
-	                            <%}else{%>   
-	                            	<a href="RequestList.rq?page=<%=nowPage + 1%>" class="arr next" data-page-num="11">
-	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span>
-	                            	</a>
-                            	<%} %>
-	                            	<a href="RequestList.rq?page=<%=maxPage%>" class="arr" data-page-num="781">
-                                		<img src="images/p-last.png"><span class="hide">마지막페이지</span>
-                               		</a>                        
-                            </div>
+<%--                             	<%if(nowPage >= maxPage) { %> --%>
+<%-- 									<a href="RequestMyList.rq?page=<%=nowPage%>" class="arr next" data-page-num="11"> --%>
+<!-- 	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span> -->
+<!-- 	                            	</a> -->
+<%-- 	                            <%}else{%>    --%>
+<%-- 	                            	<a href="RequestMyList.rq?page=<%=nowPage + 1%>" class="arr next" data-page-num="11"> --%>
+<!-- 	                            		<img src="images/p-next.png"><span class="hide">다음페이지</span> -->
+<!-- 	                            	</a> -->
+<%--                             	<%} %> --%>
+<%-- 	                            	<a href="RequestMyList.rq?page=<%=maxPage%>" class="arr" data-page-num="781"> --%>
+<!--                                 		<img src="images/p-last.png"><span class="hide">마지막페이지</span> -->
+<!--                                		</a>                         -->
+<!--                             </div> -->
 							<%
 							} else {
 							%>

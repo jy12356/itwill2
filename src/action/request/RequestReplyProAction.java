@@ -29,6 +29,9 @@ public class RequestReplyProAction implements Action {
 		article.setNum(Integer.parseInt(request.getParameter("num")));
 		article.setId(request.getParameter("id"));
 		article.setSubject(request.getParameter("subject"));
+		article.setAuthor(request.getParameter("author"));
+		article.setPublisher(request.getParameter("publisher"));
+		article.setPubdate(request.getParameter("pubdate"));
 		article.setContent(request.getParameter("content"));
 		article.setRe_ref(Integer.parseInt(request.getParameter("re_ref")));
 		article.setRe_lev(Integer.parseInt(request.getParameter("re_lev")));
