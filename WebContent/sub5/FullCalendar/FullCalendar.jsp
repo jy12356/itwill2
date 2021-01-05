@@ -137,12 +137,16 @@ if (id == null) {
                                 <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
                                     id="edit-desc"></textarea>
                                     <%
-						                        	}
-							                        }
+						                  }else if(!id.equals("admin")){
+							                        
                                     %>
                                     <label class="col-xs-4" for="edit-desc" >설명</label>
                                 <textarea rows="4" cols="50" class="inputModal" name="edit-desc"
                                     id="edit-desc" readonly="readonly"></textarea>
+                                    <%
+						                  }
+							                        }
+                                    %>
                             </div>
                         </div>
                     </div>

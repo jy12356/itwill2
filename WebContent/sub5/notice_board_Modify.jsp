@@ -53,13 +53,11 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 <!-- 											</div> -->
 <!-- 											</div> -->
 <!-- 								<tr> -->
-<!-- 	                            <td>글 번호</td> -->
-<!-- 	                            <td colspan="3"> -->
-<%-- 	                            	<%=article.getNum() %> --%>
-<%-- 	                            	<input type="hidden" name="page" value="<%=nowPage %>" /> --%>
-<%-- 	                            	<input type="hidden" name="num" value=<%=article.getNum() %>> --%>
-<!-- 	                            	</td> -->
-<!-- 	                            </tr> -->
+
+	                            <div>
+	                            	<input type="hidden" name="page" value="<%=nowPage %>" />
+	                            	<input type="hidden" name="num" value=<%=article.getNum() %>>
+	                            </div>
 	                            <tr>
 	                                <td>제목</td>
 	                                <td colspan="3">
@@ -83,7 +81,7 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 	                                <td class="th">내용</td>
 	                                <td colspan="3" class="td">
 	                               <p>
-												<textarea name="desc" required="required"><%=article.getContent() %></textarea>
+												<textarea name="content" required="required"><%=article.getContent() %></textarea>
 
 											</p>
 	                                </td>
