@@ -29,7 +29,7 @@ int listCount = PageInfo.getListCount();
 <%-- 										<span><%=articleList.get(i).getSubject()%></span></a> --%>
 						</div>
 						<div class="swiper-slide">
-							<a href="NoticeBoardDetail.not?num=5&page=1">확인용 게시글<span>2021-01-04</span></a>
+							<a href="NoticeBoardDetail.not?num=3&page=1">공지사항<span>2021-12-31</span></a>
 						</div>						
 					</div>
 				</div>

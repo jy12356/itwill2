@@ -4,12 +4,8 @@
     <%
     NoticeBean article = (NoticeBean)request.getAttribute("article");
     String nowPage = request.getParameter("page");
+	String id = (String) session.getAttribute("id"); // 아이디가져오기
     %>
-<% 
-// 글쓰기 폼
-String id = (String) session.getAttribute("id"); // 아이디가져오기
-
-%>
 <jsp:include page="../include/header.jsp"/>
 <section class="sub">
     <div class="category-nav">
@@ -80,8 +76,8 @@ String id = (String) session.getAttribute("id"); // 아이디가져오기
 							                        if(id != null) {
 						                        	if(id.equals(article.getId()) || id.equals("admin")){
 						%> 
-	                    	<input type="button" value="수정" class="btn" onclick="location.href='NoticeBoardModifyForm.not?num=<%=article.getNum()%>&page=<%=nowPage%>'">
-	                       <input type="button" value="삭제" class="btn" onclick="location.href='NoticeBoardDelete.not?num=<%=article.getNum()%>&page=<%=nowPage%>'">
+	                    	<input type="button" value="수정" class="btn" onclick="location.href='NoticeBoardModifyForm.not?num=<%=article.getNum()%>'">
+	                       <input type="button" value="삭제" class="btn" onclick="location.href='NoticeBoardDelete.not?num=<%=article.getNum()%>'">
 	                       	<%
 						                        	}
 					                        }
