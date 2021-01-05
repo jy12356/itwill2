@@ -8,7 +8,6 @@
 %>
 <jsp:include page="../include/header.jsp"/>
 <body>
-	<form action="RequestModifyPro.rq" method="post" name="modifyForm">
 	<input type="hidden" name="num" value="<%=article.getNum()%>" />
 	<input type="hidden" name="page" value="<%=nowPage%>" />
 	<input type="hidden" name="id" value="id" />
@@ -23,7 +22,7 @@
 					<h3 class="coTitle">희망도서 신청</h3>
 					<div class="customer-contents">
 						<div class="customer-inner">
-
+						<form action="RequestModifyPro.rq"  method="post" enctype="multipart/form-data"  name="request_board_write">
 							<table summary="희망도서 신청" class="onebyone">
 								<caption>희망도서 신청</caption>
 								<colgroup>
@@ -32,8 +31,10 @@
 								</colgroup>
 								<tbody>
 		                        	<tr>
-			                            <td>신청자</td>
+			                            <th>신청자</th>
 			                            <td colspan="3">
+			                            	<input type="hidden" name="num" value="<%=article.getNum()%>">
+                   				            <input type="hidden" name="page" value="<%=nowPage%>">
 			                            	<input type="text" name="id" value="<%=id%>" readonly="readonly">
 			                            </td>
 			                        </tr>
@@ -79,11 +80,11 @@
 								<input type="submit" class="btn" value="수정">
 								<input type="button" class="btn" value="목록" onclick="location.href='RequestList.rq'">
 							</div>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-	</form>
 </body>
 <jsp:include page="../include/footer.jsp" />
