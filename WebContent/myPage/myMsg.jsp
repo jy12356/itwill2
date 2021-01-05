@@ -50,7 +50,7 @@
 									<ul>
 										<li><a href="MyMsg.msg" class="">메세지</a></li>
 										<li><a href="RequestMyList.rq" class="">희망도서</a></li>
-										<li><a href="FreeBoardList.free" class="">게시글</a></li>
+										<li><a href="#a" class="">게시글</a></li>
 										<li><a href="QnaList.qna" class="">QnA</a></li>
 									</ul>
 								</li>
