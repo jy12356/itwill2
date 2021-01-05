@@ -22,6 +22,9 @@ public class MemberModifyProAction implements Action {
 		System.out.println("MemberModifyProAction id : "+id);
 		MemberModifyProService memberModifyProService = new MemberModifyProService();
 		boolean isRightUser = memberModifyProService.isArticleWriter(id);
+		String password = request.getParameter("password");
+		String password1 = request.getParameter("password1");
+		System.out.println(request.getParameter("password")+"/000/"+request.getParameter("password1"));
 		
 		if(!isRightUser) {
 			response.setContentType("text/html;charset=UTF-8");
@@ -34,7 +37,15 @@ public class MemberModifyProAction implements Action {
 			MemberBean article = new MemberBean();
 			article.setId(id);
 			article.setName(request.getParameter("name"));
-			article.setPassword(request.getParameter("password1"));
+			
+			if(request.getParameter("password1")==null) {
+				System.out.println("111"+request.getParameter("password")+"/000/"+request.getParameter("password1"));
+				article.setPassword(request.getParameter("password"));
+			} else {
+				System.out.println("222"+request.getParameter("password")+"/000/"+request.getParameter("password1"));
+				article.setPassword(request.getParameter("password1"));
+			}
+			
 			article.setPhone(request.getParameter("phone"));
 			article.setCatg(request.getParameter("catg"));
 			article.setAddress(request.getParameter("sample4_postcode")+'/'+request.getParameter("sample4_roadAddress")+'/'+request.getParameter("sample4_detailAddress"));
