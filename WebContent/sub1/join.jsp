@@ -236,7 +236,7 @@
 								</label>
 								<p>이용약관 동의</p>
 							</div>
-							<a href="/customer.asp?page=notice&num=24007&page2=view" class="btn">자세히 보기</a>
+							<a href="#" class="btn">자세히 보기</a>
 						</div>
 						<div>
 							<div class="checkbox">
@@ -246,7 +246,7 @@
 								</label>
 								<p>개인정보 취급 방침</p>
 							</div>
-							<a href="/customer.asp?page=notice&num=24264&page2=view" class="btn">자세히 보기</a>
+							<a href="#" class="btn">자세히 보기</a>
 						</div>
 						<div>
 							<div class="checkbox">
