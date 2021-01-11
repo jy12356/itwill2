@@ -52,7 +52,7 @@
 									</tr>
 									<tr>
 										<th>출판년도 <em><font color="red">(*)</font></em></th>
-										<td><input type="text" name="pubdate" value="<%=article.getPubdate()%>" required="required"></td>
+										<td><input type="text" name="pubdate" value="<%=article.getPubdate()%>"></td>
 									</tr>
 									<tr>
 										<th>첨부 내용 </th>
