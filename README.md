@@ -12,7 +12,7 @@
 
 ### 4 개발환경 
 * JDK 8
-* JacaScript(jQury)
+* JacaScript(jQuery)
 * MySQL
 * AJAX
 * MVC Model2
