@@ -1,10 +1,10 @@
 # 도서대여배송서비스(http://itwillbs6.cafe24.com/itwill2th/Main.book)
 
-<img src="https://user-images.githubusercontent.com/72728986/107335170-f2095c00-6afa-11eb-8105-6395c71a6e20.gif" width="500">
+<img src="https://user-images.githubusercontent.com/72728986/107335170-f2095c00-6afa-11eb-8105-6395c71a6e20.gif" width="650">
    
 * 도서대여배송서비스는 도서대여배송을 한달, 세달, 1년 구독을 통해 원하는 도서를 대여하여 집으로 배송 받을 수 있는 웹애플리케이션 프로젝트 입니다.
 
-**
+***
 
 ## 1. 멤버
 * 서지연 
@@ -15,7 +15,7 @@
 * 엄영민 
 * 서청빈
 
-## 4 개발환경 
+## 2. 개발환경 
 * JDK 8
 * JacaScript(jQuery)
 * MySQL
@@ -28,7 +28,7 @@
 * 이니시스 API
 * eclipse EE
 
-## 5. 주제에 따른 기능
+## 3. 주제에 따른 기능
 * 도서예약(시간 예약도서 알림)
 * 도서검색 api (도서등록)
 * 전체 검색
